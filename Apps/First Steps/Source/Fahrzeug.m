@@ -12,6 +12,7 @@
 @implementation Fahrzeug
 
 - (id)init {
+    NSLog(@"[+] [%@, %@]", self, NSStringFromSelector(_cmd));
     if ((self = [super init])) {
         // Initialization code here.
     }
@@ -20,6 +21,7 @@
 }
 
 - (void)dealloc {
+    NSLog(@"[+] [%@, %@]", self, NSStringFromSelector(_cmd));
     // Clean-up code here.
     
     [super dealloc];
