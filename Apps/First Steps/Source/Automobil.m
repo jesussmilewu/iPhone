@@ -9,7 +9,6 @@
 #import "Automobil.h"
 #import <CommonCrypto/CommonDigest.h>
 
-
 @implementation Automobil
 
 -(NSString*)getId {
@@ -34,7 +33,7 @@
     }
     
     DLOG(@"[+] ID 512: %@", hashedString);
-    
+
     [fzID release];
     
     return hashedString;

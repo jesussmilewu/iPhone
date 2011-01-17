@@ -1,5 +1,5 @@
 //
-//  Automobil.h
+//  ReverseString.h
 //  First Steps
 //
 //  Created by Klaus M. Rodewig on 17.01.11.
@@ -7,11 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Fahrzeug.h"
 
-@interface Automobil : Fahrzeug {
-@private
-}
--(NSString*)getId;
 
+@interface NSString (ReverseString)
+-(NSString*)reverseString:(NSString*)inString;
 @end

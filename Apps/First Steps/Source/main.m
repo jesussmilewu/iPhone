@@ -9,11 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "Fahrzeug.h"
 #import "Automobil.h"
+#import "ReverseString.h"
 
 int main (int argc, const char * argv[]) {
 
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
     // insert code here...
+    
+    
+    NSString *reverse = [[NSString alloc] init];
+    [reverse reverseString:@"foobar"];
+    
     Fahrzeug *fahrzeug = [[Fahrzeug alloc] init];
     Automobil *automobil = [[Automobil alloc] init];
     [fahrzeug getId];
