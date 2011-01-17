@@ -13,9 +13,9 @@ int main (int argc, const char * argv[]) {
 
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
     // insert code here...
-    NSLog(@"Hello, World!");
     Fahrzeug *fahrzeug = [[Fahrzeug alloc] init];
-    [fahrzeug release];
+    [fahrzeug getId];
+    [fahrzeug autorelease];
     [pool drain];
     return 0;
 }
