@@ -28,19 +28,12 @@
 
 -(NSString*)getId {
     DLOG(@"[+] %@", NSStringFromSelector(_cmd));
-    DLOG(@"[+] Name: %@", [self name]);
-    DLOG(@"[+] Preis: %0.2f", [[self preis] floatValue]);
-    DLOG(@"[+] Geschwindigkeit: %d", [self geschwindigkeit]);
-    DLOG(@"[+] Baujahr: %@", [[self baujahr] description]);
-
     NSMutableString *fzID = [[NSMutableString alloc] init];
     
     NSTimeInterval ti = [[NSDate date] timeIntervalSince1970];
  
     [fzID appendFormat:@"%@%0.2f%d%@%f", [self name], [[self preis] floatValue], [self geschwindigkeit], [[self baujahr] description], ti];
 
-    DLOG(@"fzID: %@", fzID);
-    
     unsigned char hashedChars[CC_SHA256_DIGEST_LENGTH];
 
     CC_SHA256([fzID UTF8String],
@@ -73,15 +66,10 @@
 - (void)dealloc {
     DLOG(@"[+] %@", NSStringFromSelector(_cmd));
     
-    DLOG(@"preis");
     preis = nil;
-    DLOG(@"geschwindigkeit");
     geschwindigkeit = 0;
-    DLOG(@"name");
     name = nil;
-    DLOG(@"baujahr");
     baujahr = nil;
-    DLOG(@"super");
     [super dealloc];
 }
 

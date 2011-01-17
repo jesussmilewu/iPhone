@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4038EB1A12E4544E008FF534 /* Automobil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4038EB1912E4544E008FF534 /* Automobil.m */; };
 		404BF1AE12D34BB20020C09E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404BF1AD12D34BB20020C09E /* Foundation.framework */; };
 		404BF1B112D34BB20020C09E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 404BF1B012D34BB20020C09E /* main.m */; };
 		40D205EE12D50A8F005EBF76 /* Fahrzeug.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D205ED12D50A8F005EBF76 /* Fahrzeug.m */; };
@@ -25,6 +26,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4038EB1812E4544E008FF534 /* Automobil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Automobil.h; sourceTree = "<group>"; };
+		4038EB1912E4544E008FF534 /* Automobil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Automobil.m; sourceTree = "<group>"; };
 		404BF1A912D34BB20020C09E /* First Steps */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "First Steps"; sourceTree = BUILT_PRODUCTS_DIR; };
 		404BF1AD12D34BB20020C09E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		404BF1AF12D34BB20020C09E /* First_Steps.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = First_Steps.1; sourceTree = "<group>"; };
@@ -61,6 +64,8 @@
 			isa = PBXGroup;
 			children = (
 				404BF1B012D34BB20020C09E /* main.m */,
+				4038EB1812E4544E008FF534 /* Automobil.h */,
+				4038EB1912E4544E008FF534 /* Automobil.m */,
 				40D205EC12D50A8F005EBF76 /* Fahrzeug.h */,
 				40D205ED12D50A8F005EBF76 /* Fahrzeug.m */,
 			);
@@ -151,6 +156,7 @@
 			files = (
 				404BF1B112D34BB20020C09E /* main.m in Sources */,
 				40D205EE12D50A8F005EBF76 /* Fahrzeug.m in Sources */,
+				4038EB1A12E4544E008FF534 /* Automobil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
