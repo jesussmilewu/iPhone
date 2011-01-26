@@ -5,8 +5,7 @@
 }
 
 @property (nonatomic, retain) NSDate *time;
-@property (nonatomic, retain) NSCalendar *calendar;
-@property (nonatomic, retain) NSTimer *timer;
+@property (nonatomic, retain, readonly) NSCalendar *calendar;
 
 - (void)startAnimation;
 - (void)stopAnimation;
