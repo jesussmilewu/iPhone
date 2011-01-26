@@ -20,7 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AB9F82CE12F0B03E002492BC /* Clock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clock.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB9F82CE12F0B03E002492BC /* ClockWithButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClockWithButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB9F82D212F0B03E002492BC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AB9F82D412F0B03E002492BC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AB9F82D612F0B03E002492BC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -64,7 +64,7 @@
 		AB9F82CF12F0B03E002492BC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AB9F82CE12F0B03E002492BC /* Clock.app */,
+				AB9F82CE12F0B03E002492BC /* ClockWithButton.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -109,9 +109,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AB9F82CD12F0B03E002492BC /* Clock */ = {
+		AB9F82CD12F0B03E002492BC /* ClockWithButton */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AB9F82EF12F0B03E002492BC /* Build configuration list for PBXNativeTarget "Clock" */;
+			buildConfigurationList = AB9F82EF12F0B03E002492BC /* Build configuration list for PBXNativeTarget "ClockWithButton" */;
 			buildPhases = (
 				AB9F82CA12F0B03E002492BC /* Sources */,
 				AB9F82CB12F0B03E002492BC /* Frameworks */,
@@ -121,9 +121,9 @@
 			);
 			dependencies = (
 			);
-			name = Clock;
+			name = ClockWithButton;
 			productName = Clock;
-			productReference = AB9F82CE12F0B03E002492BC /* Clock.app */;
+			productReference = AB9F82CE12F0B03E002492BC /* ClockWithButton.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -143,7 +143,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AB9F82CD12F0B03E002492BC /* Clock */,
+				AB9F82CD12F0B03E002492BC /* ClockWithButton */,
 			);
 		};
 /* End PBXProject section */
@@ -272,7 +272,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AB9F82EF12F0B03E002492BC /* Build configuration list for PBXNativeTarget "Clock" */ = {
+		AB9F82EF12F0B03E002492BC /* Build configuration list for PBXNativeTarget "ClockWithButton" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AB9F82F012F0B03E002492BC /* Debug */,

@@ -109,9 +109,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AB9F82CD12F0B03E002492BC /* Clock */ = {
+		AB9F82CD12F0B03E002492BC /* ClockWithSwitch */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AB9F82EF12F0B03E002492BC /* Build configuration list for PBXNativeTarget "Clock" */;
+			buildConfigurationList = AB9F82EF12F0B03E002492BC /* Build configuration list for PBXNativeTarget "ClockWithSwitch" */;
 			buildPhases = (
 				AB9F82CA12F0B03E002492BC /* Sources */,
 				AB9F82CB12F0B03E002492BC /* Frameworks */,
@@ -121,7 +121,7 @@
 			);
 			dependencies = (
 			);
-			name = Clock;
+			name = ClockWithSwitch;
 			productName = Clock;
 			productReference = AB9F82CE12F0B03E002492BC /* Clock.app */;
 			productType = "com.apple.product-type.application";
@@ -143,7 +143,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AB9F82CD12F0B03E002492BC /* Clock */,
+				AB9F82CD12F0B03E002492BC /* ClockWithSwitch */,
 			);
 		};
 /* End PBXProject section */
@@ -272,7 +272,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AB9F82EF12F0B03E002492BC /* Build configuration list for PBXNativeTarget "Clock" */ = {
+		AB9F82EF12F0B03E002492BC /* Build configuration list for PBXNativeTarget "ClockWithSwitch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AB9F82F012F0B03E002492BC /* Debug */,
