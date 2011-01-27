@@ -14,6 +14,7 @@
 	<array>
 		<string>icon.png</string>
 		<string>icon@2x.png</string>
+		<string>icon-ipad.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>de.ifoo.${PRODUCT_NAME:rfc1034identifier}</string>
@@ -33,6 +34,8 @@
 	<true/>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
+	<key>NSMainNibFile~ipad</key>
+	<string>MainWindow-iPad</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

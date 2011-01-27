@@ -1,5 +1,12 @@
 #import "ClockView.h"
 
+@interface ClockView()
+
+@property (nonatomic, retain) NSTimer *timer;
+@property (nonatomic, retain, readwrite) NSCalendar *calendar;
+
+@end
+
 @implementation ClockView
 
 @synthesize time;

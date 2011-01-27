@@ -9,9 +9,11 @@
 @property (nonatomic, retain) AVAudioPlayer *audioPlayer;
 @property (nonatomic) BOOL paused;
 @property (nonatomic, retain) NSTimer *updateTimer;
+@property (nonatomic) BOOL loading;
 
 - (void)startTimer;
 - (void)cancelTimer;
+- (void)updateTime:(NSTimer *)inTimer;
 
 @end
 
@@ -40,6 +42,21 @@
     [self updateTimeLabel];
 }
 
+- (BOOL)loading {
+    return activityIndicator.isAnimating;
+}
+
+- (void)setLoading:(BOOL)inLoading {
+    if(inLoading) {
+        [activityIndicator startAnimating];
+        [toolbar setEnabled:NO];
+    }
+    else {
+        [activityIndicator stopAnimating];
+        [toolbar setEnabled:YES];
+    }
+}
+
 - (void)updatePlayButton {
     playButton.image = [UIImage imageNamed:self.paused ? @"play.png" : @"pause.png"]; 
 }
@@ -54,12 +71,14 @@
         thePlayer.meteringEnabled = YES;
         self.time = slider.value;
         slider.maximumValue = thePlayer.duration;
+        self.loading = NO;
+        [self updateTime:nil];
         [self startTimer];
-        [thePlayer playAtTime:self.time];
+        [thePlayer play];
     }
     else {
         NSLog(@"playAudio: %@", theError.localizedDescription);
-        [activityIndicator stopAnimating];
+        self.loading = NO;
     }
 }
 
@@ -69,7 +88,7 @@
 
 - (IBAction)flipPlayback {
     if(self.audioPlayer == nil) {
-        [activityIndicator startAnimating];
+        self.loading = YES;
         [self performSelector:@selector(startAudioPlayer) withObject:nil afterDelay:0.0];
         self.paused = NO;
     }
@@ -78,8 +97,8 @@
         [self.audioPlayer pause];
     }
     else {
+        NSLog(@"play: %.3f, %.3f", self.time, self.audioPlayer.duration);
         self.paused = NO;
-        self.audioPlayer.currentTime = slider.value;
         [self.audioPlayer play];        
         [self startTimer];
     }
@@ -113,6 +132,7 @@
 }
 
 - (void)startTimer {
+    NSLog(@"startTimer: %@", self.updateTimer);
     if(self.updateTimer == nil) {
         self.audioPlayer.meteringEnabled = YES;
         self.updateTimer = [NSTimer scheduledTimerWithTimeInterval:0.25 
@@ -124,29 +144,34 @@
 }
 
 - (void)cancelTimer {
+    NSLog(@"cancelTimer: %@", self.updateTimer);
     [self.updateTimer invalidate];
     self.updateTimer = nil;
 }
 
 - (void)updateTime:(NSTimer *)inTimer {
+    NSLog(@"updateTime: %@", inTimer);
     NSTimeInterval theTime = self.audioPlayer.currentTime;
     
     [self.audioPlayer updateMeters];
-    self.time = theTime;
     meterView.value = [self.audioPlayer averagePowerForChannel:0];
-    if(theTime > 0) {
-        [toolbar setEnabled:YES];
-        [activityIndicator stopAnimating];
-    }
+    slider.value = theTime;
+    [self updateTimeLabel];
 }
 
 #pragma mark AVAudioPlayerDelegate
 
+- (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)inPlayer error:(NSError *)inError {
+    NSLog(@"audioPlayerDecodeErrorDidOccur:error: %@", inError.localizedDescription);
+}
+
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)inPlayer successfully:(BOOL)inFlag {
+    NSLog(@"audioPlayerDidFinishPlaying:successfully: %d", inFlag);
     [self cancelTimer];
     self.paused = YES;
     self.time = 0.0;
     [meterView clear];
+    self.loading = NO;
     [self updatePlayButton];
 }
 
