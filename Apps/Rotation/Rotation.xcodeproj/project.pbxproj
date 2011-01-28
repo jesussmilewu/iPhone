@@ -23,14 +23,14 @@
 		AB1BF99B12F2E390002BB9AC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AB1BF99D12F2E390002BB9AC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AB1BF99F12F2E390002BB9AC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		AB1BF9A312F2E390002BB9AC /* Rotation-Info.plist */ = {isa = PBXFileReference; path = "Rotation-Info.plist"; sourceTree = "<group>"; };
+		AB1BF9A312F2E390002BB9AC /* Rotation-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Rotation-Info.plist"; sourceTree = "<group>"; };
 		AB1BF9A512F2E390002BB9AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		AB1BF9A712F2E390002BB9AC /* Rotation-Prefix.pch */ = {isa = PBXFileReference; path = "Rotation-Prefix.pch"; sourceTree = "<group>"; };
+		AB1BF9A712F2E390002BB9AC /* Rotation-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Rotation-Prefix.pch"; sourceTree = "<group>"; };
 		AB1BF9A812F2E390002BB9AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		AB1BF9AA12F2E390002BB9AC /* RotationAppDelegate.h */ = {isa = PBXFileReference; path = RotationAppDelegate.h; sourceTree = "<group>"; };
+		AB1BF9AA12F2E390002BB9AC /* RotationAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RotationAppDelegate.h; sourceTree = "<group>"; };
 		AB1BF9AB12F2E390002BB9AC /* RotationAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RotationAppDelegate.m; sourceTree = "<group>"; };
 		AB1BF9AE12F2E390002BB9AC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		AB1BF9B012F2E390002BB9AC /* RotationViewController.h */ = {isa = PBXFileReference; path = RotationViewController.h; sourceTree = "<group>"; };
+		AB1BF9B012F2E390002BB9AC /* RotationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RotationViewController.h; sourceTree = "<group>"; };
 		AB1BF9B112F2E391002BB9AC /* RotationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RotationViewController.m; sourceTree = "<group>"; };
 		AB1BF9B412F2E391002BB9AC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RotationViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
