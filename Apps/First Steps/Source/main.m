@@ -15,10 +15,8 @@ int main (int argc, const char * argv[]) {
 
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
     // insert code here...
-    
-    
-    NSString *reverse = [[NSString alloc] init];
-    [reverse reverseString:@"foobar"];
+       
+    [@"foobar" reverse];
     
     Fahrzeug *fahrzeug = [[Fahrzeug alloc] init];
     Automobil *automobil = [[Automobil alloc] init];

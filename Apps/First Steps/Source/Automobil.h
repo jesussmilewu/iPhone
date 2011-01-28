@@ -11,7 +11,18 @@
 
 @interface Automobil : Fahrzeug {
 @private
+    NSDate  *hauptUntersuchung;
+    NSNumber *anzahlTueren;
+    NSNumber *ps;
 }
--(NSString*)getId;
+-(NSString*)getDetails;
+#pragma mark Setter
+-(void)setHauptUntersuchung:(NSDate*)sHu;
+-(void)setAnzahlTueren:(NSNumber*)sTueren;
+-(void)setPs:(NSNumber*)sPs;
+#pragma mark Getter
+-(NSDate*)hauptUntersuchung;
+-(NSNumber*)anzahlTueren;
+-(NSNumber*)ps;
 
 @end

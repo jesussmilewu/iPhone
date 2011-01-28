@@ -13,11 +13,7 @@
 
 -(NSString*)getId {
     DLOG(@"[+] %@", NSStringFromSelector(_cmd));
-    NSMutableString *fzID = [[NSMutableString alloc] init];
-    
-    NSTimeInterval ti = [[NSDate date] timeIntervalSince1970];
-    
-    [fzID appendFormat:@"%@%0.2f%d%@%f", [self name], [[self preis] floatValue], [self geschwindigkeit], [[self baujahr] description], ti];
+    NSMutableString *fzID = [[NSMutableString alloc] initWithFormat:@"%@%0.2f%d%@", [self name], [[self preis] floatValue], [self geschwindigkeit], [self baujahr]];
     
     unsigned char hashedChars[CC_SHA512_DIGEST_LENGTH];
     

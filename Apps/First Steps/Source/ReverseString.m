@@ -11,17 +11,17 @@
 
 @implementation NSString (ReverseString)
 
--(NSString*)reverseString:(NSString*)inString{
-    DLOG(@"[+] reverseString:%@", inString);
+-(NSString*)reverse{
+    DLOG(@"[+] reverseString:%@", self);
     
-    NSMutableString *tmp;
-    tmp = [NSMutableString stringWithCapacity:[inString length]];
+    NSMutableString *theReverse;
+    theReverse = [NSMutableString stringWithCapacity:[self length]];
     
 
-    for(int i = [inString length]-1; i>=0; i--){
-        [tmp appendFormat:@"%c", [inString characterAtIndex:i]];
+    for(int i = [self length]-1; i>=0; i--){
+        [theReverse appendFormat:@"%c", [self characterAtIndex:i]];
     }
-    DLOG(@"[+] tmp: %@", tmp);
-    return tmp;
+    DLOG(@"[+] theReverse: %@", theReverse);
+    return theReverse;
 }
 @end

@@ -23,17 +23,18 @@
     geschwindigkeit = initGeschwindigkeit;
     name = initName;
     baujahr = initBaujahr;
+    
+    [preis retain];
+    [name retain];
+    [baujahr retain];
+    
     return self;
 }
 
 -(NSString*)getId {
     DLOG(@"[+] %@", NSStringFromSelector(_cmd));
-    NSMutableString *fzID = [[NSMutableString alloc] init];
-    
-    NSTimeInterval ti = [[NSDate date] timeIntervalSince1970];
- 
-    [fzID appendFormat:@"%@%0.2f%d%@%f", [self name], [[self preis] floatValue], [self geschwindigkeit], [[self baujahr] description], ti];
-
+    NSString *fzID = [[NSString alloc] initWithFormat:@"%@%0.2f%d%@", [self name], [[self preis] floatValue], [self geschwindigkeit], [self baujahr]];
+     
     unsigned char hashedChars[CC_SHA256_DIGEST_LENGTH];
 
     CC_SHA256([fzID UTF8String],
@@ -70,6 +71,11 @@
     geschwindigkeit = 0;
     name = nil;
     baujahr = nil;
+    
+    [preis release];
+    [name release];
+    [baujahr release];
+    
     [super dealloc];
 }
 
