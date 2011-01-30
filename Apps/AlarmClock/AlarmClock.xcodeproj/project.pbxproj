@@ -24,6 +24,7 @@
 		AB9F82B512F09EB6002492BC /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AB9F82B412F09EB6002492BC /* icon.png */; };
 		AB9F82B712F09ED6002492BC /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB9F82B612F09ED6002492BC /* icon@2x.png */; };
 		ABC35F3112F17EE10097D404 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABC35F2F12F17EE10097D404 /* MainWindow-iPad.xib */; };
+		ABD05EC912F4E0D800DE244F /* UIView+AlarmClock.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD05EC812F4E0D800DE244F /* UIView+AlarmClock.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,8 @@
 		AB9F82B412F09EB6002492BC /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
 		AB9F82B612F09ED6002492BC /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../icon@2x.png"; sourceTree = "<group>"; };
 		ABC35F3012F17EE10097D404 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
+		ABD05EC712F4E0D800DE244F /* UIView+AlarmClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AlarmClock.h"; sourceTree = "<group>"; };
+		ABD05EC812F4E0D800DE244F /* UIView+AlarmClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AlarmClock.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +114,8 @@
 				AB9F82A312F09C7F002492BC /* ClockControl.m */,
 				AB9F82A412F09C7F002492BC /* ClockView.h */,
 				AB9F82A512F09C7F002492BC /* ClockView.m */,
+				ABD05EC712F4E0D800DE244F /* UIView+AlarmClock.h */,
+				ABD05EC812F4E0D800DE244F /* UIView+AlarmClock.m */,
 				AB9F829112F09C4B002492BC /* AlarmClockAppDelegate.h */,
 				AB9F829212F09C4B002492BC /* AlarmClockAppDelegate.m */,
 				AB9F829412F09C4B002492BC /* MainWindow.xib */,
@@ -217,6 +222,7 @@
 				AB9F829912F09C4B002492BC /* AlarmClockViewController.m in Sources */,
 				AB9F82A612F09C7F002492BC /* ClockControl.m in Sources */,
 				AB9F82A712F09C7F002492BC /* ClockView.m in Sources */,
+				ABD05EC912F4E0D800DE244F /* UIView+AlarmClock.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

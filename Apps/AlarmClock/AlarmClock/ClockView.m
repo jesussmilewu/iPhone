@@ -1,4 +1,5 @@
 #import "ClockView.h"
+#import "UIView+AlarmClock.h"
 
 @interface ClockView()
 
@@ -33,19 +34,6 @@
     [super awakeFromNib];
     self.calendar = [NSCalendar currentCalendar];
     self.time = [NSDate date];
-}
-
-- (CGPoint)midPoint {
-    CGRect theBounds = self.bounds;
-    
-    return CGPointMake(CGRectGetMidX(theBounds), CGRectGetMidY(theBounds));
-}
-
-- (CGPoint)pointWithRadius:(CGFloat)inRadius angle:(CGFloat)inAngle {
-    CGPoint theCenter = [self midPoint];
-    
-    return CGPointMake(theCenter.x + inRadius * sin(inAngle), 
-                       theCenter.y - inRadius * cos(inAngle));
 }
 
 - (void)drawClockHands {

@@ -1,4 +1,5 @@
 #import "ClockControl.h"
+#import "UIView+AlarmClock.h"
 
 @implementation ClockControl
 
@@ -15,19 +16,6 @@
 
 - (void)setAngle:(CGFloat)inAngle {
     self.time = 21600.0 * inAngle / M_PI;
-}
-
-- (CGPoint)midPoint {
-    CGRect theBounds = self.bounds;
-    
-    return CGPointMake(CGRectGetMidX(theBounds), CGRectGetMidY(theBounds));
-}
-
-- (CGPoint)pointWithRadius:(CGFloat)inRadius angle:(CGFloat)inAngle {
-    CGPoint theCenter = [self midPoint];
-    
-    return CGPointMake(theCenter.x + inRadius * sin(inAngle), 
-                       theCenter.y - inRadius * cos(inAngle));
 }
 
 - (void)drawRect:(CGRect)inRectangle {
