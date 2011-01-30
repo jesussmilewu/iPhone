@@ -64,7 +64,7 @@
             self.storeCoordinator = theCoordinator;
         }
         else {
-            NSLog(@"storeCoordinator: %@", theError.localizedDescription);
+            NSLog(@"storeCoordinator: %@", theError);
         }
         [theCoordinator release];
     }

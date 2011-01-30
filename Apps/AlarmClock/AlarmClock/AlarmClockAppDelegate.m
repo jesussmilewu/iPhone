@@ -90,18 +90,20 @@
 #pragma mark -
 #pragma mark Memory management
 
+- (void)clearSound {
+    if(self.soundId != nil) {
+        AudioServicesDisposeSystemSoundID([self.soundId unsignedIntValue]);
+        self.soundId = nil;
+    }
+}
+
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
-    /*
-     Free up as much memory as possible by purging cached data objects that can be recreated (or reloaded from disk) later.
-     */
+    [self clearSound];    
 }
 
 
 - (void)dealloc {
-    if(self.soundId > 0) {
-        AudioServicesDisposeSystemSoundID([self.soundId unsignedIntValue]);
-        self.soundId = nil;
-    }
+    [self clearSound];
     [viewController release];
     [window release];
     [super dealloc];

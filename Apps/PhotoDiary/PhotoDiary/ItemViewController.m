@@ -4,8 +4,11 @@
 #import "Medium.h"
 #import "UIImage+ImageTools.h"
 #import "AudioPlayer.h"
+#import "PhotoDiaryAppDelegate.h"
 
 @interface ItemViewController()
+
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 - (void)saveItem;
 
@@ -13,6 +16,7 @@
 
 @implementation ItemViewController
 
+@synthesize managedObjectContext;
 @synthesize toolbar;
 @synthesize imagePicker;
 @synthesize audioRecorder;
@@ -20,12 +24,21 @@
 @synthesize audioPlayer;
 
 - (void)dealloc {
+    self.managedObjectContext = nil;
     self.toolbar = nil;
     self.imagePicker = nil;
     self.audioRecorder = nil;
     self.item = nil;
     self.audioPlayer = nil;
     [super dealloc];
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    id theDelegate = [[UIApplication sharedApplication] delegate];
+    
+    self.managedObjectContext = [[[NSManagedObjectContext alloc] init] autorelease];
+    self.managedObjectContext.persistentStoreCoordinator = [theDelegate storeCoordinator];
 }
 
 - (void)viewDidLoad {
@@ -37,9 +50,24 @@
     photoLibraryButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
 }
 
+- (void)viewDidUnload {
+    self.toolbar = nil;
+    self.imagePicker = nil;
+    self.audioRecorder = nil;
+    self.audioPlayer = nil;
+    [super viewDidUnload];
+}
+
 - (void)viewWillAppear:(BOOL)inAnimated {
     [super viewWillAppear:inAnimated];
     [self.navigationController setToolbarHidden:NO animated:YES];
+    if(self.item == nil) {
+        self.item = [NSEntityDescription insertNewObjectForEntityForName:@"DiaryEntry" 
+                                                  inManagedObjectContext:self.managedObjectContext];
+    }
+    else if(self.item.managedObjectContext != self.managedObjectContext) {
+        self.item = (DiaryEntry *) [self.managedObjectContext objectWithID:self.item.objectID];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)inAnimated {
@@ -103,15 +131,10 @@
     }
 }
 
-- (NSManagedObjectContext *)managedObjectContext {
-    return self.item.managedObjectContext;
-}
-
 - (void)saveItem {
     NSError *theError = nil;
-    NSManagedObjectContext *theContext = self.item.managedObjectContext;
 
-    if(![theContext save:&theError]) {
+    if(![self.managedObjectContext save:&theError]) {
         NSLog(@"saveItem: %@", theError);
     }
 }

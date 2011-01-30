@@ -25,6 +25,9 @@
 @synthesize cellData;
 
 - (void)dealloc {
+    NSNotificationCenter *theCenter = [NSNotificationCenter defaultCenter];
+
+    [theCenter removeObserver:self name:NSManagedObjectContextDidSaveNotification object:nil];
     self.tableView = nil;
     self.itemViewController = nil;
     self.managedObjectContext = nil;
@@ -34,6 +37,16 @@
     self.slideShowController = nil;
     self.audioPlayer = nil;
     [super dealloc];
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    NSNotificationCenter *theCenter = [NSNotificationCenter defaultCenter];
+    
+    [theCenter addObserver:self 
+                  selector:@selector(managedObjectContextDidSave:)
+                      name:NSManagedObjectContextDidSaveNotification 
+                    object:nil];
 }
 
 - (NSFetchRequest *)fetchRequest {
@@ -55,7 +68,7 @@
     self.fetchedResultsController = theController;
     [theController release];
     if(![self.fetchedResultsController performFetch:&theError]) {
-        NSLog(@"viewDidLoad: %@", theError.localizedDescription);
+        NSLog(@"viewDidLoad: %@", theError);
     }
     self.cellData = [NSKeyedArchiver archivedDataWithRootObject:self.cellPrototype];
     [self.audioPlayer addViewToViewController:self.navigationController];
@@ -91,9 +104,7 @@
 }
 
 - (IBAction)addItem {
-    DiaryEntry *theItem = [NSEntityDescription insertNewObjectForEntityForName:@"DiaryEntry" inManagedObjectContext:self.managedObjectContext];
-    
-    self.itemViewController.item = theItem;
+    self.itemViewController.item = nil;
     [self.navigationController pushViewController:self.itemViewController animated:YES];
 }
 
@@ -114,6 +125,12 @@
     [inCell setIcon:theImage];
     [inCell setText:inEntry.text];
     [inCell setDate:inEntry.creationTime];
+}
+
+- (void)managedObjectContextDidSave:(NSNotification *)inNotification {
+    if(inNotification.object != self.managedObjectContext) {
+        [self.managedObjectContext mergeChangesFromContextDidSaveNotification:inNotification];
+    }
 }
 
 #pragma mark UITableViewDataSource
@@ -165,9 +182,8 @@
 		NSError *theError = nil;
 
 		[self.managedObjectContext deleteObject:theEntry];
-		
 		if(![self.managedObjectContext save:&theError]) {
-			NSLog(@"Unresolved error %@", theError.localizedDescription);
+			NSLog(@"Unresolved error %@", theError);
 		}
     }   
 }

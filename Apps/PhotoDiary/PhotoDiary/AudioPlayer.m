@@ -77,7 +77,7 @@
         [thePlayer play];
     }
     else {
-        NSLog(@"playAudio: %@", theError.localizedDescription);
+        NSLog(@"playAudio: %@", theError);
         self.loading = NO;
     }
 }
@@ -162,7 +162,7 @@
 #pragma mark AVAudioPlayerDelegate
 
 - (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)inPlayer error:(NSError *)inError {
-    NSLog(@"audioPlayerDecodeErrorDidOccur:error: %@", inError.localizedDescription);
+    NSLog(@"audioPlayerDecodeErrorDidOccur:error: %@", inError);
 }
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)inPlayer successfully:(BOOL)inFlag {

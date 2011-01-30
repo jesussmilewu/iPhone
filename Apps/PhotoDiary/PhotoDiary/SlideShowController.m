@@ -166,7 +166,7 @@ static const NSUInteger kCacheSize = 10;
         theRequest.fetchOffset = theOffset;
         self.entries = [self.managedObjectContext executeFetchRequest:theRequest error:&theError];
         if(theError != nil) {
-            NSLog(@"diaryEntryAtIndex:%u, %@", inIndex, theError.localizedDescription);
+            NSLog(@"diaryEntryAtIndex:%u, %@", inIndex, theError);
         }
     }
     return theIndex < self.entries.count ? [self.entries objectAtIndex:theIndex] : nil;
