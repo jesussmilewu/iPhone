@@ -119,7 +119,6 @@ static const NSTimeInterval kMaximalRecordingTime = 30.0;
     if(theError == nil) {
         theRecorder.delegate = self;
         self.audioRecorder = theRecorder;
-        [theRecorder release];
         if([self.audioRecorder recordForDuration:kMaximalRecordingTime]) {
             [self updateRecordButton];
             [self startTimer];
@@ -130,6 +129,7 @@ static const NSTimeInterval kMaximalRecordingTime = 30.0;
         NSLog(@"startRecording: %@", theError);
         self.preparing = NO;
     }    
+    [theRecorder release];
 }
 
 - (IBAction)flipRecording:(id)inSender {

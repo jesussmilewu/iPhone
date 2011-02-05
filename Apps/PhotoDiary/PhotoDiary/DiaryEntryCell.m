@@ -33,6 +33,7 @@
     
     theFormatter.dateStyle = NSDateFormatterMediumStyle;
     theLabel.text = [theFormatter stringFromDate:inDate];
+    [theFormatter release];
 }
 
 @end

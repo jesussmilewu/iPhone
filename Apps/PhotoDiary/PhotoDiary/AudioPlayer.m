@@ -66,7 +66,7 @@
     AVAudioPlayer *thePlayer = [[AVAudioPlayer alloc] initWithData:self.audioMedium.data error:&theError];
     
     if(theError == nil) {
-        self.audioPlayer = [thePlayer autorelease];
+        self.audioPlayer = thePlayer;
         thePlayer.delegate = self;
         thePlayer.meteringEnabled = YES;
         self.time = slider.value;
@@ -80,6 +80,7 @@
         NSLog(@"playAudio: %@", theError);
         self.loading = NO;
     }
+    [thePlayer release];
 }
 
 - (IBAction)stop {
