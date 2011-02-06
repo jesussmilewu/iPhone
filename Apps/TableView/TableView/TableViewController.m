@@ -1,5 +1,7 @@
 #import "TableViewController.h"
 
+static NSInteger cellCounter = 0;
+
 @interface TableViewController()<UIAlertViewDelegate>
 
 @property (nonatomic, retain) NSArray *cellIdentifiers;
@@ -38,8 +40,9 @@
     if (theCell == nil) {
         SEL theSelector = NSSelectorFromString([NSString stringWithFormat:@"%@Color", theIdentifier]);
         
-        theCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:theIdentifier] autorelease];
+        theCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:theIdentifier] autorelease];
         theCell.textLabel.textColor = [UIColor performSelector:theSelector];
+        theCell.detailTextLabel.text = [NSString stringWithFormat:@"%d", cellCounter++];
     }
     theCell.textLabel.text = [NSString stringWithFormat:@"section=%d, row=%d", inIndexPath.section, inIndexPath.row];
     return theCell;
