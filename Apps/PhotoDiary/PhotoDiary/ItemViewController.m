@@ -22,6 +22,7 @@
 @synthesize audioRecorder;
 @synthesize item;
 @synthesize audioPlayer;
+@synthesize inputAccessoryView;
 
 - (void)dealloc {
     self.managedObjectContext = nil;
@@ -48,6 +49,7 @@
     [self.audioPlayer addViewToViewController:self.navigationController];
     cameraButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
     photoLibraryButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
+    textView.inputAccessoryView = self.inputAccessoryView;
 }
 
 - (void)viewDidUnload {
@@ -55,6 +57,7 @@
     self.imagePicker = nil;
     self.audioRecorder = nil;
     self.audioPlayer = nil;
+    self.inputAccessoryView = nil;
     [super viewDidUnload];
 }
 
@@ -107,11 +110,11 @@
 - (void)keyboardWillAppear:(NSNotification *)inNotification {
     NSValue *theValue = [inNotification.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
     UIView *theView = self.view;
-    CGRect theFrame = [textView.superview convertRect:[theValue CGRectValue] fromView:textView.window];
+    CGRect theFrame = [theView.window convertRect:[theValue CGRectValue] toView:theView];
     
     theFrame = CGRectMake(0.0, 0.0, 
                           CGRectGetWidth(self.view.frame),
-                          CGRectGetHeight(self.view.frame) - CGRectGetHeight(theFrame) + CGRectGetHeight(self.toolbar.frame));
+                          CGRectGetMinY(theFrame));
     theFrame = [theView convertRect:theFrame toView:textView.superview];
     [UIView beginAnimations:nil context:nil];
     textView.frame = theFrame;
@@ -137,6 +140,7 @@
     if(![self.managedObjectContext save:&theError]) {
         NSLog(@"saveItem: %@", theError);
     }
+    NSLog(@"%@, %@", self.item.creationTime, self.item.updateTime);
 }
 
 - (IBAction)takePhoto:(id)inSender {

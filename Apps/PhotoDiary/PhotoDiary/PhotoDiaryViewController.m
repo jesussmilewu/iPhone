@@ -51,7 +51,8 @@
 
 - (NSFetchRequest *)fetchRequest {
     NSFetchRequest *theFetch = [[NSFetchRequest alloc] init];
-    NSEntityDescription *theEntity = [NSEntityDescription entityForName:@"DiaryEntry" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *theEntity = [NSEntityDescription entityForName:@"DiaryEntry" 
+                                                 inManagedObjectContext:self.managedObjectContext];
     NSSortDescriptor *theDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"creationTime" ascending:NO] autorelease];
     
     theFetch.entity = theEntity;
