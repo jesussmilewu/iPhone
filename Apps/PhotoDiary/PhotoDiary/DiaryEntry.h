@@ -16,9 +16,9 @@ extern NSString * const kMediumTypeAudio;
 @property (nonatomic, copy) NSSet *media;
 
 - (Medium *)mediumForType:(NSString *)inType;
-- (void)deleteMediumForType:(NSString *)inType;
+- (void)removeMediumForType:(NSString *)inType;
 
-- (void)addMediaObject:(Medium *)inMedium;
-- (void)removeMediaObject:(Medium *)inMedium;
+- (void)addMedium:(Medium *)inMedium;
+- (void)removeMedium:(Medium *)inMedium;
 
 @end

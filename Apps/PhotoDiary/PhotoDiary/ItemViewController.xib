@@ -186,10 +186,10 @@
 				<object class="NSMutableArray" key="IBUIItems">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUIBarButtonItem" id="672256596">
-						<string key="IBUITitle">Sichern</string>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIStyle">2</int>
+						<int key="IBUIStyle">1</int>
 						<reference key="IBUIToolbar" ref="234848359"/>
+						<int key="IBUISystemItemIdentifier">3</int>
 					</object>
 					<object class="IBUIBarButtonItem" id="441112061">
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -197,10 +197,10 @@
 						<int key="IBUISystemItemIdentifier">5</int>
 					</object>
 					<object class="IBUIBarButtonItem" id="192971295">
-						<string key="IBUITitle">Abbrechen</string>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIStyle">1</int>
 						<reference key="IBUIToolbar" ref="234848359"/>
+						<int key="IBUISystemItemIdentifier">1</int>
 					</object>
 				</object>
 			</object>
