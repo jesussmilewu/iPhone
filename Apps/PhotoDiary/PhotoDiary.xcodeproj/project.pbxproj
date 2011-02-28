@@ -35,6 +35,7 @@
 		AB4C357312E36C0200F12B17 /* DiaryEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4C357212E36C0200F12B17 /* DiaryEntry.m */; };
 		AB4E355512E236070087EA14 /* record.png in Resources */ = {isa = PBXBuildFile; fileRef = AB4E355412E236070087EA14 /* record.png */; };
 		AB4E355912E238B60087EA14 /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4E355812E238B60087EA14 /* AudioRecorder.m */; };
+		AB574002131C29B500622597 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB574000131C29B500622597 /* MainWindow-iPad.xib */; };
 		AB7455E712E60C1C009088C2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7455E512E60C1C009088C2 /* AVFoundation.framework */; };
 		AB7455E812E60C1C009088C2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7455E612E60C1C009088C2 /* CoreData.framework */; };
 		AB7466CB12E1DDC3009E1136 /* speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = AB7466CA12E1DDC3009E1136 /* speaker.png */; };
@@ -87,6 +88,7 @@
 		AB4E355412E236070087EA14 /* record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record.png; sourceTree = "<group>"; };
 		AB4E355712E238B60087EA14 /* AudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecorder.h; sourceTree = "<group>"; };
 		AB4E355812E238B60087EA14 /* AudioRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecorder.m; sourceTree = "<group>"; };
+		AB574001131C29B500622597 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		AB7455E512E60C1C009088C2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		AB7455E612E60C1C009088C2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		AB7466CA12E1DDC3009E1136 /* speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speaker.png; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				AB11CA9412E1C00300F99C7B /* Resources */,
+				AB573FFF131C29B200622597 /* iPad */,
 				AB4C357012E36BBD00F12B17 /* Model */,
 				AB11CA9312E1BFF700F99C7B /* View */,
 				AB11CA9212E1BFE800F99C7B /* Controller */,
@@ -228,6 +231,14 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		AB573FFF131C29B200622597 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				AB574000131C29B500622597 /* MainWindow-iPad.xib */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -286,6 +297,7 @@
 				AB101BC412E31C32006B69FE /* meter.png in Resources */,
 				AB1F336812EB31B000A97E41 /* play.png in Resources */,
 				AB1F337012EB70C700A97E41 /* SlideShowController.xib in Resources */,
+				AB574002131C29B500622597 /* MainWindow-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +354,14 @@
 			name = PhotoDiaryViewController.xib;
 			sourceTree = "<group>";
 		};
+		AB574000131C29B500622597 /* MainWindow-iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB574001131C29B500622597 /* en */,
+			);
+			name = "MainWindow-iPad.xib";
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -387,7 +407,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PhotoDiary/PhotoDiary-Prefix.pch";
 				INFOPLIST_FILE = "PhotoDiary/PhotoDiary-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -404,7 +426,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PhotoDiary/PhotoDiary-Prefix.pch";
 				INFOPLIST_FILE = "PhotoDiary/PhotoDiary-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
