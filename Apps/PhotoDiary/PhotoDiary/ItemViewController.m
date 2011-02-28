@@ -164,24 +164,23 @@
 
 - (IBAction)saveText:(id)inSender {
     [self.view endEditing:YES];
-    [self.item setValue:textView.text forKey:@"text"];
+    self.item.text = textView.text;
 }
 
 - (IBAction)revertText:(id)inSender {
     [self.view endEditing:YES];
+    textView.text = self.item.text;
 }
 
 - (void)updateMediumData:(NSData *)inData withMediumType:(NSString *)inType {
-    if(inData.length == 0) {
-        [self.item removeMediumForType:inType];
-    }
-    else {
+    [self.item deleteMediumForType:inType];
+    if(inData.length > 0) {
         Medium *theMedium = [NSEntityDescription insertNewObjectForEntityForName:@"Medium" 
                                                           inManagedObjectContext:self.managedObjectContext];
         
         theMedium.type = inType;
         theMedium.data = inData;
-        [self.item addMedium:theMedium];
+        [self.item addMediaObject:theMedium];
     }
     [self saveItem];
 }

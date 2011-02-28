@@ -36,6 +36,34 @@ NSString * const kMediumTypeAudio = @"audio";
     }
 }
 
+- (void)addMediaObject:(Medium *)value {    
+    NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
+    [self willChangeValueForKey:@"media" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
+    [[self primitiveValueForKey:@"media"] addObject:value];
+    [self didChangeValueForKey:@"media" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
+    [changedObjects release];
+}
+
+- (void)removeMediaObject:(Medium *)value {
+    NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
+    [self willChangeValueForKey:@"media" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
+    [[self primitiveValueForKey:@"media"] removeObject:value];
+    [self didChangeValueForKey:@"media" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
+    [changedObjects release];
+}
+
+- (void)addMedia:(NSSet *)value {    
+    [self willChangeValueForKey:@"media" withSetMutation:NSKeyValueUnionSetMutation usingObjects:value];
+    [[self primitiveValueForKey:@"media"] unionSet:value];
+    [self didChangeValueForKey:@"media" withSetMutation:NSKeyValueUnionSetMutation usingObjects:value];
+}
+
+- (void)removeMedia:(NSSet *)value {
+    [self willChangeValueForKey:@"media" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
+    [[self primitiveValueForKey:@"media"] minusSet:value];
+    [self didChangeValueForKey:@"media" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
+}
+
 - (Medium *)mediumForType:(NSString *)inType {
     for(id theMedium in self.media) {
         if([[theMedium type] isEqualToString:inType]) {
@@ -45,23 +73,12 @@ NSString * const kMediumTypeAudio = @"audio";
     return nil;
 }
 
-- (void)removeMediumForType:(NSString *)inType {
+- (void)deleteMediumForType:(NSString *)inType {
     Medium *theMedium = [self mediumForType:inType];
 
-    [self removeMedium:theMedium];
-}
-
-- (void)addMedium:(Medium *)inMedium {
-    if(inMedium != nil) {
-        [self removeMediumForType:inMedium.type];
-        [self addMediaObject:inMedium];
-    }
-}
-
-- (void)removeMedium:(Medium *)inMedium {
-    if(inMedium != nil) {
-        inMedium.diaryEntry = nil;
-        [self.managedObjectContext deleteObject:inMedium];
+    if(theMedium != nil) {
+        [self removeMediaObject:theMedium];
+        [self.managedObjectContext deleteObject:theMedium];
     }
 }
 
