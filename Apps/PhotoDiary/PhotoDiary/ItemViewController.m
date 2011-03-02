@@ -9,6 +9,7 @@
 @interface ItemViewController()
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) UIPopoverController *popoverController;
 
 - (void)saveItem;
 
@@ -16,13 +17,14 @@
 
 @implementation ItemViewController
 
-@synthesize managedObjectContext;
 @synthesize toolbar;
 @synthesize imagePicker;
 @synthesize audioRecorder;
 @synthesize item;
 @synthesize audioPlayer;
 @synthesize inputAccessoryView;
+@synthesize managedObjectContext;
+@synthesize popoverController;
 
 - (void)dealloc {
     self.managedObjectContext = nil;
@@ -50,6 +52,9 @@
     cameraButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
     photoLibraryButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
     textView.inputAccessoryView = self.inputAccessoryView;
+    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        self.popoverController = [[[UIPopoverController alloc] initWithContentViewController:self.imagePicker] autorelease];
+    }
 }
 
 - (void)viewDidUnload {
@@ -58,6 +63,7 @@
     self.audioRecorder = nil;
     self.audioPlayer = nil;
     self.inputAccessoryView = nil;
+    self.popoverController = nil;
     [super viewDidUnload];
 }
 
@@ -127,10 +133,17 @@
     [UIView commitAnimations];
 }
 
-- (void)showPickerWithSourceType:(UIImagePickerControllerSourceType)inSourceType {
+- (void)showPickerWithSourceType:(UIImagePickerControllerSourceType)inSourceType sender:(id)inSender {
     if([UIImagePickerController isSourceTypeAvailable:inSourceType]) {
         self.imagePicker.sourceType = inSourceType;
-        [self presentModalViewController:self.imagePicker animated:YES];
+        if(self.popoverController == nil) {
+            [self presentModalViewController:self.imagePicker animated:YES];            
+        }
+        else if(!self.popoverController.popoverVisible) {
+            [self.popoverController presentPopoverFromBarButtonItem:inSender 
+                                           permittedArrowDirections:UIPopoverArrowDirectionAny 
+                                                           animated:YES];
+        }
     }
 }
 
@@ -144,11 +157,11 @@
 }
 
 - (IBAction)takePhoto:(id)inSender {
-    [self showPickerWithSourceType:UIImagePickerControllerSourceTypeCamera];
+    [self showPickerWithSourceType:UIImagePickerControllerSourceTypeCamera sender:inSender];
 }
 
 - (IBAction)takePhotoFromLibrary:(id)inSender {
-    [self showPickerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    [self showPickerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary sender:inSender];
 }
 
 - (IBAction)recordAudio:(id)inSender {
