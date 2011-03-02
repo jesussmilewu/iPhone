@@ -52,6 +52,10 @@
     cameraButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
     photoLibraryButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
     textView.inputAccessoryView = self.inputAccessoryView;
+    self.imagePicker = [[[UIImagePickerController alloc] init] autorelease];
+    self.imagePicker.allowsEditing = YES;
+    self.imagePicker.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    self.imagePicker.delegate = self;
     if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         self.popoverController = [[[UIPopoverController alloc] initWithContentViewController:self.imagePicker] autorelease];
     }
@@ -133,14 +137,14 @@
     [UIView commitAnimations];
 }
 
-- (void)showPickerWithSourceType:(UIImagePickerControllerSourceType)inSourceType sender:(id)inSender {
+- (void)showPickerWithSourceType:(UIImagePickerControllerSourceType)inSourceType barButtonItem:(UIBarButtonItem *)inItem {
     if([UIImagePickerController isSourceTypeAvailable:inSourceType]) {
         self.imagePicker.sourceType = inSourceType;
         if(self.popoverController == nil) {
             [self presentModalViewController:self.imagePicker animated:YES];            
         }
         else if(!self.popoverController.popoverVisible) {
-            [self.popoverController presentPopoverFromBarButtonItem:inSender 
+            [self.popoverController presentPopoverFromBarButtonItem:inItem 
                                            permittedArrowDirections:UIPopoverArrowDirectionAny 
                                                            animated:YES];
         }
@@ -157,11 +161,11 @@
 }
 
 - (IBAction)takePhoto:(id)inSender {
-    [self showPickerWithSourceType:UIImagePickerControllerSourceTypeCamera sender:inSender];
+    [self showPickerWithSourceType:UIImagePickerControllerSourceTypeCamera barButtonItem:inSender];
 }
 
 - (IBAction)takePhotoFromLibrary:(id)inSender {
-    [self showPickerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary sender:inSender];
+    [self showPickerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary barButtonItem:inSender];
 }
 
 - (IBAction)recordAudio:(id)inSender {
