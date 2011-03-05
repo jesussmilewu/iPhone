@@ -42,6 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AB078599132271810020D702 /* UITextView+Outlets.h */ = {isa = PBXFileReference; fileEncoding = 4; path = "UITextView+Outlets.h"; sourceTree = "<group>"; };
 		AB101BC012E30BE0006B69FE /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		AB101BC312E31C32006B69FE /* meter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meter.png; sourceTree = "<group>"; };
 		AB101BC512E31D52006B69FE /* MeterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeterView.h; sourceTree = "<group>"; };
@@ -195,6 +196,7 @@
 				AB49B36D12E6126D003B0F24 /* UIImage+ImageTools.m */,
 				AB1F336912EB330200A97E41 /* UIToolbar+Extensions.h */,
 				AB1F336A12EB330200A97E41 /* UIToolbar+Extensions.m */,
+				AB078599132271810020D702 /* UITextView+Outlets.h */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -387,7 +389,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PhotoDiary/PhotoDiary-Prefix.pch";
 				INFOPLIST_FILE = "PhotoDiary/PhotoDiary-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -406,7 +408,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PhotoDiary/PhotoDiary-Prefix.pch";
 				INFOPLIST_FILE = "PhotoDiary/PhotoDiary-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

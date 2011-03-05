@@ -22,7 +22,6 @@
 @synthesize audioRecorder;
 @synthesize item;
 @synthesize audioPlayer;
-@synthesize inputAccessoryView;
 @synthesize managedObjectContext;
 @synthesize popoverController;
 
@@ -51,7 +50,6 @@
     [self.audioPlayer addViewToViewController:self.navigationController];
     cameraButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
     photoLibraryButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
-    textView.inputAccessoryView = self.inputAccessoryView;
     self.imagePicker = [[[UIImagePickerController alloc] init] autorelease];
     self.imagePicker.allowsEditing = YES;
     self.imagePicker.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
@@ -66,7 +64,6 @@
     self.imagePicker = nil;
     self.audioRecorder = nil;
     self.audioPlayer = nil;
-    self.inputAccessoryView = nil;
     self.popoverController = nil;
     [super viewDidUnload];
 }
@@ -204,12 +201,18 @@
 }
 
 - (void)saveImage:(UIImage *)inImage {
-    CGSize theIconSize = [inImage sizeToAspectFitInSize:CGSizeMake(60.0, 60.0)];
     NSData *theData = UIImageJPEGRepresentation(inImage, 0.8);
+    CGSize theIconSize = [inImage sizeToAspectFitInSize:CGSizeMake(60.0, 60.0)];
     UIImage *theImage = [inImage scaledImageWithSize:theIconSize];
 
     self.item.icon = UIImageJPEGRepresentation(theImage, 0.8);
     [self updateMediumData:theData withMediumType:kMediumTypeImage];
+}
+
+- (void)dismissImagePickerController:(UIImagePickerController *)inPicker {
+    if(self.popoverController == nil) {
+        [inPicker.parentViewController dismissModalViewControllerAnimated:YES];
+    }    
 }
 
 #pragma mark UIImagePickerControllerDelegate
@@ -218,14 +221,14 @@
 didFinishPickingMediaWithInfo:(NSDictionary *)inInfo {
     UIImage *theImage = [inInfo valueForKey:UIImagePickerControllerEditedImage];
     
-    [inPicker.parentViewController dismissModalViewControllerAnimated:YES];
+    [self dismissImagePickerController:inPicker];
     self.item.icon = nil;
     imageView.image = theImage;
     [self saveImage:theImage];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)inPicker {
-    [inPicker.parentViewController dismissModalViewControllerAnimated:YES];
+    [self dismissImagePickerController:inPicker];
 }
 
 #pragma mark AudioRecorderDelegate
