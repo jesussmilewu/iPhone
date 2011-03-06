@@ -1,5 +1,5 @@
 #import "PhotoDiaryViewController.h"
-#import "AudioPlayer.h"
+#import "AudioPlayerController.h"
 #import "Medium.h"
 #import "ItemViewController.h"
 #import "DiaryEntry.h"
@@ -251,7 +251,7 @@
 #pragma mark SubviewControllerDelegate
 
 - (void)subviewControllerWillDisappear:(SubviewController *)inController {
-    AudioPlayer *thePlayer = (AudioPlayer *)inController;
+    AudioPlayerController *thePlayer = (AudioPlayerController *)inController;
     Medium *theMedium = thePlayer.audioMedium;
 
     if(theMedium != nil) {

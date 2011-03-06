@@ -1,9 +1,9 @@
 #import "ItemViewController.h"
-#import "AudioRecorder.h"
+#import "AudioRecorderController.h"
 #import "DiaryEntry.h"
 #import "Medium.h"
 #import "UIImage+ImageTools.h"
-#import "AudioPlayer.h"
+#import "AudioPlayerController.h"
 #import "PhotoDiaryAppDelegate.h"
 
 @interface ItemViewController()
@@ -233,12 +233,12 @@ didFinishPickingMediaWithInfo:(NSDictionary *)inInfo {
 
 #pragma mark AudioRecorderDelegate
 
--(void)audioRecorder:(AudioRecorder *)inRecorder didRecordToData:(NSData *)inData {
+-(void)audioRecorder:(AudioRecorderController *)inRecorder didRecordToData:(NSData *)inData {
     [self updateMediumData:inData withMediumType:kMediumTypeAudio];
     playButton.enabled = inData.length > 0;
 }
 
--(void)audioRecorderDidCancel:(AudioRecorder *)inRecorder {
+-(void)audioRecorderDidCancel:(AudioRecorderController *)inRecorder {
 }
 
 #pragma mark SubviewControllerDelegate

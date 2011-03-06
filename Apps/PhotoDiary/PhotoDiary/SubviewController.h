@@ -6,10 +6,12 @@
     @private
 }
 
-@property(nonatomic, assign) IBOutlet id<SubviewControllerDelegate> delegate;
-@property(nonatomic, retain) IBOutlet UIView *view;
 @property(nonatomic) BOOL visible;
+@property(nonatomic, copy) NSString *nibName;
+@property(nonatomic, retain) IBOutlet UIView *view;
+@property(nonatomic, assign) IBOutlet id<SubviewControllerDelegate> delegate;
 
+- (void)loadView;
 - (void)addViewToViewController:(UIViewController *)inViewController;
 - (void)setVisible:(BOOL)inVisible animated:(BOOL)inAnimated;
 
