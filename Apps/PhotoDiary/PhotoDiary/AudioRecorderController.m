@@ -11,7 +11,6 @@ static const NSTimeInterval kMaximalRecordingTime = 30.0;
 @property (nonatomic, retain) NSTimer *updateTimer;
 @property (nonatomic) BOOL preparing;
 
-- (NSString *)cachesDirectory;
 - (NSURL *)fileURL;
 - (void)startTimer;
 - (void)cancelTimer;
@@ -33,14 +32,8 @@ static const NSTimeInterval kMaximalRecordingTime = 30.0;
     [super dealloc];
 }
 
-- (NSString *)cachesDirectory {
-    NSArray *thePaths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-
-    return [thePaths objectAtIndex:0];
-}
-
 - (NSURL *)fileURL {
-    NSString *theDirectory = self.cachesDirectory;
+    NSString *theDirectory = NSTemporaryDirectory();
     
     return [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/recording.caf", theDirectory]];
 }
@@ -116,7 +109,11 @@ static const NSTimeInterval kMaximalRecordingTime = 30.0;
     NSError *theError = nil;
     AVAudioRecorder *theRecorder = [[AVAudioRecorder alloc] initWithURL:self.fileURL settings:self.audioRecorderSettings error:&theError];
     
-    if(theError == nil) {
+    if(theRecorder == nil) {
+        NSLog(@"startRecording: %@", theError);
+        self.preparing = NO;
+    }
+    else {
         theRecorder.delegate = self;
         self.audioRecorder = theRecorder;
         if([self.audioRecorder recordForDuration:kMaximalRecordingTime]) {
@@ -124,10 +121,6 @@ static const NSTimeInterval kMaximalRecordingTime = 30.0;
             [self startTimer];
             self.preparing = NO;
         };
-    }
-    else {
-        NSLog(@"startRecording: %@", theError);
-        self.preparing = NO;
     }    
     [theRecorder release];
 }

@@ -65,7 +65,11 @@
     NSError *theError = nil;
     AVAudioPlayer *thePlayer = [[AVAudioPlayer alloc] initWithData:self.audioMedium.data error:&theError];
     
-    if(theError == nil) {
+    if(thePlayer == nil) {
+        NSLog(@"playAudio: %@", theError);
+        self.loading = NO;
+    }
+    else {
         self.audioPlayer = thePlayer;
         thePlayer.delegate = self;
         thePlayer.meteringEnabled = YES;
@@ -75,10 +79,6 @@
         [self updateTime:nil];
         [self startTimer];
         [thePlayer play];
-    }
-    else {
-        NSLog(@"playAudio: %@", theError);
-        self.loading = NO;
     }
     [thePlayer release];
 }
@@ -98,7 +98,6 @@
         [self.audioPlayer pause];
     }
     else {
-        NSLog(@"play: %.3f, %.3f", self.time, self.audioPlayer.duration);
         self.paused = NO;
         [self.audioPlayer play];        
         [self startTimer];
@@ -133,7 +132,6 @@
 }
 
 - (void)startTimer {
-    NSLog(@"startTimer: %@", self.updateTimer);
     if(self.updateTimer == nil) {
         self.audioPlayer.meteringEnabled = YES;
         self.updateTimer = [NSTimer scheduledTimerWithTimeInterval:0.25 
@@ -145,13 +143,11 @@
 }
 
 - (void)cancelTimer {
-    NSLog(@"cancelTimer: %@", self.updateTimer);
     [self.updateTimer invalidate];
     self.updateTimer = nil;
 }
 
 - (void)updateTime:(NSTimer *)inTimer {
-    NSLog(@"updateTime: %@", inTimer);
     NSTimeInterval theTime = self.audioPlayer.currentTime;
     
     [self.audioPlayer updateMeters];

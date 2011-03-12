@@ -1,9 +1,8 @@
 #import "DiaryEntryCell.h"
 
-#define ICON 100
-#define TEXT 101
-#define DATE 102
-
+#define ICON -100
+#define TEXT -101
+#define DATE -102
 
 @implementation DiaryEntryCell
 

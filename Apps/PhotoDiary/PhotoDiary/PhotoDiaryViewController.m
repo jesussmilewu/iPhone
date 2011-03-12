@@ -53,7 +53,7 @@
     NSFetchRequest *theFetch = [[NSFetchRequest alloc] init];
     NSEntityDescription *theEntity = [NSEntityDescription entityForName:@"DiaryEntry" 
                                                  inManagedObjectContext:self.managedObjectContext];
-    NSSortDescriptor *theDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"creationTime" ascending:NO] autorelease];
+    NSSortDescriptor *theDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"creationTime" ascending:NO];
     
     theFetch.entity = theEntity;
     theFetch.sortDescriptors = [NSArray arrayWithObject:theDescriptor];
@@ -109,9 +109,13 @@
     [self.navigationController pushViewController:self.itemViewController animated:YES];
 }
 
+- (DiaryEntry *)entryAtIndexPath:(NSIndexPath *)inIndexPath {
+    return [self.fetchedResultsController objectAtIndexPath:inIndexPath];
+}
+
 - (IBAction)playSound:(id)inSender {
     NSIndexPath *theIndexPath = [NSIndexPath indexPathForRow:[inSender tag] inSection:0];
-    DiaryEntry *theItem = (DiaryEntry *)[self.fetchedResultsController objectAtIndexPath:theIndexPath];
+    DiaryEntry *theItem = [self entryAtIndexPath:theIndexPath];
     Medium *theMedium = [theItem mediumForType:kMediumTypeAudio];
     
     if(theMedium != nil) {
@@ -149,7 +153,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)inTableView cellForRowAtIndexPath:(NSIndexPath *)inIndexPath {
-    DiaryEntry *theEntry = [self.fetchedResultsController objectAtIndexPath:inIndexPath];
+    DiaryEntry *theEntry = [self entryAtIndexPath:inIndexPath];
     NSString *theIdentifier = self.cellIdentifier;
     DiaryEntryCell *theCell = (DiaryEntryCell *)[inTableView dequeueReusableCellWithIdentifier:theIdentifier];
     
