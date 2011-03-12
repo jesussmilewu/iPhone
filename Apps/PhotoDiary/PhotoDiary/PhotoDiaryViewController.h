@@ -7,7 +7,7 @@
 @class SlideShowController;
 @class AudioPlayerController;
 
-@interface PhotoDiaryViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, SubviewControllerDelegate> {
+@interface PhotoDiaryViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, SubviewControllerDelegate, UISearchDisplayDelegate> {
     @private
 }
 
@@ -17,6 +17,7 @@
 @property (nonatomic, retain) IBOutlet DiaryEntryCell *cellPrototype;
 @property (nonatomic, retain) IBOutlet SlideShowController *slideShowController;
 @property (nonatomic, retain) IBOutlet AudioPlayerController *audioPlayer;
+@property (nonatomic, retain) IBOutlet UISearchDisplayController *searchDisplayController;
 
 - (IBAction)showSlideShow;
 - (IBAction)addItem;

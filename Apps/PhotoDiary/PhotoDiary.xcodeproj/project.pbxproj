@@ -69,7 +69,7 @@
 		AB11CA8F12E1BF9600F99C7B /* ItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemViewController.xib; sourceTree = "<group>"; };
 		AB11CA9512E1C24B00F99C7B /* RotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotationView.h; sourceTree = "<group>"; };
 		AB11CA9612E1C24B00F99C7B /* RotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotationView.m; sourceTree = "<group>"; };
-		AB1F336012EB1E2800A97E41 /* AudioPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = AudioPlayerController.h; sourceTree = "<group>"; };
+		AB1F336012EB1E2800A97E41 /* AudioPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlayerController.h; sourceTree = "<group>"; };
 		AB1F336112EB1E2800A97E41 /* AudioPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayerController.m; sourceTree = "<group>"; };
 		AB1F336412EB1FFC00A97E41 /* SubviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubviewController.h; sourceTree = "<group>"; };
 		AB1F336512EB1FFC00A97E41 /* SubviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubviewController.m; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 		AB4C357112E36C0200F12B17 /* DiaryEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiaryEntry.h; sourceTree = "<group>"; };
 		AB4C357212E36C0200F12B17 /* DiaryEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiaryEntry.m; sourceTree = "<group>"; };
 		AB4E355412E236070087EA14 /* record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record.png; sourceTree = "<group>"; };
-		AB4E355712E238B60087EA14 /* AudioRecorderController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = AudioRecorderController.h; sourceTree = "<group>"; };
+		AB4E355712E238B60087EA14 /* AudioRecorderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecorderController.h; sourceTree = "<group>"; };
 		AB4E355812E238B60087EA14 /* AudioRecorderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecorderController.m; sourceTree = "<group>"; };
 		AB7455E512E60C1C009088C2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		AB7455E612E60C1C009088C2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
