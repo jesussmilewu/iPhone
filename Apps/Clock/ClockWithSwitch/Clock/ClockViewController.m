@@ -1,30 +1,48 @@
 #import "ClockViewController.h"
 #import "ClockView.h"
 
+@interface ClockViewController()
+
+@property(nonatomic, assign) IBOutlet ClockView *clockView;
+@property(nonatomic, assign) IBOutlet UISwitch *clockSwitch;
+
+@end
+
 @implementation ClockViewController
 
+@synthesize clockView;
+@synthesize clockSwitch;
+
 - (void)dealloc {
+    self.clockView = nil;
+    self.clockSwitch = nil;
     [super dealloc];
+}
+
+- (void)viewDidUnload {
+    self.clockView = nil;
+    self.clockSwitch = nil;
+    [super viewDidUnload];
 }
 
 - (void)viewDidAppear:(BOOL)inAnimated {
     [super viewDidAppear:inAnimated];
-    if(clockSwitch.on) {
-        [clockView startAnimation];
+    if(self.clockSwitch.on) {
+        [self.clockView startAnimation];
     }
 }
 
 - (void)viewWillDisappear:(BOOL)inAnimated {
     [super viewWillDisappear:inAnimated];
-    [clockView stopAnimation];        
+    [self.clockView stopAnimation];        
 }
 
 - (IBAction)switchAnimation:(UISwitch *)inSender {
     if(inSender.on) {
-        [clockView startAnimation];
+        [self.clockView startAnimation];
     }
     else {
-        [clockView stopAnimation];        
+        [self.clockView stopAnimation];        
     }
 }
 
