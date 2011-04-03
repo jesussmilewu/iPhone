@@ -7,6 +7,13 @@ static const NSTimeInterval kMaximalRecordingTime = 30.0;
 
 @interface AudioRecorderController()<AVAudioRecorderDelegate>
 
+@property(nonatomic, assign) IBOutlet UIBarButtonItem *recordButton;
+@property(nonatomic, assign) IBOutlet UIProgressView *progressView;
+@property(nonatomic, assign) IBOutlet MeterView *meterView;
+@property(nonatomic, assign) IBOutlet UILabel *timeLabel;
+@property(nonatomic, assign) IBOutlet UIToolbar *toolbar;
+@property(nonatomic, assign) IBOutlet UIActivityIndicatorView *activityIndicator;
+
 @property (nonatomic, retain) AVAudioRecorder *audioRecorder;
 @property (nonatomic, retain) NSTimer *updateTimer;
 @property (nonatomic) BOOL preparing;
@@ -19,6 +26,13 @@ static const NSTimeInterval kMaximalRecordingTime = 30.0;
 
 @implementation AudioRecorderController
 
+@synthesize recordButton;
+@synthesize progressView;
+@synthesize meterView;
+@synthesize timeLabel;
+@synthesize toolbar;
+@synthesize activityIndicator;
+
 @dynamic delegate;
 @synthesize audioRecorder;
 @synthesize updateTimer;
@@ -27,8 +41,13 @@ static const NSTimeInterval kMaximalRecordingTime = 30.0;
     self.view = nil;
     self.delegate = nil;
     self.audioRecorder = nil;
+    self.recordButton = nil;
+    self.progressView = nil;
+    self.meterView = nil;
+    self.timeLabel = nil;
+    self.toolbar = nil;
+    self.activityIndicator = nil;
     [self cancelTimer];
-    [activityIndicator release];
     [super dealloc];
 }
 
@@ -62,32 +81,32 @@ static const NSTimeInterval kMaximalRecordingTime = 30.0;
 }
 
 - (BOOL)preparing {
-    return activityIndicator.isAnimating;
+    return self.activityIndicator.isAnimating;
 }
 
 - (void)setPreparing:(BOOL)inPreparing {
     if(inPreparing) {
-        [activityIndicator startAnimating];
-        [toolbar setEnabled:NO];
+        [self.activityIndicator startAnimating];
+        [self.toolbar setEnabled:NO];
     }
     else {
-        [activityIndicator stopAnimating];
-        [toolbar setEnabled:YES];        
+        [self.activityIndicator stopAnimating];
+        [self.toolbar setEnabled:YES];        
     }
 }
 
 - (void)updateRecordButton {
     if(self.audioRecorder.recording) {
-        recordButton.image = [UIImage imageNamed:@"pause.png"];
+        self.recordButton.image = [UIImage imageNamed:@"pause.png"];
     }
     else {
-        recordButton.image = [UIImage imageNamed:@"record.png"];
+        self.recordButton.image = [UIImage imageNamed:@"record.png"];
     }
-    recordButton.enabled = self.audioRecorder.currentTime < kMaximalRecordingTime;
+    self.recordButton.enabled = self.audioRecorder.currentTime < kMaximalRecordingTime;
 }
 
 - (void)setTime:(NSTimeInterval)inTime {
-    timeLabel.text = [NSString stringWithFormat:@"%.0fs", inTime];
+    self.timeLabel.text = [NSString stringWithFormat:@"%.0fs", inTime];
 }
 
 - (IBAction)save:(id)inSender {
@@ -132,11 +151,11 @@ static const NSTimeInterval kMaximalRecordingTime = 30.0;
     }
     else if(self.recording) {
         [self.audioRecorder pause];
-        [toolbar setEnabled:YES];
+        [self.toolbar setEnabled:YES];
     }
     else if(self.pausing) {
         [self.audioRecorder record];
-        [toolbar setEnabled:NO];
+        [self.toolbar setEnabled:NO];
     }
     [self updateRecordButton];
 }
@@ -146,9 +165,9 @@ static const NSTimeInterval kMaximalRecordingTime = 30.0;
     [self.audioRecorder stop];
     [self.audioRecorder deleteRecording];
     self.audioRecorder = nil;
-    progressView.progress = 0.0;
+    self.progressView.progress = 0.0;
     [self setTime:0.0];
-    [meterView clear];
+    [self.meterView clear];
 }
 
 - (void)startTimer {
@@ -173,8 +192,8 @@ static const NSTimeInterval kMaximalRecordingTime = 30.0;
     NSTimeInterval theTime = self.audioRecorder.currentTime;
     
     [self.audioRecorder updateMeters];
-    progressView.progress = theTime / kMaximalRecordingTime;
-    meterView.value = [self.audioRecorder averagePowerForChannel:0];
+    self.progressView.progress = theTime / kMaximalRecordingTime;
+    self.meterView.value = [self.audioRecorder averagePowerForChannel:0];
     [self setTime:theTime];
 }
 

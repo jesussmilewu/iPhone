@@ -8,6 +8,12 @@
 
 @interface ItemViewController()
 
+@property (nonatomic, assign) IBOutlet UIImageView *imageView;
+@property (nonatomic, assign) IBOutlet UITextView *textView;
+@property (nonatomic, assign) IBOutlet UIBarButtonItem *cameraButton;
+@property (nonatomic, assign) IBOutlet UIBarButtonItem *photoLibraryButton;
+@property (nonatomic, assign) IBOutlet UIBarButtonItem *playButton;
+
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) UIPopoverController *popoverController;
 
@@ -16,6 +22,12 @@
 @end
 
 @implementation ItemViewController
+
+@synthesize imageView;
+@synthesize textView;
+@synthesize cameraButton;
+@synthesize photoLibraryButton;
+@synthesize playButton;
 
 @synthesize toolbar;
 @synthesize imagePicker;
@@ -32,6 +44,11 @@
     self.audioRecorder = nil;
     self.item = nil;
     self.audioPlayer = nil;
+    self.imageView = nil;
+    self.textView = nil;
+    self.cameraButton = nil;
+    self.photoLibraryButton = nil;
+    self.playButton = nil;
     [super dealloc];
 }
 
@@ -60,11 +77,17 @@
 }
 
 - (void)viewDidUnload {
+    self.toolbarItems = nil;
     self.toolbar = nil;
     self.imagePicker = nil;
     self.audioRecorder = nil;
     self.audioPlayer = nil;
     self.popoverController = nil;
+    self.imageView = nil;
+    self.textView = nil;
+    self.cameraButton = nil;
+    self.photoLibraryButton = nil;
+    self.playButton = nil;
     [super viewDidUnload];
 }
 
@@ -93,15 +116,15 @@
                   selector:@selector(keyboardWillDisappear:) 
                       name:UIKeyboardWillHideNotification 
                     object:nil];
-    textView.text = self.item.text;
-    imageView.image = [UIImage imageWithData:theMedium.data];
-    playButton.enabled = [self.item mediumForType:kMediumTypeAudio] != nil;
+    self.textView.text = self.item.text;
+    self.imageView.image = [UIImage imageWithData:theMedium.data];
+    self.playButton.enabled = [self.item mediumForType:kMediumTypeAudio] != nil;
 }
 
 - (void)viewWillDisappear:(BOOL)inAnimated {
     NSNotificationCenter *theCenter = [NSNotificationCenter defaultCenter];
     
-    imageView.image = nil;
+    self.imageView.image = nil;
     [theCenter removeObserver:theCenter];
     self.audioPlayer.visible = NO;
     self.audioRecorder.visible = NO;
@@ -124,13 +147,13 @@
                           CGRectGetMinY(theFrame));
     theFrame = [theView convertRect:theFrame toView:textView.superview];
     [UIView beginAnimations:nil context:nil];
-    textView.frame = theFrame;
+    self.textView.frame = theFrame;
     [UIView commitAnimations];
 }
 
 - (void)keyboardWillDisappear:(NSNotification *)inNotification {
     [UIView beginAnimations:nil context:nil];
-    textView.frame = CGRectInset(textView.superview.bounds, 10.0, 10.0);
+    self.textView.frame = CGRectInset(textView.superview.bounds, 10.0, 10.0);
     [UIView commitAnimations];
 }
 
@@ -178,7 +201,7 @@
 
 - (IBAction)saveText:(id)inSender {
     [self.view endEditing:YES];
-    [self.item setValue:textView.text forKey:@"text"];
+    [self.item setValue:self.textView.text forKey:@"text"];
 }
 
 - (IBAction)revertText:(id)inSender {
@@ -223,7 +246,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)inInfo {
     
     [self dismissImagePickerController:inPicker];
     self.item.icon = nil;
-    imageView.image = theImage;
+    self.imageView.image = theImage;
     [self saveImage:theImage];
 }
 
@@ -235,7 +258,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)inInfo {
 
 -(void)audioRecorder:(AudioRecorderController *)inRecorder didRecordToData:(NSData *)inData {
     [self updateMediumData:inData withMediumType:kMediumTypeAudio];
-    playButton.enabled = inData.length > 0;
+    self.playButton.enabled = inData.length > 0;
 }
 
 -(void)audioRecorderDidCancel:(AudioRecorderController *)inRecorder {
