@@ -1,16 +1,34 @@
 #import "ClockViewController.h"
 #import "ClockView.h"
 
+@interface ClockViewController()
+
+@property(nonatomic, assign) IBOutlet ClockView *clockView;
+@property(nonatomic, assign) IBOutlet UIButton *switchButton;
+
+@end
+
 @implementation ClockViewController
 
+@synthesize clockView;
+@synthesize switchButton;
+
 - (void)dealloc {
+    self.clockView = nil;
+    self.switchButton = nil;
     [super dealloc];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [switchButton setTitle:[switchButton titleForState:UIControlStateHighlighted] forState:UIControlStateSelected | UIControlStateHighlighted];
+    [self.switchButton setTitle:[self.switchButton titleForState:UIControlStateHighlighted] forState:UIControlStateSelected | UIControlStateHighlighted];
+}
+
+- (void)viewDidUnload {
+    self.clockView = nil;
+    self.switchButton = nil;
+    [super viewDidUnload];
 }
 
 - (void)viewDidAppear:(BOOL)inAnimated {
@@ -24,10 +42,10 @@
 - (IBAction)switchAnimation:(UIButton *)inSender {
     inSender.selected = !inSender.selected;
     if(inSender.selected) {
-        [clockView startAnimation];
+        [self.clockView startAnimation];
     }
     else {
-        [clockView stopAnimation];        
+        [self.clockView stopAnimation];        
     }
 }
 
