@@ -7,13 +7,6 @@ static const NSTimeInterval kMaximalRecordingTime = 30.0;
 
 @interface AudioRecorderController()<AVAudioRecorderDelegate>
 
-@property(nonatomic, assign) IBOutlet UIBarButtonItem *recordButton;
-@property(nonatomic, assign) IBOutlet UIProgressView *progressView;
-@property(nonatomic, assign) IBOutlet MeterView *meterView;
-@property(nonatomic, assign) IBOutlet UILabel *timeLabel;
-@property(nonatomic, assign) IBOutlet UIToolbar *toolbar;
-@property(nonatomic, assign) IBOutlet UIActivityIndicatorView *activityIndicator;
-
 @property (nonatomic, retain) AVAudioRecorder *audioRecorder;
 @property (nonatomic, retain) NSTimer *updateTimer;
 @property (nonatomic) BOOL preparing;

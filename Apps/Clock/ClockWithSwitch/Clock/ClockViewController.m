@@ -1,13 +1,6 @@
 #import "ClockViewController.h"
 #import "ClockView.h"
 
-@interface ClockViewController()
-
-@property(nonatomic, assign) IBOutlet ClockView *clockView;
-@property(nonatomic, assign) IBOutlet UISwitch *clockSwitch;
-
-@end
-
 @implementation ClockViewController
 
 @synthesize clockView;

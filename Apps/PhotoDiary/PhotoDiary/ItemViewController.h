@@ -6,14 +6,14 @@
 @protocol ItemViewControllerDelegate;
 
 @interface ItemViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, AudioRecorderDelegate> {
-@private
-    IBOutlet UIImageView *imageView;
-    IBOutlet UITextView *textView;
-    
-    IBOutlet UIBarButtonItem *cameraButton;
-    IBOutlet UIBarButtonItem *photoLibraryButton;
-    IBOutlet UIBarButtonItem *playButton;
+    @private
 }
+
+@property (nonatomic, assign) IBOutlet UIImageView *imageView;
+@property (nonatomic, assign) IBOutlet UITextView *textView;
+@property (nonatomic, assign) IBOutlet UIBarButtonItem *cameraButton;
+@property (nonatomic, assign) IBOutlet UIBarButtonItem *photoLibraryButton;
+@property (nonatomic, assign) IBOutlet UIBarButtonItem *playButton;
 
 @property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, retain) IBOutlet UIImagePickerController *imagePicker;

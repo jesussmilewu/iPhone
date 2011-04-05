@@ -8,12 +8,6 @@
 
 @interface ItemViewController()
 
-@property (nonatomic, assign) IBOutlet UIImageView *imageView;
-@property (nonatomic, assign) IBOutlet UITextView *textView;
-@property (nonatomic, assign) IBOutlet UIBarButtonItem *cameraButton;
-@property (nonatomic, assign) IBOutlet UIBarButtonItem *photoLibraryButton;
-@property (nonatomic, assign) IBOutlet UIBarButtonItem *playButton;
-
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) UIPopoverController *popoverController;
 

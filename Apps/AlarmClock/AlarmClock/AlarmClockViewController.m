@@ -6,11 +6,6 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
 
 @interface AlarmClockViewController()
 
-@property(nonatomic, assign) IBOutlet ClockView *clockView;
-@property(nonatomic, assign) IBOutlet ClockControl *clockControl;
-@property(nonatomic, assign) IBOutlet UISwitch *alarmSwitch;
-@property(nonatomic, assign) IBOutlet UILabel *timeLabel;
-
 @end
 
 @implementation AlarmClockViewController

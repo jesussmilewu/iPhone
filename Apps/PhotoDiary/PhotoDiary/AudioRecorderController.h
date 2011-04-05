@@ -13,13 +13,14 @@
 
 @interface AudioRecorderController : SubviewController {
     @private
-    IBOutlet UIBarButtonItem *recordButton;
-    IBOutlet UIProgressView *progressView;
-    IBOutlet MeterView *meterView;
-    IBOutlet UILabel *timeLabel;
-    IBOutlet UIToolbar *toolbar;
-    IBOutlet UIActivityIndicatorView *activityIndicator;
 }
+
+@property(nonatomic, assign) IBOutlet UIBarButtonItem *recordButton;
+@property(nonatomic, assign) IBOutlet UIProgressView *progressView;
+@property(nonatomic, assign) IBOutlet MeterView *meterView;
+@property(nonatomic, assign) IBOutlet UILabel *timeLabel;
+@property(nonatomic, assign) IBOutlet UIToolbar *toolbar;
+@property(nonatomic, assign) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @property(nonatomic, assign) IBOutlet id<AudioRecorderDelegate> delegate;
 @property(nonatomic, readonly) BOOL recording;
