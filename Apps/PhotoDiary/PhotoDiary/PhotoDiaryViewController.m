@@ -1,5 +1,5 @@
 #import "PhotoDiaryViewController.h"
-#import "AudioPlayer.h"
+#import "AudioPlayerController.h"
 #import "Medium.h"
 #import "ItemViewController.h"
 #import "DiaryEntry.h"
@@ -10,6 +10,7 @@
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSData *cellData;
+@property (nonatomic, copy) NSArray *searchResult;
 
 @end
 
@@ -22,12 +23,11 @@
 @synthesize cellPrototype;
 @synthesize slideShowController;
 @synthesize audioPlayer;
+@synthesize searchDisplayController;
 @synthesize cellData;
+@synthesize searchResult;
 
 - (void)dealloc {
-    NSNotificationCenter *theCenter = [NSNotificationCenter defaultCenter];
-
-    [theCenter removeObserver:self name:NSManagedObjectContextDidSaveNotification object:nil];
     self.tableView = nil;
     self.itemViewController = nil;
     self.managedObjectContext = nil;
@@ -36,31 +36,30 @@
     self.cellData = nil;
     self.slideShowController = nil;
     self.audioPlayer = nil;
+    self.searchDisplayController = nil;
+    self.searchResult = nil;
     [super dealloc];
-}
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    NSNotificationCenter *theCenter = [NSNotificationCenter defaultCenter];
-    
-    [theCenter addObserver:self 
-                  selector:@selector(managedObjectContextDidSave:)
-                      name:NSManagedObjectContextDidSaveNotification 
-                    object:nil];
 }
 
 - (NSFetchRequest *)fetchRequest {
     NSFetchRequest *theFetch = [[NSFetchRequest alloc] init];
-    NSEntityDescription *theEntity = [NSEntityDescription entityForName:@"DiaryEntry" inManagedObjectContext:self.managedObjectContext];
-    NSSortDescriptor *theDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"creationTime" ascending:NO] autorelease];
+    NSEntityDescription *theEntity = [NSEntityDescription entityForName:@"DiaryEntry" 
+                                                 inManagedObjectContext:self.managedObjectContext];
+    NSSortDescriptor *theDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"creationTime" ascending:NO];
     
     theFetch.entity = theEntity;
     theFetch.sortDescriptors = [NSArray arrayWithObject:theDescriptor];
+    theFetch.predicate = [NSPredicate predicateWithFormat:@"ANY media.type = 'image'"];
     return theFetch;
+}
+
+- (UITableView *)searchResultsTableView {
+    return self.searchDisplayController.searchResultsTableView;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSNotificationCenter *theCenter = [NSNotificationCenter defaultCenter];
     NSFetchedResultsController *theController = [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
     NSError *theError = nil;
     
@@ -72,9 +71,16 @@
     }
     self.cellData = [NSKeyedArchiver archivedDataWithRootObject:self.cellPrototype];
     [self.audioPlayer addViewToViewController:self.navigationController];
+    [theCenter addObserver:self 
+                  selector:@selector(managedObjectContextDidSave:)
+                      name:NSManagedObjectContextDidSaveNotification 
+                    object:nil];
 }
 
 - (void)viewDidUnload {
+    NSNotificationCenter *theCenter = [NSNotificationCenter defaultCenter];
+    
+    [theCenter removeObserver:self name:NSManagedObjectContextDidSaveNotification object:nil];
     self.fetchedResultsController = nil;
     self.tableView = nil;
     self.itemViewController = nil;
@@ -83,6 +89,7 @@
     self.cellData = nil;
     self.slideShowController = nil;
     self.audioPlayer = nil;
+    self.searchDisplayController = nil;
     [self.managedObjectContext reset];
     [super viewDidUnload];
 }
@@ -108,9 +115,19 @@
     [self.navigationController pushViewController:self.itemViewController animated:YES];
 }
 
+- (DiaryEntry *)entryForTableView:(UITableView *)inTableView atIndexPath:(NSIndexPath *)inIndexPath {
+    if(inTableView == self.tableView) {
+        return [self.fetchedResultsController objectAtIndexPath:inIndexPath];
+    }
+    else {
+        return [self.searchResult objectAtIndex:inIndexPath.row];
+    }
+}
+
 - (IBAction)playSound:(id)inSender {
     NSIndexPath *theIndexPath = [NSIndexPath indexPathForRow:[inSender tag] inSection:0];
-    DiaryEntry *theItem = (DiaryEntry *)[self.fetchedResultsController objectAtIndexPath:theIndexPath];
+    UITableView *theTableView = self.searchDisplayController.active ? self.searchResultsTableView : self.tableView;
+    DiaryEntry *theItem = [self entryForTableView:theTableView atIndexPath:theIndexPath];
     Medium *theMedium = [theItem mediumForType:kMediumTypeAudio];
     
     if(theMedium != nil) {
@@ -136,21 +153,29 @@
 #pragma mark UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)inTableView {
-    NSInteger theCount = [[self.fetchedResultsController sections] count];
-    
-    return theCount;
+    if(inTableView == self.tableView) {
+        return [[self.fetchedResultsController sections] count];
+    }
+    else {
+        return 1;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)inTableView numberOfRowsInSection:(NSInteger)inSection {
-	id<NSFetchedResultsSectionInfo> theInfo = [[self.fetchedResultsController sections] objectAtIndex:inSection];
-    
-	return [theInfo numberOfObjects];
+    if(inTableView == self.tableView) {    
+        id<NSFetchedResultsSectionInfo> theInfo = [[self.fetchedResultsController sections] objectAtIndex:inSection];
+        
+        return [theInfo numberOfObjects];
+    }
+    else {
+        return self.searchResult.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)inTableView cellForRowAtIndexPath:(NSIndexPath *)inIndexPath {
-    DiaryEntry *theEntry = [self.fetchedResultsController objectAtIndexPath:inIndexPath];
     NSString *theIdentifier = self.cellIdentifier;
     DiaryEntryCell *theCell = (DiaryEntryCell *)[inTableView dequeueReusableCellWithIdentifier:theIdentifier];
+    DiaryEntry *theEntry = [self entryForTableView:inTableView atIndexPath:inIndexPath];
     
     if(theCell == nil) {
         theCell = [self makeDiaryEntryCell];
@@ -170,7 +195,7 @@
 }
 
 - (void)tableView:(UITableView *)inTableView didSelectRowAtIndexPath:(NSIndexPath *)inIndexPath {
-    DiaryEntry *theItem = [self.fetchedResultsController objectAtIndexPath:inIndexPath];
+    DiaryEntry *theItem = [self entryForTableView:inTableView atIndexPath:inIndexPath];
     
     self.itemViewController.item = theItem;
     [self.navigationController pushViewController:self.itemViewController animated:YES];
@@ -178,23 +203,32 @@
 
 - (void)tableView:(UITableView *)inTableView commitEditingStyle:(UITableViewCellEditingStyle)inStyle forRowAtIndexPath:(NSIndexPath *)inIndexPath {
     if(inStyle == UITableViewCellEditingStyleDelete) {
-        id theEntry = [self.fetchedResultsController objectAtIndexPath:inIndexPath];
-		NSError *theError = nil;
+        DiaryEntry *theItem = [self entryForTableView:inTableView atIndexPath:inIndexPath];
+        NSError *theError = nil;
 
-		[self.managedObjectContext deleteObject:theEntry];
-		if(![self.managedObjectContext save:&theError]) {
-			NSLog(@"Unresolved error %@", theError);
-		}
+        [self.managedObjectContext deleteObject:theItem];
+        if([self.managedObjectContext save:&theError]) {
+            if(inTableView == self.searchResultsTableView) {
+                NSMutableArray *theResult = [self.searchResult mutableCopy];
+                
+                [theResult removeObjectAtIndex:inIndexPath.row];
+                self.searchResult = theResult;
+                [inTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:inIndexPath] 
+                                   withRowAnimation:UITableViewRowAnimationFade];
+                [theResult release];
+            }
+        }
+        else {
+            NSLog(@"Unresolved error %@", theError);
+        }
     }   
 }
-
 
 #pragma mark NSFetchedResultsControllerDelegate
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)inController {
-	[self.tableView beginUpdates];
+    [self.tableView beginUpdates];
 }
-
 
 - (void)controller:(NSFetchedResultsController *)inController 
    didChangeObject:(id)inObject 
@@ -202,26 +236,27 @@
      forChangeType:(NSFetchedResultsChangeType)inType 
       newIndexPath:(NSIndexPath *)inNewIndexPath {
     id theCell;
-    id theEntry;
-	    
-	switch(inType) {
-		case NSFetchedResultsChangeInsert:
-			[self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:inNewIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-			break;
-		case NSFetchedResultsChangeDelete:
-			[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:inIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-			break;
-		case NSFetchedResultsChangeUpdate:
-            theCell = [self.tableView cellForRowAtIndexPath:inIndexPath];
-            theEntry = [self.fetchedResultsController objectAtIndexPath:inIndexPath];
-            
-            [self applyDiaryEntry:theEntry toCell:theCell];
-			break;
-		case NSFetchedResultsChangeMove:
-			[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:inIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:inNewIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-			break;
-	}
+    
+    switch(inType) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:inNewIndexPath] 
+                                  withRowAnimation:UITableViewRowAnimationRight];
+            break;
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:inIndexPath] 
+                                  withRowAnimation:UITableViewRowAnimationRight];
+            break;
+        case NSFetchedResultsChangeMove:
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:inIndexPath] 
+                                  withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:inNewIndexPath] 
+                                  withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        case NSFetchedResultsChangeUpdate:
+            theCell = [self.tableView cellForRowAtIndexPath:inIndexPath];            
+            [self applyDiaryEntry:inObject toCell:theCell];
+            break;
+    }
 }
 
 
@@ -229,28 +264,38 @@
   didChangeSection:(id<NSFetchedResultsSectionInfo>)inSectionInfo 
            atIndex:(NSUInteger)inSectionIndex 
      forChangeType:(NSFetchedResultsChangeType)inType {
-	
-	switch(inType) {
-		case NSFetchedResultsChangeInsert:
-			[self.tableView insertSections:[NSIndexSet indexSetWithIndex:inSectionIndex] 
+    
+    switch(inType) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:inSectionIndex] 
                           withRowAnimation:UITableViewRowAnimationFade];
-			break;
-			
-		case NSFetchedResultsChangeDelete:
-			[self.tableView deleteSections:[NSIndexSet indexSetWithIndex:inSectionIndex] 
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:inSectionIndex] 
                           withRowAnimation:UITableViewRowAnimationFade];
-			break;
-	}
+            break;
+    }
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)inController {
-	[self.tableView endUpdates];
+    [self.tableView endUpdates];
+}
+
+#pragma mark UISearchDisplayDelegate
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)inController shouldReloadTableForSearchString:(NSString *)inSearchString {
+    NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"text contains[cd] %@", inSearchString];
+    NSArray *theObjects = self.fetchedResultsController.fetchedObjects;
+    
+    self.searchResult = [theObjects filteredArrayUsingPredicate:thePredicate];
+    return YES;
 }
 
 #pragma mark SubviewControllerDelegate
 
 - (void)subviewControllerWillDisappear:(SubviewController *)inController {
-    AudioPlayer *thePlayer = (AudioPlayer *)inController;
+    AudioPlayerController *thePlayer = (AudioPlayerController *)inController;
     Medium *theMedium = thePlayer.audioMedium;
 
     if(theMedium != nil) {

@@ -2,13 +2,20 @@
 
 @implementation RotationViewController
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)inInterfaceOrientation {
-    return rotationControl.selectedSegmentIndex || inInterfaceOrientation == UIInterfaceOrientationPortrait;
-}
+@synthesize rotationControl;
 
 - (void)dealloc {
-    [rotationControl release];
+    self.rotationControl = nil;
     [super dealloc];
+}
+
+-(void)viewDidUnload {
+    self.rotationControl = nil;
+    [super viewDidUnload];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)inInterfaceOrientation {
+    return self.rotationControl.selectedSegmentIndex || inInterfaceOrientation == UIInterfaceOrientationPortrait;
 }
 
 @end

@@ -23,7 +23,7 @@
 		AB11CA9012E1BF9600F99C7B /* ItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB11CA8E12E1BF9600F99C7B /* ItemViewController.m */; };
 		AB11CA9112E1BF9600F99C7B /* ItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB11CA8F12E1BF9600F99C7B /* ItemViewController.xib */; };
 		AB11CA9712E1C24B00F99C7B /* RotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB11CA9612E1C24B00F99C7B /* RotationView.m */; };
-		AB1F336212EB1E2800A97E41 /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1F336112EB1E2800A97E41 /* AudioPlayer.m */; };
+		AB1F336212EB1E2800A97E41 /* AudioPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1F336112EB1E2800A97E41 /* AudioPlayerController.m */; };
 		AB1F336612EB1FFC00A97E41 /* SubviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1F336512EB1FFC00A97E41 /* SubviewController.m */; };
 		AB1F336812EB31B000A97E41 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = AB1F336712EB31B000A97E41 /* play.png */; };
 		AB1F336B12EB330200A97E41 /* UIToolbar+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1F336A12EB330200A97E41 /* UIToolbar+Extensions.m */; };
@@ -34,14 +34,17 @@
 		AB49B37212E622EE003B0F24 /* DiaryEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB49B37112E622EE003B0F24 /* DiaryEntryCell.m */; };
 		AB4C357312E36C0200F12B17 /* DiaryEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4C357212E36C0200F12B17 /* DiaryEntry.m */; };
 		AB4E355512E236070087EA14 /* record.png in Resources */ = {isa = PBXBuildFile; fileRef = AB4E355412E236070087EA14 /* record.png */; };
-		AB4E355912E238B60087EA14 /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4E355812E238B60087EA14 /* AudioRecorder.m */; };
+		AB4E355912E238B60087EA14 /* AudioRecorderController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4E355812E238B60087EA14 /* AudioRecorderController.m */; };
 		AB7455E712E60C1C009088C2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7455E512E60C1C009088C2 /* AVFoundation.framework */; };
 		AB7455E812E60C1C009088C2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7455E612E60C1C009088C2 /* CoreData.framework */; };
 		AB7466CB12E1DDC3009E1136 /* speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = AB7466CA12E1DDC3009E1136 /* speaker.png */; };
 		AB7466CE12E1E11B009E1136 /* micro.png in Resources */ = {isa = PBXBuildFile; fileRef = AB7466CD12E1E11B009E1136 /* micro.png */; };
+		ABC55A99132398A800365735 /* AudioPlayerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABC55A98132398A800365735 /* AudioPlayerController.xib */; };
+		ABC55A9C1323A45700365735 /* AudioRecorderController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABC55A9B1323A45700365735 /* AudioRecorderController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AB078599132271810020D702 /* UITextView+Outlets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Outlets.h"; sourceTree = "<group>"; };
 		AB101BC012E30BE0006B69FE /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		AB101BC312E31C32006B69FE /* meter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meter.png; sourceTree = "<group>"; };
 		AB101BC512E31D52006B69FE /* MeterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeterView.h; sourceTree = "<group>"; };
@@ -66,8 +69,8 @@
 		AB11CA8F12E1BF9600F99C7B /* ItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemViewController.xib; sourceTree = "<group>"; };
 		AB11CA9512E1C24B00F99C7B /* RotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotationView.h; sourceTree = "<group>"; };
 		AB11CA9612E1C24B00F99C7B /* RotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotationView.m; sourceTree = "<group>"; };
-		AB1F336012EB1E2800A97E41 /* AudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlayer.h; sourceTree = "<group>"; };
-		AB1F336112EB1E2800A97E41 /* AudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayer.m; sourceTree = "<group>"; };
+		AB1F336012EB1E2800A97E41 /* AudioPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlayerController.h; sourceTree = "<group>"; };
+		AB1F336112EB1E2800A97E41 /* AudioPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayerController.m; sourceTree = "<group>"; };
 		AB1F336412EB1FFC00A97E41 /* SubviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubviewController.h; sourceTree = "<group>"; };
 		AB1F336512EB1FFC00A97E41 /* SubviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubviewController.m; sourceTree = "<group>"; };
 		AB1F336712EB31B000A97E41 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
@@ -85,12 +88,14 @@
 		AB4C357112E36C0200F12B17 /* DiaryEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiaryEntry.h; sourceTree = "<group>"; };
 		AB4C357212E36C0200F12B17 /* DiaryEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiaryEntry.m; sourceTree = "<group>"; };
 		AB4E355412E236070087EA14 /* record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record.png; sourceTree = "<group>"; };
-		AB4E355712E238B60087EA14 /* AudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecorder.h; sourceTree = "<group>"; };
-		AB4E355812E238B60087EA14 /* AudioRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecorder.m; sourceTree = "<group>"; };
+		AB4E355712E238B60087EA14 /* AudioRecorderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecorderController.h; sourceTree = "<group>"; };
+		AB4E355812E238B60087EA14 /* AudioRecorderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecorderController.m; sourceTree = "<group>"; };
 		AB7455E512E60C1C009088C2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		AB7455E612E60C1C009088C2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		AB7466CA12E1DDC3009E1136 /* speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speaker.png; sourceTree = "<group>"; };
 		AB7466CD12E1E11B009E1136 /* micro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = micro.png; sourceTree = "<group>"; };
+		ABC55A98132398A800365735 /* AudioPlayerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioPlayerController.xib; sourceTree = "<group>"; };
+		ABC55A9B1323A45700365735 /* AudioRecorderController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioRecorderController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,10 +179,10 @@
 				AB11CA8E12E1BF9600F99C7B /* ItemViewController.m */,
 				AB1F336C12EB70C700A97E41 /* SlideShowController.h */,
 				AB1F336D12EB70C700A97E41 /* SlideShowController.m */,
-				AB4E355712E238B60087EA14 /* AudioRecorder.h */,
-				AB4E355812E238B60087EA14 /* AudioRecorder.m */,
-				AB1F336012EB1E2800A97E41 /* AudioPlayer.h */,
-				AB1F336112EB1E2800A97E41 /* AudioPlayer.m */,
+				AB4E355712E238B60087EA14 /* AudioRecorderController.h */,
+				AB4E355812E238B60087EA14 /* AudioRecorderController.m */,
+				AB1F336012EB1E2800A97E41 /* AudioPlayerController.h */,
+				AB1F336112EB1E2800A97E41 /* AudioPlayerController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -195,6 +200,7 @@
 				AB49B36D12E6126D003B0F24 /* UIImage+ImageTools.m */,
 				AB1F336912EB330200A97E41 /* UIToolbar+Extensions.h */,
 				AB1F336A12EB330200A97E41 /* UIToolbar+Extensions.m */,
+				AB078599132271810020D702 /* UITextView+Outlets.h */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -212,6 +218,8 @@
 				AB11CA8512E1B47600F99C7B /* PhotoDiaryViewController.xib */,
 				AB11CA8F12E1BF9600F99C7B /* ItemViewController.xib */,
 				AB1F336E12EB70C700A97E41 /* SlideShowController.xib */,
+				ABC55A98132398A800365735 /* AudioPlayerController.xib */,
+				ABC55A9B1323A45700365735 /* AudioRecorderController.xib */,
 				AB101BC812E353C4006B69FE /* Model.xcdatamodeld */,
 			);
 			name = Resources;
@@ -286,6 +294,8 @@
 				AB101BC412E31C32006B69FE /* meter.png in Resources */,
 				AB1F336812EB31B000A97E41 /* play.png in Resources */,
 				AB1F337012EB70C700A97E41 /* SlideShowController.xib in Resources */,
+				ABC55A99132398A800365735 /* AudioPlayerController.xib in Resources */,
+				ABC55A9C1323A45700365735 /* AudioRecorderController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,14 +311,14 @@
 				AB11CA8412E1B47600F99C7B /* PhotoDiaryViewController.m in Sources */,
 				AB11CA9012E1BF9600F99C7B /* ItemViewController.m in Sources */,
 				AB11CA9712E1C24B00F99C7B /* RotationView.m in Sources */,
-				AB4E355912E238B60087EA14 /* AudioRecorder.m in Sources */,
+				AB4E355912E238B60087EA14 /* AudioRecorderController.m in Sources */,
 				AB101BC712E31D52006B69FE /* MeterView.m in Sources */,
 				AB101BCA12E353C4006B69FE /* Model.xcdatamodeld in Sources */,
 				AB4C357312E36C0200F12B17 /* DiaryEntry.m in Sources */,
 				AB2BF53312E4CCC2000AD0D3 /* Medium.m in Sources */,
 				AB49B36E12E6126D003B0F24 /* UIImage+ImageTools.m in Sources */,
 				AB49B37212E622EE003B0F24 /* DiaryEntryCell.m in Sources */,
-				AB1F336212EB1E2800A97E41 /* AudioPlayer.m in Sources */,
+				AB1F336212EB1E2800A97E41 /* AudioPlayerController.m in Sources */,
 				AB1F336612EB1FFC00A97E41 /* SubviewController.m in Sources */,
 				AB1F336B12EB330200A97E41 /* UIToolbar+Extensions.m in Sources */,
 				AB1F336F12EB70C700A97E41 /* SlideShowController.m in Sources */,
@@ -387,7 +397,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PhotoDiary/PhotoDiary-Prefix.pch";
 				INFOPLIST_FILE = "PhotoDiary/PhotoDiary-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -404,7 +416,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PhotoDiary/PhotoDiary-Prefix.pch";
 				INFOPLIST_FILE = "PhotoDiary/PhotoDiary-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

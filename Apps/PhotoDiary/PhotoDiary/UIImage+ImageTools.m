@@ -16,7 +16,6 @@
     UIImage *theImage;
     
     UIGraphicsBeginImageContext(inSize);
-    CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeSourceIn);
     [self drawInRect:theFrame];
     theImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();

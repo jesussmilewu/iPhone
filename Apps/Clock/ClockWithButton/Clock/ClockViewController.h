@@ -4,9 +4,11 @@
 
 @interface ClockViewController : UIViewController {
 	@private
-    IBOutlet ClockView *clockView;
-    IBOutlet UIButton *switchButton;
 }
+
+@property(nonatomic, assign) IBOutlet ClockView *clockView;
+@property(nonatomic, assign) IBOutlet UIButton *switchButton;
+
 - (IBAction)switchAnimation:(UIButton *)inSender;
 
 @end

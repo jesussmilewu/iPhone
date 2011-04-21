@@ -2,7 +2,8 @@
 
 @interface RotationViewController : UIViewController {
     @private
-    IBOutlet UISegmentedControl *rotationControl;
 }
+
+@property (nonatomic, assign) IBOutlet UISegmentedControl *rotationControl;
 
 @end

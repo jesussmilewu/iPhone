@@ -29,12 +29,11 @@ NSString * const kMediumTypeAudio = @"audio";
 
 - (void)willSave {
     [super willSave];
-    NSDate *theDate = [NSDate date];
-    
-    if([self primitiveValueForKey:@"creationTime"] == nil) {
-        [self setPrimitiveValue:theDate forKey:@"creationTime"];
+    if(!self.isDeleted) {
+        NSDate *theDate = [NSDate date];
+        
+        [self setPrimitiveValue:theDate forKey:@"updateTime"];
     }
-    [self setPrimitiveValue:theDate forKey:@"updateTime"];
 }
 
 - (Medium *)mediumForType:(NSString *)inType {

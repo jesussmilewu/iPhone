@@ -5,11 +5,12 @@
 
 @interface AlarmClockViewController : UIViewController {
 	@private
-    IBOutlet ClockView *clockView;
-    IBOutlet ClockControl *clockControl;
-    IBOutlet UISwitch *alarmSwitch;
-    IBOutlet UILabel *timeLabel;
 }
+
+@property(nonatomic, assign) IBOutlet ClockView *clockView;
+@property(nonatomic, assign) IBOutlet ClockControl *clockControl;
+@property(nonatomic, assign) IBOutlet UISwitch *alarmSwitch;
+@property(nonatomic, assign) IBOutlet UILabel *timeLabel;
 
 - (IBAction)updateAlarm;
 - (IBAction)updateTimeLabel;

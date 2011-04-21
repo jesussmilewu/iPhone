@@ -1,14 +1,15 @@
 #import "ItemViewController.h"
-#import "AudioRecorder.h"
+#import "AudioRecorderController.h"
 #import "DiaryEntry.h"
 #import "Medium.h"
 #import "UIImage+ImageTools.h"
-#import "AudioPlayer.h"
+#import "AudioPlayerController.h"
 #import "PhotoDiaryAppDelegate.h"
 
 @interface ItemViewController()
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) UIPopoverController *popoverController;
 
 - (void)saveItem;
 
@@ -16,12 +17,19 @@
 
 @implementation ItemViewController
 
-@synthesize managedObjectContext;
+@synthesize imageView;
+@synthesize textView;
+@synthesize cameraButton;
+@synthesize photoLibraryButton;
+@synthesize playButton;
+
 @synthesize toolbar;
 @synthesize imagePicker;
 @synthesize audioRecorder;
 @synthesize item;
 @synthesize audioPlayer;
+@synthesize managedObjectContext;
+@synthesize popoverController;
 
 - (void)dealloc {
     self.managedObjectContext = nil;
@@ -30,6 +38,11 @@
     self.audioRecorder = nil;
     self.item = nil;
     self.audioPlayer = nil;
+    self.imageView = nil;
+    self.textView = nil;
+    self.cameraButton = nil;
+    self.photoLibraryButton = nil;
+    self.playButton = nil;
     [super dealloc];
 }
 
@@ -48,13 +61,27 @@
     [self.audioPlayer addViewToViewController:self.navigationController];
     cameraButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
     photoLibraryButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
+    self.imagePicker = [[[UIImagePickerController alloc] init] autorelease];
+    self.imagePicker.allowsEditing = YES;
+    self.imagePicker.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    self.imagePicker.delegate = self;
+    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        self.popoverController = [[[UIPopoverController alloc] initWithContentViewController:self.imagePicker] autorelease];
+    }
 }
 
 - (void)viewDidUnload {
+    self.toolbarItems = nil;
     self.toolbar = nil;
     self.imagePicker = nil;
     self.audioRecorder = nil;
     self.audioPlayer = nil;
+    self.popoverController = nil;
+    self.imageView = nil;
+    self.textView = nil;
+    self.cameraButton = nil;
+    self.photoLibraryButton = nil;
+    self.playButton = nil;
     [super viewDidUnload];
 }
 
@@ -83,15 +110,15 @@
                   selector:@selector(keyboardWillDisappear:) 
                       name:UIKeyboardWillHideNotification 
                     object:nil];
-    textView.text = self.item.text;
-    imageView.image = [UIImage imageWithData:theMedium.data];
-    playButton.enabled = [self.item mediumForType:kMediumTypeAudio] != nil;
+    self.textView.text = self.item.text;
+    self.imageView.image = [UIImage imageWithData:theMedium.data];
+    self.playButton.enabled = [self.item mediumForType:kMediumTypeAudio] != nil;
 }
 
 - (void)viewWillDisappear:(BOOL)inAnimated {
     NSNotificationCenter *theCenter = [NSNotificationCenter defaultCenter];
     
-    imageView.image = nil;
+    self.imageView.image = nil;
     [theCenter removeObserver:theCenter];
     self.audioPlayer.visible = NO;
     self.audioRecorder.visible = NO;
@@ -107,27 +134,34 @@
 - (void)keyboardWillAppear:(NSNotification *)inNotification {
     NSValue *theValue = [inNotification.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
     UIView *theView = self.view;
-    CGRect theFrame = [textView.superview convertRect:[theValue CGRectValue] fromView:textView.window];
+    CGRect theFrame = [theView.window convertRect:[theValue CGRectValue] toView:theView];
     
     theFrame = CGRectMake(0.0, 0.0, 
                           CGRectGetWidth(self.view.frame),
-                          CGRectGetHeight(self.view.frame) - CGRectGetHeight(theFrame) + CGRectGetHeight(self.toolbar.frame));
+                          CGRectGetMinY(theFrame));
     theFrame = [theView convertRect:theFrame toView:textView.superview];
     [UIView beginAnimations:nil context:nil];
-    textView.frame = theFrame;
+    self.textView.frame = theFrame;
     [UIView commitAnimations];
 }
 
 - (void)keyboardWillDisappear:(NSNotification *)inNotification {
     [UIView beginAnimations:nil context:nil];
-    textView.frame = CGRectInset(textView.superview.bounds, 10.0, 10.0);
+    self.textView.frame = CGRectInset(textView.superview.bounds, 10.0, 10.0);
     [UIView commitAnimations];
 }
 
-- (void)showPickerWithSourceType:(UIImagePickerControllerSourceType)inSourceType {
+- (void)showPickerWithSourceType:(UIImagePickerControllerSourceType)inSourceType barButtonItem:(UIBarButtonItem *)inItem {
     if([UIImagePickerController isSourceTypeAvailable:inSourceType]) {
         self.imagePicker.sourceType = inSourceType;
-        [self presentModalViewController:self.imagePicker animated:YES];
+        if(self.popoverController == nil) {
+            [self presentModalViewController:self.imagePicker animated:YES];            
+        }
+        else if(!self.popoverController.popoverVisible) {
+            [self.popoverController presentPopoverFromBarButtonItem:inItem 
+                                           permittedArrowDirections:UIPopoverArrowDirectionAny 
+                                                           animated:YES];
+        }
     }
 }
 
@@ -137,14 +171,15 @@
     if(![self.managedObjectContext save:&theError]) {
         NSLog(@"saveItem: %@", theError);
     }
+    NSLog(@"%@, %@", self.item.creationTime, self.item.updateTime);
 }
 
 - (IBAction)takePhoto:(id)inSender {
-    [self showPickerWithSourceType:UIImagePickerControllerSourceTypeCamera];
+    [self showPickerWithSourceType:UIImagePickerControllerSourceTypeCamera barButtonItem:inSender];
 }
 
 - (IBAction)takePhotoFromLibrary:(id)inSender {
-    [self showPickerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    [self showPickerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary barButtonItem:inSender];
 }
 
 - (IBAction)recordAudio:(id)inSender {
@@ -160,7 +195,7 @@
 
 - (IBAction)saveText:(id)inSender {
     [self.view endEditing:YES];
-    [self.item setValue:textView.text forKey:@"text"];
+    [self.item setValue:self.textView.text forKey:@"text"];
 }
 
 - (IBAction)revertText:(id)inSender {
@@ -183,8 +218,8 @@
 }
 
 - (void)saveImage:(UIImage *)inImage {
-    CGSize theIconSize = [inImage sizeToAspectFitInSize:CGSizeMake(60.0, 60.0)];
     NSData *theData = UIImageJPEGRepresentation(inImage, 0.8);
+    CGSize theIconSize = [inImage sizeToAspectFitInSize:CGSizeMake(60.0, 60.0)];
     UIImage *theImage = [inImage scaledImageWithSize:theIconSize];
 
     self.item.icon = UIImageJPEGRepresentation(theImage, 0.8);
@@ -196,30 +231,36 @@
     [self updateMediumData:theData withMediumType:kMediumTypeImage];
 }
 
+- (void)dismissImagePickerController:(UIImagePickerController *)inPicker {
+    if(self.popoverController == nil) {
+        [inPicker.parentViewController dismissModalViewControllerAnimated:YES];
+    }    
+}
+
 #pragma mark UIImagePickerControllerDelegate
 
 - (void)imagePickerController:(UIImagePickerController *)inPicker 
 didFinishPickingMediaWithInfo:(NSDictionary *)inInfo {
     UIImage *theImage = [inInfo valueForKey:UIImagePickerControllerEditedImage];
     
-    [inPicker.parentViewController dismissModalViewControllerAnimated:YES];
+    [self dismissImagePickerController:inPicker];
     self.item.icon = nil;
-    imageView.image = theImage;
+    self.imageView.image = theImage;
     [self saveImage:theImage];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)inPicker {
-    [inPicker.parentViewController dismissModalViewControllerAnimated:YES];
+    [self dismissImagePickerController:inPicker];
 }
 
 #pragma mark AudioRecorderDelegate
 
--(void)audioRecorder:(AudioRecorder *)inRecorder didRecordToData:(NSData *)inData {
+-(void)audioRecorder:(AudioRecorderController *)inRecorder didRecordToData:(NSData *)inData {
     [self updateMediumData:inData withMediumType:kMediumTypeAudio];
-    playButton.enabled = inData.length > 0;
+    self.playButton.enabled = inData.length > 0;
 }
 
--(void)audioRecorderDidCancel:(AudioRecorder *)inRecorder {
+-(void)audioRecorderDidCancel:(AudioRecorderController *)inRecorder {
 }
 
 #pragma mark SubviewControllerDelegate

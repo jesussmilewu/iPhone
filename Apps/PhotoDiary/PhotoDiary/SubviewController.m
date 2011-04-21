@@ -2,12 +2,35 @@
 
 @implementation SubviewController
 
+@synthesize nibName;
 @synthesize delegate;
 @synthesize view;
 
 - (void)dealloc {
     self.delegate = nil;
+    self.nibName = nil;
+    self.view = nil;
     [super dealloc];
+}
+
+- (NSString *)nibName {
+    if(nibName == nil) {
+        self.nibName = NSStringFromClass([self class]);
+    }
+    return nibName;
+}
+
+- (UIView *)view {
+    if(view == nil) {
+        [self loadView];
+    }
+    return view;
+}
+
+- (void)loadView {
+    NSBundle *theBundle = [NSBundle mainBundle];
+    
+    [theBundle loadNibNamed:self.nibName owner:self options:nil];
 }
 
 - (void)addViewToViewController:(UIViewController *)inViewController {

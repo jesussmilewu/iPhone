@@ -1,24 +1,30 @@
-#import "AudioRecorder.h"
+#import "AudioRecorderController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "MeterView.h"
 #import "UIToolbar+Extensions.h"
 
 static const NSTimeInterval kMaximalRecordingTime = 30.0;
 
-@interface AudioRecorder()<AVAudioRecorderDelegate>
+@interface AudioRecorderController()<AVAudioRecorderDelegate>
 
 @property (nonatomic, retain) AVAudioRecorder *audioRecorder;
 @property (nonatomic, retain) NSTimer *updateTimer;
 @property (nonatomic) BOOL preparing;
 
-- (NSString *)cachesDirectory;
 - (NSURL *)fileURL;
 - (void)startTimer;
 - (void)cancelTimer;
 
 @end
 
-@implementation AudioRecorder
+@implementation AudioRecorderController
+
+@synthesize recordButton;
+@synthesize progressView;
+@synthesize meterView;
+@synthesize timeLabel;
+@synthesize toolbar;
+@synthesize activityIndicator;
 
 @dynamic delegate;
 @synthesize audioRecorder;
@@ -28,19 +34,18 @@ static const NSTimeInterval kMaximalRecordingTime = 30.0;
     self.view = nil;
     self.delegate = nil;
     self.audioRecorder = nil;
+    self.recordButton = nil;
+    self.progressView = nil;
+    self.meterView = nil;
+    self.timeLabel = nil;
+    self.toolbar = nil;
+    self.activityIndicator = nil;
     [self cancelTimer];
-    [activityIndicator release];
     [super dealloc];
 }
 
-- (NSString *)cachesDirectory {
-    NSArray *thePaths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-
-    return [thePaths objectAtIndex:0];
-}
-
 - (NSURL *)fileURL {
-    NSString *theDirectory = self.cachesDirectory;
+    NSString *theDirectory = NSTemporaryDirectory();
     
     return [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/recording.caf", theDirectory]];
 }
@@ -69,32 +74,32 @@ static const NSTimeInterval kMaximalRecordingTime = 30.0;
 }
 
 - (BOOL)preparing {
-    return activityIndicator.isAnimating;
+    return self.activityIndicator.isAnimating;
 }
 
 - (void)setPreparing:(BOOL)inPreparing {
     if(inPreparing) {
-        [activityIndicator startAnimating];
-        [toolbar setEnabled:NO];
+        [self.activityIndicator startAnimating];
+        [self.toolbar setEnabled:NO];
     }
     else {
-        [activityIndicator stopAnimating];
-        [toolbar setEnabled:YES];        
+        [self.activityIndicator stopAnimating];
+        [self.toolbar setEnabled:YES];        
     }
 }
 
 - (void)updateRecordButton {
     if(self.audioRecorder.recording) {
-        recordButton.image = [UIImage imageNamed:@"pause.png"];
+        self.recordButton.image = [UIImage imageNamed:@"pause.png"];
     }
     else {
-        recordButton.image = [UIImage imageNamed:@"record.png"];
+        self.recordButton.image = [UIImage imageNamed:@"record.png"];
     }
-    recordButton.enabled = self.audioRecorder.currentTime < kMaximalRecordingTime;
+    self.recordButton.enabled = self.audioRecorder.currentTime < kMaximalRecordingTime;
 }
 
 - (void)setTime:(NSTimeInterval)inTime {
-    timeLabel.text = [NSString stringWithFormat:@"%.0fs", inTime];
+    self.timeLabel.text = [NSString stringWithFormat:@"%.0fs", inTime];
 }
 
 - (IBAction)save:(id)inSender {
@@ -116,7 +121,11 @@ static const NSTimeInterval kMaximalRecordingTime = 30.0;
     NSError *theError = nil;
     AVAudioRecorder *theRecorder = [[AVAudioRecorder alloc] initWithURL:self.fileURL settings:self.audioRecorderSettings error:&theError];
     
-    if(theError == nil) {
+    if(theRecorder == nil) {
+        NSLog(@"startRecording: %@", theError);
+        self.preparing = NO;
+    }
+    else {
         theRecorder.delegate = self;
         self.audioRecorder = theRecorder;
         if([self.audioRecorder recordForDuration:kMaximalRecordingTime]) {
@@ -124,10 +133,6 @@ static const NSTimeInterval kMaximalRecordingTime = 30.0;
             [self startTimer];
             self.preparing = NO;
         };
-    }
-    else {
-        NSLog(@"startRecording: %@", theError);
-        self.preparing = NO;
     }    
     [theRecorder release];
 }
@@ -139,11 +144,11 @@ static const NSTimeInterval kMaximalRecordingTime = 30.0;
     }
     else if(self.recording) {
         [self.audioRecorder pause];
-        [toolbar setEnabled:YES];
+        [self.toolbar setEnabled:YES];
     }
     else if(self.pausing) {
         [self.audioRecorder record];
-        [toolbar setEnabled:NO];
+        [self.toolbar setEnabled:NO];
     }
     [self updateRecordButton];
 }
@@ -153,9 +158,9 @@ static const NSTimeInterval kMaximalRecordingTime = 30.0;
     [self.audioRecorder stop];
     [self.audioRecorder deleteRecording];
     self.audioRecorder = nil;
-    progressView.progress = 0.0;
+    self.progressView.progress = 0.0;
     [self setTime:0.0];
-    [meterView clear];
+    [self.meterView clear];
 }
 
 - (void)startTimer {
@@ -180,8 +185,8 @@ static const NSTimeInterval kMaximalRecordingTime = 30.0;
     NSTimeInterval theTime = self.audioRecorder.currentTime;
     
     [self.audioRecorder updateMeters];
-    progressView.progress = theTime / kMaximalRecordingTime;
-    meterView.value = [self.audioRecorder averagePowerForChannel:0];
+    self.progressView.progress = theTime / kMaximalRecordingTime;
+    self.meterView.value = [self.audioRecorder averagePowerForChannel:0];
     [self setTime:theTime];
 }
 
