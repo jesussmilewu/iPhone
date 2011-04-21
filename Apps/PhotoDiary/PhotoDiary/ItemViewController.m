@@ -188,6 +188,11 @@
     UIImage *theImage = [inImage scaledImageWithSize:theIconSize];
 
     self.item.icon = UIImageJPEGRepresentation(theImage, 0.8);
+    NSLog(@"[+] saving image ...");
+    
+    // uploading file to server
+    
+    
     [self updateMediumData:theData withMediumType:kMediumTypeImage];
 }
 
