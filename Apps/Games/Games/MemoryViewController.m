@@ -73,7 +73,6 @@ const NSUInteger kMemorySize = 6 * 6;
         }
     }
     [self.memory clear];
-    NSLog(@"actions: %@", self.memoryView.layer.actions);
 }
 
 - (void)viewDidUnload {
@@ -144,7 +143,35 @@ const NSUInteger kMemorySize = 6 * 6;
     [self.memory clear];
 }
 
+- (void)showCardView:(BOOL)inShow atIndex:(NSUInteger)inIndex {
+    NSArray *theViews = self.memoryView.subviews;
+    UIViewAnimationOptions theOptions = inShow ? UIViewAnimationOptionTransitionCurlUp : UIViewAnimationOptionTransitionCurlDown;
+    
+    if(inIndex < theViews.count) {
+        BOOL theFrontSide = inShow || [[self.memory.cards objectAtIndex:inIndex] showsFrontSide];
+        CardView *theView = [theViews objectAtIndex:inIndex];
+        
+        [UIView transitionWithView:theView duration:0.25 
+                           options:theOptions
+                        animations:^{
+                            theView.showsFrontSide = theFrontSide;
+                        } 
+                        completion:^(BOOL inFinished) {
+                            [self showCardView:inShow atIndex:inIndex + 1];
+                            if(inIndex == 0 && inShow) {
+                                [self showCardView:NO atIndex:0];
+                            }
+                        }];
+    }
+    else if(!inShow) {
+        self.view.userInteractionEnabled = YES;
+    }
+}
+
 - (IBAction)help {
+    [self.scoreView setValue:self.scoreView.value + 16 animated:YES];
+    self.view.userInteractionEnabled = NO;
+    [self showCardView:YES atIndex:0];
 }
 
 @end

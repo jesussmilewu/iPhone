@@ -40,7 +40,7 @@
     
     theLayer.masksToBounds = YES;
     theLayer.cornerRadius = 6;
-    theLayer.borderWidth = 1.0;
+    theLayer.borderWidth = 2.0;
     theLayer.borderColor = [UIColor whiteColor].CGColor;
 }
 
