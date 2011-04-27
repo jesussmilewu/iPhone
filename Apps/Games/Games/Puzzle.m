@@ -64,6 +64,17 @@ NSString * const kPuzzleToIndexKey = @"kPuzzleToIndexKey";
     self.freeIndex = theSize - 1;
 }
 
+- (BOOL)solved {
+    NSUInteger theSize = self.size;
+    
+    for(NSUInteger i = 0; i < theSize; ++i) {
+        if(self.items[i] != i) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
 - (BOOL)rowOfIndex:(NSUInteger)inFromIndex isEqualToRowOfIndex:(NSUInteger)inToIndex {
     NSUInteger theLength = self.length;
     NSUInteger theSize = self.size;

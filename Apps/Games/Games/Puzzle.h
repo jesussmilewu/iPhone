@@ -30,6 +30,7 @@ extern NSString * const kPuzzleToIndexKey;
 @property (nonatomic, readonly) NSUInteger length;
 @property (nonatomic, readonly) NSUInteger size;
 @property (nonatomic, readonly) NSUInteger freeIndex;
+@property (nonatomic, readonly) BOOL solved;
 
 + (id)puzzleWithLength:(NSUInteger)inLength;
 - (id)initWithLength:(NSUInteger)inLength;
