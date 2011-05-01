@@ -19,11 +19,9 @@ const float kVerticalMaximalThreshold = 0.5;
 
 @interface PuzzleViewController()<UIAccelerometerDelegate>
 
-@property (nonatomic) NSUInteger shuffleCount;
-@property (nonatomic) NSUInteger shuffleIndex;
 @property (nonatomic) PuzzleDirection lastDirection;
 
-- (void)buildViewWithLength:(NSUInteger)inLength;
+- (void)buildView;
 
 @end
 
@@ -35,8 +33,6 @@ const float kVerticalMaximalThreshold = 0.5;
 @synthesize lengthSlider;
 @synthesize lengthLabel;
 @synthesize scoreView;
-@synthesize shuffleCount;
-@synthesize shuffleIndex;
 @synthesize lastDirection;
 
 - (void)dealloc {
@@ -99,35 +95,21 @@ const float kVerticalMaximalThreshold = 0.5;
     [super viewWillDisappear:inAnimated];
 }
 
-- (void)nextTilt {
-    Puzzle *thePuzzle = self.puzzle;
-    PuzzleDirection theDirection = [thePuzzle bestDirectionForIndex:self.shuffleIndex];
-    
-    if(theDirection == PuzzleNoDirection) {
-        self.shuffleCount--;
-    }
-    while(theDirection == PuzzleNoDirection) {
-        self.shuffleIndex = rand() % thePuzzle.size;
-        theDirection = [thePuzzle bestDirectionForIndex:self.shuffleIndex];
-    }
-    [thePuzzle tiltToDirection:theDirection];
-}
-
 - (IBAction)clear {
     NSUInteger theLength = roundf(self.lengthSlider.value);
-
-    [self buildViewWithLength:theLength];
+    
+    self.puzzle = [Puzzle puzzleWithLength:theLength];
+    [self buildView];
     self.lastDirection = PuzzleNoDirection;
     self.scoreView.value = 0;
 }
 
 - (IBAction)shuffle {
-    NSUInteger theSize = self.puzzle.size;
+    Puzzle *thePuzzle = self.puzzle;
     
+    [thePuzzle shuffle];
     [self.scoreView setValue:0 animated:YES];
-    self.shuffleIndex = rand() % theSize;
-    self.shuffleCount = 4 * theSize;
-    [self nextTilt];
+    [self buildView];
 }
 
 - (IBAction)updateLengthSlider {
@@ -141,39 +123,35 @@ const float kVerticalMaximalThreshold = 0.5;
     return inInterfaceOrientation == UIInterfaceOrientationPortrait;
 }
 
-- (void)buildViewWithLength:(NSUInteger)inLength {
-    Puzzle *thePuzzle = [Puzzle puzzleWithLength:inLength];
+- (void)buildView {
+    Puzzle *thePuzzle = self.puzzle;
+    NSUInteger theLength = thePuzzle.length;
     UIView *thePuzzleView = self.puzzleView;
     CGSize theSize = thePuzzleView.frame.size;
-    NSArray *theImages = [self.image splitIntoSubimagesWithRows:inLength columns:inLength];
-    CGRect theFrame = CGRectMake(0.0, 0.0, theSize.width / inLength, theSize.height / inLength);
+    NSArray *theImages = [self.image splitIntoSubimagesWithRows:theLength columns:theLength];
+    CGRect theFrame = CGRectMake(0.0, 0.0, theSize.width / theLength, theSize.height / theLength);
     NSUInteger theIndex = 0;
     
-    self.puzzle = thePuzzle;
-    for(NSUInteger theRow = 0; theRow < inLength; ++theRow) {
+    for(NSUInteger theRow = 0; theRow < theLength; ++theRow) {
         theFrame.origin.y = theRow * CGRectGetHeight(theFrame);
-        for(NSUInteger theColumn = 0; theColumn < inLength; ++theColumn) {
+        for(NSUInteger theColumn = 0; theColumn < theLength; ++theColumn) {
             UIImageView *theImageView = theIndex < thePuzzleView.subviews.count ? 
             [thePuzzleView.subviews objectAtIndex:theIndex] : nil;
+            NSUInteger theItemIndex = [thePuzzle valueAtIndex:theIndex];
 
             theFrame.origin.x = theColumn * CGRectGetWidth(theFrame);
             if(theImageView == nil) {
                 theImageView = [[UIImageView alloc] initWithFrame:theFrame];
-                /*
-                 theImageView.layer.borderColor = [UIColor blackColor].CGColor;
-                 theImageView.layer.borderWidth = 1.0;
-                 theImageView.layer.masksToBounds = YES;
-                 */
                 [thePuzzleView addSubview:[theImageView autorelease]];
             }
             if(theIndex == thePuzzle.freeIndex) {
-                theImageView.backgroundColor = [UIColor redColor];
+                theImageView.backgroundColor = [UIColor lightGrayColor];
                 theImageView.image = nil;
             }
             else {
-                theImageView.image = [theImages objectAtIndex:theIndex];
+                theImageView.image = [theImages objectAtIndex:theItemIndex];
             }
-            theImageView.tag = [thePuzzle valueAtIndex:theIndex];
+            theImageView.tag = theItemIndex;
             theImageView.frame = theFrame;
             theIndex++;
         }
@@ -195,25 +173,20 @@ const float kVerticalMaximalThreshold = 0.5;
 }
 
 - (void)puzzleDidTilt:(NSNotification *)inNotification {
-    BOOL theShuffleFlag = self.shuffleCount > 0;
     NSDictionary *theInfo = inNotification.userInfo;
     NSUInteger theFromIndex = [[theInfo objectForKey:kPuzzleFromIndexKey] intValue];
     NSUInteger theToIndex = [[theInfo objectForKey:kPuzzleToIndexKey] intValue];
     UIView *thePuzzleView = self.puzzleView;
     UIView *theFromView = [thePuzzleView.subviews objectAtIndex:theFromIndex];
     UIView *theToView = [thePuzzleView.subviews objectAtIndex:theToIndex];
-    NSTimeInterval theDuration = theShuffleFlag ? 0.10 : 0.4;
     
     [thePuzzleView exchangeSubviewAtIndex:theFromIndex withSubviewAtIndex:theToIndex];
-    [UIView animateWithDuration:theDuration 
+    [UIView animateWithDuration:0.4 
                      animations:^{
                          theFromView.frame = [self frameForItemAtIndex:theToIndex];
                          theToView.frame = [self frameForItemAtIndex:theFromIndex];
                      }
                      completion:^(BOOL inFinshed) {
-                         if(theShuffleFlag) {
-                             [self nextTilt];
-                         }
                      }];
 }
 
@@ -254,24 +227,22 @@ const float kVerticalMaximalThreshold = 0.5;
 #pragma mark UIAccelerometerDelegate
 
 - (void)accelerometer:(UIAccelerometer *)inAccelerometer didAccelerate:(UIAcceleration *)inAcceleration {
-    if(self.shuffleCount == 0) {
-        float theX = inAcceleration.x;
-        float theY = inAcceleration.y;
-        
-        if(self.lastDirection == PuzzleNoDirection) {
-            if(fabs(theX) > kHorizontalMaximalThreshold) {
-                self.lastDirection = theX < 0 ? PuzzleDirectionWest : PuzzleDirectionEast;
-            }
-            else if(fabs(theY) > kVerticalMaximalThreshold) {
-                self.lastDirection = theY < 0 ? PuzzleDirectionSouth : PuzzleDirectionNorth;
-            }
-            if([self.puzzle tiltToDirection:self.lastDirection]) {
-                [self.scoreView setValue:self.scoreView.value + 1 animated:YES];                
-            }
+    float theX = inAcceleration.x;
+    float theY = inAcceleration.y;
+    
+    if(self.lastDirection == PuzzleNoDirection) {
+        if(fabs(theX) > kHorizontalMaximalThreshold) {
+            self.lastDirection = theX < 0 ? PuzzleDirectionWest : PuzzleDirectionEast;
         }
-        else if(fabs(theX) < kHorizontalMinimalThreshold && fabs(theY) < kVerticalMinimalThreshold) {
-            self.lastDirection = PuzzleNoDirection;
+        else if(fabs(theY) > kVerticalMaximalThreshold) {
+            self.lastDirection = theY < 0 ? PuzzleDirectionSouth : PuzzleDirectionNorth;
         }
+        if([self.puzzle tiltToDirection:self.lastDirection]) {
+            [self.scoreView setValue:self.scoreView.value + 1 animated:YES];                
+        }
+    }
+    else if(fabs(theX) < kHorizontalMinimalThreshold && fabs(theY) < kVerticalMinimalThreshold) {
+        self.lastDirection = PuzzleNoDirection;
     }
 }
 

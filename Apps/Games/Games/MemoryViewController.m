@@ -37,6 +37,7 @@ const NSUInteger kMemorySize = 6 * 6;
 @synthesize scoreView;
 
 - (void)dealloc {
+    [self.memory removeObserver:self forKeyPath:@"flipCount"];
     self.memory = nil;
     self.memoryView = nil;
     self.scoreView = nil;
@@ -51,6 +52,7 @@ const NSUInteger kMemorySize = 6 * 6;
     [theCenter addObserver:self selector:@selector(memoryDidCleared:) name:kMemoryDidClearedNotification object:nil];
     [theCenter addObserver:self selector:@selector(cardDidFlipped:) name:kCardDidFlippedNotification object:nil];
     [theCenter addObserver:self selector:@selector(cardsDidSolved:) name:kMemoryCardsDidSolvedNotification object:nil];
+    [self.memory addObserver:self forKeyPath:@"flipCount" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 - (void)viewDidLoad {
@@ -102,7 +104,6 @@ const NSUInteger kMemorySize = 6 * 6;
     Card *theCard = [self.memory.cards objectAtIndex:[inCardView tag]];
     
     theCard.showsFrontSide = !theCard.showsFrontSide;
-    [self.scoreView setValue:self.scoreView.value + 1 animated:YES];
 }
 
 - (void)memoryDidCleared:(NSNotification *)inNotification {
@@ -169,9 +170,14 @@ const NSUInteger kMemorySize = 6 * 6;
 }
 
 - (IBAction)help {
-    [self.scoreView setValue:self.scoreView.value + 16 animated:YES];
     self.view.userInteractionEnabled = NO;
     [self showCardView:YES atIndex:0];
+}
+
+- (void)observeValueForKeyPath:(NSString *)inKeyPath ofObject:(id)inObject change:(NSDictionary *)inChanges context:(void *)inContext {
+    if(inObject == self.memory && [@"flipCount" isEqualToString:inKeyPath]) {
+        [self.scoreView setValue:self.memory.flipCount animated:YES];
+    }
 }
 
 @end

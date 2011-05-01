@@ -64,6 +64,31 @@ NSString * const kPuzzleToIndexKey = @"kPuzzleToIndexKey";
     self.freeIndex = theSize - 1;
 }
 
+- (NSUInteger)nextIndex {
+    NSUInteger theSize = self.size;
+    NSUInteger theIndex = 0;
+    PuzzleDirection theDirection = PuzzleNoDirection;
+    
+    while(theDirection == PuzzleNoDirection) {
+        theIndex = rand() % theSize;
+        theDirection = [self bestDirectionForIndex:theIndex];
+    }
+    return theIndex;
+}
+- (void)shuffle {
+    NSUInteger theSize = self.size;
+
+    for(NSUInteger i = 0; i < 4 * theSize; ++i) {
+        NSUInteger theShuffleIndex = self.nextIndex;
+        PuzzleDirection theDirection = [self bestDirectionForIndex:theShuffleIndex];
+        
+        while(theDirection != PuzzleNoDirection) {
+            [self tiltToDirection:theDirection];
+            theDirection = [self bestDirectionForIndex:theShuffleIndex];
+        }
+    }
+}
+
 - (BOOL)solved {
     NSUInteger theSize = self.size;
     

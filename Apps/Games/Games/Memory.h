@@ -20,6 +20,7 @@ extern NSString * const kMemoryUserInfoCardsKey;
 @property (nonatomic, readonly) NSUInteger size;
 @property (nonatomic, copy, readonly) NSArray *cards;
 @property (copy, readonly) NSArray *flippedCards;
+@property (nonatomic, readonly) NSUInteger flipCount;
 
 + (id)memoryWithSize:(NSUInteger)inSize;
 - (id)initWithSize:(NSUInteger)inSize;

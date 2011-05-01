@@ -19,6 +19,7 @@ NSString * const kMemoryUserInfoCardsKey = @"kMemoryUserInfoCardsKey";
 @property (nonatomic, readwrite) NSUInteger size;
 @property (nonatomic, copy, readwrite) NSArray *cards;
 @property (copy, readwrite) NSArray *flippedCards;
+@property (nonatomic, readwrite) NSUInteger flipCount;
 
 - (NSMutableArray *)createCards;
 
@@ -29,6 +30,7 @@ NSString * const kMemoryUserInfoCardsKey = @"kMemoryUserInfoCardsKey";
 @synthesize size;
 @synthesize cards;
 @synthesize flippedCards;
+@synthesize flipCount;
 
 + (id)memoryWithSize:(NSUInteger)inSize {
     return [[[self alloc] initWithSize:inSize] autorelease];
@@ -78,6 +80,7 @@ NSString * const kMemoryUserInfoCardsKey = @"kMemoryUserInfoCardsKey";
     }
     self.cards = theCards;
     [[NSNotificationCenter defaultCenter] postNotificationName:kMemoryDidClearedNotification object:self];
+    self.flipCount = 0;
 }
 
 - (NSMutableArray *)createCards {
@@ -121,6 +124,7 @@ NSString * const kMemoryUserInfoCardsKey = @"kMemoryUserInfoCardsKey";
 
         if(theCard.showsFrontSide) {
             theCards = theCards == nil ? [NSArray arrayWithObject:theCard] : [theCards arrayByAddingObject:theCard];
+            self.flipCount++;
         }
         self.flippedCards = theCards;
         if(theCards.count > 2) {

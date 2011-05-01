@@ -35,6 +35,7 @@ extern NSString * const kPuzzleToIndexKey;
 + (id)puzzleWithLength:(NSUInteger)inLength;
 - (id)initWithLength:(NSUInteger)inLength;
 - (void)clear;
+- (void)shuffle;
 - (BOOL)tiltToDirection:(PuzzleDirection)inDirection;
 - (BOOL)moveItemAtIndex:(NSUInteger)inIndex toDirection:(PuzzleDirection)inDirection;
 - (NSUInteger)valueAtIndex:(NSUInteger)inIndex;
