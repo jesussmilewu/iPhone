@@ -98,17 +98,18 @@ const float kVerticalMaximalThreshold = 0.5;
 - (IBAction)clear {
     NSUInteger theLength = roundf(self.lengthSlider.value);
     
+    [self.puzzle removeObserver:self forKeyPath:@"moveCount"];
     self.puzzle = [Puzzle puzzleWithLength:theLength];
+    [self.puzzle addObserver:self forKeyPath:@"moveCount" options:NSKeyValueObservingOptionNew context:nil];
+    [self.scoreView setValue:0 animated:YES];
     [self buildView];
     self.lastDirection = PuzzleNoDirection;
-    self.scoreView.value = 0;
 }
 
 - (IBAction)shuffle {
     Puzzle *thePuzzle = self.puzzle;
     
     [thePuzzle shuffle];
-    [self.scoreView setValue:0 animated:YES];
     [self buildView];
 }
 
@@ -199,13 +200,7 @@ const float kVerticalMaximalThreshold = 0.5;
     NSUInteger theColumn = thePoint.x * theLength / theSize.width;
     NSUInteger theIndex = theRow * theLength + theColumn;
     
-    if([self.puzzle moveItemAtIndex:theIndex toDirection:inDirection]) {
-        [self.scoreView setValue:self.scoreView.value + 1 animated:YES];
-        return YES;
-    }
-    else {
-        return NO;
-    }
+    return [self.puzzle moveItemAtIndex:theIndex toDirection:inDirection];
 }
 
 - (void)handleLeftSwipe:(UISwipeGestureRecognizer *)inRecognizer {
@@ -224,6 +219,12 @@ const float kVerticalMaximalThreshold = 0.5;
     [self handleGestureRecognizer:inRecognizer withDirection:PuzzleDirectionSouth];
 }
 
+- (void)observeValueForKeyPath:(NSString *)inKeyPath ofObject:(id)inObject change:(NSDictionary *)inChanges context:(void *)inContext {
+    if(inObject == self.puzzle && [@"moveCount" isEqualToString:inKeyPath]) {
+        [self.scoreView setValue:self.puzzle.moveCount animated:YES];
+    }
+}
+
 #pragma mark UIAccelerometerDelegate
 
 - (void)accelerometer:(UIAccelerometer *)inAccelerometer didAccelerate:(UIAcceleration *)inAcceleration {
@@ -237,10 +238,7 @@ const float kVerticalMaximalThreshold = 0.5;
         else if(fabs(theY) > kVerticalMaximalThreshold) {
             self.lastDirection = theY < 0 ? PuzzleDirectionSouth : PuzzleDirectionNorth;
         }
-        if([self.puzzle tiltToDirection:self.lastDirection]) {
-            [self.scoreView setValue:self.scoreView.value + 1 animated:YES];                
-        }
-    }
+        [self.puzzle tiltToDirection:self.lastDirection];    }
     else if(fabs(theX) < kHorizontalMinimalThreshold && fabs(theY) < kVerticalMinimalThreshold) {
         self.lastDirection = PuzzleNoDirection;
     }

@@ -19,6 +19,7 @@ NSString * const kPuzzleToIndexKey = @"kPuzzleToIndexKey";
 @property (nonatomic, readwrite) NSUInteger length;
 @property (nonatomic, readwrite) NSUInteger *items;
 @property (nonatomic, readwrite) NSUInteger freeIndex;
+@property (nonatomic, readwrite) NSUInteger moveCount;
 
 @end
 
@@ -27,6 +28,7 @@ NSString * const kPuzzleToIndexKey = @"kPuzzleToIndexKey";
 @synthesize length;
 @synthesize items;
 @synthesize freeIndex;
+@synthesize moveCount;
 
 + (id)puzzleWithLength:(NSUInteger)inLength {
     return [[[self alloc] initWithLength:inLength] autorelease];
@@ -62,6 +64,7 @@ NSString * const kPuzzleToIndexKey = @"kPuzzleToIndexKey";
         self.items[i] = i;
     }
     self.freeIndex = theSize - 1;
+    self.moveCount = 0;
 }
 
 - (NSUInteger)nextIndex {
@@ -87,6 +90,7 @@ NSString * const kPuzzleToIndexKey = @"kPuzzleToIndexKey";
             theDirection = [self bestDirectionForIndex:theShuffleIndex];
         }
     }
+    self.moveCount = 0;
 }
 
 - (BOOL)solved {
@@ -150,7 +154,7 @@ NSString * const kPuzzleToIndexKey = @"kPuzzleToIndexKey";
 }
 
 - (BOOL)tiltToDirection:(PuzzleDirection)inDirection {
-    if(inDirection < PuzzleNoDirection) {
+    if(inDirection != PuzzleNoDirection) {
         NSUInteger theFreeIndex = self.freeIndex;
         NSUInteger theIndex = theFreeIndex + offsets[inDirection];
         
@@ -158,6 +162,7 @@ NSString * const kPuzzleToIndexKey = @"kPuzzleToIndexKey";
             [self swapItemFromIndex:theFreeIndex toIndex:theIndex];
             [self postNotificationNamed:kPuzzleDidTiltNotification withDirection:inDirection fromIndex:theIndex toIndex:theFreeIndex];
             self.freeIndex = theIndex;
+            self.moveCount++;
             return YES;
         }
     }
@@ -165,7 +170,7 @@ NSString * const kPuzzleToIndexKey = @"kPuzzleToIndexKey";
 }
 
 - (BOOL)moveItemAtIndex:(NSUInteger)inIndex toDirection:(PuzzleDirection)inDirection {
-    if(inDirection < PuzzleNoDirection) {
+    if(inDirection != PuzzleNoDirection) {
         NSUInteger theFreeIndex = self.freeIndex;
         NSUInteger theIndex = inIndex - offsets[inDirection];
         
@@ -173,6 +178,7 @@ NSString * const kPuzzleToIndexKey = @"kPuzzleToIndexKey";
             [self swapItemFromIndex:theFreeIndex toIndex:theIndex];
             self.freeIndex = inIndex;
             [self postNotificationNamed:kPuzzleDidMoveNotification withDirection:inDirection fromIndex:inIndex toIndex:theFreeIndex];
+            self.moveCount++;
             return YES;
         }
     }
