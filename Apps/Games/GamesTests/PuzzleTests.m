@@ -41,15 +41,15 @@
 
 - (void)testTilt {
     self.puzzle = [Puzzle puzzleWithLength:4];
-    STAssertTrue([self.puzzle tiltToDirection:PuzzleDirectionSouth], @"tilt to south failed");
+    STAssertTrue([self.puzzle tiltToDirection:PuzzleDirectionLeft], @"tilt to south failed");
     STAssertTrue(self.puzzle.freeIndex == 11, @"invalid free index %d", self.puzzle.freeIndex);
     STAssertTrue([self.puzzle valueAtIndex:15] == 11, @"invalid value %d at index 15", [self.puzzle valueAtIndex:15]);
     STAssertTrue([self.puzzle valueAtIndex:11] == 15, @"invalid value %d at index 11", [self.puzzle valueAtIndex:11]);
-    STAssertFalse([self.puzzle tiltToDirection:PuzzleDirectionWest], @"tilt to west not failed");
+    STAssertFalse([self.puzzle tiltToDirection:PuzzleDirectionLeft], @"tilt to west not failed");
     STAssertTrue(self.puzzle.freeIndex == 11, @"invalid free index %d", self.puzzle.freeIndex);
     STAssertTrue([self.puzzle valueAtIndex:15] == 11, @"invalid value %d at index 15", [self.puzzle valueAtIndex:15]);
     STAssertTrue([self.puzzle valueAtIndex:11] == 15, @"invalid value %d at index 11", [self.puzzle valueAtIndex:11]);
-    STAssertTrue([self.puzzle tiltToDirection:PuzzleDirectionEast], @"tilt to east failed");
+    STAssertTrue([self.puzzle tiltToDirection:PuzzleDirectionRight], @"tilt to east failed");
     STAssertTrue(self.puzzle.freeIndex == 10, @"invalid free index %d", self.puzzle.freeIndex);
     STAssertTrue([self.puzzle valueAtIndex:15] == 11, @"invalid value %d at index 15", [self.puzzle valueAtIndex:15]);
     STAssertTrue([self.puzzle valueAtIndex:11] == 10, @"invalid value %d at index 11", [self.puzzle valueAtIndex:11]);

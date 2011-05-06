@@ -9,12 +9,14 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-    PuzzleDirectionNorth = 0,
-    PuzzleDirectionEast,
-    PuzzleDirectionSouth,
-    PuzzleDirectionWest,
+    PuzzleDirectionUp = 0,
+    PuzzleDirectionRight,
+    PuzzleDirectionDown,
+    PuzzleDirectionLeft,
     PuzzleNoDirection
 } PuzzleDirection;
+
+extern PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDerection);
 
 extern NSString * const kPuzzleDidTiltNotification;
 extern NSString * const kPuzzleDidMoveNotification;
@@ -32,10 +34,10 @@ extern NSString * const kPuzzleToIndexKey;
 @property (nonatomic, readonly) NSUInteger freeIndex;
 @property (nonatomic, readonly) BOOL solved;
 @property (nonatomic, readonly) NSUInteger moveCount;
+@property (nonatomic, assign) NSUndoManager *undoManager;
 
 + (id)puzzleWithLength:(NSUInteger)inLength;
 - (id)initWithLength:(NSUInteger)inLength;
-- (void)clear;
 - (void)shuffle;
 - (BOOL)tiltToDirection:(PuzzleDirection)inDirection;
 - (BOOL)moveItemAtIndex:(NSUInteger)inIndex toDirection:(PuzzleDirection)inDirection;

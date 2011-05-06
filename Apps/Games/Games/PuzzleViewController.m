@@ -20,6 +20,7 @@ const float kVerticalMaximalThreshold = 0.5;
 @interface PuzzleViewController()<UIAccelerometerDelegate>
 
 @property (nonatomic) PuzzleDirection lastDirection;
+@property (nonatomic, retain) NSUndoManager *undoManager;
 
 - (void)buildView;
 
@@ -34,6 +35,7 @@ const float kVerticalMaximalThreshold = 0.5;
 @synthesize lengthLabel;
 @synthesize scoreView;
 @synthesize lastDirection;
+@synthesize undoManager;
 
 - (void)dealloc {
     self.puzzle = nil;
@@ -42,7 +44,13 @@ const float kVerticalMaximalThreshold = 0.5;
     self.lengthLabel = nil;
     self.lengthSlider = nil;
     self.scoreView = nil;
+    self.undoManager = nil;
     [super dealloc];
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    self.undoManager = [[[NSUndoManager alloc] init] autorelease];
 }
 
 - (void)addSwipeGestureRecognizerWithDirection:(UISwipeGestureRecognizerDirection)inDirection action:(SEL)inAction {
@@ -81,7 +89,7 @@ const float kVerticalMaximalThreshold = 0.5;
 
 - (void)viewWillAppear:(BOOL)inAnimated {
     [super viewWillAppear:inAnimated];
-    [self clear];
+    [self PuzzleDirectionUp];
     UIAccelerometer *theAccelerometer = [UIAccelerometer sharedAccelerometer];
     
     theAccelerometer.delegate = self;
@@ -95,11 +103,13 @@ const float kVerticalMaximalThreshold = 0.5;
     [super viewWillDisappear:inAnimated];
 }
 
-- (IBAction)clear {
+- (IBAction)PuzzleDirectionUp {
     NSUInteger theLength = roundf(self.lengthSlider.value);
     
     [self.puzzle removeObserver:self forKeyPath:@"moveCount"];
+    [self.undoManager removeAllActions];
     self.puzzle = [Puzzle puzzleWithLength:theLength];
+    self.puzzle.undoManager = self.undoManager;
     [self.puzzle addObserver:self forKeyPath:@"moveCount" options:NSKeyValueObservingOptionNew context:nil];
     [self.scoreView setValue:0 animated:YES];
     [self buildView];
@@ -118,6 +128,14 @@ const float kVerticalMaximalThreshold = 0.5;
     
     self.lengthSlider.value = theLength;
     self.lengthLabel.text = [NSString stringWithFormat:@"%u", theLength];
+}
+
+- (IBAction)undo {
+    [self.undoManager undo];
+}
+
+- (IBAction)redo {
+    [self.undoManager redo];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)inInterfaceOrientation {
@@ -191,32 +209,33 @@ const float kVerticalMaximalThreshold = 0.5;
                      }];
 }
 
-- (BOOL)handleGestureRecognizer:(UIGestureRecognizer *)inRecognizer withDirection:(PuzzleDirection)inDirection {
+- (void)handleGestureRecognizer:(UIGestureRecognizer *)inRecognizer withDirection:(PuzzleDirection)inDirection {
     UIView *thePuzzleView = self.puzzleView;
-    NSUInteger theLength = self.puzzle.length;
+    Puzzle *thePuzzle = self.puzzle;
+    NSUInteger theLength = thePuzzle.length;
     CGPoint thePoint = [inRecognizer locationInView:thePuzzleView];
     CGSize theSize = thePuzzleView.frame.size;
     NSUInteger theRow = thePoint.y * theLength / theSize.height;
     NSUInteger theColumn = thePoint.x * theLength / theSize.width;
     NSUInteger theIndex = theRow * theLength + theColumn;
     
-    return [self.puzzle moveItemAtIndex:theIndex toDirection:inDirection];
+    [thePuzzle moveItemAtIndex:theIndex toDirection:inDirection];
 }
 
 - (void)handleLeftSwipe:(UISwipeGestureRecognizer *)inRecognizer {
-    [self handleGestureRecognizer:inRecognizer withDirection:PuzzleDirectionWest];
+    [self handleGestureRecognizer:inRecognizer withDirection:PuzzleDirectionLeft];
 }
 
 - (void)handleRightSwipe:(UISwipeGestureRecognizer *)inRecognizer {
-    [self handleGestureRecognizer:inRecognizer withDirection:PuzzleDirectionEast];
+    [self handleGestureRecognizer:inRecognizer withDirection:PuzzleDirectionRight];
 }
 
 - (void)handleUpSwipe:(UISwipeGestureRecognizer *)inRecognizer {
-    [self handleGestureRecognizer:inRecognizer withDirection:PuzzleDirectionNorth];
+    [self handleGestureRecognizer:inRecognizer withDirection:PuzzleDirectionUp];
 }
 
 - (void)handleDownSwipe:(UISwipeGestureRecognizer *)inRecognizer {
-    [self handleGestureRecognizer:inRecognizer withDirection:PuzzleDirectionSouth];
+    [self handleGestureRecognizer:inRecognizer withDirection:PuzzleDirectionDown];
 }
 
 - (void)observeValueForKeyPath:(NSString *)inKeyPath ofObject:(id)inObject change:(NSDictionary *)inChanges context:(void *)inContext {
@@ -232,13 +251,16 @@ const float kVerticalMaximalThreshold = 0.5;
     float theY = inAcceleration.y;
     
     if(self.lastDirection == PuzzleNoDirection) {
+        Puzzle *thePuzzle = self.puzzle;
+
         if(fabs(theX) > kHorizontalMaximalThreshold) {
-            self.lastDirection = theX < 0 ? PuzzleDirectionWest : PuzzleDirectionEast;
+            self.lastDirection = theX < 0 ? PuzzleDirectionLeft : PuzzleDirectionRight;
         }
         else if(fabs(theY) > kVerticalMaximalThreshold) {
-            self.lastDirection = theY < 0 ? PuzzleDirectionSouth : PuzzleDirectionNorth;
+            self.lastDirection = theY < 0 ? PuzzleDirectionLeft : PuzzleDirectionUp;
         }
-        [self.puzzle tiltToDirection:self.lastDirection];    }
+        [thePuzzle tiltToDirection:self.lastDirection];
+    }
     else if(fabs(theX) < kHorizontalMinimalThreshold && fabs(theY) < kVerticalMinimalThreshold) {
         self.lastDirection = PuzzleNoDirection;
     }

@@ -14,12 +14,18 @@ NSString * const kPuzzleDirectionKey = @"kPuzzleDirectionKey";
 NSString * const kPuzzleFromIndexKey = @"kPuzzleFromIndexKey";
 NSString * const kPuzzleToIndexKey = @"kPuzzleToIndexKey";
 
+PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
+    return inDirection ^ 0x2;
+}
+
 @interface Puzzle()
 
 @property (nonatomic, readwrite) NSUInteger length;
 @property (nonatomic, readwrite) NSUInteger *items;
 @property (nonatomic, readwrite) NSUInteger freeIndex;
 @property (nonatomic, readwrite) NSUInteger moveCount;
+
+- (void)clear;
 
 @end
 
@@ -29,6 +35,7 @@ NSString * const kPuzzleToIndexKey = @"kPuzzleToIndexKey";
 @synthesize items;
 @synthesize freeIndex;
 @synthesize moveCount;
+@synthesize undoManager;
 
 + (id)puzzleWithLength:(NSUInteger)inLength {
     return [[[self alloc] initWithLength:inLength] autorelease];
@@ -39,10 +46,10 @@ NSString * const kPuzzleToIndexKey = @"kPuzzleToIndexKey";
     if(self) {
         self.length = inLength;
         self.items = calloc(inLength * inLength, sizeof(NSUInteger));
-        offsets[PuzzleDirectionNorth] = (NSInteger)inLength;
-        offsets[PuzzleDirectionEast] = -1;
-        offsets[PuzzleDirectionSouth] = -(NSInteger)inLength;
-        offsets[PuzzleDirectionWest] = 1;
+        offsets[PuzzleDirectionUp] = (NSInteger)inLength;
+        offsets[PuzzleDirectionRight] = -1;
+        offsets[PuzzleDirectionDown] = -(NSInteger)inLength;
+        offsets[PuzzleDirectionLeft] = 1;
         [self clear];
     }
     return self;
@@ -50,6 +57,8 @@ NSString * const kPuzzleToIndexKey = @"kPuzzleToIndexKey";
 
 - (void)dealloc {
     free(self.items);
+    self.items = NULL;
+    self.undoManager = nil;
     [super dealloc];
 }
 
@@ -65,6 +74,7 @@ NSString * const kPuzzleToIndexKey = @"kPuzzleToIndexKey";
     }
     self.freeIndex = theSize - 1;
     self.moveCount = 0;
+    [self.undoManager removeAllActionsWithTarget:self];
 }
 
 - (NSUInteger)nextIndex {
@@ -146,27 +156,37 @@ NSString * const kPuzzleToIndexKey = @"kPuzzleToIndexKey";
         return PuzzleNoDirection;
     }
     else if([self rowOfIndex:theFreeIndex isEqualToRowOfIndex:inIndex]) {
-        return inIndex < theFreeIndex ? PuzzleDirectionEast : PuzzleDirectionWest;
+        return inIndex < theFreeIndex ? PuzzleDirectionRight : PuzzleDirectionLeft;
     }
     else {
-        return inIndex < theFreeIndex ? PuzzleDirectionSouth : PuzzleDirectionNorth;
+        return inIndex < theFreeIndex ? PuzzleDirectionDown : PuzzleDirectionUp;
     }
 }
 
-- (BOOL)tiltToDirection:(PuzzleDirection)inDirection {
+- (BOOL)tiltToDirection:(PuzzleDirection)inDirection withCountOffset:(int)inOffset {
     if(inDirection != PuzzleNoDirection) {
         NSUInteger theFreeIndex = self.freeIndex;
         NSUInteger theIndex = theFreeIndex + offsets[inDirection];
         
-        if([self rowOfIndex:theFreeIndex isEqualToRowOfIndex:theIndex] || [self columnOfIndex:theFreeIndex isEqualColumnOfIndex:theIndex]) {
+        if([self rowOfIndex:theFreeIndex isEqualToRowOfIndex:theIndex] || 
+           [self columnOfIndex:theFreeIndex isEqualColumnOfIndex:theIndex]) {
+            PuzzleDirection theReverseDirection = PuzzleDirectionRevert(inDirection);
+            Puzzle *thePuzzle = [self.undoManager prepareWithInvocationTarget:self];
+            
             [self swapItemFromIndex:theFreeIndex toIndex:theIndex];
             [self postNotificationNamed:kPuzzleDidTiltNotification withDirection:inDirection fromIndex:theIndex toIndex:theFreeIndex];
             self.freeIndex = theIndex;
-            self.moveCount++;
+            self.moveCount += inOffset;            
+            [thePuzzle tiltToDirection:theReverseDirection withCountOffset:-inOffset];
             return YES;
         }
     }
     return NO;
+}
+
+
+- (BOOL)tiltToDirection:(PuzzleDirection)inDirection {
+    return [self tiltToDirection:inDirection withCountOffset:1];
 }
 
 - (BOOL)moveItemAtIndex:(NSUInteger)inIndex toDirection:(PuzzleDirection)inDirection {
@@ -175,10 +195,14 @@ NSString * const kPuzzleToIndexKey = @"kPuzzleToIndexKey";
         NSUInteger theIndex = inIndex - offsets[inDirection];
         
         if(theIndex == theFreeIndex) {
+            PuzzleDirection theReverseDirection = PuzzleDirectionRevert(inDirection);
+            Puzzle *thePuzzle = [self.undoManager prepareWithInvocationTarget:self];
+
             [self swapItemFromIndex:theFreeIndex toIndex:theIndex];
             self.freeIndex = inIndex;
             [self postNotificationNamed:kPuzzleDidMoveNotification withDirection:inDirection fromIndex:inIndex toIndex:theFreeIndex];
             self.moveCount++;
+            [thePuzzle tiltToDirection:theReverseDirection withCountOffset:-1];
             return YES;
         }
     }

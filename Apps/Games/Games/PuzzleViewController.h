@@ -23,7 +23,9 @@
 @property (nonatomic, retain) IBOutlet NumberView *scoreView;
 
 - (IBAction)shuffle;
-- (IBAction)clear;
+- (IBAction)PuzzleDirectionUp;
 - (IBAction)updateLengthSlider;
+- (IBAction)undo;
+- (IBAction)redo;
 
 @end
