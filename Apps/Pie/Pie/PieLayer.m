@@ -16,11 +16,12 @@ static NSString * const kPartKey = @"part";
     CGFloat thePart = [self.part floatValue];
     CGPoint theCenter = CGPointMake(CGRectGetMidX(theBounds), CGRectGetMidY(theBounds));
     CGFloat theRadius = fminf(theSize.width, theSize.height) / 2.0 - 5.0;
+    CGFloat theAngle = 2 * (thePart - 0.25) * M_PI;
     
     CGContextSaveGState(inContext);
     CGContextSetFillColorWithColor(inContext, [UIColor redColor].CGColor);
     CGContextMoveToPoint(inContext, theCenter.x, theCenter.y);
-    CGContextAddArc(inContext, theCenter.x, theCenter.y, theRadius, -M_PI / 2.0, 2 * (thePart - 0.25) * M_PI, NO);
+    CGContextAddArc(inContext, theCenter.x, theCenter.y, theRadius, -M_PI / 2.0, theAngle, NO);
     CGContextAddLineToPoint(inContext, theCenter.x, theCenter.y);
     CGContextFillPath(inContext);
     CGContextRestoreGState(inContext);
@@ -35,7 +36,6 @@ static NSString * const kPartKey = @"part";
         CABasicAnimation *theAnimation = [CABasicAnimation animationWithKeyPath:inKey];
         
         theAnimation.fromValue = self.part;
-        NSLog(@"part=%@", self.part);
         return theAnimation;
     }
     else {
