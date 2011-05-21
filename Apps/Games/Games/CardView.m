@@ -85,9 +85,9 @@
 }
 
 - (void)showFrontSide:(BOOL)inShow withAnimationCompletion:(void (^)(BOOL inFinished))inCompletion {
-    UIViewAnimationOptions theOptions = inShow ? UIViewAnimationOptionTransitionFlipFromLeft : UIViewAnimationOptionTransitionFlipFromRight;
+    UIViewAnimationOptions theTransition = inShow ? UIViewAnimationOptionTransitionFlipFromLeft : UIViewAnimationOptionTransitionFlipFromRight;
     [UIView transitionWithView:self duration:0.75 
-                       options:theOptions | UIViewAnimationOptionAllowUserInteraction
+                       options:theTransition | UIViewAnimationOptionAllowUserInteraction
                     animations:^{
                         self.showsFrontSide = inShow;
                     } 

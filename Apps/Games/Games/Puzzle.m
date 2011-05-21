@@ -101,6 +101,7 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
         }
     }
     self.moveCount = 0;
+    [self.undoManager removeAllActionsWithTarget:self];
 }
 
 - (BOOL)solved {
@@ -192,9 +193,9 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
 - (BOOL)moveItemAtIndex:(NSUInteger)inIndex toDirection:(PuzzleDirection)inDirection {
     if(inDirection != PuzzleNoDirection) {
         NSUInteger theFreeIndex = self.freeIndex;
-        NSUInteger theIndex = inIndex - offsets[inDirection];
+        NSUInteger theIndex = theFreeIndex + offsets[inDirection];
         
-        if(theIndex == theFreeIndex) {
+        if(inIndex == theIndex) {
             PuzzleDirection theReverseDirection = PuzzleDirectionRevert(inDirection);
             Puzzle *thePuzzle = [self.undoManager prepareWithInvocationTarget:self];
 

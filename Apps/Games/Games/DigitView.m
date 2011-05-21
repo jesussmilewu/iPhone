@@ -118,6 +118,7 @@
         theY += theSize.height;
     }
     CGContextRestoreGState(inContext);
+    [self.superview setNeedsDisplay];
 }
 
 @end

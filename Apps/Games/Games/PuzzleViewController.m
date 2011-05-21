@@ -76,6 +76,7 @@ const float kVerticalMaximalThreshold = 0.5;
                                           action:@selector(handleUpSwipe:)];
     [self addSwipeGestureRecognizerWithDirection:UISwipeGestureRecognizerDirectionDown 
                                           action:@selector(handleDownSwipe:)];
+    [self clear];
 }
 
 - (void)viewDidUnload {
@@ -89,7 +90,6 @@ const float kVerticalMaximalThreshold = 0.5;
 
 - (void)viewWillAppear:(BOOL)inAnimated {
     [super viewWillAppear:inAnimated];
-    [self PuzzleDirectionUp];
     UIAccelerometer *theAccelerometer = [UIAccelerometer sharedAccelerometer];
     
     theAccelerometer.delegate = self;
@@ -103,14 +103,14 @@ const float kVerticalMaximalThreshold = 0.5;
     [super viewWillDisappear:inAnimated];
 }
 
-- (IBAction)PuzzleDirectionUp {
+- (IBAction)clear {
     NSUInteger theLength = roundf(self.lengthSlider.value);
     
     [self.puzzle removeObserver:self forKeyPath:@"moveCount"];
     [self.undoManager removeAllActions];
     self.puzzle = [Puzzle puzzleWithLength:theLength];
     self.puzzle.undoManager = self.undoManager;
-    [self.puzzle addObserver:self forKeyPath:@"moveCount" options:NSKeyValueObservingOptionNew context:nil];
+    [self.puzzle addObserver:self forKeyPath:@"moveCount" options:0 context:nil];
     [self.scoreView setValue:0 animated:YES];
     [self buildView];
     self.lastDirection = PuzzleNoDirection;
