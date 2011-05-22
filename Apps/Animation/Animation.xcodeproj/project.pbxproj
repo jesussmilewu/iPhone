@@ -23,14 +23,14 @@
 		AB21AE54136D8C25005DC214 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AB21AE56136D8C25005DC214 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AB21AE58136D8C25005DC214 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		AB21AE5C136D8C25005DC214 /* Animation-Info.plist */ = {isa = PBXFileReference; path = "Animation-Info.plist"; sourceTree = "<group>"; };
+		AB21AE5C136D8C25005DC214 /* Animation-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Animation-Info.plist"; sourceTree = "<group>"; };
 		AB21AE5E136D8C25005DC214 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		AB21AE60136D8C25005DC214 /* Animation-Prefix.pch */ = {isa = PBXFileReference; path = "Animation-Prefix.pch"; sourceTree = "<group>"; };
+		AB21AE60136D8C25005DC214 /* Animation-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Animation-Prefix.pch"; sourceTree = "<group>"; };
 		AB21AE61136D8C25005DC214 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		AB21AE63136D8C25005DC214 /* AnimationAppDelegate.h */ = {isa = PBXFileReference; path = AnimationAppDelegate.h; sourceTree = "<group>"; };
+		AB21AE63136D8C25005DC214 /* AnimationAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationAppDelegate.h; sourceTree = "<group>"; };
 		AB21AE64136D8C25005DC214 /* AnimationAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationAppDelegate.m; sourceTree = "<group>"; };
 		AB21AE67136D8C25005DC214 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		AB21AE69136D8C25005DC214 /* AnimationViewController.h */ = {isa = PBXFileReference; path = AnimationViewController.h; sourceTree = "<group>"; };
+		AB21AE69136D8C25005DC214 /* AnimationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationViewController.h; sourceTree = "<group>"; };
 		AB21AE6A136D8C25005DC214 /* AnimationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationViewController.m; sourceTree = "<group>"; };
 		AB21AE6D136D8C25005DC214 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AnimationViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */

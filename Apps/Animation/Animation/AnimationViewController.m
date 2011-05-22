@@ -1,49 +1,47 @@
-//
-//  AnimationViewController.m
-//  Animation
-//
-//  Created by Clemens Wagner on 01.05.11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "AnimationViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation AnimationViewController
+@synthesize squareView;
+@synthesize curveSegment;
 
-- (void)dealloc
-{
+- (void)dealloc {
+    self.squareView = nil;
+    self.curveSegment = nil;
     [super dealloc];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
-#pragma mark - View lifecycle
-
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-*/
-
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
+    self.squareView = nil;
+    self.curveSegment = nil;
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)inInterfaceOrientation {
+    return inInterfaceOrientation == UIInterfaceOrientationPortrait;
+}
+
+- (IBAction)flipAnimation:(id)inSender {
+    if([inSender isSelected]) {
+        [self.squareView.layer removeAllAnimations];
+        [inSender setSelected:NO];
+    }
+    else {
+        UIViewAnimationOptions theCurve = self.curveSegment.selectedSegmentIndex << 16;
+        
+        [inSender setSelected:YES];
+        [UIView animateWithDuration:4.0 
+                              delay:0.0 
+                            options:theCurve | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse
+                         animations:^{
+                             self.squareView.transform = CGAffineTransformScale(CGAffineTransformMakeRotation(1.25 * M_PI), 2.0, 2.0);
+                         }
+                         completion:^(BOOL inFinished) {
+                             NSLog(@"finished=%d", inFinished);
+                             self.squareView.transform = CGAffineTransformIdentity;
+                             [inSender setSelected:NO];
+                         }];
+    }
 }
 
 @end
