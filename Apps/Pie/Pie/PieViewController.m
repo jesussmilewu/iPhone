@@ -1,4 +1,5 @@
 #import "PieViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation PieViewController
 
@@ -11,6 +12,17 @@
     self.animationSwitch = nil;
     self.valueLabel = nil;
     [super dealloc];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    UITapGestureRecognizer *theRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    CATransform3D theTransform = CATransform3DIdentity;
+    
+    theTransform.m34 = 1.0 / -1000;
+    self.view.layer.sublayerTransform = theTransform;
+    [self.pieView addGestureRecognizer:theRecognizer];
+    [theRecognizer release];
 }
 
 - (void)viewDidUnload {
@@ -31,10 +43,21 @@
 
 - (IBAction)sliderDidFinish:(id)inSender {
     if(animationSwitch.on) {
-        [UIView animateWithDuration:5.0 animations:^{
-            self.pieView.part = [(UISlider *)inSender value];        
-        }];
+        void (^theAnimation)(void) = ^{
+            self.pieView.part = [(UISlider *)inSender value];
+        };
+
+        [UIView animateWithDuration:3 animations:theAnimation];
     }
+}
+
+- (void)handleTap:(UIGestureRecognizer *)inRecognizer {
+    CALayer *theLayer = self.pieView.layer;
+    CABasicAnimation *theAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.y"];
+    
+    theAnimation.toValue = [NSNumber numberWithFloat:2 * M_PI];
+    theAnimation.duration = 3.0;
+    [theLayer addAnimation:theAnimation forKey:@"rotate"];
 }
 
 @end

@@ -7,7 +7,8 @@ static NSString * const kPartKey = @"part";
 @dynamic part;
 
 + (id)defaultValueForKey:(NSString *)inKey {
-    return [kPartKey isEqualToString:inKey] ? [NSNumber numberWithFloat:0.0] : [super defaultValueForKey:inKey];
+    return [kPartKey isEqualToString:inKey] ? 
+        [NSNumber numberWithFloat:0.0] : [super defaultValueForKey:inKey];
 }
 
 - (void)drawInContext:(CGContextRef)inContext {
@@ -36,6 +37,7 @@ static NSString * const kPartKey = @"part";
         CABasicAnimation *theAnimation = [CABasicAnimation animationWithKeyPath:inKey];
         
         theAnimation.fromValue = self.part;
+        theAnimation.duration = [(id)[super actionForKey:@"opacity"] duration];
         return theAnimation;
     }
     else {
