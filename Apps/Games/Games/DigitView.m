@@ -51,6 +51,7 @@ static NSString * const kDigitKey = @"digit";
     theAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     theAnimation.duration = [[CATransaction valueForKey:kCATransactionAnimationDuration] floatValue];
     theAnimation.toValue = [NSNumber numberWithInt:theNewDigit];
+    self.digit = inDigit;
     switch(inDirection) {
         case DigitViewAnimationDirectionBackward:
             theAnimation.fromValue = [NSNumber numberWithInt:theOldDigit < theNewDigit ? theOldDigit + 10 : theOldDigit];
@@ -64,7 +65,6 @@ static NSString * const kDigitKey = @"digit";
             [self setNeedsDisplay];
             break;
     }
-    self.digit = inDigit;
 }
 
 - (void)addOffset:(NSInteger)inOffset animated:(BOOL)inAnimated {
