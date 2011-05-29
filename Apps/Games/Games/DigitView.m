@@ -1,11 +1,13 @@
 #import "DigitView.h"
 #import <QuartzCore/QuartzCore.h>
 
+static NSString * const kDigitKey = @"digit";
+
 @interface DigitLayer : CALayer {
     @private
 }
 
-@property (nonatomic) float digit;
+@property (nonatomic, retain) NSNumber *digit;
 
 @end
 
@@ -29,16 +31,14 @@
 }
 
 - (NSUInteger)digit {
-    NSInteger theDigit = roundf([(DigitLayer *)self.layer digit]);
+    NSInteger theDigit = roundf([[self.layer valueForKey:kDigitKey] floatValue]);
 
     theDigit %= 10;
     return theDigit < 0 ? theDigit + 10 : theDigit;
 }
 
 - (void)setDigit:(NSUInteger)inDigit {
-    [self willChangeValueForKey:@"digit"];
-    [(DigitLayer *)self.layer setDigit:inDigit % 10];
-    [self didChangeValueForKey:@"digit"];
+    [self.layer setValue:[NSNumber numberWithFloat:inDigit % 10] forKey:kDigitKey];
 }
 
 - (void)setDigit:(NSUInteger)inDigit direction:(DigitViewAnimationDirection)inDirection {
@@ -72,9 +72,9 @@
     float theNewDigit = theOldDigit + inOffset;
     DigitLayer *theLayer = (DigitLayer *) self.layer;
     
-    [theLayer setDigit:theNewDigit];
+    theLayer.digit = [NSNumber numberWithFloat:theNewDigit];
     if(inAnimated) {
-        CABasicAnimation *theAnimation = [CABasicAnimation animationWithKeyPath:@"digit"];
+        CABasicAnimation *theAnimation = [CABasicAnimation animation];
     
         theAnimation.fillMode = kCAFillModeBoth; 
         theAnimation.removedOnCompletion = YES;
@@ -95,7 +95,7 @@
 - (void)drawLayer:(CALayer *)inLayer inContext:(CGContextRef)inContext {
     CGRect theBounds = self.bounds;
     CGSize theSize = theBounds.size;
-    float theDigit = [(DigitLayer *)inLayer digit];
+    float theDigit = [[inLayer valueForKey:kDigitKey] floatValue];
     UIFont *theFont = self.font;
     CGSize theFontSize = [@"0" sizeWithFont:theFont];
     CGFloat theX = (theSize.width - theFontSize.width) / 2.0;
@@ -125,18 +125,29 @@
 
 @implementation DigitLayer
 
-@synthesize digit;
+@dynamic digit;
 
-- (id)initWithLayer:(id)inLayer {
-    self = [super initWithLayer:inLayer];
-    if(self) {
-        self.digit = [[inLayer valueForKey:@"digit"] floatValue];
-    }
-    return self;
++ (id)defaultValueForKey:(NSString *)inKey {
+    return [inKey isEqualToString:kDigitKey] ? [NSNumber numberWithFloat:0.0] : [super defaultValueForKey:inKey];
 }
 
 + (BOOL)needsDisplayForKey:(NSString *)inKey {
-    return [inKey isEqualToString:@"digit"] || [super needsDisplayForKey:inKey];
+    return [inKey isEqualToString:kDigitKey] || [super needsDisplayForKey:inKey];
+}
+
+- (id<CAAction>)actionForKey:(NSString *)inKey {
+    if([kDigitKey isEqualToString:inKey]) {
+        CABasicAnimation *theAnimation = (id)[super actionForKey:@"opacity"];
+        
+        theAnimation.keyPath = inKey;
+        theAnimation.fromValue = self.digit;
+        theAnimation.toValue = nil;
+        theAnimation.byValue = nil;
+        return theAnimation;
+    }
+    else {
+        return [super actionForKey:inKey];
+    }
 }
 
 - (NSString *)description {
