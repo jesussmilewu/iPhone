@@ -300,6 +300,7 @@
 				ABCC9CA71388129E006C6FDA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

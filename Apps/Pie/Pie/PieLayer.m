@@ -34,10 +34,12 @@ static NSString * const kPartKey = @"part";
 
 - (id<CAAction>)actionForKey:(NSString *)inKey {
     if([kPartKey isEqualToString:inKey]) {
-        CABasicAnimation *theAnimation = [CABasicAnimation animationWithKeyPath:inKey];
+        CABasicAnimation *theAnimation = (id)[super actionForKey:@"opacity"];
         
+        theAnimation.keyPath = inKey;
         theAnimation.fromValue = self.part;
-        theAnimation.duration = [(id)[super actionForKey:@"opacity"] duration];
+        theAnimation.toValue = nil;
+        theAnimation.byValue = nil;
         return theAnimation;
     }
     else {
