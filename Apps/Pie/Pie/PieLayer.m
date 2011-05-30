@@ -1,6 +1,6 @@
 #import "PieLayer.h"
 
-static NSString * const kPartKey = @"part";
+NSString * const kPartKey = @"part";
 
 @implementation PieLayer
 
@@ -30,21 +30,6 @@ static NSString * const kPartKey = @"part";
 
 + (BOOL)needsDisplayForKey:(NSString *)inKey {
     return [kPartKey isEqualToString:inKey] || [super needsDisplayForKey:inKey];
-}
-
-- (id<CAAction>)actionForKey:(NSString *)inKey {
-    if([kPartKey isEqualToString:inKey]) {
-        CABasicAnimation *theAnimation = (id)[super actionForKey:@"opacity"];
-        
-        theAnimation.keyPath = inKey;
-        theAnimation.fromValue = self.part;
-        theAnimation.toValue = nil;
-        theAnimation.byValue = nil;
-        return theAnimation;
-    }
-    else {
-        return [super actionForKey:inKey];
-    }
 }
 
 @end
