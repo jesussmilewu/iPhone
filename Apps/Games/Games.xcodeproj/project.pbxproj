@@ -36,6 +36,7 @@
 		ABAF4CEB13635858004BF8A6 /* PuzzleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB19F2AF135385A9001680F2 /* PuzzleTests.m */; };
 		ABAF4CEE1363596D004BF8A6 /* FrontView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAF4CED1363596D004BF8A6 /* FrontView.m */; };
 		ABAF4CEF136373A8004BF8A6 /* Puzzle.m in Sources */ = {isa = PBXBuildFile; fileRef = AB19F2BB135385DF001680F2 /* Puzzle.m */; };
+		ABDDAFAD139945D60000DC27 /* UIView+MirrorImage.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDDAFAC139945D60000DC27 /* UIView+MirrorImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,8 @@
 		ABAF4CD913635477004BF8A6 /* GamesTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GamesTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABAF4CEC1363596C004BF8A6 /* FrontView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrontView.h; sourceTree = "<group>"; };
 		ABAF4CED1363596D004BF8A6 /* FrontView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontView.m; sourceTree = "<group>"; };
+		ABDDAFAB139945D60000DC27 /* UIView+MirrorImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MirrorImage.h"; sourceTree = "<group>"; };
+		ABDDAFAC139945D60000DC27 /* UIView+MirrorImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MirrorImage.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +119,8 @@
 				AB05E5EC135B3F0F00146E7B /* DigitView.m */,
 				AB1A3EEE135CB72A008AA18F /* NumberView.h */,
 				AB1A3EEF135CB72A008AA18F /* NumberView.m */,
+				ABDDAFAB139945D60000DC27 /* UIView+MirrorImage.h */,
+				ABDDAFAC139945D60000DC27 /* UIView+MirrorImage.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -347,6 +352,7 @@
 				ABAF4CEE1363596D004BF8A6 /* FrontView.m in Sources */,
 				AB1D5CCD136426EE0027ECD8 /* Memory.m in Sources */,
 				AB1D5CD213646BBF0027ECD8 /* Card.m in Sources */,
+				ABDDAFAD139945D60000DC27 /* UIView+MirrorImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

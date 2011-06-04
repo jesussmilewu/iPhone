@@ -64,6 +64,10 @@ NSString * const kMemoryUserInfoCardsKey = @"kMemoryUserInfoCardsKey";
     [super dealloc];
 }
 
+- (NSUInteger)cardCount {
+    return self.cards.count;
+}
+
 - (void)clear {
     NSMutableArray *theOrderedCards = [self createCards];
     NSUInteger theCount = theOrderedCards.count;
@@ -81,6 +85,10 @@ NSString * const kMemoryUserInfoCardsKey = @"kMemoryUserInfoCardsKey";
     self.cards = theCards;
     [[NSNotificationCenter defaultCenter] postNotificationName:kMemoryDidClearedNotification object:self];
     self.flipCount = 0;
+}
+
+- (void)addPenalty:(NSUInteger)inPenalty {
+    self.flipCount += inPenalty;
 }
 
 - (NSMutableArray *)createCards {

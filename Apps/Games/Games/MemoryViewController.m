@@ -149,13 +149,13 @@ const NSUInteger kMemorySize = 6 * 6;
     UIViewAnimationOptions theOptions = inShow ? UIViewAnimationOptionTransitionCurlUp : UIViewAnimationOptionTransitionCurlDown;
     
     if(inIndex < theViews.count) {
-        BOOL theFrontSide = inShow || [[self.memory.cards objectAtIndex:inIndex] showsFrontSide];
+        Card *theCard = [self.memory.cards objectAtIndex:inIndex];
         CardView *theView = [theViews objectAtIndex:inIndex];
         
         [UIView transitionWithView:theView duration:0.25 
                            options:theOptions
                         animations:^{
-                            theView.showsFrontSide = theFrontSide;
+                            theView.showsFrontSide = inShow || theCard.showsFrontSide;
                         } 
                         completion:^(BOOL inFinished) {
                             [self showCardView:inShow atIndex:inIndex + 1];
@@ -164,14 +164,11 @@ const NSUInteger kMemorySize = 6 * 6;
                             }
                         }];
     }
-    else if(!inShow) {
-        self.view.userInteractionEnabled = YES;
-    }
 }
 
 - (IBAction)help {
-    self.view.userInteractionEnabled = NO;
     [self showCardView:YES atIndex:0];
+    [self.memory addPenalty:self.memory.cardCount / 2.0];
 }
 
 - (void)observeValueForKeyPath:(NSString *)inKeyPath ofObject:(id)inObject change:(NSDictionary *)inChanges context:(void *)inContext {
