@@ -7,7 +7,7 @@
 //
 
 #import "PuzzleViewController.h"
-#import "UIImage_Subimage.h"
+#import "UIImage+Subimage.h"
 #import "Puzzle.h"
 #import "NumberView.h"
 #import <QuartzCore/QuartzCore.h>
@@ -36,6 +36,7 @@ const float kVerticalMaximalThreshold = 0.5;
 @synthesize scoreView;
 @synthesize lastDirection;
 @synthesize undoManager;
+@synthesize managedObjectContext;
 
 - (void)dealloc {
     self.puzzle = nil;
@@ -45,12 +46,17 @@ const float kVerticalMaximalThreshold = 0.5;
     self.lengthSlider = nil;
     self.scoreView = nil;
     self.undoManager = nil;
+    self.managedObjectContext = nil;
     [super dealloc];
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.undoManager = [[[NSUndoManager alloc] init] autorelease];
+}
+
+- (NSString *)game {
+    return @"puzzle";
 }
 
 - (void)addSwipeGestureRecognizerWithDirection:(UISwipeGestureRecognizerDirection)inDirection action:(SEL)inAction {
@@ -84,6 +90,7 @@ const float kVerticalMaximalThreshold = 0.5;
     self.lengthLabel = nil;
     self.lengthSlider = nil;
     self.scoreView = nil;
+    self.managedObjectContext = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super viewDidUnload];
 }
@@ -107,10 +114,12 @@ const float kVerticalMaximalThreshold = 0.5;
     NSUInteger theLength = roundf(self.lengthSlider.value);
     
     [self.puzzle removeObserver:self forKeyPath:@"moveCount"];
+    [self.puzzle removeObserver:self forKeyPath:@"solved"];
     [self.undoManager removeAllActions];
     self.puzzle = [Puzzle puzzleWithLength:theLength];
     self.puzzle.undoManager = self.undoManager;
     [self.puzzle addObserver:self forKeyPath:@"moveCount" options:0 context:nil];
+    [self.puzzle addObserver:self forKeyPath:@"solved" options:0 context:nil];
     [self.scoreView setValue:0 animated:YES];
     [self buildView];
     self.lastDirection = PuzzleNoDirection;
@@ -120,7 +129,6 @@ const float kVerticalMaximalThreshold = 0.5;
     Puzzle *thePuzzle = self.puzzle;
     
     [thePuzzle shuffle];
-    [self buildView];
 }
 
 - (IBAction)updateLengthSlider {
@@ -239,8 +247,23 @@ const float kVerticalMaximalThreshold = 0.5;
 }
 
 - (void)observeValueForKeyPath:(NSString *)inKeyPath ofObject:(id)inObject change:(NSDictionary *)inChanges context:(void *)inContext {
-    if(inObject == self.puzzle && [@"moveCount" isEqualToString:inKeyPath]) {
-        [self.scoreView setValue:self.puzzle.moveCount animated:YES];
+    if(inObject == self.puzzle) {
+        if([@"moveCount" isEqualToString:inKeyPath]) {
+            [self.scoreView setValue:self.puzzle.moveCount animated:YES];
+        }
+        else if([@"solved" isEqualToString:inKeyPath]) {
+            BOOL theFlag = self.puzzle.solved;
+            UIView *theView = self.puzzleView;
+            
+            theView.userInteractionEnabled = !theFlag;
+            if(theFlag) {
+                theView.alpha = 0.75;
+                [self saveScore:self.puzzle.moveCount];
+            }
+            else {
+                theView.alpha = 1.0;
+            }
+        }
     }
 }
 

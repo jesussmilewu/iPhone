@@ -1,17 +1,9 @@
-//
-//  PuzzleViewController.h
-//  Games
-//
-//  Created by Clemens Wagner on 13.04.11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
-#import <UIKit/UIKit.h>
+#import "GameViewController.h"
 
 @class Puzzle;
 @class NumberView;
 
-@interface PuzzleViewController : UIViewController {
+@interface PuzzleViewController : GameViewController {
     @private
 }
 

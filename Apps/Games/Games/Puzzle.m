@@ -24,6 +24,7 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
 @property (nonatomic, readwrite) NSUInteger *items;
 @property (nonatomic, readwrite) NSUInteger freeIndex;
 @property (nonatomic, readwrite) NSUInteger moveCount;
+@property (nonatomic, readwrite) BOOL solved;
 
 - (void)clear;
 
@@ -36,6 +37,7 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
 @synthesize freeIndex;
 @synthesize moveCount;
 @synthesize undoManager;
+@synthesize solved;
 
 + (id)puzzleWithLength:(NSUInteger)inLength {
     return [[[self alloc] initWithLength:inLength] autorelease];
@@ -62,6 +64,21 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
     [super dealloc];
 }
 
+- (void)checkSolved {
+    NSUInteger theSize = self.size;
+    BOOL theFlag = YES;
+    
+    for(NSUInteger i = 0; i < theSize; ++i) {
+        if(self.items[i] != i) {
+            theFlag = NO;
+            break;
+        }
+    }
+    if(theFlag != self.solved) {
+        self.solved = theFlag;
+    }
+}
+
 - (NSUInteger)size {
     return self.length * self.length;
 }
@@ -75,6 +92,7 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
     self.freeIndex = theSize - 1;
     self.moveCount = 0;
     [self.undoManager removeAllActionsWithTarget:self];
+    [self checkSolved];
 }
 
 - (NSUInteger)nextIndex {
@@ -104,17 +122,6 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
     [self.undoManager removeAllActionsWithTarget:self];
 }
 
-- (BOOL)solved {
-    NSUInteger theSize = self.size;
-    
-    for(NSUInteger i = 0; i < theSize; ++i) {
-        if(self.items[i] != i) {
-            return NO;
-        }
-    }
-    return YES;
-}
-
 - (BOOL)rowOfIndex:(NSUInteger)inFromIndex isEqualToRowOfIndex:(NSUInteger)inToIndex {
     NSUInteger theLength = self.length;
     NSUInteger theSize = self.size;
@@ -135,6 +142,7 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
     
     theItems[inToIndex] = theItems[inFromIndex];
     theItems[inFromIndex] = theValue;
+    [self checkSolved];
 }
 
 - (void)postNotificationNamed:(NSString *)inName 
@@ -174,10 +182,10 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
             PuzzleDirection theReverseDirection = PuzzleDirectionRevert(inDirection);
             Puzzle *thePuzzle = [self.undoManager prepareWithInvocationTarget:self];
             
+            self.moveCount += inOffset;            
             [self swapItemFromIndex:theFreeIndex toIndex:theIndex];
             [self postNotificationNamed:kPuzzleDidTiltNotification withDirection:inDirection fromIndex:theIndex toIndex:theFreeIndex];
             self.freeIndex = theIndex;
-            self.moveCount += inOffset;            
             [thePuzzle tiltToDirection:theReverseDirection withCountOffset:-inOffset];
             return YES;
         }
@@ -199,10 +207,10 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
             PuzzleDirection theReverseDirection = PuzzleDirectionRevert(inDirection);
             Puzzle *thePuzzle = [self.undoManager prepareWithInvocationTarget:self];
 
+            self.moveCount++;
             [self swapItemFromIndex:theFreeIndex toIndex:theIndex];
             self.freeIndex = inIndex;
             [self postNotificationNamed:kPuzzleDidMoveNotification withDirection:inDirection fromIndex:inIndex toIndex:theFreeIndex];
-            self.moveCount++;
             [thePuzzle tiltToDirection:theReverseDirection withCountOffset:-1];
             return YES;
         }

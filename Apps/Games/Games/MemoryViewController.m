@@ -41,6 +41,7 @@ const NSUInteger kMemorySize = 6 * 6;
     self.memory = nil;
     self.memoryView = nil;
     self.scoreView = nil;
+    self.managedObjectContext = nil;
     [super dealloc];
 }
 
@@ -53,6 +54,10 @@ const NSUInteger kMemorySize = 6 * 6;
     [theCenter addObserver:self selector:@selector(cardDidFlipped:) name:kCardDidFlippedNotification object:nil];
     [theCenter addObserver:self selector:@selector(cardsDidSolved:) name:kMemoryCardsDidSolvedNotification object:nil];
     [self.memory addObserver:self forKeyPath:@"flipCount" options:NSKeyValueObservingOptionNew context:nil];
+}
+
+- (NSString *)game {
+    return @"memory";
 }
 
 - (void)viewDidLoad {
@@ -80,6 +85,7 @@ const NSUInteger kMemorySize = 6 * 6;
 - (void)viewDidUnload {
     self.memoryView = nil;
     self.scoreView = nil;
+    self.managedObjectContext = nil;
     [super viewDidUnload];
 }
 

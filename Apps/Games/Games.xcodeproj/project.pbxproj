@@ -12,7 +12,7 @@
 		AB090B92135623C800D97B24 /* PuzzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB090B90135623C700D97B24 /* PuzzleViewController.m */; };
 		AB090B93135623C800D97B24 /* PuzzleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB090B91135623C700D97B24 /* PuzzleViewController.xib */; };
 		AB090B96135629CE00D97B24 /* dracula.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB090B95135629CE00D97B24 /* dracula.jpg */; };
-		AB090B9913562CD700D97B24 /* UIImage_Subimage.m in Sources */ = {isa = PBXBuildFile; fileRef = AB090B9813562CD700D97B24 /* UIImage_Subimage.m */; };
+		AB090B9913562CD700D97B24 /* UIImage+Subimage.m in Sources */ = {isa = PBXBuildFile; fileRef = AB090B9813562CD700D97B24 /* UIImage+Subimage.m */; };
 		AB19F287135385A8001680F2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB19F286135385A8001680F2 /* UIKit.framework */; };
 		AB19F289135385A8001680F2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB19F288135385A8001680F2 /* Foundation.framework */; };
 		AB19F28B135385A8001680F2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB19F28A135385A8001680F2 /* CoreGraphics.framework */; };
@@ -26,6 +26,15 @@
 		AB1D5CCE136426EE0027ECD8 /* Memory.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1D5CCC136426EE0027ECD8 /* Memory.m */; };
 		AB1D5CD213646BBF0027ECD8 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1D5CD113646BBF0027ECD8 /* Card.m */; };
 		AB1D5CD313646BBF0027ECD8 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1D5CD113646BBF0027ECD8 /* Card.m */; };
+		AB6959BE139EA91800589FCE /* HighScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6959BC139EA91800589FCE /* HighScoreViewController.m */; };
+		AB6959CD139EAE9100589FCE /* Games.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB6959CB139EAE9100589FCE /* Games.xcdatamodeld */; };
+		AB6959D0139EAF2A00589FCE /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6959CF139EAF2A00589FCE /* Score.m */; };
+		AB6959D1139EB1B000589FCE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB6959C9139EAB2100589FCE /* CoreData.framework */; };
+		AB6959D4139EBA6C00589FCE /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6959D3139EBA6B00589FCE /* GameViewController.m */; };
+		AB7BC7A8139E9A1F006109E3 /* puzzle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB7BC7A7139E9A1F006109E3 /* puzzle@2x.png */; };
+		AB7BC7AB139E9A62006109E3 /* puzzle.png in Resources */ = {isa = PBXBuildFile; fileRef = AB7BC7AA139E9A62006109E3 /* puzzle.png */; };
+		AB7BC7AE139E9D45006109E3 /* memory.png in Resources */ = {isa = PBXBuildFile; fileRef = AB7BC7AC139E9D45006109E3 /* memory.png */; };
+		AB7BC7AF139E9D45006109E3 /* memory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB7BC7AD139E9D45006109E3 /* memory@2x.png */; };
 		ABAF4CCD1363472C004BF8A6 /* MemoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAF4CCB1363472C004BF8A6 /* MemoryViewController.m */; };
 		ABAF4CCE1363472C004BF8A6 /* MemoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABAF4CCC1363472C004BF8A6 /* MemoryViewController.xib */; };
 		ABAF4CD11363512C004BF8A6 /* CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAF4CD01363512C004BF8A6 /* CardView.m */; };
@@ -46,10 +55,9 @@
 		AB090B8F135623C700D97B24 /* PuzzleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PuzzleViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		AB090B90135623C700D97B24 /* PuzzleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PuzzleViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AB090B91135623C700D97B24 /* PuzzleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PuzzleViewController.xib; sourceTree = "<group>"; };
-		AB090B94135624FE00D97B24 /* UIWindow_IBExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWindow_IBExtensions.h; sourceTree = "<group>"; };
 		AB090B95135629CE00D97B24 /* dracula.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dracula.jpg; sourceTree = "<group>"; };
-		AB090B9713562CD600D97B24 /* UIImage_Subimage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImage_Subimage.h; sourceTree = "<group>"; };
-		AB090B9813562CD700D97B24 /* UIImage_Subimage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImage_Subimage.m; sourceTree = "<group>"; };
+		AB090B9713562CD600D97B24 /* UIImage+Subimage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Subimage.h"; sourceTree = "<group>"; };
+		AB090B9813562CD700D97B24 /* UIImage+Subimage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Subimage.m"; sourceTree = "<group>"; };
 		AB19F282135385A8001680F2 /* Games.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Games.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB19F286135385A8001680F2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AB19F288135385A8001680F2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -74,6 +82,18 @@
 		AB1D5CCC136426EE0027ECD8 /* Memory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Memory.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AB1D5CD013646BBF0027ECD8 /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
 		AB1D5CD113646BBF0027ECD8 /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
+		AB6959BB139EA91800589FCE /* HighScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighScoreViewController.h; sourceTree = "<group>"; };
+		AB6959BC139EA91800589FCE /* HighScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighScoreViewController.m; sourceTree = "<group>"; };
+		AB6959C9139EAB2100589FCE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		AB6959CC139EAE9100589FCE /* Games.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Games.xcdatamodel; sourceTree = "<group>"; };
+		AB6959CE139EAF2A00589FCE /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
+		AB6959CF139EAF2A00589FCE /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Score.m; sourceTree = "<group>"; };
+		AB6959D2139EBA6B00589FCE /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		AB6959D3139EBA6B00589FCE /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		AB7BC7A7139E9A1F006109E3 /* puzzle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "puzzle@2x.png"; sourceTree = "<group>"; };
+		AB7BC7AA139E9A62006109E3 /* puzzle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = puzzle.png; sourceTree = "<group>"; };
+		AB7BC7AC139E9D45006109E3 /* memory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = memory.png; sourceTree = "<group>"; };
+		AB7BC7AD139E9D45006109E3 /* memory@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "memory@2x.png"; sourceTree = "<group>"; };
 		ABAF4CCA1363472C004BF8A6 /* MemoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MemoryViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		ABAF4CCB1363472C004BF8A6 /* MemoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MemoryViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		ABAF4CCC1363472C004BF8A6 /* MemoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemoryViewController.xib; sourceTree = "<group>"; };
@@ -96,6 +116,7 @@
 				AB19F287135385A8001680F2 /* UIKit.framework in Frameworks */,
 				AB19F289135385A8001680F2 /* Foundation.framework in Frameworks */,
 				AB19F28B135385A8001680F2 /* CoreGraphics.framework in Frameworks */,
+				AB6959D1139EB1B000589FCE /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +168,7 @@
 		AB19F285135385A8001680F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AB6959C9139EAB2100589FCE /* CoreData.framework */,
 				AB05E5F4135B49D100146E7B /* QuartzCore.framework */,
 				AB19F286135385A8001680F2 /* UIKit.framework */,
 				AB19F288135385A8001680F2 /* Foundation.framework */,
@@ -163,9 +185,15 @@
 				ABAF4CC8136346F3004BF8A6 /* Memory */,
 				AB19F295135385A8001680F2 /* GamesAppDelegate.h */,
 				AB19F296135385A8001680F2 /* GamesAppDelegate.m */,
-				AB090B94135624FE00D97B24 /* UIWindow_IBExtensions.h */,
 				AB19F298135385A8001680F2 /* MainWindow.xib */,
 				AB19F28D135385A8001680F2 /* Supporting Files */,
+				AB6959BB139EA91800589FCE /* HighScoreViewController.h */,
+				AB6959BC139EA91800589FCE /* HighScoreViewController.m */,
+				AB6959CB139EAE9100589FCE /* Games.xcdatamodeld */,
+				AB6959CE139EAF2A00589FCE /* Score.h */,
+				AB6959CF139EAF2A00589FCE /* Score.m */,
+				AB6959D2139EBA6B00589FCE /* GameViewController.h */,
+				AB6959D3139EBA6B00589FCE /* GameViewController.m */,
 			);
 			path = Games;
 			sourceTree = "<group>";
@@ -204,14 +232,16 @@
 		AB19F2B9135385BB001680F2 /* Puzzle */ = {
 			isa = PBXGroup;
 			children = (
+				AB7BC7AA139E9A62006109E3 /* puzzle.png */,
+				AB7BC7A7139E9A1F006109E3 /* puzzle@2x.png */,
 				AB090B95135629CE00D97B24 /* dracula.jpg */,
 				AB19F2BA135385DF001680F2 /* Puzzle.h */,
 				AB19F2BB135385DF001680F2 /* Puzzle.m */,
 				AB090B8F135623C700D97B24 /* PuzzleViewController.h */,
 				AB090B90135623C700D97B24 /* PuzzleViewController.m */,
 				AB090B91135623C700D97B24 /* PuzzleViewController.xib */,
-				AB090B9713562CD600D97B24 /* UIImage_Subimage.h */,
-				AB090B9813562CD700D97B24 /* UIImage_Subimage.m */,
+				AB090B9713562CD600D97B24 /* UIImage+Subimage.h */,
+				AB090B9813562CD700D97B24 /* UIImage+Subimage.m */,
 			);
 			name = Puzzle;
 			sourceTree = "<group>";
@@ -219,6 +249,8 @@
 		ABAF4CC8136346F3004BF8A6 /* Memory */ = {
 			isa = PBXGroup;
 			children = (
+				AB7BC7AC139E9D45006109E3 /* memory.png */,
+				AB7BC7AD139E9D45006109E3 /* memory@2x.png */,
 				ABAF4CD2136352E0004BF8A6 /* back.png */,
 				ABAF4CCA1363472C004BF8A6 /* MemoryViewController.h */,
 				ABAF4CCB1363472C004BF8A6 /* MemoryViewController.m */,
@@ -307,6 +339,10 @@
 				AB090B96135629CE00D97B24 /* dracula.jpg in Resources */,
 				ABAF4CCE1363472C004BF8A6 /* MemoryViewController.xib in Resources */,
 				ABAF4CD3136352E0004BF8A6 /* back.png in Resources */,
+				AB7BC7A8139E9A1F006109E3 /* puzzle@2x.png in Resources */,
+				AB7BC7AB139E9A62006109E3 /* puzzle.png in Resources */,
+				AB7BC7AE139E9D45006109E3 /* memory.png in Resources */,
+				AB7BC7AF139E9D45006109E3 /* memory@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,7 +380,7 @@
 				AB19F297135385A8001680F2 /* GamesAppDelegate.m in Sources */,
 				AB19F2BC135385DF001680F2 /* Puzzle.m in Sources */,
 				AB090B92135623C800D97B24 /* PuzzleViewController.m in Sources */,
-				AB090B9913562CD700D97B24 /* UIImage_Subimage.m in Sources */,
+				AB090B9913562CD700D97B24 /* UIImage+Subimage.m in Sources */,
 				AB05E5ED135B3F0F00146E7B /* DigitView.m in Sources */,
 				AB1A3EF0135CB72A008AA18F /* NumberView.m in Sources */,
 				ABAF4CCD1363472C004BF8A6 /* MemoryViewController.m in Sources */,
@@ -353,6 +389,10 @@
 				AB1D5CCD136426EE0027ECD8 /* Memory.m in Sources */,
 				AB1D5CD213646BBF0027ECD8 /* Card.m in Sources */,
 				ABDDAFAD139945D60000DC27 /* UIView+MirrorImage.m in Sources */,
+				AB6959BE139EA91800589FCE /* HighScoreViewController.m in Sources */,
+				AB6959CD139EAE9100589FCE /* Games.xcdatamodeld in Sources */,
+				AB6959D0139EAF2A00589FCE /* Score.m in Sources */,
+				AB6959D4139EBA6C00589FCE /* GameViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,6 +568,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		AB6959CB139EAE9100589FCE /* Games.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				AB6959CC139EAE9100589FCE /* Games.xcdatamodel */,
+			);
+			currentVersion = AB6959CC139EAE9100589FCE /* Games.xcdatamodel */;
+			path = Games.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = AB19F279135385A8001680F2 /* Project object */;
 }

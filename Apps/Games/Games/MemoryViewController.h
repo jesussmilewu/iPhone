@@ -1,8 +1,8 @@
-#import <UIKit/UIKit.h>
+#import "GameViewController.h"
 #import "Memory.h"
 #import "NumberView.h"
 
-@interface MemoryViewController : UIViewController {
+@interface MemoryViewController : GameViewController {
     @private
 }
 

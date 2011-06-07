@@ -1,68 +1,75 @@
-//
-//  GamesAppDelegate.m
-//  Games
-//
-//  Created by Clemens Wagner on 11.04.11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "GamesAppDelegate.h"
+#import <CoreData/CoreData.h>
+
+@interface GamesAppDelegate()
+
+@property (nonatomic, retain, readwrite) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, retain, readwrite) NSPersistentStoreCoordinator *storeCoordinator;
+
+@end
 
 @implementation GamesAppDelegate
 
+@synthesize window;
+@synthesize viewController;
+@synthesize managedObjectContext;
 
-@synthesize window=_window;
+@synthesize managedObjectModel;
+@synthesize storeCoordinator;
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    // Override point for customization after application launch.
+- (void)dealloc {
+    self.viewController = nil;
+    self.window = nil;
+    self.managedObjectContext = nil;
+    self.managedObjectModel = nil;
+    self.storeCoordinator = nil;
+    [super dealloc];
+}
+
+- (BOOL)application:(UIApplication *)inApplication didFinishLaunchingWithOptions:(NSDictionary *)inLaunchOptions {
+    self.managedObjectContext.persistentStoreCoordinator = self.storeCoordinator;
+    self.viewController.customizableViewControllers = self.viewController.viewControllers;
+    self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application
-{
-    /*
-     Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-     Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-     */
+- (void)applicationDidBecomeActive:(UIApplication *)inApplication {
+    srand((unsigned) [NSDate timeIntervalSinceReferenceDate]);
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    /*
-     Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-     If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-     */
+- (NSURL *)applicationDocumentsURL {
+    NSFileManager *theManager = [NSFileManager defaultManager];
+    
+    return [[theManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    /*
-     Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-     */
+
+- (NSManagedObjectModel *)managedObjectModel {
+    if(managedObjectModel == nil) {
+        NSURL *theURL = [[NSBundle mainBundle] URLForResource:@"Games" withExtension:@"momd"];
+        
+        self.managedObjectModel = [[[NSManagedObjectModel alloc] initWithContentsOfURL:theURL] autorelease];    
+    }
+    return managedObjectModel;
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    /*
-     Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-     */
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-    /*
-     Called when the application is about to terminate.
-     Save data if appropriate.
-     See also applicationDidEnterBackground:.
-     */
-}
-
-- (void)dealloc
-{
-    [_window release];
-    [super dealloc];
+- (NSPersistentStoreCoordinator *)storeCoordinator {
+    if(storeCoordinator == nil) {
+        NSURL *theURL = [[self applicationDocumentsURL] URLByAppendingPathComponent:@"Games.sqlite"];
+        NSError *theError = nil;
+        NSPersistentStoreCoordinator *theCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
+        
+        if ([theCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil 
+                                                   URL:theURL options:nil error:&theError]) {
+            self.storeCoordinator = theCoordinator;
+        }
+        else {
+            NSLog(@"storeCoordinator: %@", theError);
+        }
+        [theCoordinator release];
+    }
+    return storeCoordinator;
 }
 
 @end
