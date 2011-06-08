@@ -22,6 +22,7 @@ extern NSString * const kMemoryUserInfoCardsKey;
 @property (copy, readonly) NSArray *flippedCards;
 @property (nonatomic, readonly) NSUInteger flipCount;
 @property (nonatomic, readonly) NSUInteger cardCount;
+@property (nonatomic, readonly) BOOL solved;
 
 + (id)memoryWithSize:(NSUInteger)inSize;
 - (id)initWithSize:(NSUInteger)inSize;

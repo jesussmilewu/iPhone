@@ -31,8 +31,6 @@ const float kVerticalMaximalThreshold = 0.5;
 @synthesize puzzle;
 @synthesize image;
 @synthesize puzzleView;
-@synthesize lengthSlider;
-@synthesize lengthLabel;
 @synthesize scoreView;
 @synthesize lastDirection;
 @synthesize undoManager;
@@ -42,8 +40,6 @@ const float kVerticalMaximalThreshold = 0.5;
     self.puzzle = nil;
     self.puzzleView = nil;
     self.image = nil;
-    self.lengthLabel = nil;
-    self.lengthSlider = nil;
     self.scoreView = nil;
     self.undoManager = nil;
     self.managedObjectContext = nil;
@@ -87,8 +83,6 @@ const float kVerticalMaximalThreshold = 0.5;
 
 - (void)viewDidUnload {
     self.puzzleView = nil;
-    self.lengthLabel = nil;
-    self.lengthSlider = nil;
     self.scoreView = nil;
     self.managedObjectContext = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -110,13 +104,11 @@ const float kVerticalMaximalThreshold = 0.5;
     [super viewWillDisappear:inAnimated];
 }
 
-- (IBAction)clear {
-    NSUInteger theLength = roundf(self.lengthSlider.value);
-    
+- (IBAction)clear {    
     [self.puzzle removeObserver:self forKeyPath:@"moveCount"];
     [self.puzzle removeObserver:self forKeyPath:@"solved"];
     [self.undoManager removeAllActions];
-    self.puzzle = [Puzzle puzzleWithLength:theLength];
+    self.puzzle = [Puzzle puzzleWithLength:4];
     self.puzzle.undoManager = self.undoManager;
     [self.puzzle addObserver:self forKeyPath:@"moveCount" options:0 context:nil];
     [self.puzzle addObserver:self forKeyPath:@"solved" options:0 context:nil];
@@ -129,13 +121,6 @@ const float kVerticalMaximalThreshold = 0.5;
     Puzzle *thePuzzle = self.puzzle;
     
     [thePuzzle shuffle];
-}
-
-- (IBAction)updateLengthSlider {
-    NSUInteger theLength = roundf(self.lengthSlider.value);
-    
-    self.lengthSlider.value = theLength;
-    self.lengthLabel.text = [NSString stringWithFormat:@"%u", theLength];
 }
 
 - (IBAction)undo {

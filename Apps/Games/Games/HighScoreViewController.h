@@ -6,5 +6,9 @@
 }
 
 @property (nonatomic, retain) IBOutlet NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *filterControl;
+
+- (IBAction)filterChanged;
+- (IBAction)clear;
 
 @end

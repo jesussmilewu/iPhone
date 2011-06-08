@@ -27,6 +27,7 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
 @property (nonatomic, readwrite) BOOL solved;
 
 - (void)clear;
+- (BOOL)tiltToDirection:(PuzzleDirection)inDirection withCountOffset:(int)inOffset;
 
 @end
 
@@ -114,11 +115,12 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
         PuzzleDirection theDirection = [self bestDirectionForIndex:theShuffleIndex];
         
         while(theDirection != PuzzleNoDirection) {
-            [self tiltToDirection:theDirection];
+            [self tiltToDirection:theDirection withCountOffset:0];
             theDirection = [self bestDirectionForIndex:theShuffleIndex];
         }
     }
     self.moveCount = 0;
+    [self checkSolved];
     [self.undoManager removeAllActionsWithTarget:self];
 }
 
@@ -142,7 +144,6 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
     
     theItems[inToIndex] = theItems[inFromIndex];
     theItems[inFromIndex] = theValue;
-    [self checkSolved];
 }
 
 - (void)postNotificationNamed:(NSString *)inName 
@@ -184,7 +185,10 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
             
             self.moveCount += inOffset;            
             [self swapItemFromIndex:theFreeIndex toIndex:theIndex];
-            [self postNotificationNamed:kPuzzleDidTiltNotification withDirection:inDirection fromIndex:theIndex toIndex:theFreeIndex];
+            [self postNotificationNamed:kPuzzleDidTiltNotification 
+                          withDirection:inDirection 
+                              fromIndex:theIndex 
+                                toIndex:theFreeIndex];
             self.freeIndex = theIndex;
             [thePuzzle tiltToDirection:theReverseDirection withCountOffset:-inOffset];
             return YES;
@@ -195,7 +199,13 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
 
 
 - (BOOL)tiltToDirection:(PuzzleDirection)inDirection {
-    return [self tiltToDirection:inDirection withCountOffset:1];
+    if([self tiltToDirection:inDirection withCountOffset:1]) {
+        [self checkSolved];
+        return YES;
+    }
+    else {
+        return NO;
+    }
 }
 
 - (BOOL)moveItemAtIndex:(NSUInteger)inIndex toDirection:(PuzzleDirection)inDirection {
@@ -212,6 +222,7 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
             self.freeIndex = inIndex;
             [self postNotificationNamed:kPuzzleDidMoveNotification withDirection:inDirection fromIndex:inIndex toIndex:theFreeIndex];
             [thePuzzle tiltToDirection:theReverseDirection withCountOffset:-1];
+            [self checkSolved];
             return YES;
         }
     }

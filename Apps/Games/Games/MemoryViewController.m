@@ -54,6 +54,7 @@ const NSUInteger kMemorySize = 6 * 6;
     [theCenter addObserver:self selector:@selector(cardDidFlipped:) name:kCardDidFlippedNotification object:nil];
     [theCenter addObserver:self selector:@selector(cardsDidSolved:) name:kMemoryCardsDidSolvedNotification object:nil];
     [self.memory addObserver:self forKeyPath:@"flipCount" options:NSKeyValueObservingOptionNew context:nil];
+    [self.memory addObserver:self forKeyPath:@"solved" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 - (NSString *)game {
@@ -180,6 +181,11 @@ const NSUInteger kMemorySize = 6 * 6;
 - (void)observeValueForKeyPath:(NSString *)inKeyPath ofObject:(id)inObject change:(NSDictionary *)inChanges context:(void *)inContext {
     if(inObject == self.memory && [@"flipCount" isEqualToString:inKeyPath]) {
         [self.scoreView setValue:self.memory.flipCount animated:YES];
+    }
+    else if([@"solved" isEqualToString:inKeyPath]) {
+        if(self.memory.solved) {
+            [self saveScore:self.memory.flipCount];
+        }
     }
 }
 

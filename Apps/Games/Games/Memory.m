@@ -20,6 +20,7 @@ NSString * const kMemoryUserInfoCardsKey = @"kMemoryUserInfoCardsKey";
 @property (nonatomic, copy, readwrite) NSArray *cards;
 @property (copy, readwrite) NSArray *flippedCards;
 @property (nonatomic, readwrite) NSUInteger flipCount;
+@property (nonatomic, readwrite) BOOL solved;
 
 - (NSMutableArray *)createCards;
 
@@ -31,6 +32,7 @@ NSString * const kMemoryUserInfoCardsKey = @"kMemoryUserInfoCardsKey";
 @synthesize cards;
 @synthesize flippedCards;
 @synthesize flipCount;
+@synthesize solved;
 
 + (id)memoryWithSize:(NSUInteger)inSize {
     return [[[self alloc] initWithSize:inSize] autorelease];
@@ -85,6 +87,9 @@ NSString * const kMemoryUserInfoCardsKey = @"kMemoryUserInfoCardsKey";
     self.cards = theCards;
     [[NSNotificationCenter defaultCenter] postNotificationName:kMemoryDidClearedNotification object:self];
     self.flipCount = 0;
+    if(self.solved) {
+        self.solved = NO;
+    }
 }
 
 - (void)addPenalty:(NSUInteger)inPenalty {
@@ -107,18 +112,21 @@ NSString * const kMemoryUserInfoCardsKey = @"kMemoryUserInfoCardsKey";
     if(theCards.count == 2) {
         if([[theCards objectAtIndex:0] type] == [[theCards objectAtIndex:1] type]) {
             NSDictionary *theInfo = [NSDictionary dictionaryWithObjectsAndKeys:theCards, kMemoryUserInfoCardsKey, nil];
-            for(Card *theCard in theCards) {
-                theCard.solved = YES;
-            }
+            [theCards enumerateObjectsUsingBlock:^(id inCard, NSUInteger inIndex, BOOL *outStop) {
+                [inCard setSolved:YES];                
+            }];
             [[NSNotificationCenter defaultCenter] postNotificationName:kMemoryCardsDidSolvedNotification
                                                                 object:self 
                                                               userInfo:theInfo];
             self.flippedCards = nil;
+            if([[self.cards valueForKeyPath:@"@sum.solved"] unsignedIntegerValue] == self.size) {
+                self.solved = YES;
+            }
         }
         else {
-            for(Card *theCard in theCards) {
-                theCard.showsFrontSide = NO;
-            }
+            [theCards enumerateObjectsUsingBlock:^(id inCard, NSUInteger inIndex, BOOL *outStop) {
+                [inCard setShowsFrontSide:NO];                
+            }];
         }
     }
 }
