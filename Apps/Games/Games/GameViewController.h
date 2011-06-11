@@ -7,6 +7,7 @@
 }
 
 @property (nonatomic, retain) IBOutlet NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) IBOutlet UITabBarItem *highscoreItem;
 
 - (NSString *)game;
 - (void)saveScore:(NSUInteger)inScore;

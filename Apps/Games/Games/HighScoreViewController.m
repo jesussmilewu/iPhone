@@ -60,6 +60,11 @@ static NSString * const kScoreFilters[] = {
     [self filterChanged];
 }
 
+- (void)viewWillDisappear:(BOOL)inAnimated {
+    self.navigationController.tabBarItem.badgeValue = nil;
+    [super viewWillDisappear:inAnimated];
+}
+
 - (void)viewDidUnload {
     [super viewDidUnload];
     self.fetchedResultsController = nil;
