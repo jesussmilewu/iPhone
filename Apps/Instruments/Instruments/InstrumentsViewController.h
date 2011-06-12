@@ -6,5 +6,7 @@
 
 - (IBAction)makeZombie;
 - (IBAction)makeLeak;
+- (IBAction)makeAttributeLeak;
+- (IBAction)makeAttributeZombie;
 
 @end

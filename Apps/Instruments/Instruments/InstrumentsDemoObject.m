@@ -2,9 +2,16 @@
 
 static NSUInteger objectCounter = 1;
 
+@interface InstrumentsDemoObject()
+
+@property (nonatomic, retain) InstrumentsDemoObject *next;
+
+@end
+
 @implementation InstrumentsDemoObject
 
 @synthesize counter;
+@synthesize next;
 
 + (id)object {
     return [[[self alloc] init] autorelease];
@@ -20,6 +27,7 @@ static NSUInteger objectCounter = 1;
 
 - (void)dealloc {
     NSLog(@"dealloc: %u", counter);
+    self.next = nil;
     [super dealloc];
 }
 

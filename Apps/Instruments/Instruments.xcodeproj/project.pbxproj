@@ -282,6 +282,7 @@
 				AB1BDD84139D466700238364 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
