@@ -30,7 +30,6 @@
 }
 
 - (IBAction)makeLeak {
-    NSLog(@"");
     id theLeak = [[InstrumentsDemoObject alloc] init];
     
     NSLog(@"leak=%@", theLeak);
