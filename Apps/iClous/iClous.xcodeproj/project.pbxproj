@@ -1,0 +1,283 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		40F5FE2613B474AD00E905D9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40F5FE2513B474AD00E905D9 /* UIKit.framework */; };
+		40F5FE2813B474AD00E905D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40F5FE2713B474AD00E905D9 /* Foundation.framework */; };
+		40F5FE2A13B474AD00E905D9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40F5FE2913B474AD00E905D9 /* CoreGraphics.framework */; };
+		40F5FE3013B474AD00E905D9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40F5FE2E13B474AD00E905D9 /* InfoPlist.strings */; };
+		40F5FE3213B474AD00E905D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F5FE3113B474AD00E905D9 /* main.m */; };
+		40F5FE3613B474AE00E905D9 /* iClousAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F5FE3513B474AE00E905D9 /* iClousAppDelegate.m */; };
+		40F5FE3813B474AE00E905D9 /* iClousViewController.h in Resources */ = {isa = PBXBuildFile; fileRef = 40F5FE3713B474AE00E905D9 /* iClousViewController.h */; };
+		40F5FE3A13B474AE00E905D9 /* iClousViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F5FE3913B474AE00E905D9 /* iClousViewController.m */; };
+		40F5FE3D13B474AE00E905D9 /* iClousViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40F5FE3B13B474AE00E905D9 /* iClousViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		40F5FE2113B474AD00E905D9 /* iClous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iClous.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		40F5FE2513B474AD00E905D9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		40F5FE2713B474AD00E905D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		40F5FE2913B474AD00E905D9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		40F5FE2D13B474AD00E905D9 /* iClous-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iClous-Info.plist"; sourceTree = "<group>"; };
+		40F5FE2F13B474AD00E905D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		40F5FE3113B474AD00E905D9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		40F5FE3313B474AE00E905D9 /* iClous-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iClous-Prefix.pch"; sourceTree = "<group>"; };
+		40F5FE3413B474AE00E905D9 /* iClousAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iClousAppDelegate.h; sourceTree = "<group>"; };
+		40F5FE3513B474AE00E905D9 /* iClousAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iClousAppDelegate.m; sourceTree = "<group>"; };
+		40F5FE3713B474AE00E905D9 /* iClousViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iClousViewController.h; sourceTree = "<group>"; };
+		40F5FE3913B474AE00E905D9 /* iClousViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iClousViewController.m; sourceTree = "<group>"; };
+		40F5FE3C13B474AE00E905D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/iClousViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		40F5FE1E13B474AD00E905D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40F5FE2613B474AD00E905D9 /* UIKit.framework in Frameworks */,
+				40F5FE2813B474AD00E905D9 /* Foundation.framework in Frameworks */,
+				40F5FE2A13B474AD00E905D9 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		40F5FE1613B474AD00E905D9 = {
+			isa = PBXGroup;
+			children = (
+				40F5FE2B13B474AD00E905D9 /* iClous */,
+				40F5FE2413B474AD00E905D9 /* Frameworks */,
+				40F5FE2213B474AD00E905D9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		40F5FE2213B474AD00E905D9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				40F5FE2113B474AD00E905D9 /* iClous.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		40F5FE2413B474AD00E905D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				40F5FE2513B474AD00E905D9 /* UIKit.framework */,
+				40F5FE2713B474AD00E905D9 /* Foundation.framework */,
+				40F5FE2913B474AD00E905D9 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		40F5FE2B13B474AD00E905D9 /* iClous */ = {
+			isa = PBXGroup;
+			children = (
+				40F5FE3413B474AE00E905D9 /* iClousAppDelegate.h */,
+				40F5FE3513B474AE00E905D9 /* iClousAppDelegate.m */,
+				40F5FE3713B474AE00E905D9 /* iClousViewController.h */,
+				40F5FE3913B474AE00E905D9 /* iClousViewController.m */,
+				40F5FE3B13B474AE00E905D9 /* iClousViewController.xib */,
+				40F5FE2C13B474AD00E905D9 /* Supporting Files */,
+			);
+			path = iClous;
+			sourceTree = "<group>";
+		};
+		40F5FE2C13B474AD00E905D9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				40F5FE2D13B474AD00E905D9 /* iClous-Info.plist */,
+				40F5FE2E13B474AD00E905D9 /* InfoPlist.strings */,
+				40F5FE3113B474AD00E905D9 /* main.m */,
+				40F5FE3313B474AE00E905D9 /* iClous-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		40F5FE2013B474AD00E905D9 /* iClous */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 40F5FE4013B474AE00E905D9 /* Build configuration list for PBXNativeTarget "iClous" */;
+			buildPhases = (
+				40F5FE1D13B474AD00E905D9 /* Sources */,
+				40F5FE1E13B474AD00E905D9 /* Frameworks */,
+				40F5FE1F13B474AD00E905D9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iClous;
+			productName = iClous;
+			productReference = 40F5FE2113B474AD00E905D9 /* iClous.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		40F5FE1813B474AD00E905D9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Klaus M. Rodewig";
+			};
+			buildConfigurationList = 40F5FE1B13B474AD00E905D9 /* Build configuration list for PBXProject "iClous" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 40F5FE1613B474AD00E905D9;
+			productRefGroup = 40F5FE2213B474AD00E905D9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				40F5FE2013B474AD00E905D9 /* iClous */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		40F5FE1F13B474AD00E905D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40F5FE3013B474AD00E905D9 /* InfoPlist.strings in Resources */,
+				40F5FE3813B474AE00E905D9 /* iClousViewController.h in Resources */,
+				40F5FE3D13B474AE00E905D9 /* iClousViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		40F5FE1D13B474AD00E905D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40F5FE3213B474AD00E905D9 /* main.m in Sources */,
+				40F5FE3613B474AE00E905D9 /* iClousAppDelegate.m in Sources */,
+				40F5FE3A13B474AE00E905D9 /* iClousViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		40F5FE2E13B474AD00E905D9 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				40F5FE2F13B474AD00E905D9 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		40F5FE3B13B474AE00E905D9 /* iClousViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				40F5FE3C13B474AE00E905D9 /* en */,
+			);
+			name = iClousViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		40F5FE3E13B474AE00E905D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		40F5FE3F13B474AE00E905D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		40F5FE4113B474AE00E905D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iClous/iClous-Prefix.pch";
+				INFOPLIST_FILE = "iClous/iClous-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		40F5FE4213B474AE00E905D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iClous/iClous-Prefix.pch";
+				INFOPLIST_FILE = "iClous/iClous-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		40F5FE1B13B474AD00E905D9 /* Build configuration list for PBXProject "iClous" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40F5FE3E13B474AE00E905D9 /* Debug */,
+				40F5FE3F13B474AE00E905D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		40F5FE4013B474AE00E905D9 /* Build configuration list for PBXNativeTarget "iClous" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40F5FE4113B474AE00E905D9 /* Debug */,
+				40F5FE4213B474AE00E905D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 40F5FE1813B474AD00E905D9 /* Project object */;
+}
