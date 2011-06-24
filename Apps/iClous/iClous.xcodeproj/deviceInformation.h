@@ -16,4 +16,8 @@
 @property(retain) NSString *name;
 @property(retain) NSString *systemName;
 @property(retain) NSString *systemVersion;
+@property(retain) NSString *model;
+
+-(id)initWithIp:(NSString *)theIp;
+
 @end

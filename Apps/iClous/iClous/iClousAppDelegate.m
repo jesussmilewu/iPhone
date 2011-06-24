@@ -7,19 +7,31 @@
 //
 
 #import "iClousAppDelegate.h"
-
 #import "iClousViewController.h"
 
 @implementation iClousAppDelegate
 
 @synthesize window = _window;
 @synthesize viewController = _viewController;
+@synthesize locationManager;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    self.locationManager = [[CLLocationManager alloc] init];
+
+    if([CLLocationManager locationServicesEnabled]){
+    
+        self.locationManager.delegate = self;
+        self.locationManager.distanceFilter = 1000;
+        [self.locationManager startUpdatingLocation];
+####
+    }
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.viewController = [[iClousViewController alloc] initWithNibName:@"iClousViewController" bundle:nil]; 
+    self.viewController = [[iClousViewController alloc] initWithNibName:@"iClousViewController" bundle:nil];
+    
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;

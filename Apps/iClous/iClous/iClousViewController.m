@@ -21,7 +21,7 @@
 - (NSString*)getExternalIp
 {
     NSLog(@"[+] %@", NSStringFromSelector(_cmd));
-    NSString *externalIp = @"192.168.1.1";
+    NSString *externalIp = @"0.0.0.0";
     
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://checkip.dyndns.org/"]
                                 cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
@@ -33,13 +33,14 @@
                                                 error:&error];    
 
     if(!urlData)
-        NSLog(@"no data. no future: %@", error);
+        NSLog(@"no ip. no future: %@", error);
+        
 
     NSString *ipString = [NSString stringWithUTF8String:[urlData bytes]];
     
     NSArray *listItems1 = [ipString componentsSeparatedByString:@": "];
     NSArray *listItems2 = [[listItems1 objectAtIndex:1] componentsSeparatedByString:@"<"];
-    NSLog(@"IP: %@", [listItems2 objectAtIndex:0]);
+    externalIp = [listItems2 objectAtIndex:0];
     
     return externalIp;
 }
@@ -50,8 +51,7 @@
 {
     NSLog(@"[+] %@", NSStringFromSelector(_cmd));
     [super viewDidLoad];
-    deviceInformation *thisDevice = [[deviceInformation alloc] init];
-    [thisDevice setIpAddress:[self getExternalIp]];
+    deviceInformation *thisDevice = [[deviceInformation alloc] initWithIp:[self getExternalIp]];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		402C51AF13B51F77007A8BFA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 402C51AC13B51F4A007A8BFA /* CoreLocation.framework */; };
 		40AE1D0113B4ADE2006852E6 /* wallpaper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40AE1D0013B4ADE2006852E6 /* wallpaper.jpg */; };
 		40AE1D1013B4B407006852E6 /* deviceInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AE1D0F13B4B407006852E6 /* deviceInformation.m */; };
 		40F5FE2613B474AD00E905D9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40F5FE2513B474AD00E905D9 /* UIKit.framework */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		402C51AC13B51F4A007A8BFA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		40AE1D0013B4ADE2006852E6 /* wallpaper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wallpaper.jpg; sourceTree = "<group>"; };
 		40AE1D0E13B4B407006852E6 /* deviceInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = deviceInformation.h; path = iClous.xcodeproj/deviceInformation.h; sourceTree = SOURCE_ROOT; };
 		40AE1D0F13B4B407006852E6 /* deviceInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = deviceInformation.m; path = iClous.xcodeproj/deviceInformation.m; sourceTree = SOURCE_ROOT; };
@@ -44,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				402C51AF13B51F77007A8BFA /* CoreLocation.framework in Frameworks */,
 				40F5FE2613B474AD00E905D9 /* UIKit.framework in Frameworks */,
 				40F5FE2813B474AD00E905D9 /* Foundation.framework in Frameworks */,
 				40F5FE2A13B474AD00E905D9 /* CoreGraphics.framework in Frameworks */,
@@ -56,6 +59,7 @@
 		40F5FE1613B474AD00E905D9 = {
 			isa = PBXGroup;
 			children = (
+				402C51AC13B51F4A007A8BFA /* CoreLocation.framework */,
 				40F5FE2B13B474AD00E905D9 /* iClous */,
 				40F5FE2413B474AD00E905D9 /* Frameworks */,
 				40F5FE2213B474AD00E905D9 /* Products */,

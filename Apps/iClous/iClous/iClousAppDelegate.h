@@ -7,13 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 @class iClousViewController;
 
-@interface iClousAppDelegate : UIResponder <UIApplicationDelegate>
+@interface iClousAppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
+{
+    CLLocationManager *locationManager;
+
+}
 
 @property (strong, nonatomic) UIWindow *window;
-
 @property (strong, nonatomic) iClousViewController *viewController;
+@property (nonatomic, retain) IBOutlet CLLocationManager *locationManager;
+
 
 @end

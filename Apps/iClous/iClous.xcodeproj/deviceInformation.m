@@ -10,16 +10,32 @@
 
 @implementation deviceInformation
 
-@synthesize ipAddress, udid, name, systemName, systemVersion;
+@synthesize ipAddress, udid, name, systemName, systemVersion, model;
+
+#pragma mark Initz
 
 - (id)init
 {
     self = [super init];
     if (self) {
+    }   
+    return self;
+}
+
+-(id)initWithIp:(NSString *)theIp
+{
+    NSLog(@"[+] %@", NSStringFromSelector(_cmd));
+    self = [super init];
+    if (self != nil){
+        self.ipAddress = theIp;
         UIDevice *device = [UIDevice currentDevice];
-        NSLog(@"udid: %@", [device uniqueIdentifier]);
+        self.udid = [device uniqueIdentifier];
+        self.name = [device name];
+        self.systemName = [device systemName];
+        self.systemVersion = [device systemVersion];
+        self.model = [device model];
+
     }
-    
     return self;
 }
 

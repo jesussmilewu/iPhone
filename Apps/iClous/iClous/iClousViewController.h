@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "deviceInformation.h"
 
-@interface iClousViewController : UIViewController {
-    
+@interface iClousViewController : UIViewController 
+{
     IBOutlet UIImageView *imageView;
 }
 
