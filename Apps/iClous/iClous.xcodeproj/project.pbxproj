@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		40AE1D0113B4ADE2006852E6 /* wallpaper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40AE1D0013B4ADE2006852E6 /* wallpaper.jpg */; };
+		40AE1D1013B4B407006852E6 /* deviceInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AE1D0F13B4B407006852E6 /* deviceInformation.m */; };
 		40F5FE2613B474AD00E905D9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40F5FE2513B474AD00E905D9 /* UIKit.framework */; };
 		40F5FE2813B474AD00E905D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40F5FE2713B474AD00E905D9 /* Foundation.framework */; };
 		40F5FE2A13B474AD00E905D9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40F5FE2913B474AD00E905D9 /* CoreGraphics.framework */; };
@@ -19,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		40AE1D0013B4ADE2006852E6 /* wallpaper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wallpaper.jpg; sourceTree = "<group>"; };
+		40AE1D0E13B4B407006852E6 /* deviceInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = deviceInformation.h; path = iClous.xcodeproj/deviceInformation.h; sourceTree = SOURCE_ROOT; };
+		40AE1D0F13B4B407006852E6 /* deviceInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = deviceInformation.m; path = iClous.xcodeproj/deviceInformation.m; sourceTree = SOURCE_ROOT; };
 		40F5FE2113B474AD00E905D9 /* iClous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iClous.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40F5FE2513B474AD00E905D9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		40F5FE2713B474AD00E905D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -78,6 +83,8 @@
 		40F5FE2B13B474AD00E905D9 /* iClous */ = {
 			isa = PBXGroup;
 			children = (
+				40AE1D0E13B4B407006852E6 /* deviceInformation.h */,
+				40AE1D0F13B4B407006852E6 /* deviceInformation.m */,
 				40F5FE3413B474AE00E905D9 /* iClousAppDelegate.h */,
 				40F5FE3513B474AE00E905D9 /* iClousAppDelegate.m */,
 				40F5FE3713B474AE00E905D9 /* iClousViewController.h */,
@@ -91,6 +98,7 @@
 		40F5FE2C13B474AD00E905D9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				40AE1D0013B4ADE2006852E6 /* wallpaper.jpg */,
 				40F5FE2D13B474AD00E905D9 /* iClous-Info.plist */,
 				40F5FE2E13B474AD00E905D9 /* InfoPlist.strings */,
 				40F5FE3113B474AD00E905D9 /* main.m */,
@@ -152,6 +160,7 @@
 				40F5FE3013B474AD00E905D9 /* InfoPlist.strings in Resources */,
 				40F5FE3813B474AE00E905D9 /* iClousViewController.h in Resources */,
 				40F5FE3D13B474AE00E905D9 /* iClousViewController.xib in Resources */,
+				40AE1D0113B4ADE2006852E6 /* wallpaper.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +174,7 @@
 				40F5FE3213B474AD00E905D9 /* main.m in Sources */,
 				40F5FE3613B474AE00E905D9 /* iClousAppDelegate.m in Sources */,
 				40F5FE3A13B474AE00E905D9 /* iClousViewController.m in Sources */,
+				40AE1D1013B4B407006852E6 /* deviceInformation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +286,7 @@
 				40F5FE4213B474AE00E905D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
