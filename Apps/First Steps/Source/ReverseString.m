@@ -12,16 +12,14 @@
 @implementation NSString (ReverseString)
 
 -(NSString*)reverse{
-    DLOG(@"[+] reverseString:%@", self);
-    
-    NSMutableString *theReverse;
-    theReverse = [NSMutableString stringWithCapacity:[self length]];
-    
+    NSLog(@"[+] revert: %@", self);    
+    NSMutableString *theReverse = [NSMutableString stringWithCapacity:[self length]];
 
     for(int i = [self length]-1; i>=0; i--){
-        [theReverse appendFormat:@"%c", [self characterAtIndex:i]];
+        [theReverse appendFormat:@"%C", [self characterAtIndex:i]];
     }
-    DLOG(@"[+] theReverse: %@", theReverse);
+    NSLog(@"[+] the reverse: %@", theReverse);
     return theReverse;
 }
+
 @end

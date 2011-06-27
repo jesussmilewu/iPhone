@@ -11,122 +11,105 @@
 
 @implementation Fahrzeug
 
--(id)initWithData:(NSNumber*)initPreis 
-  geschwindigkeit:(int)initGeschwindigkeit 
-             name:(NSString*)initName
-          baujahr:(NSDate*)initBaujahr{
-    DLOG(@"[+] %@", NSStringFromSelector(_cmd));
-    if (![super init]){
-        return nil;
-    }
-    preis = initPreis;
-    geschwindigkeit = initGeschwindigkeit;
-    name = initName;
-    baujahr = initBaujahr;
-    
-    [preis retain];
-    [name retain];
-    [baujahr retain];
-    
+- (id)init {
+    NSLog(@"[+] %@", NSStringFromSelector(_cmd));
+    return [self initWithPreis:[NSNumber numberWithFloat:0] 
+               geschwindigkeit:0
+                          name:@"Herbie" 
+                       baujahr:[NSDate date]];
+}
+
+-(id)initWithPreis:(NSNumber*)inPreis 
+   geschwindigkeit:(int)inGeschwindigkeit 
+              name:(NSString*)inName
+           baujahr:(NSDate*)inBaujahr{
+    NSLog(@"[+] %@", NSStringFromSelector(_cmd));
+    self = [super init];
+    if (self){
+        preis = inPreis;
+        geschwindigkeit = inGeschwindigkeit;
+        name = inName;
+        baujahr = inBaujahr;
+        [preis retain];
+        [name retain];
+        [baujahr retain];
+    }    
     return self;
 }
 
--(NSString*)getId {
-    DLOG(@"[+] %@", NSStringFromSelector(_cmd));
-    NSString *fzID = [[NSString alloc] initWithFormat:@"%@%0.2f%d%@", [self name], [[self preis] floatValue], [self geschwindigkeit], [self baujahr]];
-     
-    unsigned char hashedChars[CC_SHA256_DIGEST_LENGTH];
-
-    CC_SHA256([fzID UTF8String],
-              [fzID lengthOfBytesUsingEncoding:NSUTF8StringEncoding], 
-              hashedChars);
-
-    NSMutableString *hashedString;
-    hashedString = [NSMutableString stringWithCapacity:CC_SHA256_DIGEST_LENGTH];
-    
-    for (int i = 0; i < CC_SHA256_DIGEST_LENGTH; ++i) {
-        [hashedString appendString:[NSString stringWithFormat:@"%02x", hashedChars[i]]];
-    }
-    
-    DLOG(@"[+] ID: %@", hashedString);
-
-    [fzID release];
-    
-    return hashedString;
-}
-
-
-- (id)init {
-    DLOG(@"[+] %@", NSStringFromSelector(_cmd));
-    return [self initWithData:[NSNumber numberWithFloat:0] 
-              geschwindigkeit:0
-                         name:@"NULL" 
-                      baujahr:[NSDate dateWithString:@"1900-01-01 00:00:00 +0100"]];
-}
-
 - (void)dealloc {
-    DLOG(@"[+] %@", NSStringFromSelector(_cmd));
-    
-    preis = nil;
-    geschwindigkeit = 0;
-    name = nil;
-    baujahr = nil;
-    
+    NSLog(@"[+] %@", NSStringFromSelector(_cmd));
     [preis release];
     [name release];
     [baujahr release];
-    
     [super dealloc];
 }
 
-#pragma mark Setter
+-(NSString*)getId {
+    NSLog(@"[+] %@", NSStringFromSelector(_cmd));
+    NSString *theKey = [NSString stringWithFormat:@"%@%0.2f%d%@", 
+                        [self name], [[self preis] floatValue], [self geschwindigkeit], [self baujahr]];
+    unsigned char theCharacters[CC_SHA256_DIGEST_LENGTH];
+    NSMutableString *theHash = [NSMutableString stringWithCapacity:CC_SHA256_DIGEST_LENGTH];
 
--(void)setPreis:(NSNumber*)sPreis{
-    DLOG(@"[+] %@", NSStringFromSelector(_cmd));
-    [sPreis retain];
-    [preis release];
-    preis = sPreis; 
-}
-
--(void)setGeschwindigkeit:(int)sGeschwindigkeit{
-    DLOG(@"[+] %@", NSStringFromSelector(_cmd));
-    geschwindigkeit = sGeschwindigkeit;
-}
-
--(void)setName:(NSString*)sName{
-    DLOG(@"[+] %@", NSStringFromSelector(_cmd));
-    [sName retain];
-    [name release];
-    name = sName;
-}
-
--(void)setBaujahr:(NSDate*)sBaujahr{
-    DLOG(@"[+] %@", NSStringFromSelector(_cmd));
-    [sBaujahr retain];
-    [baujahr release];
-    baujahr = sBaujahr;
+    CC_SHA256([theKey UTF8String],
+              [theKey lengthOfBytesUsingEncoding:NSUTF8StringEncoding], 
+              theCharacters);
+    for (int i = 0; i < CC_SHA256_DIGEST_LENGTH; ++i) {
+        [theHash appendString:[NSString stringWithFormat:@"%02x", theCharacters[i]]];
+    }
+    NSLog(@"[+] ID: %@", theHash);    
+    return theHash;
 }
 
 #pragma mark Getter
 
--(NSNumber*)preis{
-    DLOG(@"[+] %@", NSStringFromSelector(_cmd));
+-(NSNumber*)preis {
+    NSLog(@"[+] %@", NSStringFromSelector(_cmd));
     return preis;
 }
 
--(int)geschwindigkeit{
-    DLOG(@"[+] %@", NSStringFromSelector(_cmd));
+-(int)geschwindigkeit {
+    NSLog(@"[+] %@", NSStringFromSelector(_cmd));
     return geschwindigkeit;
 }
 
--(NSString*)name{
-    DLOG(@"[+] %@", NSStringFromSelector(_cmd));
+-(NSString*)name {
+    NSLog(@"[+] %@", NSStringFromSelector(_cmd));
     return name;
 }
 
--(NSDate*)baujahr{
-    DLOG(@"[+] %@", NSStringFromSelector(_cmd));
+-(NSDate*)baujahr {
+    NSLog(@"[+] %@", NSStringFromSelector(_cmd));
     return baujahr;
+}
+
+#pragma mark Setter
+
+-(void)setPreis:(NSNumber*)inPreis{
+    NSLog(@"[+] %@", NSStringFromSelector(_cmd));
+    [inPreis retain];
+    [preis release];
+    preis = inPreis;
+}
+
+-(void)setGeschwindigkeit:(int)inGeschwindigkeit{
+    NSLog(@"[+] %@", NSStringFromSelector(_cmd));
+    geschwindigkeit = inGeschwindigkeit;
+}
+
+-(void)setName:(NSString*)inName{
+    NSLog(@"[+] %@", NSStringFromSelector(_cmd));
+    [inName retain];
+    [name release];
+    name = inName;
+}
+
+-(void)setBaujahr:(NSDate*)inBaujahr{
+    NSLog(@"[+] %@", NSStringFromSelector(_cmd));
+    [inBaujahr retain];
+    [baujahr release];
+    baujahr = inBaujahr;
 }
 
 @end

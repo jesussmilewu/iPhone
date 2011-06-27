@@ -11,44 +11,65 @@
 
 @implementation Automobil
 
--(NSString*)getId {
-    DLOG(@"[+] %@", NSStringFromSelector(_cmd));
-    NSMutableString *fzID = [[NSMutableString alloc] initWithFormat:@"%@%0.2f%d%@", [self name], [[self preis] floatValue], [self geschwindigkeit], [self baujahr]];
-    
-    unsigned char hashedChars[CC_SHA512_DIGEST_LENGTH];
-    
-    CC_SHA512([fzID UTF8String],
-              [fzID lengthOfBytesUsingEncoding:NSUTF8StringEncoding], 
-              hashedChars);
-    
-    NSMutableString *hashedString;
-    hashedString = [NSMutableString stringWithCapacity:CC_SHA512_DIGEST_LENGTH];
-    
-    for (int i = 0; i < CC_SHA512_DIGEST_LENGTH; ++i) {
-        [hashedString appendString:[NSString stringWithFormat:@"%02x", hashedChars[i]]];
-    }
-    
-    DLOG(@"[+] ID 512: %@", hashedString);
-
-    [fzID release];
-    
-    return hashedString;
-}
-
 - (id)init {
-    DLOG(@"[+] %@", NSStringFromSelector(_cmd));
-    if ((self = [super init])) {
-        // Initialization code here.
+    NSLog(@"[+] %@", NSStringFromSelector(_cmd));
+    self = [super init];
+    if (self) {
     }
-    
     return self;
 }
 
 - (void)dealloc {
-    DLOG(@"[+] %@", NSStringFromSelector(_cmd));
-    // Clean-up code here.
-    
+    NSLog(@"[+] %@", NSStringFromSelector(_cmd));
+    [hauptUntersuchung release];
     [super dealloc];
+}
+
+-(NSString*)getId {
+    NSLog(@"[+] %@", NSStringFromSelector(_cmd));
+    NSString *theKey = [NSString stringWithFormat:@"%@%0.2f%d%@", 
+                        [self name], [[self preis] floatValue], [self geschwindigkeit], [self baujahr]];
+    unsigned char theCharacters[CC_SHA512_DIGEST_LENGTH];
+    NSMutableString *theHash = [NSMutableString stringWithCapacity:CC_SHA512_DIGEST_LENGTH];
+    
+    CC_SHA512([theKey UTF8String],
+              [theKey lengthOfBytesUsingEncoding:NSUTF8StringEncoding], 
+              theCharacters);
+    for (int i = 0; i < CC_SHA512_DIGEST_LENGTH; ++i) {
+        [theHash appendString:[NSString stringWithFormat:@"%02x", theCharacters[i]]];
+    }
+    NSLog(@"[+] ID 512: %@", theHash);    
+    return theHash;
+}
+
+#pragma mark Getter
+
+- (NSDate *)hauptUntersuchung {
+    return hauptUntersuchung;
+}
+
+- (unsigned int)anzahlTueren {
+    return anzahlTueren;
+}
+
+- (double)leistung {
+    return leistung;
+}
+
+#pragma mark Setter
+
+- (void)setHauptUntersuchung:(NSDate *)inDate {
+    [inDate retain];
+    [hauptUntersuchung release];
+    hauptUntersuchung = inDate;
+}
+
+- (void)setAnzahlTueren:(unsigned int)inTueren {
+    anzahlTueren = inTueren;
+}
+
+- (void)setLeistung:(double)inLeistung {
+    leistung = inLeistung;
 }
 
 @end

@@ -10,12 +10,7 @@
 
 
 @interface NSString (ReverseString)
+
 -(NSString*)reverse;
+
 @end
-
-
-NSArray *fooBar = [NSArray arrayWithObjects:Auto, Fahrrad, Bus, Motorrad, Rollstuhl, Segway, nil];
-for (id myObj in fooBar) {
-    [myObj fahren];
-}
-

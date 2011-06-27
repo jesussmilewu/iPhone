@@ -12,18 +12,22 @@
 #import "ReverseString.h"
 
 int main (int argc, const char * argv[]) {
-
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-    // insert code here...
        
-    [@"foobar" reverse];
-    
+    [@"Wortverdreher" reverse];
+    NSLog(@" --- Fahrzeug *fahrzeug = [[Fahrzeug alloc] init]; ---");
     Fahrzeug *fahrzeug = [[Fahrzeug alloc] init];
+    NSLog(@" --- Automobil *automobil = [[Automobil alloc] init]; ---");
     Automobil *automobil = [[Automobil alloc] init];
+    NSLog(@" --- [fahrzeug getId]; ---");
     [fahrzeug getId];
+    NSLog(@" --- [automobil getId]; ---");
     [automobil getId];
-    [fahrzeug autorelease];
+    NSLog(@" --- [fahrzeug release]; ---");
+    [fahrzeug release];
+    NSLog(@" --- [automobil release] ---");
     [automobil release];
+    NSLog(@" --- [pool drain]; ---");
     [pool drain];
     return 0;
 }

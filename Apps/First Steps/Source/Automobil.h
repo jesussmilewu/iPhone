@@ -10,19 +10,22 @@
 #import "Fahrzeug.h"
 
 @interface Automobil : Fahrzeug {
-@private
+    @private
     NSDate  *hauptUntersuchung;
-    NSNumber *anzahlTueren;
-    NSNumber *ps;
+    unsigned int anzahlTueren;
+    double leistung;
 }
--(NSString*)getDetails;
-#pragma mark Setter
--(void)setHauptUntersuchung:(NSDate*)sHu;
--(void)setAnzahlTueren:(NSNumber*)sTueren;
--(void)setPs:(NSNumber*)sPs;
+
+-(NSString*)details;
+
 #pragma mark Getter
--(NSDate*)hauptUntersuchung;
--(NSNumber*)anzahlTueren;
--(NSNumber*)ps;
+-(NSDate *)hauptUntersuchung;
+-(unsigned int)anzahlTueren;
+-(double)leistung;
+
+#pragma mark Setter
+-(void)setHauptUntersuchung:(NSDate*)inDate;
+-(void)setAnzahlTueren:(unsigned int)inTueren;
+-(void)setLeistung:(double)inLeistung;
 
 @end

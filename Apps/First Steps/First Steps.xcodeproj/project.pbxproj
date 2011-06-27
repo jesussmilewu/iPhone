@@ -28,16 +28,16 @@
 
 /* Begin PBXFileReference section */
 		4038EB1812E4544E008FF534 /* Automobil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Automobil.h; sourceTree = "<group>"; };
-		4038EB1912E4544E008FF534 /* Automobil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Automobil.m; sourceTree = "<group>"; };
+		4038EB1912E4544E008FF534 /* Automobil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Automobil.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4038EB1E12E4AA27008FF534 /* ReverseString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReverseString.h; sourceTree = "<group>"; };
-		4038EB1F12E4AA27008FF534 /* ReverseString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReverseString.m; sourceTree = "<group>"; };
+		4038EB1F12E4AA27008FF534 /* ReverseString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ReverseString.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		404BF1A912D34BB20020C09E /* First Steps */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "First Steps"; sourceTree = BUILT_PRODUCTS_DIR; };
 		404BF1AD12D34BB20020C09E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		404BF1AF12D34BB20020C09E /* First_Steps.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = First_Steps.1; sourceTree = "<group>"; };
 		404BF1B012D34BB20020C09E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		404BF1B312D34BB20020C09E /* First_Steps-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "First_Steps-Prefix.pch"; sourceTree = "<group>"; };
+		404BF1B312D34BB20020C09E /* First_Steps-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "First_Steps-Prefix.pch"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		40D205EC12D50A8F005EBF76 /* Fahrzeug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fahrzeug.h; sourceTree = "<group>"; };
-		40D205ED12D50A8F005EBF76 /* Fahrzeug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fahrzeug.m; sourceTree = "<group>"; };
+		40D205ED12D50A8F005EBF76 /* Fahrzeug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Fahrzeug.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

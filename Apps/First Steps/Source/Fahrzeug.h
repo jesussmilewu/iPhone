@@ -17,22 +17,25 @@
     NSDate      *baujahr;
 }
 
--(id)initWithData:(NSNumber*)lPreis 
-  geschwindigkeit:(int)lGeschwindigkeit 
-             name:(NSString*)lName
-          baujahr:(NSDate*)lBaujahr;
+-(id)initWithPreis:(NSNumber*)lPreis 
+   geschwindigkeit:(int)lGeschwindigkeit 
+              name:(NSString*)lName
+           baujahr:(NSDate*)lBaujahr;
 
 -(NSString*)getId;
 
-#pragma mark Setter
--(void)setPreis:(NSNumber*)sPreis;
--(void)setGeschwindigkeit:(int)sGeschwindigkeit;
--(void)setName:(NSString*)sName;
--(void)setBaujahr:(NSDate*)sBaujahr;
-
 #pragma mark Getter
+
 -(NSNumber*)preis;
 -(int)geschwindigkeit;
 -(NSString*)name;
 -(NSDate*)baujahr;
+
+#pragma mark Setter
+
+-(void)setPreis:(NSNumber*)inPreis;
+-(void)setGeschwindigkeit:(int)inGeschwindigkeit;
+-(void)setName:(NSString*)inName;
+-(void)setBaujahr:(NSDate*)inBaujahr;
+
 @end
