@@ -37,7 +37,7 @@
     [thisText appendString:@"Model: "];
     [thisText appendString:thisDevice.model];
     [thisText appendString:@"\n"];
-    thisTextView.text = thisText;    
+    thisTextView.text = thisText;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -78,6 +78,7 @@
     {
         [cllMgr stopUpdatingLocation];
         [self showDeviceData];
+        [thisDevice dumpDeviceInfo];
     }
 }
 

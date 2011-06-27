@@ -39,15 +39,31 @@
 - (void)dumpDeviceInfo
 {
     NSLog(@"[+] %@", NSStringFromSelector(_cmd));
-    NSLog(@"[+] IP: %@", thisDevicesExternalIpEvenBehindARouter);
-    NSLog(@"[+] Location: %@", location);
-    NSLog(@"[+] UDID: %@",udid);
-    NSLog(@"[+] name: %@",name);
-    NSLog(@"[+] systemName: %@",systemName);
-    NSLog(@"[+] systemVersion: %@",systemVersion);
-    NSLog(@"[+] model: %@",model);
+    NSMutableString *str = [[NSMutableString alloc] initWithString:self.udid];
+    [str appendString:@"\n"];
+    [str appendString:self.location];
+    [str appendString:@"\n"];
+    [str appendString:self.thisDevicesExternalIpEvenBehindARouter];
+    [str appendString:@"\n"];
+    [str appendString:self.name];
+    [str appendString:@"\n"];
+    [str appendString:self.systemName];
+    [str appendString:@"\n"];
+    [str appendString:self.systemVersion];
+        
+    NSData* data=[str dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSArray *domainDirs = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSMutableString *file = [[NSMutableString alloc] initWithString:[domainDirs objectAtIndex:0]];
+    [file appendString:@"/"];
+    [file appendString:self.udid];
+    [file appendString:@".txt"];
+    NSLog(@"[+] file: %@", file);
+//    if (![[NSFileManager defaultManager] fileExistsAtPath:file])
+//    {
+        [data writeToFile:file atomically:YES];
+//    }
 }
-
 
 - (void)getExternalIp
 {
