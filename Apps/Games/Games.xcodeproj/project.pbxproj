@@ -11,7 +11,6 @@
 		AB05E5F5135B49D100146E7B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB05E5F4135B49D100146E7B /* QuartzCore.framework */; };
 		AB090B92135623C800D97B24 /* PuzzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB090B90135623C700D97B24 /* PuzzleViewController.m */; };
 		AB090B93135623C800D97B24 /* PuzzleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB090B91135623C700D97B24 /* PuzzleViewController.xib */; };
-		AB090B96135629CE00D97B24 /* dracula.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB090B95135629CE00D97B24 /* dracula.jpg */; };
 		AB090B9913562CD700D97B24 /* UIImage+Subimage.m in Sources */ = {isa = PBXBuildFile; fileRef = AB090B9813562CD700D97B24 /* UIImage+Subimage.m */; };
 		AB19F287135385A8001680F2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB19F286135385A8001680F2 /* UIKit.framework */; };
 		AB19F289135385A8001680F2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB19F288135385A8001680F2 /* Foundation.framework */; };
@@ -26,6 +25,8 @@
 		AB1D5CCE136426EE0027ECD8 /* Memory.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1D5CCC136426EE0027ECD8 /* Memory.m */; };
 		AB1D5CD213646BBF0027ECD8 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1D5CD113646BBF0027ECD8 /* Card.m */; };
 		AB1D5CD313646BBF0027ECD8 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1D5CD113646BBF0027ECD8 /* Card.m */; };
+		AB21599513C771EB007748B7 /* flower.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB21599313C771EB007748B7 /* flower.jpg */; };
+		AB21599613C771EB007748B7 /* flower@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB21599413C771EB007748B7 /* flower@2x.jpg */; };
 		AB52EAB013A3688700B2AB16 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB52EAAE13A3688700B2AB16 /* HelpViewController.m */; };
 		AB52EAB113A3688700B2AB16 /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB52EAAF13A3688700B2AB16 /* HelpViewController.xib */; };
 		AB52EAB613A369C100B2AB16 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = AB52EAB513A369C100B2AB16 /* index.html */; };
@@ -63,7 +64,6 @@
 		AB090B8F135623C700D97B24 /* PuzzleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PuzzleViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		AB090B90135623C700D97B24 /* PuzzleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PuzzleViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AB090B91135623C700D97B24 /* PuzzleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PuzzleViewController.xib; sourceTree = "<group>"; };
-		AB090B95135629CE00D97B24 /* dracula.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dracula.jpg; sourceTree = "<group>"; };
 		AB090B9713562CD600D97B24 /* UIImage+Subimage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Subimage.h"; sourceTree = "<group>"; };
 		AB090B9813562CD700D97B24 /* UIImage+Subimage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Subimage.m"; sourceTree = "<group>"; };
 		AB19F282135385A8001680F2 /* Games.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Games.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +90,8 @@
 		AB1D5CCC136426EE0027ECD8 /* Memory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Memory.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AB1D5CD013646BBF0027ECD8 /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
 		AB1D5CD113646BBF0027ECD8 /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
+		AB21599313C771EB007748B7 /* flower.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower.jpg; sourceTree = "<group>"; };
+		AB21599413C771EB007748B7 /* flower@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "flower@2x.jpg"; sourceTree = "<group>"; };
 		AB52EAAD13A3688700B2AB16 /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		AB52EAAE13A3688700B2AB16 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
 		AB52EAAF13A3688700B2AB16 /* HelpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpViewController.xib; sourceTree = "<group>"; };
@@ -247,9 +249,10 @@
 		AB19F2B9135385BB001680F2 /* Puzzle */ = {
 			isa = PBXGroup;
 			children = (
+				AB21599313C771EB007748B7 /* flower.jpg */,
+				AB21599413C771EB007748B7 /* flower@2x.jpg */,
 				AB7BC7AA139E9A62006109E3 /* puzzle.png */,
 				AB7BC7A7139E9A1F006109E3 /* puzzle@2x.png */,
-				AB090B95135629CE00D97B24 /* dracula.jpg */,
 				AB19F2BA135385DF001680F2 /* Puzzle.h */,
 				AB19F2BB135385DF001680F2 /* Puzzle.m */,
 				AB090B8F135623C700D97B24 /* PuzzleViewController.h */,
@@ -378,7 +381,6 @@
 				AB19F291135385A8001680F2 /* InfoPlist.strings in Resources */,
 				AB19F29A135385A8001680F2 /* MainWindow.xib in Resources */,
 				AB090B93135623C800D97B24 /* PuzzleViewController.xib in Resources */,
-				AB090B96135629CE00D97B24 /* dracula.jpg in Resources */,
 				ABAF4CCE1363472C004BF8A6 /* MemoryViewController.xib in Resources */,
 				ABAF4CD3136352E0004BF8A6 /* back.png in Resources */,
 				AB7BC7A8139E9A1F006109E3 /* puzzle@2x.png in Resources */,
@@ -392,6 +394,8 @@
 				AB52EABE13A3763D00B2AB16 /* help@2x.png in Resources */,
 				AB52EAC113A3875B00B2AB16 /* star.png in Resources */,
 				AB52EAC213A3875B00B2AB16 /* star@2x.png in Resources */,
+				AB21599513C771EB007748B7 /* flower.jpg in Resources */,
+				AB21599613C771EB007748B7 /* flower@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -69,7 +69,7 @@ const float kVerticalMaximalThreshold = 0.5;
     
     [theCenter addObserver:self selector:@selector(puzzleDidTilt:) name:kPuzzleDidTiltNotification object:nil];
     [theCenter addObserver:self selector:@selector(puzzleDidTilt:) name:kPuzzleDidMoveNotification object:nil];
-    self.image = [UIImage imageNamed:@"dracula.jpg"];
+    self.image = [UIImage imageNamed:@"flower.jpg"];
     [self addSwipeGestureRecognizerWithDirection:UISwipeGestureRecognizerDirectionLeft 
                                           action:@selector(handleLeftSwipe:)];
     [self addSwipeGestureRecognizerWithDirection:UISwipeGestureRecognizerDirectionRight 
