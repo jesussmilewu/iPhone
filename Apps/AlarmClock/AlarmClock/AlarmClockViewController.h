@@ -3,9 +3,7 @@
 @class ClockView;
 @class ClockControl;
 
-@interface AlarmClockViewController : UIViewController {
-	@private
-}
+@interface AlarmClockViewController : UIViewController
 
 @property(nonatomic, assign) IBOutlet ClockView *clockView;
 @property(nonatomic, assign) IBOutlet ClockControl *clockControl;

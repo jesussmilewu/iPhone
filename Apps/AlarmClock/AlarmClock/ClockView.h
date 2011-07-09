@@ -1,8 +1,6 @@
 #import <UIKit/UIKit.h>
 
-@interface ClockView : UIView {
-	@private
-}
+@interface ClockView : UIView
 
 @property (nonatomic, retain) NSDate *time;
 @property (nonatomic, retain, readonly) NSCalendar *calendar;
