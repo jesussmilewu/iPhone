@@ -7,106 +7,94 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		402C51AF13B51F77007A8BFA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 402C51AC13B51F4A007A8BFA /* CoreLocation.framework */; };
-		40AE1D0113B4ADE2006852E6 /* wallpaper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40AE1D0013B4ADE2006852E6 /* wallpaper.jpg */; };
-		40AE1D1013B4B407006852E6 /* deviceInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AE1D0F13B4B407006852E6 /* deviceInformation.m */; };
-		40F5FE2613B474AD00E905D9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40F5FE2513B474AD00E905D9 /* UIKit.framework */; };
-		40F5FE2813B474AD00E905D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40F5FE2713B474AD00E905D9 /* Foundation.framework */; };
-		40F5FE2A13B474AD00E905D9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40F5FE2913B474AD00E905D9 /* CoreGraphics.framework */; };
-		40F5FE3013B474AD00E905D9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40F5FE2E13B474AD00E905D9 /* InfoPlist.strings */; };
-		40F5FE3213B474AD00E905D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F5FE3113B474AD00E905D9 /* main.m */; };
-		40F5FE3613B474AE00E905D9 /* iClousAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F5FE3513B474AE00E905D9 /* iClousAppDelegate.m */; };
-		40F5FE3813B474AE00E905D9 /* iClousViewController.h in Resources */ = {isa = PBXBuildFile; fileRef = 40F5FE3713B474AE00E905D9 /* iClousViewController.h */; };
-		40F5FE3A13B474AE00E905D9 /* iClousViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F5FE3913B474AE00E905D9 /* iClousViewController.m */; };
-		40F5FE3D13B474AE00E905D9 /* iClousViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40F5FE3B13B474AE00E905D9 /* iClousViewController.xib */; };
+		401D5C1213B7B7C100B85C5C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 401D5C1113B7B7C100B85C5C /* UIKit.framework */; };
+		401D5C1413B7B7C100B85C5C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 401D5C1313B7B7C100B85C5C /* Foundation.framework */; };
+		401D5C1613B7B7C100B85C5C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 401D5C1513B7B7C100B85C5C /* CoreGraphics.framework */; };
+		401D5C1C13B7B7C100B85C5C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 401D5C1A13B7B7C100B85C5C /* InfoPlist.strings */; };
+		401D5C1E13B7B7C100B85C5C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 401D5C1D13B7B7C100B85C5C /* main.m */; };
+		401D5C2213B7B7C100B85C5C /* iClousAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 401D5C2113B7B7C100B85C5C /* iClousAppDelegate.m */; };
+		401D5C2D13B7B89F00B85C5C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 401D5C2C13B7B89F00B85C5C /* CoreLocation.framework */; };
+		401D5C5A13B7C17700B85C5C /* DeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 401D5C5913B7C17700B85C5C /* DeviceInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		402C51AC13B51F4A007A8BFA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		40AE1D0013B4ADE2006852E6 /* wallpaper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wallpaper.jpg; sourceTree = "<group>"; };
-		40AE1D0E13B4B407006852E6 /* deviceInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = deviceInformation.h; path = iClous.xcodeproj/deviceInformation.h; sourceTree = SOURCE_ROOT; };
-		40AE1D0F13B4B407006852E6 /* deviceInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = deviceInformation.m; path = iClous.xcodeproj/deviceInformation.m; sourceTree = SOURCE_ROOT; };
-		40F5FE2113B474AD00E905D9 /* iClous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iClous.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		40F5FE2513B474AD00E905D9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		40F5FE2713B474AD00E905D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		40F5FE2913B474AD00E905D9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		40F5FE2D13B474AD00E905D9 /* iClous-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iClous-Info.plist"; sourceTree = "<group>"; };
-		40F5FE2F13B474AD00E905D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		40F5FE3113B474AD00E905D9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		40F5FE3313B474AE00E905D9 /* iClous-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iClous-Prefix.pch"; sourceTree = "<group>"; };
-		40F5FE3413B474AE00E905D9 /* iClousAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iClousAppDelegate.h; sourceTree = "<group>"; };
-		40F5FE3513B474AE00E905D9 /* iClousAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iClousAppDelegate.m; sourceTree = "<group>"; };
-		40F5FE3713B474AE00E905D9 /* iClousViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iClousViewController.h; sourceTree = "<group>"; };
-		40F5FE3913B474AE00E905D9 /* iClousViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iClousViewController.m; sourceTree = "<group>"; };
-		40F5FE3C13B474AE00E905D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/iClousViewController.xib; sourceTree = "<group>"; };
+		401D5C0D13B7B7C100B85C5C /* iClous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iClous.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		401D5C1113B7B7C100B85C5C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		401D5C1313B7B7C100B85C5C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		401D5C1513B7B7C100B85C5C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		401D5C1913B7B7C100B85C5C /* iClous-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iClous-Info.plist"; sourceTree = "<group>"; };
+		401D5C1B13B7B7C100B85C5C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		401D5C1D13B7B7C100B85C5C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		401D5C1F13B7B7C100B85C5C /* iClous-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iClous-Prefix.pch"; sourceTree = "<group>"; };
+		401D5C2013B7B7C100B85C5C /* iClousAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iClousAppDelegate.h; sourceTree = "<group>"; };
+		401D5C2113B7B7C100B85C5C /* iClousAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iClousAppDelegate.m; sourceTree = "<group>"; };
+		401D5C2C13B7B89F00B85C5C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		401D5C5813B7C17700B85C5C /* DeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInfo.h; sourceTree = "<group>"; };
+		401D5C5913B7C17700B85C5C /* DeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		40F5FE1E13B474AD00E905D9 /* Frameworks */ = {
+		401D5C0A13B7B7C100B85C5C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				402C51AF13B51F77007A8BFA /* CoreLocation.framework in Frameworks */,
-				40F5FE2613B474AD00E905D9 /* UIKit.framework in Frameworks */,
-				40F5FE2813B474AD00E905D9 /* Foundation.framework in Frameworks */,
-				40F5FE2A13B474AD00E905D9 /* CoreGraphics.framework in Frameworks */,
+				401D5C2D13B7B89F00B85C5C /* CoreLocation.framework in Frameworks */,
+				401D5C1213B7B7C100B85C5C /* UIKit.framework in Frameworks */,
+				401D5C1413B7B7C100B85C5C /* Foundation.framework in Frameworks */,
+				401D5C1613B7B7C100B85C5C /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		40F5FE1613B474AD00E905D9 = {
+		401D5C0213B7B7C100B85C5C = {
 			isa = PBXGroup;
 			children = (
-				402C51AC13B51F4A007A8BFA /* CoreLocation.framework */,
-				40F5FE2B13B474AD00E905D9 /* iClous */,
-				40F5FE2413B474AD00E905D9 /* Frameworks */,
-				40F5FE2213B474AD00E905D9 /* Products */,
+				401D5C1713B7B7C100B85C5C /* iClous */,
+				401D5C1013B7B7C100B85C5C /* Frameworks */,
+				401D5C0E13B7B7C100B85C5C /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		40F5FE2213B474AD00E905D9 /* Products */ = {
+		401D5C0E13B7B7C100B85C5C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				40F5FE2113B474AD00E905D9 /* iClous.app */,
+				401D5C0D13B7B7C100B85C5C /* iClous.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		40F5FE2413B474AD00E905D9 /* Frameworks */ = {
+		401D5C1013B7B7C100B85C5C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				40F5FE2513B474AD00E905D9 /* UIKit.framework */,
-				40F5FE2713B474AD00E905D9 /* Foundation.framework */,
-				40F5FE2913B474AD00E905D9 /* CoreGraphics.framework */,
+				401D5C2C13B7B89F00B85C5C /* CoreLocation.framework */,
+				401D5C1113B7B7C100B85C5C /* UIKit.framework */,
+				401D5C1313B7B7C100B85C5C /* Foundation.framework */,
+				401D5C1513B7B7C100B85C5C /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		40F5FE2B13B474AD00E905D9 /* iClous */ = {
+		401D5C1713B7B7C100B85C5C /* iClous */ = {
 			isa = PBXGroup;
 			children = (
-				40AE1D0E13B4B407006852E6 /* deviceInformation.h */,
-				40AE1D0F13B4B407006852E6 /* deviceInformation.m */,
-				40F5FE3413B474AE00E905D9 /* iClousAppDelegate.h */,
-				40F5FE3513B474AE00E905D9 /* iClousAppDelegate.m */,
-				40F5FE3713B474AE00E905D9 /* iClousViewController.h */,
-				40F5FE3913B474AE00E905D9 /* iClousViewController.m */,
-				40F5FE3B13B474AE00E905D9 /* iClousViewController.xib */,
-				40F5FE2C13B474AD00E905D9 /* Supporting Files */,
+				401D5C2013B7B7C100B85C5C /* iClousAppDelegate.h */,
+				401D5C2113B7B7C100B85C5C /* iClousAppDelegate.m */,
+				401D5C5813B7C17700B85C5C /* DeviceInfo.h */,
+				401D5C5913B7C17700B85C5C /* DeviceInfo.m */,
+				401D5C1813B7B7C100B85C5C /* Supporting Files */,
 			);
 			path = iClous;
 			sourceTree = "<group>";
 		};
-		40F5FE2C13B474AD00E905D9 /* Supporting Files */ = {
+		401D5C1813B7B7C100B85C5C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				40AE1D0013B4ADE2006852E6 /* wallpaper.jpg */,
-				40F5FE2D13B474AD00E905D9 /* iClous-Info.plist */,
-				40F5FE2E13B474AD00E905D9 /* InfoPlist.strings */,
-				40F5FE3113B474AD00E905D9 /* main.m */,
-				40F5FE3313B474AE00E905D9 /* iClous-Prefix.pch */,
+				401D5C1913B7B7C100B85C5C /* iClous-Info.plist */,
+				401D5C1A13B7B7C100B85C5C /* InfoPlist.strings */,
+				401D5C1D13B7B7C100B85C5C /* main.m */,
+				401D5C1F13B7B7C100B85C5C /* iClous-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -114,13 +102,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		40F5FE2013B474AD00E905D9 /* iClous */ = {
+		401D5C0C13B7B7C100B85C5C /* iClous */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 40F5FE4013B474AE00E905D9 /* Build configuration list for PBXNativeTarget "iClous" */;
+			buildConfigurationList = 401D5C2513B7B7C100B85C5C /* Build configuration list for PBXNativeTarget "iClous" */;
 			buildPhases = (
-				40F5FE1D13B474AD00E905D9 /* Sources */,
-				40F5FE1E13B474AD00E905D9 /* Frameworks */,
-				40F5FE1F13B474AD00E905D9 /* Resources */,
+				401D5C0913B7B7C100B85C5C /* Sources */,
+				401D5C0A13B7B7C100B85C5C /* Frameworks */,
+				401D5C0B13B7B7C100B85C5C /* Resources */,
 			);
 			buildRules = (
 			);
@@ -128,83 +116,71 @@
 			);
 			name = iClous;
 			productName = iClous;
-			productReference = 40F5FE2113B474AD00E905D9 /* iClous.app */;
+			productReference = 401D5C0D13B7B7C100B85C5C /* iClous.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		40F5FE1813B474AD00E905D9 /* Project object */ = {
+		401D5C0413B7B7C100B85C5C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				ORGANIZATIONNAME = "Klaus M. Rodewig";
 			};
-			buildConfigurationList = 40F5FE1B13B474AD00E905D9 /* Build configuration list for PBXProject "iClous" */;
+			buildConfigurationList = 401D5C0713B7B7C100B85C5C /* Build configuration list for PBXProject "iClous" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 40F5FE1613B474AD00E905D9;
-			productRefGroup = 40F5FE2213B474AD00E905D9 /* Products */;
+			mainGroup = 401D5C0213B7B7C100B85C5C;
+			productRefGroup = 401D5C0E13B7B7C100B85C5C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				40F5FE2013B474AD00E905D9 /* iClous */,
+				401D5C0C13B7B7C100B85C5C /* iClous */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		40F5FE1F13B474AD00E905D9 /* Resources */ = {
+		401D5C0B13B7B7C100B85C5C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40F5FE3013B474AD00E905D9 /* InfoPlist.strings in Resources */,
-				40F5FE3813B474AE00E905D9 /* iClousViewController.h in Resources */,
-				40F5FE3D13B474AE00E905D9 /* iClousViewController.xib in Resources */,
-				40AE1D0113B4ADE2006852E6 /* wallpaper.jpg in Resources */,
+				401D5C1C13B7B7C100B85C5C /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		40F5FE1D13B474AD00E905D9 /* Sources */ = {
+		401D5C0913B7B7C100B85C5C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40F5FE3213B474AD00E905D9 /* main.m in Sources */,
-				40F5FE3613B474AE00E905D9 /* iClousAppDelegate.m in Sources */,
-				40F5FE3A13B474AE00E905D9 /* iClousViewController.m in Sources */,
-				40AE1D1013B4B407006852E6 /* deviceInformation.m in Sources */,
+				401D5C1E13B7B7C100B85C5C /* main.m in Sources */,
+				401D5C2213B7B7C100B85C5C /* iClousAppDelegate.m in Sources */,
+				401D5C5A13B7C17700B85C5C /* DeviceInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		40F5FE2E13B474AD00E905D9 /* InfoPlist.strings */ = {
+		401D5C1A13B7B7C100B85C5C /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				40F5FE2F13B474AD00E905D9 /* en */,
+				401D5C1B13B7B7C100B85C5C /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		40F5FE3B13B474AE00E905D9 /* iClousViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				40F5FE3C13B474AE00E905D9 /* en */,
-			);
-			name = iClousViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		40F5FE3E13B474AE00E905D9 /* Debug */ = {
+		401D5C2313B7B7C100B85C5C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -229,7 +205,7 @@
 			};
 			name = Debug;
 		};
-		40F5FE3F13B474AE00E905D9 /* Release */ = {
+		401D5C2413B7B7C100B85C5C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -249,7 +225,7 @@
 			};
 			name = Release;
 		};
-		40F5FE4113B474AE00E905D9 /* Debug */ = {
+		401D5C2613B7B7C100B85C5C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -260,7 +236,7 @@
 			};
 			name = Debug;
 		};
-		40F5FE4213B474AE00E905D9 /* Release */ = {
+		401D5C2713B7B7C100B85C5C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -274,25 +250,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		40F5FE1B13B474AD00E905D9 /* Build configuration list for PBXProject "iClous" */ = {
+		401D5C0713B7B7C100B85C5C /* Build configuration list for PBXProject "iClous" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				40F5FE3E13B474AE00E905D9 /* Debug */,
-				40F5FE3F13B474AE00E905D9 /* Release */,
+				401D5C2313B7B7C100B85C5C /* Debug */,
+				401D5C2413B7B7C100B85C5C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		40F5FE4013B474AE00E905D9 /* Build configuration list for PBXNativeTarget "iClous" */ = {
+		401D5C2513B7B7C100B85C5C /* Build configuration list for PBXNativeTarget "iClous" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				40F5FE4113B474AE00E905D9 /* Debug */,
-				40F5FE4213B474AE00E905D9 /* Release */,
+				401D5C2613B7B7C100B85C5C /* Debug */,
+				401D5C2713B7B7C100B85C5C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 40F5FE1813B474AD00E905D9 /* Project object */;
+	rootObject = 401D5C0413B7B7C100B85C5C /* Project object */;
 }

@@ -2,24 +2,23 @@
 //  iClousAppDelegate.h
 //  iClous
 //
-//  Created by Rodewig Klaus on 24.06.11.
+//  Created by Rodewig Klaus on 26.06.11.
 //  Copyright 2011 Klaus M. Rodewig. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "DeviceInfo.h"
 
-@class iClousViewController;
-
-@interface iClousAppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
+@interface iClousAppDelegate : NSObject <UIApplicationDelegate, CLLocationManagerDelegate>
 {
-    CLLocationManager *locationManager;
-
+    CLLocationManager	*cllMgr;
+    UITextView			*thisTextView;
+    UIWindow			*thisWindow;
+    int                 cnt; // for Clemens
+    DeviceInfo          *thisDevice;
 }
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) iClousViewController *viewController;
-@property (nonatomic, retain) IBOutlet CLLocationManager *locationManager;
-
 
 @end

@@ -2,39 +2,84 @@
 //  iClousAppDelegate.m
 //  iClous
 //
-//  Created by Rodewig Klaus on 24.06.11.
+//  Created by Rodewig Klaus on 26.06.11.
 //  Copyright 2011 Klaus M. Rodewig. All rights reserved.
 //
 
 #import "iClousAppDelegate.h"
-#import "iClousViewController.h"
 
 @implementation iClousAppDelegate
 
-@synthesize window = _window;
-@synthesize viewController = _viewController;
-@synthesize locationManager;
+@synthesize window;
+
+-(void)showDeviceData
+{
+    NSLog(@"[+] %@", NSStringFromSelector(_cmd));
+    NSMutableString *thisText = [[NSMutableString alloc] init];
+    [thisText appendString:@"UDID: "];
+    [thisText appendString:thisDevice.udid];
+    [thisText appendString:@"\n"];
+    [thisText appendString:@"IP: "];
+    [thisText appendString:thisDevice.thisDevicesExternalIpEvenBehindARouter];
+    [thisText appendString:@"\n"];
+    [thisText appendString:@"Location: "];
+    [thisText appendString:thisDevice.location];
+    [thisText appendString:@"\n"];
+    [thisText appendString:@"Name: "];
+    [thisText appendString:thisDevice.name];
+    [thisText appendString:@"\n"];
+    [thisText appendString:@"SystemName: "];
+    [thisText appendString:thisDevice.systemName];
+    [thisText appendString:@"\n"];
+    [thisText appendString:@"SystemVersion: "];
+    [thisText appendString:thisDevice.systemVersion];
+    [thisText appendString:@"\n"];
+    [thisText appendString:@"Model: "];
+    [thisText appendString:thisDevice.model];
+    [thisText appendString:@"\n"];
+    thisTextView.text = thisText;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-    
-    self.locationManager = [[CLLocationManager alloc] init];
+    NSLog(@"[+] %@", NSStringFromSelector(_cmd));
+   
+    window = [[UIWindow alloc] initWithFrame:[[UIScreen  mainScreen] bounds]];
+	CGRect	rectFrame = [UIScreen mainScreen].applicationFrame;
+	thisTextView  = [[UITextView alloc] initWithFrame:rectFrame];
+	thisTextView.editable = NO;
+    [window addSubview:thisTextView];
+    [window makeKeyAndVisible];
 
-    if([CLLocationManager locationServicesEnabled]){
+    thisDevice = [[DeviceInfo alloc] initWithDeviceData];
+    [thisDevice getExternalIp];
+    // Location Manager initiieren
+    cllMgr = [[CLLocationManager alloc] init];
+	cllMgr.delegate = self;
+	[cllMgr startUpdatingLocation];
+    cnt = 0;
     
-        self.locationManager.delegate = self;
-        self.locationManager.distanceFilter = 1000;
-        [self.locationManager startUpdatingLocation];
-####
-    }
-
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.viewController = [[iClousViewController alloc] initWithNibName:@"iClousViewController" bundle:nil];
-    
-    self.window.rootViewController = self.viewController;
-    [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)locationManager:(CLLocationManager *)manager 
+	didUpdateToLocation:(CLLocation *)newLocation 
+		   fromLocation:(CLLocation *)oldLocation
+{
+    NSLog(@"[+] %@", NSStringFromSelector(_cmd));
+    NSString *userLoc = [NSString stringWithFormat:@"%f:%f", newLocation.coordinate.latitude, newLocation.coordinate.longitude];
+    NSLog(@"[+] userLoc: %@", userLoc);
+    cnt++;
+    // #### ggf. sinnvolle Abbruchbedingung definieren
+    if(cnt<=1){
+        thisDevice.location=userLoc;
+    }
+    else
+    {
+        [cllMgr stopUpdatingLocation];
+        [self showDeviceData];
+        [thisDevice dumpDeviceInfo];
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
