@@ -4,8 +4,6 @@
 
 @interface AlarmClockAppDelegate()
 
-- (void)clearSound;
-
 @end
 
 @implementation AlarmClockAppDelegate
@@ -18,7 +16,7 @@
 #pragma mark Application lifecycle
 
 - (void)dealloc {
-    [self clearSound];
+    self.soundId = nil;    
     self.viewController = nil;
     self.window = nil;
     [super dealloc];
@@ -31,8 +29,8 @@
     return YES;
 }
 
-- (void)playSound {
-    if(self.soundId == nil) {
+- (NSNumber *)soundId {
+    if(soundId == nil) {
         NSURL *theURL = [[NSBundle mainBundle] URLForResource:@"ringtone" withExtension:@"caf"];
         SystemSoundID theId;
         
@@ -40,8 +38,24 @@
             self.soundId = [NSNumber numberWithUnsignedInt:theId];
         }
     }
-    if(self.soundId) {
-        AudioServicesPlaySystemSound([self.soundId unsignedIntValue]);
+    return soundId;
+}
+
+- (void)setSoundId:(NSNumber *)inSoundId {
+    if(soundId != inSoundId) {
+        if(soundId != nil) {
+            AudioServicesDisposeSystemSoundID([soundId unsignedIntValue]);
+            [soundId release];
+        }
+        soundId = [inSoundId retain];
+    }
+}
+
+- (void)playSound {
+    NSNumber *theId = self.soundId;
+    
+    if(theId) {
+        AudioServicesPlaySystemSound([theId unsignedIntValue]);
     }
 }
 
@@ -58,15 +72,8 @@
     }
 }
 
-- (void)clearSound {
-    if(self.soundId != nil) {
-        AudioServicesDisposeSystemSoundID([self.soundId unsignedIntValue]);
-        self.soundId = nil;
-    }
-}
-
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
-    [self clearSound];    
+    self.soundId = nil;    
 }
 
 @end

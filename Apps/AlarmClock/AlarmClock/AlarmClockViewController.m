@@ -24,11 +24,12 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
 }
 
 - (NSTimeInterval)startTimeOfCurrentDay {
-    NSTimeInterval theTime = [NSDate timeIntervalSinceReferenceDate];
-    NSTimeZone *theTimeZone = [NSTimeZone defaultTimeZone];
-    NSTimeInterval theOffset = theTimeZone.secondsFromGMT;
+    NSCalendar *theCalendar = [NSCalendar currentCalendar];
+    NSDateComponents *theComponents = [theCalendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit 
+                                                     fromDate:[NSDate date]];
+    NSDate *theDate = [theCalendar dateFromComponents:theComponents];
     
-    return floor(theTime / kSecondsOfDay) * kSecondsOfDay - theOffset;
+    return [theDate timeIntervalSinceReferenceDate];
 }
 
 - (void)updateControl {
