@@ -11,5 +11,6 @@
 
 - (NSString *)game;
 - (void)saveScore:(NSUInteger)inScore;
+- (void)setupBorderWithLayer:(CALayer *)inLayer;
 
 @end

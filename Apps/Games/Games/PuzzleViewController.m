@@ -67,6 +67,7 @@ const float kVerticalMaximalThreshold = 0.5;
     [super viewDidLoad];
     NSNotificationCenter *theCenter = [NSNotificationCenter defaultCenter];
     
+    [self setupBorderWithLayer:self.puzzleView.layer];
     [theCenter addObserver:self selector:@selector(puzzleDidTilt:) name:kPuzzleDidTiltNotification object:nil];
     [theCenter addObserver:self selector:@selector(puzzleDidTilt:) name:kPuzzleDidMoveNotification object:nil];
     self.image = [UIImage imageNamed:@"flower.jpg"];
@@ -89,8 +90,8 @@ const float kVerticalMaximalThreshold = 0.5;
     [super viewDidUnload];
 }
 
-- (void)viewWillAppear:(BOOL)inAnimated {
-    [super viewWillAppear:inAnimated];
+- (void)viewDidAppear:(BOOL)inAnimated {
+    [super viewDidAppear:inAnimated];
     UIAccelerometer *theAccelerometer = [UIAccelerometer sharedAccelerometer];
     
     theAccelerometer.delegate = self;
@@ -114,6 +115,7 @@ const float kVerticalMaximalThreshold = 0.5;
     [self.puzzle addObserver:self forKeyPath:@"solved" options:0 context:nil];
     [self.scoreView setValue:0 animated:YES];
     [self buildView];
+    [self shuffle];
     self.lastDirection = PuzzleNoDirection;
 }
 
@@ -157,7 +159,8 @@ const float kVerticalMaximalThreshold = 0.5;
                 [thePuzzleView addSubview:[theImageView autorelease]];
             }
             if(theIndex == thePuzzle.freeIndex) {
-                theImageView.backgroundColor = [UIColor lightGrayColor];
+                
+                theImageView.backgroundColor = [UIColor darkGrayColor];
                 theImageView.image = nil;
             }
             else {
@@ -197,16 +200,14 @@ const float kVerticalMaximalThreshold = 0.5;
                      animations:^{
                          theFromView.frame = [self frameForItemAtIndex:theToIndex];
                          theToView.frame = [self frameForItemAtIndex:theFromIndex];
-                     }
-                     completion:^(BOOL inFinshed) {
                      }];
 }
 
 - (void)handleGestureRecognizer:(UIGestureRecognizer *)inRecognizer withDirection:(PuzzleDirection)inDirection {
     UIView *thePuzzleView = self.puzzleView;
     Puzzle *thePuzzle = self.puzzle;
-    NSUInteger theLength = thePuzzle.length;
     CGPoint thePoint = [inRecognizer locationInView:thePuzzleView];
+    NSUInteger theLength = thePuzzle.length;
     CGSize theSize = thePuzzleView.frame.size;
     NSUInteger theRow = thePoint.y * theLength / theSize.height;
     NSUInteger theColumn = thePoint.x * theLength / theSize.width;
@@ -265,7 +266,7 @@ const float kVerticalMaximalThreshold = 0.5;
             self.lastDirection = theX < 0 ? PuzzleDirectionLeft : PuzzleDirectionRight;
         }
         else if(fabs(theY) > kVerticalMaximalThreshold) {
-            self.lastDirection = theY < 0 ? PuzzleDirectionLeft : PuzzleDirectionUp;
+            self.lastDirection = theY < 0 ? PuzzleDirectionDown : PuzzleDirectionUp;
         }
         [thePuzzle tiltToDirection:self.lastDirection];
     }

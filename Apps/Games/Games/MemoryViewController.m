@@ -68,7 +68,8 @@ const NSUInteger kMemorySize = 6 * 6;
     CGRect theFrame = CGRectMake(0.0, 0.0, theSize.width / kMemoryColumns, theSize.height / kMemoryRows);
     SEL theAction = @selector(cardTouched:);
     CardView *theCardView;
-    
+
+    [self setupBorderWithLayer:theView.layer];
     for(NSUInteger theRow = 0; theRow < kMemoryRows; ++theRow) {
         theFrame.origin.y = theRow * theSize.height / kMemoryRows;
         for(NSUInteger theColumn = 0; theColumn < kMemoryColumns; ++theColumn) {            

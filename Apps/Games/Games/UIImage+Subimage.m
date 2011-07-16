@@ -20,7 +20,9 @@
 
 - (NSArray *)splitIntoSubimagesWithRows:(NSUInteger)inRows columns:(NSUInteger)inColumns {
     CGSize theSize = self.size;
-    CGRect theRect = CGRectMake(0.0, 0.0, theSize.width / inColumns, theSize.height / inRows);
+    CGRect theRect = CGRectMake(0.0, 0.0, 
+                                self.scale * theSize.width / inColumns, 
+                                self.scale * theSize.height / inRows);
     NSMutableArray *theResult = [NSMutableArray arrayWithCapacity:inRows * inColumns];
     
     theSize = theRect.size;

@@ -1,5 +1,6 @@
 #import "GameViewController.h"
 #import "Score.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation GameViewController
 
@@ -43,6 +44,13 @@
         [self.managedObjectContext save:NULL];
         theItem.badgeValue = theValue;
     }
+}
+
+- (void)setupBorderWithLayer:(CALayer *)inLayer {
+    inLayer.cornerRadius = 10.0;
+    inLayer.masksToBounds = YES;
+    inLayer.borderColor = [UIColor grayColor].CGColor;
+    inLayer.borderWidth = 1.0;
 }
 
 @end

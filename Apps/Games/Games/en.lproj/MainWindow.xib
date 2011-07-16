@@ -69,6 +69,7 @@
 							<string key="NSResourceName">star.png</string>
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<string key="IBUIBadgeValue">2</string>
 						<reference key="IBUITabBar" ref="339305217"/>
 					</object>
 					<reference key="IBUIParentViewController" ref="802003692"/>
