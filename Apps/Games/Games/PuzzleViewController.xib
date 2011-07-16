@@ -62,9 +62,9 @@
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="555355155"/>
-						<object class="NSColor" key="IBUIBackgroundColor" id="1038742529">
+						<object class="NSColor" key="IBUIBackgroundColor" id="438700904">
 							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MCAwAA</bytes>
+							<bytes key="NSWhite">MQA</bytes>
 						</object>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -78,13 +78,13 @@
 						<bool key="IBUIShowsTouchWhenHighlighted">YES</bool>
 						<string key="IBUITitleShadowOffset">{1, 1}</string>
 						<string key="IBUINormalTitle">Shuffle</string>
-						<object class="NSColor" key="IBUIHighlightedTitleColor" id="438700904">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MQA</bytes>
-						</object>
+						<reference key="IBUIHighlightedTitleColor" ref="438700904"/>
 						<reference key="IBUINormalTitleColor" ref="438700904"/>
-						<reference key="IBUIHighlightedTitleShadowColor" ref="1038742529"/>
-						<reference key="IBUINormalTitleShadowColor" ref="1038742529"/>
+						<object class="NSColor" key="IBUIHighlightedTitleShadowColor" id="725005125">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MCAwAA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="725005125"/>
 					</object>
 					<object class="IBUIButton" id="555355155">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -93,7 +93,7 @@
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="19126130"/>
-						<reference key="IBUIBackgroundColor" ref="1038742529"/>
+						<reference key="IBUIBackgroundColor" ref="438700904"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -104,8 +104,8 @@
 						<string key="IBUINormalTitle">Undo</string>
 						<reference key="IBUIHighlightedTitleColor" ref="438700904"/>
 						<reference key="IBUINormalTitleColor" ref="438700904"/>
-						<reference key="IBUIHighlightedTitleShadowColor" ref="1038742529"/>
-						<reference key="IBUINormalTitleShadowColor" ref="1038742529"/>
+						<reference key="IBUIHighlightedTitleShadowColor" ref="725005125"/>
+						<reference key="IBUINormalTitleShadowColor" ref="725005125"/>
 					</object>
 					<object class="IBUIButton" id="19126130">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -114,7 +114,7 @@
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="838319472"/>
-						<reference key="IBUIBackgroundColor" ref="1038742529"/>
+						<reference key="IBUIBackgroundColor" ref="438700904"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -125,8 +125,8 @@
 						<string key="IBUINormalTitle">Redo</string>
 						<reference key="IBUIHighlightedTitleColor" ref="438700904"/>
 						<reference key="IBUINormalTitleColor" ref="438700904"/>
-						<reference key="IBUIHighlightedTitleShadowColor" ref="1038742529"/>
-						<reference key="IBUINormalTitleShadowColor" ref="1038742529"/>
+						<reference key="IBUIHighlightedTitleShadowColor" ref="725005125"/>
+						<reference key="IBUINormalTitleShadowColor" ref="725005125"/>
 					</object>
 					<object class="IBUIView" id="838319472">
 						<reference key="NSNextResponder" ref="191373211"/>

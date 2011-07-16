@@ -31,6 +31,7 @@
     CALayer *theLayer = self.layer;
     CAGradientLayer *theBackground = [CAGradientLayer layer];
 
+    self.backgroundColor = [UIColor clearColor];
     theLayer.cornerRadius = 10.0;
     theLayer.masksToBounds = YES;
     theBackground.frame = theLayer.bounds;
