@@ -6,6 +6,6 @@ extern NSString * const kPartKey;
     @private
 }
 
-@property (nonatomic, retain) NSNumber *part;
+@property (nonatomic) CGFloat part;
 
 @end

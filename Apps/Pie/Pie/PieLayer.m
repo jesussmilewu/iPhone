@@ -14,7 +14,7 @@ NSString * const kPartKey = @"part";
 - (void)drawInContext:(CGContextRef)inContext {
     CGRect theBounds = self.bounds;
     CGSize theSize = theBounds.size;
-    CGFloat thePart = [self.part floatValue];
+    CGFloat thePart = self.part;
     CGPoint theCenter = CGPointMake(CGRectGetMidX(theBounds), CGRectGetMidY(theBounds));
     CGFloat theRadius = fminf(theSize.width, theSize.height) / 2.0 - 5.0;
     CGFloat theAngle = 2 * (thePart - 0.25) * M_PI;
