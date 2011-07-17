@@ -2,6 +2,7 @@
 #import <CoreData/CoreData.h>
 #import "SubviewController.h"
 
+@class DiaryEntry;
 @class ItemViewController;
 @class DiaryEntryCell;
 @class SlideShowController;
@@ -20,5 +21,7 @@
 - (IBAction)showSlideShow;
 - (IBAction)addItem;
 - (IBAction)playSound:(id)inSender;
+- (UITableView *)currentTableView;
+- (DiaryEntry *)entryForTableView:(UITableView *)inTableView atIndexPath:(NSIndexPath *)inIndexPath;
 
 @end

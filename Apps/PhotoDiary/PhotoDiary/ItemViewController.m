@@ -26,8 +26,9 @@
 @synthesize toolbar;
 @synthesize imagePicker;
 @synthesize audioRecorder;
-@synthesize item;
 @synthesize audioPlayer;
+@synthesize item;
+@synthesize indexPath;
 @synthesize managedObjectContext;
 @synthesize popoverController;
 
@@ -36,8 +37,9 @@
     self.toolbar = nil;
     self.imagePicker = nil;
     self.audioRecorder = nil;
-    self.item = nil;
     self.audioPlayer = nil;
+    self.item = nil;
+    self.indexPath = nil;
     self.imageView = nil;
     self.textView = nil;
     self.cameraButton = nil;
@@ -46,21 +48,13 @@
     [super dealloc];
 }
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    id theDelegate = [[UIApplication sharedApplication] delegate];
-    
-    self.managedObjectContext = [[[NSManagedObjectContext alloc] init] autorelease];
-    self.managedObjectContext.persistentStoreCoordinator = [theDelegate storeCoordinator];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.toolbarItems = self.toolbar.items;
     [self.audioRecorder addViewToViewController:self.navigationController];
     [self.audioPlayer addViewToViewController:self.navigationController];
-    cameraButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
-    photoLibraryButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
+    self.cameraButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+    self.photoLibraryButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
     self.imagePicker = [[[UIImagePickerController alloc] init] autorelease];
     self.imagePicker.allowsEditing = YES;
     self.imagePicker.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
@@ -87,7 +81,6 @@
 
 - (void)viewWillAppear:(BOOL)inAnimated {
     [super viewWillAppear:inAnimated];
-    [self.navigationController setToolbarHidden:NO animated:YES];
     if(self.item == nil) {
         self.item = [NSEntityDescription insertNewObjectForEntityForName:@"DiaryEntry" 
                                                   inManagedObjectContext:self.managedObjectContext];
@@ -95,6 +88,15 @@
     else if(self.item.managedObjectContext != self.managedObjectContext) {
         self.item = (DiaryEntry *) [self.managedObjectContext objectWithID:self.item.objectID];
     }
+    [self.navigationController setToolbarHidden:NO animated:YES];
+}
+
+- (void)setupNavigationController {
+    UINavigationController *theController = self.navigationController;
+    
+    if(theController != self.parentViewController) {
+        [theController.toolbar setItems:self.toolbarItems animated:NO];
+    }    
 }
 
 - (void)viewDidAppear:(BOOL)inAnimated {
@@ -102,6 +104,7 @@
     NSNotificationCenter *theCenter = [NSNotificationCenter defaultCenter];
     Medium *theMedium = [self.item mediumForType:kMediumTypeImage];
     
+    [self setupNavigationController];
     [theCenter addObserver:self 
                   selector:@selector(keyboardWillAppear:) 
                       name:UIKeyboardWillShowNotification 
@@ -123,7 +126,6 @@
     self.audioPlayer.visible = NO;
     self.audioRecorder.visible = NO;
     [self saveItem];
-    [self.navigationController setToolbarHidden:YES animated:YES];
     [super viewWillDisappear:inAnimated];
 }
 
@@ -163,6 +165,16 @@
                                                            animated:YES];
         }
     }
+}
+
+- (NSManagedObjectContext *)managedObjectContext {
+    if(managedObjectContext == nil) {
+        id theDelegate = [[UIApplication sharedApplication] delegate];
+        
+        self.managedObjectContext = [[[NSManagedObjectContext alloc] init] autorelease];
+        self.managedObjectContext.persistentStoreCoordinator = [theDelegate storeCoordinator];
+    }
+    return managedObjectContext;
 }
 
 - (void)saveItem {
@@ -223,17 +235,12 @@
     UIImage *theImage = [inImage scaledImageWithSize:theIconSize];
 
     self.item.icon = UIImageJPEGRepresentation(theImage, 0.8);
-    NSLog(@"[+] saving image ...");
-    
-    // uploading file to server
-    
-    
     [self updateMediumData:theData withMediumType:kMediumTypeImage];
 }
 
 - (void)dismissImagePickerController:(UIImagePickerController *)inPicker {
     if(self.popoverController == nil) {
-        [inPicker.parentViewController dismissModalViewControllerAnimated:YES];
+        [inPicker dismissModalViewControllerAnimated:YES];
     }    
 }
 

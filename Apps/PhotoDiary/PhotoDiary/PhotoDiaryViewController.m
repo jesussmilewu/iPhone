@@ -5,6 +5,7 @@
 #import "DiaryEntry.h"
 #import "DiaryEntryCell.h"
 #import "SlideShowController.h"
+#import "PhotoDiaryViewController+PageView.h"
 
 @interface PhotoDiaryViewController()<NSFetchedResultsControllerDelegate>
 
@@ -49,7 +50,6 @@
     
     theFetch.entity = theEntity;
     theFetch.sortDescriptors = [NSArray arrayWithObject:theDescriptor];
-    theFetch.predicate = [NSPredicate predicateWithFormat:@"ANY media.type = 'image'"];
     return theFetch;
 }
 
@@ -57,10 +57,14 @@
     return self.searchDisplayController.searchResultsTableView;
 }
 
+- (UITableView *)currentTableView {
+    return self.searchResult == nil ? self.tableView : self.searchResultsTableView;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSNotificationCenter *theCenter = [NSNotificationCenter defaultCenter];
-    NSFetchedResultsController *theController = [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
+    NSFetchedResultsController *theController = [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     NSError *theError = nil;
     
     theController.delegate = self;
@@ -96,6 +100,11 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)inInterfaceOrientation {
     return YES;
+}
+
+- (void)viewWillAppear:(BOOL)inAnimated {
+    [super viewWillAppear:inAnimated];
+    [self.navigationController setToolbarHidden:YES animated:YES];
 }
 
 - (DiaryEntryCell *)makeDiaryEntryCell {
@@ -195,10 +204,7 @@
 }
 
 - (void)tableView:(UITableView *)inTableView didSelectRowAtIndexPath:(NSIndexPath *)inIndexPath {
-    DiaryEntry *theItem = [self entryForTableView:inTableView atIndexPath:inIndexPath];
-    
-    self.itemViewController.item = theItem;
-    [self.navigationController pushViewController:self.itemViewController animated:YES];
+    [self displayItemAtIndexPath:inIndexPath];
 }
 
 - (void)tableView:(UITableView *)inTableView commitEditingStyle:(UITableViewCellEditingStyle)inStyle forRowAtIndexPath:(NSIndexPath *)inIndexPath {
@@ -290,6 +296,10 @@
     
     self.searchResult = [theObjects filteredArrayUsingPredicate:thePredicate];
     return YES;
+}
+
+- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)inController {
+    self.searchResult = nil;
 }
 
 #pragma mark SubviewControllerDelegate

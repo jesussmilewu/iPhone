@@ -35,6 +35,7 @@
 		AB4C357312E36C0200F12B17 /* DiaryEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4C357212E36C0200F12B17 /* DiaryEntry.m */; };
 		AB4E355512E236070087EA14 /* record.png in Resources */ = {isa = PBXBuildFile; fileRef = AB4E355412E236070087EA14 /* record.png */; };
 		AB4E355912E238B60087EA14 /* AudioRecorderController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4E355812E238B60087EA14 /* AudioRecorderController.m */; };
+		AB618E2913D30D2800DFA31D /* PhotoDiaryViewController+PageView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB618E2813D30D2800DFA31D /* PhotoDiaryViewController+PageView.m */; };
 		AB7455E712E60C1C009088C2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7455E512E60C1C009088C2 /* AVFoundation.framework */; };
 		AB7455E812E60C1C009088C2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7455E612E60C1C009088C2 /* CoreData.framework */; };
 		AB7466CB12E1DDC3009E1136 /* speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = AB7466CA12E1DDC3009E1136 /* speaker.png */; };
@@ -90,6 +91,8 @@
 		AB4E355412E236070087EA14 /* record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record.png; sourceTree = "<group>"; };
 		AB4E355712E238B60087EA14 /* AudioRecorderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecorderController.h; sourceTree = "<group>"; };
 		AB4E355812E238B60087EA14 /* AudioRecorderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecorderController.m; sourceTree = "<group>"; };
+		AB618E2713D30D2800DFA31D /* PhotoDiaryViewController+PageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PhotoDiaryViewController+PageView.h"; sourceTree = "<group>"; };
+		AB618E2813D30D2800DFA31D /* PhotoDiaryViewController+PageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PhotoDiaryViewController+PageView.m"; sourceTree = "<group>"; };
 		AB7455E512E60C1C009088C2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		AB7455E612E60C1C009088C2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		AB7466CA12E1DDC3009E1136 /* speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speaker.png; sourceTree = "<group>"; };
@@ -175,6 +178,8 @@
 				AB1F336512EB1FFC00A97E41 /* SubviewController.m */,
 				AB11CA8212E1B47600F99C7B /* PhotoDiaryViewController.h */,
 				AB11CA8312E1B47600F99C7B /* PhotoDiaryViewController.m */,
+				AB618E2713D30D2800DFA31D /* PhotoDiaryViewController+PageView.h */,
+				AB618E2813D30D2800DFA31D /* PhotoDiaryViewController+PageView.m */,
 				AB11CA8D12E1BF9600F99C7B /* ItemViewController.h */,
 				AB11CA8E12E1BF9600F99C7B /* ItemViewController.m */,
 				AB1F336C12EB70C700A97E41 /* SlideShowController.h */,
@@ -322,6 +327,7 @@
 				AB1F336612EB1FFC00A97E41 /* SubviewController.m in Sources */,
 				AB1F336B12EB330200A97E41 /* UIToolbar+Extensions.m in Sources */,
 				AB1F336F12EB70C700A97E41 /* SlideShowController.m in Sources */,
+				AB618E2913D30D2800DFA31D /* PhotoDiaryViewController+PageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
