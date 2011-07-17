@@ -2,9 +2,7 @@
 
 @protocol SubviewControllerDelegate;
 
-@interface SubviewController : NSObject {
-    @private
-}
+@interface SubviewController : NSObject
 
 @property(nonatomic) BOOL visible;
 @property(nonatomic, copy) NSString *nibName;

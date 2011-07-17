@@ -1,9 +1,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface DiaryEntryCell : UITableViewCell {
-    @private
-}
+@interface DiaryEntryCell : UITableViewCell
 
 @property (nonatomic, assign, readonly) UIControl *imageControl;
 

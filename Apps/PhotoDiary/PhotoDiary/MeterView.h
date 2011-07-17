@@ -1,8 +1,6 @@
 #import <UIKit/UIKit.h>
 
-@interface MeterView : UIView {
-    @private
-}
+@interface MeterView : UIView
 
 @property (nonatomic) float value;
 

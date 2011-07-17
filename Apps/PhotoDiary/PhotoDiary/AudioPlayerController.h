@@ -3,9 +3,7 @@
 @class MeterView;
 @class Medium;
 
-@interface AudioPlayerController : SubviewController {
-    @private
-}
+@interface AudioPlayerController : SubviewController 
 
 @property (nonatomic, assign) IBOutlet UIBarButtonItem *playButton;
 @property (nonatomic, assign) IBOutlet UISlider *slider;

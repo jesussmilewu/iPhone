@@ -1,7 +1,5 @@
 #import <UIKit/UIKit.h>
 
-@interface RotationView : UIView {
-
-}
+@interface RotationView : UIView
 
 @end

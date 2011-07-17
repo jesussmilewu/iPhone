@@ -11,9 +11,7 @@
 
 @end
 
-@interface AudioRecorderController : SubviewController {
-    @private
-}
+@interface AudioRecorderController : SubviewController
 
 @property(nonatomic, assign) IBOutlet UIBarButtonItem *recordButton;
 @property(nonatomic, assign) IBOutlet UIProgressView *progressView;

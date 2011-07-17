@@ -5,9 +5,7 @@ extern NSString * const kMediumTypeAudio;
 
 @class Medium;
 
-@interface DiaryEntry : NSManagedObject {
-    @private
-}
+@interface DiaryEntry : NSManagedObject
 
 @property (nonatomic, retain) NSData *icon;
 @property (nonatomic, retain) NSDate *creationTime;

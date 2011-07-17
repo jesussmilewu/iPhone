@@ -5,9 +5,7 @@
 
 @protocol ItemViewControllerDelegate;
 
-@interface ItemViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, AudioRecorderDelegate> {
-    @private
-}
+@interface ItemViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, AudioRecorderDelegate> 
 
 @property (nonatomic, assign) IBOutlet UIImageView *imageView;
 @property (nonatomic, assign) IBOutlet UITextView *textView;

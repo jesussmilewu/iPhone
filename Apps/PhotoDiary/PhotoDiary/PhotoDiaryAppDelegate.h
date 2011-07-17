@@ -3,9 +3,7 @@
 
 @class PhotoDiaryViewController;
 
-@interface PhotoDiaryAppDelegate : NSObject <UIApplicationDelegate> {
-@private
-}
+@interface PhotoDiaryAppDelegate : NSObject <UIApplicationDelegate> 
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UIViewController *viewController;

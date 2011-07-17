@@ -7,9 +7,7 @@
 @class SlideShowController;
 @class AudioPlayerController;
 
-@interface PhotoDiaryViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, SubviewControllerDelegate, UISearchDisplayDelegate> {
-    @private
-}
+@interface PhotoDiaryViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, SubviewControllerDelegate, UISearchDisplayDelegate> 
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) IBOutlet ItemViewController *itemViewController;

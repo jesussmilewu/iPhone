@@ -2,9 +2,7 @@
 
 @class DiaryEntry;
 
-@interface Medium : NSManagedObject {
-    @private
-}
+@interface Medium : NSManagedObject
 
 @property (nonatomic, retain) NSString *type;
 @property (nonatomic, retain) NSData *data;
