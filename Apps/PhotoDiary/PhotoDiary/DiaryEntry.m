@@ -4,10 +4,12 @@
 NSString * const kMediumTypeImage = @"image";
 NSString * const kMediumTypeAudio = @"audio";
 
-@interface NSManagedObject(CoreDataAccessors)
+@interface DiaryEntry(CoreDataGeneratedAccessors)
 
-- (void)addMediaObject:(Medium *)inMedium;
-- (void)removeMediaObject:(Medium *)inMedium;
+- (void)addMediaObject:(Medium *)value;
+- (void)removeMediaObject:(Medium *)value;
+- (void)addMedia:(NSSet *)values;
+- (void)removeMedia:(NSSet *)values;
 
 @end
 
@@ -37,7 +39,7 @@ NSString * const kMediumTypeAudio = @"audio";
 }
 
 - (Medium *)mediumForType:(NSString *)inType {
-    for(id theMedium in self.media) {
+    for(Medium *theMedium in self.media) {
         if([[theMedium type] isEqualToString:inType]) {
             return theMedium;
         }
