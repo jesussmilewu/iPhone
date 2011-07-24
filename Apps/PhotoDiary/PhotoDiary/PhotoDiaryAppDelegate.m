@@ -5,17 +5,20 @@
 
 @property (nonatomic, retain, readwrite) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain, readwrite) NSPersistentStoreCoordinator *storeCoordinator;
+@property (nonatomic, retain, readwrite) UIPopoverController *popoverController;
 
 @end
 
 @implementation PhotoDiaryAppDelegate
 
 @synthesize window;
+@synthesize toolbar;
 @synthesize viewController;
 @synthesize managedObjectContext;
 
 @synthesize managedObjectModel;
 @synthesize storeCoordinator;
+@synthesize popoverController;
 
 - (void)dealloc {
     self.viewController = nil;
@@ -23,6 +26,8 @@
     self.managedObjectContext = nil;
     self.managedObjectModel = nil;
     self.storeCoordinator = nil;
+    self.popoverController = nil;
+    self.toolbar = nil;
     [super dealloc];
 }
 
@@ -69,6 +74,41 @@
         [theCoordinator release];
     }
     return storeCoordinator;
+}
+
+- (void)showPhotoDiaryViewController:(id)inSender {
+    
+}
+
+#pragma mark UISplitViewControllerDelegate
+
+- (void)splitViewController:(UISplitViewController *)inSplitViewController 
+          popoverController:(UIPopoverController *)inPopoverController 
+  willPresentViewController:(UIViewController *)inViewController {
+}
+
+- (void)splitViewController:(UISplitViewController *)inSplitViewController 
+     willHideViewController:(UIViewController *)inViewController 
+          withBarButtonItem:(UIBarButtonItem *)inBarButtonItem 
+       forPopoverController:(UIPopoverController *)inPopoverController {
+    NSMutableArray *theItems = [[self.toolbar items] mutableCopy];
+
+    inBarButtonItem.title = NSLocalizedString(@"Overview", @"Overview button");
+    [theItems insertObject:inBarButtonItem atIndex:0];
+    [self.toolbar setItems:theItems animated:YES];
+    [theItems release];
+    self.popoverController = inPopoverController;
+}
+
+- (void)splitViewController:(UISplitViewController *)inSplitViewController 
+     willShowViewController:(UIViewController *)inViewController 
+  invalidatingBarButtonItem:(UIBarButtonItem *)inBarButtonItem {
+    NSMutableArray *theItems = [[self.toolbar items] mutableCopy];
+    
+    [theItems removeObjectAtIndex:0];
+    [self.toolbar setItems:theItems animated:YES];
+    [theItems release];
+    self.popoverController = nil;
 }
 
 @end

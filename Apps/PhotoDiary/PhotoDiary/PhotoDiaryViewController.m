@@ -120,8 +120,10 @@
 }
 
 - (IBAction)addItem {
-    self.itemViewController.item = nil;
-    [self.navigationController pushViewController:self.itemViewController animated:YES];
+    self.itemViewController.diaryEntry = nil;
+    if(self.splitViewController == nil) {
+        [self.navigationController pushViewController:self.itemViewController animated:YES];
+    }
 }
 
 - (DiaryEntry *)entryForTableView:(UITableView *)inTableView atIndexPath:(NSIndexPath *)inIndexPath {
@@ -212,6 +214,7 @@
         DiaryEntry *theItem = [self entryForTableView:inTableView atIndexPath:inIndexPath];
         NSError *theError = nil;
 
+        [self.managedObjectContext rollback];
         [self.managedObjectContext deleteObject:theItem];
         if([self.managedObjectContext save:&theError]) {
             if(inTableView == self.searchResultsTableView) {

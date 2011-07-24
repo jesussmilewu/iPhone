@@ -38,6 +38,10 @@ NSString * const kMediumTypeAudio = @"audio";
     }
 }
 
+- (BOOL)hasContent {
+    return self.text.length > 0 || self.media.count > 0;
+}
+
 - (Medium *)mediumForType:(NSString *)inType {
     for(Medium *theMedium in self.media) {
         if([[theMedium type] isEqualToString:inType]) {

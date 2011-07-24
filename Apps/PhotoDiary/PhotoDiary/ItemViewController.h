@@ -18,7 +18,7 @@
 @property (nonatomic, retain) IBOutlet AudioRecorderController *audioRecorder;
 @property (nonatomic, retain) IBOutlet AudioPlayerController *audioPlayer;
 @property (nonatomic, retain) NSIndexPath *indexPath;
-@property (nonatomic, retain) DiaryEntry *item;
+@property (nonatomic, retain) DiaryEntry *diaryEntry;
 
 - (IBAction)takePhoto:(id)inSender;
 - (IBAction)takePhotoFromLibrary:(id)inSender;

@@ -35,6 +35,7 @@
 		AB4C357312E36C0200F12B17 /* DiaryEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4C357212E36C0200F12B17 /* DiaryEntry.m */; };
 		AB4E355512E236070087EA14 /* record.png in Resources */ = {isa = PBXBuildFile; fileRef = AB4E355412E236070087EA14 /* record.png */; };
 		AB4E355912E238B60087EA14 /* AudioRecorderController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4E355812E238B60087EA14 /* AudioRecorderController.m */; };
+		AB5F1AFB13DC0DB300441B3B /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB5F1AFA13DC0DB300441B3B /* MainWindow-iPad.xib */; };
 		AB618E2913D30D2800DFA31D /* PhotoDiaryViewController+PageView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB618E2813D30D2800DFA31D /* PhotoDiaryViewController+PageView.m */; };
 		AB7455E712E60C1C009088C2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7455E512E60C1C009088C2 /* AVFoundation.framework */; };
 		AB7455E812E60C1C009088C2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7455E612E60C1C009088C2 /* CoreData.framework */; };
@@ -91,6 +92,7 @@
 		AB4E355412E236070087EA14 /* record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record.png; sourceTree = "<group>"; };
 		AB4E355712E238B60087EA14 /* AudioRecorderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecorderController.h; sourceTree = "<group>"; };
 		AB4E355812E238B60087EA14 /* AudioRecorderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecorderController.m; sourceTree = "<group>"; };
+		AB5F1AFA13DC0DB300441B3B /* MainWindow-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		AB618E2713D30D2800DFA31D /* PhotoDiaryViewController+PageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PhotoDiaryViewController+PageView.h"; sourceTree = "<group>"; };
 		AB618E2813D30D2800DFA31D /* PhotoDiaryViewController+PageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PhotoDiaryViewController+PageView.m"; sourceTree = "<group>"; };
 		AB7455E512E60C1C009088C2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -220,6 +222,7 @@
 				AB7466CD12E1E11B009E1136 /* micro.png */,
 				AB7466CA12E1DDC3009E1136 /* speaker.png */,
 				AB11CA7F12E1B47600F99C7B /* MainWindow.xib */,
+				AB5F1AFA13DC0DB300441B3B /* MainWindow-iPad.xib */,
 				AB11CA8512E1B47600F99C7B /* PhotoDiaryViewController.xib */,
 				AB11CA8F12E1BF9600F99C7B /* ItemViewController.xib */,
 				AB1F336E12EB70C700A97E41 /* SlideShowController.xib */,
@@ -301,6 +304,7 @@
 				AB1F337012EB70C700A97E41 /* SlideShowController.xib in Resources */,
 				ABC55A99132398A800365735 /* AudioPlayerController.xib in Resources */,
 				ABC55A9C1323A45700365735 /* AudioRecorderController.xib in Resources */,
+				AB5F1AFB13DC0DB300441B3B /* MainWindow-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

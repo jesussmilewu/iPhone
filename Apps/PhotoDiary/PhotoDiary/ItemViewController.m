@@ -10,8 +10,11 @@
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) UIPopoverController *popoverController;
+@property (nonatomic, retain) DiaryEntry *item;
 
-- (void)saveItem;
+- (void)applyItem;
+- (BOOL)saveItem;
+- (UIViewController *)mainViewController;
 
 @end
 
@@ -50,9 +53,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.toolbarItems = self.toolbar.items;
-    [self.audioRecorder addViewToViewController:self.navigationController];
-    [self.audioPlayer addViewToViewController:self.navigationController];
+    [self.audioRecorder addViewToViewController:self.mainViewController];
+    [self.audioPlayer addViewToViewController:self.mainViewController];
     self.cameraButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
     self.photoLibraryButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
     self.imagePicker = [[[UIImagePickerController alloc] init] autorelease];
@@ -61,6 +63,21 @@
     self.imagePicker.delegate = self;
     if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         self.popoverController = [[[UIPopoverController alloc] initWithContentViewController:self.imagePicker] autorelease];
+    }
+    if(self.splitViewController == nil) {
+        self.toolbarItems = self.toolbar.items;        
+    }
+    else {
+        CGRect theBounds = self.view.bounds;
+        CGRect theFrame = self.toolbar.frame;
+        CGFloat theHeight = CGRectGetHeight(theFrame);
+        
+        theFrame.size.width = CGRectGetWidth(theBounds);
+        theFrame.origin.y = CGRectGetHeight(theBounds) - theHeight;
+        self.toolbar.frame = theFrame;
+        [self.view addSubview:self.toolbar];
+        theFrame = theBounds;
+        theFrame.size.height = CGRectGetHeight(theBounds) - theHeight;
     }
 }
 
@@ -79,18 +96,6 @@
     [super viewDidUnload];
 }
 
-- (void)viewWillAppear:(BOOL)inAnimated {
-    [super viewWillAppear:inAnimated];
-    if(self.item == nil) {
-        self.item = [NSEntityDescription insertNewObjectForEntityForName:@"DiaryEntry" 
-                                                  inManagedObjectContext:self.managedObjectContext];
-    }
-    else if(self.item.managedObjectContext != self.managedObjectContext) {
-        self.item = (DiaryEntry *) [self.managedObjectContext objectWithID:self.item.objectID];
-    }
-    [self.navigationController setToolbarHidden:NO animated:YES];
-}
-
 - (void)setupNavigationController {
     UINavigationController *theController = self.navigationController;
     
@@ -99,10 +104,15 @@
     }    
 }
 
+- (void)viewWillAppear:(BOOL)inAnimated {
+    [super viewWillAppear:inAnimated];
+    [self.navigationController setToolbarHidden:NO animated:YES];
+    [self applyItem];
+}
+
 - (void)viewDidAppear:(BOOL)inAnimated {
     [super viewDidAppear:inAnimated];
     NSNotificationCenter *theCenter = [NSNotificationCenter defaultCenter];
-    Medium *theMedium = [self.item mediumForType:kMediumTypeImage];
     
     [self setupNavigationController];
     [theCenter addObserver:self 
@@ -113,9 +123,6 @@
                   selector:@selector(keyboardWillDisappear:) 
                       name:UIKeyboardWillHideNotification 
                     object:nil];
-    self.textView.text = self.item.text;
-    self.imageView.image = [UIImage imageWithData:theMedium.data];
-    self.playButton.enabled = [self.item mediumForType:kMediumTypeAudio] != nil;
 }
 
 - (void)viewWillDisappear:(BOOL)inAnimated {
@@ -125,7 +132,6 @@
     [theCenter removeObserver:theCenter];
     self.audioPlayer.visible = NO;
     self.audioRecorder.visible = NO;
-    [self saveItem];
     [super viewWillDisappear:inAnimated];
 }
 
@@ -177,13 +183,64 @@
     return managedObjectContext;
 }
 
-- (void)saveItem {
-    NSError *theError = nil;
+- (DiaryEntry *)diaryEntry {
+    return self.item;
+}
 
-    if(![self.managedObjectContext save:&theError]) {
-        NSLog(@"saveItem: %@", theError);
+- (void)setDiaryEntry:(DiaryEntry *)inDiaryEntry {
+    [self.managedObjectContext reset];
+    if(inDiaryEntry == nil) {
+        self.item = [NSEntityDescription insertNewObjectForEntityForName:@"DiaryEntry" 
+                                                  inManagedObjectContext:self.managedObjectContext];
     }
-    NSLog(@"%@, %@", self.item.creationTime, self.item.updateTime);
+    else {
+        self.item = inDiaryEntry;
+    }
+}
+
+- (void)setItem:(DiaryEntry *)inItem {
+    if(item != inItem) {
+        [item release];
+        if(inItem.managedObjectContext == self.managedObjectContext) {
+            item = [inItem retain];
+        }
+        else if(inItem != nil){
+            item = [[self.managedObjectContext objectWithID:inItem.objectID] retain];
+        }
+        [self applyItem];
+    }
+}
+
+- (void)applyItem {
+    Medium *theMedium;
+    
+    if(self.item == nil) {
+        self.diaryEntry = nil;
+    }
+    self.textView.text = self.item.text;
+    theMedium = [self.item mediumForType:kMediumTypeImage];
+    self.imageView.image = [UIImage imageWithData:theMedium.data];
+    self.playButton.enabled = [self.item mediumForType:kMediumTypeAudio] != nil;
+}
+
+- (BOOL)saveItem {
+    BOOL theResult = NO;
+    
+    if(self.item.hasContent) {
+        NSError *theError = nil;
+
+        theResult = [self.managedObjectContext save:&theError];
+        if(!theResult) {
+            NSLog(@"saveItem: %@", theError);
+        }
+    }
+    return theResult;
+}
+
+- (UIViewController *)mainViewController {
+    UIViewController *theController = self.navigationController;
+    
+    return theController == nil ? self.splitViewController : theController;
 }
 
 - (IBAction)takePhoto:(id)inSender {
@@ -208,10 +265,12 @@
 - (IBAction)saveText:(id)inSender {
     [self.view endEditing:YES];
     self.item.text = self.textView.text;
+    [self saveItem];
 }
 
 - (IBAction)revertText:(id)inSender {
     [self.view endEditing:YES];
+    [self applyItem];
 }
 
 - (void)updateMediumData:(NSData *)inData withMediumType:(NSString *)inType {

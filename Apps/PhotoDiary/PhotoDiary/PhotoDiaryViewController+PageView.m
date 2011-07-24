@@ -7,7 +7,7 @@
     DiaryEntry *theItem = [self entryForTableView:self.currentTableView atIndexPath:inIndexPath];
     ItemViewController *theController = [[ItemViewController alloc] init];
     
-    theController.item = theItem;
+    theController.diaryEntry = theItem;
     theController.indexPath = inIndexPath;
     return [theController autorelease];
 }
@@ -16,9 +16,11 @@
     ItemViewController *theItemController = self.itemViewController;    
     DiaryEntry *theItem = [self entryForTableView:self.currentTableView atIndexPath:inIndexPath];
     
-    theItemController.item = theItem;
+    theItemController.diaryEntry = theItem;
     theItemController.indexPath = inIndexPath;
-    [self.navigationController pushViewController:theItemController animated:YES];
+    if(self.splitViewController == nil) {
+        [self.navigationController pushViewController:theItemController animated:YES];
+    }
 }
 
 #ifdef __IPHONE_5_0
