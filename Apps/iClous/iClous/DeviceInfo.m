@@ -7,6 +7,9 @@
 //
 
 #import "DeviceInfo.h"
+
+#define UBIQUITY_CONTAINER_URL @"6RT4NMNXMS.de.ifoo.iclous"
+
 @implementation DeviceInfo
 
 @synthesize udid, name, systemName, systemVersion, model, thisDevicesExternalIpEvenBehindARouter, location;
@@ -59,10 +62,18 @@
     [file appendString:self.udid];
     [file appendString:@".txt"];
     NSLog(@"[+] file: %@", file);
-//    if (![[NSFileManager defaultManager] fileExistsAtPath:file])
-//    {
-        [data writeToFile:file atomically:YES];
-//    }
+    [data writeToFile:file atomically:YES];
+    
+    // hier beginnt der iCloud-Teil
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+    NSURL *ubiquityContainerURL = [[fileMgr URLForUbiquityContainerIdentifier:UBIQUITY_CONTAINER_URL] URLByAppendingPathComponent:@"Documents"];
+    if ([fileMgr fileExistsAtPath:[ubiquityContainerURL path]] == NO)
+        // Documents directory does not exist yet.
+        [fileMgr createDirectoryAtURL:ubiquityContainerURL withIntermediateDirectories:YES attributes:nil error:nil];
+    if ([fileMgr isUbiquitousItemAtURL:[NSURL fileURLWithPath:file]] == NO)
+        // Item is not stored in the cloud.
+        [fileMgr setUbiquitous:YES itemAtURL:[NSURL fileURLWithPath:file] destinationURL:[ubiquityContainerURL URLByAppendingPathComponent:[file lastPathComponent]] error:nil];
+
 }
 
 - (void)getExternalIp

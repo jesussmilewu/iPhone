@@ -1,16 +1,16 @@
 //
-//  iClousAppDelegate.m
-//  iClous
+//  iclousAppDelegate.m
+//  iclous
 //
-//  Created by Rodewig Klaus on 26.06.11.
-//  Copyright 2011 Klaus M. Rodewig. All rights reserved.
+//  Created by Klaus M. Rodewig on 02.07.11.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "iClousAppDelegate.h"
+#import "iclousAppDelegate.h"
 
-@implementation iClousAppDelegate
+@implementation iclousAppDelegate
 
-@synthesize window;
+@synthesize window = window;
 
 -(void)showDeviceData
 {
@@ -43,14 +43,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     NSLog(@"[+] %@", NSStringFromSelector(_cmd));
-   
+    
     window = [[UIWindow alloc] initWithFrame:[[UIScreen  mainScreen] bounds]];
 	CGRect	rectFrame = [UIScreen mainScreen].applicationFrame;
 	thisTextView  = [[UITextView alloc] initWithFrame:rectFrame];
 	thisTextView.editable = NO;
     [window addSubview:thisTextView];
     [window makeKeyAndVisible];
-
+    
     thisDevice = [[DeviceInfo alloc] initWithDeviceData];
     [thisDevice getExternalIp];
     // Location Manager initiieren
@@ -61,6 +61,7 @@
     
     return YES;
 }
+
 
 - (void)locationManager:(CLLocationManager *)manager 
 	didUpdateToLocation:(CLLocation *)newLocation 

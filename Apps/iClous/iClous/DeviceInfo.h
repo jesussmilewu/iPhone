@@ -10,8 +10,8 @@
 
 @interface DeviceInfo : NSObject
 
-- (void)getExternalIp;
-- (void)dumpDeviceInfo;
+-(void)getExternalIp;
+-(void)dumpDeviceInfo;
 -(id)initWithDeviceData;
 
 @property(retain) NSString *udid;
