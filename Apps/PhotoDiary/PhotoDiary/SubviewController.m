@@ -43,6 +43,10 @@
     }
 }
 
+- (void)removeView {
+    [self.view removeFromSuperview];
+}
+
 - (BOOL)visible {
     return self.view.alpha > 0.01;
 }

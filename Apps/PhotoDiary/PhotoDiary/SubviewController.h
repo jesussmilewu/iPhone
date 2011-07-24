@@ -11,6 +11,7 @@
 
 - (void)loadView;
 - (void)addViewToViewController:(UIViewController *)inViewController;
+- (void)removeView;
 - (void)setVisible:(BOOL)inVisible animated:(BOOL)inAnimated;
 
 - (IBAction)clear;

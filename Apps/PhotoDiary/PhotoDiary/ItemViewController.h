@@ -11,6 +11,7 @@
 @property (nonatomic, assign) IBOutlet UITextView *textView;
 @property (nonatomic, assign) IBOutlet UIBarButtonItem *cameraButton;
 @property (nonatomic, assign) IBOutlet UIBarButtonItem *photoLibraryButton;
+@property (nonatomic, assign) IBOutlet UIBarButtonItem *recordButton;
 @property (nonatomic, assign) IBOutlet UIBarButtonItem *playButton;
 
 @property (nonatomic, retain) IBOutlet UIToolbar *toolbar;

@@ -79,6 +79,7 @@
                   selector:@selector(managedObjectContextDidSave:)
                       name:NSManagedObjectContextDidSaveNotification 
                     object:nil];
+    [self setupPageViewControllerWithViewController:self.itemViewController];
 }
 
 - (void)viewDidUnload {
@@ -121,9 +122,7 @@
 
 - (IBAction)addItem {
     self.itemViewController.diaryEntry = nil;
-    if(self.splitViewController == nil) {
-        [self.navigationController pushViewController:self.itemViewController animated:YES];
-    }
+    [self displayItemAtIndexPath:nil];
 }
 
 - (DiaryEntry *)entryForTableView:(UITableView *)inTableView atIndexPath:(NSIndexPath *)inIndexPath {

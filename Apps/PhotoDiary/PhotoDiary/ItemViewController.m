@@ -1,10 +1,13 @@
 #import "ItemViewController.h"
+#import "PhotoDiaryAppDelegate.h"
 #import "AudioRecorderController.h"
 #import "DiaryEntry.h"
 #import "Medium.h"
 #import "UIImage+ImageTools.h"
 #import "AudioPlayerController.h"
 #import "PhotoDiaryAppDelegate.h"
+
+static const NSInteger kOverviewButtonTag = 123;
 
 @interface ItemViewController()
 
@@ -14,7 +17,8 @@
 
 - (void)applyItem;
 - (BOOL)saveItem;
-- (UIViewController *)mainViewController;
+- (UIViewController *)rootController;
+- (void)updateOverviewButton;
 
 @end
 
@@ -22,9 +26,11 @@
 
 @synthesize imageView;
 @synthesize textView;
+
 @synthesize cameraButton;
 @synthesize photoLibraryButton;
 @synthesize playButton;
+@synthesize recordButton;
 
 @synthesize toolbar;
 @synthesize imagePicker;
@@ -38,6 +44,10 @@
 - (void)dealloc {
     self.managedObjectContext = nil;
     self.toolbar = nil;
+    self.cameraButton = nil;
+    self.photoLibraryButton = nil;
+    self.playButton = nil;
+    self.recordButton = nil;
     self.imagePicker = nil;
     self.audioRecorder = nil;
     self.audioPlayer = nil;
@@ -45,68 +55,43 @@
     self.indexPath = nil;
     self.imageView = nil;
     self.textView = nil;
-    self.cameraButton = nil;
-    self.photoLibraryButton = nil;
-    self.playButton = nil;
     [super dealloc];
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    [self.audioRecorder addViewToViewController:self.mainViewController];
-    [self.audioPlayer addViewToViewController:self.mainViewController];
-    self.cameraButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
-    self.photoLibraryButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
+    [super viewDidLoad];    
     self.imagePicker = [[[UIImagePickerController alloc] init] autorelease];
     self.imagePicker.allowsEditing = YES;
     self.imagePicker.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     self.imagePicker.delegate = self;
+    self.cameraButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+    self.photoLibraryButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
     if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         self.popoverController = [[[UIPopoverController alloc] initWithContentViewController:self.imagePicker] autorelease];
-    }
-    if(self.splitViewController == nil) {
-        self.toolbarItems = self.toolbar.items;        
-    }
-    else {
-        CGRect theBounds = self.view.bounds;
-        CGRect theFrame = self.toolbar.frame;
-        CGFloat theHeight = CGRectGetHeight(theFrame);
-        
-        theFrame.size.width = CGRectGetWidth(theBounds);
-        theFrame.origin.y = CGRectGetHeight(theBounds) - theHeight;
-        self.toolbar.frame = theFrame;
-        [self.view addSubview:self.toolbar];
-        theFrame = theBounds;
-        theFrame.size.height = CGRectGetHeight(theBounds) - theHeight;
     }
 }
 
 - (void)viewDidUnload {
-    self.toolbarItems = nil;
     self.toolbar = nil;
     self.imagePicker = nil;
+    self.cameraButton = nil;
+    self.photoLibraryButton = nil;
+    self.playButton = nil;
+    self.recordButton = nil;
     self.audioRecorder = nil;
     self.audioPlayer = nil;
     self.popoverController = nil;
     self.imageView = nil;
     self.textView = nil;
-    self.cameraButton = nil;
-    self.photoLibraryButton = nil;
-    self.playButton = nil;
     [super viewDidUnload];
-}
-
-- (void)setupNavigationController {
-    UINavigationController *theController = self.navigationController;
-    
-    if(theController != self.parentViewController) {
-        [theController.toolbar setItems:self.toolbarItems animated:NO];
-    }    
 }
 
 - (void)viewWillAppear:(BOOL)inAnimated {
     [super viewWillAppear:inAnimated];
-    [self.navigationController setToolbarHidden:NO animated:YES];
+    id theController = self.rootController;
+
+    [self.audioRecorder addViewToViewController:theController];
+    [self.audioPlayer addViewToViewController:theController];
     [self applyItem];
 }
 
@@ -114,7 +99,10 @@
     [super viewDidAppear:inAnimated];
     NSNotificationCenter *theCenter = [NSNotificationCenter defaultCenter];
     
-    [self setupNavigationController];
+    [theCenter addObserver:self 
+                  selector:@selector(managedObjectContextDidSave:) 
+                      name:NSManagedObjectContextDidSaveNotification 
+                    object:nil];
     [theCenter addObserver:self 
                   selector:@selector(keyboardWillAppear:) 
                       name:UIKeyboardWillShowNotification 
@@ -123,20 +111,49 @@
                   selector:@selector(keyboardWillDisappear:) 
                       name:UIKeyboardWillHideNotification 
                     object:nil];
+    [self updateOverviewButton];
 }
 
 - (void)viewWillDisappear:(BOOL)inAnimated {
     NSNotificationCenter *theCenter = [NSNotificationCenter defaultCenter];
     
-    self.imageView.image = nil;
     [theCenter removeObserver:theCenter];
+    self.imageView.image = nil;
     self.audioPlayer.visible = NO;
     self.audioRecorder.visible = NO;
+    [self.audioPlayer removeView];
+    [self.audioRecorder removeView];
     [super viewWillDisappear:inAnimated];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)inOrientation {
     return YES;
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)inInterfaceOrientation {
+    [super didRotateFromInterfaceOrientation:inInterfaceOrientation];
+    [self updateOverviewButton];
+}
+
+- (void)updateOverviewButton {
+    PhotoDiaryAppDelegate *theDelegate = (PhotoDiaryAppDelegate *)[[UIApplication sharedApplication] delegate];
+    UIBarButtonItem *theButton = theDelegate.overviewButton;
+    NSMutableArray *theItems = [self.toolbar.items mutableCopy];
+    id theItem = [theItems objectAtIndex:0];
+    
+    if(theButton == nil && [theItem tag] == kOverviewButtonTag) {
+        [theItems removeObjectAtIndex:0];
+    }
+    else if(theButton != nil && [theItem tag] != kOverviewButtonTag) {
+        theItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Overview", @"Overview button") 
+                                                   style:UIBarButtonItemStyleDone 
+                                                  target:self 
+                                                  action:@selector(showOverview:)];
+        [theItem setTag:kOverviewButtonTag];
+        [theItems insertObject:theItem atIndex:0];
+        [theItem release];
+    }
+    [self.toolbar setItems:theItems animated:YES];
 }
 
 - (void)keyboardWillAppear:(NSNotification *)inNotification {
@@ -159,7 +176,8 @@
     [UIView commitAnimations];
 }
 
-- (void)showPickerWithSourceType:(UIImagePickerControllerSourceType)inSourceType barButtonItem:(UIBarButtonItem *)inItem {
+- (void)showPickerWithSourceType:(UIImagePickerControllerSourceType)inSourceType 
+                   barButtonItem:(UIBarButtonItem *)inItem {
     if([UIImagePickerController isSourceTypeAvailable:inSourceType]) {
         self.imagePicker.sourceType = inSourceType;
         if(self.popoverController == nil) {
@@ -194,21 +212,9 @@
                                                   inManagedObjectContext:self.managedObjectContext];
     }
     else {
-        self.item = inDiaryEntry;
+        self.item = (DiaryEntry *)[self.managedObjectContext objectWithID:inDiaryEntry.objectID];
     }
-}
-
-- (void)setItem:(DiaryEntry *)inItem {
-    if(item != inItem) {
-        [item release];
-        if(inItem.managedObjectContext == self.managedObjectContext) {
-            item = [inItem retain];
-        }
-        else if(inItem != nil){
-            item = [[self.managedObjectContext objectWithID:inItem.objectID] retain];
-        }
-        [self applyItem];
-    }
+    [self applyItem];
 }
 
 - (void)applyItem {
@@ -237,10 +243,13 @@
     return theResult;
 }
 
-- (UIViewController *)mainViewController {
-    UIViewController *theController = self.navigationController;
+- (UIViewController *)rootController {
+    UIViewController *theController = self;
     
-    return theController == nil ? self.splitViewController : theController;
+    while(theController.parentViewController) {
+        theController = theController.parentViewController;
+    }
+    return theController;
 }
 
 - (IBAction)takePhoto:(id)inSender {
@@ -301,6 +310,29 @@
     if(self.popoverController == nil) {
         [inPicker dismissModalViewControllerAnimated:YES];
     }    
+}
+
+- (void)managedObjectContextDidSave:(NSNotification *)inNotification {
+    NSDictionary *theInfo = inNotification.userInfo;
+    NSArray *theIds = [[theInfo objectForKey:NSDeletedObjectsKey] valueForKey:@"objectID"];
+    
+    if([theIds containsObject:self.item.objectID]) {
+        [self.managedObjectContext rollback];
+        self.diaryEntry = nil;
+    }
+    else {
+        [self.managedObjectContext rollback];
+        self.diaryEntry = self.item;
+    }
+}
+
+- (IBAction)showOverview:(id)inButton {
+    PhotoDiaryAppDelegate *theDelegate = (PhotoDiaryAppDelegate *)[[UIApplication sharedApplication] delegate];
+    UIPopoverController *theController = theDelegate.popoverController;
+    
+    [theController presentPopoverFromBarButtonItem:inButton 
+                          permittedArrowDirections:UIPopoverArrowDirectionAny 
+                                          animated:YES];
 }
 
 #pragma mark UIImagePickerControllerDelegate

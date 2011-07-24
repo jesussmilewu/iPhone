@@ -5,6 +5,7 @@
 <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
 #endif
 
+- (void)setupPageViewControllerWithViewController:(UIViewController *)inViewController;
 - (ItemViewController *)itemViewControllerWithIndexPath:(NSIndexPath *)inIndexPath;
 - (void)displayItemAtIndexPath:(NSIndexPath *)inIndexPath;
 

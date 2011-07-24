@@ -12,7 +12,7 @@
 @implementation PhotoDiaryAppDelegate
 
 @synthesize window;
-@synthesize toolbar;
+@synthesize overviewButton;
 @synthesize viewController;
 @synthesize managedObjectContext;
 
@@ -27,7 +27,7 @@
     self.managedObjectModel = nil;
     self.storeCoordinator = nil;
     self.popoverController = nil;
-    self.toolbar = nil;
+    self.overviewButton = nil;
     [super dealloc];
 }
 
@@ -91,24 +91,15 @@
      willHideViewController:(UIViewController *)inViewController 
           withBarButtonItem:(UIBarButtonItem *)inBarButtonItem 
        forPopoverController:(UIPopoverController *)inPopoverController {
-    NSMutableArray *theItems = [[self.toolbar items] mutableCopy];
-
-    inBarButtonItem.title = NSLocalizedString(@"Overview", @"Overview button");
-    [theItems insertObject:inBarButtonItem atIndex:0];
-    [self.toolbar setItems:theItems animated:YES];
-    [theItems release];
     self.popoverController = inPopoverController;
+    self.overviewButton = inBarButtonItem;
 }
 
 - (void)splitViewController:(UISplitViewController *)inSplitViewController 
      willShowViewController:(UIViewController *)inViewController 
   invalidatingBarButtonItem:(UIBarButtonItem *)inBarButtonItem {
-    NSMutableArray *theItems = [[self.toolbar items] mutableCopy];
-    
-    [theItems removeObjectAtIndex:0];
-    [self.toolbar setItems:theItems animated:YES];
-    [theItems release];
     self.popoverController = nil;
+    self.overviewButton = nil;
 }
 
 @end
