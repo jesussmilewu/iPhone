@@ -207,7 +207,7 @@
 
 - (IBAction)saveText:(id)inSender {
     [self.view endEditing:YES];
-    [self.item setValue:self.textView.text forKey:@"text"];
+    self.item.text = self.textView.text;
 }
 
 - (IBAction)revertText:(id)inSender {

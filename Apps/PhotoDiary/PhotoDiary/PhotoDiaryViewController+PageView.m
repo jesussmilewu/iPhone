@@ -27,6 +27,7 @@
         [self pushItemAtIndexPath:inIndexPath];
     }
     else {
+        ItemViewController *theItemController = self.itemViewController;    
         UIPageViewController *theController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
         
         theItemController = [self itemViewControllerWithIndexPath:inIndexPath];

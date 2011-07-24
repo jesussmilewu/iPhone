@@ -44,11 +44,11 @@
 
 - (NSFetchRequest *)fetchRequest {
     NSFetchRequest *theFetch = [[NSFetchRequest alloc] init];
-    NSEntityDescription *theEntity = [NSEntityDescription entityForName:@"DiaryEntry" 
-                                                 inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *theType = [NSEntityDescription entityForName:@"DiaryEntry" 
+                                               inManagedObjectContext:self.managedObjectContext];
     NSSortDescriptor *theDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"creationTime" ascending:NO];
     
-    theFetch.entity = theEntity;
+    theFetch.entity = theType;
     theFetch.sortDescriptors = [NSArray arrayWithObject:theDescriptor];
     return theFetch;
 }
@@ -64,7 +64,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSNotificationCenter *theCenter = [NSNotificationCenter defaultCenter];
-    NSFetchedResultsController *theController = [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    NSFetchedResultsController *theController = [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
     NSError *theError = nil;
     
     theController.delegate = self;
