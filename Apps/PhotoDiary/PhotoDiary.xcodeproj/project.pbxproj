@@ -269,6 +269,9 @@
 /* Begin PBXProject section */
 		AB11CA6012E1B47600F99C7B /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = AB11CA6312E1B47600F99C7B /* Build configuration list for PBXProject "PhotoDiary" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;

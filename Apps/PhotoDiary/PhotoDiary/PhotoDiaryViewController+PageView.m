@@ -86,7 +86,8 @@
             [self.navigationController pushViewController:thePageController animated:YES];
         }
         else {
-            [thePageController setViewControllers:[NSArray arrayWithObject:theController] 
+            NSArray *theControllers = [NSArray arrayWithObject:theController];
+            [thePageController setViewControllers:theControllers 
                                         direction:UIPageViewControllerNavigationDirectionForward
                                          animated:NO 
                                        completion:NULL];
