@@ -80,7 +80,6 @@
 		AB9F827312F09C4A002492BC = {
 			isa = PBXGroup;
 			children = (
-				AB1BF98A12F2C878002BB9AC /* AudioToolbox.framework */,
 				AB9F828812F09C4A002492BC /* AlarmClock */,
 				AB9F828112F09C4A002492BC /* Frameworks */,
 				AB9F827F12F09C4A002492BC /* Products */,
@@ -98,6 +97,7 @@
 		AB9F828112F09C4A002492BC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AB1BF98A12F2C878002BB9AC /* AudioToolbox.framework */,
 				AB9F82AE12F09DBA002492BC /* AudioToolbox.framework */,
 				AB9F828212F09C4A002492BC /* UIKit.framework */,
 				AB9F828412F09C4A002492BC /* Foundation.framework */,

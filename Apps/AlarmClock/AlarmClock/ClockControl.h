@@ -1,9 +1,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface ClockControl : UIControl {
-	@private
-}
+@interface ClockControl : UIControl
 
 @property (nonatomic) NSTimeInterval time;
 @property (nonatomic) CGFloat angle;

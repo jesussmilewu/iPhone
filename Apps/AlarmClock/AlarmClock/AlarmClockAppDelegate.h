@@ -2,10 +2,7 @@
 
 @class AlarmClockViewController;
 
-@interface AlarmClockAppDelegate : NSObject <UIApplicationDelegate> {
-    UIWindow *window;
-    AlarmClockViewController *viewController;
-}
+@interface AlarmClockAppDelegate : NSObject <UIApplicationDelegate>
 
 @property (nonatomic, retain) NSNumber *soundId;
 @property (nonatomic, retain) IBOutlet UIWindow *window;
