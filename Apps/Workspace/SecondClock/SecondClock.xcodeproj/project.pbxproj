@@ -16,12 +16,6 @@
 		ABA510E113F308F9000B0CA8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABA510DF13F308F9000B0CA8 /* MainStoryboard.storyboard */; };
 		ABA510E413F308F9000B0CA8 /* SecondClockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA510E313F308F9000B0CA8 /* SecondClockViewController.m */; };
 		ABA5110313F3131F000B0CA8 /* libClockFramework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABA5110213F30FF3000B0CA8 /* libClockFramework.a */; };
-		ABD515891400059F00B2E722 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABA510CD13F308F9000B0CA8 /* UIKit.framework */; };
-		ABD5158A1400059F00B2E722 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABA510CF13F308F9000B0CA8 /* Foundation.framework */; };
-		ABD5158B1400059F00B2E722 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABA510D113F308F9000B0CA8 /* CoreGraphics.framework */; };
-		ABD515911400059F00B2E722 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ABD5158F1400059F00B2E722 /* InfoPlist.strings */; };
-		ABD515931400059F00B2E722 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD515921400059F00B2E722 /* main.m */; };
-		ABD515971400059F00B2E722 /* BlackClockAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD515961400059F00B2E722 /* BlackClockAppDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,12 +44,11 @@
 		ABA510E313F308F9000B0CA8 /* SecondClockViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondClockViewController.m; sourceTree = "<group>"; };
 		ABA510FD13F30FF3000B0CA8 /* ClockFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ClockFramework.xcodeproj; path = ../ClockFramework/ClockFramework.xcodeproj; sourceTree = "<group>"; };
 		ABD5158213FFF01E00B2E722 /* ClockFramework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClockFramework.xcconfig; path = ../ClockFramework.xcconfig; sourceTree = "<group>"; };
-		ABD515871400059F00B2E722 /* BlackClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlackClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		ABD5158E1400059F00B2E722 /* BlackClock-Info.plist */ = {isa = PBXFileReference; path = "BlackClock-Info.plist"; sourceTree = "<group>"; };
+		ABD5158E1400059F00B2E722 /* BlackClock-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BlackClock-Info.plist"; sourceTree = "<group>"; };
 		ABD515901400059F00B2E722 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		ABD515921400059F00B2E722 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		ABD515941400059F00B2E722 /* BlackClock-Prefix.pch */ = {isa = PBXFileReference; path = "BlackClock-Prefix.pch"; sourceTree = "<group>"; };
-		ABD515951400059F00B2E722 /* BlackClockAppDelegate.h */ = {isa = PBXFileReference; path = BlackClockAppDelegate.h; sourceTree = "<group>"; };
+		ABD515941400059F00B2E722 /* BlackClock-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BlackClock-Prefix.pch"; sourceTree = "<group>"; };
+		ABD515951400059F00B2E722 /* BlackClockAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlackClockAppDelegate.h; sourceTree = "<group>"; };
 		ABD515961400059F00B2E722 /* BlackClockAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlackClockAppDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,16 +61,6 @@
 				ABA510CE13F308F9000B0CA8 /* UIKit.framework in Frameworks */,
 				ABA510D013F308F9000B0CA8 /* Foundation.framework in Frameworks */,
 				ABA510D213F308F9000B0CA8 /* CoreGraphics.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ABD515841400059F00B2E722 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				ABD515891400059F00B2E722 /* UIKit.framework in Frameworks */,
-				ABD5158A1400059F00B2E722 /* Foundation.framework in Frameworks */,
-				ABD5158B1400059F00B2E722 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,7 +83,6 @@
 			isa = PBXGroup;
 			children = (
 				ABA510C913F308F9000B0CA8 /* SecondClock.app */,
-				ABD515871400059F00B2E722 /* BlackClock.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -188,23 +170,6 @@
 			productReference = ABA510C913F308F9000B0CA8 /* SecondClock.app */;
 			productType = "com.apple.product-type.application";
 		};
-		ABD515861400059F00B2E722 /* BlackClock */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = ABD515981400059F00B2E722 /* Build configuration list for PBXNativeTarget "BlackClock" */;
-			buildPhases = (
-				ABD515831400059F00B2E722 /* Sources */,
-				ABD515841400059F00B2E722 /* Frameworks */,
-				ABD515851400059F00B2E722 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = BlackClock;
-			productName = BlackClock;
-			productReference = ABD515871400059F00B2E722 /* BlackClock.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -232,7 +197,6 @@
 			projectRoot = "";
 			targets = (
 				ABA510C813F308F9000B0CA8 /* SecondClock */,
-				ABD515861400059F00B2E722 /* BlackClock */,
 			);
 		};
 /* End PBXProject section */
@@ -257,14 +221,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ABD515851400059F00B2E722 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				ABD515911400059F00B2E722 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -275,15 +231,6 @@
 				ABA510DA13F308F9000B0CA8 /* main.m in Sources */,
 				ABA510DE13F308F9000B0CA8 /* SecondClockAppDelegate.m in Sources */,
 				ABA510E413F308F9000B0CA8 /* SecondClockViewController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ABD515831400059F00B2E722 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				ABD515931400059F00B2E722 /* main.m in Sources */,
-				ABD515971400059F00B2E722 /* BlackClockAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,30 +333,6 @@
 			};
 			name = Release;
 		};
-		ABD515991400059F00B2E722 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BlackClock/BlackClock-Prefix.pch";
-				INFOPLIST_FILE = "BlackClock/BlackClock-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		ABD5159A1400059F00B2E722 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BlackClock/BlackClock-Prefix.pch";
-				INFOPLIST_FILE = "BlackClock/BlackClock-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -430,14 +353,6 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
-		};
-		ABD515981400059F00B2E722 /* Build configuration list for PBXNativeTarget "BlackClock" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				ABD515991400059F00B2E722 /* Debug */,
-				ABD5159A1400059F00B2E722 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

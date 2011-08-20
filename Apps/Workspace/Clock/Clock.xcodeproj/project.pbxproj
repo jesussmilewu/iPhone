@@ -16,13 +16,13 @@
 		AB9F82E612F0B03E002492BC /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB9F82E412F0B03E002492BC /* MainWindow.xib */; };
 		AB9F82E912F0B03E002492BC /* ClockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB9F82E812F0B03E002492BC /* ClockViewController.m */; };
 		AB9F82EC12F0B03E002492BC /* ClockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB9F82EA12F0B03E002492BC /* ClockViewController.xib */; };
-		AB9F82F412F0B3BC002492BC /* ClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB9F82F312F0B3BC002492BC /* ClockView.m */; };
+		ABD5158113FFE77C00B2E722 /* ClockFramework.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ABD5158013FFE77C00B2E722 /* ClockFramework.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		AB469A6D13F059D800FC4A91 /* PBXContainerItemProxy */ = {
+		AB00140B13FFE13A004FD9D2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = AB469A6913F059D700FC4A91 /* ClockFramework.xcodeproj */;
+			containerPortal = ABA510F113F30E67000B0CA8 /* ClockFramework.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = AB469A5913F059D700FC4A91;
 			remoteInfo = ClockFramework;
@@ -30,7 +30,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AB469A6913F059D700FC4A91 /* ClockFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ClockFramework.xcodeproj; path = ClockFramework/ClockFramework.xcodeproj; sourceTree = "<group>"; };
 		AB9F82CE12F0B03E002492BC /* Clock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB9F82D212F0B03E002492BC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AB9F82D412F0B03E002492BC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -45,8 +44,8 @@
 		AB9F82E712F0B03E002492BC /* ClockViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClockViewController.h; sourceTree = "<group>"; };
 		AB9F82E812F0B03E002492BC /* ClockViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClockViewController.m; sourceTree = "<group>"; };
 		AB9F82EB12F0B03E002492BC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ClockViewController.xib; sourceTree = "<group>"; };
-		AB9F82F212F0B3BC002492BC /* ClockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClockView.h; sourceTree = "<group>"; };
-		AB9F82F312F0B3BC002492BC /* ClockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClockView.m; sourceTree = "<group>"; };
+		ABA510F113F30E67000B0CA8 /* ClockFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ClockFramework.xcodeproj; path = ../ClockFramework/ClockFramework.xcodeproj; sourceTree = "<group>"; };
+		ABD5158013FFE77C00B2E722 /* ClockFramework.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = ClockFramework.xcconfig; path = ../ClockFramework.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,10 +62,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AB469A6A13F059D700FC4A91 /* Products */ = {
+		AB00140813FFE13A004FD9D2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AB469A6E13F059D800FC4A91 /* libClockFramework.a */,
+				AB00140C13FFE13A004FD9D2 /* libClockFramework.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -74,7 +73,8 @@
 		AB9F82C312F0B03E002492BC = {
 			isa = PBXGroup;
 			children = (
-				AB469A6913F059D700FC4A91 /* ClockFramework.xcodeproj */,
+				ABD5158013FFE77C00B2E722 /* ClockFramework.xcconfig */,
+				ABA510F113F30E67000B0CA8 /* ClockFramework.xcodeproj */,
 				AB9F82D812F0B03E002492BC /* Clock */,
 				AB9F82D112F0B03E002492BC /* Frameworks */,
 				AB9F82CF12F0B03E002492BC /* Products */,
@@ -102,8 +102,6 @@
 		AB9F82D812F0B03E002492BC /* Clock */ = {
 			isa = PBXGroup;
 			children = (
-				AB9F82F212F0B3BC002492BC /* ClockView.h */,
-				AB9F82F312F0B3BC002492BC /* ClockView.m */,
 				AB9F82E112F0B03E002492BC /* ClockAppDelegate.h */,
 				AB9F82E212F0B03E002492BC /* ClockAppDelegate.m */,
 				AB9F82E412F0B03E002492BC /* MainWindow.xib */,
@@ -166,8 +164,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = AB469A6A13F059D700FC4A91 /* Products */;
-					ProjectRef = AB469A6913F059D700FC4A91 /* ClockFramework.xcodeproj */;
+					ProductGroup = AB00140813FFE13A004FD9D2 /* Products */;
+					ProjectRef = ABA510F113F30E67000B0CA8 /* ClockFramework.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -178,11 +176,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		AB469A6E13F059D800FC4A91 /* libClockFramework.a */ = {
+		AB00140C13FFE13A004FD9D2 /* libClockFramework.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libClockFramework.a;
-			remoteRef = AB469A6D13F059D800FC4A91 /* PBXContainerItemProxy */;
+			remoteRef = AB00140B13FFE13A004FD9D2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -195,6 +193,7 @@
 				AB9F82DD12F0B03E002492BC /* InfoPlist.strings in Resources */,
 				AB9F82E612F0B03E002492BC /* MainWindow.xib in Resources */,
 				AB9F82EC12F0B03E002492BC /* ClockViewController.xib in Resources */,
+				ABD5158113FFE77C00B2E722 /* ClockFramework.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,7 +207,6 @@
 				AB9F82E012F0B03E002492BC /* main.m in Sources */,
 				AB9F82E312F0B03E002492BC /* ClockAppDelegate.m in Sources */,
 				AB9F82E912F0B03E002492BC /* ClockViewController.m in Sources */,
-				AB9F82F412F0B3BC002492BC /* ClockView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,6 +242,7 @@
 /* Begin XCBuildConfiguration section */
 		AB9F82ED12F0B03E002492BC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ABD5158013FFE77C00B2E722 /* ClockFramework.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -259,6 +258,7 @@
 		};
 		AB9F82EE12F0B03E002492BC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ABD5158013FFE77C00B2E722 /* ClockFramework.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -280,6 +280,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Clock/Clock-Prefix.pch";
 				INFOPLIST_FILE = "Clock/Clock-Info.plist";
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -293,6 +294,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Clock/Clock-Prefix.pch";
 				INFOPLIST_FILE = "Clock/Clock-Info.plist";
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

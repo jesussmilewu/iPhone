@@ -114,6 +114,7 @@
     }
     [self drawClockHands];
     CGContextRestoreGState(theContext);
+    DEBUG_LOG(@"time = %@", self.time);
 }
 
 - (void)startAnimation {

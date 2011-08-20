@@ -1,8 +1,6 @@
 #import <UIKit/UIKit.h>
 
-@interface ClockViewController : UIViewController {
-	@private
-}
+@interface ClockViewController : UIViewController
 
 @end
 
