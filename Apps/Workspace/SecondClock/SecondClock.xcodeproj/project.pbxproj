@@ -44,12 +44,6 @@
 		ABA510E313F308F9000B0CA8 /* SecondClockViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondClockViewController.m; sourceTree = "<group>"; };
 		ABA510FD13F30FF3000B0CA8 /* ClockFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ClockFramework.xcodeproj; path = ../ClockFramework/ClockFramework.xcodeproj; sourceTree = "<group>"; };
 		ABD5158213FFF01E00B2E722 /* ClockFramework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClockFramework.xcconfig; path = ../ClockFramework.xcconfig; sourceTree = "<group>"; };
-		ABD5158E1400059F00B2E722 /* BlackClock-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BlackClock-Info.plist"; sourceTree = "<group>"; };
-		ABD515901400059F00B2E722 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		ABD515921400059F00B2E722 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		ABD515941400059F00B2E722 /* BlackClock-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BlackClock-Prefix.pch"; sourceTree = "<group>"; };
-		ABD515951400059F00B2E722 /* BlackClockAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlackClockAppDelegate.h; sourceTree = "<group>"; };
-		ABD515961400059F00B2E722 /* BlackClockAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlackClockAppDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +67,6 @@
 				ABD5158213FFF01E00B2E722 /* ClockFramework.xcconfig */,
 				ABA510FD13F30FF3000B0CA8 /* ClockFramework.xcodeproj */,
 				ABA510D313F308F9000B0CA8 /* SecondClock */,
-				ABD5158C1400059F00B2E722 /* BlackClock */,
 				ABA510CC13F308F9000B0CA8 /* Frameworks */,
 				ABA510CA13F308F9000B0CA8 /* Products */,
 			);
@@ -127,27 +120,6 @@
 				ABA5110213F30FF3000B0CA8 /* libClockFramework.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		ABD5158C1400059F00B2E722 /* BlackClock */ = {
-			isa = PBXGroup;
-			children = (
-				ABD515951400059F00B2E722 /* BlackClockAppDelegate.h */,
-				ABD515961400059F00B2E722 /* BlackClockAppDelegate.m */,
-				ABD5158D1400059F00B2E722 /* Supporting Files */,
-			);
-			path = BlackClock;
-			sourceTree = "<group>";
-		};
-		ABD5158D1400059F00B2E722 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				ABD5158E1400059F00B2E722 /* BlackClock-Info.plist */,
-				ABD5158F1400059F00B2E722 /* InfoPlist.strings */,
-				ABD515921400059F00B2E722 /* main.m */,
-				ABD515941400059F00B2E722 /* BlackClock-Prefix.pch */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,14 +223,6 @@
 				ABA510E013F308F9000B0CA8 /* en */,
 			);
 			name = MainStoryboard.storyboard;
-			sourceTree = "<group>";
-		};
-		ABD5158F1400059F00B2E722 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ABD515901400059F00B2E722 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
