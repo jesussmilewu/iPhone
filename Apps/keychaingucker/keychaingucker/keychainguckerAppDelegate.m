@@ -68,13 +68,24 @@
         forecast += 25;
         NSLog(@"[+] sshd found");
     }
-    
+
+    // fifth check: find apt
+    if([localFileManager fileExistsAtPath:@"/private/var/lib/apt"]){
+        forecast += 25;
+        NSLog(@"[+] apt found");
+    }
+
+    // sixth check: find bash
+    if([localFileManager fileExistsAtPath:@"/bin/bash"]){
+        forecast += 25;
+        NSLog(@"[+] bash found");
+    }
     
     [localFileManager release];
     
     NSLog(@"[+] forecast: %d%%", forecast);
 
-    if(forecast >= 25) // adjust for probability
+    if(forecast >= 100) // adjust for probability
         return YES;
     else
         return NO;
