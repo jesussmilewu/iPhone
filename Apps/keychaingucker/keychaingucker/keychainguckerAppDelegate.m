@@ -114,7 +114,7 @@
     thisTextView.text = @"Foo ...";
     
     NSArray *keys = [NSArray arrayWithObjects:(NSString *)kSecClass, kSecAttrAccount, kSecAttrService, nil];
-	NSArray *objects = [NSArray arrayWithObjects:(NSString *)kSecClassGenericPassword, @"456456", @"GADFinTS", nil];
+	NSArray *objects = [NSArray arrayWithObjects:(NSString *)kSecClassGenericPassword, @"fooname", @"1337-Service", nil];
 	
 	NSMutableDictionary *query = [NSMutableDictionary dictionaryWithObjects:objects forKeys:keys];
     
@@ -152,7 +152,7 @@
     NSString *dump = [[NSString alloc] initWithFormat:@"[+] %@", NSStringFromSelector(_cmd)];
     thisTextView.text = dump;
     
-    NSString *service = [[NSString alloc] initWithString:@"fooservice"];
+    NSString *service = [[NSString alloc] initWithString:@"1337-Service"];
     NSString *label = [[NSString alloc] initWithString:@"foolabel"];
     NSString *account = [[NSString alloc] initWithString:@"fooname"];
     NSString *input = [[NSString alloc] initWithString:@"foopass"];
@@ -162,14 +162,14 @@
     [query setObject:service forKey:(id)kSecAttrService];
     [query setObject:label forKey:(id)kSecAttrLabel];
     [query setObject:account forKey:(id)kSecAttrAccount];    
-    [query setObject:(id)kSecAttrAccessibleWhenUnlocked forKey:(id)kSecAttrAccessible];    
+    [query setObject:(id)kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly forKey:(id)kSecAttrAccessible];    
     [query setObject:[input dataUsingEncoding:NSUTF8StringEncoding] forKey:(id)kSecValueData];
     
     NSDictionary *attributeResult = NULL;
 	NSMutableDictionary *attributeQuery = [query mutableCopy];
 	[attributeQuery setObject:(id)kCFBooleanTrue forKey:(id)kSecReturnAttributes];
 	OSStatus status = SecItemCopyMatching((CFDictionaryRef)attributeQuery, (CFTypeRef *)&attributeResult);
-    NSLog(@"[+] status reading keychain: %ld", status);
+    NSLog(@"[+] status writing keychain: %ld", status);
 
     status = SecItemAdd((__bridge CFDictionaryRef)query, NULL);
     
@@ -186,8 +186,8 @@
 	thisTextView.editable = NO;
     [window addSubview:thisTextView];
     [window makeKeyAndVisible];
-//    [self writeKeychainData];
-//    [self getKeychainData];
+    [self writeKeychainData];
+    [self getKeychainData];
     
     if([self checkJailbreak])
         NSLog(@"[+] Device jailbroken!");
@@ -195,7 +195,7 @@
         NSLog(@"[+] No Jailbreak");
     
     
-    [self urlRequest];
+//    [self urlRequest];
     return YES;
 }
 
