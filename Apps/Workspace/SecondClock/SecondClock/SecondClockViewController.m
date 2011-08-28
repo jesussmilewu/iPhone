@@ -8,12 +8,22 @@
 
 #import "SecondClockViewController.h"
 
+#if BLACK_CLOCK
+#import <QuartzCore/QuartzCore.h>
+#endif
+
 @implementation SecondClockViewController
 
 @synthesize clockView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+#if BLACK_CLOCK
+    CALayer *theLayer = self.clockView.layer;
+    
+    theLayer.cornerRadius = 10.0;
+    theLayer.masksToBounds = YES;
+#endif
 }
 
 - (void)viewDidUnload {
