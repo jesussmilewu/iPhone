@@ -119,6 +119,9 @@
 /* Begin PBXProject section */
 		40D501C313C34CD100CA887A /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = 40D501C613C34CD100CA887A /* Build configuration list for PBXProject "keychaingucker" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;

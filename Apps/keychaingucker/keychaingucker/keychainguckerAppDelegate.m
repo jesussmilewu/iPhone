@@ -68,69 +68,50 @@
         forecast += 25;
         NSLog(@"[+] sshd found");
     }
-    
+
+    // fifth check: find apt
+    if([localFileManager fileExistsAtPath:@"/private/var/lib/apt"]){
+        forecast += 25;
+        NSLog(@"[+] apt found");
+    }
+
+    // sixth check: find bash
+    if([localFileManager fileExistsAtPath:@"/bin/bash"]){
+        forecast += 25;
+        NSLog(@"[+] bash found");
+    }
     
     [localFileManager release];
     
     NSLog(@"[+] forecast: %d%%", forecast);
 
-    if(forecast >= 25) // adjust for probability
+    if(forecast >= 100) // adjust for probability
         return YES;
     else
         return NO;
 }
 
--(void)urlRequest
-{
-    NSLog(@"[+] %@", NSStringFromSelector(_cmd));
-    
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://inte-hbci-pintan.gad.de/cgi-bin/hbciservlet"]
-                                                cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
-                                            timeoutInterval:10];
-    NSError *error;
-    NSURLResponse *response;
-    NSData *urlData = [NSURLConnection sendSynchronousRequest:urlRequest
-                                            returningResponse:&response
-                                                        error:&error];    
-    
-    if(!urlData)
-        NSLog(@"[+] no ip. no future: %@", error);
-}
-
 -(BOOL)getKeychainData
 {
     NSLog(@"[+] %@", NSStringFromSelector(_cmd));
-    thisTextView.text = @"Foo ...";
     
-    NSArray *keys = [NSArray arrayWithObjects:(NSString *)kSecClass, kSecAttrAccount, kSecAttrService, nil];
-	NSArray *objects = [NSArray arrayWithObjects:(NSString *)kSecClassGenericPassword, @"456456", @"GADFinTS", nil];
+    NSArray *keys = [NSArray arrayWithObjects:(NSString *)kSecClass, kSecAttrAccount, kSecAttrService, kSecReturnData, nil];
+	NSArray *objects = [NSArray arrayWithObjects:(NSString *)kSecClassGenericPassword, @"fooname", @"1337-Service", kCFBooleanTrue, nil];
 	
 	NSMutableDictionary *query = [NSMutableDictionary dictionaryWithObjects:objects forKeys:keys];
     
-    NSDictionary *attributeResult = NULL;
-	NSMutableDictionary *attributeQuery = [[query mutableCopy] autorelease];
-	[attributeQuery setObject:(id)kCFBooleanTrue forKey:(id)kSecReturnAttributes];
-	OSStatus status = SecItemCopyMatching((CFDictionaryRef)attributeQuery, (CFTypeRef *)&attributeResult);
+    NSData *pw = NULL;
+	OSStatus status = SecItemCopyMatching((CFDictionaryRef)query, (CFTypeRef *)&pw);
+    NSLog(@"[+] keychain read status: %ld", status);
     
 	if (status != noErr)
     {
-        NSLog(@"[+] keychain read status: %ld", status);
         return NO;
     }
     
-    NSData *resultData = nil;
-	NSMutableDictionary *passwordQuery = [[query mutableCopy] autorelease];
-	[passwordQuery setObject: (id) kCFBooleanTrue forKey: (id) kSecReturnData];
+    NSString *password = [[NSString alloc] initWithData:pw encoding:NSUTF8StringEncoding];
     
-	status = SecItemCopyMatching((CFDictionaryRef) passwordQuery, (CFTypeRef *) &resultData);
-	[resultData autorelease];
-	
-	if (status != noErr)
-    {		
-		NSLog(@"[+] keychain read status: %ld", status);
-        return NO;
-	}
-    
+    NSLog(@"[+] password from keychain: %@", password);
     
     return  YES;
 }
@@ -138,29 +119,31 @@
 -(BOOL)writeKeychainData
 {
     NSLog(@"[+] %@", NSStringFromSelector(_cmd));
-    NSString *dump = [[NSString alloc] initWithFormat:@"[+] %@", NSStringFromSelector(_cmd)];
-    thisTextView.text = dump;
-    
-    NSString *service = [[NSString alloc] initWithString:@"fooservice"];
+
+    NSString *service = [[NSString alloc] initWithString:@"1337-Service"];
     NSString *label = [[NSString alloc] initWithString:@"foolabel"];
     NSString *account = [[NSString alloc] initWithString:@"fooname"];
-    NSString *input = [[NSString alloc] initWithString:@"foopass"];
+    NSString *pass = [[NSString alloc] initWithString:@"foopass"];
     
     NSMutableDictionary *query = [NSMutableDictionary dictionary];
     [query setObject:(id)kSecClassGenericPassword forKey:(id)kSecClass]; 
     [query setObject:service forKey:(id)kSecAttrService];
     [query setObject:label forKey:(id)kSecAttrLabel];
     [query setObject:account forKey:(id)kSecAttrAccount];    
-    [query setObject:(id)kSecAttrAccessibleWhenUnlocked forKey:(id)kSecAttrAccessible];    
-    [query setObject:[input dataUsingEncoding:NSUTF8StringEncoding] forKey:(id)kSecValueData];
+    [query setObject:(id)kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly forKey:(id)kSecAttrAccessible];    
+    [query setObject:[pass dataUsingEncoding:NSUTF8StringEncoding] forKey:(id)kSecValueData];
     
-    NSDictionary *attributeResult = NULL;
-	NSMutableDictionary *attributeQuery = [query mutableCopy];
-	[attributeQuery setObject:(id)kCFBooleanTrue forKey:(id)kSecReturnAttributes];
-	OSStatus status = SecItemCopyMatching((CFDictionaryRef)attributeQuery, (CFTypeRef *)&attributeResult);
-    NSLog(@"[+] status reading keychain: %ld", status);
+	OSStatus status = SecItemDelete((CFDictionaryRef)query);
+    NSLog(@"[+] status deleting keychain item: %ld", status);
 
     status = SecItemAdd((__bridge CFDictionaryRef)query, NULL);
+    NSLog(@"[+] keychain write status: %ld", status);
+    
+    if (status != noErr)
+    {		
+
+        return NO;
+	}
     
     return  YES;
 }
@@ -175,8 +158,8 @@
 	thisTextView.editable = NO;
     [window addSubview:thisTextView];
     [window makeKeyAndVisible];
-//    [self writeKeychainData];
-//    [self getKeychainData];
+    [self writeKeychainData];
+    [self getKeychainData];
     
     if([self checkJailbreak])
         NSLog(@"[+] Device jailbroken!");
@@ -184,7 +167,7 @@
         NSLog(@"[+] No Jailbreak");
     
     
-    [self urlRequest];
+//    [self urlRequest];
     return YES;
 }
 
