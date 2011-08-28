@@ -6,6 +6,7 @@
 #import "UIImage+ImageTools.h"
 #import "AudioPlayerController.h"
 #import "PhotoDiaryAppDelegate.h"
+#import <AVFoundation/AVFoundation.h>
 
 static const NSInteger kOverviewButtonTag = 123;
 
@@ -64,6 +65,7 @@ static const NSInteger kOverviewButtonTag = 123;
     self.imagePicker.allowsEditing = YES;
     self.imagePicker.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     self.imagePicker.delegate = self;
+    self.recordButton.enabled = [[AVAudioSession sharedInstance] inputIsAvailable];
     self.cameraButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
     self.photoLibraryButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
     if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
