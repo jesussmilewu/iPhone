@@ -12,7 +12,6 @@
 
 @synthesize window = window;
 
-
 -(BOOL)checkJailbreak
 {
     // check for jailbreak
