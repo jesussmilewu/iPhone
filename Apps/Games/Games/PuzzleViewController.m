@@ -208,9 +208,9 @@ const float kVerticalMaximalThreshold = 0.5;
     Puzzle *thePuzzle = self.puzzle;
     CGPoint thePoint = [inRecognizer locationInView:thePuzzleView];
     NSUInteger theLength = thePuzzle.length;
-    CGSize theSize = thePuzzleView.frame.size;
-    NSUInteger theRow = thePoint.y * theLength / theSize.height;
-    NSUInteger theColumn = thePoint.x * theLength / theSize.width;
+    CGSize theViewSize = thePuzzleView.frame.size;
+    NSUInteger theRow = thePoint.y * theLength / theViewSize.height;
+    NSUInteger theColumn = thePoint.x * theLength / theViewSize.width;
     NSUInteger theIndex = theRow * theLength + theColumn;
     
     [thePuzzle moveItemAtIndex:theIndex toDirection:inDirection];
