@@ -14,8 +14,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSString *theTitle = [switchButton titleForState:UIControlStateHighlighted];
     
-    [self.switchButton setTitle:[self.switchButton titleForState:UIControlStateHighlighted] forState:UIControlStateSelected | UIControlStateHighlighted];
+    [self.switchButton setTitle:theTitle
+                       forState:UIControlStateSelected |
+                                UIControlStateHighlighted];
 }
 
 - (void)viewDidUnload {

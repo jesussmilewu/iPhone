@@ -176,6 +176,9 @@
 /* Begin PBXProject section */
 		AB9F827512F09C4A002492BC /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = AB9F827812F09C4A002492BC /* Build configuration list for PBXProject "AlarmClock" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;

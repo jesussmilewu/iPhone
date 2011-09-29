@@ -127,7 +127,10 @@
 /* Begin PBXProject section */
 		40D7A3BE13BF343A00D482B3 /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 40D7A3C113BF343A00D482B3 /* Build configuration list for PBXProject "iclous" */;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 40D7A3C113BF343A00D482B3 /* Build configuration list for PBXProject "iClous" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -259,7 +262,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		40D7A3C113BF343A00D482B3 /* Build configuration list for PBXProject "iclous" */ = {
+		40D7A3C113BF343A00D482B3 /* Build configuration list for PBXProject "iClous" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				40D7A3DD13BF343B00D482B3 /* Debug */,
