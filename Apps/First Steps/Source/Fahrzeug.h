@@ -17,10 +17,10 @@
     NSDate      *baujahr;
 }
 
--(id)initWithPreis:(NSNumber*)lPreis 
-   geschwindigkeit:(int)lGeschwindigkeit 
-              name:(NSString*)lName
-           baujahr:(NSDate*)lBaujahr;
+-(id)initWithPreis:(NSNumber*)inPreis 
+   geschwindigkeit:(int)inGeschwindigkeit 
+              name:(NSString*)inName
+           baujahr:(NSDate*)inBaujahr;
 
 -(NSString*)getId;
 

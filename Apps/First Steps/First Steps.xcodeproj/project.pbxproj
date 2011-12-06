@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4038EB1A12E4544E008FF534 /* Automobil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4038EB1912E4544E008FF534 /* Automobil.m */; };
-		4038EB2012E4AA27008FF534 /* ReverseString.m in Sources */ = {isa = PBXBuildFile; fileRef = 4038EB1F12E4AA27008FF534 /* ReverseString.m */; };
+		4038EB2012E4AA27008FF534 /* NSString+ReverseString.m in Sources */ = {isa = PBXBuildFile; fileRef = 4038EB1F12E4AA27008FF534 /* NSString+ReverseString.m */; };
 		404BF1AE12D34BB20020C09E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404BF1AD12D34BB20020C09E /* Foundation.framework */; };
 		404BF1B112D34BB20020C09E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 404BF1B012D34BB20020C09E /* main.m */; };
 		40D205EE12D50A8F005EBF76 /* Fahrzeug.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D205ED12D50A8F005EBF76 /* Fahrzeug.m */; };
@@ -29,8 +29,8 @@
 /* Begin PBXFileReference section */
 		4038EB1812E4544E008FF534 /* Automobil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Automobil.h; sourceTree = "<group>"; };
 		4038EB1912E4544E008FF534 /* Automobil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Automobil.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		4038EB1E12E4AA27008FF534 /* ReverseString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReverseString.h; sourceTree = "<group>"; };
-		4038EB1F12E4AA27008FF534 /* ReverseString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ReverseString.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		4038EB1E12E4AA27008FF534 /* NSString+ReverseString.h */ = {isa = PBXFileReference; fileEncoding = 4; path = "NSString+ReverseString.h"; sourceTree = "<group>"; };
+		4038EB1F12E4AA27008FF534 /* NSString+ReverseString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSString+ReverseString.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		404BF1A912D34BB20020C09E /* First Steps */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "First Steps"; sourceTree = BUILT_PRODUCTS_DIR; };
 		404BF1AD12D34BB20020C09E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		404BF1AF12D34BB20020C09E /* First_Steps.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = First_Steps.1; sourceTree = "<group>"; };
@@ -69,8 +69,8 @@
 				404BF1B012D34BB20020C09E /* main.m */,
 				4038EB1812E4544E008FF534 /* Automobil.h */,
 				4038EB1912E4544E008FF534 /* Automobil.m */,
-				4038EB1E12E4AA27008FF534 /* ReverseString.h */,
-				4038EB1F12E4AA27008FF534 /* ReverseString.m */,
+				4038EB1E12E4AA27008FF534 /* NSString+ReverseString.h */,
+				4038EB1F12E4AA27008FF534 /* NSString+ReverseString.m */,
 				40D205EC12D50A8F005EBF76 /* Fahrzeug.h */,
 				40D205ED12D50A8F005EBF76 /* Fahrzeug.m */,
 			);
@@ -162,7 +162,7 @@
 				404BF1B112D34BB20020C09E /* main.m in Sources */,
 				40D205EE12D50A8F005EBF76 /* Fahrzeug.m in Sources */,
 				4038EB1A12E4544E008FF534 /* Automobil.m in Sources */,
-				4038EB2012E4AA27008FF534 /* ReverseString.m in Sources */,
+				4038EB2012E4AA27008FF534 /* NSString+ReverseString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,6 +173,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = stabs;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -191,6 +192,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = stabs;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
