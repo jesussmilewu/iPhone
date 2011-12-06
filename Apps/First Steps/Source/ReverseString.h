@@ -11,6 +11,6 @@
 
 @interface NSString (ReverseString)
 
--(NSString*)reversedString;
+-(NSString*)reverse;
 
 @end
