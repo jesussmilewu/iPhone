@@ -56,7 +56,11 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
     self.clockControl.angle = theAngle;
     [self.clockControl setNeedsDisplay];
     self.alarmSwitch.on = YES;
-    [self updateAlarm];
+    [self updateTimeLabel];
+    if(inRecognizer.state == UIGestureRecognizerStateEnded) {
+        [self updateAlarm];
+    }
+    NSLog(@"type = %d", inRecognizer.state);
 }
 
 - (void)viewDidLoad {
@@ -119,7 +123,6 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
         
         [theApplication cancelAllLocalNotifications];        
     }
-    [self updateTimeLabel];
 }
 
 - (IBAction)updateTimeLabel {
