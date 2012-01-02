@@ -81,6 +81,7 @@
     CGContextSetRGBFillColor(theContext, 0.25, 0.25, 0.25, 1.0);
     CGContextSetLineWidth(theContext, 7.0);
     CGContextSetLineCap(theContext, kCGLineCapRound);
+    
     for(NSInteger i = 0; i < 60; ++i) {
         CGFloat theAngle = i * M_PI / 30.0;
         

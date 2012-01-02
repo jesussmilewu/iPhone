@@ -69,6 +69,7 @@
         
         [theAlert show];
         [theAlert release];
+        [self playSound];
     }
 }
 
