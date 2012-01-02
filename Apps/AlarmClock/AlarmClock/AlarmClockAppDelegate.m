@@ -69,6 +69,8 @@
         
         [theAlert show];
         [theAlert release];
+        // Wenn beim Empfang auch ein Ton erklingen soll, dann die folgende Zeile einkommentieren.
+        // [self playSound];
     }
 }
 
