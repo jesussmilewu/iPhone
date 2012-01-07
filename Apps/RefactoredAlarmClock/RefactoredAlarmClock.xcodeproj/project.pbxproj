@@ -1,0 +1,385 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AB1BF98B12F2C878002BB9AC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB1BF98A12F2C878002BB9AC /* AudioToolbox.framework */; };
+		AB7AB2BC14B8989F0035FBE4 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7AB2BA14B8989F0035FBE4 /* MainWindow-iPad.xib */; };
+		AB7AB2BF14B898BE0035FBE4 /* AlarmClockViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7AB2BD14B898BE0035FBE4 /* AlarmClockViewController-iPad.xib */; };
+		AB7AB2C114B898CA0035FBE4 /* AlarmClockViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7AB2BD14B898BE0035FBE4 /* AlarmClockViewController-iPad.xib */; };
+		AB7AB2C814B898E00035FBE4 /* AlarmClockAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7AB2C314B898E00035FBE4 /* AlarmClockAppDelegate.m */; };
+		AB7AB2C914B898E00035FBE4 /* AlarmClockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7AB2C514B898E00035FBE4 /* AlarmClockViewController.m */; };
+		AB7AB2CA14B898E00035FBE4 /* UIView+AlarmClock.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7AB2C714B898E00035FBE4 /* UIView+AlarmClock.m */; };
+		AB7AB2D414B899EA0035FBE4 /* ClockControl.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7AB2D114B899EA0035FBE4 /* ClockControl.m */; };
+		AB7AB2D514B899EA0035FBE4 /* ClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7AB2D314B899EA0035FBE4 /* ClockView.m */; };
+		AB7AB2D914B899FE0035FBE4 /* icon-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AB7AB2D614B899FE0035FBE4 /* icon-ipad.png */; };
+		AB7AB2DA14B899FE0035FBE4 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AB7AB2D714B899FE0035FBE4 /* icon.png */; };
+		AB7AB2DB14B899FE0035FBE4 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB7AB2D814B899FE0035FBE4 /* icon@2x.png */; };
+		AB7AB2EB14B89A730035FBE4 /* AlarmClockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7AB2E914B89A730035FBE4 /* AlarmClockViewController.xib */; };
+		AB7AB2EF14B89A800035FBE4 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7AB2ED14B89A800035FBE4 /* MainWindow.xib */; };
+		AB7AB2F014B89A800035FBE4 /* AlarmClockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7AB2E914B89A730035FBE4 /* AlarmClockViewController.xib */; };
+		AB7AB2F314B89AE60035FBE4 /* AbstractClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7AB2F214B89AE60035FBE4 /* AbstractClockView.m */; };
+		AB9F828312F09C4A002492BC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9F828212F09C4A002492BC /* UIKit.framework */; };
+		AB9F828512F09C4A002492BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9F828412F09C4A002492BC /* Foundation.framework */; };
+		AB9F828712F09C4A002492BC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9F828612F09C4A002492BC /* CoreGraphics.framework */; };
+		AB9F828D12F09C4A002492BC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB9F828B12F09C4A002492BC /* InfoPlist.strings */; };
+		AB9F829012F09C4A002492BC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB9F828F12F09C4A002492BC /* main.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AB1BF98A12F2C878002BB9AC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		AB7AB2BB14B8989F0035FBE4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "RefactoredAlarmClock/iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = SOURCE_ROOT; };
+		AB7AB2BE14B898BE0035FBE4 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = "RefactoredAlarmClock/de.lproj/AlarmClockViewController-iPad.xib"; sourceTree = SOURCE_ROOT; };
+		AB7AB2C014B898CA0035FBE4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "RefactoredAlarmClock/en.lproj/AlarmClockViewController-iPad.xib"; sourceTree = SOURCE_ROOT; };
+		AB7AB2C214B898E00035FBE4 /* AlarmClockAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlarmClockAppDelegate.h; path = RefactoredAlarmClock/AlarmClockAppDelegate.h; sourceTree = SOURCE_ROOT; };
+		AB7AB2C314B898E00035FBE4 /* AlarmClockAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlarmClockAppDelegate.m; path = RefactoredAlarmClock/AlarmClockAppDelegate.m; sourceTree = SOURCE_ROOT; };
+		AB7AB2C414B898E00035FBE4 /* AlarmClockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlarmClockViewController.h; path = RefactoredAlarmClock/AlarmClockViewController.h; sourceTree = SOURCE_ROOT; };
+		AB7AB2C514B898E00035FBE4 /* AlarmClockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlarmClockViewController.m; path = RefactoredAlarmClock/AlarmClockViewController.m; sourceTree = SOURCE_ROOT; };
+		AB7AB2C614B898E00035FBE4 /* UIView+AlarmClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+AlarmClock.h"; path = "RefactoredAlarmClock/UIView+AlarmClock.h"; sourceTree = SOURCE_ROOT; };
+		AB7AB2C714B898E00035FBE4 /* UIView+AlarmClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+AlarmClock.m"; path = "RefactoredAlarmClock/UIView+AlarmClock.m"; sourceTree = SOURCE_ROOT; };
+		AB7AB2D014B899EA0035FBE4 /* ClockControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClockControl.h; sourceTree = "<group>"; };
+		AB7AB2D114B899EA0035FBE4 /* ClockControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClockControl.m; sourceTree = "<group>"; };
+		AB7AB2D214B899EA0035FBE4 /* ClockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClockView.h; sourceTree = "<group>"; };
+		AB7AB2D314B899EA0035FBE4 /* ClockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClockView.m; sourceTree = "<group>"; };
+		AB7AB2D614B899FE0035FBE4 /* icon-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-ipad.png"; sourceTree = SOURCE_ROOT; };
+		AB7AB2D714B899FE0035FBE4 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = SOURCE_ROOT; };
+		AB7AB2D814B899FE0035FBE4 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = SOURCE_ROOT; };
+		AB7AB2EA14B89A730035FBE4 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/AlarmClockViewController.xib; sourceTree = "<group>"; };
+		AB7AB2EC14B89A800035FBE4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AlarmClockViewController.xib; sourceTree = "<group>"; };
+		AB7AB2EE14B89A800035FBE4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		AB7AB2F114B89AE60035FBE4 /* AbstractClockView.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = AbstractClockView.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
+		AB7AB2F214B89AE60035FBE4 /* AbstractClockView.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractClockView.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
+		AB9F827E12F09C4A002492BC /* RefactoredAlarmClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RefactoredAlarmClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB9F828212F09C4A002492BC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		AB9F828412F09C4A002492BC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		AB9F828612F09C4A002492BC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		AB9F828A12F09C4A002492BC /* RefactoredAlarmClock-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "RefactoredAlarmClock-Info.plist"; sourceTree = "<group>"; };
+		AB9F828C12F09C4A002492BC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AB9F828E12F09C4A002492BC /* RefactoredAlarmClock-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RefactoredAlarmClock-Prefix.pch"; sourceTree = "<group>"; };
+		AB9F828F12F09C4A002492BC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		AB9F82A912F09CCB002492BC /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AB9F82AB12F09D4A002492BC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AB9F82AC12F09D4A002492BC /* de */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AB9F82AE12F09DBA002492BC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AB9F827B12F09C4A002492BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB1BF98B12F2C878002BB9AC /* AudioToolbox.framework in Frameworks */,
+				AB9F828312F09C4A002492BC /* UIKit.framework in Frameworks */,
+				AB9F828512F09C4A002492BC /* Foundation.framework in Frameworks */,
+				AB9F828712F09C4A002492BC /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AB9F827312F09C4A002492BC = {
+			isa = PBXGroup;
+			children = (
+				AB9F828812F09C4A002492BC /* RefactoredAlarmClock */,
+				AB9F828112F09C4A002492BC /* Frameworks */,
+				AB9F827F12F09C4A002492BC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AB9F827F12F09C4A002492BC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AB9F827E12F09C4A002492BC /* RefactoredAlarmClock.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AB9F828112F09C4A002492BC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AB1BF98A12F2C878002BB9AC /* AudioToolbox.framework */,
+				AB9F82AE12F09DBA002492BC /* AudioToolbox.framework */,
+				AB9F828212F09C4A002492BC /* UIKit.framework */,
+				AB9F828412F09C4A002492BC /* Foundation.framework */,
+				AB9F828612F09C4A002492BC /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AB9F828812F09C4A002492BC /* RefactoredAlarmClock */ = {
+			isa = PBXGroup;
+			children = (
+				ABC35F2E12F17EDF0097D404 /* iPad */,
+				AB7AB2C214B898E00035FBE4 /* AlarmClockAppDelegate.h */,
+				AB7AB2C314B898E00035FBE4 /* AlarmClockAppDelegate.m */,
+				AB7AB2C414B898E00035FBE4 /* AlarmClockViewController.h */,
+				AB7AB2C514B898E00035FBE4 /* AlarmClockViewController.m */,
+				AB7AB2D014B899EA0035FBE4 /* ClockControl.h */,
+				AB7AB2D114B899EA0035FBE4 /* ClockControl.m */,
+				AB7AB2F114B89AE60035FBE4 /* AbstractClockView.h */,
+				AB7AB2F214B89AE60035FBE4 /* AbstractClockView.m */,
+				AB7AB2D214B899EA0035FBE4 /* ClockView.h */,
+				AB7AB2D314B899EA0035FBE4 /* ClockView.m */,
+				AB7AB2C614B898E00035FBE4 /* UIView+AlarmClock.h */,
+				AB7AB2C714B898E00035FBE4 /* UIView+AlarmClock.m */,
+				AB9F828912F09C4A002492BC /* Supporting Files */,
+			);
+			path = RefactoredAlarmClock;
+			sourceTree = "<group>";
+		};
+		AB9F828912F09C4A002492BC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AB7AB2ED14B89A800035FBE4 /* MainWindow.xib */,
+				AB7AB2E914B89A730035FBE4 /* AlarmClockViewController.xib */,
+				AB7AB2D614B899FE0035FBE4 /* icon-ipad.png */,
+				AB7AB2D714B899FE0035FBE4 /* icon.png */,
+				AB7AB2D814B899FE0035FBE4 /* icon@2x.png */,
+				AB9F82A812F09CCB002492BC /* Localizable.strings */,
+				AB9F828A12F09C4A002492BC /* RefactoredAlarmClock-Info.plist */,
+				AB9F828B12F09C4A002492BC /* InfoPlist.strings */,
+				AB9F828E12F09C4A002492BC /* RefactoredAlarmClock-Prefix.pch */,
+				AB9F828F12F09C4A002492BC /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ABC35F2E12F17EDF0097D404 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				AB7AB2BD14B898BE0035FBE4 /* AlarmClockViewController-iPad.xib */,
+				AB7AB2BA14B8989F0035FBE4 /* MainWindow-iPad.xib */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AB9F827D12F09C4A002492BC /* RefactoredAlarmClock */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB9F829F12F09C4B002492BC /* Build configuration list for PBXNativeTarget "RefactoredAlarmClock" */;
+			buildPhases = (
+				AB9F827A12F09C4A002492BC /* Sources */,
+				AB9F827B12F09C4A002492BC /* Frameworks */,
+				AB9F827C12F09C4A002492BC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RefactoredAlarmClock;
+			productName = AlarmClock;
+			productReference = AB9F827E12F09C4A002492BC /* RefactoredAlarmClock.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AB9F827512F09C4A002492BC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = AB9F827812F09C4A002492BC /* Build configuration list for PBXProject "RefactoredAlarmClock" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				de,
+			);
+			mainGroup = AB9F827312F09C4A002492BC;
+			productRefGroup = AB9F827F12F09C4A002492BC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AB9F827D12F09C4A002492BC /* RefactoredAlarmClock */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AB9F827C12F09C4A002492BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB9F828D12F09C4A002492BC /* InfoPlist.strings in Resources */,
+				AB7AB2BC14B8989F0035FBE4 /* MainWindow-iPad.xib in Resources */,
+				AB7AB2BF14B898BE0035FBE4 /* AlarmClockViewController-iPad.xib in Resources */,
+				AB7AB2C114B898CA0035FBE4 /* AlarmClockViewController-iPad.xib in Resources */,
+				AB7AB2D914B899FE0035FBE4 /* icon-ipad.png in Resources */,
+				AB7AB2DA14B899FE0035FBE4 /* icon.png in Resources */,
+				AB7AB2DB14B899FE0035FBE4 /* icon@2x.png in Resources */,
+				AB7AB2EB14B89A730035FBE4 /* AlarmClockViewController.xib in Resources */,
+				AB7AB2EF14B89A800035FBE4 /* MainWindow.xib in Resources */,
+				AB7AB2F014B89A800035FBE4 /* AlarmClockViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AB9F827A12F09C4A002492BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB9F829012F09C4A002492BC /* main.m in Sources */,
+				AB7AB2C814B898E00035FBE4 /* AlarmClockAppDelegate.m in Sources */,
+				AB7AB2C914B898E00035FBE4 /* AlarmClockViewController.m in Sources */,
+				AB7AB2CA14B898E00035FBE4 /* UIView+AlarmClock.m in Sources */,
+				AB7AB2D414B899EA0035FBE4 /* ClockControl.m in Sources */,
+				AB7AB2D514B899EA0035FBE4 /* ClockView.m in Sources */,
+				AB7AB2F314B89AE60035FBE4 /* AbstractClockView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		AB7AB2BA14B8989F0035FBE4 /* MainWindow-iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB7AB2BB14B8989F0035FBE4 /* en */,
+			);
+			name = "MainWindow-iPad.xib";
+			sourceTree = "<group>";
+		};
+		AB7AB2BD14B898BE0035FBE4 /* AlarmClockViewController-iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB7AB2BE14B898BE0035FBE4 /* de */,
+				AB7AB2C014B898CA0035FBE4 /* en */,
+			);
+			name = "AlarmClockViewController-iPad.xib";
+			sourceTree = "<group>";
+		};
+		AB7AB2E914B89A730035FBE4 /* AlarmClockViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB7AB2EA14B89A730035FBE4 /* de */,
+				AB7AB2EC14B89A800035FBE4 /* en */,
+			);
+			name = AlarmClockViewController.xib;
+			sourceTree = "<group>";
+		};
+		AB7AB2ED14B89A800035FBE4 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB7AB2EE14B89A800035FBE4 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		AB9F828B12F09C4A002492BC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB9F828C12F09C4A002492BC /* en */,
+				AB9F82AB12F09D4A002492BC /* de */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		AB9F82A812F09CCB002492BC /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB9F82A912F09CCB002492BC /* en */,
+				AB9F82AC12F09D4A002492BC /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AB9F829D12F09C4B002492BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		AB9F829E12F09C4B002492BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		AB9F82A012F09C4B002492BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RefactoredAlarmClock/RefactoredAlarmClock-Prefix.pch";
+				INFOPLIST_FILE = "RefactoredAlarmClock/RefactoredAlarmClock-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PRODUCT_NAME = RefactoredAlarmClock;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		AB9F82A112F09C4B002492BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RefactoredAlarmClock/RefactoredAlarmClock-Prefix.pch";
+				INFOPLIST_FILE = "RefactoredAlarmClock/RefactoredAlarmClock-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PRODUCT_NAME = RefactoredAlarmClock;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AB9F827812F09C4A002492BC /* Build configuration list for PBXProject "RefactoredAlarmClock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB9F829D12F09C4B002492BC /* Debug */,
+				AB9F829E12F09C4B002492BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AB9F829F12F09C4B002492BC /* Build configuration list for PBXNativeTarget "RefactoredAlarmClock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB9F82A012F09C4B002492BC /* Debug */,
+				AB9F82A112F09C4B002492BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AB9F827512F09C4A002492BC /* Project object */;
+}
