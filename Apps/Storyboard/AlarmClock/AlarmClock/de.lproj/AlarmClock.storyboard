@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="11C74" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Te1-9Z-xwP">
+    <dependencies>
+        <development defaultVersion="4200" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
+    </dependencies>
+    <scenes>
+        <scene sceneID="hlc-xD-Ty1">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o4X-tV-DPw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="Te1-9Z-xwP" customClass="AlarmClockViewController" sceneMemberID="viewController">
+                    <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="dGU-sn-rTv">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="E59-AT-ozE" customClass="ClockView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="Q3p-pW-krf" customClass="ClockControl">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="updateAlarm" destination="Te1-9Z-xwP" eventType="touchUpInside" id="9Mh-WN-G7I"/>
+                                            <action selector="updateTimeLabel" destination="Te1-9Z-xwP" eventType="valueChanged" id="Nba-x3-4dN"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="d9o-LB-uc0">
+                                <rect key="frame" x="231" y="413" width="79" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <action selector="updateAlarm" destination="Te1-9Z-xwP" eventType="valueChanged" id="vHX-Xb-MtS"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Alarm:" lineBreakMode="tailTruncation" minimumFontSize="10" id="Tmo-M0-EUd">
+                                <rect key="frame" x="10" y="416" width="50" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="system" size="system"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Zeit" lineBreakMode="tailTruncation" minimumFontSize="10" id="J08-dk-Myw">
+                                <rect key="frame" x="63" y="416" width="145" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="system" size="system"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Analoger Wecker" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="RFe-FA-o64">
+                                <rect key="frame" x="14" y="328" width="296" height="21"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="system" size="system"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    </view>
+                    <connections>
+                        <outlet property="alarmSwitch" destination="d9o-LB-uc0" id="eJO-bu-PUv"/>
+                        <outlet property="clockControl" destination="Q3p-pW-krf" id="ctg-v7-C3e"/>
+                        <outlet property="clockView" destination="E59-AT-ozE" id="pcA-Cb-bk8"/>
+                        <outlet property="timeLabel" destination="J08-dk-Myw" id="fbY-gN-Icb"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-61" y="1"/>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="AlarmClockViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlarmClockViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="updateAlarm"/>
+                <relationship kind="action" name="updateTimeLabel"/>
+                <relationship kind="outlet" name="alarmSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="clockControl" candidateClass="ClockControl"/>
+                <relationship kind="outlet" name="clockView" candidateClass="ClockView"/>
+                <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="ClockControl" superclassName="UIControl">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ClockControl.h"/>
+        </class>
+        <class className="ClockView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ClockView.h"/>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>
