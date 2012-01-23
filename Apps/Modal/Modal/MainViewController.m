@@ -26,6 +26,7 @@
     ModalViewController *theController = self.modalController;
 
     theController.title = [NSString stringWithFormat:@"%u", theCount++];
+    theController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentModalViewController:theController animated:YES];
 }
 
