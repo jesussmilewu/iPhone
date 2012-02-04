@@ -6,6 +6,8 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
 
 @interface AlarmClockViewController()
 
+- (void)setUpClockView;
+
 @end
 
 @implementation AlarmClockViewController
@@ -20,7 +22,6 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
     self.clockControl = nil;
     self.alarmSwitch = nil;
     self.timeLabel = nil;    
-    [super dealloc];
 }
 
 - (NSTimeInterval)startTimeOfCurrentDay {
@@ -60,7 +61,6 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
     if(inRecognizer.state == UIGestureRecognizerStateEnded) {
         [self updateAlarm];
     }
-    NSLog(@"type = %d", inRecognizer.state);
 }
 
 - (void)viewDidLoad {
@@ -68,7 +68,6 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
     UILongPressGestureRecognizer *theRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(updateAlarmHand:)];
 
     [self.clockView addGestureRecognizer:theRecognizer];
-    [theRecognizer release];
 }
 
 - (void)viewDidUnload {
@@ -81,6 +80,7 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
 
 - (void)viewWillAppear:(BOOL)inAnimated {
     [super viewWillAppear:inAnimated];
+    [self setUpClockView];
     [self updateControl];
 }
 
@@ -92,6 +92,14 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
 - (void)viewWillDisappear:(BOOL)inAnimated {
     [super viewWillDisappear:inAnimated];
     [self.clockView stopAnimation];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)inSegue sender:(id)inSender {
+    if([inSegue.destinationViewController isKindOfClass:[PreferencesViewController class]]) {
+        PreferencesViewController *theController = inSegue.destinationViewController;
+        
+        theController.delegate = self;
+    }
 }
 
 - (void)createAlarm {
@@ -106,11 +114,12 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
     theNotification.fireDate = [NSDate dateWithTimeIntervalSinceReferenceDate:theTime];
     theNotification.timeZone = [NSTimeZone defaultTimeZone];
     theNotification.alertBody = NSLocalizedString(@"Wake up", @"Alarm message");
-    theNotification.soundName = @"ringtone.caf";
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"playSound"]) {
+        theNotification.soundName = @"ringtone.caf";
+    }
     theNotification.applicationIconBadgeNumber = 1;
     theApplication.applicationIconBadgeNumber = 0;
     [theApplication scheduleLocalNotification:theNotification];
-    [theNotification release];
 }
 
 - (IBAction)updateAlarm {
@@ -136,5 +145,16 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
     }
 }
 
+- (void)setUpClockView {
+    NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
+    
+    self.clockView.showDigits = [theDefaults boolForKey:@"showDigits"];
+    self.clockView.partitionOfDial = [theDefaults integerForKey:@"partitionOfDial"];
+    [self.clockView setNeedsDisplay];
+}
+
+- (void)preferencesViewControllerDidUpdatePreferences:(PreferencesViewController *)inController {
+    [self setUpClockView];
+}
 
 @end

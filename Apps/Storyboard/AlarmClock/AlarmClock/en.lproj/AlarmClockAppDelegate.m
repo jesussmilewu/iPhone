@@ -17,8 +17,6 @@
 
 - (void)dealloc {
     self.soundId = nil;    
-    self.window = nil;
-    [super dealloc];
 }
 
 - (BOOL)application:(UIApplication *)inApplication didFinishLaunchingWithOptions:(NSDictionary *)inOptions {    
@@ -30,7 +28,7 @@
         NSURL *theURL = [[NSBundle mainBundle] URLForResource:@"ringtone" withExtension:@"caf"];
         SystemSoundID theId;
         
-        if(AudioServicesCreateSystemSoundID((CFURLRef) theURL, &theId) == kAudioServicesNoError) {
+        if(AudioServicesCreateSystemSoundID((__bridge CFURLRef) theURL, &theId) == kAudioServicesNoError) {
             self.soundId = [NSNumber numberWithUnsignedInt:theId];
         }
     }
@@ -41,17 +39,18 @@
     if(soundId != inSoundId) {
         if(soundId != nil) {
             AudioServicesDisposeSystemSoundID([soundId unsignedIntValue]);
-            [soundId release];
         }
-        soundId = [inSoundId retain];
+        soundId = inSoundId;
     }
 }
 
 - (void)playSound {
-    NSNumber *theId = self.soundId;
-    
-    if(theId) {
-        AudioServicesPlaySystemSound([theId unsignedIntValue]);
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"playSound"]) {
+        NSNumber *theId = self.soundId;
+        
+        if(theId) {
+            AudioServicesPlaySystemSound([theId unsignedIntValue]);
+        }
     }
 }
 
@@ -64,7 +63,6 @@
                                                  otherButtonTitles:nil];
         
         [theAlert show];
-        [theAlert release];
         [self playSound];
     }
 }

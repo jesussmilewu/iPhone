@@ -6,31 +6,20 @@
  
  */
 
+typedef enum {
+    PartitionOfDialNone = 0,
+    PartitionOfDialHours,
+    PartitionOfDialMinutes
+} PartitionOfDial;
+
 @interface ClockView : UIView
 
-@property (nonatomic, retain) NSDate *time;
-@property (nonatomic, retain, readonly) NSCalendar *calendar;
-/**---------------------------------------------------------------------------------------
- * @name Name unter Task
- *  ---------------------------------------------------------------------------------------
- */
+@property (nonatomic, strong) NSDate *time;
+@property (nonatomic, strong, readonly) NSCalendar *calendar;
+@property (nonatomic) BOOL showDigits;
+@property (nonatomic) PartitionOfDial partitionOfDial;
 
-/** Starten der Zeiger-Animation.
- 
- @param none
- @return none
- */
 - (void)startAnimation;
-/**---------------------------------------------------------------------------------------
- * @name Name unter Task
- *  ---------------------------------------------------------------------------------------
- */
-
-/** Anhalten der Zeiger-Animation.
- 
- @param none
- @return none
- */
 - (void)stopAnimation;
 
 @end

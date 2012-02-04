@@ -10,8 +10,8 @@
 
 @interface AlarmClockAppDelegate : NSObject <UIApplicationDelegate>
 
-@property (nonatomic, retain) NSNumber *soundId;
-@property (nonatomic, retain) IBOutlet UIWindow *window;
+@property (nonatomic, strong) NSNumber *soundId;
+@property (nonatomic, strong) IBOutlet UIWindow *window;
 
 @end
 

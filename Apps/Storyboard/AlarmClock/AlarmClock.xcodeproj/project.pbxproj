@@ -12,6 +12,7 @@
 		AB7DEE5014CC408500430B8C /* AlarmClock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB7DEE5214CC408500430B8C /* AlarmClock.storyboard */; };
 		AB7DEE5314CC408C00430B8C /* AlarmClockAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7DEE5514CC408C00430B8C /* AlarmClockAppDelegate.m */; };
 		AB7DEE5914CC480C00430B8C /* AlarmClock-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB7DEE5B14CC480C00430B8C /* AlarmClock-iPad.storyboard */; };
+		AB8CE92114DD3A91002EC9F9 /* PreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8CE92014DD3A91002EC9F9 /* PreferencesViewController.m */; };
 		AB9F828312F09C4A002492BC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9F828212F09C4A002492BC /* UIKit.framework */; };
 		AB9F828512F09C4A002492BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9F828412F09C4A002492BC /* Foundation.framework */; };
 		AB9F828712F09C4A002492BC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9F828612F09C4A002492BC /* CoreGraphics.framework */; };
@@ -33,6 +34,8 @@
 		AB7DEE5614CC409800430B8C /* de */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = de; path = de.lproj/AlarmClock.storyboard; sourceTree = "<group>"; };
 		AB7DEE5A14CC480C00430B8C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = "en.lproj/AlarmClock-iPad.storyboard"; sourceTree = "<group>"; };
 		AB7DEE5C14CC481400430B8C /* de */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = de; path = "de.lproj/AlarmClock-iPad.storyboard"; sourceTree = "<group>"; };
+		AB8CE91F14DD3A91002EC9F9 /* PreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesViewController.h; sourceTree = "<group>"; };
+		AB8CE92014DD3A91002EC9F9 /* PreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesViewController.m; sourceTree = "<group>"; };
 		AB9F827E12F09C4A002492BC /* AlarmClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB9F828212F09C4A002492BC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AB9F828412F09C4A002492BC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -117,6 +120,8 @@
 				AB7DEE5514CC408C00430B8C /* AlarmClockAppDelegate.m */,
 				AB9F829712F09C4B002492BC /* AlarmClockViewController.h */,
 				AB9F829812F09C4B002492BC /* AlarmClockViewController.m */,
+				AB8CE91F14DD3A91002EC9F9 /* PreferencesViewController.h */,
+				AB8CE92014DD3A91002EC9F9 /* PreferencesViewController.m */,
 				AB9F828912F09C4A002492BC /* Supporting Files */,
 			);
 			path = AlarmClock;
@@ -218,6 +223,7 @@
 				AB9F82A612F09C7F002492BC /* ClockControl.m in Sources */,
 				AB9F82A712F09C7F002492BC /* ClockView.m in Sources */,
 				ABD05EC912F4E0D800DE244F /* UIView+AlarmClock.m in Sources */,
+				AB8CE92114DD3A91002EC9F9 /* PreferencesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,10 +316,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AlarmClock/AlarmClock-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "AlarmClock/AlarmClock-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -326,9 +334,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AlarmClock/AlarmClock-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "AlarmClock/AlarmClock-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
