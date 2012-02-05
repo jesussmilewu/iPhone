@@ -9,7 +9,7 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5lc-Vm-Zlg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="kC4-kU-WT8" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" barStyle="blackOpaque" id="NO1-uo-Eiq">
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="NO1-uo-Eiq">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -17,7 +17,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="-517" y="8"/>
+            <point key="canvasLocation" x="-497" y="-44"/>
         </scene>
         <scene sceneID="qye-Pa-Cug">
             <objects>
@@ -83,13 +83,13 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="-61" y="1"/>
+            <point key="canvasLocation" x="-71" y="-44"/>
         </scene>
         <scene sceneID="YJu-UY-TIE">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yFI-2X-dvi" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="sHl-A1-Mqk" customClass="PreferencesViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ZxP-hS-gEB">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ZxP-hS-gEB">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -114,7 +114,7 @@
                                                     <rect key="frame" x="201" y="8" width="79" height="27"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <connections>
-                                                        <action selector="updatePreferences" destination="sHl-A1-Mqk" eventType="valueChanged" id="JSj-l6-c9l"/>
+                                                        <action selector="savePreferences" destination="sHl-A1-Mqk" eventType="valueChanged" id="SUI-es-51X"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
@@ -145,7 +145,7 @@
                                                         <segment title="Minutes"/>
                                                     </segments>
                                                     <connections>
-                                                        <action selector="updatePreferences" destination="sHl-A1-Mqk" eventType="valueChanged" id="cXN-6U-8h6"/>
+                                                        <action selector="savePreferences" destination="sHl-A1-Mqk" eventType="valueChanged" id="Jfs-Kb-vaj"/>
                                                     </connections>
                                                 </segmentedControl>
                                             </subviews>
@@ -174,9 +174,6 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="5Qf-zl-zMV">
                                                     <rect key="frame" x="201" y="8" width="79" height="27"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <connections>
-                                                        <action selector="updatePreferences" destination="sHl-A1-Mqk" eventType="valueChanged" id="rgJ-zx-pyX"/>
-                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -199,7 +196,7 @@
                     </connections>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="370" y="3"/>
+            <point key="canvasLocation" x="376" y="-44"/>
         </scene>
     </scenes>
     <classes>

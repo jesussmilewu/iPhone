@@ -9,7 +9,7 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tt0-wm-2Cc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="9Br-Tj-HHP" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" barStyle="blackOpaque" id="lGI-G4-P6b">
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="lGI-G4-P6b">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -89,7 +89,7 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xV8-fv-J03" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="Rsm-HY-xL1" customClass="PreferencesViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="COZ-Oj-Ttu">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="COZ-Oj-Ttu">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -114,7 +114,7 @@
                                                     <rect key="frame" x="201" y="8" width="79" height="27"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <connections>
-                                                        <action selector="updatePreferences" destination="Rsm-HY-xL1" eventType="valueChanged" id="9Fo-YR-ydE"/>
+                                                        <action selector="savePreferences" destination="Rsm-HY-xL1" eventType="valueChanged" id="LI7-mt-LE5"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
@@ -145,7 +145,7 @@
                                                         <segment title="Minuten"/>
                                                     </segments>
                                                     <connections>
-                                                        <action selector="updatePreferences" destination="Rsm-HY-xL1" eventType="valueChanged" id="4xM-jN-4AN"/>
+                                                        <action selector="savePreferences" destination="Rsm-HY-xL1" eventType="valueChanged" id="58R-P5-CvB"/>
                                                     </connections>
                                                 </segmentedControl>
                                             </subviews>
@@ -174,9 +174,6 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="s1v-s8-NfR">
                                                     <rect key="frame" x="201" y="8" width="79" height="27"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <connections>
-                                                        <action selector="updatePreferences" destination="Rsm-HY-xL1" eventType="valueChanged" id="7pl-zX-mBx"/>
-                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

@@ -6,7 +6,7 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
 
 @interface AlarmClockViewController()
 
-- (void)setUpClockView;
+- (void)updateClockView;
 
 @end
 
@@ -80,26 +80,26 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
 
 - (void)viewWillAppear:(BOOL)inAnimated {
     [super viewWillAppear:inAnimated];
-    [self setUpClockView];
+    [self updateClockView];
     [self updateControl];
 }
 
 - (void)viewDidAppear:(BOOL)inAnimated {
     [super viewDidAppear:inAnimated];
+    NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
+    
+    [theDefaults addObserver:self forKeyPath:@"showDigits" options:0 context:nil];
+    [theDefaults addObserver:self forKeyPath:@"partitionOfDial" options:0 context:nil];
     [self.clockView startAnimation];
 }
 
 - (void)viewWillDisappear:(BOOL)inAnimated {
-    [super viewWillDisappear:inAnimated];
+    NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
+    
+    [theDefaults removeObserver:self forKeyPath:@"showDigits"];
+    [theDefaults removeObserver:self forKeyPath:@"partitionOfDial"];
     [self.clockView stopAnimation];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)inSegue sender:(id)inSender {
-    if([inSegue.destinationViewController isKindOfClass:[PreferencesViewController class]]) {
-        PreferencesViewController *theController = inSegue.destinationViewController;
-        
-        theController.delegate = self;
-    }
+    [super viewWillDisappear:inAnimated];
 }
 
 - (void)createAlarm {
@@ -145,7 +145,7 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
     }
 }
 
-- (void)setUpClockView {
+- (void)updateClockView {
     NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
     
     self.clockView.showDigits = [theDefaults boolForKey:@"showDigits"];
@@ -153,8 +153,11 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
     [self.clockView setNeedsDisplay];
 }
 
-- (void)preferencesViewControllerDidUpdatePreferences:(PreferencesViewController *)inController {
-    [self setUpClockView];
+- (void)observeValueForKeyPath:(NSString *)inKeyPath 
+                      ofObject:(id)inObject 
+                        change:(NSDictionary *)inChange 
+                       context:(void *)inContext {
+    [self updateClockView];    
 }
 
 @end

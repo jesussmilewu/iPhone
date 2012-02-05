@@ -1,10 +1,9 @@
 #import <UIKit/UIKit.h>
-#import "PreferencesViewController.h"
 
 @class ClockView;
 @class ClockControl;
 
-@interface AlarmClockViewController : UIViewController<PreferencesViewControllerDelegate>
+@interface AlarmClockViewController : UIViewController
 
 @property(nonatomic, weak) IBOutlet ClockView *clockView;
 @property(nonatomic, weak) IBOutlet ClockControl *clockControl;

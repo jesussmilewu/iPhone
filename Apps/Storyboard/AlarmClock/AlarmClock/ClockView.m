@@ -70,6 +70,7 @@
     UIFont *theFont = [UIFont systemFontOfSize:24];
     CGRect theFrame;
 
+    [[UIColor darkGrayColor] set];
     theRadius *= self.partitionOfDial == PartitionOfDialNone ? 0.9 : 0.6;
     for(int i = 1; i <= 12; ++i) {
         NSString *theText = [NSString stringWithFormat:@"%d", i];
