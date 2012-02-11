@@ -25,10 +25,11 @@
 
 - (BOOL)application:(UIApplication *)inApplication didFinishLaunchingWithOptions:(NSDictionary *)inLaunchOptions {
     NSArray *theControllers = self.tabBarController.viewControllers;
+    NSUInteger theIndex = 0;
     
-    [theControllers enumerateObjectsUsingBlock:^(id inController, NSUInteger inIndex, BOOL *outStop) {
-        [[inController tabBarItem] setTag:inIndex];
-    }];
+    for (UIViewController *theController in theControllers) {
+        theController.tabBarItem.tag = theIndex++;
+    }
     [self restoreTabBar];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];

@@ -1,7 +1,5 @@
 #import <UIKit/UIKit.h>
 
-@interface LandscapeViewController : UIViewController {
-    
-}
+@interface LandscapeViewController : UIViewController
 
 @end
