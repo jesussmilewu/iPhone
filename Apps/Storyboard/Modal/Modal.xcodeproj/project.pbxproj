@@ -14,8 +14,8 @@
 		AB15008714CE091C00117A23 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB15008614CE091C00117A23 /* main.m */; };
 		AB15008B14CE091C00117A23 /* ModalAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB15008A14CE091C00117A23 /* ModalAppDelegate.m */; };
 		AB15008E14CE091C00117A23 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB15008C14CE091C00117A23 /* MainStoryboard.storyboard */; };
-		AB15009114CE091C00117A23 /* ModalMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB15009014CE091C00117A23 /* ModalMainViewController.m */; };
-		AB15009414CE091D00117A23 /* ModalFlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB15009314CE091D00117A23 /* ModalFlipsideViewController.m */; };
+		AB15009114CE091C00117A23 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB15009014CE091C00117A23 /* MainViewController.m */; };
+		AB15009414CE091D00117A23 /* ModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB15009314CE091D00117A23 /* ModalViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,17 +23,17 @@
 		AB15007A14CE091C00117A23 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AB15007C14CE091C00117A23 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AB15007E14CE091C00117A23 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		AB15008214CE091C00117A23 /* Modal-Info.plist */ = {isa = PBXFileReference; path = "Modal-Info.plist"; sourceTree = "<group>"; };
+		AB15008214CE091C00117A23 /* Modal-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Modal-Info.plist"; sourceTree = "<group>"; };
 		AB15008414CE091C00117A23 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AB15008614CE091C00117A23 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		AB15008814CE091C00117A23 /* Modal-Prefix.pch */ = {isa = PBXFileReference; path = "Modal-Prefix.pch"; sourceTree = "<group>"; };
-		AB15008914CE091C00117A23 /* ModalAppDelegate.h */ = {isa = PBXFileReference; path = ModalAppDelegate.h; sourceTree = "<group>"; };
+		AB15008814CE091C00117A23 /* Modal-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Modal-Prefix.pch"; sourceTree = "<group>"; };
+		AB15008914CE091C00117A23 /* ModalAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModalAppDelegate.h; sourceTree = "<group>"; };
 		AB15008A14CE091C00117A23 /* ModalAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModalAppDelegate.m; sourceTree = "<group>"; };
 		AB15008D14CE091C00117A23 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		AB15008F14CE091C00117A23 /* ModalMainViewController.h */ = {isa = PBXFileReference; path = ModalMainViewController.h; sourceTree = "<group>"; };
-		AB15009014CE091C00117A23 /* ModalMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModalMainViewController.m; sourceTree = "<group>"; };
-		AB15009214CE091D00117A23 /* ModalFlipsideViewController.h */ = {isa = PBXFileReference; path = ModalFlipsideViewController.h; sourceTree = "<group>"; };
-		AB15009314CE091D00117A23 /* ModalFlipsideViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModalFlipsideViewController.m; sourceTree = "<group>"; };
+		AB15008F14CE091C00117A23 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		AB15009014CE091C00117A23 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		AB15009214CE091D00117A23 /* ModalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModalViewController.h; sourceTree = "<group>"; };
+		AB15009314CE091D00117A23 /* ModalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModalViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,10 +83,10 @@
 				AB15008914CE091C00117A23 /* ModalAppDelegate.h */,
 				AB15008A14CE091C00117A23 /* ModalAppDelegate.m */,
 				AB15008C14CE091C00117A23 /* MainStoryboard.storyboard */,
-				AB15008F14CE091C00117A23 /* ModalMainViewController.h */,
-				AB15009014CE091C00117A23 /* ModalMainViewController.m */,
-				AB15009214CE091D00117A23 /* ModalFlipsideViewController.h */,
-				AB15009314CE091D00117A23 /* ModalFlipsideViewController.m */,
+				AB15008F14CE091C00117A23 /* MainViewController.h */,
+				AB15009014CE091C00117A23 /* MainViewController.m */,
+				AB15009214CE091D00117A23 /* ModalViewController.h */,
+				AB15009314CE091D00117A23 /* ModalViewController.m */,
 				AB15008114CE091C00117A23 /* Supporting Files */,
 			);
 			path = Modal;
@@ -167,8 +167,8 @@
 			files = (
 				AB15008714CE091C00117A23 /* main.m in Sources */,
 				AB15008B14CE091C00117A23 /* ModalAppDelegate.m in Sources */,
-				AB15009114CE091C00117A23 /* ModalMainViewController.m in Sources */,
-				AB15009414CE091D00117A23 /* ModalFlipsideViewController.m in Sources */,
+				AB15009114CE091C00117A23 /* MainViewController.m in Sources */,
+				AB15009414CE091D00117A23 /* ModalViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

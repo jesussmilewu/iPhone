@@ -8,16 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class ModalFlipsideViewController;
+@interface ModalViewController : UIViewController
 
-@protocol ModalFlipsideViewControllerDelegate
-- (void)flipsideViewControllerDidFinish:(ModalFlipsideViewController *)controller;
-@end
+@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
+@property (nonatomic, copy) NSString *title;
 
-@interface ModalFlipsideViewController : UIViewController
-
-@property (weak, nonatomic) IBOutlet id <ModalFlipsideViewControllerDelegate> delegate;
-
-- (IBAction)done:(id)sender;
+- (IBAction)done;
 
 @end

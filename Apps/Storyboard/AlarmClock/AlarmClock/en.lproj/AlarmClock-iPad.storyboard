@@ -44,21 +44,21 @@
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="0xr-yE-aSS">
-                                <rect key="frame" x="679" y="903" width="79" height="27"/>
+                                <rect key="frame" x="676" y="901" width="79" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <action selector="updateAlarm" destination="Kgp-5c-psj" eventType="valueChanged" id="YJd-8L-5Vi"/>
                                 </connections>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Alarm:" lineBreakMode="tailTruncation" minimumFontSize="10" id="3tZ-K2-ii5">
-                                <rect key="frame" x="10" y="896" width="109" height="41"/>
+                                <rect key="frame" x="9" y="892" width="109" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Time" lineBreakMode="tailTruncation" minimumFontSize="10" id="aLO-e0-vcl">
-                                <rect key="frame" x="120" y="896" width="145" height="41"/>
+                                <rect key="frame" x="123" y="892" width="145" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -223,7 +223,8 @@
         <class className="PreferencesViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PreferencesViewController.h"/>
             <relationships>
-                <relationship kind="action" name="updatePreferences"/>
+                <relationship kind="action" name="restorePreferences"/>
+                <relationship kind="action" name="savePreferences"/>
                 <relationship kind="outlet" name="digitsSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="partitionControl" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="soundSwitch" candidateClass="UISwitch"/>

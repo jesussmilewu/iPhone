@@ -43,7 +43,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="History" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="d6X-cY-62s">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Historie" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="d6X-cY-62s">
                                 <rect key="frame" x="20" y="173" width="280" height="70"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
@@ -54,7 +54,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="history" id="KLX-4A-pKK"/>
-                    <navigationItem key="navigationItem" title="History" id="c0d-m6-45q"/>
+                    <navigationItem key="navigationItem" title="Historie" id="c0d-m6-45q"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -72,7 +72,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Recents" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="XcY-OC-aaQ">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Topvideos" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="XcY-OC-aaQ">
                                 <rect key="frame" x="20" y="173" width="280" height="70"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
@@ -83,7 +83,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="mostViewed" id="xcQ-XY-TUR"/>
-                    <navigationItem key="navigationItem" title="Recents" id="GVY-fC-ikG"/>
+                    <navigationItem key="navigationItem" title="Topvideos" id="GVY-fC-ikG"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -101,7 +101,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Most Recent" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="Gvi-hS-vRU">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Neue Videos" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="Gvi-hS-vRU">
                                 <rect key="frame" x="20" y="173" width="280" height="70"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
@@ -112,7 +112,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="mostRecent" id="i8k-eR-8BM"/>
-                    <navigationItem key="navigationItem" title="Most Recent" id="RXv-5F-Oay"/>
+                    <navigationItem key="navigationItem" title="Neue Videos" id="RXv-5F-Oay"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -130,7 +130,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Contacts" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="Wna-eg-7fV">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Kontakte" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="Wna-eg-7fV">
                                 <rect key="frame" x="20" y="173" width="280" height="70"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
@@ -141,7 +141,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="contacts" id="hUH-MH-E4z"/>
-                    <navigationItem key="navigationItem" title="Contacts" id="Bz3-pv-kq0"/>
+                    <navigationItem key="navigationItem" title="Kontakte" id="Bz3-pv-kq0"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -159,7 +159,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Top Rated" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="SbM-4w-mdb">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Bestwertung" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="SbM-4w-mdb">
                                 <rect key="frame" x="20" y="173" width="280" height="70"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
@@ -170,7 +170,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="topRated" id="mBJ-Mb-OGz"/>
-                    <navigationItem key="navigationItem" title="Top Rated" id="jVK-Xz-6Al"/>
+                    <navigationItem key="navigationItem" title="Bestwertung" id="jVK-Xz-6Al"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -197,7 +197,6 @@
                         <segue destination="6Pn-3o-8PS" kind="relationship" relationship="rootViewController" id="XmX-40-Ipa"/>
                     </connections>
                 </navigationController>
-                <navigationItem title="Navigation" id="YC8-OH-iKv"/>
             </objects>
             <point key="canvasLocation" x="1554" y="285"/>
         </scene>
@@ -209,7 +208,7 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Favorites" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="Obg-hL-Nl4">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Favoriten" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="Obg-hL-Nl4">
                                 <rect key="frame" x="20" y="173" width="280" height="160"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
@@ -219,7 +218,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Favorites" id="hRh-Uy-tZB" userLabel="Navigation Item - Item"/>
+                    <navigationItem key="navigationItem" title="Favoriten" id="hRh-Uy-tZB" userLabel="Navigation Item - Item"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -265,7 +264,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Featured" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="14i-m8-Vry">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Highlights" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="14i-m8-Vry">
                                 <rect key="frame" x="20" y="173" width="280" height="70"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
@@ -276,7 +275,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="featured" id="XxN-cx-Ymv"/>
-                    <navigationItem key="navigationItem" title="Featured" id="5Jq-NW-ZQy"/>
+                    <navigationItem key="navigationItem" title="Highlights" id="5Jq-NW-ZQy"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -294,7 +293,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Bookmarks" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="El2-j9-h6F">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Lesezeichen" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="El2-j9-h6F">
                                 <rect key="frame" x="20" y="173" width="280" height="70"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
@@ -305,7 +304,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="bookmarks" id="CE8-u7-b3E"/>
-                    <navigationItem key="navigationItem" title="Bookmarks" id="ph2-1p-qMg"/>
+                    <navigationItem key="navigationItem" title="Lesezeichen" id="ph2-1p-qMg"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -323,7 +322,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Search" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="zAu-yV-5vt">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Suche" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="zAu-yV-5vt">
                                 <rect key="frame" x="20" y="173" width="280" height="70"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
@@ -334,7 +333,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="search" id="QfC-dj-mqz"/>
-                    <navigationItem key="navigationItem" title="Search" id="RNJ-7x-bka"/>
+                    <navigationItem key="navigationItem" title="Suche" id="RNJ-7x-bka"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>

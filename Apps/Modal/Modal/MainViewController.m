@@ -30,10 +30,4 @@
     [self presentModalViewController:theController animated:YES];
 }
 
-#pragma mark ModalViewControllerDelegate
-
-- (void)flipsideViewControllerDidFinish:(ModalViewController *)inController {
-    [self dismissModalViewControllerAnimated:YES];
-}
-
 @end

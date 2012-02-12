@@ -6,8 +6,10 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "ModalFlipsideViewController.h"
+#import "ModalViewController.h"
 
-@interface ModalMainViewController : UIViewController <ModalFlipsideViewControllerDelegate>
+@interface MainViewController : UIViewController
+
+- (IBAction)showInfo;
 
 @end
