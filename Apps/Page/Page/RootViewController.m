@@ -52,13 +52,6 @@
     return self.directionControl.selectedSegmentIndex;
 }
 
-- (UIPageViewControllerSpineLocation)spineLocationForInterfaceOrientation:(UIInterfaceOrientation)inInterfaceOrientation navigationOrientation:(UIPageViewControllerNavigationOrientation)inNavigationOrientation {
-    BOOL isHorizontal = inNavigationOrientation == UIPageViewControllerNavigationOrientationHorizontal;
-    BOOL isLandscape = UIInterfaceOrientationIsLandscape(inInterfaceOrientation);
-    
-    return isHorizontal == isLandscape ? UIPageViewControllerSpineLocationMid : self.selectedSpineLocation;
-}
-
 - (id)labelViewControllerWithPageNumber:(NSInteger)inPage {
     LabelViewController *theController = [self.storyboard instantiateViewControllerWithIdentifier:@"label"];
     
@@ -77,7 +70,7 @@
 
 - (IBAction)create {
     UIPageViewControllerNavigationOrientation theOrientation = self.selectedNavigationOrientation;
-    UIPageViewControllerSpineLocation theLocation = [self spineLocationForInterfaceOrientation:self.interfaceOrientation navigationOrientation:theOrientation];
+    UIPageViewControllerSpineLocation theLocation = self.selectedSpineLocation;
     BOOL isDoubleSided = self.doubleSidedControl.selectedSegmentIndex;
     NSDictionary *theOptions = [NSDictionary dictionaryWithObjectsAndKeys:
                                 [NSNumber numberWithInt:theLocation], 
@@ -87,14 +80,14 @@
                                                                                         options:theOptions];
     NSArray *theControllers = [self viewControllersForSpineLocation:theLocation];
     
-    theController.doubleSided = isDoubleSided || theLocation == UIPageViewControllerSpineLocationMid;
-    theController.dataSource = self;
-    theController.delegate = self;
-    theController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [theController setViewControllers:theControllers 
                             direction:self.selectedDirection 
                              animated:YES 
                            completion:NULL];
+    theController.doubleSided = isDoubleSided || theLocation == UIPageViewControllerSpineLocationMid;
+    theController.dataSource = self;
+    theController.delegate = self;
+    theController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentModalViewController:theController animated:YES];
     self.pageViewController = theController;
 }
@@ -126,11 +119,8 @@
 #pragma mark UIPageViewControllerDelegate
 
 - (UIPageViewControllerSpineLocation)pageViewController:(UIPageViewController *)inPageViewController 
-                   spineLocationForInterfaceOrientation:(UIInterfaceOrientation)inOrientation {
-    
-    UIPageViewControllerNavigationOrientation theOrientation = inPageViewController.navigationOrientation;     
-    UIPageViewControllerSpineLocation theLocation = [self spineLocationForInterfaceOrientation:inOrientation    
-                         navigationOrientation:theOrientation];
+                   spineLocationForInterfaceOrientation:(UIInterfaceOrientation)inOrientation {    
+    UIPageViewControllerSpineLocation theLocation = self.selectedSpineLocation;
     NSArray *theControllers = [self viewControllersForSpineLocation:theLocation];
 
     [inPageViewController setViewControllers:theControllers 

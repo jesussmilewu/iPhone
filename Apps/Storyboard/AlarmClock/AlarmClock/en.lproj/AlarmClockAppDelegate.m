@@ -19,7 +19,10 @@
     self.soundId = nil;    
 }
 
-- (BOOL)application:(UIApplication *)inApplication didFinishLaunchingWithOptions:(NSDictionary *)inOptions {    
+- (BOOL)application:(UIApplication *)inApplication didFinishLaunchingWithOptions:(NSDictionary *)inOptions {
+    [[UISegmentedControl appearance] setTintColor:[UIColor redColor]];
+    [[UILabel appearanceWhenContainedIn:[UITableView class], nil] setTextColor:[UIColor redColor]];
+    [[UILabel appearanceWhenContainedIn:[UITableView class], [UITableViewCell class], nil] setTextColor:[UIColor blueColor]];
     return YES;
 }
 

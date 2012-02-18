@@ -225,7 +225,8 @@
         <class className="PreferencesViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PreferencesViewController.h"/>
             <relationships>
-                <relationship kind="action" name="updatePreferences"/>
+                <relationship kind="action" name="restorePreferences"/>
+                <relationship kind="action" name="savePreferences"/>
                 <relationship kind="outlet" name="digitsSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="partitionControl" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="soundSwitch" candidateClass="UISwitch"/>
