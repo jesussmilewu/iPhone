@@ -18,7 +18,7 @@
     CGContextSaveGState(theContext);
     CGContextSetRGBFillColor(theContext, 1.0, 1.0, 1.0, 1.0);
     CGContextFillRect(theContext, self.bounds);
-    CGContextSetRGBFillColor(theContext, 0.0, 0.0, 0.0, 1.0);
+    CGContextSetRGBFillColor(theContext, 1.0, 0.0, 0.0, 1.0);
     while(theX < theSize.width) {
         CGContextMoveToPoint(theContext, theX, 0.0);
         CGContextAddLineToPoint(theContext, theX + theSize.height, 0.0);
