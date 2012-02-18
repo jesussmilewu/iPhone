@@ -101,6 +101,7 @@
     CGContextSetLineCap(theContext, kCGLineCapRound);
     
     if(self.partitionOfDial != PartitionOfDialNone) {
+        // Zifferneinteilung zeichnen
         for(NSInteger i = 0; i < 60; ++i) {
             CGFloat theAngle = i * M_PI / 30.0;
             
@@ -114,6 +115,7 @@
                 CGContextStrokePath(theContext);            
             }
             else if(self.partitionOfDial == PartitionOfDialMinutes) {
+                // Minuteneinteilungsstrich darstellen
                 CGPoint thePoint = [self pointWithRadius:theRadius * 0.95 angle:theAngle];
                 
                 CGContextAddArc(theContext, thePoint.x, thePoint.y, 3.0, 0.0, 2 * M_PI, YES);
