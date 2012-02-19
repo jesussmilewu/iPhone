@@ -1,7 +1,7 @@
 #import "AlarmClockAppDelegate.h"
 #import "AlarmClockViewController.h"
 #import <AudioToolbox/AudioToolbox.h>
-
+#import "ClockView.h"
 
 @interface AlarmClockAppDelegate()
 
@@ -20,9 +20,11 @@
 }
 
 - (BOOL)application:(UIApplication *)inApplication didFinishLaunchingWithOptions:(NSDictionary *)inOptions {
-    [[UISegmentedControl appearance] setTintColor:[UIColor redColor]];
-    [[UILabel appearanceWhenContainedIn:[UITableView class], nil] setTextColor:[UIColor redColor]];
-    [[UILabel appearanceWhenContainedIn:[UITableView class], [UITableViewCell class], nil] setTextColor:[UIColor blueColor]];
+    [[UILabel appearance] setTextColor:[UIColor darkGrayColor]];
+    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTintColor:[UIColor redColor]];
+    [[UILabel appearanceWhenContainedIn:[UITableView class], nil] setTextColor:[UIColor blueColor]];
+    [[UILabel appearanceWhenContainedIn:[UITableViewCell class], [UITableView class], nil] setTextColor:[UIColor darkGrayColor]];
+    [[ClockView appearance] setDialColor:[UIColor whiteColor]];
     return YES;
 }
 

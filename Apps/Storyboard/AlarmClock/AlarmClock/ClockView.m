@@ -15,6 +15,7 @@
 @synthesize timer;
 @synthesize showDigits;
 @synthesize partitionOfDial;
+@synthesize dialColor;
 
 - (id)initWithFrame:(CGRect)inFrame {
     self = [super initWithFrame:inFrame];
@@ -90,7 +91,7 @@
     CGFloat theRadius = CGRectGetWidth(theBounds) / 2.0;
     
     CGContextSaveGState(theContext);
-    CGContextSetRGBFillColor(theContext, 1.0, 1.0, 1.0, 1.0);
+    [self.dialColor setFill];
     CGContextAddEllipseInRect(theContext, theBounds);
     CGContextFillPath(theContext);
     CGContextAddEllipseInRect(theContext, theBounds);
