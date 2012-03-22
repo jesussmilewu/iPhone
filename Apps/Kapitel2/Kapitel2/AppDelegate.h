@@ -1,9 +1,9 @@
 //
 //  AppDelegate.h
-//  Grunzlagen
+//  Kapitel2
 //
-//  Created by  on 14.03.12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by Rodewig Klaus on 15.03.12.
+//  Copyright (c) 2012 Klaus M. Rodewig. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
