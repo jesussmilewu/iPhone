@@ -6,6 +6,8 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
 
 @interface AlarmClockViewController()
 
+@property (nonatomic) BOOL alarmHidden;
+
 @end
 
 @implementation AlarmClockViewController
@@ -21,6 +23,16 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
     self.alarmSwitch = nil;
     self.timeLabel = nil;    
     [super dealloc];
+}
+
+- (BOOL)alarmHidden {
+    return self.clockControl.hidden;
+}
+
+- (void)setAlarmHidden:(BOOL)inAlarmHidden {
+    self.alarmSwitch.on = !inAlarmHidden;
+    self.clockControl.hidden = inAlarmHidden;
+    self.timeLabel.hidden = inAlarmHidden;
 }
 
 - (NSTimeInterval)startTimeOfCurrentDay {
@@ -40,35 +52,25 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
         NSTimeInterval theTime = [theNotification.fireDate timeIntervalSinceReferenceDate] - self.startTimeOfCurrentDay;
         
         self.clockControl.time = remainder(theTime, kSecondsOfDay / 2.0);
-        self.clockControl.hidden = NO;
+        self.alarmHidden = NO;
     }
     else {
-        self.alarmSwitch.on = NO;
-        self.clockControl.hidden = YES;
+        self.alarmHidden = YES;
     }
     [self updateTimeLabel];
 }
 
-- (void)updateAlarmHand:(UIGestureRecognizer *)inRecognizer {
-    CGPoint thePoint = [inRecognizer locationInView:clockControl];
-    CGFloat theAngle = [clockControl angleWithPoint:thePoint];
+- (IBAction)updateAlarmHand:(UIGestureRecognizer *)inRecognizer {
+    CGPoint thePoint = [inRecognizer locationInView:self.clockControl];
+    CGFloat theAngle = [self.clockControl angleWithPoint:thePoint];
     
     self.clockControl.angle = theAngle;
     [self.clockControl setNeedsDisplay];
-    self.alarmSwitch.on = YES;
+    self.alarmHidden = NO;
     [self updateTimeLabel];
     if(inRecognizer.state == UIGestureRecognizerStateEnded) {
         [self updateAlarm];
     }
-    NSLog(@"type = %d", inRecognizer.state);
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    UILongPressGestureRecognizer *theRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(updateAlarmHand:)];
-
-    [self.clockView addGestureRecognizer:theRecognizer];
-    [theRecognizer release];
 }
 
 - (void)viewDidUnload {
@@ -114,7 +116,7 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
 }
 
 - (IBAction)updateAlarm {
-    self.clockControl.hidden = !alarmSwitch.on;
+    self.alarmHidden = !self.alarmSwitch.on;
     if(self.alarmSwitch.on) {
         [self createAlarm];
     }
@@ -126,14 +128,11 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
 }
 
 - (IBAction)updateTimeLabel {
-    self.timeLabel.hidden = clockControl.hidden;
-    if(!self.timeLabel.hidden) {
-        NSInteger theTime = round(self.clockControl.time / 60.0);
-        NSInteger theMinutes = theTime % 60;
-        NSInteger theHours = theTime / 60;
-        
-        timeLabel.text = [NSString stringWithFormat:@"%d:%02d", theHours, theMinutes];
-    }
+    NSInteger theTime = round(self.clockControl.time / 60.0);
+    NSInteger theMinutes = theTime % 60;
+    NSInteger theHours = theTime / 60;
+    
+    self.timeLabel.text = [NSString stringWithFormat:@"%d:%02d", theHours, theMinutes];
 }
 
 

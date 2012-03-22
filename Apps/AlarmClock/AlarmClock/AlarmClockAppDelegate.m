@@ -23,8 +23,14 @@
     [super dealloc];
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-
+- (BOOL)application:(UIApplication *)inApplication didFinishLaunchingWithOptions:(NSDictionary *)inOptions {
+    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        self.viewController = [[[AlarmClockViewController alloc] initWithNibName:@"AlarmClockViewController-iPad" bundle:nil] autorelease];
+    }
+    else {
+        self.viewController = [[[AlarmClockViewController alloc] initWithNibName:@"AlarmClockViewController" bundle:nil] autorelease];
+    }
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;

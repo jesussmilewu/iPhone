@@ -1,6 +1,12 @@
 #import "ClockControl.h"
 #import "UIView+AlarmClock.h"
 
+@interface ClockControl()
+
+@property (nonatomic) CGFloat savedAngle;
+
+@end
+
 @implementation ClockControl
 
 @synthesize time;
@@ -51,32 +57,27 @@
     return theDelta < 2 * M_PI / 180.0;      
 }
 
-- (BOOL)beginTrackingWithTouch:(UITouch *)inTouch withEvent:(UIEvent *)inEvent {
+- (void)updateAngleWithTouch:(UITouch *)inTouch {
     CGPoint thePoint = [inTouch locationInView:self];
-    CGFloat theAngle = [self angleWithPoint:thePoint];
     
-    self.savedAngle = self.angle;
-    self.angle = theAngle;
+    self.angle = [self angleWithPoint:thePoint];
     [self setNeedsDisplay];
-    [self sendActionsForControlEvents:UIControlEventValueChanged];
+    [self sendActionsForControlEvents:UIControlEventValueChanged];    
+}
+
+- (BOOL)beginTrackingWithTouch:(UITouch *)inTouch withEvent:(UIEvent *)inEvent {    
+    self.savedAngle = self.angle;
+    [self updateAngleWithTouch:inTouch];
     return YES;        
 }
 
 - (BOOL)continueTrackingWithTouch:(UITouch *)inTouch withEvent:(UIEvent *)inEvent {
-    CGPoint thePoint = [inTouch locationInView:self];
-    
-    self.angle = [self angleWithPoint:thePoint];
-    [self setNeedsDisplay];
-    [self sendActionsForControlEvents:UIControlEventValueChanged];
+    [self updateAngleWithTouch:inTouch];
     return YES;
 }
 
 - (void)endTrackingWithTouch:(UITouch *)inTouch withEvent:(UIEvent *)inEvent {
-    CGPoint thePoint = [inTouch locationInView:self];
-    
-    self.angle = [self angleWithPoint:thePoint];
-    [self setNeedsDisplay];
-    [self sendActionsForControlEvents:UIControlEventValueChanged];
+    [self updateAngleWithTouch:inTouch];
 }
 
 - (void)cancelTrackingWithEvent:(UIEvent *)inEvent {
