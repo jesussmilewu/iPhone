@@ -7,11 +7,6 @@
 //
 
 #import "ViewController.h"
-#include <unistd.h>
-
-@interface ViewController ()
-
-@end
 
 @implementation ViewController
 @synthesize textView;
@@ -20,9 +15,9 @@
 {
     [super viewDidLoad];
     [textView setText:nil];
-    [self logger:@"foo"];
-    [self logger:@"bar"];
+    [self logger:[NSString stringWithFormat:@"%@",NSStringFromSelector(_cmd)]];
 }
+
 
 - (void)viewDidUnload
 {

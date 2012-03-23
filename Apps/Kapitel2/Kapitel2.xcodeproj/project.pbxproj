@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		404BB2891516778E0060C611 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 404BB2881516778E0060C611 /* Model.m */; };
 		40869FAB1512920700A94D11 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40869FAA1512920700A94D11 /* UIKit.framework */; };
 		40869FAD1512920700A94D11 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40869FAC1512920700A94D11 /* Foundation.framework */; };
 		40869FAF1512920700A94D11 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40869FAE1512920700A94D11 /* CoreGraphics.framework */; };
@@ -19,8 +18,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		404BB2871516778E0060C611 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
-		404BB2881516778E0060C611 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		40869FA61512920700A94D11 /* Kapitel2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kapitel2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40869FAA1512920700A94D11 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		40869FAC1512920700A94D11 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -80,8 +77,6 @@
 		40869FB01512920700A94D11 /* Kapitel2 */ = {
 			isa = PBXGroup;
 			children = (
-				404BB2871516778E0060C611 /* Model.h */,
-				404BB2881516778E0060C611 /* Model.m */,
 				40869FB91512920700A94D11 /* AppDelegate.h */,
 				40869FBA1512920700A94D11 /* AppDelegate.m */,
 				40869FBC1512920700A94D11 /* ViewController.h */,
@@ -169,7 +164,6 @@
 				40869FB71512920700A94D11 /* main.m in Sources */,
 				40869FBB1512920700A94D11 /* AppDelegate.m in Sources */,
 				40869FBE1512920700A94D11 /* ViewController.m in Sources */,
-				404BB2891516778E0060C611 /* Model.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
