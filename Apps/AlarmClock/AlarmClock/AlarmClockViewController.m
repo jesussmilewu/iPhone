@@ -44,7 +44,7 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
     return [theDate timeIntervalSinceReferenceDate];
 }
 
-- (void)updateControl {
+- (void)updateViews {
     UIApplication *theApplication = [UIApplication sharedApplication];
 	UILocalNotification *theNotification = [[theApplication scheduledLocalNotifications] lastObject];
     
@@ -83,7 +83,7 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
 
 - (void)viewWillAppear:(BOOL)inAnimated {
     [super viewWillAppear:inAnimated];
-    [self updateControl];
+    [self updateViews];
 }
 
 - (void)viewDidAppear:(BOOL)inAnimated {

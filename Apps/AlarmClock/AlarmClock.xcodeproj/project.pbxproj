@@ -105,7 +105,6 @@
 		AB9F828812F09C4A002492BC /* AlarmClock */ = {
 			isa = PBXGroup;
 			children = (
-				ABC35F2E12F17EDF0097D404 /* iPad */,
 				AB9F82A212F09C7F002492BC /* ClockControl.h */,
 				AB9F82A312F09C7F002492BC /* ClockControl.m */,
 				AB9F82A412F09C7F002492BC /* ClockView.h */,
@@ -117,6 +116,7 @@
 				AB9F829712F09C4B002492BC /* AlarmClockViewController.h */,
 				AB9F829812F09C4B002492BC /* AlarmClockViewController.m */,
 				AB9F829A12F09C4B002492BC /* AlarmClockViewController.xib */,
+				AB74D36C12F183E80004B790 /* AlarmClockViewController-iPad.xib */,
 				AB9F828912F09C4A002492BC /* Supporting Files */,
 			);
 			path = AlarmClock;
@@ -135,14 +135,6 @@
 				AB9F828F12F09C4A002492BC /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		ABC35F2E12F17EDF0097D404 /* iPad */ = {
-			isa = PBXGroup;
-			children = (
-				AB74D36C12F183E80004B790 /* AlarmClockViewController-iPad.xib */,
-			);
-			name = iPad;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -76,16 +76,11 @@
         
         [theAlert show];
         [theAlert release];
-<<<<<<< HEAD
         [self playSound];
-=======
-        // Wenn beim Empfang auch ein Ton erklingen soll, dann die folgende Zeile einkommentieren.
-        // [self playSound];
->>>>>>> 369fba0b34d6608c0304633d879d15cc764478dc
     }
 }
 
-- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)inApplication {
     self.soundId = nil;    
 }
 
