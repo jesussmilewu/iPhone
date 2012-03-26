@@ -38,7 +38,7 @@
 
 -(void)logger:(NSString *)logString{
     NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));
-    [NSDate date];
+    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"HH:mm:ss.SSS"];
         
