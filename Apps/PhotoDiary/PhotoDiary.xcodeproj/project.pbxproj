@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		40FB75C61521073E00E795AC /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FB75C51521073D00E795AC /* Twitter.framework */; };
 		AB101BC112E30BE0006B69FE /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = AB101BC012E30BE0006B69FE /* pause.png */; };
 		AB101BC412E31C32006B69FE /* meter.png in Resources */ = {isa = PBXBuildFile; fileRef = AB101BC312E31C32006B69FE /* meter.png */; };
 		AB101BC712E31D52006B69FE /* MeterView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB101BC612E31D52006B69FE /* MeterView.m */; };
@@ -46,6 +47,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		40FB75C51521073D00E795AC /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		AB078599132271810020D702 /* UITextView+Outlets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Outlets.h"; sourceTree = "<group>"; };
 		AB101BC012E30BE0006B69FE /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		AB101BC312E31C32006B69FE /* meter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meter.png; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40FB75C61521073E00E795AC /* Twitter.framework in Frameworks */,
 				AB11CA6E12E1B47600F99C7B /* UIKit.framework in Frameworks */,
 				AB11CA7012E1B47600F99C7B /* Foundation.framework in Frameworks */,
 				AB11CA7212E1B47600F99C7B /* CoreGraphics.framework in Frameworks */,
@@ -122,6 +125,7 @@
 		AB11CA5E12E1B47600F99C7B = {
 			isa = PBXGroup;
 			children = (
+				40FB75C51521073D00E795AC /* Twitter.framework */,
 				AB11CA7312E1B47600F99C7B /* PhotoDiary */,
 				AB11CA6C12E1B47600F99C7B /* Frameworks */,
 				AB11CA6A12E1B47600F99C7B /* Products */,
@@ -216,8 +220,8 @@
 			isa = PBXGroup;
 			children = (
 				AB1F336712EB31B000A97E41 /* play.png */,
-				AB101BC312E31C32006B69FE /* meter.png */,
 				AB101BC012E30BE0006B69FE /* pause.png */,
+				AB101BC312E31C32006B69FE /* meter.png */,
 				AB4E355412E236070087EA14 /* record.png */,
 				AB7466CD12E1E11B009E1136 /* micro.png */,
 				AB7466CA12E1DDC3009E1136 /* speaker.png */,

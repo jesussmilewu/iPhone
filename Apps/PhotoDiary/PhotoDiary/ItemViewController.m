@@ -31,6 +31,7 @@ static const NSInteger kOverviewButtonTag = 123;
 @synthesize cameraButton;
 @synthesize photoLibraryButton;
 @synthesize playButton;
+@synthesize tweetButton;
 @synthesize recordButton;
 
 @synthesize toolbar;
@@ -56,6 +57,7 @@ static const NSInteger kOverviewButtonTag = 123;
     self.indexPath = nil;
     self.imageView = nil;
     self.textView = nil;
+    [tweetButton release];
     [super dealloc];
 }
 
@@ -70,7 +72,9 @@ static const NSInteger kOverviewButtonTag = 123;
     self.photoLibraryButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
     if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         self.popoverController = [[[UIPopoverController alloc] initWithContentViewController:self.imagePicker] autorelease];
-    }
+    }   
+    if(self.item.text)
+        [tweetButton setEnabled:YES];
 }
 
 - (void)viewDidUnload {
@@ -85,6 +89,7 @@ static const NSInteger kOverviewButtonTag = 123;
     self.popoverController = nil;
     self.imageView = nil;
     self.textView = nil;
+    [self setTweetButton:nil];
     [super viewDidUnload];
 }
 
@@ -271,6 +276,26 @@ static const NSInteger kOverviewButtonTag = 123;
     
     self.audioPlayer.audioMedium = theAudio;
     [self.audioPlayer setVisible:YES animated:YES];
+}
+
+- (IBAction)composeTweet:(id)sender {
+    if([TWTweetComposeViewController canSendTweet]){
+        Medium *theMedium;
+        
+        theMedium = [self.item mediumForType:kMediumTypeImage];
+
+        TWTweetComposeViewController *tweet = [[TWTweetComposeViewController alloc] init];
+        [tweet setInitialText:[textView text]];
+        [tweet addImage:[UIImage imageWithData:theMedium.data]];
+        [self presentModalViewController:tweet animated:YES];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Obacht!"
+                                                        message:@"Bitte Twitter-Account in den Systemeinstellungen einrichten."
+                                                       delegate:self
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 - (IBAction)saveText:(id)inSender {

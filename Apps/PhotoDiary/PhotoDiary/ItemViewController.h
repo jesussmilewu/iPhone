@@ -2,6 +2,7 @@
 #import "DiaryEntry.h"
 #import "AudioPlayerController.h"
 #import "AudioRecorderController.h"
+#import <Twitter/Twitter.h>
 
 @protocol ItemViewControllerDelegate;
 
@@ -13,6 +14,7 @@
 @property (nonatomic, assign) IBOutlet UIBarButtonItem *photoLibraryButton;
 @property (nonatomic, assign) IBOutlet UIBarButtonItem *recordButton;
 @property (nonatomic, assign) IBOutlet UIBarButtonItem *playButton;
+@property (retain, nonatomic) IBOutlet UIBarButtonItem *tweetButton;
 
 @property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, retain) IBOutlet UIImagePickerController *imagePicker;
@@ -25,6 +27,7 @@
 - (IBAction)takePhotoFromLibrary:(id)inSender;
 - (IBAction)recordAudio:(id)inSender;
 - (IBAction)playAudio:(id)inSender;
+- (IBAction)composeTweet:(id)sender;
 
 - (IBAction)saveText:(id)inSender;
 - (IBAction)revertText:(id)inSender;
