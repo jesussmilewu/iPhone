@@ -299,6 +299,9 @@ static const NSInteger kOverviewButtonTag = 123;
 }
 
 - (IBAction)saveText:(id)inSender {
+    if(![tweetButton isEnabled]){
+        [tweetButton setEnabled:YES];
+    }
     [self.view endEditing:YES];
     self.item.text = self.textView.text;
     [self saveItem];
