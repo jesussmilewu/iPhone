@@ -165,13 +165,14 @@
 			isa = PBXGroup;
 			children = (
 				AB85E0B7152780EC00C28975 /* Images */,
-				AB85E0B515277D8B00C28975 /* MainStoryboard.storyboard */,
-				ABC62256152882BD0043186B /* MainStoryboard-iPad.storyboard */,
 				AB4C357012E36BBD00F12B17 /* Model */,
 				AB11CA9312E1BFF700F99C7B /* View */,
 				AB11CA9212E1BFE800F99C7B /* Controller */,
+				AB85E0B515277D8B00C28975 /* MainStoryboard.storyboard */,
+				ABC62256152882BD0043186B /* MainStoryboard-iPad.storyboard */,
 				AB11CA7C12E1B47600F99C7B /* PhotoDiaryAppDelegate.h */,
 				AB11CA7D12E1B47600F99C7B /* PhotoDiaryAppDelegate.m */,
+				AB101BC812E353C4006B69FE /* Model.xcdatamodeld */,
 				AB11CA7412E1B47600F99C7B /* Supporting Files */,
 			);
 			path = PhotoDiary;
@@ -180,7 +181,6 @@
 		AB11CA7412E1B47600F99C7B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				AB101BC812E353C4006B69FE /* Model.xcdatamodeld */,
 				AB11CA7512E1B47600F99C7B /* PhotoDiary-Info.plist */,
 				AB11CA7612E1B47600F99C7B /* InfoPlist.strings */,
 				AB11CA7912E1B47600F99C7B /* PhotoDiary-Prefix.pch */,
