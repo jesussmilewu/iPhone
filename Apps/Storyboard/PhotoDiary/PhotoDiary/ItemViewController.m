@@ -49,9 +49,9 @@ static const NSInteger kOverviewButtonTag = 123;
     self.imagePicker.allowsEditing = YES;
     self.imagePicker.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     self.imagePicker.delegate = self;
-    self.recordButton.enabled = [[AVAudioSession sharedInstance] inputIsAvailable];
     self.cameraButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
     self.photoLibraryButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
+    self.recordButton.enabled = [[AVAudioSession sharedInstance] inputIsAvailable];
     if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         self.popoverController = [[UIPopoverController alloc] initWithContentViewController:self.imagePicker];
     }   
@@ -73,7 +73,12 @@ static const NSInteger kOverviewButtonTag = 123;
 
 - (void)viewWillAppear:(BOOL)inAnimated {
     [super viewWillAppear:inAnimated];
-    [self applyItem];
+    if(self.item == nil) {
+        self.diaryEntry = nil;
+    }
+    else {
+        [self applyItem];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)inAnimated {
@@ -182,13 +187,15 @@ static const NSInteger kOverviewButtonTag = 123;
 }
 
 - (void)setDiaryEntry:(DiaryEntry *)inDiaryEntry {
-    [self.managedObjectContext reset];
+    NSManagedObjectContext *theContext = self.managedObjectContext;
+    
+    [theContext reset];
     if(inDiaryEntry == nil) {
         self.item = [NSEntityDescription insertNewObjectForEntityForName:@"DiaryEntry" 
-                                                  inManagedObjectContext:self.managedObjectContext];
+                                                  inManagedObjectContext:theContext];
     }
     else {
-        self.item = (DiaryEntry *)[self.managedObjectContext objectWithID:inDiaryEntry.objectID];
+        self.item = (DiaryEntry *)[theContext objectWithID:inDiaryEntry.objectID];
     }
     [self applyItem];
 }
@@ -196,15 +203,12 @@ static const NSInteger kOverviewButtonTag = 123;
 - (void)applyItem {
     Medium *theMedium;
     
-    if(self.item == nil) {
-        self.diaryEntry = nil;
-    }
     self.textView.text = self.item.text;
     theMedium = [self.item mediumForType:kMediumTypeImage];
     self.imageView.image = [UIImage imageWithData:theMedium.data];
     self.playButton.enabled = [self.item mediumForType:kMediumTypeAudio] != nil;
     if(self.item.text) {
-        [tweetButton setEnabled:YES];
+        [self.tweetButton setEnabled:YES];
     }
 }
 
