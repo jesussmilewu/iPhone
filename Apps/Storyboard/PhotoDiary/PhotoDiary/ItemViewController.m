@@ -51,10 +51,10 @@ static const NSInteger kOverviewButtonTag = 123;
     self.imagePicker.delegate = self;
     self.cameraButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
     self.photoLibraryButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
-    self.recordButton.enabled = [[AVAudioSession sharedInstance] inputIsAvailable];
     if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         self.popoverController = [[UIPopoverController alloc] initWithContentViewController:self.imagePicker];
     }   
+    self.recordButton.enabled = [[AVAudioSession sharedInstance] inputIsAvailable];
 }
 
 - (void)viewDidUnload {
