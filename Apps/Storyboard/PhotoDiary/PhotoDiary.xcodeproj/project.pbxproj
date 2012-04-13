@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		40FB75C61521073E00E795AC /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FB75C51521073D00E795AC /* Twitter.framework */; };
+		40F91108152B840A00C3921B /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FB75C51521073D00E795AC /* Twitter.framework */; };
 		AB101BC412E31C32006B69FE /* meter.png in Resources */ = {isa = PBXBuildFile; fileRef = AB101BC312E31C32006B69FE /* meter.png */; };
 		AB101BC712E31D52006B69FE /* MeterView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB101BC612E31D52006B69FE /* MeterView.m */; };
 		AB101BCA12E353C4006B69FE /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB101BC812E353C4006B69FE /* Model.xcdatamodeld */; };
@@ -119,7 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40FB75C61521073E00E795AC /* Twitter.framework in Frameworks */,
+				40F91108152B840A00C3921B /* Twitter.framework in Frameworks */,
 				AB11CA6E12E1B47600F99C7B /* UIKit.framework in Frameworks */,
 				AB11CA7012E1B47600F99C7B /* Foundation.framework in Frameworks */,
 				AB11CA7212E1B47600F99C7B /* CoreGraphics.framework in Frameworks */,

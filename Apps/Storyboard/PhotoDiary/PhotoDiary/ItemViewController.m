@@ -250,8 +250,11 @@ static const NSInteger kOverviewButtonTag = 123;
         theMedium = [self.item mediumForType:kMediumTypeImage];
 
         TWTweetComposeViewController *tweet = [[TWTweetComposeViewController alloc] init];
-        [tweet setInitialText:[textView text]];
-        [tweet addImage:[UIImage imageWithData:theMedium.data]];
+
+        if(theMedium.data)
+            [tweet addImage:[UIImage imageWithData:theMedium.data]];
+        
+        [tweet setInitialText:[textView text]];        
         [self presentModalViewController:tweet animated:YES];
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Obacht!"
