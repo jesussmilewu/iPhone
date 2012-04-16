@@ -245,11 +245,11 @@ static const NSInteger kOverviewButtonTag = 123;
 
 - (IBAction)composeTweet:(id)sender {
     if([TWTweetComposeViewController canSendTweet]){
+        TWTweetComposeViewController *tweet = [[TWTweetComposeViewController alloc] init];
         Medium *theMedium;
         
         theMedium = [self.item mediumForType:kMediumTypeImage];
 
-        TWTweetComposeViewController *tweet = [[TWTweetComposeViewController alloc] init];
         [tweet setInitialText:[textView text]];
         [tweet addImage:[UIImage imageWithData:theMedium.data]];
         [self presentModalViewController:tweet animated:YES];
@@ -292,15 +292,6 @@ static const NSInteger kOverviewButtonTag = 123;
     [self saveItem];
 }
 
-- (void)saveImage:(UIImage *)inImage {
-    NSData *theData = UIImageJPEGRepresentation(inImage, 0.8);
-    CGSize theIconSize = [inImage sizeToAspectFitInSize:CGSizeMake(60.0, 60.0)];
-    UIImage *theImage = [inImage scaledImageWithSize:theIconSize];
-
-    self.item.icon = UIImageJPEGRepresentation(theImage, 0.8);
-    [self updateMediumData:theData withMediumType:kMediumTypeImage];
-}
-
 - (void)dismissImagePickerController:(UIImagePickerController *)inPicker {
     if(self.popoverController == nil) {
         [inPicker dismissModalViewControllerAnimated:YES];
@@ -337,11 +328,14 @@ static const NSInteger kOverviewButtonTag = 123;
 - (void)imagePickerController:(UIImagePickerController *)inPicker 
 didFinishPickingMediaWithInfo:(NSDictionary *)inInfo {
     UIImage *theImage = [inInfo valueForKey:UIImagePickerControllerEditedImage];
+    NSData *theData = UIImageJPEGRepresentation(theImage, 0.8);
+    CGSize theIconSize = [theImage sizeToAspectFitInSize:CGSizeMake(60.0, 60.0)];
     
-    [self dismissImagePickerController:inPicker];
-    self.item.icon = nil;
+    [self updateMediumData:theData withMediumType:kMediumTypeImage];
     self.imageView.image = theImage;
-    [self saveImage:theImage];
+    theImage = [theImage scaledImageWithSize:theIconSize];
+    self.item.icon = UIImageJPEGRepresentation(theImage, 0.8);
+    [self dismissImagePickerController:inPicker];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)inPicker {

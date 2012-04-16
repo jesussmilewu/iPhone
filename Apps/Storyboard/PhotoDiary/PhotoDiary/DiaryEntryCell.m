@@ -10,10 +10,6 @@
     return (UIImageView *)[self viewWithTag:ICON];
 }
 
-- (UIControl *)imageControl {
-    return (UIControl *) self.imageView.superview;
-}
-
 - (void)setIcon:(UIImage *)inImage {
     UIImageView *theView = self.imageView;
     
@@ -24,6 +20,10 @@
     UILabel *theLabel = (UILabel *)[self viewWithTag:TEXT];
     
     theLabel.text = inText;
+}
+
+- (UIControl *)imageControl {
+    return (UIControl *) self.imageView.superview;
 }
 
 - (void)setDate:(NSDate *)inDate {
