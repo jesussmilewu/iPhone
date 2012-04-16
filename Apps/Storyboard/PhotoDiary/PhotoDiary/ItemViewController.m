@@ -245,21 +245,21 @@ static const NSInteger kOverviewButtonTag = 123;
 
 - (IBAction)composeTweet:(id)sender {
     if([TWTweetComposeViewController canSendTweet]){
-        TWTweetComposeViewController *tweet = [[TWTweetComposeViewController alloc] init];
-        Medium *theMedium;
-        
-        theMedium = [self.item mediumForType:kMediumTypeImage];
+        TWTweetComposeViewController *theTweet = [[TWTweetComposeViewController alloc] init];
+        Medium *theMedium = [self.item mediumForType:kMediumTypeImage];
 
-        [tweet setInitialText:[textView text]];
-        [tweet addImage:[UIImage imageWithData:theMedium.data]];
-        [self presentModalViewController:tweet animated:YES];
+        [theTweet setInitialText:[self.textView text]];        
+        if(theMedium.data) {
+            [theTweet addImage:[UIImage imageWithData:theMedium.data]];
+        }
+        [self presentModalViewController:theTweet animated:YES];
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Obacht!"
-                                                        message:@"Bitte Twitter-Account in den Systemeinstellungen einrichten."
-                                                       delegate:self
-                                              cancelButtonTitle:@"Ok"
-                                              otherButtonTitles:nil];
-        [alert show];
+        UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Obacht!", @"")
+                                                           message:NSLocalizedString(@"Bitte Twitter-Account in den Systemeinstellungen einrichten.", @"")
+                                                          delegate:self
+                                                 cancelButtonTitle:NSLocalizedString(@"Ok", @"")
+                                                 otherButtonTitles:nil];
+        [theAlert show];
     }
 }
 
