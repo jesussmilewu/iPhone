@@ -272,18 +272,15 @@
 #pragma mark UISearchDisplayDelegate
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)inController shouldReloadTableForSearchString:(NSString *)inSearchString {
-    NSFetchRequest *theRequest = self.fetchRequest;
     NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"text contains[cd] %@", inSearchString];
+    NSArray *theObjects = self.fetchedResultsController.fetchedObjects;
     
-    theRequest.predicate = thePredicate;
-    theRequest.fetchLimit = 30;
-    self.searchResult = [self.managedObjectContext executeFetchRequest:theRequest error:NULL];
+    self.searchResult = [theObjects filteredArrayUsingPredicate:thePredicate];
     return YES;
 }
 
 - (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)inController {
     self.searchResult = nil;
-    [self.managedObjectContext reset];
 }
 
 #pragma mark SubviewControllerDelegate
