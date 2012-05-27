@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Tier : NSObject
+@interface Droid : NSObject
 
+@property(copy) NSString *droidID;
+-(id)initWithID:(NSNumber *)id;
 @end

@@ -7,21 +7,57 @@
 //
 
 #import "ViewController.h"
+#import "Model.h"
+#import "Droid.h"
+
+@class Model;
 
 @implementation ViewController
-@synthesize textView;
+@synthesize objectCount, stepper, textView, model;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [textView setText:nil];
+    [objectCount setText:@"0"];
     [self logger:[NSString stringWithFormat:@"%@",NSStringFromSelector(_cmd)]];
+    self.model = [[Model alloc] init];
+    
+    [stepper setMaximumValue:10.0];
+
+    [self.model addObserver:self
+                forKeyPath:@"status"
+                   options:1
+                   context:NULL];
+    
+    [self.model addObserver:self
+                 forKeyPath:@"objCount"
+                    options:1
+                    context:NULL];
+}
+
+- (void)viewDidAppear:(BOOL)inAnimated
+{
+    NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));
+    [super viewDidAppear:inAnimated];
+}
+
+- (void)viewWillDisappear:(BOOL)inAnimated
+{
+    NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));
+
+    [self.model removeObserver:self forKeyPath:@"status"];
+    [self.model removeObserver:self forKeyPath:@"objCount"];
+    
+    [super viewWillDisappear:inAnimated];
 }
 
 
 - (void)viewDidUnload
 {
     [self setTextView:nil];
+    [self setStepper:nil];
+    [self setObjectCount:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -33,12 +69,12 @@
 
 - (void)dealloc {
     [textView release];
+    [stepper release];
+    [objectCount release];
     [super dealloc];
 }
 
--(void)logger:(NSString *)logString{
-    NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));
-    
+-(void)logger:(NSString *)logString{    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"HH:mm:ss.SSS"];
         
@@ -48,4 +84,27 @@
         [textView setText:[NSString stringWithFormat:@"%@\n%@ [+] %@", [textView text], [formatter stringFromDate:[NSDate date]],logString]];
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+    if([keyPath isEqualToString:@"status"])
+        [self logger:[NSString stringWithFormat:@"model.status: %@", model.status]];
+    else {
+        [self logger:[NSString stringWithFormat:@"model.objCount: %@", model.objCount]];
+//        [objectCount setText:[NSString stringWithFormat:@"%2.0f", stepper.value]];
+        [objectCount setText:[NSString stringWithFormat:@"%@", model.objCount]];        
+    }
+}
+
+- (IBAction)iterateObjects:(id)sender {
+    NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));
+    [model getObjects];
+}
+
+- (IBAction)objectMaster:(id)sender {
+    NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));      
+    [model createOrDeleteObject:[NSNumber numberWithDouble:stepper.value]];
+}
 @end

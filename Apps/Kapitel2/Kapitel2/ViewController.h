@@ -7,8 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Model.h"
 
 @interface ViewController : UIViewController
+- (IBAction)iterateObjects:(id)sender;
+- (IBAction)objectMaster:(id)sender;
+@property (retain, nonatomic) IBOutlet UILabel *objectCount;
+@property (retain, nonatomic) IBOutlet UIStepper *stepper;
 @property (retain, nonatomic) IBOutlet UITextView *textView;
+@property (strong) Model *model;
 
 @end
