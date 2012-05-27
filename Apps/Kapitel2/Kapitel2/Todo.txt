@@ -1,4 +1,4 @@
-- Initializer
++ Initializer
 + Accessoren/Properties
 + KVO
 + KVC
@@ -8,3 +8,5 @@
 
 Features:
 - Autoscroll im View
+- Speicherverwaltung
+- ARC
