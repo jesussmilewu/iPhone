@@ -18,5 +18,5 @@
 @property(retain) NSNumber *objCount;
 
 -(void)getObjects;
--(NSNumber *)createOrDeleteObject:(NSNumber *)stepperValue;
+-(NSNumber *)handleObject:(NSNumber *)stepperValue;
 @end

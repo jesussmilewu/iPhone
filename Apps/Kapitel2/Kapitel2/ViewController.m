@@ -105,6 +105,6 @@
 
 - (IBAction)objectMaster:(id)sender {
     NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));      
-    [model createOrDeleteObject:[NSNumber numberWithDouble:stepper.value]];
+    [model handleObject:[NSNumber numberWithDouble:stepper.value]];
 }
 @end

@@ -32,7 +32,7 @@
     return self;
 }
 
--(NSNumber *)createOrDeleteObject:(NSNumber *)stepperValue{
+-(NSNumber *)handleObject:(NSNumber *)stepperValue{
     NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));
     NSLog(@"stepper.value: %i", [stepperValue intValue]);
     NSLog(@"[+] objects before: %i", [objects count]);

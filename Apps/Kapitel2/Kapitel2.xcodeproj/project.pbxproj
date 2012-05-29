@@ -37,7 +37,7 @@
 		40869FBD1512920700A94D11 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		40869FC01512920700A94D11 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 		40CFA0831572117B00E68AE5 /* Todo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Todo.txt; sourceTree = "<group>"; };
-		40CFA08915721CC700E68AE5 /* Droid.h */ = {isa = PBXFileReference; fileEncoding = 4; path = Droid.h; sourceTree = "<group>"; };
+		40CFA08915721CC700E68AE5 /* Droid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Droid.h; sourceTree = "<group>"; };
 		40CFA08A15721CC700E68AE5 /* Droid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Droid.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
