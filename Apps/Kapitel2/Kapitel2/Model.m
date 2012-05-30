@@ -16,8 +16,10 @@
 -(void)getObjects
 {
     NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));
-    for(Droid *obj in objects)
+    for(Droid *obj in objects){
         self.status = obj.droidID;
+        self.status = [obj revMem:obj.droidID];
+    }
 }
 
 - (id)init

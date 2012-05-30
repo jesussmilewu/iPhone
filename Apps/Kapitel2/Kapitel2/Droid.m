@@ -7,17 +7,18 @@
 //
 
 #import "Droid.h"
+#import "NSString+ReverseString.h"
 
 @implementation Droid
 
-@synthesize droidID;
+@synthesize droidID, mem;
 
 - (id)initWithID:(NSNumber *)id
 {
     NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));
     self = [super init];
     if(self != nil){
-        self.droidID = [NSString stringWithFormat:@"0xDEADBEAF%02i", [id intValue]];
+        self.droidID = [NSString stringWithFormat:@"0xDEADBEEF%02i", [id intValue]];
         NSLog(@"droidID: %@", droidID);
     }
     return self;
@@ -28,4 +29,12 @@
     NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));
     [super dealloc];
 }
+
+-(NSString *)revMem:(NSString *)text{
+    NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));
+    NSLog(@"rev: %@", [[NSString stringWithString:text] reversedString]);
+    return [[NSString stringWithString:text] reversedString];
+}
+
+
 @end
