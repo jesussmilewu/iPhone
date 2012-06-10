@@ -245,21 +245,24 @@ static const NSInteger kOverviewButtonTag = 123;
 
 - (IBAction)composeTweet:(id)sender {
     if([TWTweetComposeViewController canSendTweet]){
-        TWTweetComposeViewController *theTweet = [[TWTweetComposeViewController alloc] init];
-        Medium *theMedium = [self.item mediumForType:kMediumTypeImage];
+        Medium *theMedium;
+        
+        theMedium = [self.item mediumForType:kMediumTypeImage];
 
-        [theTweet setInitialText:[self.textView text]];        
-        if(theMedium.data) {
-            [theTweet addImage:[UIImage imageWithData:theMedium.data]];
-        }
-        [self presentModalViewController:theTweet animated:YES];
+        TWTweetComposeViewController *tweet = [[TWTweetComposeViewController alloc] init];
+
+        if(theMedium.data)
+            [tweet addImage:[UIImage imageWithData:theMedium.data]];
+        
+        [tweet setInitialText:[textView text]];        
+        [self presentModalViewController:tweet animated:YES];
     } else {
-        UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Obacht!", @"")
-                                                           message:NSLocalizedString(@"Bitte Twitter-Account in den Systemeinstellungen einrichten.", @"")
-                                                          delegate:self
-                                                 cancelButtonTitle:NSLocalizedString(@"Ok", @"")
-                                                 otherButtonTitles:nil];
-        [theAlert show];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Obacht!"
+                                                        message:@"Bitte Twitter-Account in den Systemeinstellungen einrichten."
+                                                       delegate:self
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+        [alert show];
     }
 }
 
@@ -290,6 +293,15 @@ static const NSInteger kOverviewButtonTag = 123;
         [self.item addMedium:theMedium];
     }
     [self saveItem];
+}
+
+- (void)saveImage:(UIImage *)inImage {
+    NSData *theData = UIImageJPEGRepresentation(inImage, 0.8);
+    CGSize theIconSize = [inImage sizeToAspectFitInSize:CGSizeMake(60.0, 60.0)];
+    UIImage *theImage = [inImage scaledImageWithSize:theIconSize];
+
+    self.item.icon = UIImageJPEGRepresentation(theImage, 0.8);
+    [self updateMediumData:theData withMediumType:kMediumTypeImage];
 }
 
 - (void)dismissImagePickerController:(UIImagePickerController *)inPicker {
@@ -328,14 +340,11 @@ static const NSInteger kOverviewButtonTag = 123;
 - (void)imagePickerController:(UIImagePickerController *)inPicker 
 didFinishPickingMediaWithInfo:(NSDictionary *)inInfo {
     UIImage *theImage = [inInfo valueForKey:UIImagePickerControllerEditedImage];
-    NSData *theData = UIImageJPEGRepresentation(theImage, 0.8);
-    CGSize theIconSize = [theImage sizeToAspectFitInSize:CGSizeMake(60.0, 60.0)];
     
-    [self updateMediumData:theData withMediumType:kMediumTypeImage];
-    self.imageView.image = theImage;
-    theImage = [theImage scaledImageWithSize:theIconSize];
-    self.item.icon = UIImageJPEGRepresentation(theImage, 0.8);
     [self dismissImagePickerController:inPicker];
+    self.item.icon = nil;
+    self.imageView.image = theImage;
+    [self saveImage:theImage];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)inPicker {

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4061F4DD155D901B009E138A /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 4061F4DC155D901B009E138A /* Model.m */; };
+		407F0976157608A900AEE30B /* NSString+ReverseString.m in Sources */ = {isa = PBXBuildFile; fileRef = 407F0975157608A900AEE30B /* NSString+ReverseString.m */; };
 		40869FAB1512920700A94D11 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40869FAA1512920700A94D11 /* UIKit.framework */; };
 		40869FAD1512920700A94D11 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40869FAC1512920700A94D11 /* Foundation.framework */; };
 		40869FAF1512920700A94D11 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40869FAE1512920700A94D11 /* CoreGraphics.framework */; };
@@ -15,9 +17,17 @@
 		40869FBB1512920700A94D11 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 40869FBA1512920700A94D11 /* AppDelegate.m */; };
 		40869FBE1512920700A94D11 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40869FBD1512920700A94D11 /* ViewController.m */; };
 		40869FC11512920700A94D11 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40869FBF1512920700A94D11 /* ViewController.xib */; };
+		40A01F821583E92A00B1E1F5 /* AstroDroid.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A01F811583E92A00B1E1F5 /* AstroDroid.m */; };
+		40A01F861583E96A00B1E1F5 /* ProtocolDroid.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A01F851583E96A00B1E1F5 /* ProtocolDroid.m */; };
+		40CFA0841572117B00E68AE5 /* Todo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 40CFA0831572117B00E68AE5 /* Todo.txt */; };
+		40CFA08B15721CC700E68AE5 /* Droid.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CFA08A15721CC700E68AE5 /* Droid.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4061F4DB155D901B009E138A /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		4061F4DC155D901B009E138A /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
+		407F0974157608A900AEE30B /* NSString+ReverseString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ReverseString.h"; sourceTree = "<group>"; };
+		407F0975157608A900AEE30B /* NSString+ReverseString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ReverseString.m"; sourceTree = "<group>"; };
 		40869FA61512920700A94D11 /* Kapitel2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kapitel2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40869FAA1512920700A94D11 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		40869FAC1512920700A94D11 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -31,6 +41,13 @@
 		40869FBC1512920700A94D11 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		40869FBD1512920700A94D11 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		40869FC01512920700A94D11 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		40A01F801583E92A00B1E1F5 /* AstroDroid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AstroDroid.h; sourceTree = "<group>"; };
+		40A01F811583E92A00B1E1F5 /* AstroDroid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AstroDroid.m; sourceTree = "<group>"; };
+		40A01F841583E96A00B1E1F5 /* ProtocolDroid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolDroid.h; sourceTree = "<group>"; };
+		40A01F851583E96A00B1E1F5 /* ProtocolDroid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolDroid.m; sourceTree = "<group>"; };
+		40CFA0831572117B00E68AE5 /* Todo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Todo.txt; sourceTree = "<group>"; };
+		40CFA08915721CC700E68AE5 /* Droid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Droid.h; sourceTree = "<group>"; };
+		40CFA08A15721CC700E68AE5 /* Droid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Droid.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,11 +94,14 @@
 		40869FB01512920700A94D11 /* Kapitel2 */ = {
 			isa = PBXGroup;
 			children = (
+				407F0974157608A900AEE30B /* NSString+ReverseString.h */,
+				407F0975157608A900AEE30B /* NSString+ReverseString.m */,
 				40869FB91512920700A94D11 /* AppDelegate.h */,
 				40869FBA1512920700A94D11 /* AppDelegate.m */,
 				40869FBC1512920700A94D11 /* ViewController.h */,
 				40869FBD1512920700A94D11 /* ViewController.m */,
 				40869FBF1512920700A94D11 /* ViewController.xib */,
+				40CFA08015720C1400E68AE5 /* Model */,
 				40869FB11512920700A94D11 /* Supporting Files */,
 			);
 			path = Kapitel2;
@@ -90,12 +110,28 @@
 		40869FB11512920700A94D11 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				40CFA0831572117B00E68AE5 /* Todo.txt */,
 				40869FB21512920700A94D11 /* Kapitel2-Info.plist */,
 				40869FB31512920700A94D11 /* InfoPlist.strings */,
 				40869FB61512920700A94D11 /* main.m */,
 				40869FB81512920700A94D11 /* Kapitel2-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		40CFA08015720C1400E68AE5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				40A01F801583E92A00B1E1F5 /* AstroDroid.h */,
+				40A01F811583E92A00B1E1F5 /* AstroDroid.m */,
+				40A01F841583E96A00B1E1F5 /* ProtocolDroid.h */,
+				40A01F851583E96A00B1E1F5 /* ProtocolDroid.m */,
+				40CFA08915721CC700E68AE5 /* Droid.h */,
+				40CFA08A15721CC700E68AE5 /* Droid.m */,
+				4061F4DB155D901B009E138A /* Model.h */,
+				4061F4DC155D901B009E138A /* Model.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,6 +187,7 @@
 			files = (
 				40869FB51512920700A94D11 /* InfoPlist.strings in Resources */,
 				40869FC11512920700A94D11 /* ViewController.xib in Resources */,
+				40CFA0841572117B00E68AE5 /* Todo.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +201,11 @@
 				40869FB71512920700A94D11 /* main.m in Sources */,
 				40869FBB1512920700A94D11 /* AppDelegate.m in Sources */,
 				40869FBE1512920700A94D11 /* ViewController.m in Sources */,
+				4061F4DD155D901B009E138A /* Model.m in Sources */,
+				40CFA08B15721CC700E68AE5 /* Droid.m in Sources */,
+				407F0976157608A900AEE30B /* NSString+ReverseString.m in Sources */,
+				40A01F821583E92A00B1E1F5 /* AstroDroid.m in Sources */,
+				40A01F861583E96A00B1E1F5 /* ProtocolDroid.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,6 +280,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Kapitel2/Kapitel2-Prefix.pch";
 				INFOPLIST_FILE = "Kapitel2/Kapitel2-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -249,6 +292,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Kapitel2/Kapitel2-Prefix.pch";
 				INFOPLIST_FILE = "Kapitel2/Kapitel2-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

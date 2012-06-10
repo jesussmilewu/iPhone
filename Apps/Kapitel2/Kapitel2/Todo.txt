@@ -1,0 +1,12 @@
++ Initializer
++ Accessoren/Properties
++ KVO
++ KVC
+- Delegation
++ Kategorien
+- Protokolle
+
+Features:
+- Autoscroll im View
+- Speicherverwaltung
+- ARC
