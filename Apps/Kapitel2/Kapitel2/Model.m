@@ -28,10 +28,15 @@
     if (self) {
         NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));
         self.creation = [NSDate date];
-        NSLog(@"[+] objects: %i", [objects count]);
         objects = [[NSMutableArray alloc] init];
     }
     return self;
+}
+
+-(id)initWithName:(NSString *)inName{
+    NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));
+    name = inName;
+    return [self init];
 }
 
 -(NSNumber *)handleObject:(NSNumber *)stepperValue{

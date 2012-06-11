@@ -19,4 +19,5 @@
 
 -(void)getObjects;
 -(NSNumber *)handleObject:(NSNumber *)stepperValue;
+-(id)initWithName:(NSString *)inName;
 @end

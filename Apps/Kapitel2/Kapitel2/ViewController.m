@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#import "Model.h"
 #import "Droid.h"
 
 @class Model;
@@ -21,7 +20,8 @@
     [textView setText:nil];
     [objectCount setText:@"0"];
     [self logger:[NSString stringWithFormat:@"%@",NSStringFromSelector(_cmd)]];
-    self.model = [[Model alloc] init];
+    self.model = [[Model alloc] initWithName:@"LoremIpsum"];
+    [self logger:[NSString stringWithFormat:@"Model.name: %@", [self.model name]]];
     
     [stepper setMaximumValue:10.0];
 
