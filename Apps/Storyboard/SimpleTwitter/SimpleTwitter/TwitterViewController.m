@@ -47,7 +47,13 @@
 
 - (void)updateTweets {
     NSData *theData = [NSData dataWithContentsOfURL:self.createURL];
-    NSDictionary *theResult = [theData objectFromJSONData];
+    NSError *theError = nil;
+    NSDictionary *theResult = 
+#if USE_JSON_KIT
+    [theData objectFromJSONDataWithParseOptions:JKParseOptionStrict error:&theError];
+#else
+    [NSJSONSerialization JSONObjectWithData:theData options:0 error:&theError];
+#endif
     
     self.tweets = [theResult valueForKey:@"results"];
     [self.tableView reloadData];
