@@ -8,5 +8,3 @@
 
 Features:
 - Autoscroll im View
-- Speicherverwaltung
-- ARC
