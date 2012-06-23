@@ -88,6 +88,40 @@
     }
 }
 
+- (id)activityWithAttributes:(NSDictionary *)inAttributes {
+    return [self entityWithName:@"Activity" element:@"activity" attributes:inAttributes];
+}
+
+- (id)contactWithAttributes:(NSDictionary *)inAttributes {
+    return [self entityWithName:@"Contact" element:@"contact" attributes:inAttributes];
+}
+
+- (id)siteWithAttributes:(NSDictionary *)inAttributes {
+    Site *theSite = [self entityNamed:@"Site" withCode:[inAttributes valueForKey:@"code"]];
+    
+    if(theSite == nil) {
+        theSite = [self entityWithName:@"Site" element:@"site" attributes:inAttributes];
+    }
+    else {
+        [self push:theSite];
+        [self.managedObjectContext deleteObjects:theSite.activities];
+    }
+    return theSite;
+}
+
+- (id)teamWithAttributes:(NSDictionary *)inAttributes {
+    Team *theTeam = [self entityNamed:@"Team" withCode:[inAttributes valueForKey:@"code"]];
+    
+    if(theTeam == nil) {
+        theTeam = [self entityWithName:@"Team" element:@"team" attributes:inAttributes];
+    }
+    else {
+        [self push:theTeam];
+        [self.managedObjectContext deleteObjects:theTeam.contacts];
+    }
+    return theTeam;
+}
+
 #pragma mark NSXMLParserDelegate
 
 - (void)parserDidStartDocument:(NSXMLParser *)inParser {
@@ -120,34 +154,15 @@
   namespaceURI:(NSString *)inNamespaceURI 
  qualifiedName:(NSString *)inQualifiedName 
     attributes:(NSDictionary *)inAttributes {
+    NSString *theName = [NSString stringWithFormat:@"%@WithAttributes:", inName];
+    SEL theSelector = NSSelectorFromString(theName);
+    
     [self.text deleteCharactersInRange:NSMakeRange(0, self.text.length)];
-    if([inName isEqualToString:@"activity"]) {
-        [self entityWithName:@"Activity" element:inName attributes:inAttributes];
-    }
-    else if([inName isEqualToString:@"contact"]) {
-        [self entityWithName:@"Contact" element:inName attributes:inAttributes];
-    }
-    else if([inName isEqualToString:@"site"]) {
-        Site *theSite = [self entityNamed:@"Site" withCode:[inAttributes valueForKey:@"code"]];
-        
-        if(theSite == nil) {
-            [self entityWithName:@"Site" element:inName attributes:inAttributes];
-        }
-        else {
-            [self push:theSite];
-            [self.managedObjectContext deleteObjects:theSite.activities];
-        }
-    }
-    else if([inName isEqualToString:@"team"]) {
-        Team *theTeam = [self entityNamed:@"Team" withCode:[inAttributes valueForKey:@"code"]];
-        
-        if(theTeam == nil) {
-            [self entityWithName:@"Team" element:inName attributes:inAttributes];
-        }
-        else {
-            [self push:theTeam];
-            [self.managedObjectContext deleteObjects:theTeam.contacts];
-        }
+    if([self respondsToSelector:theSelector]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        [self performSelector:theSelector withObject:inAttributes];
+#pragma clang diagnostic pop        
     }
     else {
         id theTop = self.top;
