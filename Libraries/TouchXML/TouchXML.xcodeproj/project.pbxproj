@@ -46,6 +46,8 @@
 		AB8199171597991100ACFDD6 /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8199131597991100ACFDD6 /* CXMLDocument_CreationExtensions.m */; };
 		AB8199181597991100ACFDD6 /* CXMLNode_CreationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8199141597991100ACFDD6 /* CXMLNode_CreationExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AB8199191597991100ACFDD6 /* CXMLNode_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8199151597991100ACFDD6 /* CXMLNode_CreationExtensions.m */; };
+		ABE488F7159A3FA7001928DA /* CTidy.h in Headers */ = {isa = PBXBuildFile; fileRef = ABE488F5159A3FA7001928DA /* CTidy.h */; };
+		ABE488F8159A3FA7001928DA /* CTidy.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE488F6159A3FA7001928DA /* CTidy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +80,9 @@
 		ABE3545B15978DB1004C6C3D /* TouchXML.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TouchXML.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABE3546015978DB1004C6C3D /* TouchXML-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TouchXML-Info.plist"; sourceTree = "<group>"; };
 		ABE3548B159792EE004C6C3D /* TouchXML-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TouchXML-Prefix.pch"; sourceTree = "<group>"; };
+		ABE488F5159A3FA7001928DA /* CTidy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTidy.h; sourceTree = "<group>"; };
+		ABE488F6159A3FA7001928DA /* CTidy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTidy.m; sourceTree = "<group>"; };
+		ABE48909159A4011001928DA /* README.markdown */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +124,8 @@
 		ABE3541615978A50004C6C3D /* TouchXML */ = {
 			isa = PBXGroup;
 			children = (
+				ABE488F5159A3FA7001928DA /* CTidy.h */,
+				ABE488F6159A3FA7001928DA /* CTidy.m */,
 				AB8199121597991100ACFDD6 /* CXMLDocument_CreationExtensions.h */,
 				AB8199131597991100ACFDD6 /* CXMLDocument_CreationExtensions.m */,
 				AB8199141597991100ACFDD6 /* CXMLNode_CreationExtensions.h */,
@@ -152,6 +159,7 @@
 		ABE3545F15978DB1004C6C3D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ABE48909159A4011001928DA /* README.markdown */,
 				ABE3546015978DB1004C6C3D /* TouchXML-Info.plist */,
 				ABE3548B159792EE004C6C3D /* TouchXML-Prefix.pch */,
 			);
@@ -178,6 +186,7 @@
 				AB8199111597990600ACFDD6 /* TouchXML.h in Headers */,
 				AB8199161597991100ACFDD6 /* CXMLDocument_CreationExtensions.h in Headers */,
 				AB8199181597991100ACFDD6 /* CXMLNode_CreationExtensions.h in Headers */,
+				ABE488F7159A3FA7001928DA /* CTidy.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +280,7 @@
 				AB8199101597990600ACFDD6 /* CXMLNode.m in Sources */,
 				AB8199171597991100ACFDD6 /* CXMLDocument_CreationExtensions.m in Sources */,
 				AB8199191597991100ACFDD6 /* CXMLNode_CreationExtensions.m in Sources */,
+				ABE488F8159A3FA7001928DA /* CTidy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +412,7 @@
 				ABE488ED159A3977001928DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
