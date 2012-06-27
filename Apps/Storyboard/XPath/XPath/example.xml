@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<users>
+    <user id="1">
+        <name>Spiro</name><job>Kellner</job>
+    </user>
+    <user id="2">
+        <name>Tuttle</name><job>Klempner</job>
+    </user>
+</users>
