@@ -8,9 +8,9 @@
 
 #import "DownloadViewController.h"
 #import "UIViewController+SiteSchedule.h"
-#import "NSDictionary+Extensions.h"
+#import "NSDictionary+HTTPRequest.h"
 
-static NSString * const kDownloadURL = @"http://nostromo.local/~clemens/SiteSchedule/schedule.xml";
+static NSString * const kDownloadURL = @"http://nostromo.local/~clemens/SiteSchedule/small.xml";
 
 @interface DownloadViewController()<NSURLConnectionDataDelegate>
 
@@ -99,7 +99,8 @@ static NSString * const kDownloadURL = @"http://nostromo.local/~clemens/SiteSche
 }
 
 - (void)refreshServerCell {
-    NSDictionary *theFields = [NSDictionary dictionaryWithHeaderFieldsForURL:[NSURL URLWithString:kDownloadURL]];
+    NSURL *theURL = [NSURL URLWithString:kDownloadURL];
+    NSDictionary *theFields = [NSDictionary dictionaryWithHeaderFieldsForURL:theURL];
     NSString *theText = [NSDateFormatter localizedStringFromDate:[theFields lastModified] 
                                                        dateStyle:NSDateFormatterShortStyle 
                                                        timeStyle:NSDateFormatterShortStyle];
@@ -174,7 +175,7 @@ static NSString * const kDownloadURL = @"http://nostromo.local/~clemens/SiteSche
 - (void)connection:(NSURLConnection *)inConnection didReceiveResponse:(NSURLResponse *)inResponse {
     NSDictionary *theFields = [(id)inResponse allHeaderFields];
     
-    self.dataLength = theFields.contentLength;
+    self.dataLength = (NSUInteger) theFields.contentLength;
     self.data = [NSMutableData dataWithCapacity:self.dataLength];
     self.progressView.progress = 0.0;
 }

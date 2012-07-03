@@ -7,12 +7,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSDictionary(Extensions)
+@interface NSDictionary(HTTPRequest)
 
 +(id)dictionaryWithHeaderFieldsForURL:(NSURL *)inURL;
 
 - (NSDate *)lastModified;
 - (NSString *)contentType;
-- (size_t)contentLength;
+- (long long)contentLength;
 
 @end

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AB6078401550062900CBC151 /* NSDictionary+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB60783F1550062900CBC151 /* NSDictionary+Extensions.m */; };
+		AB6078401550062900CBC151 /* NSDictionary+HTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = AB60783F1550062900CBC151 /* NSDictionary+HTTPRequest.m */; };
 		AB60784615500B5B00CBC151 /* NSDateFormatter+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB60784515500B5B00CBC151 /* NSDateFormatter+Extensions.m */; };
 		ABD352A1154D70E7006DBF2F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD352A0154D70E7006DBF2F /* UIKit.framework */; };
 		ABD352A3154D70E7006DBF2F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD352A2154D70E7006DBF2F /* Foundation.framework */; };
@@ -33,8 +33,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AB60783E1550062900CBC151 /* NSDictionary+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extensions.h"; sourceTree = "<group>"; };
-		AB60783F1550062900CBC151 /* NSDictionary+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Extensions.m"; sourceTree = "<group>"; };
+		AB60783E1550062900CBC151 /* NSDictionary+HTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+HTTPRequest.h"; sourceTree = "<group>"; };
+		AB60783F1550062900CBC151 /* NSDictionary+HTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+HTTPRequest.m"; sourceTree = "<group>"; };
 		AB60784415500B5B00CBC151 /* NSDateFormatter+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Extensions.h"; sourceTree = "<group>"; };
 		AB60784515500B5B00CBC151 /* NSDateFormatter+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Extensions.m"; sourceTree = "<group>"; };
 		ABD3529C154D70E7006DBF2F /* SiteSchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SiteSchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,8 +95,8 @@
 		AB60783C155005E700CBC151 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				AB60783E1550062900CBC151 /* NSDictionary+Extensions.h */,
-				AB60783F1550062900CBC151 /* NSDictionary+Extensions.m */,
+				AB60783E1550062900CBC151 /* NSDictionary+HTTPRequest.h */,
+				AB60783F1550062900CBC151 /* NSDictionary+HTTPRequest.m */,
 				AB60784415500B5B00CBC151 /* NSDateFormatter+Extensions.h */,
 				AB60784515500B5B00CBC151 /* NSDateFormatter+Extensions.m */,
 			);
@@ -280,7 +280,7 @@
 				ABFD328E154D72C80023B8AB /* SiteScheduleParser.m in Sources */,
 				ABFD329A154D9A330023B8AB /* UIViewController+SiteSchedule.m in Sources */,
 				ABD7E8A0154F286A000A7D58 /* NSManagedObjectContext+Tools.m in Sources */,
-				AB6078401550062900CBC151 /* NSDictionary+Extensions.m in Sources */,
+				AB6078401550062900CBC151 /* NSDictionary+HTTPRequest.m in Sources */,
 				AB60784615500B5B00CBC151 /* NSDateFormatter+Extensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

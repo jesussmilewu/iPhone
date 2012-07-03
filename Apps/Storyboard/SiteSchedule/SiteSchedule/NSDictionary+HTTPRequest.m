@@ -5,10 +5,10 @@
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "NSDictionary+Extensions.h"
+#import "NSDictionary+HTTPRequest.h"
 #import "NSDateFormatter+Extensions.h"
 
-@implementation NSDictionary(Extensions)
+@implementation NSDictionary(HTTPRequest)
 
 +(id)dictionaryWithHeaderFieldsForURL:(NSURL *)inURL {
     NSDictionary *theResult = nil;
@@ -36,7 +36,8 @@
 - (NSString *)contentType {
     return [self objectForKey:@"Content-Type"];
 }
-- (size_t)contentLength {
+
+- (long long)contentLength {
     NSString *theLength = [self objectForKey:@"Content-Length"];
     
     return [theLength longLongValue];

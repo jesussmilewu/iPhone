@@ -143,7 +143,9 @@
 }
 
 - (void)parser:(NSXMLParser *)inParser parseErrorOccurred:(NSError *)inParseError {
-    self.error = inParseError;
+    if(self.error == nil) {
+        self.error = inParseError;
+    }
 }
 
 - (void)parser:(NSXMLParser *)inParser foundCharacters:(NSString *)inText {
