@@ -14,7 +14,7 @@
     NSDictionary *theResult = nil;
 
     if([@"http" isEqualToString:[inURL scheme]] || [@"https" isEqualToString:[inURL scheme]]) {
-        NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:inURL];
+        NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:inURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:3.0];
         NSURLResponse *theResponse = nil;
         NSError *theError = nil;
     
@@ -24,6 +24,7 @@
             theResult = [(id)theResponse allHeaderFields];
         }
     }
+    NSLog(@"dictionaryWithHeaderFieldsForURL:%@ -> %@", inURL, theResult);
     return theResult;
 }
 
@@ -41,6 +42,17 @@
     NSString *theLength = [self objectForKey:@"Content-Length"];
     
     return [theLength longLongValue];
+}
+
+- (HTTPContentRange)contentRange {
+    NSString *theRange = [self valueForKey:@"Content-Range"];
+    
+    if(theRange == nil) {
+        return HTTPContentRangeMakeFull(self.contentLength);
+    }
+    else {
+        return HTTPContentRangeFromString(theRange);
+    }
 }
 
 @end

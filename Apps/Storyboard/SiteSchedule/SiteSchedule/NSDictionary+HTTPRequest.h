@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HTTPContentRange.h"
 
 @interface NSDictionary(HTTPRequest)
 
@@ -14,5 +15,6 @@
 - (NSDate *)lastModified;
 - (NSString *)contentType;
 - (long long)contentLength;
+- (HTTPContentRange)contentRange;
 
 @end

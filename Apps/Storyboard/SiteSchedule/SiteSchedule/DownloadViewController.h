@@ -10,4 +10,6 @@
 
 @interface DownloadViewController : UITableViewController
 
+- (IBAction)cancelDownload;
+
 @end

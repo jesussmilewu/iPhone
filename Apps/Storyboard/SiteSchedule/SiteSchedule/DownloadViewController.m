@@ -9,23 +9,38 @@
 #import "DownloadViewController.h"
 #import "UIViewController+SiteSchedule.h"
 #import "NSDictionary+HTTPRequest.h"
+#import "HTTPContentRange.h"
 
-static NSString * const kDownloadURL = @"http://nostromo.local/~clemens/SiteSchedule/small.xml";
+#define RESUMABLE_DOWNLOAD 0
 
-@interface DownloadViewController()<NSURLConnectionDataDelegate>
+#define kLocalDownloadURL @"http://nostromo.local/~clemens/SiteSchedule/schedule.xml"
+#define kOpenDownloadURL @"http://www.rodewig.de/iphone/without/schedule.xml"
+#define kProtectedDownloadURL @"http://www.rodewig.de/iphone/withauth/schedule.xml"
+static NSString * const kDownloadURL = kProtectedDownloadURL;
+
+@interface DownloadViewController()<NSURLConnectionDataDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (strong, nonatomic) IBOutlet UITableViewCell *sitesCell;
-@property (strong, nonatomic) IBOutlet UITableViewCell *teamsCell;
-@property (strong, nonatomic) IBOutlet UITableViewCell *activitiesCell;
-@property (strong, nonatomic) IBOutlet UITableViewCell *updateCell;
-@property (strong, nonatomic) IBOutlet UITableViewCell *serverCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *sitesCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *teamsCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *activitiesCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *updateCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *serverCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *updateRequiredCell;
 
 @property (strong, nonatomic) IBOutlet UIView *overlayView;
 @property (strong, nonatomic) IBOutlet UIProgressView *progressView;
 
+#if RESUMABLE_DOWNLOAD
+@property (nonatomic) HTTPContentRange contentRange;
+@property (strong, nonatomic) NSOutputStream *outputStream;
+#else
 @property (nonatomic) NSUInteger dataLength;
 @property (strong, nonatomic) NSMutableData *data;
+@property (strong, nonatomic) NSDate *lastModified;
+#endif
+@property (weak, nonatomic) NSURLConnection *connection;
+@property (strong, nonatomic) NSURLAuthenticationChallenge *challenge;
 
 - (void)refreshServerCell;
 - (void)refresh;
@@ -41,11 +56,20 @@ static NSString * const kDownloadURL = @"http://nostromo.local/~clemens/SiteSche
 @synthesize activitiesCell;
 @synthesize updateCell;
 @synthesize serverCell;
+@synthesize updateRequiredCell;
 @synthesize overlayView;
 @synthesize progressView;
 
+#if RESUMABLE_DOWNLOAD
+@synthesize contentRange;
+@synthesize outputStream;
+#else
 @synthesize dataLength;
 @synthesize data;
+@synthesize lastModified;
+#endif
+@synthesize connection;
+@synthesize challenge;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,11 +79,16 @@ static NSString * const kDownloadURL = @"http://nostromo.local/~clemens/SiteSche
 
 - (void)viewDidUnload {
     self.managedObjectContext = nil;
-    self.sitesCell = nil;
-    self.updateCell = nil;
-    self.serverCell = nil;
     self.overlayView = nil;
     self.progressView = nil;
+#if RESUMABLE_DOWNLOAD
+    [self.outputStream close];
+    self.outputStream = nil;
+#else
+    self.data = nil;
+    self.lastModified = nil;
+#endif
+    self.challenge = nil;
     [super viewDidUnload];
 }
 
@@ -98,21 +127,37 @@ static NSString * const kDownloadURL = @"http://nostromo.local/~clemens/SiteSche
                     completion:NULL];
 }
 
+- (NSURL *)downloadURL {
+    return [NSURL URLWithString:kDownloadURL];
+}
+
+- (NSString *)downloadFile {
+    NSArray *thePaths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    
+    return [[thePaths objectAtIndex:0] stringByAppendingPathComponent:@"SiteSchedule.dat"];
+}
+
 - (void)refreshServerCell {
-    NSURL *theURL = [NSURL URLWithString:kDownloadURL];
+    NSURL *theURL = self.downloadURL;
     NSDictionary *theFields = [NSDictionary dictionaryWithHeaderFieldsForURL:theURL];
-    NSString *theText = [NSDateFormatter localizedStringFromDate:[theFields lastModified] 
+    NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
+    NSDate *theUpdateTime = [theDefaults objectForKey:@"updateTime"];
+    NSDate *theModificationTime = [theFields lastModified];
+    NSString *theText = [NSDateFormatter localizedStringFromDate:theModificationTime
                                                        dateStyle:NSDateFormatterShortStyle 
                                                        timeStyle:NSDateFormatterShortStyle];
+    NSString *theUpdateText = theUpdateTime == nil ||
+        [theUpdateTime compare:theModificationTime] > NSOrderedSame ?
+        NSLocalizedString(@"Yes", @"") : NSLocalizedString(@"No", @"");
 
     self.serverCell.detailTextLabel.text = theText;
+    self.updateRequiredCell.detailTextLabel.text = theUpdateText;
 }
 
 - (void)refresh {
     NSString *theDateText = @"-";
     NSUInteger theCount;
-    NSTimeInterval theTime = [[NSUserDefaults standardUserDefaults] doubleForKey:@"updateTime"];
-    NSDate *theDate = theTime > 0.0 ? [NSDate dateWithTimeIntervalSinceReferenceDate:theTime] : nil;
+    NSDate *theDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"downloadTime"];
     
     [self.managedObjectContext reset];
     theCount = [self countElementsForEntityNamed:@"Site"];
@@ -140,11 +185,92 @@ static NSString * const kDownloadURL = @"http://nostromo.local/~clemens/SiteSche
     return [self.managedObjectContext countForFetchRequest:theRequest error:NULL];
 }
 
-- (void)startDownload {
-    NSURL *theURL = [NSURL URLWithString:kDownloadURL];
-    NSURLRequest *theRequest = [NSURLRequest requestWithURL:theURL];
+- (BOOL)downloadRequired {
+    NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
+    NSDate *theUpdateTime = [theDefaults objectForKey:@"updateTime"];
     
-    [NSURLConnection connectionWithRequest:theRequest delegate:self];    
+    if(theUpdateTime == nil) {
+        return YES;
+    }
+    else {
+        NSURL *theURL = self.downloadURL;
+        NSDictionary *theFields = [NSDictionary dictionaryWithHeaderFieldsForURL:theURL];
+        NSDate *theModificationTime = theFields.lastModified;
+        
+        return [theUpdateTime compare:theModificationTime] < NSOrderedSame;
+    }
+}
+
+- (void)deleteDownloadFile {
+    NSFileManager *theManager = [NSFileManager defaultManager];
+    NSError *theError = nil;
+    
+    [theManager removeItemAtPath:self.downloadFile error:&theError];
+    if(theError) {
+        NSLog(@"deleteDownloadFile: %@", theError);
+    }
+}
+
+- (NSUInteger)downloadFileSize {
+    NSFileManager *theManager = [NSFileManager defaultManager];
+    NSDictionary *theAttributes = [theManager attributesOfItemAtPath:self.downloadFile error:NULL];
+    
+    return theAttributes.fileSize;
+}
+
+- (void)finishDownload:(NSData *)inData {
+    NSInputStream *theStream = [NSInputStream inputStreamWithData:inData];
+    
+    [self updateScheduleWithStream:theStream];
+    [self setOverlayHidden:YES animated:YES];
+#if RESUMABLE_DOWNLOAD
+    [self deleteDownloadFile];
+#else
+    self.data = nil;
+#endif
+}
+
+- (void)startDownload {
+    NSURL *theURL = self.downloadURL;
+    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:theURL 
+                                                              cachePolicy:NSURLRequestReloadIgnoringLocalCacheData 
+                                                          timeoutInterval:5.0];
+    
+#if SIMPLE_DOWNLOAD
+    [NSURLConnection sendAsynchronousRequest:theRequest 
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *inResponse, NSData *inData, NSError *inError) {
+                               if(inError == nil) {
+                                   [self finishDownload:inData];
+                               }
+                               else {
+                                   NSLog(@"error = %@", inError);
+                               }
+                           }];
+#else
+#if RESUMABLE_DOWNLOAD
+    NSUInteger theSize = self.downloadFileSize;
+    
+    if(theSize > 0 && ![self downloadRequired]) {
+        NSString *theValue = [NSString stringWithFormat:@"bytes=%u-", theSize];
+        
+        [theRequest setValue:theValue forHTTPHeaderField:@"Range"];
+    }
+#endif
+    NSLog(@"Headers: %@", theRequest.allHTTPHeaderFields);
+    self.connection = [NSURLConnection connectionWithRequest:theRequest delegate:self];
+#endif
+}
+
+- (IBAction)cancelDownload {
+    [self.connection cancel];
+    [self setOverlayHidden:YES animated:YES];
+#if RESUMABLE_DOWNLOAD
+    [self.outputStream close];
+    self.outputStream = nil;
+#else
+    self.data = nil;
+#endif
 }
 
 - (void)updateScheduleWithStream:(NSInputStream *)inStream {
@@ -154,7 +280,7 @@ static NSString * const kDownloadURL = @"http://nostromo.local/~clemens/SiteSche
     if(theError) {
         NSLog(@"updateSchedule: error = %@", theError);
     }
-    [theDefaults setDouble:[NSDate timeIntervalSinceReferenceDate] forKey:@"updateTime"];
+    [theDefaults setObject:[NSDate date] forKey:@"downloadTime"];
     [theDefaults synchronize];
     [self refresh];
 }
@@ -166,36 +292,120 @@ static NSString * const kDownloadURL = @"http://nostromo.local/~clemens/SiteSche
     if(inIndexPath.section == 1 && inIndexPath.row == 0) {
         [self setOverlayHidden:NO animated:YES];
         self.progressView.progress = 0.0;
-        [self performSelector:@selector(startDownload) withObject:nil afterDelay:1.0];
+        [self performSelector:@selector(startDownload) withObject:nil afterDelay:0.0];
     }
 }
 
-#pragma mark NSURLConnectionDelegate
+#pragma mark NSURLConnectionDataDelegate
 
+#if RESUMABLE_DOWNLOAD
 - (void)connection:(NSURLConnection *)inConnection didReceiveResponse:(NSURLResponse *)inResponse {
-    NSDictionary *theFields = [(id)inResponse allHeaderFields];
+    NSDictionary *theFields = [(id) inResponse allHeaderFields];
+    HTTPContentRange theRange = theFields.contentRange;
+    NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
     
-    self.dataLength = (NSUInteger) theFields.contentLength;
+    self.contentRange = theRange;
+    self.outputStream = [NSOutputStream outputStreamToFileAtPath:self.downloadFile
+                         append:theRange.range.location > 0];
+    [self.outputStream open];
+    self.progressView.progress = 0.0;
+    [theDefaults setValue:theFields.lastModified forKey:@"updateTime"];
+}
+
+- (void)connection:(NSURLConnection *)inConnection didReceiveData:(NSData *)inData {
+    [self.outputStream write:inData.bytes maxLength:inData.length];
+    self.progressView.progress = (double) self.downloadFileSize / (double) self.contentRange.size;
+    NSLog(@"%u / %u / %.1f%%", inData.length, self.downloadFileSize, self.progressView.progress * 100.0);
+}
+
+- (void)connection:(NSURLConnection *)inConnection didFailWithError:(NSError *)inError {
+    [self setOverlayHidden:YES animated:YES];
+    [self.outputStream close];
+    self.outputStream = nil;
+    NSLog(@"error = %@", inError);
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)inConnection {
+    if(self.outputStream != nil) {
+        NSData *theData;
+    
+        [self.outputStream close];
+        self.outputStream = nil;
+        theData = [NSData dataWithContentsOfFile:self.downloadFile];
+        self.updateRequiredCell.detailTextLabel.text = NSLocalizedString(@"No", @"");
+        [self performSelector:@selector(finishDownload:) withObject:theData afterDelay:0.0];
+    }
+}
+#else
+- (void)connection:(NSURLConnection *)inConnection didReceiveResponse:(NSURLResponse *)inResponse {    
+    self.dataLength = (NSUInteger) inResponse.expectedContentLength;
     self.data = [NSMutableData dataWithCapacity:self.dataLength];
     self.progressView.progress = 0.0;
+    if([inResponse respondsToSelector:@selector(allHeaderFields)]) {
+        self.lastModified = [(id)inResponse allHeaderFields].lastModified;
+    }
 }
 
 - (void)connection:(NSURLConnection *)inConnection didReceiveData:(NSData *)inData {
     [self.data appendData:inData];
     self.progressView.progress = (double) self.data.length / (double) self.dataLength;
+    NSLog(@"%u / %u / %.1f%%", inData.length, self.data.length, self.progressView.progress * 100.0);
 }
 
 - (void)connection:(NSURLConnection *)inConnection didFailWithError:(NSError *)inError {
+    [self setOverlayHidden:YES animated:YES];
     self.data = nil;
     NSLog(@"error = %@", inError);
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)inConnection {
-    NSInputStream *theStream = [NSInputStream inputStreamWithData:self.data];
+    NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
     
-    [self performSelector:@selector(updateScheduleWithStream:) withObject:theStream afterDelay:0.5];
-    self.data = nil;    
-    [self setOverlayHidden:YES animated:YES];
+    [theDefaults setObject:self.lastModified forKey:@"updateTime"];
+    [theDefaults synchronize];
+    self.lastModified = nil;
+    self.updateRequiredCell.detailTextLabel.text = NSLocalizedString(@"No", @"");
+    [self performSelector:@selector(finishDownload:) withObject:self.data afterDelay:0.0];
+}
+#endif
+
+- (void)connection:(NSURLConnection *)inConnection 
+didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)inChallenge {
+    if([inChallenge previousFailureCount] < 3) {
+        UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Credentials required", @"")
+                                                           message:NSLocalizedString(@"Please enter your credentials.", @"")
+                                                          delegate:self 
+                                                 cancelButtonTitle:NSLocalizedString(@"Cancel", @"") 
+                                                 otherButtonTitles:NSLocalizedString(@"Login", @""), nil];
+        
+        theAlert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
+        [theAlert show];
+        self.challenge = inChallenge;
+    }
+    else {
+        [inChallenge.sender cancelAuthenticationChallenge:inChallenge];
+    }
+}
+
+#pragma mark UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)inAlertView willDismissWithButtonIndex:(NSInteger)inButtonIndex {
+    if(inButtonIndex == 1) {
+        NSString *theLogin = [inAlertView textFieldAtIndex:0].text;
+        NSString *thePassword = [inAlertView textFieldAtIndex:1].text;
+        NSURLCredential *theCredential = [NSURLCredential credentialWithUser:theLogin
+                                                                    password:thePassword
+                                                                 persistence:NSURLCredentialPersistenceNone];
+        
+        [self.challenge.sender useCredential:theCredential
+                  forAuthenticationChallenge:self.challenge];  
+        
+    }
+    self.challenge = nil;
+}
+
+- (void)alertViewCancel:(UIAlertView *)inAlertView {
+    [self cancelDownload];
 }
 
 @end
