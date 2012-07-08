@@ -10,13 +10,14 @@
 #import "UIViewController+SiteSchedule.h"
 #import "NSDictionary+HTTPRequest.h"
 #import "HTTPContentRange.h"
+#import "NSURLCredentialStorage+Extensions.h"
 
-#define RESUMABLE_DOWNLOAD 0
+#define RESUMABLE_DOWNLOAD 1
 
 #define kLocalDownloadURL @"http://nostromo.local/~clemens/SiteSchedule/schedule.xml"
-#define kOpenDownloadURL @"http://www.rodewig.de/iphone/without/schedule.xml"
+#define kDefaultDownloadURL @"http://www.rodewig.de/iphone/without/schedule.xml"
 #define kProtectedDownloadURL @"http://www.rodewig.de/iphone/withauth/schedule.xml"
-static NSString * const kDownloadURL = kProtectedDownloadURL;
+static NSString * const kDownloadURL = kDefaultDownloadURL;
 
 @interface DownloadViewController()<NSURLConnectionDataDelegate, UIAlertViewDelegate>
 
@@ -147,7 +148,7 @@ static NSString * const kDownloadURL = kProtectedDownloadURL;
                                                        dateStyle:NSDateFormatterShortStyle 
                                                        timeStyle:NSDateFormatterShortStyle];
     NSString *theUpdateText = theUpdateTime == nil ||
-        [theUpdateTime compare:theModificationTime] > NSOrderedSame ?
+        [theUpdateTime compare:theModificationTime] < NSOrderedSame ?
         NSLocalizedString(@"Yes", @"") : NSLocalizedString(@"No", @"");
 
     self.serverCell.detailTextLabel.text = theText;
@@ -236,6 +237,7 @@ static NSString * const kDownloadURL = kProtectedDownloadURL;
                                                               cachePolicy:NSURLRequestReloadIgnoringLocalCacheData 
                                                           timeoutInterval:5.0];
     
+    NSLog(@"credentials = %@", [[NSURLCredentialStorage sharedCredentialStorage] allCredentials]);
 #if SIMPLE_DOWNLOAD
     [NSURLConnection sendAsynchronousRequest:theRequest 
                                        queue:[NSOperationQueue mainQueue]
@@ -289,10 +291,18 @@ static NSString * const kDownloadURL = kProtectedDownloadURL;
 
 - (void)tableView:(UITableView *)inTableView didSelectRowAtIndexPath:(NSIndexPath *)inIndexPath {
     [inTableView deselectRowAtIndexPath:inIndexPath animated:YES];
-    if(inIndexPath.section == 1 && inIndexPath.row == 0) {
-        [self setOverlayHidden:NO animated:YES];
-        self.progressView.progress = 0.0;
-        [self performSelector:@selector(startDownload) withObject:nil afterDelay:0.0];
+    if(inIndexPath.section == 1) {
+        if(inIndexPath.row == 0) {
+            [self setOverlayHidden:NO animated:YES];
+            self.progressView.progress = 0.0;
+            [self performSelector:@selector(startDownload) withObject:nil afterDelay:0.0];
+        }
+        else if(inIndexPath.row == 1) {
+            [self refreshServerCell];
+        }
+        else if(inIndexPath.row == 2) {
+            [[NSURLCredentialStorage sharedCredentialStorage] clearAllCredentials];
+        }
     }
 }
 
@@ -315,7 +325,7 @@ static NSString * const kDownloadURL = kProtectedDownloadURL;
 - (void)connection:(NSURLConnection *)inConnection didReceiveData:(NSData *)inData {
     [self.outputStream write:inData.bytes maxLength:inData.length];
     self.progressView.progress = (double) self.downloadFileSize / (double) self.contentRange.size;
-    NSLog(@"%u / %u / %.1f%%", inData.length, self.downloadFileSize, self.progressView.progress * 100.0);
+    // NSLog(@"%u / %u / %.1f%%", inData.length, self.downloadFileSize, self.progressView.progress * 100.0);
 }
 
 - (void)connection:(NSURLConnection *)inConnection didFailWithError:(NSError *)inError {
@@ -349,7 +359,7 @@ static NSString * const kDownloadURL = kProtectedDownloadURL;
 - (void)connection:(NSURLConnection *)inConnection didReceiveData:(NSData *)inData {
     [self.data appendData:inData];
     self.progressView.progress = (double) self.data.length / (double) self.dataLength;
-    NSLog(@"%u / %u / %.1f%%", inData.length, self.data.length, self.progressView.progress * 100.0);
+    // NSLog(@"%u / %u / %.1f%%", inData.length, self.data.length, self.progressView.progress * 100.0);
 }
 
 - (void)connection:(NSURLConnection *)inConnection didFailWithError:(NSError *)inError {
@@ -395,17 +405,15 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)inChallenge {
         NSString *thePassword = [inAlertView textFieldAtIndex:1].text;
         NSURLCredential *theCredential = [NSURLCredential credentialWithUser:theLogin
                                                                     password:thePassword
-                                                                 persistence:NSURLCredentialPersistenceNone];
+                                                                 persistence:NSURLCredentialPersistencePermanent];
         
         [self.challenge.sender useCredential:theCredential
-                  forAuthenticationChallenge:self.challenge];  
-        
+                  forAuthenticationChallenge:self.challenge];
+    }
+    else {
+        [self cancelDownload];        
     }
     self.challenge = nil;
-}
-
-- (void)alertViewCancel:(UIAlertView *)inAlertView {
-    [self cancelDownload];
 }
 
 @end

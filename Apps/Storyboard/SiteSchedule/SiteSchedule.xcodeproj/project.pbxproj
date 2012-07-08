@@ -10,6 +10,7 @@
 		AB51C18315A86D580041F569 /* HTTPContentRange.m in Sources */ = {isa = PBXBuildFile; fileRef = AB51C18215A86D580041F569 /* HTTPContentRange.m */; };
 		AB6078401550062900CBC151 /* NSDictionary+HTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = AB60783F1550062900CBC151 /* NSDictionary+HTTPRequest.m */; };
 		AB60784615500B5B00CBC151 /* NSDateFormatter+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB60784515500B5B00CBC151 /* NSDateFormatter+Extensions.m */; };
+		AB728AAF15A9AC8D007F247B /* NSURLCredentialStorage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB728AAE15A9AC8D007F247B /* NSURLCredentialStorage+Extensions.m */; };
 		ABD352A1154D70E7006DBF2F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD352A0154D70E7006DBF2F /* UIKit.framework */; };
 		ABD352A3154D70E7006DBF2F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD352A2154D70E7006DBF2F /* Foundation.framework */; };
 		ABD352A5154D70E7006DBF2F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD352A4154D70E7006DBF2F /* CoreGraphics.framework */; };
@@ -40,6 +41,8 @@
 		AB60783F1550062900CBC151 /* NSDictionary+HTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+HTTPRequest.m"; sourceTree = "<group>"; };
 		AB60784415500B5B00CBC151 /* NSDateFormatter+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Extensions.h"; sourceTree = "<group>"; };
 		AB60784515500B5B00CBC151 /* NSDateFormatter+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Extensions.m"; sourceTree = "<group>"; };
+		AB728AAD15A9AC8D007F247B /* NSURLCredentialStorage+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLCredentialStorage+Extensions.h"; sourceTree = "<group>"; };
+		AB728AAE15A9AC8D007F247B /* NSURLCredentialStorage+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLCredentialStorage+Extensions.m"; sourceTree = "<group>"; };
 		ABD3529C154D70E7006DBF2F /* SiteSchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SiteSchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABD352A0154D70E7006DBF2F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		ABD352A2154D70E7006DBF2F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -104,6 +107,8 @@
 				AB60784515500B5B00CBC151 /* NSDateFormatter+Extensions.m */,
 				AB51C18115A86D580041F569 /* HTTPContentRange.h */,
 				AB51C18215A86D580041F569 /* HTTPContentRange.m */,
+				AB728AAD15A9AC8D007F247B /* NSURLCredentialStorage+Extensions.h */,
+				AB728AAE15A9AC8D007F247B /* NSURLCredentialStorage+Extensions.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -288,6 +293,7 @@
 				AB6078401550062900CBC151 /* NSDictionary+HTTPRequest.m in Sources */,
 				AB60784615500B5B00CBC151 /* NSDateFormatter+Extensions.m in Sources */,
 				AB51C18315A86D580041F569 /* HTTPContentRange.m in Sources */,
+				AB728AAF15A9AC8D007F247B /* NSURLCredentialStorage+Extensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
