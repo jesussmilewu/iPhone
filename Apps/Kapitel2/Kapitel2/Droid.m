@@ -11,7 +11,7 @@
 
 @implementation Droid
 
-@synthesize droidID, mem;
+@synthesize droidID;
 
 - (id)initWithID:(NSNumber *)id
 {

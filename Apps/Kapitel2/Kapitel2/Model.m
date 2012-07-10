@@ -18,7 +18,7 @@
     NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));
     for(Droid *obj in objects){
         self.status = obj.droidID;
-        self.status = [obj revMem:obj.droidID];
+//        self.status = [obj revMem:obj.droidID];
     }
 }
 
@@ -54,7 +54,7 @@
     
     NSLog(@"[+] objects after: %i", [objects count]);
     
-    return objCount;
+    return self.objCount;
 }
 
 @end
