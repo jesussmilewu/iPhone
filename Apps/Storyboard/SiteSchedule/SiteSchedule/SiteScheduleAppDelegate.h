@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+@class Reachability;
+
 @interface SiteScheduleAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -16,6 +18,7 @@
 
 @property (nonatomic, strong, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *storeCoordinator;
+@property (nonatomic, strong, readonly) Reachability *reachability;
 
 - (NSError *)updateWithInputStream:(NSInputStream *)inStream;
 

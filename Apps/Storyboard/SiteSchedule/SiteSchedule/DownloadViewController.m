@@ -11,6 +11,7 @@
 #import "NSDictionary+HTTPRequest.h"
 #import "HTTPContentRange.h"
 #import "NSURLCredentialStorage+Extensions.h"
+#import "Reachability.h"
 
 #define RESUMABLE_DOWNLOAD 1
 
@@ -25,9 +26,12 @@ static NSString * const kDownloadURL = kDefaultDownloadURL;
 @property (weak, nonatomic) IBOutlet UITableViewCell *sitesCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *teamsCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *activitiesCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *reachabilityCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *updateCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *serverCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *updateRequiredCell;
+
+@property (strong, nonatomic) IBOutletCollection(UIBarButtonItem) NSArray *buttons;
 
 @property (strong, nonatomic) IBOutlet UIView *overlayView;
 @property (strong, nonatomic) IBOutlet UIProgressView *progressView;
@@ -43,7 +47,7 @@ static NSString * const kDownloadURL = kDefaultDownloadURL;
 @property (weak, nonatomic) NSURLConnection *connection;
 @property (strong, nonatomic) NSURLAuthenticationChallenge *challenge;
 
-- (void)refreshServerCell;
+- (IBAction)refreshServerCell;
 - (void)refresh;
 - (NSUInteger)countElementsForEntityNamed:(NSString *)inName;
 
@@ -55,11 +59,14 @@ static NSString * const kDownloadURL = kDefaultDownloadURL;
 @synthesize sitesCell;
 @synthesize teamsCell;
 @synthesize activitiesCell;
+@synthesize reachabilityCell;
 @synthesize updateCell;
 @synthesize serverCell;
 @synthesize updateRequiredCell;
 @synthesize overlayView;
 @synthesize progressView;
+
+@synthesize buttons;
 
 #if RESUMABLE_DOWNLOAD
 @synthesize contentRange;
@@ -71,6 +78,17 @@ static NSString * const kDownloadURL = kDefaultDownloadURL;
 #endif
 @synthesize connection;
 @synthesize challenge;
+
+- (void)updateReachabilty:(Reachability *)inReachability {
+    ReachabilityStatus theStatus = inReachability.currentReachabilityStatus;
+    NSString *theKey = [NSString stringWithFormat:@"Reachability%d", 
+                        theStatus];
+    
+    self.reachabilityCell.detailTextLabel.text = NSLocalizedString(theKey, @"");
+    for(UIBarButtonItem *theItem in self.buttons) {
+        theItem.enabled = theStatus != kReachabilityNotReachable;
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -95,7 +113,26 @@ static NSString * const kDownloadURL = kDefaultDownloadURL;
 
 - (void)viewWillAppear:(BOOL)inAnimated {
     [super viewWillAppear:inAnimated];
+    id theDelegate = [[UIApplication sharedApplication] delegate];
+    NSNotificationCenter *theCenter = [NSNotificationCenter defaultCenter];
+
+    [self updateReachabilty:[theDelegate reachability]];
     [self refresh];
+    [theCenter addObserver:self 
+                  selector:@selector(reachabilityChanged:) 
+                      name:kReachabilityChangedNotification 
+                    object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)inAnimated {
+    NSNotificationCenter *theCenter = [NSNotificationCenter defaultCenter];
+
+    [theCenter removeObserver:self];
+    [super viewWillDisappear:inAnimated];
+}
+
+- (void)reachabilityChanged:(NSNotification *)inNotification {
+    [self updateReachabilty:inNotification.object];
 }
 
 - (UIView *)overlayParentView {
@@ -138,21 +175,30 @@ static NSString * const kDownloadURL = kDefaultDownloadURL;
     return [[thePaths objectAtIndex:0] stringByAppendingPathComponent:@"SiteSchedule.dat"];
 }
 
-- (void)refreshServerCell {
-    NSURL *theURL = self.downloadURL;
-    NSDictionary *theFields = [NSDictionary dictionaryWithHeaderFieldsForURL:theURL];
-    NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
-    NSDate *theUpdateTime = [theDefaults objectForKey:@"updateTime"];
-    NSDate *theModificationTime = [theFields lastModified];
-    NSString *theText = [NSDateFormatter localizedStringFromDate:theModificationTime
-                                                       dateStyle:NSDateFormatterShortStyle 
-                                                       timeStyle:NSDateFormatterShortStyle];
-    NSString *theUpdateText = theUpdateTime == nil ||
-        [theUpdateTime compare:theModificationTime] < NSOrderedSame ?
-        NSLocalizedString(@"Yes", @"") : NSLocalizedString(@"No", @"");
+- (IBAction)refreshServerCell {
+    id theDelegate = [[UIApplication sharedApplication] delegate];
+    Reachability *theReachability = [theDelegate reachability];
+    
+    if(theReachability.currentReachabilityStatus == kReachabilityNotReachable) {
+        self.serverCell.detailTextLabel.text = @"-";
+        self.updateRequiredCell.detailTextLabel.text = @"-";        
+    }
+    else {
+        NSURL *theURL = self.downloadURL;
+        NSDictionary *theFields = [NSDictionary dictionaryWithHeaderFieldsForURL:theURL];
+        NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
+        NSDate *theUpdateTime = [theDefaults objectForKey:@"updateTime"];
+        NSDate *theModificationTime = [theFields lastModified];
+        NSString *theText = [NSDateFormatter localizedStringFromDate:theModificationTime
+                                                           dateStyle:NSDateFormatterShortStyle 
+                                                           timeStyle:NSDateFormatterShortStyle];
+        NSString *theUpdateText = theUpdateTime == nil ||
+            [theUpdateTime compare:theModificationTime] < NSOrderedSame ?
+            NSLocalizedString(@"Yes", @"") : NSLocalizedString(@"No", @"");
 
-    self.serverCell.detailTextLabel.text = theText;
-    self.updateRequiredCell.detailTextLabel.text = theUpdateText;
+        self.serverCell.detailTextLabel.text = theText;
+        self.updateRequiredCell.detailTextLabel.text = theUpdateText;
+    }
 }
 
 - (void)refresh {
@@ -287,23 +333,14 @@ static NSString * const kDownloadURL = kDefaultDownloadURL;
     [self refresh];
 }
 
-#pragma mark UITableViewDelegate
+- (IBAction)downloadData {
+    [self setOverlayHidden:NO animated:YES];
+    self.progressView.progress = 0.0;
+    [self startDownload];
+}
 
-- (void)tableView:(UITableView *)inTableView didSelectRowAtIndexPath:(NSIndexPath *)inIndexPath {
-    [inTableView deselectRowAtIndexPath:inIndexPath animated:YES];
-    if(inIndexPath.section == 1) {
-        if(inIndexPath.row == 0) {
-            [self setOverlayHidden:NO animated:YES];
-            self.progressView.progress = 0.0;
-            [self performSelector:@selector(startDownload) withObject:nil afterDelay:0.0];
-        }
-        else if(inIndexPath.row == 1) {
-            [self refreshServerCell];
-        }
-        else if(inIndexPath.row == 2) {
-            [[NSURLCredentialStorage sharedCredentialStorage] clearAllCredentials];
-        }
-    }
+- (IBAction)removeAllCredentials {
+    [[NSURLCredentialStorage sharedCredentialStorage] removeAllCredentials];    
 }
 
 #pragma mark NSURLConnectionDataDelegate

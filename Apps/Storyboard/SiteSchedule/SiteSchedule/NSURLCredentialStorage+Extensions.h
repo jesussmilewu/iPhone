@@ -10,6 +10,6 @@
 
 @interface NSURLCredentialStorage (Extensions)
 
-- (void)clearAllCredentials;
+- (void)removeAllCredentials;
 
 @end

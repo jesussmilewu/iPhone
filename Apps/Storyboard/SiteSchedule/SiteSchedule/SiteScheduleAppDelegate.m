@@ -10,11 +10,13 @@
 
 #import "SiteScheduleAppDelegate.h"
 #import "SiteScheduleParser.h"
+#import "Reachability.h"
 
 @interface SiteScheduleAppDelegate()
 
 @property (nonatomic, strong, readwrite) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, strong, readwrite) NSPersistentStoreCoordinator *storeCoordinator;
+@property (nonatomic, strong, readwrite) Reachability *reachability;
 
 @end
 
@@ -24,8 +26,11 @@
 @synthesize viewController;
 @synthesize managedObjectModel;
 @synthesize storeCoordinator;
+@synthesize reachability;
 
 - (BOOL)application:(UIApplication *)inApplication didFinishLaunchingWithOptions:(NSDictionary *)inOptions {
+    self.reachability = [Reachability reachabilityWithHostName:@"0.0.0.0"];
+    [self.reachability startNotifier];
     return YES;
 }
 

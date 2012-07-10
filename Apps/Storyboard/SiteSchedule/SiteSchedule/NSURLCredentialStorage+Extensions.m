@@ -10,7 +10,7 @@
 
 @implementation NSURLCredentialStorage (Extensions)
 
-- (void)clearAllCredentials {
+- (void)removeAllCredentials {
     for(NSURLProtectionSpace *theSpace in self.allCredentials) {
         NSDictionary *theCredentials = [self credentialsForProtectionSpace:theSpace];
         

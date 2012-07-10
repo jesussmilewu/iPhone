@@ -79,6 +79,28 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackOpaque" id="kls-ai-rub">
+                            <rect key="frame" x="0.0" y="366" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <items>
+                                <barButtonItem title="Download" id="YuM-XO-GPp">
+                                    <connections>
+                                        <action selector="downloadData" destination="YF7-rx-2IH" id="BbU-un-qd9"/>
+                                    </connections>
+                                </barButtonItem>
+                                <barButtonItem title="Prüfen" id="7Ln-WC-KGs">
+                                    <connections>
+                                        <action selector="refreshServerCell" destination="YF7-rx-2IH" id="W8R-Cp-4i8"/>
+                                    </connections>
+                                </barButtonItem>
+                                <barButtonItem style="plain" systemItem="flexibleSpace" id="4dj-ua-WgY"/>
+                                <barButtonItem title="Login löschen" id="L2j-OQ-kon">
+                                    <connections>
+                                        <action selector="removeAllCredentials" destination="YF7-rx-2IH" id="bB8-Pv-Wvy"/>
+                                    </connections>
+                                </barButtonItem>
+                            </items>
+                        </toolbar>
                         <sections>
                             <tableViewSection headerTitle="Datenaktualisierung" id="Hmw-MG-aQB">
                                 <cells>
@@ -164,8 +186,8 @@
                                             <rect key="frame" x="10" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Aktualisierung" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fcQ-dH-j6J">
-                                                    <rect key="frame" x="10" y="11" width="119" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Erreichbarkeit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fcQ-dH-j6J">
+                                                    <rect key="frame" x="10" y="11" width="115" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -182,8 +204,33 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Jp3-xc-8Ji" detailTextLabel="GFW-38-m8S" style="IBUITableViewCellStyleValue1" id="Pwt-ae-2Pz">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="tTh-NI-6XN" detailTextLabel="coQ-hz-fCE" style="IBUITableViewCellStyleValue1" id="3DD-vI-e8b">
                                         <rect key="frame" x="0.0" y="223" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Aktualisierung" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tTh-NI-6XN">
+                                                    <rect key="frame" x="10" y="11" width="119" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="coQ-hz-fCE">
+                                                    <rect key="frame" x="246" y="11" width="44" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.21960784310000001" green="0.3294117647" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Jp3-xc-8Ji" detailTextLabel="GFW-38-m8S" style="IBUITableViewCellStyleValue1" id="Pwt-ae-2Pz">
+                                        <rect key="frame" x="0.0" y="267" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="300" height="43"/>
@@ -208,7 +255,7 @@
                                         </view>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="nwq-U7-bNv" detailTextLabel="GUu-XJ-gOD" style="IBUITableViewCellStyleValue1" id="jlo-Xk-sE6">
-                                        <rect key="frame" x="0.0" y="267" width="320" height="45"/>
+                                        <rect key="frame" x="0.0" y="311" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="300" height="43"/>
@@ -234,64 +281,6 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="Dcs-Gh-7MP">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="QcJ-q8-ivi" style="IBUITableViewCellStyleDefault" id="fWV-10-1Lq">
-                                        <rect key="frame" x="0.0" y="332" width="320" height="45"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Daten aktualisieren" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QcJ-q8-ivi">
-                                                    <rect key="frame" x="10" y="0.0" width="280" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="LDO-R5-A0Y" style="IBUITableViewCellStyleDefault" id="zJa-Uh-Pio">
-                                        <rect key="frame" x="0.0" y="377" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Download prüfen" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LDO-R5-A0Y">
-                                                    <rect key="frame" x="10" y="0.0" width="280" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="COx-3Q-fyn" style="IBUITableViewCellStyleDefault" id="yXS-r9-kyg">
-                                        <rect key="frame" x="0.0" y="421" width="320" height="45"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Logindaten löschen" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="COx-3Q-fyn">
-                                                    <rect key="frame" x="10" y="0.0" width="280" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="YF7-rx-2IH" id="aIB-HH-QpW"/>
@@ -303,11 +292,14 @@
                         <outlet property="activitiesCell" destination="xOB-6n-dg7" id="aca-fo-ex9"/>
                         <outlet property="overlayView" destination="m3Y-ib-tgy" id="4zv-FD-Nvr"/>
                         <outlet property="progressView" destination="S4h-8G-sX2" id="9Ec-Gl-6x2"/>
+                        <outlet property="reachabilityCell" destination="rVu-1u-EvN" id="ddg-6q-peh"/>
                         <outlet property="serverCell" destination="Pwt-ae-2Pz" id="y2P-Qu-3TD"/>
                         <outlet property="sitesCell" destination="Rb1-dz-hMK" id="dzV-ig-rxM"/>
                         <outlet property="teamsCell" destination="nST-d6-xAW" id="vBA-4K-aWC"/>
-                        <outlet property="updateCell" destination="rVu-1u-EvN" id="6NI-7j-XFQ"/>
+                        <outlet property="updateCell" destination="3DD-vI-e8b" id="T9a-F9-ucw"/>
                         <outlet property="updateRequiredCell" destination="jlo-Xk-sE6" id="0D2-eN-RS9"/>
+                        <outletCollection property="buttons" destination="YuM-XO-GPp" id="5wR-CH-FxY"/>
+                        <outletCollection property="buttons" destination="7Ln-WC-KGs" id="kzu-GE-6aI"/>
                     </connections>
                 </tableViewController>
                 <view contentMode="scaleToFill" id="m3Y-ib-tgy">
@@ -336,6 +328,13 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="g6Y-aN-osc">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <items>
+                        <barButtonItem title="Item" id="tP8-rt-jmQ"/>
+                    </items>
+                </toolbar>
             </objects>
             <point key="canvasLocation" x="1041" y="229"/>
         </scene>
@@ -365,14 +364,17 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DownloadViewController.h"/>
             <relationships>
                 <relationship kind="action" name="cancelDownload"/>
+                <relationship kind="action" name="refreshServerCell"/>
                 <relationship kind="outlet" name="activitiesCell" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="overlayView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="progressView" candidateClass="UIProgressView"/>
+                <relationship kind="outlet" name="reachabilityCell" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="serverCell" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="sitesCell" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="teamsCell" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="updateCell" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="updateRequiredCell" candidateClass="UITableViewCell"/>
+                <relationship kind="outletCollection" name="buttons" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
         <class className="MapViewController" superclassName="UIViewController">

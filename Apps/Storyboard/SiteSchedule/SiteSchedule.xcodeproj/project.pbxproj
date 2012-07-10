@@ -11,6 +11,9 @@
 		AB6078401550062900CBC151 /* NSDictionary+HTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = AB60783F1550062900CBC151 /* NSDictionary+HTTPRequest.m */; };
 		AB60784615500B5B00CBC151 /* NSDateFormatter+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB60784515500B5B00CBC151 /* NSDateFormatter+Extensions.m */; };
 		AB728AAF15A9AC8D007F247B /* NSURLCredentialStorage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB728AAE15A9AC8D007F247B /* NSURLCredentialStorage+Extensions.m */; };
+		AB9EA00815AB6A90009944EF /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = AB9EA00715AB6A90009944EF /* Reachability.m */; };
+		AB9EA00B15AB700C009944EF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9EA00A15AB700C009944EF /* SystemConfiguration.framework */; };
+		AB9EA00D15AB7220009944EF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB9EA00C15AB7220009944EF /* Localizable.strings */; };
 		ABD352A1154D70E7006DBF2F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD352A0154D70E7006DBF2F /* UIKit.framework */; };
 		ABD352A3154D70E7006DBF2F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD352A2154D70E7006DBF2F /* Foundation.framework */; };
 		ABD352A5154D70E7006DBF2F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD352A4154D70E7006DBF2F /* CoreGraphics.framework */; };
@@ -43,6 +46,10 @@
 		AB60784515500B5B00CBC151 /* NSDateFormatter+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Extensions.m"; sourceTree = "<group>"; };
 		AB728AAD15A9AC8D007F247B /* NSURLCredentialStorage+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLCredentialStorage+Extensions.h"; sourceTree = "<group>"; };
 		AB728AAE15A9AC8D007F247B /* NSURLCredentialStorage+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLCredentialStorage+Extensions.m"; sourceTree = "<group>"; };
+		AB9EA00615AB6A90009944EF /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		AB9EA00715AB6A90009944EF /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		AB9EA00A15AB700C009944EF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		AB9EA00C15AB7220009944EF /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		ABD3529C154D70E7006DBF2F /* SiteSchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SiteSchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABD352A0154D70E7006DBF2F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		ABD352A2154D70E7006DBF2F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -87,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB9EA00B15AB700C009944EF /* SystemConfiguration.framework in Frameworks */,
 				ABFD328A154D72640023B8AB /* CoreData.framework in Frameworks */,
 				ABFD328B154D72640023B8AB /* MapKit.framework in Frameworks */,
 				ABD352A1154D70E7006DBF2F /* UIKit.framework in Frameworks */,
@@ -101,6 +109,8 @@
 		AB60783C155005E700CBC151 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				AB9EA00615AB6A90009944EF /* Reachability.h */,
+				AB9EA00715AB6A90009944EF /* Reachability.m */,
 				AB60783E1550062900CBC151 /* NSDictionary+HTTPRequest.h */,
 				AB60783F1550062900CBC151 /* NSDictionary+HTTPRequest.m */,
 				AB60784415500B5B00CBC151 /* NSDateFormatter+Extensions.h */,
@@ -133,6 +143,7 @@
 		ABD3529F154D70E7006DBF2F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AB9EA00A15AB700C009944EF /* SystemConfiguration.framework */,
 				ABFD3288154D72640023B8AB /* CoreData.framework */,
 				ABFD3289154D72640023B8AB /* MapKit.framework */,
 				ABD352A0154D70E7006DBF2F /* UIKit.framework */,
@@ -163,6 +174,7 @@
 				ABD352AC154D70E7006DBF2F /* main.m */,
 				ABD352AE154D70E7006DBF2F /* SiteSchedule-Prefix.pch */,
 				ABFD3296154D972C0023B8AB /* schedule.xml */,
+				AB9EA00C15AB7220009944EF /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -267,6 +279,7 @@
 				ABFD3270154D71920023B8AB /* MainStoryboard.storyboard in Resources */,
 				ABFD3275154D71B10023B8AB /* InfoPlist.strings in Resources */,
 				ABFD3297154D972C0023B8AB /* schedule.xml in Resources */,
+				AB9EA00D15AB7220009944EF /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +307,7 @@
 				AB60784615500B5B00CBC151 /* NSDateFormatter+Extensions.m in Sources */,
 				AB51C18315A86D580041F569 /* HTTPContentRange.m in Sources */,
 				AB728AAF15A9AC8D007F247B /* NSURLCredentialStorage+Extensions.m in Sources */,
+				AB9EA00815AB6A90009944EF /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
