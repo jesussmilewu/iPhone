@@ -19,8 +19,8 @@
     [super viewDidLoad];
     [textView setText:nil];
     [objectCount setText:@"0"];
-    [self logger:[NSString stringWithFormat:@"%@",NSStringFromSelector(_cmd)]];
     self.model = [[Model alloc] initWithName:@"LoremIpsum"];
+    [self logger:[NSString stringWithFormat:@"%@",NSStringFromSelector(_cmd)]];
     [self logger:[NSString stringWithFormat:@"Model.name: %@", [self.model name]]];
     
     [stepper setMaximumValue:10.0];
@@ -93,7 +93,6 @@
         [self logger:[NSString stringWithFormat:@"model.status: %@", model.status]];
     else {
         [self logger:[NSString stringWithFormat:@"model.objCount: %@", model.objCount]];
-//        [objectCount setText:[NSString stringWithFormat:@"%2.0f", stepper.value]];
         [objectCount setText:[NSString stringWithFormat:@"%@", model.objCount]];        
     }
 }
