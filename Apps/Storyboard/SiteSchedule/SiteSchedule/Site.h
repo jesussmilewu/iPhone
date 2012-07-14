@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-
+#import <CoreLocation/CoreLocation.h>
 
 @interface Site : NSManagedObject
 
@@ -19,6 +19,14 @@
 @property (nonatomic, copy) NSString *city;
 @property (nonatomic, copy) NSString *countryCode;
 @property (nonatomic, strong) NSSet *activities;
+@property (nonatomic, strong) NSNumber *latitude;
+@property (nonatomic, strong) NSNumber *longitude;
+
+@property (nonatomic) CLLocationCoordinate2D coordinate;
+
+- (NSDictionary *)address;
+- (BOOL)hasCoordinates;
+
 @end
 
 @interface Site (CoreDataGeneratedAccessors)

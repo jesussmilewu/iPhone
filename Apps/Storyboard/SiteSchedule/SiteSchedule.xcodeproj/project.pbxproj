@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB0AE9C115B16BEB00F31570 /* SitesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0AE9C015B16BEB00F31570 /* SitesViewController.m */; };
+		AB45D66D15B1777A00D8CE6C /* ActivitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB45D66C15B1777A00D8CE6C /* ActivitiesViewController.m */; };
+		AB45D67115B189CD00D8CE6C /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB45D67015B189CD00D8CE6C /* DetailsViewController.m */; };
 		AB51C18315A86D580041F569 /* HTTPContentRange.m in Sources */ = {isa = PBXBuildFile; fileRef = AB51C18215A86D580041F569 /* HTTPContentRange.m */; };
 		AB6078401550062900CBC151 /* NSDictionary+HTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = AB60783F1550062900CBC151 /* NSDictionary+HTTPRequest.m */; };
 		AB60784615500B5B00CBC151 /* NSDateFormatter+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB60784515500B5B00CBC151 /* NSDateFormatter+Extensions.m */; };
@@ -18,11 +21,13 @@
 		ABD352A3154D70E7006DBF2F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD352A2154D70E7006DBF2F /* Foundation.framework */; };
 		ABD352A5154D70E7006DBF2F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD352A4154D70E7006DBF2F /* CoreGraphics.framework */; };
 		ABD352AD154D70E7006DBF2F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD352AC154D70E7006DBF2F /* main.m */; };
+		ABD65F2415B1A85900DF8887 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD65F2315B1A85900DF8887 /* CoreLocation.framework */; };
+		ABD65F2815B1AA0900DF8887 /* Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD65F2715B1AA0900DF8887 /* Annotation.m */; };
+		ABD65F2A15B1AE7300DF8887 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD65F2915B1AE7300DF8887 /* AddressBook.framework */; };
 		ABD7E8A0154F286A000A7D58 /* NSManagedObjectContext+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD7E89F154F286A000A7D58 /* NSManagedObjectContext+Tools.m */; };
 		ABFD326E154D71920023B8AB /* DownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABFD3265154D71920023B8AB /* DownloadViewController.m */; };
 		ABFD3270154D71920023B8AB /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABFD3269154D71920023B8AB /* MainStoryboard.storyboard */; };
 		ABFD3271154D71920023B8AB /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABFD326B154D71920023B8AB /* MapViewController.m */; };
-		ABFD3272154D71920023B8AB /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABFD326D154D71920023B8AB /* SearchViewController.m */; };
 		ABFD3275154D71B10023B8AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ABFD3274154D71B10023B8AB /* InfoPlist.strings */; };
 		ABFD327F154D720A0023B8AB /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = ABFD3278154D720A0023B8AB /* Activity.m */; };
 		ABFD3280154D720A0023B8AB /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = ABFD327A154D720A0023B8AB /* Contact.m */; };
@@ -38,6 +43,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AB0AE9BF15B16BEB00F31570 /* SitesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SitesViewController.h; sourceTree = "<group>"; };
+		AB0AE9C015B16BEB00F31570 /* SitesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SitesViewController.m; sourceTree = "<group>"; };
+		AB45D66B15B1777A00D8CE6C /* ActivitiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivitiesViewController.h; sourceTree = "<group>"; };
+		AB45D66C15B1777A00D8CE6C /* ActivitiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivitiesViewController.m; sourceTree = "<group>"; };
+		AB45D66F15B189CD00D8CE6C /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
+		AB45D67015B189CD00D8CE6C /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		AB51C18115A86D580041F569 /* HTTPContentRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPContentRange.h; sourceTree = "<group>"; };
 		AB51C18215A86D580041F569 /* HTTPContentRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPContentRange.m; sourceTree = "<group>"; };
 		AB60783E1550062900CBC151 /* NSDictionary+HTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+HTTPRequest.h"; sourceTree = "<group>"; };
@@ -57,6 +68,10 @@
 		ABD352A8154D70E7006DBF2F /* SiteSchedule-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SiteSchedule-Info.plist"; sourceTree = "<group>"; };
 		ABD352AC154D70E7006DBF2F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		ABD352AE154D70E7006DBF2F /* SiteSchedule-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SiteSchedule-Prefix.pch"; sourceTree = "<group>"; };
+		ABD65F2315B1A85900DF8887 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		ABD65F2615B1AA0900DF8887 /* Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Annotation.h; sourceTree = "<group>"; };
+		ABD65F2715B1AA0900DF8887 /* Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Annotation.m; sourceTree = "<group>"; };
+		ABD65F2915B1AE7300DF8887 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		ABD7E89E154F286A000A7D58 /* NSManagedObjectContext+Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+Tools.h"; sourceTree = "<group>"; };
 		ABD7E89F154F286A000A7D58 /* NSManagedObjectContext+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+Tools.m"; sourceTree = "<group>"; };
 		ABFD3264154D71920023B8AB /* DownloadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadViewController.h; sourceTree = "<group>"; };
@@ -64,8 +79,6 @@
 		ABFD3269154D71920023B8AB /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		ABFD326A154D71920023B8AB /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		ABFD326B154D71920023B8AB /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
-		ABFD326C154D71920023B8AB /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
-		ABFD326D154D71920023B8AB /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		ABFD3274154D71B10023B8AB /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		ABFD3277154D720A0023B8AB /* Activity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Activity.h; sourceTree = "<group>"; };
 		ABFD3278154D720A0023B8AB /* Activity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Activity.m; sourceTree = "<group>"; };
@@ -94,6 +107,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABD65F2A15B1AE7300DF8887 /* AddressBook.framework in Frameworks */,
+				ABD65F2415B1A85900DF8887 /* CoreLocation.framework in Frameworks */,
 				AB9EA00B15AB700C009944EF /* SystemConfiguration.framework in Frameworks */,
 				ABFD328A154D72640023B8AB /* CoreData.framework in Frameworks */,
 				ABFD328B154D72640023B8AB /* MapKit.framework in Frameworks */,
@@ -143,6 +158,8 @@
 		ABD3529F154D70E7006DBF2F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ABD65F2915B1AE7300DF8887 /* AddressBook.framework */,
+				ABD65F2315B1A85900DF8887 /* CoreLocation.framework */,
 				AB9EA00A15AB700C009944EF /* SystemConfiguration.framework */,
 				ABFD3288154D72640023B8AB /* CoreData.framework */,
 				ABFD3289154D72640023B8AB /* MapKit.framework */,
@@ -199,11 +216,17 @@
 				ABFD3265154D71920023B8AB /* DownloadViewController.m */,
 				ABFD326A154D71920023B8AB /* MapViewController.h */,
 				ABFD326B154D71920023B8AB /* MapViewController.m */,
-				ABFD326C154D71920023B8AB /* SearchViewController.h */,
-				ABFD326D154D71920023B8AB /* SearchViewController.m */,
 				ABFD3298154D9A320023B8AB /* UIViewController+SiteSchedule.h */,
 				ABFD3299154D9A320023B8AB /* UIViewController+SiteSchedule.m */,
+				AB0AE9BF15B16BEB00F31570 /* SitesViewController.h */,
+				AB0AE9C015B16BEB00F31570 /* SitesViewController.m */,
+				AB45D66B15B1777A00D8CE6C /* ActivitiesViewController.h */,
+				AB45D66C15B1777A00D8CE6C /* ActivitiesViewController.m */,
+				AB45D66F15B189CD00D8CE6C /* DetailsViewController.h */,
+				AB45D67015B189CD00D8CE6C /* DetailsViewController.m */,
 				ABFD3269154D71920023B8AB /* MainStoryboard.storyboard */,
+				ABD65F2615B1AA0900DF8887 /* Annotation.h */,
+				ABD65F2715B1AA0900DF8887 /* Annotation.m */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -293,7 +316,6 @@
 				ABD352AD154D70E7006DBF2F /* main.m in Sources */,
 				ABFD326E154D71920023B8AB /* DownloadViewController.m in Sources */,
 				ABFD3271154D71920023B8AB /* MapViewController.m in Sources */,
-				ABFD3272154D71920023B8AB /* SearchViewController.m in Sources */,
 				ABFD327F154D720A0023B8AB /* Activity.m in Sources */,
 				ABFD3280154D720A0023B8AB /* Contact.m in Sources */,
 				ABFD3281154D720A0023B8AB /* Site.m in Sources */,
@@ -308,6 +330,10 @@
 				AB51C18315A86D580041F569 /* HTTPContentRange.m in Sources */,
 				AB728AAF15A9AC8D007F247B /* NSURLCredentialStorage+Extensions.m in Sources */,
 				AB9EA00815AB6A90009944EF /* Reachability.m in Sources */,
+				AB0AE9C115B16BEB00F31570 /* SitesViewController.m in Sources */,
+				AB45D66D15B1777A00D8CE6C /* ActivitiesViewController.m in Sources */,
+				AB45D67115B189CD00D8CE6C /* DetailsViewController.m in Sources */,
+				ABD65F2815B1AA0900DF8887 /* Annotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

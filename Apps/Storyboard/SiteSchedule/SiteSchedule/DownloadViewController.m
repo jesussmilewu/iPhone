@@ -18,7 +18,7 @@
 #define kLocalDownloadURL @"http://nostromo.local/~clemens/SiteSchedule/schedule.xml"
 #define kDefaultDownloadURL @"http://www.rodewig.de/iphone/without/schedule.xml"
 #define kProtectedDownloadURL @"http://www.rodewig.de/iphone/withauth/schedule.xml"
-static NSString * const kDownloadURL = kDefaultDownloadURL;
+static NSString * const kDownloadURL = kLocalDownloadURL;
 
 @interface DownloadViewController()<NSURLConnectionDataDelegate, UIAlertViewDelegate>
 
@@ -34,7 +34,7 @@ static NSString * const kDownloadURL = kDefaultDownloadURL;
 @property (strong, nonatomic) IBOutletCollection(UIBarButtonItem) NSArray *buttons;
 
 @property (strong, nonatomic) IBOutlet UIView *overlayView;
-@property (strong, nonatomic) IBOutlet UIProgressView *progressView;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 
 #if RESUMABLE_DOWNLOAD
 @property (nonatomic) HTTPContentRange contentRange;
