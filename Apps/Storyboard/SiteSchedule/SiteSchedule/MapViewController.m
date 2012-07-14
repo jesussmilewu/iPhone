@@ -47,31 +47,51 @@
     [self.mapView addAnnotation:theAnnotation];
 }
 
+- (void)updateMapRectWithCoordinate:(CLLocationCoordinate2D)inCoordinate isFirst:(BOOL)inIsFirst {
+    MKMapPoint thePoint = MKMapPointForCoordinate(inCoordinate);
+    MKMapRect theRect = MKMapRectNull;
+
+    theRect.origin = thePoint;
+    self.mapRect = inIsFirst ? theRect : MKMapRectUnion(self.mapRect, theRect);
+}
+
 - (void)updateGeocoordinates:(NSUInteger)inIndex {
-    if(!self.geocoder.isGeocoding && inIndex < self.sites.count) {
-        Site *theSite = [self.sites objectAtIndex:inIndex];
-        
+    NSUInteger theIndex = inIndex;
+    Site *theSite = nil;
+    
+    while(theIndex < self.sites.count) {
+        theSite = [self.sites objectAtIndex:theIndex];
+        if(theSite.hasCoordinates) {
+            [self updateMapRectWithCoordinate:theSite.coordinate isFirst:theIndex == 0];
+            [self addAnntationForSite:theSite];
+            theIndex++;
+            theSite = nil;
+        }
+        else {
+            break;
+        }
+    }
+    if(!self.geocoder.isGeocoding && theSite != nil) {
         [self.geocoder geocodeAddressDictionary:theSite.address
                               completionHandler:^(NSArray *inPlacemarks, NSError *inError) {
                                   if(inError == nil && inPlacemarks.count > 0) {
                                       MKPlacemark *thePlacemark = [inPlacemarks objectAtIndex:0];
                                       CLLocationCoordinate2D theCoordinate = thePlacemark.location.coordinate;
-                                      MKMapPoint thePoint = MKMapPointForCoordinate(theCoordinate);
-                                      MKMapRect theRect = MKMapRectNull;
                                       
-                                      theRect.origin = thePoint;
                                       theSite.coordinate = theCoordinate;
-                                      self.mapRect = inIndex == 0 ? theRect : MKMapRectUnion(self.mapRect, theRect);
+                                      [self updateMapRectWithCoordinate:theCoordinate
+                                                                isFirst:inIndex == 0];
                                       [self addAnntationForSite:theSite];
                                   }
                                   else {
                                       NSLog(@"error = %@", inError);
                                   }
-                                  [self updateGeocoordinates:inIndex + 1];
+                                  [self updateGeocoordinates:theIndex + 1];
                               }];
     }
-    if(inIndex >= self.sites.count) {
+    if(theIndex >= self.sites.count) {
         [self.mapView setVisibleMapRect:self.mapRect animated:YES];
+        [self.managedObjectContext save:NULL];
     }
 }
 
