@@ -309,6 +309,10 @@
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				SDKROOT = iphoneos;
+				WARNING_LDFLAGS = (
+					"-reexport_library",
+					/usr/lib/libxml2.dylib,
+				);
 			};
 			name = Debug;
 		};
@@ -328,6 +332,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				WARNING_LDFLAGS = (
+					"-reexport_library",
+					/usr/lib/libxml2.dylib,
+				);
 			};
 			name = Release;
 		};
