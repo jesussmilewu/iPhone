@@ -1,15 +1,15 @@
 //
-//  AstroDroid.h
+//  Wookie.h
 //  Kapitel2
 //
 //  Created by Rodewig Klaus on 12.07.12.
 //  Copyright (c) 2012 Klaus M. Rodewig. All rights reserved.
 //
 
-#import "Droid.h"
+#import <Foundation/Foundation.h>
 
-@interface AstroDroid : Droid
-@property(copy) NSString *droidID;
--(id)initWithID:(NSNumber *)id;
+@interface Wookie : NSObject
+@property(copy) NSString *myName;
 -(void)sayName;
+-(id)initWithName:(NSString *)name;
 @end

@@ -19,7 +19,6 @@
     self = [super init];
     if(self != nil){
         self.droidID = [NSString stringWithFormat:@"0xDEADBEEF%02i", [id intValue]];
-        NSLog(@"droidID: %@", droidID);
     }
     return self;
 }
@@ -36,5 +35,7 @@
     return [[NSString stringWithString:text] reversedString];
 }
 
-
+-(void)sayName{
+    NSLog(@"[+] %@.%@: %@", self, NSStringFromSelector(_cmd), self.droidID);
+}
 @end
