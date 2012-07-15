@@ -249,6 +249,8 @@
 
 - (void)siteScheduleParser:(SiteScheduleParser *)inParser 
              didEndElement:(NSString *)inName {
+    BOOL theClearFlag = NO;
+    
     if([inName isEqualToString:@"site"]) {
         [inParser pop];
     }
@@ -257,12 +259,19 @@
     }
     else if([inName isEqualToString:@"street"]) {
         self.street = inParser.text;
+        theClearFlag = YES;
     }
     else if([inName isEqualToString:@"city"]) {
         self.city = inParser.text;
+        theClearFlag = YES;
     }
     else if([inName isEqualToString:@"countryCode"]) {
         self.countryCode = inParser.text;
+        theClearFlag = YES;
+    }
+    if(theClearFlag) {
+        self.latitude = nil;
+        self.longitude = nil;
     }
 }
 

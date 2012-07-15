@@ -41,6 +41,9 @@
     [self updateAnnotations];
 }
 
+- (IBAction)overview:(UIStoryboardSegue *)inSegue {
+}
+
 - (void)addAnntationForSite:(Site *)inSite {
     Annotation *theAnnotation = [[Annotation alloc] initWithSite:inSite];
     
@@ -71,11 +74,11 @@
             break;
         }
     }
-    if(!self.geocoder.isGeocoding && theSite != nil) {
+    if(theSite != nil) {
         [self.geocoder geocodeAddressDictionary:theSite.address
                               completionHandler:^(NSArray *inPlacemarks, NSError *inError) {
                                   if(inError == nil && inPlacemarks.count > 0) {
-                                      MKPlacemark *thePlacemark = [inPlacemarks objectAtIndex:0];
+                                      CLPlacemark *thePlacemark = [inPlacemarks objectAtIndex:0];
                                       CLLocationCoordinate2D theCoordinate = thePlacemark.location.coordinate;
                                       
                                       theSite.coordinate = theCoordinate;
@@ -119,13 +122,17 @@
     if(![inAnnotation isKindOfClass:[MKUserLocation class]]) {
         theView = (MKPinAnnotationView *)[inMapView dequeueReusableAnnotationViewWithIdentifier:@"Site"];
         if(theView == nil) {
-            UIButton *theButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            UIButton *theLeftButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
+            UIButton *theRightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
 
+            theLeftButton.tag = 10;
+            theRightButton.tag = 20;
             theView = [[MKPinAnnotationView alloc] initWithAnnotation:inAnnotation reuseIdentifier:@"Site"];
-            theView.pinColor = MKPinAnnotationColorGreen;
+            theView.pinColor = MKPinAnnotationColorRed;
             theView.canShowCallout = YES;
             theView.animatesDrop = YES;
-            theView.rightCalloutAccessoryView = theButton;
+            theView.leftCalloutAccessoryView = theLeftButton;
+            theView.rightCalloutAccessoryView = theRightButton;
         }
         else {
             theView.annotation = inAnnotation;
@@ -135,12 +142,22 @@
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)inView calloutAccessoryControlTapped:(UIControl *)inControl {
-    ActivitiesViewController *theController = [self.storyboard instantiateViewControllerWithIdentifier:@"activities"];
     Annotation *theAnnotation = inView.annotation;
     Site *theSite = (Site *)[self.managedObjectContext objectWithID:theAnnotation.objectId];
     
-    [theController setUnorderedActivities:theSite.activities];
-    [self.navigationController pushViewController:theController animated:YES];
+    if(inControl.tag == 10) {
+        ActivitiesViewController *theController = [self.storyboard instantiateViewControllerWithIdentifier:@"activities"];
+
+        [theController setUnorderedActivities:theSite.activities];
+        [self.navigationController pushViewController:theController animated:YES];
+    }
+    else {
+        MKPlacemark *thePlacemark = [[MKPlacemark alloc] initWithCoordinate:theSite.coordinate addressDictionary:theSite.address];
+        MKMapItem *theItem = [[MKMapItem alloc] initWithPlacemark:thePlacemark];
+        
+        [theItem openInMapsWithLaunchOptions:@{
+           MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving }];
+    }
 }
 
 @end

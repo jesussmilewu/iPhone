@@ -66,6 +66,7 @@
                     <navigationItem key="navigationItem" title="Baustellen" id="tpH-DY-Y6l"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ut-Ms-08x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="g4g-GQ-Hfx" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1086" y="-311"/>
         </scene>
@@ -334,7 +335,13 @@
                             <outlet property="delegate" destination="1S8-KJ-md9" id="0ct-aQ-5XJ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Details" id="qrH-R8-LP5"/>
+                    <navigationItem key="navigationItem" title="Details" id="qrH-R8-LP5">
+                        <barButtonItem key="rightBarButtonItem" title="Übersicht" id="Q8R-pv-NFQ">
+                            <connections>
+                                <segue destination="g4g-GQ-Hfx" kind="unwind" unwindAction="overview:" id="4ay-QD-ahq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OzE-ZZ-j5s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

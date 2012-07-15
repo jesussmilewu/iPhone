@@ -265,10 +265,8 @@ static NSString * const kDownloadURL = kLocalDownloadURL;
     return theAttributes.fileSize;
 }
 
-- (void)finishDownload:(NSData *)inData {
-    NSInputStream *theStream = [NSInputStream inputStreamWithData:inData];
-    
-    [self updateScheduleWithStream:theStream];
+- (void)finishDownload:(NSInputStream *)inoutStream {    
+    [self updateScheduleWithStream:inoutStream];
     [self setOverlayHidden:YES animated:YES];
 #if RESUMABLE_DOWNLOAD
     [self deleteDownloadFile];
@@ -289,7 +287,8 @@ static NSString * const kDownloadURL = kLocalDownloadURL;
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *inResponse, NSData *inData, NSError *inError) {
                                if(inError == nil) {
-                                   [self finishDownload:inData];
+                                   NSInputStream *theStream = [NSInputStream inputStreamWithData:inData];
+                                   [self finishDownload:theStream];
                                }
                                else {
                                    NSLog(@"error = %@", inError);
@@ -374,13 +373,13 @@ static NSString * const kDownloadURL = kLocalDownloadURL;
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)inConnection {
     if(self.outputStream != nil) {
-        NSData *theData;
+        NSInputStream *theStream;
     
         [self.outputStream close];
         self.outputStream = nil;
-        theData = [NSData dataWithContentsOfFile:self.downloadFile];
+        theStream = [NSInputStream inputStreamWithFileAtPath:self.downloadFile];
         self.updateRequiredCell.detailTextLabel.text = NSLocalizedString(@"No", @"");
-        [self performSelector:@selector(finishDownload:) withObject:theData afterDelay:0.0];
+        [self performSelector:@selector(finishDownload:) withObject:theStream afterDelay:0.0];
     }
 }
 #else
@@ -412,7 +411,9 @@ static NSString * const kDownloadURL = kLocalDownloadURL;
     [theDefaults synchronize];
     self.lastModified = nil;
     self.updateRequiredCell.detailTextLabel.text = NSLocalizedString(@"No", @"");
-    [self performSelector:@selector(finishDownload:) withObject:self.data afterDelay:0.0];
+    [self performSelector:@selector(finishDownload:)
+               withObject:[NSInputStream inputStreamWithData:self.data]
+               afterDelay:0.0];
 }
 #endif
 
