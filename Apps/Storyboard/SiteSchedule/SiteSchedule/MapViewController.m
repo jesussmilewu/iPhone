@@ -154,9 +154,11 @@
     else {
         MKPlacemark *thePlacemark = [[MKPlacemark alloc] initWithCoordinate:theSite.coordinate addressDictionary:theSite.address];
         MKMapItem *theItem = [[MKMapItem alloc] initWithPlacemark:thePlacemark];
-        
+
+        theItem.name = theSite.name;
         [theItem openInMapsWithLaunchOptions:@{
-           MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving }];
+           MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving,
+             MKLaunchOptionsShowsTrafficKey : @YES }];
     }
 }
 
