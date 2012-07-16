@@ -8,6 +8,9 @@
 
 #import "Model.h"
 #import "Droid.h"
+#import "ProtocolDroid.h"
+#import "AstroDroid.h"
+#import "Wookie.h"
 
 @implementation Model
 
@@ -15,10 +18,15 @@
 
 -(void)getObjects
 {
-    NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));
     for(Droid *obj in objects){
         self.status = obj.droidID;
-//        self.status = [obj revMem:obj.droidID];
+        self.status = [obj revMem:obj.droidID];
+    }
+    
+    Wookie *chewie = [[Wookie alloc] initWithName:@"Chewbacca"];
+    [objects addObject:chewie];
+    for (id obj in objects) {
+        [obj sayName];
     }
 }
 
@@ -26,7 +34,6 @@
 {
     self = [super init];
     if (self) {
-        NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));
         self.creation = [NSDate date];
         objects = [[NSMutableArray alloc] init];
     }
@@ -34,26 +41,27 @@
 }
 
 -(id)initWithName:(NSString *)inName{
-    NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));
     name = inName;
     return [self init];
 }
 
 -(NSNumber *)handleObject:(NSNumber *)stepperValue{
-    NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));
-    NSLog(@"stepper.value: %i", [stepperValue intValue]);
-    NSLog(@"[+] objects before: %i", [objects count]);
-    
     if([stepperValue intValue] > [objects count]){
-        Droid *newDroid = [[Droid alloc] initWithID:stepperValue];
-        [objects addObject:newDroid];
+        if([stepperValue intValue] % 3 == 0) {
+            Droid *newDroid = [[Droid alloc] initWithID:stepperValue];
+            [objects addObject:newDroid];
+        } else if([stepperValue intValue] % 3 == 1) {
+            ProtocolDroid *newDroid = [[ProtocolDroid alloc] initWithID:stepperValue];
+            [objects addObject:newDroid];
+        } else if([stepperValue intValue] % 3 == 2) {
+            AstroDroid *newDroid = [[AstroDroid alloc] initWithID:stepperValue];
+            [objects addObject:newDroid];
+        }
     } else if (([stepperValue intValue] < [objects count])) {
         [objects removeLastObject];
     }
     self.objCount = [NSNumber numberWithInt:[objects count]];
-    
-    NSLog(@"[+] objects after: %i", [objects count]);
-    
+        
     return self.objCount;
 }
 

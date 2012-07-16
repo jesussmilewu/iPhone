@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Model.h"
+#import "LogUtility.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <LogUtilityDelegate>
 - (IBAction)iterateObjects:(id)sender;
 - (IBAction)objectMaster:(id)sender;
 @property (retain, nonatomic) IBOutlet UILabel *objectCount;

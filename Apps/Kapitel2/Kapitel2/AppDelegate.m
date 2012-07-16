@@ -24,6 +24,11 @@
     [super dealloc];
 }
 
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
+    NSLog(@"[+] %@.%@: Einen Eimer für Monsieur!", self, NSStringFromSelector(_cmd));
+}
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];

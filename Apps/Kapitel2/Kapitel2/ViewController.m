@@ -14,6 +14,10 @@
 @implementation ViewController
 @synthesize objectCount, stepper, textView, model;
 
+-(void)finishedWithLogging{
+    [self logger:@"Finished logging to console"];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -34,18 +38,20 @@
                  forKeyPath:@"objCount"
                     options:1
                     context:NULL];
+    
+    LogUtility *consoleLog = [[LogUtility alloc] init];
+    consoleLog.delegate = self;
+    [consoleLog logToConsole:[self.model name]];
+    
 }
 
 - (void)viewDidAppear:(BOOL)inAnimated
 {
-    NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));
     [super viewDidAppear:inAnimated];
 }
 
 - (void)viewWillDisappear:(BOOL)inAnimated
 {
-    NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));
-
     [self.model removeObserver:self forKeyPath:@"status"];
     [self.model removeObserver:self forKeyPath:@"objCount"];
     
@@ -98,12 +104,10 @@
 }
 
 - (IBAction)iterateObjects:(id)sender {
-    NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));
     [model getObjects];
 }
 
 - (IBAction)objectMaster:(id)sender {
-    NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));      
     [model handleObject:[NSNumber numberWithDouble:stepper.value]];
 }
 @end

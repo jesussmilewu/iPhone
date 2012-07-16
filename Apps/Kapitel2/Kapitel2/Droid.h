@@ -11,7 +11,7 @@
 @interface Droid : NSObject
 
 @property(copy) NSString *droidID;
-
+-(void)sayName;
 -(id)initWithID:(NSNumber *)id;
 -(NSString *)revMem:(NSString *)text;
 @end

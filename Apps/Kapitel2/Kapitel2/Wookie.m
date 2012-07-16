@@ -1,29 +1,29 @@
 //
-//  AstroDroid.m
+//  Wookie.m
 //  Kapitel2
 //
 //  Created by Rodewig Klaus on 12.07.12.
 //  Copyright (c) 2012 Klaus M. Rodewig. All rights reserved.
 //
 
-#import "AstroDroid.h"
+#import "Wookie.h"
 
-@implementation AstroDroid
+@implementation Wookie
 
-@synthesize droidID;
+@synthesize myName;
 
-- (id)initWithID:(NSNumber *)id
+- (id)initWithName:(NSString *)name
 {
     NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));
     self = [super init];
     if(self != nil){
-        self.droidID = [NSString stringWithFormat:@"0xBEEFCAFE%02i", [id intValue]];
+        self.myName = name;
     }
     return self;
 }
 
 -(void)sayName{
-    NSLog(@"[-] %@.%@: %@", self, NSStringFromSelector(_cmd), self.droidID);
+    NSLog(@"[+] %@.%@: %@", self, NSStringFromSelector(_cmd), self.myName);
 }
 
 @end
