@@ -7,18 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB65B96F15B9E03600BE5C2B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB65B96E15B9E03600BE5C2B /* QuartzCore.framework */; };
+		AB6AEC0615B738B5002B1172 /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6AEC0515B738B5002B1172 /* TweetCell.m */; };
 		AB845DEE15B2B5AE001FBF66 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB845DED15B2B5AE001FBF66 /* UIKit.framework */; };
 		AB845DF015B2B5AE001FBF66 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB845DEF15B2B5AE001FBF66 /* Foundation.framework */; };
 		AB845DF215B2B5AE001FBF66 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB845DF115B2B5AE001FBF66 /* CoreGraphics.framework */; };
 		AB845DF815B2B5AE001FBF66 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB845DF615B2B5AE001FBF66 /* InfoPlist.strings */; };
 		AB845DFA15B2B5AE001FBF66 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB845DF915B2B5AE001FBF66 /* main.m */; };
 		AB845DFE15B2B5AE001FBF66 /* UniversalSimpleTwitterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB845DFD15B2B5AE001FBF66 /* UniversalSimpleTwitterAppDelegate.m */; };
+		ABD0C76D15B5FB2300730BA9 /* MainStoryboard-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABD0C76C15B5FB2300730BA9 /* MainStoryboard-iPad.storyboard */; };
+		ABD0C77115B5FB8D00730BA9 /* TwitterCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD0C77015B5FB8D00730BA9 /* TwitterCollectionViewController.m */; };
 		ABD1EAE515B2B7A8005D0959 /* TwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD1EAE415B2B7A8005D0959 /* TwitterViewController.m */; };
 		ABD1EAEA15B2B83B005D0959 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABD1EAE915B2B83B005D0959 /* MainStoryboard.storyboard */; };
 		ABD1EAED15B2B874005D0959 /* NSString+URLTools.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD1EAEC15B2B874005D0959 /* NSString+URLTools.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AB65B96E15B9E03600BE5C2B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AB6AEC0415B738B5002B1172 /* TweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetCell.h; sourceTree = "<group>"; };
+		AB6AEC0515B738B5002B1172 /* TweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetCell.m; sourceTree = "<group>"; };
 		AB845DE915B2B5AE001FBF66 /* UniversalSimpleTwitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniversalSimpleTwitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB845DED15B2B5AE001FBF66 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AB845DEF15B2B5AE001FBF66 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -29,6 +36,9 @@
 		AB845DFB15B2B5AE001FBF66 /* UniversalSimpleTwitter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UniversalSimpleTwitter-Prefix.pch"; sourceTree = "<group>"; };
 		AB845DFC15B2B5AE001FBF66 /* UniversalSimpleTwitterAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UniversalSimpleTwitterAppDelegate.h; sourceTree = "<group>"; };
 		AB845DFD15B2B5AE001FBF66 /* UniversalSimpleTwitterAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UniversalSimpleTwitterAppDelegate.m; sourceTree = "<group>"; };
+		ABD0C76C15B5FB2300730BA9 /* MainStoryboard-iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "MainStoryboard-iPad.storyboard"; sourceTree = "<group>"; };
+		ABD0C76F15B5FB8D00730BA9 /* TwitterCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterCollectionViewController.h; sourceTree = "<group>"; };
+		ABD0C77015B5FB8D00730BA9 /* TwitterCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterCollectionViewController.m; sourceTree = "<group>"; };
 		ABD1EAE315B2B7A8005D0959 /* TwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterViewController.h; sourceTree = "<group>"; };
 		ABD1EAE415B2B7A8005D0959 /* TwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterViewController.m; sourceTree = "<group>"; };
 		ABD1EAE915B2B83B005D0959 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -41,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB65B96F15B9E03600BE5C2B /* QuartzCore.framework in Frameworks */,
 				AB845DEE15B2B5AE001FBF66 /* UIKit.framework in Frameworks */,
 				AB845DF015B2B5AE001FBF66 /* Foundation.framework in Frameworks */,
 				AB845DF215B2B5AE001FBF66 /* CoreGraphics.framework in Frameworks */,
@@ -70,6 +81,7 @@
 		AB845DEC15B2B5AE001FBF66 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AB65B96E15B9E03600BE5C2B /* QuartzCore.framework */,
 				AB845DED15B2B5AE001FBF66 /* UIKit.framework */,
 				AB845DEF15B2B5AE001FBF66 /* Foundation.framework */,
 				AB845DF115B2B5AE001FBF66 /* CoreGraphics.framework */,
@@ -83,10 +95,15 @@
 				ABD1EAEB15B2B874005D0959 /* NSString+URLTools.h */,
 				ABD1EAEC15B2B874005D0959 /* NSString+URLTools.m */,
 				ABD1EAE915B2B83B005D0959 /* MainStoryboard.storyboard */,
+				ABD0C76C15B5FB2300730BA9 /* MainStoryboard-iPad.storyboard */,
 				ABD1EAE315B2B7A8005D0959 /* TwitterViewController.h */,
 				ABD1EAE415B2B7A8005D0959 /* TwitterViewController.m */,
 				AB845DFC15B2B5AE001FBF66 /* UniversalSimpleTwitterAppDelegate.h */,
 				AB845DFD15B2B5AE001FBF66 /* UniversalSimpleTwitterAppDelegate.m */,
+				ABD0C76F15B5FB8D00730BA9 /* TwitterCollectionViewController.h */,
+				ABD0C77015B5FB8D00730BA9 /* TwitterCollectionViewController.m */,
+				AB6AEC0415B738B5002B1172 /* TweetCell.h */,
+				AB6AEC0515B738B5002B1172 /* TweetCell.m */,
 				AB845DF415B2B5AE001FBF66 /* Supporting Files */,
 			);
 			path = UniversalSimpleTwitter;
@@ -157,6 +174,7 @@
 			files = (
 				AB845DF815B2B5AE001FBF66 /* InfoPlist.strings in Resources */,
 				ABD1EAEA15B2B83B005D0959 /* MainStoryboard.storyboard in Resources */,
+				ABD0C76D15B5FB2300730BA9 /* MainStoryboard-iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +189,8 @@
 				AB845DFE15B2B5AE001FBF66 /* UniversalSimpleTwitterAppDelegate.m in Sources */,
 				ABD1EAE515B2B7A8005D0959 /* TwitterViewController.m in Sources */,
 				ABD1EAED15B2B874005D0959 /* NSString+URLTools.m in Sources */,
+				ABD0C77115B5FB8D00730BA9 /* TwitterCollectionViewController.m in Sources */,
+				AB6AEC0615B738B5002B1172 /* TweetCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

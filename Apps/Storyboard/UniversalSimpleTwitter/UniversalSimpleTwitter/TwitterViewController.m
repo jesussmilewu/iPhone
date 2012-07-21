@@ -36,6 +36,7 @@
 }
 
 - (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
     self.tweets = nil;
 }
 
