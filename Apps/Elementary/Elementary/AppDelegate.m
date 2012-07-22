@@ -69,6 +69,35 @@
     NSDate *jetzt = [NSDate date];
     NSLog(@"jetzt: %@", [formatter stringFromDate:jetzt]);
     
+    NSString *eins = @"1";
+    NSNumber *zwei = [NSNumber numberWithInt:2];
+    NSDate *heute = [NSDate date];
+    NSArray *zeug = [NSArray arrayWithObjects:eins, zwei, heute, nil];
+    NSLog(@"Länge von zeug: %i", [zeug count]);
+    for (id obj in zeug) {
+        NSLog(@"zeug-Element: %@", [obj description]);
+    }
+    NSLog(@"zeug #1: %@", [[zeug objectAtIndex:1] description]);
+    
+    NSString *picasso = @"Pictures/guernica.tiff";
+    NSString *dali = @"Pictures/sommeil.tiff";
+    NSString *vanGogh = @"Pictures/whiteHouseAtNight.tiff";
+    NSDictionary *images = [NSDictionary dictionaryWithObjectsAndKeys:picasso, @"Lobby", 
+                             dali, @"Restaurant", vanGogh, @"Bar", nil];
+    
+    NSLog(@"Bild in der Bar: %@", [images valueForKey:@"Bar"]);
+    
+    for (id key in images) {
+        NSLog(@"key: %@ value: %@", key, [images objectForKey:key]);
+    }
+    
+    NSSet *menge = [NSSet setWithObjects:picasso, dali, vanGogh, picasso, picasso, picasso, nil];
+    NSLog(@"irgend ein Objekt aus Menge: %@", [menge anyObject]);
+    NSLog(@"Objekte in Menge: %i", [menge count]);
+    
+    for (id obj in menge)
+        NSLog(@"obj in menge: %@", [obj description]);
+    
     // hier geht der Apple-Code weiter …
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
