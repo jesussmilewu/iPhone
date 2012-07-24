@@ -21,6 +21,7 @@
     for(Droid *obj in objects){
         self.status = obj.droidID;
         self.status = [obj revMem:obj.droidID];
+        NSLog(@"obj description: %@", obj);
     }
     
     Wookie *chewie = [[Wookie alloc] initWithName:@"Chewbacca"];

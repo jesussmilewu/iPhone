@@ -38,4 +38,9 @@
 -(void)sayName{
     NSLog(@"[+] %@.%@: %@", self, NSStringFromSelector(_cmd), self.droidID);
 }
+
+-(NSString *)description{
+    return self.droidID;
+}
+
 @end
