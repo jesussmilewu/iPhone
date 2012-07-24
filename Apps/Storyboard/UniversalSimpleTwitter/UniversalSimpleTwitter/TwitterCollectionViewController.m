@@ -9,6 +9,7 @@
 #import "TwitterCollectionViewController.h"
 #import "NSString+URLTools.h"
 #import "TweetCell.h"
+#import "StackLayout.h"
 
 @interface TwitterCollectionViewController ()<UICollectionViewDelegateFlowLayout, UISearchBarDelegate>
 
@@ -25,9 +26,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UICollectionView *theView = self.collectionView;
+    
     self.query = @"iOS";
     self.colors = @{ @"de" : [UIColor greenColor], @"en" : [UIColor yellowColor], @"fr" : [UIColor orangeColor] };
-    [self.collectionView registerClass:[TweetCell class] forCellWithReuseIdentifier:@"Tweet"];
+    [theView registerClass:[TweetCell class] forCellWithReuseIdentifier:@"Tweet"];
+    if(![theView.collectionViewLayout isKindOfClass:[UICollectionViewFlowLayout class]]) {
+        UINib *theNib = [UINib nibWithNibName:@"Searchbar" bundle:nil];
+        
+        [theView registerNib:theNib forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"Searchbar"];
+        theNib = [UINib nibWithNibName:@"Toolbar" bundle:nil];
+        [theView registerNib:theNib forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"Toolbar"];
+        theNib = [UINib nibWithNibName:@"Logo" bundle:nil];
+        [theView.collectionViewLayout registerNib:theNib forDecorationViewOfKind:@"Logo"];
+    }
     [self updateTweets];
 }
 
@@ -56,7 +68,7 @@
 
 - (NSURL *)createURL {
     NSString *theQuery = [self.query encodedStringForURLWithEncoding:kCFStringEncodingUTF8];
-    NSString *theURL = [NSString stringWithFormat:@"http://search.twitter.com/search.json?q=%@&rpp=50", theQuery];
+    NSString *theURL = [NSString stringWithFormat:@"http://search.twitter.com/search.json?q=%@&rpp=20", theQuery];
     
     NSLog(@"URL = %@", theURL);
     return [NSURL URLWithString:theURL];
@@ -81,7 +93,7 @@
     
     theCell.title = [theItem objectForKey:@"from_user"];
     theCell.text = [theItem objectForKey:@"text"];
-    theCell.tintColor = theColor ? theColor : [UIColor redColor];
+    theCell.titleColor = theColor ? theColor : [UIColor redColor];
     return theCell;
 }
 
@@ -91,7 +103,7 @@
     
     if([UICollectionElementKindSectionHeader isEqualToString:inKind]) {
         theView = [inCollectionView dequeueReusableSupplementaryViewOfKind:inKind
-                                                       withReuseIdentifier:@"Header"
+                                                       withReuseIdentifier:@"Searchbar"
                                                               forIndexPath:inIndexPath];
         UISearchBar *theSearchBar = (UISearchBar *)[theView viewWithTag:10];
         
@@ -100,10 +112,32 @@
     }
     else if([UICollectionElementKindSectionFooter isEqualToString:inKind]) {
         theView = [inCollectionView dequeueReusableSupplementaryViewOfKind:inKind
-                                                       withReuseIdentifier:@"Footer"
+                                                       withReuseIdentifier:@"Toolbar"
                                                               forIndexPath:inIndexPath];
     }
     return theView;
+}
+
+#pragma mark UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)inCollectionView didSelectItemAtIndexPath:(NSIndexPath *)inIndexPath {
+    id theLayout = inCollectionView.collectionViewLayout;
+    
+    if([theLayout respondsToSelector:@selector(setSelectedIndexPath:)]) {
+        NSIndexPath *theIndexPath = [theLayout selectedIndexPath];
+        
+        [theLayout setSelectedIndexPath:inIndexPath];
+        [inCollectionView reloadItemsAtIndexPaths:[NSArray arrayWithObjects:inIndexPath, theIndexPath, nil]];
+    }
+}
+
+- (void)collectionView:(UICollectionView *)inCollectionView didDeselectItemAtIndexPath:(NSIndexPath *)inIndexPath {
+    id theLayout = inCollectionView.collectionViewLayout;
+    
+    if([theLayout respondsToSelector:@selector(setSelectedIndexPath:)]) {
+        [theLayout setSelectedIndexPath:nil];
+        [inCollectionView reloadItemsAtIndexPaths:@[inIndexPath]];
+    }
 }
 
 #pragma mark UICollectionViewDelegateFlowLayout

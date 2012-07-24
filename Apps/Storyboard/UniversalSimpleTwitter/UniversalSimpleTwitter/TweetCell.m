@@ -82,11 +82,11 @@ static const CGFloat kCellTitleHeight = 24.0;
     self.textView.text = inText;
 }
 
-- (UIColor *)tintColor {
+- (UIColor *)titleColor {
     return self.titleLabel.backgroundColor;
 }
 
-- (void)setTintColor:(UIColor *)inTintColor {
+- (void)setTitleColor:(UIColor *)inTintColor {
     CGFloat theColors[4];
     float theBrightness = 0.0;
     

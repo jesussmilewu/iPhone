@@ -12,6 +12,6 @@
 
 @property(nonatomic, copy) NSString *title;
 @property(nonatomic, copy) NSString *text;
-@property(nonatomic, strong) UIColor *tintColor;
+@property(nonatomic, strong) UIColor *titleColor;
 
 @end
