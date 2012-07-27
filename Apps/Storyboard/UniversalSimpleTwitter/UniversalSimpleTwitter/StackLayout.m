@@ -8,18 +8,17 @@
 
 #import "StackLayout.h"
 
-@implementation NSMutableArray(StackLayout)
+@interface StackLayout()
 
-- (void)addLayoutAttributes:(UICollectionViewLayoutAttributes *)inAttributes intersectingRect:(CGRect)inRect {
-    if(CGRectIntersectsRect(inRect, inAttributes.frame)) {
-        [self addObject:inAttributes];
-    }
-}
+@property(nonatomic, copy) NSArray *attributes;
+@property(nonatomic) CGSize contentSize;
 
 @end
+
 @implementation StackLayout
 
-@synthesize selectedIndexPath;
+@synthesize attributes;
+@synthesize contentSize;
 
 - (CGSize)collectionViewContentSize {
     return self.collectionView.bounds.size;
@@ -29,25 +28,84 @@
     return YES;
 }
 
+- (void)prepareLayout {    
+    NSInteger theSectionCount = [self.collectionView numberOfSections];
+    NSMutableArray *theArray = [NSMutableArray array];
+    UICollectionViewLayoutAttributes *theAttributes;
+    CGRect theFrame = CGRectZero;
+    
+    for(NSInteger i = 0; i < theSectionCount; ++i) {
+        NSInteger theCount = [self.collectionView numberOfItemsInSection:i];
+        
+        theAttributes = [self layoutAttributesForDecorationViewOfKind:@"Logo" atIndexPath:[NSIndexPath indexPathForRow:0 inSection:i]];
+        [theArray addObject:theAttributes];
+        theFrame = CGRectUnion(theAttributes.frame, theFrame);
+        theAttributes = [self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader atIndexPath:[NSIndexPath indexPathForRow:0 inSection:i]];
+        [theArray addObject:theAttributes];
+        theFrame = CGRectUnion(theAttributes.frame, theFrame);
+        for(NSInteger j = 0; j < theCount; ++j) {
+            NSIndexPath *theIndexPath = [NSIndexPath indexPathForRow:j inSection:i];
+            
+            theAttributes = [self layoutAttributesForItemAtIndexPath:theIndexPath];
+            [theArray addObject:theAttributes];
+            theFrame = CGRectUnion(theAttributes.frame, theFrame);
+        }
+        theAttributes = [self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter atIndexPath:[NSIndexPath indexPathForRow:1 inSection:i]];
+        [theArray addObject:theAttributes];
+        theFrame = CGRectUnion(theAttributes.frame, theFrame);
+    }
+    self.attributes = theArray;
+    self.contentSize = theFrame.size;
+}
+
+- (CGSize)sizeForItemAtIndexPath:(NSIndexPath *)inIndexPath {
+    UICollectionView *theView = self.collectionView;
+    id theDelegate = theView.delegate;
+
+    if([theDelegate respondsToSelector:@selector(collectionView:layout:sizeForItemAtIndexPath:)]) {
+        return [theDelegate collectionView:theView layout:self sizeForItemAtIndexPath:inIndexPath];
+    }
+    else {
+        return CGSizeZero;
+    }
+}
+
+- (CGRect)cellFrameForSection:(NSInteger)inSection {
+    UICollectionView *theView = self.collectionView;
+    NSInteger theCount = [theView numberOfItemsInSection:inSection];
+    CGSize theSize = self.collectionView.bounds.size;
+    CGSize theFirstSize = [self sizeForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:inSection]];
+    CGSize theLastSize = [self sizeForItemAtIndexPath:[NSIndexPath indexPathForRow:theCount - 1 inSection:inSection]];
+    CGRect theFrame = CGRectZero;
+    
+    theFrame.origin = CGPointMake(theLastSize.width / 2.0, 44.0 + theLastSize.height / 2.0);
+    theFrame.size = CGSizeMake(theSize.width - theFirstSize.width / 2.0 - theLastSize.width / 2.0,
+                               theSize.height - theFirstSize.height / 2.0 - theLastSize.height / 2.0 - 88.0);
+    return theFrame;
+}
+
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)inIndexPath {
     UICollectionViewLayoutAttributes *theAttributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:inIndexPath];
     UICollectionView *theView = self.collectionView;
-    CGSize theSize = self.collectionViewContentSize;
-    CGFloat theRadius = fminf(theSize.width, theSize.height);
-    id theDelegate = theView.delegate;
-    float theCount = (float) [theView numberOfItemsInSection:inIndexPath.section];
-    float theScale = (float) inIndexPath.row / theCount;
-    float theAngle = 4 * M_PI * theScale;
-    CGPoint theCenter = CGPointMake(theSize.width / 2.0, theSize.height / 2.0);
+    NSInteger theCount = [theView numberOfItemsInSection:inIndexPath.section];
+    CGRect theFrame = [self cellFrameForSection:inIndexPath.section];
+    CGSize theSize = theFrame.size;
+    CGPoint thePoint;
     
-    if([theDelegate respondsToSelector:@selector(collectionView:layout:sizeForItemAtIndexPath:)]) {
-        theAttributes.size = [theDelegate collectionView:theView layout:self sizeForItemAtIndexPath:inIndexPath];
+    if(theCount > 1) {
+        NSInteger theLastIndex = theCount - 1;
+        NSInteger theIndex = theLastIndex - inIndexPath.row;
+
+        thePoint.x = CGRectGetMinX(theFrame) + theIndex * theSize.width / theLastIndex;
+        thePoint.y = CGRectGetMinY(theFrame) + theIndex * theSize.height / theLastIndex;
     }
-    theScale = sqrt(theScale) * 3.0 / 13.0;
-    theAttributes.center = CGPointMake(theCenter.x + cos(theAngle) * theRadius * theScale,
-                                       theCenter.y + sin(theAngle) * theRadius * theScale);
-    theAttributes.zIndex = [self.selectedIndexPath isEqual:inIndexPath] ? 1 : -inIndexPath.row;
-    theAttributes.transform3D = CATransform3DMakeRotation(-theAngle / (theCount + 1), 0.0, 0.0, 1.0);
+    else {
+        thePoint.x = CGRectGetMidX(theFrame);
+        thePoint.y = CGRectGetMidY(theFrame);
+    }
+    theAttributes.center = thePoint;
+    theAttributes.size = [self sizeForItemAtIndexPath:inIndexPath];
+    theAttributes.zIndex = [theView.indexPathsForSelectedItems containsObject:inIndexPath] ? theCount : -inIndexPath.row;
     return theAttributes;
 }
 
@@ -66,35 +124,20 @@
 }
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForDecorationViewOfKind:(NSString *)inKind atIndexPath:(NSIndexPath *)inIndexPath {
+    CGFloat theWidth = CGRectGetWidth(self.collectionView.bounds);
     UICollectionViewLayoutAttributes *theAttributes = [UICollectionViewLayoutAttributes layoutAttributesForDecorationViewOfKind:inKind withIndexPath:inIndexPath];
     
     theAttributes.size = CGSizeMake(70.0, 70.0);
-    theAttributes.center = CGPointMake(70.0, 114.0);
+    theAttributes.center = CGPointMake(theWidth - 70.0, 114.0);
     return theAttributes;
 }
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)inRect {
-    NSInteger theSectionCount = [self.collectionView numberOfSections];
-    NSMutableArray *theArray = [NSMutableArray array];
-    UICollectionViewLayoutAttributes *theAttributes;
+    NSPredicate *thePredicate = [NSPredicate predicateWithBlock:^BOOL(id inObject, NSDictionary *inBindings) {
+        return CGRectIntersectsRect(inRect, [inObject frame]);
+    }];
     
-    for(NSInteger i = 0; i < theSectionCount; ++i) {
-        NSInteger theCount = [self.collectionView numberOfItemsInSection:i];
-        
-        theAttributes = [self layoutAttributesForDecorationViewOfKind:@"Logo" atIndexPath:[NSIndexPath indexPathForRow:0 inSection:i]];
-        [theArray addLayoutAttributes:theAttributes intersectingRect:inRect];
-        theAttributes = [self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader atIndexPath:[NSIndexPath indexPathForRow:0 inSection:i]];
-        [theArray addLayoutAttributes:theAttributes intersectingRect:inRect];
-        for(NSInteger j = 0; j < theCount; ++j) {
-            NSIndexPath *theIndexPath = [NSIndexPath indexPathForRow:j inSection:i];
-            
-            theAttributes = [self layoutAttributesForItemAtIndexPath:theIndexPath];
-            [theArray addLayoutAttributes:theAttributes intersectingRect:inRect];
-        }
-        theAttributes = [self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter atIndexPath:[NSIndexPath indexPathForRow:1 inSection:i]];
-        [theArray addLayoutAttributes:theAttributes intersectingRect:inRect];
-    }
-    return theArray;
+    return [self.attributes filteredArrayUsingPredicate:thePredicate];
 }
 
 @end

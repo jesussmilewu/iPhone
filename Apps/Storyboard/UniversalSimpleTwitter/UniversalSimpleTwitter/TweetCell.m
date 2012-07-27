@@ -52,6 +52,7 @@ static const CGFloat kCellTitleHeight = 24.0;
         theTextView.font = [UIFont fontWithName:@"Helvetica" size:14.0];
         theTextView.editable = NO;
         theTextView.backgroundColor = [UIColor clearColor];
+        theTextView.userInteractionEnabled = NO;
         [self addSubview:theLabel];
         [self addSubview:theTextView];
         self.titleLabel = theLabel;

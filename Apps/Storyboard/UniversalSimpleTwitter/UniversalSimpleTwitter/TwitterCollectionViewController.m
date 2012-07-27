@@ -43,23 +43,30 @@
     [self updateTweets];
 }
 
-- (void)viewWillAppear:(BOOL)inAnimated {
-    [super viewWillAppear:inAnimated];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     self.tweets = nil;
 }
 
 - (void)updateTweets {
-    NSData *theData = [NSData dataWithContentsOfURL:self.createURL];
-    NSError *theError = nil;
-    NSDictionary *theResult =
-    [NSJSONSerialization JSONObjectWithData:theData options:0 error:&theError];
+    UIApplication *theApplication = [UIApplication sharedApplication];
+    NSURLRequest *theRequest = [NSURLRequest requestWithURL:self.createURL];
+    NSOperationQueue *theQueue = [NSOperationQueue mainQueue];
     
-    self.tweets = [theResult valueForKey:@"results"];
-    [self.collectionView reloadData];
+    theApplication.networkActivityIndicatorVisible = YES;
+    [NSURLConnection sendAsynchronousRequest:theRequest queue:theQueue completionHandler:^(NSURLResponse *inResponse, NSData *inData, NSError *inError) {
+        if(inData == nil) {
+            NSLog(@"error = %@", inError);
+        }
+        else {
+            NSError *theError = nil;
+            NSDictionary *theResult = [NSJSONSerialization JSONObjectWithData:inData options:0 error:&theError];
+        
+            self.tweets = [theResult valueForKey:@"results"];
+            [self.collectionView reloadData];
+            theApplication.networkActivityIndicatorVisible = NO;
+        }
+    }];
 }
 
 - (IBAction)refresh:(id)inSender {
@@ -121,23 +128,11 @@
 #pragma mark UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)inCollectionView didSelectItemAtIndexPath:(NSIndexPath *)inIndexPath {
-    id theLayout = inCollectionView.collectionViewLayout;
-    
-    if([theLayout respondsToSelector:@selector(setSelectedIndexPath:)]) {
-        NSIndexPath *theIndexPath = [theLayout selectedIndexPath];
-        
-        [theLayout setSelectedIndexPath:inIndexPath];
-        [inCollectionView reloadItemsAtIndexPaths:[NSArray arrayWithObjects:inIndexPath, theIndexPath, nil]];
-    }
+    [inCollectionView reloadItemsAtIndexPaths:[NSArray arrayWithObjects:inIndexPath, nil]];
 }
 
 - (void)collectionView:(UICollectionView *)inCollectionView didDeselectItemAtIndexPath:(NSIndexPath *)inIndexPath {
-    id theLayout = inCollectionView.collectionViewLayout;
-    
-    if([theLayout respondsToSelector:@selector(setSelectedIndexPath:)]) {
-        [theLayout setSelectedIndexPath:nil];
-        [inCollectionView reloadItemsAtIndexPaths:@[inIndexPath]];
-    }
+    [inCollectionView reloadItemsAtIndexPaths:[NSArray arrayWithObjects:inIndexPath, nil]];
 }
 
 #pragma mark UICollectionViewDelegateFlowLayout

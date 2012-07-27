@@ -10,6 +10,4 @@
 
 @interface StackLayout : UICollectionViewLayout
 
-@property (nonatomic, strong) NSIndexPath *selectedIndexPath;
-
 @end
