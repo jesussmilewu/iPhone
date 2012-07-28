@@ -128,11 +128,11 @@
 #pragma mark UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)inCollectionView didSelectItemAtIndexPath:(NSIndexPath *)inIndexPath {
-    [inCollectionView reloadItemsAtIndexPaths:[NSArray arrayWithObjects:inIndexPath, nil]];
+    [inCollectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:inIndexPath]];
 }
 
 - (void)collectionView:(UICollectionView *)inCollectionView didDeselectItemAtIndexPath:(NSIndexPath *)inIndexPath {
-    [inCollectionView reloadItemsAtIndexPaths:[NSArray arrayWithObjects:inIndexPath, nil]];
+    [inCollectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:inIndexPath]];
 }
 
 #pragma mark UICollectionViewDelegateFlowLayout

@@ -15,6 +15,9 @@
 
 @end
 
+static const CGFloat kHeaderHeight = 44.0;
+static const CGFloat kFooterHeight = 44.0;
+
 @implementation StackLayout
 
 @synthesize attributes;
@@ -62,12 +65,7 @@
     UICollectionView *theView = self.collectionView;
     id theDelegate = theView.delegate;
 
-    if([theDelegate respondsToSelector:@selector(collectionView:layout:sizeForItemAtIndexPath:)]) {
-        return [theDelegate collectionView:theView layout:self sizeForItemAtIndexPath:inIndexPath];
-    }
-    else {
-        return CGSizeZero;
-    }
+    return [theDelegate collectionView:theView layout:self sizeForItemAtIndexPath:inIndexPath];
 }
 
 - (CGRect)cellFrameForSection:(NSInteger)inSection {
@@ -78,9 +76,9 @@
     CGSize theLastSize = [self sizeForItemAtIndexPath:[NSIndexPath indexPathForRow:theCount - 1 inSection:inSection]];
     CGRect theFrame = CGRectZero;
     
-    theFrame.origin = CGPointMake(theLastSize.width / 2.0, 44.0 + theLastSize.height / 2.0);
+    theFrame.origin = CGPointMake(theLastSize.width / 2.0, kHeaderHeight + theLastSize.height / 2.0);
     theFrame.size = CGSizeMake(theSize.width - theFirstSize.width / 2.0 - theLastSize.width / 2.0,
-                               theSize.height - theFirstSize.height / 2.0 - theLastSize.height / 2.0 - 88.0);
+                               theSize.height - theFirstSize.height / 2.0 - theLastSize.height / 2.0 - kHeaderHeight - kFooterHeight);
     return theFrame;
 }
 
@@ -92,20 +90,20 @@
     CGSize theSize = theFrame.size;
     CGPoint thePoint;
     
-    if(theCount > 1) {
-        NSInteger theLastIndex = theCount - 1;
-        NSInteger theIndex = theLastIndex - inIndexPath.row;
-
-        thePoint.x = CGRectGetMinX(theFrame) + theIndex * theSize.width / theLastIndex;
-        thePoint.y = CGRectGetMinY(theFrame) + theIndex * theSize.height / theLastIndex;
-    }
-    else {
+    if(theCount <= 1) {
         thePoint.x = CGRectGetMidX(theFrame);
         thePoint.y = CGRectGetMidY(theFrame);
     }
+    else {
+        NSInteger theLastIndex = theCount - 1;
+        NSInteger theIndex = inIndexPath.row;
+
+        thePoint.x = CGRectGetMaxX(theFrame) - theIndex * theSize.width / theLastIndex;
+        thePoint.y = CGRectGetMaxY(theFrame) - theIndex * theSize.height / theLastIndex;
+    }
     theAttributes.center = thePoint;
     theAttributes.size = [self sizeForItemAtIndexPath:inIndexPath];
-    theAttributes.zIndex = [theView.indexPathsForSelectedItems containsObject:inIndexPath] ? theCount : -inIndexPath.row;
+    theAttributes.zIndex = [theView.indexPathsForSelectedItems containsObject:inIndexPath] ? 0 : -inIndexPath.row;
     return theAttributes;
 }
 
@@ -115,10 +113,10 @@
     CGSize theSize = [self collectionViewContentSize];
     
     if([UICollectionElementKindSectionHeader isEqualToString:inKind]) {
-        theAttributes.frame = CGRectMake(0.0, 0.0, theSize.width, 44.0);
+        theAttributes.frame = CGRectMake(0.0, 0.0, theSize.width, kHeaderHeight);
     }
     else if([UICollectionElementKindSectionFooter isEqualToString:inKind]) {
-        theAttributes.frame = CGRectMake(0.0, theSize.height - 44.0, theSize.width, 44.0);
+        theAttributes.frame = CGRectMake(0.0, theSize.height - kFooterHeight, theSize.width, kFooterHeight);
     }
     return theAttributes;
 }
