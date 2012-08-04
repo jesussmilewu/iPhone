@@ -1,0 +1,9 @@
+
+/* Class = "IBUIButton"; normalTitle = "Back"; ObjectID = "QQl-ha-OEf"; */
+"QQl-ha-OEf.normalTitle" = "Zurück";
+
+/* Class = "IBUIButton"; normalTitle = "Localization Example"; ObjectID = "ucU-fq-nYZ"; */
+"ucU-fq-nYZ.normalTitle" = "Lokalisierungsbeispiel";
+
+/* Class = "IBUIButton"; normalTitle = "Accept"; ObjectID = "zEx-L5-tjS"; */
+"zEx-L5-tjS.normalTitle" = "Akzeptieren";

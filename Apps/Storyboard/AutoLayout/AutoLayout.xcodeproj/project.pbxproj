@@ -10,12 +10,11 @@
 		AB8AD6A315C58FFB00A57305 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8AD6A215C58FFB00A57305 /* UIKit.framework */; };
 		AB8AD6A515C58FFB00A57305 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8AD6A415C58FFB00A57305 /* Foundation.framework */; };
 		AB8AD6A715C58FFB00A57305 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8AD6A615C58FFB00A57305 /* CoreGraphics.framework */; };
-		AB8AD6AD15C58FFB00A57305 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB8AD6AB15C58FFB00A57305 /* InfoPlist.strings */; };
 		AB8AD6AF15C58FFB00A57305 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8AD6AE15C58FFB00A57305 /* main.m */; };
 		AB8AD6B315C58FFB00A57305 /* AutoLayoutAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8AD6B215C58FFB00A57305 /* AutoLayoutAppDelegate.m */; };
-		AB8AD6B615C58FFB00A57305 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB8AD6B415C58FFB00A57305 /* MainStoryboard.storyboard */; };
 		AB8AD6B915C58FFB00A57305 /* AutoLayoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8AD6B815C58FFB00A57305 /* AutoLayoutViewController.m */; };
-		ABC0273F15C8555F0066078F /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABC0273E15C8555F0066078F /* View.xib */; };
+		AB91432115CD7C85009CF1CE /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB91432315CD7C85009CF1CE /* MainStoryboard.storyboard */; };
+		ABB1997215CD6B6800F13184 /* ButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB1997115CD6B6800F13184 /* ButtonViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,15 +23,16 @@
 		AB8AD6A415C58FFB00A57305 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AB8AD6A615C58FFB00A57305 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		AB8AD6AA15C58FFB00A57305 /* AutoLayout-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AutoLayout-Info.plist"; sourceTree = "<group>"; };
-		AB8AD6AC15C58FFB00A57305 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AB8AD6AE15C58FFB00A57305 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AB8AD6B015C58FFB00A57305 /* AutoLayout-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AutoLayout-Prefix.pch"; sourceTree = "<group>"; };
 		AB8AD6B115C58FFB00A57305 /* AutoLayoutAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoLayoutAppDelegate.h; sourceTree = "<group>"; };
 		AB8AD6B215C58FFB00A57305 /* AutoLayoutAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoLayoutAppDelegate.m; sourceTree = "<group>"; };
 		AB8AD6B715C58FFB00A57305 /* AutoLayoutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoLayoutViewController.h; sourceTree = "<group>"; };
 		AB8AD6B815C58FFB00A57305 /* AutoLayoutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoLayoutViewController.m; sourceTree = "<group>"; };
-		ABB1994315CD62B100F13184 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		ABC0273E15C8555F0066078F /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
+		AB91432515CD7CA2009CF1CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		AB91432915CD7CB2009CF1CE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainStoryboard.strings; sourceTree = "<group>"; };
+		ABB1997015CD6B6800F13184 /* ButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonViewController.h; sourceTree = "<group>"; };
+		ABB1997115CD6B6800F13184 /* ButtonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,9 +81,11 @@
 			children = (
 				AB8AD6B115C58FFB00A57305 /* AutoLayoutAppDelegate.h */,
 				AB8AD6B215C58FFB00A57305 /* AutoLayoutAppDelegate.m */,
-				AB8AD6B415C58FFB00A57305 /* MainStoryboard.storyboard */,
 				AB8AD6B715C58FFB00A57305 /* AutoLayoutViewController.h */,
 				AB8AD6B815C58FFB00A57305 /* AutoLayoutViewController.m */,
+				ABB1997015CD6B6800F13184 /* ButtonViewController.h */,
+				ABB1997115CD6B6800F13184 /* ButtonViewController.m */,
+				AB91432315CD7C85009CF1CE /* MainStoryboard.storyboard */,
 				AB8AD6A915C58FFB00A57305 /* Supporting Files */,
 			);
 			path = AutoLayout;
@@ -93,10 +95,8 @@
 			isa = PBXGroup;
 			children = (
 				AB8AD6AA15C58FFB00A57305 /* AutoLayout-Info.plist */,
-				AB8AD6AB15C58FFB00A57305 /* InfoPlist.strings */,
 				AB8AD6AE15C58FFB00A57305 /* main.m */,
 				AB8AD6B015C58FFB00A57305 /* AutoLayout-Prefix.pch */,
-				ABC0273E15C8555F0066078F /* View.xib */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -139,6 +139,7 @@
 				en,
 				Base,
 				"ar-DZ",
+				de,
 			);
 			mainGroup = AB8AD69315C58FFB00A57305;
 			productRefGroup = AB8AD69F15C58FFB00A57305 /* Products */;
@@ -155,9 +156,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB8AD6AD15C58FFB00A57305 /* InfoPlist.strings in Resources */,
-				AB8AD6B615C58FFB00A57305 /* MainStoryboard.storyboard in Resources */,
-				ABC0273F15C8555F0066078F /* View.xib in Resources */,
+				AB91432115CD7C85009CF1CE /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,24 +170,18 @@
 				AB8AD6AF15C58FFB00A57305 /* main.m in Sources */,
 				AB8AD6B315C58FFB00A57305 /* AutoLayoutAppDelegate.m in Sources */,
 				AB8AD6B915C58FFB00A57305 /* AutoLayoutViewController.m in Sources */,
+				ABB1997215CD6B6800F13184 /* ButtonViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		AB8AD6AB15C58FFB00A57305 /* InfoPlist.strings */ = {
+		AB91432315CD7C85009CF1CE /* MainStoryboard.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				AB8AD6AC15C58FFB00A57305 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		AB8AD6B415C58FFB00A57305 /* MainStoryboard.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ABB1994315CD62B100F13184 /* en */,
+				AB91432515CD7CA2009CF1CE /* Base */,
+				AB91432915CD7CB2009CF1CE /* de */,
 			);
 			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";

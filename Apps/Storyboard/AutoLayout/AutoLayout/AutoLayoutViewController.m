@@ -47,10 +47,4 @@
     [theView addConstraint:[NSLayoutConstraint constraintWithItem:theLeft attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:theLeft attribute:NSLayoutAttributeWidth multiplier:0.75 constant:0.0]];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 @end
