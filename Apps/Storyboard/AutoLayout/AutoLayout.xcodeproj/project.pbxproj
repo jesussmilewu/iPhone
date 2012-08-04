@@ -30,7 +30,7 @@
 		AB8AD6B715C58FFB00A57305 /* AutoLayoutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoLayoutViewController.h; sourceTree = "<group>"; };
 		AB8AD6B815C58FFB00A57305 /* AutoLayoutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoLayoutViewController.m; sourceTree = "<group>"; };
 		AB91432515CD7CA2009CF1CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		AB91432915CD7CB2009CF1CE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainStoryboard.strings; sourceTree = "<group>"; };
+		AB91435F15CD8E2B009CF1CE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainStoryboard.strings; sourceTree = "<group>"; };
 		ABB1997015CD6B6800F13184 /* ButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonViewController.h; sourceTree = "<group>"; };
 		ABB1997115CD6B6800F13184 /* ButtonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -181,7 +181,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				AB91432515CD7CA2009CF1CE /* Base */,
-				AB91432915CD7CB2009CF1CE /* de */,
+				AB91435F15CD8E2B009CF1CE /* de */,
 			);
 			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
