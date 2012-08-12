@@ -7,6 +7,7 @@
 //
 
 #import "LogoView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation LogoView
 
