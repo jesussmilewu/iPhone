@@ -17,5 +17,4 @@
 - (IBAction)playSound:(id)inSender;
 - (UITableView *)currentTableView;
 - (DiaryEntry *)entryForTableView:(UITableView *)inTableView atIndexPath:(NSIndexPath *)inIndexPath;
-
 @end
