@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SecUtils.h"
 
 @interface LoginViewController : UIViewController
 - (IBAction)loginUser:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *password;
 @property BOOL passwordSet;
-@property BOOL internalCall;
 @end

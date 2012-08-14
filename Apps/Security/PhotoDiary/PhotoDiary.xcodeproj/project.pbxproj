@@ -10,6 +10,7 @@
 		40723B2015DA7C27007C51B9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40723B1F15DA7C27007C51B9 /* Security.framework */; };
 		40CFB15B15D98F92008B95AD /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CFB15A15D98F92008B95AD /* LoginViewController.m */; };
 		40CFB15F15DA76E8008B95AD /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CFB15E15DA76E8008B95AD /* RegistrationViewController.m */; };
+		40F621E515DAF8A40016218F /* SecUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F621E415DAF8A40016218F /* SecUtils.m */; };
 		40F91108152B840A00C3921B /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FB75C51521073D00E795AC /* Twitter.framework */; };
 		AB101BC412E31C32006B69FE /* meter.png in Resources */ = {isa = PBXBuildFile; fileRef = AB101BC312E31C32006B69FE /* meter.png */; };
 		AB101BC712E31D52006B69FE /* MeterView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB101BC612E31D52006B69FE /* MeterView.m */; };
@@ -59,6 +60,8 @@
 		40CFB15A15D98F92008B95AD /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		40CFB15D15DA76E8008B95AD /* RegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistrationViewController.h; sourceTree = "<group>"; };
 		40CFB15E15DA76E8008B95AD /* RegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistrationViewController.m; sourceTree = "<group>"; };
+		40F621E315DAF8A40016218F /* SecUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecUtils.h; sourceTree = "<group>"; };
+		40F621E415DAF8A40016218F /* SecUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecUtils.m; sourceTree = "<group>"; };
 		40FB75C51521073D00E795AC /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		AB078599132271810020D702 /* UITextView+Outlets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Outlets.h"; sourceTree = "<group>"; };
 		AB101BC312E31C32006B69FE /* meter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meter.png; sourceTree = "<group>"; };
@@ -222,6 +225,8 @@
 				40CFB15A15D98F92008B95AD /* LoginViewController.m */,
 				40CFB15D15DA76E8008B95AD /* RegistrationViewController.h */,
 				40CFB15E15DA76E8008B95AD /* RegistrationViewController.m */,
+				40F621E315DAF8A40016218F /* SecUtils.h */,
+				40F621E415DAF8A40016218F /* SecUtils.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -373,6 +378,7 @@
 				AB6FEE301528527E00F7B45E /* SubviewController.m in Sources */,
 				40CFB15B15D98F92008B95AD /* LoginViewController.m in Sources */,
 				40CFB15F15DA76E8008B95AD /* RegistrationViewController.m in Sources */,
+				40F621E515DAF8A40016218F /* SecUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

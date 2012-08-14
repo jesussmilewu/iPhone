@@ -50,41 +50,16 @@
     NSString *password = [firstPassword text];
     if([password isEqualToString:[secondPassword text]]){
         NSLog(@"[+] Password accepted. Creating hash for secure storage");
+      
+        NSString *passwordHash = [SecUtils generateSHA256:password];
         
-        // SALZ
-        
-        NSMutableString *passwordHash = [NSMutableString stringWithCapacity:CC_SHA256_DIGEST_LENGTH];
-        unsigned char passwordChars[CC_SHA256_DIGEST_LENGTH];
-        CC_SHA256([password UTF8String], [password lengthOfBytesUsingEncoding:NSUTF8StringEncoding], passwordChars);
-        for(int i=0; i< CC_SHA256_DIGEST_LENGTH; i++){
-            [passwordHash appendString:[NSString stringWithFormat:@"%02x", passwordChars[i]]];
-        }
         NSLog(@"[+] Password hash: %@", passwordHash);
         
         NSLog(@"[+] Password accepted. Writing to Keychain");
         
-        NSMutableDictionary *updateDict = [NSMutableDictionary dictionary];
-        [updateDict setObject:(__bridge id)kSecClassGenericPassword forKey:(__bridge id)kSecClass];
-        [updateDict setObject:@"Foobar Service" forKey:(__bridge id)kSecAttrService];
-        [updateDict setObject:@"PhotoDiary" forKey:(__bridge id)kSecAttrLabel];
-        [updateDict setObject:@"FooUser" forKey:(__bridge id)kSecAttrAccount];
-        OSStatus status = SecItemDelete((__bridge CFDictionaryRef)updateDict);
-        if(status != noErr)
-            NSLog(@"[+] Error deleting PW from Keychain");
-    
+        [SecUtils deletePreviousKeychainEntry];
         
-        NSMutableDictionary *writeDict = [NSMutableDictionary dictionary];
-        [writeDict setObject:(__bridge id)kSecClassGenericPassword forKey:(__bridge id)kSecClass];
-        [writeDict setObject:@"Foobar Service" forKey:(__bridge id)kSecAttrService];
-        [writeDict setObject:@"PhotoDiary" forKey:(__bridge id)kSecAttrLabel];
-        [writeDict setObject:@"FooUser" forKey:(__bridge id)kSecAttrAccount];
-        [writeDict setObject:(__bridge id)kSecAttrAccessibleWhenUnlockedThisDeviceOnly forKey:(__bridge id)kSecAttrAccessible];
-        [writeDict setObject:[passwordHash dataUsingEncoding:NSUTF8StringEncoding] forKey:(__bridge id)kSecValueData];
-        
-        status = SecItemAdd((__bridge CFDictionaryRef)writeDict, NULL);
-        if(status != noErr){
-            NSLog(@"[+] Error writing PW to Keychain");
-        } else {
+        if([SecUtils addKeychainEntry:passwordHash]){
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"passwordSet"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             

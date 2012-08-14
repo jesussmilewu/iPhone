@@ -17,7 +17,6 @@
 @implementation LoginViewController
 @synthesize password = _password;
 @synthesize passwordSet;
-@synthesize internalCall;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,7 +38,6 @@
     if(passwordSet){
         NSLog(@"Passwort gesetzt");
         NSLog(@"Starte Login");
-        internalCall = YES;
     } else {
         NSLog(@"Passwort nicht gesetzt");
         NSLog(@"Starte Registrierung");
@@ -73,7 +71,7 @@
     NSLog(@"[+] %@", NSStringFromSelector(_cmd));
     
     NSArray *keys = [NSArray arrayWithObjects:(__bridge NSString *)kSecClass, kSecAttrAccount, kSecAttrService, kSecReturnData, nil];
-    NSArray *objects = [NSArray arrayWithObjects:(__bridge NSString *)kSecClassGenericPassword, @"FooUser", @"Foobar Service", kCFBooleanTrue, nil];
+    NSArray *objects = [NSArray arrayWithObjects:(__bridge NSString *)kSecClassGenericPassword, KEYCHAIN_ACCOUNT, KEYCHAIN_SERVICE, kCFBooleanTrue, nil];
     NSMutableDictionary *query = [NSMutableDictionary dictionaryWithObjects:objects forKeys:keys];
     
     CFDataRef pw = nil;
@@ -89,14 +87,9 @@
     
     NSString *userPassword = [_password text];
     
-    NSMutableString *passwordHash = [NSMutableString stringWithCapacity:CC_SHA256_DIGEST_LENGTH];
-    unsigned char passwordChars[CC_SHA256_DIGEST_LENGTH];
-    CC_SHA256([userPassword UTF8String], [userPassword lengthOfBytesUsingEncoding:NSUTF8StringEncoding], passwordChars);
-    for(int i=0; i< CC_SHA256_DIGEST_LENGTH; i++){
-        [passwordHash appendString:[NSString stringWithFormat:@"%02x", passwordChars[i]]];
-    }
+    NSString *passwordHash = [SecUtils generateSHA256:userPassword];
     NSLog(@"[+] Password hash: %@", passwordHash);
-//    NSLog(@"[+] Password: %@", userPassword);
+    NSLog(@"[+] Password: %@", userPassword);
 
     if([passwordHash isEqualToString:storedPassword]){
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SecUtils.h"
 
 @interface RegistrationViewController : UIViewController
 - (IBAction)registerUser:(id)sender;
