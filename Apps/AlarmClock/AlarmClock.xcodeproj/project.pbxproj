@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		AB1BF98B12F2C878002BB9AC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB1BF98A12F2C878002BB9AC /* AudioToolbox.framework */; };
+		AB35C18315D7B1F1006B7D71 /* ringtone.caf in Resources */ = {isa = PBXBuildFile; fileRef = AB35C18215D7B1F1006B7D71 /* ringtone.caf */; };
+		AB35C18515D7BB1B006B7D71 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB9F82A812F09CCB002492BC /* Localizable.strings */; };
 		AB74D36A12F183E80004B790 /* AlarmClockViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB74D36C12F183E80004B790 /* AlarmClockViewController-iPad.xib */; };
 		AB74D36F12F192670004B790 /* icon-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AB74D36E12F192670004B790 /* icon-ipad.png */; };
 		AB9F828312F09C4A002492BC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9F828212F09C4A002492BC /* UIKit.framework */; };
@@ -27,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		AB1BF98A12F2C878002BB9AC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		AB35C18215D7B1F1006B7D71 /* ringtone.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ringtone.caf; sourceTree = "<group>"; };
 		AB74D36B12F183E80004B790 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "en.lproj/AlarmClockViewController-iPad.xib"; sourceTree = "<group>"; };
 		AB74D36D12F183F20004B790 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = "de.lproj/AlarmClockViewController-iPad.xib"; sourceTree = "<group>"; };
 		AB74D36E12F192670004B790 /* icon-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-ipad.png"; path = "../icon-ipad.png"; sourceTree = "<group>"; };
@@ -125,6 +128,7 @@
 		AB9F828912F09C4A002492BC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AB35C18215D7B1F1006B7D71 /* ringtone.caf */,
 				AB9F82B412F09EB6002492BC /* icon.png */,
 				AB9F82B612F09ED6002492BC /* icon@2x.png */,
 				AB74D36E12F192670004B790 /* icon-ipad.png */,
@@ -163,7 +167,7 @@
 		AB9F827512F09C4A002492BC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0440;
 			};
 			buildConfigurationList = AB9F827812F09C4A002492BC /* Build configuration list for PBXProject "AlarmClock" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -194,6 +198,8 @@
 				AB9F82B712F09ED6002492BC /* icon@2x.png in Resources */,
 				AB74D36A12F183E80004B790 /* AlarmClockViewController-iPad.xib in Resources */,
 				AB74D36F12F192670004B790 /* icon-ipad.png in Resources */,
+				AB35C18315D7B1F1006B7D71 /* ringtone.caf in Resources */,
+				AB35C18515D7BB1B006B7D71 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

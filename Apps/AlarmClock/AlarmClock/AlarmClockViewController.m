@@ -73,12 +73,14 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
     }
 }
 
-- (void)viewDidUnload {
-    self.clockView = nil;
-    self.clockControl = nil;
-    self.alarmSwitch = nil;
-    self.timeLabel = nil;    
-    [super viewDidUnload];
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    if(![self isViewLoaded]) {
+        self.clockView = nil;
+        self.clockControl = nil;
+        self.alarmSwitch = nil;
+        self.timeLabel = nil;        
+    }
 }
 
 - (void)viewWillAppear:(BOOL)inAnimated {
