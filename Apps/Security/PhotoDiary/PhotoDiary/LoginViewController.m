@@ -7,6 +7,8 @@
 //
 
 #import "LoginViewController.h"
+#import <CommonCrypto/CommonDigest.h>
+
 
 @interface LoginViewController ()
 
@@ -38,7 +40,6 @@
         NSLog(@"Passwort gesetzt");
         NSLog(@"Starte Login");
         internalCall = YES;
-        [self loginUser:self];
     } else {
         NSLog(@"Passwort nicht gesetzt");
         NSLog(@"Starte Registrierung");
@@ -70,30 +71,34 @@
 
 - (IBAction)loginUser:(id)sender {
     NSLog(@"[+] %@", NSStringFromSelector(_cmd));
+    
+    NSArray *keys = [NSArray arrayWithObjects:(__bridge NSString *)kSecClass, kSecAttrAccount, kSecAttrService, kSecReturnData, nil];
+    NSArray *objects = [NSArray arrayWithObjects:(__bridge NSString *)kSecClassGenericPassword, @"FooUser", @"Foobar Service", kCFBooleanTrue, nil];
+    NSMutableDictionary *query = [NSMutableDictionary dictionaryWithObjects:objects forKeys:keys];
+    
+    CFDataRef pw = nil;
+    OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)query, (CFTypeRef*)&pw);
 
-    
-    NSMutableDictionary *keychainDict = [[NSMutableDictionary alloc] init];
-    [keychainDict setObject:(__bridge id)kSecClassGenericPassword forKey:(__bridge id)kSecClass];
-    [keychainDict setObject:@"Foobar Service" forKey:(__bridge id)kSecAttrService];
-    [keychainDict setObject:@"FooUser" forKey:(__bridge id)kSecAttrAccount];
-    NSData *encodedPassword = [ ####
-    /*
-    
-    NSString *password = [_password text];
-    
-    NSLog(@"[+] Password: %@", password);
-    
-    if([password length] == 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Password fehlt"
-                                                        message:@"Bitte Password eingeben!"
-                                                       delegate:self
-                                              cancelButtonTitle:@"Ok"
-                                              otherButtonTitles:nil];
-        [alert show];
+    if(status != noErr){
+        NSLog(@"[+] Error reading PW from Keychain");
     }
-     
     
-    if(isAuthenticated){
+    NSData *result = (__bridge_transfer NSData*)pw;
+    NSString *storedPassword = [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding];
+    NSLog(@"[+] PW: %@", storedPassword);
+    
+    NSString *userPassword = [_password text];
+    
+    NSMutableString *passwordHash = [NSMutableString stringWithCapacity:CC_SHA256_DIGEST_LENGTH];
+    unsigned char passwordChars[CC_SHA256_DIGEST_LENGTH];
+    CC_SHA256([userPassword UTF8String], [userPassword lengthOfBytesUsingEncoding:NSUTF8StringEncoding], passwordChars);
+    for(int i=0; i< CC_SHA256_DIGEST_LENGTH; i++){
+        [passwordHash appendString:[NSString stringWithFormat:@"%02x", passwordChars[i]]];
+    }
+    NSLog(@"[+] Password hash: %@", passwordHash);
+//    NSLog(@"[+] Password: %@", userPassword);
+
+    if([passwordHash isEqualToString:storedPassword]){
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
         UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MainNavigationController"];
         [vc setModalPresentationStyle:UIModalPresentationFullScreen];
@@ -106,8 +111,6 @@
                                               otherButtonTitles:nil];
         [alert show];
     }
-     
-     */
 }
 
 
