@@ -49,7 +49,21 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="449" y="-108"/>
+            <point key="canvasLocation" x="541" y="-53"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="cIw-qL-1Hm">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ztI-8t-yJP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="CR3-c5-C6J" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aZo-eB-bIM">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1198" y="10"/>
         </scene>
     </scenes>
     <classes>
