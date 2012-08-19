@@ -16,7 +16,9 @@
     
     theController.title = [NSString stringWithFormat:@"%u", theCount++];
     theController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentModalViewController:theController animated:YES];
+    [self presentViewController:theController animated:YES completion:^{
+        NSLog(@"finished");
+    }];
 }
 
 @end
