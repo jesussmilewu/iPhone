@@ -6,13 +6,6 @@
 @synthesize partitionControl;
 @synthesize soundSwitch;
 
-- (void)viewDidUnload {
-    self.digitsSwitch = nil;
-    self.partitionControl = nil;
-    self.soundSwitch = nil;
-    [super viewDidUnload];
-}
-
 - (void)viewWillAppear:(BOOL)inAnimated {
     [super viewWillAppear:inAnimated];
     [self restorePreferences];
@@ -36,6 +29,7 @@
 - (IBAction)restorePreferences {
     NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
     
+    [theDefaults synchronize];
     self.digitsSwitch.on = [theDefaults boolForKey:@"showDigits"];
     self.partitionControl.selectedSegmentIndex = [theDefaults integerForKey:@"partitionOfDial"];
     self.soundSwitch.on = [theDefaults boolForKey:@"playSound"];

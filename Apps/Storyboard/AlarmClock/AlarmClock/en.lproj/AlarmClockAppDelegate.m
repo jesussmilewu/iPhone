@@ -20,6 +20,11 @@
 }
 
 - (BOOL)application:(UIApplication *)inApplication didFinishLaunchingWithOptions:(NSDictionary *)inOptions {
+    NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
+    
+    [theDefaults registerDefaults:@{
+     @"showDigits" : @YES, @"partitionOfDial" : @(PartitionOfDialMinutes), @"playSound" : @YES
+     }];
     [[UILabel appearance] setTextColor:[UIColor darkGrayColor]];
     [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTintColor:[UIColor redColor]];
     [[UILabel appearanceWhenContainedIn:[UITableView class], nil] setTextColor:[UIColor blueColor]];

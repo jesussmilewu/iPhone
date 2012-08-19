@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2177" systemVersion="11D50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="9Br-Tj-HHP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2829" systemVersion="12A269" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="9Br-Tj-HHP">
     <dependencies>
-        <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1914"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="D9H-6p-9mE">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tt0-wm-2Cc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="9Br-Tj-HHP" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="lGI-G4-P6b">
                         <autoresizingMask key="autoresizingMask"/>
@@ -17,13 +15,13 @@
                         <segue destination="Te1-9Z-xwP" kind="relationship" relationship="rootViewController" id="C22-ug-seK"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tt0-wm-2Cc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-517" y="8"/>
         </scene>
         <!--Alarm Clock View Controller - Wecker-->
         <scene sceneID="hlc-xD-Ty1">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="o4X-tV-DPw" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Te1-9Z-xwP" customClass="AlarmClockViewController" sceneMemberID="viewController">
                     <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="dGU-sn-rTv">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -52,19 +50,19 @@
                                     <action selector="updateAlarm" destination="Te1-9Z-xwP" eventType="valueChanged" id="vHX-Xb-MtS"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Alarm:" lineBreakMode="tailTruncation" minimumFontSize="10" id="Tmo-M0-EUd">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="Alarm:" autoshrinkMode="minimumFontSize" id="Tmo-M0-EUd">
                                 <rect key="frame" x="10" y="372" width="50" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <fontDescription key="fontDescription" type="system" size="system"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" size="system"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Zeit" lineBreakMode="tailTruncation" minimumFontSize="10" id="J08-dk-Myw">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="Zeit" autoshrinkMode="minimumFontSize" id="J08-dk-Myw">
                                 <rect key="frame" x="63" y="372" width="145" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <fontDescription key="fontDescription" type="system" size="system"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" size="system"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -84,13 +82,13 @@
                         <outlet property="timeLabel" destination="J08-dk-Myw" id="fbY-gN-Icb"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o4X-tV-DPw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-61" y="1"/>
         </scene>
         <!--Preferences View Controller - Einstellungen-->
         <scene sceneID="zJe-9q-IzC">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xV8-fv-J03" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="Rsm-HY-xL1" customClass="PreferencesViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="COZ-Oj-Ttu">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -106,12 +104,12 @@
                                             <rect key="frame" x="10" y="1" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Ziffernanzeige" lineBreakMode="tailTruncation" minimumFontSize="10" id="NWK-Ik-bSw">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="Ziffernanzeige" autoshrinkMode="minimumFontSize" id="NWK-Ik-bSw">
                                                     <rect key="frame" x="20" y="11" width="108" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="2b5-SX-poF">
                                                     <rect key="frame" x="201" y="8" width="79" height="27"/>
@@ -132,12 +130,12 @@
                                             <rect key="frame" x="10" y="0.0" width="300" height="91"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Zifferblatteinteilung" lineBreakMode="tailTruncation" minimumFontSize="10" id="3lD-vo-6Mx">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="Zifferblatteinteilung" autoshrinkMode="minimumFontSize" id="3lD-vo-6Mx">
                                                     <rect key="frame" x="20" y="11" width="146" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 </label>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="uXW-I7-LZQ">
                                                     <rect key="frame" x="20" y="42" width="260" height="30"/>
@@ -167,12 +165,12 @@
                                             <rect key="frame" x="10" y="1" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Ton" lineBreakMode="tailTruncation" minimumFontSize="10" id="Rob-j3-CD7">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="Ton" autoshrinkMode="minimumFontSize" id="Rob-j3-CD7">
                                                     <rect key="frame" x="20" y="11" width="108" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="s1v-s8-NfR">
                                                     <rect key="frame" x="201" y="8" width="79" height="27"/>
@@ -198,6 +196,7 @@
                         <outlet property="soundSwitch" destination="s1v-s8-NfR" id="xGy-kk-j3v"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xV8-fv-J03" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="370" y="3"/>
         </scene>

@@ -3,9 +3,9 @@
 
 @interface PreferencesViewController : UITableViewController
 
-@property (strong, nonatomic) IBOutlet UISwitch *digitsSwitch;
-@property (strong, nonatomic) IBOutlet UISegmentedControl *partitionControl;
-@property (strong, nonatomic) IBOutlet UISwitch *soundSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *digitsSwitch;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *partitionControl;
+@property (weak, nonatomic) IBOutlet UISwitch *soundSwitch;
 
 - (IBAction)savePreferences;
 - (IBAction)restorePreferences;
