@@ -38,7 +38,7 @@
 }
 
 - (IBAction)done {
-    [self.parentViewController dismissModalViewControllerAnimated:YES];
+    [self.presentedViewController dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (IBAction)reset {

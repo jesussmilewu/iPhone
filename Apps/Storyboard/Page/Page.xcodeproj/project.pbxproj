@@ -129,7 +129,7 @@
 		ABA1951B13E3F49F00D718AC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0450;
 			};
 			buildConfigurationList = ABA1951E13E3F4A000D718AC /* Build configuration list for PBXProject "Page" */;
 			compatibilityVersion = "Xcode 3.2";

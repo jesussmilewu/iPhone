@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="11D50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Wt5-ZI-Z8L">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2829" systemVersion="12A269" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Wt5-ZI-Z8L">
     <dependencies>
-        <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1914"/>
     </dependencies>
     <scenes>
+        <!--Tab Bar Controller-->
         <scene sceneID="OMb-0V-gex">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="12p-dL-atE" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController id="Wt5-ZI-Z8L" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -32,23 +31,24 @@
                         <segue destination="z8o-t3-q06" kind="relationship" relationship="viewControllers" id="1dl-6Q-kfg"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="12p-dL-atE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="12" y="285"/>
+            <point key="canvasLocation" x="-692" y="578"/>
         </scene>
+        <!--Landscape View Controller - History-->
         <scene sceneID="e2G-Hf-G7q">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jsF-N2-ooB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="z8o-t3-q06" customClass="LandscapeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bim-xw-YRf">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="History" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="d6X-cY-62s">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="History" textAlignment="center" autoshrinkMode="minimumFontSize" id="d6X-cY-62s">
                                 <rect key="frame" x="20" y="173" width="280" height="70"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -61,23 +61,24 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <nil key="simulatedDestinationMetrics"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jsF-N2-ooB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="406" y="-318"/>
+            <point key="canvasLocation" x="374" y="-345"/>
         </scene>
+        <!--Landscape View Controller - Recents-->
         <scene sceneID="Wt8-RL-rUD">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jaR-hP-zoS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="6wo-1I-v4u" customClass="LandscapeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cts-xf-VmR">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Recents" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="XcY-OC-aaQ">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="Recents" textAlignment="center" autoshrinkMode="minimumFontSize" id="XcY-OC-aaQ">
                                 <rect key="frame" x="20" y="173" width="280" height="70"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -90,23 +91,24 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <nil key="simulatedDestinationMetrics"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jaR-hP-zoS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="796" y="877"/>
+            <point key="canvasLocation" x="764" y="850"/>
         </scene>
+        <!--Landscape View Controller - Most Recent-->
         <scene sceneID="8WP-Th-ma2">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1bh-yv-Jd1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="IRL-MB-LF8" customClass="LandscapeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PB8-da-C4Q">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Most Recent" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="Gvi-hS-vRU">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="Most Recent" textAlignment="center" autoshrinkMode="minimumFontSize" id="Gvi-hS-vRU">
                                 <rect key="frame" x="20" y="173" width="280" height="70"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -119,23 +121,24 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <nil key="simulatedDestinationMetrics"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1bh-yv-Jd1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="805" y="285"/>
+            <point key="canvasLocation" x="773" y="258"/>
         </scene>
+        <!--Landscape View Controller - Contacts-->
         <scene sceneID="PfJ-tv-TdS">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ola-u8-6Bw" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="hEk-7C-YW5" customClass="LandscapeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4tq-pC-Dbx">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Contacts" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="Wna-eg-7fV">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="Contacts" textAlignment="center" autoshrinkMode="minimumFontSize" id="Wna-eg-7fV">
                                 <rect key="frame" x="20" y="173" width="280" height="70"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -148,23 +151,24 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <nil key="simulatedDestinationMetrics"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ola-u8-6Bw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1168" y="877"/>
+            <point key="canvasLocation" x="1136" y="850"/>
         </scene>
+        <!--Landscape View Controller - Top Rated-->
         <scene sceneID="Qda-og-kWW">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Eqj-L3-svg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="v3O-cN-OCa" customClass="LandscapeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YW9-MR-eQF">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Top Rated" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="SbM-4w-mdb">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="Top Rated" textAlignment="center" autoshrinkMode="minimumFontSize" id="SbM-4w-mdb">
                                 <rect key="frame" x="20" y="173" width="280" height="70"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -177,12 +181,13 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <nil key="simulatedDestinationMetrics"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Eqj-L3-svg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="406" y="877"/>
+            <point key="canvasLocation" x="374" y="850"/>
         </scene>
+        <!--Navigation Controller-->
         <scene sceneID="ZB2-14-dTS">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jEz-dD-dXI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="ZrJ-cH-QG1" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="dVM-xd-11q" userLabel="Tab Bar Item - Item"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -197,24 +202,25 @@
                         <segue destination="6Pn-3o-8PS" kind="relationship" relationship="rootViewController" id="XmX-40-Ipa"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jEz-dD-dXI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationItem title="Navigation" id="YC8-OH-iKv"/>
             </objects>
-            <point key="canvasLocation" x="1554" y="285"/>
+            <point key="canvasLocation" x="374" y="-950"/>
         </scene>
+        <!--Landscape View Controller - Favorites-->
         <scene sceneID="omT-Nl-TRw">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UH5-mK-xz9" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="6Pn-3o-8PS" customClass="LandscapeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Lpj-Lp-gIk">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Favorites" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="Obg-hL-Nl4">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="Favorites" textAlignment="center" autoshrinkMode="minimumFontSize" id="Obg-hL-Nl4">
                                 <rect key="frame" x="20" y="173" width="280" height="160"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -225,23 +231,24 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UH5-mK-xz9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2034" y="365"/>
+            <point key="canvasLocation" x="773" y="-950"/>
         </scene>
+        <!--Landscape View Controller - Downloads-->
         <scene sceneID="I6X-TE-paJ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Q4c-dW-3wo" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="oKk-UU-u2B" customClass="LandscapeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0A7-th-Jqx">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Downloads" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="Jli-jk-buL">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="Downloads" textAlignment="center" autoshrinkMode="minimumFontSize" id="Jli-jk-buL">
                                 <rect key="frame" x="20" y="173" width="280" height="70"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -254,23 +261,24 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <nil key="simulatedDestinationMetrics"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q4c-dW-3wo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1168" y="285"/>
+            <point key="canvasLocation" x="1136" y="258"/>
         </scene>
+        <!--Landscape View Controller - Featured-->
         <scene sceneID="Tmk-LS-4vn">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NXk-PV-USi" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="wRq-Xw-mvX" customClass="LandscapeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TA0-t7-SgZ">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Featured" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="14i-m8-Vry">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="Featured" textAlignment="center" autoshrinkMode="minimumFontSize" id="14i-m8-Vry">
                                 <rect key="frame" x="20" y="173" width="280" height="70"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -283,23 +291,24 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <nil key="simulatedDestinationMetrics"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NXk-PV-USi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="796" y="-318"/>
+            <point key="canvasLocation" x="764" y="-345"/>
         </scene>
+        <!--Landscape View Controller - Bookmarks-->
         <scene sceneID="WeW-Ev-9aO">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mGS-bz-Z4e" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Bir-1T-p1G" customClass="LandscapeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="M8S-ga-fJH">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Bookmarks" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="El2-j9-h6F">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="Bookmarks" textAlignment="center" autoshrinkMode="minimumFontSize" id="El2-j9-h6F">
                                 <rect key="frame" x="20" y="173" width="280" height="70"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -312,23 +321,24 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <nil key="simulatedDestinationMetrics"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mGS-bz-Z4e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1168" y="-306"/>
+            <point key="canvasLocation" x="1136" y="-333"/>
         </scene>
+        <!--Landscape View Controller - Search-->
         <scene sceneID="JE0-bI-dmw">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ocf-mc-1cc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="5Gn-XM-JPz" customClass="LandscapeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EOq-Yv-h17">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Search" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="zAu-yV-5vt">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="Search" textAlignment="center" autoshrinkMode="minimumFontSize" id="zAu-yV-5vt">
                                 <rect key="frame" x="20" y="173" width="280" height="70"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -341,8 +351,9 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <nil key="simulatedDestinationMetrics"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ocf-mc-1cc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="406" y="285"/>
+            <point key="canvasLocation" x="374" y="246"/>
         </scene>
     </scenes>
     <classes>

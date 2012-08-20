@@ -21,19 +21,12 @@
 @synthesize spineLocationControl;
 @synthesize doubleSidedControl;
 @synthesize directionControl;
+@synthesize animationControl;
 @synthesize pageViewController;
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-
-- (void)viewDidUnload {
-    self.orientationControl = nil;
-    self.spineLocationControl = nil;
-    self.doubleSidedControl = nil;
-    self.directionControl = nil;
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
     self.pageViewController = nil;
-    [super viewDidUnload];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)inInterfaceOrientation {
@@ -75,7 +68,7 @@
     NSDictionary *theOptions = [NSDictionary dictionaryWithObjectsAndKeys:
                                 [NSNumber numberWithInt:theLocation], 
                                 UIPageViewControllerOptionSpineLocationKey, nil];
-    UIPageViewController *theController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl 
+    UIPageViewController *theController = [[UIPageViewController alloc] initWithTransitionStyle:self.animationControl.selectedSegmentIndex
                                                                           navigationOrientation:theOrientation 
                                                                                         options:theOptions];
     NSArray *theControllers = [self viewControllersForSpineLocation:theLocation];
@@ -88,7 +81,7 @@
     theController.dataSource = self;
     theController.delegate = self;
     theController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentModalViewController:theController animated:YES];
+    [self presentViewController:theController animated:YES completion:NULL];
     self.pageViewController = theController;
 }
 
@@ -100,6 +93,14 @@
                             direction:self.selectedDirection 
                              animated:YES 
                            completion:NULL];
+}
+
+#pragma mark UITableViewControllerDelegate
+
+- (void)tableView:(UITableView *)inTableView didSelectRowAtIndexPath:(NSIndexPath *)inIndexPath {
+    if(inIndexPath.section == 1 && inIndexPath.row == 0) {
+        [self create];
+    }
 }
 
 #pragma mark UIPageViewControllerDataSource
@@ -130,4 +131,8 @@
     return theLocation;
 }
 
+- (void)viewDidUnload {
+    [self setAnimationControl:nil];
+    [super viewDidUnload];
+}
 @end
