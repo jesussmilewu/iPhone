@@ -22,7 +22,7 @@
                                             <rect key="frame" x="10" y="1" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="Direction" autoshrinkMode="minimumFontSize" id="45">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="Orientation" autoshrinkMode="minimumFontSize" id="45">
                                                     <rect key="frame" x="20" y="11" width="88" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <nil key="highlightedColor"/>
@@ -178,6 +178,10 @@
                     </tableView>
                     <connections>
                         <outlet property="animationControl" destination="mDX-Xf-u4d" id="hhU-wJ-E3z"/>
+                        <outlet property="directionControl" destination="71" id="gm1-1S-m1b"/>
+                        <outlet property="doubleSidedControl" destination="52" id="Tcd-2F-Gtv"/>
+                        <outlet property="orientationControl" destination="46" id="WBg-Vj-U4I"/>
+                        <outlet property="spineLocationControl" destination="50" id="lX9-UR-ede"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Oc-Uh-0Pn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -200,8 +204,8 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="160"/>
                             </label>
                             <view contentMode="scaleToFill" id="79">
-                                <rect key="frame" x="60" y="360" width="200" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                <rect key="frame" x="60" y="384" width="200" height="76"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="65">
                                         <rect key="frame" x="21" y="20" width="72" height="37"/>
