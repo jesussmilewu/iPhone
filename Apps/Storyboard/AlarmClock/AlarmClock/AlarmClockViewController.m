@@ -17,13 +17,6 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
 @synthesize alarmSwitch;
 @synthesize timeLabel;
 
-- (void)dealloc {
-    self.clockView = nil;
-    self.clockControl = nil;
-    self.alarmSwitch = nil;
-    self.timeLabel = nil;    
-}
-
 - (NSTimeInterval)startTimeOfCurrentDay {
     NSCalendar *theCalendar = [NSCalendar currentCalendar];
     NSDateComponents *theComponents = [theCalendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit 
@@ -66,16 +59,36 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     UILongPressGestureRecognizer *theRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(updateAlarmHand:)];
-
+    
+    if(self.splitViewController != nil) {
+        NSLayoutConstraint *theConstraint = [NSLayoutConstraint constraintWithItem:self.clockView
+                                                                         attribute:NSLayoutAttributeHeight
+                                                                         relatedBy:NSLayoutRelationEqual
+                                                                            toItem:self.clockView
+                                                                         attribute:NSLayoutAttributeWidth
+                                                                        multiplier:1.0
+                                                                          constant:0.0];
+        [self.view addConstraint:theConstraint];
+        self.navigationItem.rightBarButtonItem = nil;
+    }
     [self.clockView addGestureRecognizer:theRecognizer];
 }
 
-- (void)viewDidUnload {
-    self.clockView = nil;
-    self.clockControl = nil;
-    self.alarmSwitch = nil;
-    self.timeLabel = nil;    
-    [super viewDidUnload];
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)inInterfaceOrientation {
+    return inInterfaceOrientation == UIInterfaceOrientationPortrait || self.splitViewController != nil;
+}
+
+- (BOOL)shouldAutorotate {
+    return YES;
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+    //return self.splitViewController == nil ? UIInterfaceOrientationMaskPortrait : UIInterfaceOrientationMaskAll;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return UIInterfaceOrientationPortrait;
 }
 
 - (void)viewWillAppear:(BOOL)inAnimated {

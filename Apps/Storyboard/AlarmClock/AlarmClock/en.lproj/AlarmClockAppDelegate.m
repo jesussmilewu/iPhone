@@ -20,8 +20,7 @@
 }
 
 - (BOOL)application:(UIApplication *)inApplication didFinishLaunchingWithOptions:(NSDictionary *)inOptions {
-    NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
-    
+    NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];    
     [theDefaults registerDefaults:@{
      @"showDigits" : @YES, @"partitionOfDial" : @(PartitionOfDialMinutes), @"playSound" : @YES
      }];
