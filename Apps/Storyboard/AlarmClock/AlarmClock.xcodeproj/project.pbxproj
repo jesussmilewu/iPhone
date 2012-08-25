@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AB1BF98B12F2C878002BB9AC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB1BF98A12F2C878002BB9AC /* AudioToolbox.framework */; };
+		AB681B5215E8EBA0006AA861 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB9F82A812F09CCB002492BC /* Localizable.strings */; };
 		AB74D36F12F192670004B790 /* icon-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AB74D36E12F192670004B790 /* icon-ipad.png */; };
 		AB7DEE5014CC408500430B8C /* AlarmClock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB7DEE5214CC408500430B8C /* AlarmClock.storyboard */; };
 		AB7DEE5314CC408C00430B8C /* AlarmClockAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7DEE5514CC408C00430B8C /* AlarmClockAppDelegate.m */; };
@@ -207,6 +208,7 @@
 				AB74D36F12F192670004B790 /* icon-ipad.png in Resources */,
 				AB7DEE5014CC408500430B8C /* AlarmClock.storyboard in Resources */,
 				AB7DEE5914CC480C00430B8C /* AlarmClock-iPad.storyboard in Resources */,
+				AB681B5215E8EBA0006AA861 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

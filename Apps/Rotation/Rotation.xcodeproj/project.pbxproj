@@ -16,6 +16,7 @@
 		AB1BF9AF12F2E390002BB9AC /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB1BF9AD12F2E390002BB9AC /* MainWindow.xib */; };
 		AB1BF9B212F2E391002BB9AC /* RotationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1BF9B112F2E391002BB9AC /* RotationViewController.m */; };
 		AB1BF9B512F2E391002BB9AC /* RotationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB1BF9B312F2E391002BB9AC /* RotationViewController.xib */; };
+		AB22CF9515E8D23E003DA52A /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB22CF9315E8D23E003DA52A /* MainWindow-iPad.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		AB1BF9B012F2E390002BB9AC /* RotationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RotationViewController.h; sourceTree = "<group>"; };
 		AB1BF9B112F2E391002BB9AC /* RotationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RotationViewController.m; sourceTree = "<group>"; };
 		AB1BF9B412F2E391002BB9AC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RotationViewController.xib; sourceTree = "<group>"; };
+		AB22CF9415E8D23E003DA52A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 		AB1BF9A112F2E390002BB9AC /* Rotation */ = {
 			isa = PBXGroup;
 			children = (
+				AB22CF9215E8D23D003DA52A /* iPad */,
 				AB1BF9AA12F2E390002BB9AC /* RotationAppDelegate.h */,
 				AB1BF9AB12F2E390002BB9AC /* RotationAppDelegate.m */,
 				AB1BF9AD12F2E390002BB9AC /* MainWindow.xib */,
@@ -99,6 +102,14 @@
 				AB1BF9A812F2E390002BB9AC /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AB22CF9215E8D23D003DA52A /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				AB22CF9315E8D23E003DA52A /* MainWindow-iPad.xib */,
+			);
+			name = iPad;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,6 +162,7 @@
 				AB1BF9A612F2E390002BB9AC /* InfoPlist.strings in Resources */,
 				AB1BF9AF12F2E390002BB9AC /* MainWindow.xib in Resources */,
 				AB1BF9B512F2E391002BB9AC /* RotationViewController.xib in Resources */,
+				AB22CF9515E8D23E003DA52A /* MainWindow-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +206,14 @@
 			name = RotationViewController.xib;
 			sourceTree = "<group>";
 		};
+		AB22CF9315E8D23E003DA52A /* MainWindow-iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB22CF9415E8D23E003DA52A /* en */,
+			);
+			name = "MainWindow-iPad.xib";
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -235,7 +255,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Rotation/Rotation-Prefix.pch";
 				INFOPLIST_FILE = "Rotation/Rotation-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -248,7 +270,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Rotation/Rotation-Prefix.pch";
 				INFOPLIST_FILE = "Rotation/Rotation-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -273,6 +297,7 @@
 				AB1BF9BA12F2E391002BB9AC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

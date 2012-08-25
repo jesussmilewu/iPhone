@@ -32,6 +32,11 @@
     return YES;
 }
 
+- (NSUInteger)application:(UIApplication *)inApplication
+  supportedInterfaceOrientationsForWindow:(UIWindow *)inWindow {
+    return [inWindow.rootViewController isKindOfClass:[UISplitViewController class]] ? UIInterfaceOrientationMaskAll : UIInterfaceOrientationMaskPortrait;
+}
+
 - (NSNumber *)soundId {
     if(soundId == nil) {
         NSURL *theURL = [[NSBundle mainBundle] URLForResource:@"ringtone" withExtension:@"caf"];

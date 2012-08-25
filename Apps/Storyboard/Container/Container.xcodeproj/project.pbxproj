@@ -17,7 +17,6 @@
 		AB18892313E546690052316D /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB18892213E546690052316D /* ContainerViewController.m */; };
 		AB18892613E548520052316D /* SupernumeraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB18892513E548520052316D /* SupernumeraryViewController.m */; };
 		AB18892913E54ABF0052316D /* RaisingSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = AB18892813E54ABF0052316D /* RaisingSegue.m */; };
-		AB18892C13E54F6A0052316D /* ShrinkingSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = AB18892B13E54F690052316D /* ShrinkingSegue.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,8 +37,6 @@
 		AB18892513E548520052316D /* SupernumeraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupernumeraryViewController.m; sourceTree = "<group>"; };
 		AB18892713E54ABF0052316D /* RaisingSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RaisingSegue.h; sourceTree = "<group>"; };
 		AB18892813E54ABF0052316D /* RaisingSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RaisingSegue.m; sourceTree = "<group>"; };
-		AB18892A13E54F690052316D /* ShrinkingSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShrinkingSegue.h; sourceTree = "<group>"; };
-		AB18892B13E54F690052316D /* ShrinkingSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShrinkingSegue.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,13 +88,11 @@
 				AB18891713E545AE0052316D /* MainStoryboard.storyboard */,
 				AB18891A13E545AE0052316D /* ContainerViewController.h */,
 				AB18892213E546690052316D /* ContainerViewController.m */,
-				AB18890C13E545AE0052316D /* Supporting Files */,
 				AB18892413E548520052316D /* SupernumeraryViewController.h */,
 				AB18892513E548520052316D /* SupernumeraryViewController.m */,
 				AB18892713E54ABF0052316D /* RaisingSegue.h */,
 				AB18892813E54ABF0052316D /* RaisingSegue.m */,
-				AB18892A13E54F690052316D /* ShrinkingSegue.h */,
-				AB18892B13E54F690052316D /* ShrinkingSegue.m */,
+				AB18890C13E545AE0052316D /* Supporting Files */,
 			);
 			path = Container;
 			sourceTree = "<group>";
@@ -139,7 +134,7 @@
 		AB1888F813E545AD0052316D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0450;
 			};
 			buildConfigurationList = AB1888FB13E545AD0052316D /* Build configuration list for PBXProject "Container" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -180,7 +175,6 @@
 				AB18892313E546690052316D /* ContainerViewController.m in Sources */,
 				AB18892613E548520052316D /* SupernumeraryViewController.m in Sources */,
 				AB18892913E54ABF0052316D /* RaisingSegue.m in Sources */,
-				AB18892C13E54F6A0052316D /* ShrinkingSegue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

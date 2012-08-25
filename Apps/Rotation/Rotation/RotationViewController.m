@@ -18,4 +18,12 @@
     return self.rotationControl.selectedSegmentIndex || inInterfaceOrientation == UIInterfaceOrientationPortrait;
 }
 
+- (BOOL)shouldAutorotate {
+    return YES;
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return self.rotationControl.selectedSegmentIndex ? UIInterfaceOrientationMaskPortrait : UIInterfaceOrientationMaskAll;
+}
+
 @end

@@ -4,7 +4,7 @@
 
 const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
 
-@interface AlarmClockViewController()
+@interface AlarmClockViewController()<UISplitViewControllerDelegate>
 
 - (void)updateClockView;
 
@@ -16,6 +16,11 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
 @synthesize clockControl;
 @synthesize alarmSwitch;
 @synthesize timeLabel;
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    self.splitViewController.delegate = self;
+}
 
 - (NSTimeInterval)startTimeOfCurrentDay {
     NSCalendar *theCalendar = [NSCalendar currentCalendar];
@@ -57,7 +62,7 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+    [super viewDidLoad];NSLog(@"Wake Up = %@", NSLocalizedString(@"Wake up", @""));
     UILongPressGestureRecognizer *theRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(updateAlarmHand:)];
     
     if(self.splitViewController != nil) {
@@ -78,17 +83,14 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
     return inInterfaceOrientation == UIInterfaceOrientationPortrait || self.splitViewController != nil;
 }
 
-- (BOOL)shouldAutorotate {
-    return YES;
+- (void)updateToolbarForInterfaceOrientation:(UIInterfaceOrientation)inInterfaceOrientation {
+    if(self.splitViewController) {
+        [self.navigationController setToolbarHidden:UIInterfaceOrientationIsLandscape(inInterfaceOrientation) animated:YES];
+    }    
 }
-
-- (NSUInteger)supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskPortrait;
-    //return self.splitViewController == nil ? UIInterfaceOrientationMaskPortrait : UIInterfaceOrientationMaskAll;
-}
-
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-    return UIInterfaceOrientationPortrait;
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)inInterfaceOrientation
+                                duration:(NSTimeInterval)inDuration {
+    [self updateToolbarForInterfaceOrientation:inInterfaceOrientation];
 }
 
 - (void)viewWillAppear:(BOOL)inAnimated {
@@ -104,6 +106,7 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
     [theDefaults addObserver:self forKeyPath:@"showDigits" options:0 context:nil];
     [theDefaults addObserver:self forKeyPath:@"partitionOfDial" options:0 context:nil];
     [self.clockView startAnimation];
+    [self updateToolbarForInterfaceOrientation:self.interfaceOrientation];
 }
 
 - (void)viewWillDisappear:(BOOL)inAnimated {
@@ -171,6 +174,22 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
                         change:(NSDictionary *)inChange 
                        context:(void *)inContext {
     [self updateClockView];    
+}
+
+#pragma mark UISplitViewControllerDelegate
+
+- (void)splitViewController:(UISplitViewController *)inSplitViewController
+     willHideViewController:(UIViewController *)inViewController
+          withBarButtonItem:(UIBarButtonItem *)inBarButtonItem
+       forPopoverController:(UIPopoverController *)inPopoverController {
+    inBarButtonItem.title = NSLocalizedString(@"Preferences", @"Preferences");
+    self.toolbarItems = @[inBarButtonItem];
+}
+
+- (void)splitViewController:(UISplitViewController *)inSplitViewController
+     willShowViewController:(UIViewController *)inViewController
+  invalidatingBarButtonItem:(UIBarButtonItem *)inBarButtonItem {
+    self.toolbarItems = @[];
 }
 
 @end

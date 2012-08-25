@@ -7,7 +7,6 @@
 //
 
 #import "SupernumeraryViewController.h"
-#import "ShrinkingSegue.h"
 
 @implementation SupernumeraryViewController
 
@@ -66,9 +65,22 @@
 
 
 - (IBAction)close {
-    id theSegue = [[ShrinkingSegue alloc] initWithIdentifier:nil source:self destination:self.parentViewController];
+    UIViewController *theToViewController = self.parentViewController;
+    CGRect theBounds = theToViewController.view.bounds;
+    UIView *theView = self.view;
+    UIView *theBackgroundView = theView.superview;
     
-    [theSegue perform];
+    [self willMoveToParentViewController:nil];
+    [UIView animateWithDuration:1.0
+                     animations:^{
+                         theBackgroundView.alpha = 0.0;
+                         theView.transform = CGAffineTransformScale(CGAffineTransformMakeTranslation(-CGRectGetMidX(theBounds), CGRectGetMidY(theBounds)), 1.0 / 32.0, 1.0 / 32.0);
+                     }
+                     completion:^(BOOL inFinished) {
+                         [theBackgroundView removeFromSuperview];
+                         [theView removeFromSuperview];
+                         [self removeFromParentViewController];
+                     }];
 }
 
 @end
