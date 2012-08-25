@@ -13,32 +13,34 @@
 		AB21AF431581109A00472417 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB21AF421581109A00472417 /* CoreGraphics.framework */; };
 		AB21AF491581109A00472417 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB21AF471581109A00472417 /* InfoPlist.strings */; };
 		AB21AF4B1581109A00472417 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB21AF4A1581109A00472417 /* main.m */; };
-		AB21AF4F1581109A00472417 /* TwitterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB21AF4E1581109A00472417 /* TwitterAppDelegate.m */; };
+		AB21AF4F1581109A00472417 /* YouTubeAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB21AF4E1581109A00472417 /* YouTubeAppDelegate.m */; };
 		AB21AF521581109A00472417 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB21AF501581109A00472417 /* MainStoryboard.storyboard */; };
-		AB21AF551581109A00472417 /* TwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB21AF541581109A00472417 /* TwitterViewController.m */; };
+		AB21AF551581109A00472417 /* YouTubeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB21AF541581109A00472417 /* YouTubeViewController.m */; };
 		AB21AF60158111C500472417 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = AB21AF5D158111C500472417 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		AB52BAD115E95A96007E39D6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB52BAD015E95A96007E39D6 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AB207ACA1584D62100E023BD /* NSString+URLTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLTools.h"; sourceTree = "<group>"; };
 		AB207ACB1584D62100E023BD /* NSString+URLTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLTools.m"; sourceTree = "<group>"; };
-		AB21AF3A1581109A00472417 /* SimpleTwitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleTwitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB21AF3A1581109A00472417 /* YouTube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB21AF3E1581109A00472417 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AB21AF401581109A00472417 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AB21AF421581109A00472417 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		AB21AF461581109A00472417 /* SimpleTwitter-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SimpleTwitter-Info.plist"; sourceTree = "<group>"; };
+		AB21AF461581109A00472417 /* YouTube-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "YouTube-Info.plist"; sourceTree = "<group>"; };
 		AB21AF481581109A00472417 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AB21AF4A1581109A00472417 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		AB21AF4C1581109A00472417 /* SimpleTwitter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimpleTwitter-Prefix.pch"; sourceTree = "<group>"; };
-		AB21AF4D1581109A00472417 /* TwitterAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwitterAppDelegate.h; sourceTree = "<group>"; };
-		AB21AF4E1581109A00472417 /* TwitterAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwitterAppDelegate.m; sourceTree = "<group>"; };
+		AB21AF4C1581109A00472417 /* YouTube-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YouTube-Prefix.pch"; sourceTree = "<group>"; };
+		AB21AF4D1581109A00472417 /* YouTubeAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YouTubeAppDelegate.h; sourceTree = "<group>"; };
+		AB21AF4E1581109A00472417 /* YouTubeAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YouTubeAppDelegate.m; sourceTree = "<group>"; };
 		AB21AF511581109A00472417 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		AB21AF531581109A00472417 /* TwitterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwitterViewController.h; sourceTree = "<group>"; };
-		AB21AF541581109A00472417 /* TwitterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwitterViewController.m; sourceTree = "<group>"; };
-		AB21AF5B158111C500472417 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
+		AB21AF531581109A00472417 /* YouTubeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YouTubeViewController.h; sourceTree = "<group>"; };
+		AB21AF541581109A00472417 /* YouTubeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YouTubeViewController.m; sourceTree = "<group>"; };
+		AB21AF5B158111C500472417 /* CHANGELOG-JSONKit.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "CHANGELOG-JSONKit.md"; sourceTree = "<group>"; };
 		AB21AF5C158111C500472417 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		AB21AF5D158111C500472417 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
-		AB21AF5E158111C500472417 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		AB21AF5E158111C500472417 /* README-JSONKit.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "README-JSONKit.md"; sourceTree = "<group>"; };
+		AB52BAD015E95A96007E39D6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB52BAD115E95A96007E39D6 /* QuartzCore.framework in Frameworks */,
 				AB21AF3F1581109A00472417 /* UIKit.framework in Frameworks */,
 				AB21AF411581109A00472417 /* Foundation.framework in Frameworks */,
 				AB21AF431581109A00472417 /* CoreGraphics.framework in Frameworks */,
@@ -58,7 +61,8 @@
 		AB21AF2F1581109A00472417 = {
 			isa = PBXGroup;
 			children = (
-				AB21AF441581109A00472417 /* SimpleTwitter */,
+				AB52BAD015E95A96007E39D6 /* QuartzCore.framework */,
+				AB21AF441581109A00472417 /* YouTube */,
 				AB21AF3D1581109A00472417 /* Frameworks */,
 				AB21AF3B1581109A00472417 /* Products */,
 			);
@@ -67,7 +71,7 @@
 		AB21AF3B1581109A00472417 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AB21AF3A1581109A00472417 /* SimpleTwitter.app */,
+				AB21AF3A1581109A00472417 /* YouTube.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -82,32 +86,32 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		AB21AF441581109A00472417 /* SimpleTwitter */ = {
+		AB21AF441581109A00472417 /* YouTube */ = {
 			isa = PBXGroup;
 			children = (
 				AB21AF5C158111C500472417 /* JSONKit.h */,
 				AB21AF5D158111C500472417 /* JSONKit.m */,
-				AB21AF4D1581109A00472417 /* TwitterAppDelegate.h */,
-				AB21AF4E1581109A00472417 /* TwitterAppDelegate.m */,
+				AB21AF4D1581109A00472417 /* YouTubeAppDelegate.h */,
+				AB21AF4E1581109A00472417 /* YouTubeAppDelegate.m */,
 				AB21AF501581109A00472417 /* MainStoryboard.storyboard */,
-				AB21AF531581109A00472417 /* TwitterViewController.h */,
-				AB21AF541581109A00472417 /* TwitterViewController.m */,
+				AB21AF531581109A00472417 /* YouTubeViewController.h */,
+				AB21AF541581109A00472417 /* YouTubeViewController.m */,
 				AB21AF451581109A00472417 /* Supporting Files */,
 				AB207ACA1584D62100E023BD /* NSString+URLTools.h */,
 				AB207ACB1584D62100E023BD /* NSString+URLTools.m */,
 			);
-			path = SimpleTwitter;
+			path = YouTube;
 			sourceTree = "<group>";
 		};
 		AB21AF451581109A00472417 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				AB21AF5B158111C500472417 /* CHANGELOG.md */,
-				AB21AF5E158111C500472417 /* README.md */,
-				AB21AF461581109A00472417 /* SimpleTwitter-Info.plist */,
+				AB21AF5B158111C500472417 /* CHANGELOG-JSONKit.md */,
+				AB21AF5E158111C500472417 /* README-JSONKit.md */,
+				AB21AF461581109A00472417 /* YouTube-Info.plist */,
 				AB21AF471581109A00472417 /* InfoPlist.strings */,
 				AB21AF4A1581109A00472417 /* main.m */,
-				AB21AF4C1581109A00472417 /* SimpleTwitter-Prefix.pch */,
+				AB21AF4C1581109A00472417 /* YouTube-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -115,9 +119,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AB21AF391581109A00472417 /* SimpleTwitter */ = {
+		AB21AF391581109A00472417 /* YouTube */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AB21AF581581109A00472417 /* Build configuration list for PBXNativeTarget "SimpleTwitter" */;
+			buildConfigurationList = AB21AF581581109A00472417 /* Build configuration list for PBXNativeTarget "YouTube" */;
 			buildPhases = (
 				AB21AF361581109A00472417 /* Sources */,
 				AB21AF371581109A00472417 /* Frameworks */,
@@ -127,9 +131,9 @@
 			);
 			dependencies = (
 			);
-			name = SimpleTwitter;
-			productName = SimpleTwitter;
-			productReference = AB21AF3A1581109A00472417 /* SimpleTwitter.app */;
+			name = YouTube;
+			productName = YouTube;
+			productReference = AB21AF3A1581109A00472417 /* YouTube.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -141,7 +145,7 @@
 				CLASSPREFIX = Twitter;
 				LastUpgradeCheck = 0430;
 			};
-			buildConfigurationList = AB21AF341581109A00472417 /* Build configuration list for PBXProject "SimpleTwitter" */;
+			buildConfigurationList = AB21AF341581109A00472417 /* Build configuration list for PBXProject "YouTube" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -153,7 +157,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AB21AF391581109A00472417 /* SimpleTwitter */,
+				AB21AF391581109A00472417 /* YouTube */,
 			);
 		};
 /* End PBXProject section */
@@ -176,8 +180,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB21AF4B1581109A00472417 /* main.m in Sources */,
-				AB21AF4F1581109A00472417 /* TwitterAppDelegate.m in Sources */,
-				AB21AF551581109A00472417 /* TwitterViewController.m in Sources */,
+				AB21AF4F1581109A00472417 /* YouTubeAppDelegate.m in Sources */,
+				AB21AF551581109A00472417 /* YouTubeViewController.m in Sources */,
 				AB21AF60158111C500472417 /* JSONKit.m in Sources */,
 				AB207ACC1584D62100E023BD /* NSString+URLTools.m in Sources */,
 			);
@@ -254,8 +258,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SimpleTwitter/SimpleTwitter-Prefix.pch";
-				INFOPLIST_FILE = "SimpleTwitter/SimpleTwitter-Info.plist";
+				GCC_PREFIX_HEADER = "YouTube/YouTube-Prefix.pch";
+				INFOPLIST_FILE = "YouTube/YouTube-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -265,8 +269,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SimpleTwitter/SimpleTwitter-Prefix.pch";
-				INFOPLIST_FILE = "SimpleTwitter/SimpleTwitter-Info.plist";
+				GCC_PREFIX_HEADER = "YouTube/YouTube-Prefix.pch";
+				INFOPLIST_FILE = "YouTube/YouTube-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -275,7 +279,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AB21AF341581109A00472417 /* Build configuration list for PBXProject "SimpleTwitter" */ = {
+		AB21AF341581109A00472417 /* Build configuration list for PBXProject "YouTube" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AB21AF561581109A00472417 /* Debug */,
@@ -284,7 +288,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AB21AF581581109A00472417 /* Build configuration list for PBXNativeTarget "SimpleTwitter" */ = {
+		AB21AF581581109A00472417 /* Build configuration list for PBXNativeTarget "YouTube" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AB21AF591581109A00472417 /* Debug */,

@@ -1,29 +1,30 @@
 //
-//  TwitterViewController.m
-//  SimpleTwitter
+//  YouTubeViewController.m
+//  YouTube
 //
 //  Created by Clemens Wagner on 07.06.12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "TwitterViewController.h"
+#import "YouTubeViewController.h"
 #import "JSONKit.h"
 #import "NSString+URLTools.h"
+#import <QuartzCore/QuartzCore.h>
 
-@interface TwitterViewController ()
+@interface YouTubeViewController ()
 
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (nonatomic, copy) NSArray *tweets;
+@property (nonatomic, copy) NSArray *items;
 
 - (NSURL *)createURL;
-- (void)updateTweets;
+- (void)updateItems;
 
 @end
 
-@implementation TwitterViewController
+@implementation YouTubeViewController
 
 @synthesize searchBar;
-@synthesize tweets;
+@synthesize items;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,19 +34,19 @@
 - (void)viewDidUnload {
     [super viewDidUnload];
     self.searchBar = nil;
-    self.tweets = nil;
+    self.items = nil;
 }
 
 - (void)viewWillAppear:(BOOL)inAnimated {
     [super viewWillAppear:inAnimated];
-    [self updateTweets];
+    [self updateItems];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)inInterfaceOrientation {
     return YES;
 }
 
-- (void)updateTweets {
+- (void)updateItems {
     NSData *theData = [NSData dataWithContentsOfURL:self.createURL];
     NSError *theError = nil;
     NSDictionary *theResult = 
@@ -55,13 +56,13 @@
     [NSJSONSerialization JSONObjectWithData:theData options:0 error:&theError];
 #endif
     
-    self.tweets = [theResult valueForKey:@"results"];
+    self.items = [theResult valueForKeyPath:@"feed.entry"];
     [self.tableView reloadData];
 }
 
 - (NSURL *)createURL {
     NSString *theQuery = [self.searchBar.text encodedStringForURLWithEncoding:kCFStringEncodingUTF8];
-    NSString *theURL = [NSString stringWithFormat:@"http://search.twitter.com/search.json?q=%@", theQuery];
+    NSString *theURL = [NSString stringWithFormat:@"http://gdata.youtube.com/feeds/api/videos?alt=json&q=%@", theQuery];
                         
     NSLog(@"URL = %@", theURL);
     return [NSURL URLWithString:theURL];
@@ -73,7 +74,7 @@
     CGPoint theOffset = inScrollView.contentOffset;
     
     if(theOffset.y < -CGRectGetHeight(inScrollView.frame) / 4.0) {
-        [self updateTweets];
+        [self updateItems];
     }
 }
 
@@ -84,15 +85,15 @@
 }
 
 - (NSInteger)tableView:(UITableView *)inTableView numberOfRowsInSection:(NSInteger)inSection {
-    return [self.tweets count];
+    return [self.items count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)inTableView cellForRowAtIndexPath:(NSIndexPath *)inIndexPath {
     UITableViewCell *theCell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    NSDictionary *theItem = [self.tweets objectAtIndex:inIndexPath.row];
+    NSDictionary *theItem = [self.items objectAtIndex:inIndexPath.row];
 
-    theCell.textLabel.text = [theItem objectForKey:@"from_user"];
-    theCell.detailTextLabel.text = [theItem objectForKey:@"text"];
+    theCell.textLabel.text = [theItem valueForKeyPath:@"title.$t"];
+    theCell.detailTextLabel.text = [theItem valueForKeyPath:@"content.$t"];
     return theCell;
 }
 
@@ -100,7 +101,7 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)inSearchBar {
     [inSearchBar endEditing:YES];
-    [self updateTweets];
+    [self updateItems];
 }
 
 @end

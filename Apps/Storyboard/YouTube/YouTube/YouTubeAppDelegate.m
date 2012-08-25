@@ -1,14 +1,14 @@
 //
-//  TwitterAppDelegate.m
-//  SimpleTwitter
+//  YouTubeAppDelegate.m
+//  YouTube
 //
 //  Created by Clemens Wagner on 07.06.12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "TwitterAppDelegate.h"
+#import "YouTubeAppDelegate.h"
 
-@implementation TwitterAppDelegate
+@implementation YouTubeAppDelegate
 
 @synthesize window;
 
