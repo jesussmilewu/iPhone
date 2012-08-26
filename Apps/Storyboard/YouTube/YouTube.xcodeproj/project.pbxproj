@@ -17,7 +17,6 @@
 		AB21AF521581109A00472417 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB21AF501581109A00472417 /* MainStoryboard.storyboard */; };
 		AB21AF551581109A00472417 /* YouTubeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB21AF541581109A00472417 /* YouTubeViewController.m */; };
 		AB21AF60158111C500472417 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = AB21AF5D158111C500472417 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		AB52BAD115E95A96007E39D6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB52BAD015E95A96007E39D6 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +39,6 @@
 		AB21AF5C158111C500472417 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		AB21AF5D158111C500472417 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		AB21AF5E158111C500472417 /* README-JSONKit.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "README-JSONKit.md"; sourceTree = "<group>"; };
-		AB52BAD015E95A96007E39D6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,7 +46,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB52BAD115E95A96007E39D6 /* QuartzCore.framework in Frameworks */,
 				AB21AF3F1581109A00472417 /* UIKit.framework in Frameworks */,
 				AB21AF411581109A00472417 /* Foundation.framework in Frameworks */,
 				AB21AF431581109A00472417 /* CoreGraphics.framework in Frameworks */,
@@ -61,7 +58,6 @@
 		AB21AF2F1581109A00472417 = {
 			isa = PBXGroup;
 			children = (
-				AB52BAD015E95A96007E39D6 /* QuartzCore.framework */,
 				AB21AF441581109A00472417 /* YouTube */,
 				AB21AF3D1581109A00472417 /* Frameworks */,
 				AB21AF3B1581109A00472417 /* Products */,

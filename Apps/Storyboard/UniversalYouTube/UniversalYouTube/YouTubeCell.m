@@ -1,22 +1,22 @@
 //
-//  TweetCell.m
-//  UniversalSimpleTwitter
+//  YouTubeCell.m
+//  UniversalYouTube
 //
 //  Created by Clemens Wagner on 18.07.12.
 //  Copyright (c) 2012 Clemens Wagner. All rights reserved.
 //
 
-#import "TweetCell.h"
+#import "YouTubeCell.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface TweetCell()
+@interface YouTubeCell()
 
 @property(nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property(nonatomic, weak) IBOutlet UITextView *textView;
 
 @end
 
-@implementation TweetCell
+@implementation YouTubeCell
 
 static const CGFloat kCellTitleHeight = 24.0;
 
@@ -45,11 +45,11 @@ static const CGFloat kCellTitleHeight = 24.0;
 
         theLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
         theLabel.textAlignment = NSTextAlignmentCenter;
-        theLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14.0];
+        theLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12.0];
         theLabel.backgroundColor = [UIColor redColor];
         theTextView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         theTextView.textAlignment = NSTextAlignmentLeft;
-        theTextView.font = [UIFont fontWithName:@"Helvetica" size:14.0];
+        theTextView.font = [UIFont fontWithName:@"Helvetica" size:11.0];
         theTextView.editable = NO;
         theTextView.backgroundColor = [UIColor clearColor];
         theTextView.userInteractionEnabled = NO;

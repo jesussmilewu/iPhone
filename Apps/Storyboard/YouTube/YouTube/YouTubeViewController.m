@@ -9,7 +9,6 @@
 #import "YouTubeViewController.h"
 #import "JSONKit.h"
 #import "NSString+URLTools.h"
-#import <QuartzCore/QuartzCore.h>
 
 @interface YouTubeViewController ()
 

@@ -1,14 +1,14 @@
 //
-//  UniversalSimpleTwitterAppDelegate.m
-//  UniversalSimpleTwitter
+//  UniversalYouTubeAppDelegate.m
+//  UniversalYouTube
 //
 //  Created by Clemens Wagner on 15.07.12.
 //  Copyright (c) 2012 Clemens Wagner. All rights reserved.
 //
 
-#import "UniversalSimpleTwitterAppDelegate.h"
+#import "UniversalYouTubeAppDelegate.h"
 
-@implementation UniversalSimpleTwitterAppDelegate
+@implementation UniversalYouTubeAppDelegate
 
 @synthesize window;
 

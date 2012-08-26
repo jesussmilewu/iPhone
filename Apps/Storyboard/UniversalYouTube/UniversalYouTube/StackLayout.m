@@ -1,6 +1,6 @@
 //
 //  StackLayout.m
-//  UniversalSimpleTwitter
+//  UniversalYouTube
 //
 //  Created by Clemens Wagner on 21.07.12.
 //  Copyright (c) 2012 Clemens Wagner. All rights reserved.
@@ -125,8 +125,8 @@ static const CGFloat kFooterHeight = 44.0;
     CGFloat theWidth = CGRectGetWidth(self.collectionView.bounds);
     UICollectionViewLayoutAttributes *theAttributes = [UICollectionViewLayoutAttributes layoutAttributesForDecorationViewOfKind:inKind withIndexPath:inIndexPath];
     
-    theAttributes.size = CGSizeMake(70.0, 70.0);
-    theAttributes.center = CGPointMake(theWidth - 70.0, 114.0);
+    theAttributes.size = CGSizeMake(230.0, 113.0);
+    theAttributes.center = CGPointMake(theWidth - 130.0, 114.0);
     return theAttributes;
 }
 

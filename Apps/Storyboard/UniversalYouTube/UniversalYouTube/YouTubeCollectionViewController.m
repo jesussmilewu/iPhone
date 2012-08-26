@@ -1,36 +1,33 @@
 //
-//  TwitterCollectionViewController.m
-//  UniversalSimpleTwitter
+//  YouTubeCollectionViewController.m
+//  UniversalYouTube
 //
 //  Created by Clemens Wagner on 17.07.12.
 //  Copyright (c) 2012 Clemens Wagner. All rights reserved.
 //
 
-#import "TwitterCollectionViewController.h"
+#import "YouTubeCollectionViewController.h"
 #import "NSString+URLTools.h"
-#import "TweetCell.h"
+#import "YouTubeCell.h"
 #import "StackLayout.h"
 
-@interface TwitterCollectionViewController ()<UICollectionViewDelegateFlowLayout, UISearchBarDelegate>
+@interface YouTubeCollectionViewController ()<UICollectionViewDelegateFlowLayout, UISearchBarDelegate>
 
-@property (copy, nonatomic) NSArray *tweets;
-@property (copy, nonatomic) NSDictionary *colors;
+@property (copy, nonatomic) NSArray *items;
 
 @end
 
-@implementation TwitterCollectionViewController
+@implementation YouTubeCollectionViewController
 
 @synthesize query;
-@synthesize tweets;
-@synthesize colors;
+@synthesize items;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     UICollectionView *theView = self.collectionView;
     
     self.query = @"iOS";
-    self.colors = @{ @"de" : [UIColor greenColor], @"en" : [UIColor yellowColor], @"fr" : [UIColor orangeColor] };
-    [theView registerClass:[TweetCell class] forCellWithReuseIdentifier:@"Tweet"];
+    [theView registerClass:[YouTubeCell class] forCellWithReuseIdentifier:@"YouTube"];
     if(![theView.collectionViewLayout isKindOfClass:[UICollectionViewFlowLayout class]]) {
         UINib *theNib = [UINib nibWithNibName:@"Searchbar" bundle:nil];
         
@@ -40,15 +37,15 @@
         theNib = [UINib nibWithNibName:@"Logo" bundle:nil];
         [theView.collectionViewLayout registerNib:theNib forDecorationViewOfKind:@"Logo"];
     }
-    [self updateTweets];
+    [self updateItems];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    self.tweets = nil;
+    self.items = nil;
 }
 
-- (void)updateTweets {
+- (void)updateItems {
     UIApplication *theApplication = [UIApplication sharedApplication];
     NSURLRequest *theRequest = [NSURLRequest requestWithURL:self.createURL];
     NSOperationQueue *theQueue = [NSOperationQueue mainQueue];
@@ -62,7 +59,7 @@
             NSError *theError = nil;
             NSDictionary *theResult = [NSJSONSerialization JSONObjectWithData:inData options:0 error:&theError];
         
-            self.tweets = [theResult valueForKey:@"results"];
+            self.items = [theResult valueForKeyPath:@"feed.entry"];
             [self.collectionView reloadData];
             theApplication.networkActivityIndicatorVisible = NO;
         }
@@ -70,12 +67,12 @@
 }
 
 - (IBAction)refresh:(id)inSender {
-    [self updateTweets];
+    [self updateItems];
 }
 
 - (NSURL *)createURL {
     NSString *theQuery = [self.query encodedStringForURLWithEncoding:kCFStringEncodingUTF8];
-    NSString *theURL = [NSString stringWithFormat:@"http://search.twitter.com/search.json?q=%@&rpp=20", theQuery];
+    NSString *theURL = [NSString stringWithFormat:@"http://gdata.youtube.com/feeds/api/videos?orderby=published&alt=json&q=%@", theQuery];
     
     NSLog(@"URL = %@", theURL);
     return [NSURL URLWithString:theURL];
@@ -88,19 +85,27 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)inCollectionView numberOfItemsInSection:(NSInteger)inSection {
-    return self.tweets.count;
+    return self.items.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)inCollectionView
                   cellForItemAtIndexPath:(NSIndexPath *)inIndexPath {
-    TweetCell *theCell = [inCollectionView dequeueReusableCellWithReuseIdentifier:@"Tweet" forIndexPath:inIndexPath];
-    NSDictionary *theItem = [self.tweets objectAtIndex:inIndexPath.row];
-    NSString *theCode = [theItem objectForKey:@"iso_language_code"];
-    UIColor *theColor = [self.colors objectForKey:theCode];
+    YouTubeCell *theCell = [inCollectionView dequeueReusableCellWithReuseIdentifier:@"YouTube" forIndexPath:inIndexPath];
+    NSDictionary *theItem = [self.items objectAtIndex:inIndexPath.row];
+    float theRating = [[theItem valueForKeyPath:@"gd$rating.average"] floatValue];
+    UIColor *theColor;
     
-    theCell.title = [theItem objectForKey:@"from_user"];
-    theCell.text = [theItem objectForKey:@"text"];
-    theCell.titleColor = theColor ? theColor : [UIColor redColor];
+    if(theRating < 1) {
+        theColor = [UIColor darkGrayColor];
+    }
+    else {
+        float theValue = (theRating - 1.0) / 4.0;
+        
+        theColor = [UIColor colorWithRed:1.0 - theValue green:theValue blue:0.0 alpha:1.0];
+    }
+    theCell.title = [theItem valueForKeyPath:@"title.$t"];
+    theCell.text = [theItem valueForKeyPath:@"content.$t"];
+    theCell.titleColor = theColor;
     return theCell;
 }
 
@@ -138,11 +143,11 @@
 #pragma mark UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)inCollectionView layout:(UICollectionViewLayout *)inCollectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)inIndexPath {
-    TweetCell *theCell = [[TweetCell alloc] initWithFrame:CGRectNull];
-    NSDictionary *theItem = [self.tweets objectAtIndex:inIndexPath.row];
-    CGSize theSize = CGSizeMake(244.0, MAXFLOAT);
+    YouTubeCell *theCell = [[YouTubeCell alloc] initWithFrame:CGRectNull];
+    NSDictionary *theItem = [self.items objectAtIndex:inIndexPath.row];
+    CGSize theSize = CGSizeMake(244.0, 300.0);
     
-    theCell.text = [theItem objectForKey:@"text"];
+    theCell.text = [theItem valueForKeyPath:@"content.$t"];
     return CGSizeMake(244.0, [theCell sizeThatFits:theSize].height);
 }
 
@@ -151,7 +156,7 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)inSearchBar {
     [inSearchBar endEditing:YES];
     self.query = inSearchBar.text;
-    [self updateTweets];
+    [self updateItems];
 }
 
 @end
