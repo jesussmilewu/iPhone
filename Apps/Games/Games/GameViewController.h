@@ -2,12 +2,10 @@
 #import <CoreData/CoreData.h>
 
 
-@interface GameViewController : UIViewController {
-    @private
-}
+@interface GameViewController : UIViewController
 
-@property (nonatomic, retain) IBOutlet NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, retain) IBOutlet UITabBarItem *highscoreItem;
+@property (nonatomic, strong) IBOutlet NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, weak) IBOutlet UITabBarItem *highscoreItem;
 
 - (NSString *)game;
 - (void)saveScore:(NSUInteger)inScore;

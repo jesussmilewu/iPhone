@@ -31,7 +31,10 @@ NSString * const kFrontViewColors[] = { @"redColor", @"greenColor", @"blueColor"
     CGPoint theCenter = CGPointMake(theSize.width / 2.0, theSize.height / 2.0);
     CGFloat theRadius = theSize.height * 0.4;
     CGContextRef theContext = UIGraphicsGetCurrentContext();
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     UIColor *theColor = [[UIColor class] performSelector:theColorSelector];
+#pragma clang diagnostic pop
     
     theCount += 3;
     CGContextSaveGState(theContext);

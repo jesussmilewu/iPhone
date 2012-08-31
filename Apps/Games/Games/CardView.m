@@ -31,9 +31,6 @@
     [self setupView];
 }
 
-- (void)dealloc {
-    [super dealloc];
-}
 
 - (void)applyBorder:(UIView *)inView {
     CALayer *theLayer = inView.layer;
@@ -54,13 +51,11 @@
     theBackView.frame = self.bounds;
     [self applyBorder:theBackView];
     [self addSubview:theBackView];
-    [theBackView release];
     theFrontView.hidden = YES;
     theFrontView.userInteractionEnabled = NO;
     theFrontView.backgroundColor = [UIColor whiteColor];
     [self applyBorder:theFrontView];
     [self addSubview:theFrontView];
-    [theFrontView release];    
 }
 
 - (FrontView *)frontView {

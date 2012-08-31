@@ -11,9 +11,9 @@
 
 @interface GradientButton()
 
-@property (nonatomic, retain) CAGradientLayer *backgroundLayer;
-@property (nonatomic, retain, readonly) NSArray *normalColors;
-@property (nonatomic, retain, readonly) NSArray *highligthedColors;
+@property (nonatomic, strong) CAGradientLayer *backgroundLayer;
+@property (nonatomic, strong, readonly) NSArray *normalColors;
+@property (nonatomic, strong, readonly) NSArray *highligthedColors;
 
 @end
 
@@ -21,10 +21,6 @@
 
 @synthesize backgroundLayer;
 
-- (void)dealloc {
-    self.backgroundLayer = nil;
-    [super dealloc];
-}
 
 - (void)awakeFromNib {
     [super awakeFromNib];

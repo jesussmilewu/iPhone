@@ -18,7 +18,7 @@ const NSUInteger kMemorySize = 6 * 6;
 
 @interface MemoryViewController()
 
-@property (nonatomic, retain, readwrite) Memory *memory;
+@property (nonatomic, strong, readwrite) Memory *memory;
 
 - (void)updateViewFromModel;
 
@@ -38,11 +38,7 @@ const NSUInteger kMemorySize = 6 * 6;
 
 - (void)dealloc {
     [self.memory removeObserver:self forKeyPath:@"flipCount"];
-    self.memory = nil;
-    self.memoryView = nil;
-    self.scoreView = nil;
     self.managedObjectContext = nil;
-    [super dealloc];
 }
 
 - (void)awakeFromNib {
@@ -78,7 +74,6 @@ const NSUInteger kMemorySize = 6 * 6;
             theCardView.tag = theRow * kMemoryRows + theColumn;
             [theView addSubview:theCardView];
             [theCardView addTarget:self action:theAction forControlEvents:UIControlEventTouchUpInside];
-            [theCardView release];
         }
     }
     [self.memory clear];

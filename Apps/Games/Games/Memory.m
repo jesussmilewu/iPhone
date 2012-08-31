@@ -35,7 +35,7 @@ NSString * const kMemoryUserInfoCardsKey = @"kMemoryUserInfoCardsKey";
 @synthesize solved;
 
 + (id)memoryWithSize:(NSUInteger)inSize {
-    return [[[self alloc] initWithSize:inSize] autorelease];
+    return [[self alloc] initWithSize:inSize];
 }
 
 - (id)init {
@@ -61,9 +61,6 @@ NSString * const kMemoryUserInfoCardsKey = @"kMemoryUserInfoCardsKey";
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:nil object:nil];
-    self.cards = nil;
-    self.flippedCards = nil;
-    [super dealloc];
 }
 
 - (NSUInteger)cardCount {
@@ -110,7 +107,7 @@ NSString * const kMemoryUserInfoCardsKey = @"kMemoryUserInfoCardsKey";
     NSArray *theCards = self.flippedCards;
     
     if(theCards.count == 2) {
-        if([[theCards objectAtIndex:0] type] == [[theCards objectAtIndex:1] type]) {
+        if([(Card *)[theCards objectAtIndex:0] type] == [(Card *)[theCards objectAtIndex:1] type]) {
             NSDictionary *theInfo = [NSDictionary dictionaryWithObjectsAndKeys:theCards, kMemoryUserInfoCardsKey, nil];
             [theCards enumerateObjectsUsingBlock:^(id inCard, NSUInteger inIndex, BOOL *outStop) {
                 [inCard setSolved:YES];                

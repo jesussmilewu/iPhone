@@ -8,9 +8,9 @@ static NSString * const kScoreFilters[] = {
 
 @interface HighScoreViewController()<NSFetchedResultsControllerDelegate>
 
-@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic, retain) NSData *cellData;
-@property (nonatomic, retain) NSDateFormatter *dateFormatter;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong) NSData *cellData;
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
 
 @end
 
@@ -22,15 +22,6 @@ static NSString * const kScoreFilters[] = {
 @synthesize cellData;
 @synthesize dateFormatter;
 
-- (void)dealloc {
-    self.filterControl = nil;
-    self.managedObjectContext = nil;
-    self.fetchedResultsController = nil;
-    self.cellData = nil;
-    self.dateFormatter = nil;
-    [super dealloc];
-}
-
 - (NSManagedObjectContext *)managedObjectContext {
     if(managedObjectContext == nil) {
         NSManagedObjectContext *theContext = [[NSManagedObjectContext alloc] init];
@@ -38,7 +29,6 @@ static NSString * const kScoreFilters[] = {
         
         theContext.persistentStoreCoordinator = theDelegate.storeCoordinator;
         self.managedObjectContext = theContext;
-        [theContext release];
     }
     return managedObjectContext;
 }
@@ -51,7 +41,6 @@ static NSString * const kScoreFilters[] = {
     theFormatter.locale = [NSLocale currentLocale];
     theFormatter.dateFormat = @"d. MMM yyyy HH:mm:ss";
     self.dateFormatter = theFormatter;
-    [theFormatter release];
     self.tableView.allowsSelection = NO;
     [theCenter addObserver:self 
                   selector:@selector(managedObjectContextDidSave:)
@@ -102,7 +91,7 @@ static NSString * const kScoreFilters[] = {
     if(theFilter) {
         theFetch.predicate = [NSPredicate predicateWithFormat:@"game = %@", theFilter];
     }
-    return [theFetch autorelease];
+    return theFetch;
 }
 
 - (IBAction)filterChanged {
@@ -115,7 +104,6 @@ static NSString * const kScoreFilters[] = {
         
         theController.delegate = self;
         self.fetchedResultsController = theController;
-        [theController release];
         if(![self.fetchedResultsController performFetch:&theError]) {
             NSLog(@"filterChanged %@", theError);
         }
@@ -149,7 +137,6 @@ static NSString * const kScoreFilters[] = {
     
     if(theCell == nil) {
         theCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:theIdentifier];
-        [theCell autorelease];
     }
     [self applyScore:theScore toCell:theCell];
     return theCell;

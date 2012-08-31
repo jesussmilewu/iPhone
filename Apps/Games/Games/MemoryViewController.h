@@ -6,9 +6,9 @@
     @private
 }
 
-@property (nonatomic, retain, readonly) Memory *memory;
-@property (nonatomic, retain) IBOutlet UIView *memoryView;
-@property (nonatomic, retain) IBOutlet NumberView *scoreView;
+@property (nonatomic, strong, readonly) Memory *memory;
+@property (nonatomic, weak) IBOutlet UIView *memoryView;
+@property (nonatomic, weak) IBOutlet NumberView *scoreView;
 
 - (IBAction)clear;
 - (IBAction)help;

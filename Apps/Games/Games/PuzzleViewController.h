@@ -7,10 +7,10 @@
     @private
 }
 
-@property (nonatomic, retain) Puzzle *puzzle;
-@property (nonatomic, retain) UIImage *image;
-@property (nonatomic, retain) IBOutlet UIView *puzzleView;
-@property (nonatomic, retain) IBOutlet NumberView *scoreView;
+@property (nonatomic, strong) Puzzle *puzzle;
+@property (nonatomic, strong) UIImage *image;
+@property (nonatomic, weak) IBOutlet UIView *puzzleView;
+@property (nonatomic, weak) IBOutlet NumberView *scoreView;
 
 - (IBAction)shuffle;
 - (IBAction)clear;

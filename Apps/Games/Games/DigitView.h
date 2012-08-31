@@ -10,7 +10,7 @@ typedef enum {
     @private
 }
 
-@property (nonatomic, retain) UIFont *font;
+@property (nonatomic, strong) UIFont *font;
 @property (nonatomic) NSUInteger digit;
 
 - (void)setDigit:(NSUInteger)inDigit direction:(DigitViewAnimationDirection)inDirection;

@@ -11,9 +11,7 @@
 extern NSString * const kCardDidFlippedNotification;
 extern NSString * const kCardDidSolvedNotification;
 
-@interface Card : NSObject {
-    @private
-}
+@interface Card : NSObject
 
 @property (nonatomic, readonly) NSUInteger type;
 @property (nonatomic) BOOL showsFrontSide;

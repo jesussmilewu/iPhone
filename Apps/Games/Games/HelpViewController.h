@@ -1,9 +1,7 @@
 #import <UIKit/UIKit.h>
 
-@interface HelpViewController : UIViewController<UIWebViewDelegate> {
-    @private
-}
+@interface HelpViewController : UIViewController<UIWebViewDelegate>
 
-@property (nonatomic, retain) IBOutlet UIWebView *webView;
+@property (nonatomic, weak) IBOutlet UIWebView *webView;
 
 @end

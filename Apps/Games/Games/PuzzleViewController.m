@@ -20,7 +20,7 @@ const float kVerticalMaximalThreshold = 0.5;
 @interface PuzzleViewController()<UIAccelerometerDelegate>
 
 @property (nonatomic) PuzzleDirection lastDirection;
-@property (nonatomic, retain) NSUndoManager *undoManager;
+@property (nonatomic, strong) NSUndoManager *undoManager;
 
 - (void)buildView;
 
@@ -36,19 +36,10 @@ const float kVerticalMaximalThreshold = 0.5;
 @synthesize undoManager;
 @synthesize managedObjectContext;
 
-- (void)dealloc {
-    self.puzzle = nil;
-    self.puzzleView = nil;
-    self.image = nil;
-    self.scoreView = nil;
-    self.undoManager = nil;
-    self.managedObjectContext = nil;
-    [super dealloc];
-}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.undoManager = [[[NSUndoManager alloc] init] autorelease];
+    self.undoManager = [[NSUndoManager alloc] init];
 }
 
 - (NSString *)game {
@@ -60,7 +51,6 @@ const float kVerticalMaximalThreshold = 0.5;
     
     theRecognizer.direction = inDirection;
     [self.puzzleView addGestureRecognizer:theRecognizer];
-    [theRecognizer release];
 }
 
 - (void)viewDidLoad {
@@ -156,7 +146,7 @@ const float kVerticalMaximalThreshold = 0.5;
             theFrame.origin.x = theColumn * CGRectGetWidth(theFrame);
             if(theImageView == nil) {
                 theImageView = [[UIImageView alloc] initWithFrame:theFrame];
-                [thePuzzleView addSubview:[theImageView autorelease]];
+                [thePuzzleView addSubview:theImageView];
             }
             if(theIndex == thePuzzle.freeIndex) {
                 

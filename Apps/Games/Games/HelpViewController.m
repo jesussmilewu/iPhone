@@ -4,8 +4,7 @@
 @synthesize webView;
 
 - (void)dealloc {
-    self.webView = nil;
-    [super dealloc];
+    self.webView.delegate = nil;
 }
 
 - (void)viewDidLoad {
@@ -17,8 +16,8 @@
     [self.webView loadData:theData MIMEType:@"text/html" textEncodingName:@"UTF-8" baseURL:theBaseURL];
 }
 
-- (void)viewDidUnload {
-    self.webView = nil;
+- (void)didReceiveMemoryWarning {
+    self.webView.delegate = nil;
     [super viewDidUnload];
 }
 

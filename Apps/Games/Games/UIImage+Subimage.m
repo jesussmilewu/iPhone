@@ -33,7 +33,7 @@
             [theResult addObject:[self subimageWithRect:theRect]];
         }
     }
-    return [[theResult copy] autorelease];
+    return [theResult copy];
 }
 
 @end

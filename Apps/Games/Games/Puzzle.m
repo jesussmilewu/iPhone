@@ -41,7 +41,7 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
 @synthesize solved;
 
 + (id)puzzleWithLength:(NSUInteger)inLength {
-    return [[[self alloc] initWithLength:inLength] autorelease];
+    return [[self alloc] initWithLength:inLength];
 }
 
 - (id)initWithLength:(NSUInteger)inLength {
@@ -62,7 +62,6 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
     free(self.items);
     self.items = NULL;
     self.undoManager = nil;
-    [super dealloc];
 }
 
 - (void)checkSolved {
@@ -96,6 +95,20 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
     [self checkSolved];
 }
 
+- (PuzzleDirection)tiltDirectionForIndex:(NSUInteger)inIndex {
+    NSUInteger theFreeIndex = self.freeIndex;
+    
+    if(inIndex == theFreeIndex) {
+        return PuzzleNoDirection;
+    }
+    else if([self rowOfIndex:theFreeIndex isEqualToRowOfIndex:inIndex]) {
+        return inIndex < theFreeIndex ? PuzzleDirectionRight : PuzzleDirectionLeft;
+    }
+    else {
+        return inIndex < theFreeIndex ? PuzzleDirectionDown : PuzzleDirectionUp;
+    }
+}
+
 - (NSUInteger)nextIndex {
     NSUInteger theSize = self.size;
     NSUInteger theIndex = 0;
@@ -103,20 +116,21 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
     
     while(theDirection == PuzzleNoDirection) {
         theIndex = rand() % theSize;
-        theDirection = [self bestDirectionForIndex:theIndex];
+        theDirection = [self tiltDirectionForIndex:theIndex];
     }
     return theIndex;
 }
+
 - (void)shuffle {
     NSUInteger theSize = self.size;
 
     for(NSUInteger i = 0; i < 4 * theSize; ++i) {
         NSUInteger theShuffleIndex = self.nextIndex;
-        PuzzleDirection theDirection = [self bestDirectionForIndex:theShuffleIndex];
+        PuzzleDirection theDirection = [self tiltDirectionForIndex:theShuffleIndex];
         
         while(theDirection != PuzzleNoDirection) {
             [self tiltToDirection:theDirection withCountOffset:0];
-            theDirection = [self bestDirectionForIndex:theShuffleIndex];
+            theDirection = [self tiltDirectionForIndex:theShuffleIndex];
         }
     }
     self.moveCount = 0;
@@ -157,20 +171,6 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
                              nil];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:inName object:self userInfo:theInfo];
-}
-
-- (PuzzleDirection)bestDirectionForIndex:(NSUInteger)inIndex {
-    NSUInteger theFreeIndex = self.freeIndex;
-
-    if(inIndex == theFreeIndex) {
-        return PuzzleNoDirection;
-    }
-    else if([self rowOfIndex:theFreeIndex isEqualToRowOfIndex:inIndex]) {
-        return inIndex < theFreeIndex ? PuzzleDirectionRight : PuzzleDirectionLeft;
-    }
-    else {
-        return inIndex < theFreeIndex ? PuzzleDirectionDown : PuzzleDirectionUp;
-    }
 }
 
 - (BOOL)tiltToDirection:(PuzzleDirection)inDirection withCountOffset:(int)inOffset {

@@ -18,9 +18,6 @@
 
 @synthesize value;
 
-- (void)dealloc {
-    [super dealloc];
-}
 
 - (void)awakeFromNib {
     [super awakeFromNib];

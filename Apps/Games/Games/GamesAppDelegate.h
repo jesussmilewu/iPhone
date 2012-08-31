@@ -1,15 +1,13 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@interface GamesAppDelegate : NSObject <UIApplicationDelegate> {
+@interface GamesAppDelegate : NSObject<UIApplicationDelegate>
 
-}
+@property (nonatomic, strong) IBOutlet UIWindow *window;
+@property (nonatomic, strong) IBOutlet UITabBarController *viewController;
+@property (nonatomic, strong) IBOutlet NSManagedObjectContext *managedObjectContext;
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet UITabBarController *viewController;
-@property (nonatomic, retain) IBOutlet NSManagedObjectContext *managedObjectContext;
-
-@property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
-@property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *storeCoordinator;
+@property (nonatomic, strong, readonly) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *storeCoordinator;
 
 @end

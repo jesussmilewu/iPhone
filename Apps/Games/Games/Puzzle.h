@@ -34,7 +34,7 @@ extern NSString * const kPuzzleToIndexKey;
 @property (nonatomic, readonly) NSUInteger freeIndex;
 @property (nonatomic, readonly) BOOL solved;
 @property (nonatomic, readonly) NSUInteger moveCount;
-@property (nonatomic, assign) NSUndoManager *undoManager;
+@property (nonatomic, weak) NSUndoManager *undoManager;
 
 + (id)puzzleWithLength:(NSUInteger)inLength;
 - (id)initWithLength:(NSUInteger)inLength;
@@ -42,6 +42,6 @@ extern NSString * const kPuzzleToIndexKey;
 - (BOOL)tiltToDirection:(PuzzleDirection)inDirection;
 - (BOOL)moveItemAtIndex:(NSUInteger)inIndex toDirection:(PuzzleDirection)inDirection;
 - (NSUInteger)valueAtIndex:(NSUInteger)inIndex;
-- (PuzzleDirection)bestDirectionForIndex:(NSUInteger)inIndex;
+- (PuzzleDirection)tiltDirectionForIndex:(NSUInteger)inIndex;
 
 @end

@@ -13,9 +13,9 @@
 @interface Score : NSManagedObject {
 @private
 }
-@property (nonatomic, retain) NSNumber * score;
-@property (nonatomic, retain) NSDate * creationTime;
-@property (nonatomic, retain) NSDate * updateTime;
-@property (nonatomic, retain) NSString * game;
+@property (nonatomic, strong) NSNumber * score;
+@property (nonatomic, strong) NSDate * creationTime;
+@property (nonatomic, strong) NSDate * updateTime;
+@property (nonatomic, strong) NSString * game;
 
 @end

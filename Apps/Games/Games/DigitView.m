@@ -3,11 +3,9 @@
 
 static NSString * const kDigitKey = @"digit";
 
-@interface DigitLayer : CALayer {
-    @private
-}
+@interface DigitLayer : CALayer
 
-@property (nonatomic, retain) NSNumber *digit;
+@property (nonatomic, strong) NSNumber *digit;
 
 @end
 
@@ -19,10 +17,6 @@ static NSString * const kDigitKey = @"digit";
     return [DigitLayer class];
 }
 
-- (void)dealloc {
-	self.font = nil;
-	[super dealloc];
-}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -151,7 +145,7 @@ static NSString * const kDigitKey = @"digit";
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"[0x%x, %.3f, %d]", self, self.digit, self.needsDisplay]; 
+    return [NSString stringWithFormat:@"[0x%p, %@, %d]", self, self.digit, self.needsDisplay]; 
 }
 
 @end

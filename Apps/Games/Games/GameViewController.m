@@ -7,11 +7,6 @@
 @synthesize managedObjectContext;
 @synthesize highscoreItem;
 
-- (void)dealloc {
-    self.managedObjectContext = nil;
-    self.highscoreItem = nil;
-    [super dealloc];
-}
 
 - (NSString *)game {
     return nil;

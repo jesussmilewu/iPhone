@@ -3,8 +3,8 @@
 
 @interface GamesAppDelegate()
 
-@property (nonatomic, retain, readwrite) NSManagedObjectModel *managedObjectModel;
-@property (nonatomic, retain, readwrite) NSPersistentStoreCoordinator *storeCoordinator;
+@property (nonatomic, strong, readwrite) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, strong, readwrite) NSPersistentStoreCoordinator *storeCoordinator;
 
 @end
 
@@ -17,14 +17,6 @@
 @synthesize managedObjectModel;
 @synthesize storeCoordinator;
 
-- (void)dealloc {
-    self.viewController = nil;
-    self.window = nil;
-    self.managedObjectContext = nil;
-    self.managedObjectModel = nil;
-    self.storeCoordinator = nil;
-    [super dealloc];
-}
 
 - (BOOL)application:(UIApplication *)inApplication didFinishLaunchingWithOptions:(NSDictionary *)inLaunchOptions {
     self.managedObjectContext.persistentStoreCoordinator = self.storeCoordinator;
@@ -49,7 +41,7 @@
     if(managedObjectModel == nil) {
         NSURL *theURL = [[NSBundle mainBundle] URLForResource:@"Games" withExtension:@"momd"];
         
-        self.managedObjectModel = [[[NSManagedObjectModel alloc] initWithContentsOfURL:theURL] autorelease];    
+        self.managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:theURL];    
     }
     return managedObjectModel;
 }
@@ -67,7 +59,6 @@
         else {
             NSLog(@"storeCoordinator: %@", theError);
         }
-        [theCoordinator release];
     }
     return storeCoordinator;
 }

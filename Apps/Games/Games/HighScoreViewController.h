@@ -1,12 +1,10 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@interface HighScoreViewController : UITableViewController {
-    @private
-}
+@interface HighScoreViewController : UITableViewController
 
-@property (nonatomic, retain) IBOutlet NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, retain) IBOutlet UISegmentedControl *filterControl;
+@property (nonatomic, weak) IBOutlet NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, weak) IBOutlet UISegmentedControl *filterControl;
 
 - (IBAction)filterChanged;
 - (IBAction)clear;
