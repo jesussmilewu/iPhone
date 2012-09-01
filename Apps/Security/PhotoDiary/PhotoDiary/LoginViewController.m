@@ -35,10 +35,7 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     passwordSet = [[NSUserDefaults standardUserDefaults] boolForKey:@"passwordSet"];
-    if(passwordSet){
-        NSLog(@"Passwort gesetzt");
-        NSLog(@"Starte Login");
-    } else {
+    if(!passwordSet){
         NSLog(@"Passwort nicht gesetzt");
         NSLog(@"Starte Registrierung");
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
