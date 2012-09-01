@@ -11,8 +11,8 @@
 
 @interface PuzzleTests()
 
-@property (nonatomic, retain) Puzzle *puzzle;
-@property (nonatomic, retain) NSNotification *notification;
+@property (nonatomic, strong) Puzzle *puzzle;
+@property (nonatomic, strong) NSNotification *notification;
 
 @end
 

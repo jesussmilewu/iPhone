@@ -24,10 +24,7 @@ extern NSString * const kPuzzleDirectionKey;
 extern NSString * const kPuzzleFromIndexKey;
 extern NSString * const kPuzzleToIndexKey;
 
-@interface Puzzle : NSObject {
-    @private
-    NSInteger offsets[4];
-}
+@interface Puzzle : NSObject
 
 @property (nonatomic, readonly) NSUInteger length;
 @property (nonatomic, readonly) NSUInteger size;

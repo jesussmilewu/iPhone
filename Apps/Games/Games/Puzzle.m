@@ -31,7 +31,10 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
 
 @end
 
-@implementation Puzzle
+@implementation Puzzle {
+@private
+    NSInteger offsets[4];
+}
 
 @synthesize length;
 @synthesize items;
