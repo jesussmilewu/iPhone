@@ -1,8 +1,6 @@
 #import <UIKit/UIKit.h>
 
-@interface LayerViewController : UIViewController {
-    
-}
+@interface LayerViewController : UIViewController
 
 - (IBAction)updateSliderValue:(id)inSender;
 

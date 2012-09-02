@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB6380CA15F3D4E500199119 /* CALayer+AnimationPausing.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6380C915F3D4E500199119 /* CALayer+AnimationPausing.m */; };
 		ABB5B77D15ED499000E9EBE2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABB5B77C15ED499000E9EBE2 /* UIKit.framework */; };
 		ABB5B77F15ED499000E9EBE2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABB5B77E15ED499000E9EBE2 /* Foundation.framework */; };
 		ABB5B78115ED499000E9EBE2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABB5B78015ED499000E9EBE2 /* CoreGraphics.framework */; };
@@ -21,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AB6380C815F3D4E500199119 /* CALayer+AnimationPausing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+AnimationPausing.h"; sourceTree = "<group>"; };
+		AB6380C915F3D4E500199119 /* CALayer+AnimationPausing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+AnimationPausing.m"; sourceTree = "<group>"; };
 		ABB5B77815ED499000E9EBE2 /* FlipBookAnimation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlipBookAnimation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABB5B77C15ED499000E9EBE2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		ABB5B77E15ED499000E9EBE2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -93,6 +96,8 @@
 				ABB5B79115ED499000E9EBE2 /* FlipBookViewController.h */,
 				ABB5B79215ED499000E9EBE2 /* FlipBookViewController.m */,
 				ABB5B78315ED499000E9EBE2 /* Supporting Files */,
+				AB6380C815F3D4E500199119 /* CALayer+AnimationPausing.h */,
+				AB6380C915F3D4E500199119 /* CALayer+AnimationPausing.m */,
 			);
 			path = FlipBookAnimation;
 			sourceTree = "<group>";
@@ -177,6 +182,7 @@
 				ABB5B78915ED499000E9EBE2 /* main.m in Sources */,
 				ABB5B78D15ED499000E9EBE2 /* FlipBookAppDelegate.m in Sources */,
 				ABB5B79315ED499000E9EBE2 /* FlipBookViewController.m in Sources */,
+				AB6380CA15F3D4E500199119 /* CALayer+AnimationPausing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +298,7 @@
 				ABB5B79815ED499000E9EBE2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -7,6 +7,7 @@
 //
 
 #import "FlipBookViewController.h"
+#import "CALayer+AnimationPausing.h"
 #import <ImageIO/ImageIO.h>
 #import <QuartzCore/QuartzCore.h>
 
@@ -29,6 +30,7 @@
     theImageAnimation.values = theImages;
     theImageAnimation.repeatCount = HUGE_VALF;
     theImageAnimation.duration = 1.0;
+    theImageAnimation.calculationMode = kCAAnimationDiscrete;
     theAnimation.toValue = [NSNumber numberWithFloat:2 * M_PI];
     theAnimation.repeatCount = HUGE_VALF;
     theAnimation.duration = 8.0;
@@ -53,6 +55,13 @@
         [theResult addObject:(__bridge_transfer id)theImage];
     }
     return theResult;
+}
+
+- (IBAction)flipAnimation:(UIButton *)inButton {
+    CALayer *theLayer = self.animationView.layer;
+
+    theLayer.isPausing ? [theLayer resume] : [theLayer pause];
+    inButton.selected = theLayer.isPausing;
 }
 
 @end

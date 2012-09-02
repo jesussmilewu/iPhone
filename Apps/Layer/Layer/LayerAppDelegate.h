@@ -2,12 +2,9 @@
 
 @class LayerViewController;
 
-@interface LayerAppDelegate : NSObject <UIApplicationDelegate> {
+@interface LayerAppDelegate : NSObject <UIApplicationDelegate>
 
-}
-
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-
-@property (nonatomic, retain) IBOutlet LayerViewController *viewController;
+@property (nonatomic, strong) IBOutlet UIWindow *window;
+@property (nonatomic, strong) IBOutlet LayerViewController *viewController;
 
 @end

@@ -1,9 +1,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface PieView : UIView {
-    @private
-}
+@interface PieView : UIView
 
 @property (nonatomic) CGFloat part;
 

@@ -7,12 +7,6 @@
 @synthesize valueLabel;
 @synthesize animationSwitch;
 
-- (void)dealloc {
-    self.pieView = nil;
-    self.animationSwitch = nil;
-    self.valueLabel = nil;
-    [super dealloc];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,7 +16,6 @@
     theTransform.m34 = 0.0005;
     self.view.layer.sublayerTransform = theTransform;
     [self.pieView addGestureRecognizer:theRecognizer];
-    [theRecognizer release];
 }
 
 - (void)viewDidUnload {

@@ -2,9 +2,7 @@
 
 extern NSString * const kPartKey;
 
-@interface PieLayer : CALayer {
-    @private
-}
+@interface PieLayer : CALayer
 
 @property (nonatomic) CGFloat part;
 

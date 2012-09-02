@@ -4,7 +4,7 @@
 
 @interface LayerViewController()
 
-@property (nonatomic, retain) CAScrollLayer *scrollLayer;
+@property (nonatomic, weak) CAScrollLayer *scrollLayer;
 
 @end
 
@@ -23,13 +23,8 @@ static float f(float x) {
 
 @synthesize scrollLayer;
 
-- (void)dealloc {
-    self.scrollLayer = nil;
-    [super dealloc];
-}
 
-- (void)setUpLayer:(CALayer *)inLayer withFrame:(CGRect)inFrame {
-    inLayer.frame = inFrame;
+- (void)setUpLayer:(CALayer *)inLayer {
     inLayer.cornerRadius = 10;
     inLayer.masksToBounds = YES;
     inLayer.borderColor = [UIColor darkGrayColor].CGColor;
@@ -37,23 +32,25 @@ static float f(float x) {
 }
 
 - (CAGradientLayer *)gradientLayerWithFrame:(CGRect)inFrame {
-    CAGradientLayer *theLayer = [[CAGradientLayer alloc] init];
+    CAGradientLayer *theLayer = [CAGradientLayer layer];
     NSArray *theColors = [NSArray arrayWithObjects:(id)[UIColor redColor].CGColor, 
-                          [UIColor greenColor].CGColor, [UIColor blueColor].CGColor, nil];
+                          (id)[UIColor greenColor].CGColor, (id)[UIColor blueColor].CGColor, nil];
 
-    [self setUpLayer:theLayer withFrame:inFrame];
+    [self setUpLayer:theLayer];
+    theLayer.frame = inFrame;
     theLayer.colors = theColors;
     theLayer.startPoint = CGPointMake(0.0, 0.0);
     theLayer.endPoint = CGPointMake(1.0, 1.0);
-    return [theLayer autorelease];
+    return theLayer;
 }
 
 - (CATextLayer *)textLayerWithFrame:(CGRect)inFrame {
-    CATextLayer *theLayer = [[CATextLayer alloc] init];
+    CATextLayer *theLayer = [CATextLayer layer];
     CGAffineTransform theIdentity = CGAffineTransformIdentity;
     CTFontRef theFont = CTFontCreateWithName((CFStringRef)@"Courier", 24.0, &theIdentity);
     
-    [self setUpLayer:theLayer withFrame:inFrame];
+    [self setUpLayer:theLayer];
+    theLayer.frame = inFrame;
     theLayer.font = theFont;
     theLayer.fontSize = 20.0;
     theLayer.backgroundColor = [UIColor whiteColor].CGColor;
@@ -61,39 +58,41 @@ static float f(float x) {
     theLayer.wrapped = YES;
     theLayer.string = @"Die heiße Zypernsonne quälte Max und Victoria ja böse auf dem Weg bis zur Küste.";
     CFRelease(theFont);
-    return [theLayer autorelease];
+    return theLayer;
 }
 
 - (CAScrollLayer *)scrollLayerWithFrame:(CGRect)inFrame {
-    CAScrollLayer *theLayer = [[CAScrollLayer alloc] init];
+    CAScrollLayer *theLayer = [CAScrollLayer layer];
     CATextLayer *theTextLayer = [self textLayerWithFrame:CGRectMake(0.0, 0.0, CGRectGetWidth(inFrame), 4 * CGRectGetHeight(inFrame))];
         
-    [self setUpLayer:theLayer withFrame:inFrame];
+    [self setUpLayer:theLayer];
+    theLayer.frame = inFrame;
     [theLayer addSublayer:theTextLayer];
     theTextLayer.fontSize *= 2;
     theLayer.scrollMode = kCAScrollVertically;
-    return [theLayer autorelease];
+    return theLayer;
 }
 
 - (CAShapeLayer *)shapeLayerWithFrame:(CGRect)inFrame {
-    CAShapeLayer *theLayer = [[CAShapeLayer alloc] init];
+    CAShapeLayer *theLayer = [CAShapeLayer layer];
     CGMutablePathRef thePath = CGPathCreateMutable();
     CGAffineTransform theIdentity = CGAffineTransformIdentity;
     CGFloat theOffset = CGRectGetHeight(inFrame) / 2.0;
     CGFloat theWidth = CGRectGetWidth(inFrame);
 
-    [self setUpLayer:theLayer withFrame:inFrame];
+    [self setUpLayer:theLayer];
+    theLayer.frame = inFrame;
     theLayer.backgroundColor = [UIColor whiteColor].CGColor;
     theLayer.strokeColor = [UIColor blackColor].CGColor;
     theLayer.fillColor = [UIColor clearColor].CGColor;
     theLayer.lineWidth = 1.0;
     CGPathMoveToPoint(thePath, &theIdentity, 0.0, f(0.0) + theOffset);
-    for(float x = 1.0; x < theWidth; x += 1.0) {
+    for(CGFloat x = 1.0; x < theWidth; x += 1.0) {
         CGPathAddLineToPoint(thePath, &theIdentity, x, f(x * M_PI / theWidth) + theOffset);
     }
     theLayer.path = thePath;
     CGPathRelease(thePath);
-    return [theLayer autorelease];
+    return theLayer;
 }
 
 - (void)viewDidLoad {
@@ -105,11 +104,6 @@ static float f(float x) {
     [theLayer addSublayer:[self textLayerWithFrame:CGRectMake(10, 100, 300, 80)]];
     [theLayer addSublayer:self.scrollLayer];
     [theLayer addSublayer:[self shapeLayerWithFrame:CGRectMake(10, 310, 300, 80)]];
-}
-
-- (void)viewDidUnload {
-    self.scrollLayer = nil;
-    [super viewDidUnload];
 }
 
 - (IBAction)updateSliderValue:(id)inSender {

@@ -125,12 +125,12 @@ const NSUInteger kMemorySize = 6 * 6;
 - (void)cardsDidSolved:(NSNotification *)inNotification {
     NSArray *theCards = [inNotification.userInfo objectForKey:kMemoryUserInfoCardsKey];
     
-    [UIView animateWithDuration:0.75 
+    [UIView animateWithDuration:0.75
                      animations:^{
                          for(Card *theCard in theCards) {
                              CardView *theView = [self.memoryView.subviews objectAtIndex:theCard.index];
 
-                             theView.transform = CGAffineTransformScale(CGAffineTransformMakeRotation(1.5 * M_PI), 0.1, 0.1);
+                             theView.transform = CGAffineTransformScale(CGAffineTransformMakeRotation(M_PI), 0.1, 0.1);
                          }        
                      }
                      completion:^(BOOL inFinished) {
@@ -155,7 +155,7 @@ const NSUInteger kMemorySize = 6 * 6;
         Card *theCard = [self.memory.cards objectAtIndex:inIndex];
         CardView *theView = [theViews objectAtIndex:inIndex];
         
-        [UIView transitionWithView:theView duration:0.25 
+        [UIView transitionWithView:theView duration:0.25
                            options:theOptions
                         animations:^{
                             theView.showsFrontSide = inShow || theCard.showsFrontSide;
