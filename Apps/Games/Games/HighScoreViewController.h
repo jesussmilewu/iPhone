@@ -3,7 +3,7 @@
 
 @interface HighScoreViewController : UITableViewController
 
-@property (nonatomic, weak) IBOutlet NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) IBOutlet NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *filterControl;
 
 - (IBAction)filterChanged;

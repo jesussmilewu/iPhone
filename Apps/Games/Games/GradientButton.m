@@ -32,7 +32,7 @@
     theLayer.masksToBounds = YES;
     theBackground.frame = theLayer.bounds;
     theBackground.startPoint = CGPointMake(0.5, 0.2);
-    theBackground.endPoint = CGPointMake(0.5, 0.4);
+    theBackground.endPoint = CGPointMake(0.5, 0.9);
     theBackground.colors = self.normalColors;
     theBackground.zPosition = -1;
     [theLayer addSublayer:theBackground];
@@ -51,14 +51,18 @@
 
 - (NSArray *)normalColors {
     return [NSArray arrayWithObjects:
-            (id)[UIColor colorWithRed:0.0 green:0.0 blue:0.9 alpha:1.0].CGColor,
-            [UIColor colorWithRed:0.0 green:0.0 blue:0.6 alpha:1.0].CGColor, nil];
+            (id)[UIColor colorWithRed:0.4 green:0.4 blue:1.0 alpha:1.0].CGColor,
+            (id)[UIColor colorWithRed:0.0 green:0.0 blue:0.6 alpha:1.0].CGColor,
+            (id)[UIColor colorWithRed:0.0 green:0.0 blue:0.8 alpha:1.0].CGColor,
+            nil];
 }
 
 - (NSArray *)highligthedColors {
     return [NSArray arrayWithObjects:
-            (id)[UIColor colorWithRed:0.9 green:0.0 blue:0.0 alpha:1.0].CGColor,
-            [UIColor colorWithRed:0.6 green:0.0 blue:0.0 alpha:1.0].CGColor, nil];
+            (id)[UIColor colorWithRed:1.0 green:0.4 blue:0.4 alpha:1.0].CGColor,
+            (id)[UIColor colorWithRed:0.6 green:0.0 blue:0.0 alpha:1.0].CGColor,
+            (id)[UIColor colorWithRed:0.8 green:0.0 blue:0.0 alpha:1.0].CGColor,
+            nil];
 }
 
 @end

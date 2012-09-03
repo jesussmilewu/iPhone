@@ -14,17 +14,24 @@
     CALayer *thePresentationLayer = [theLayer presentationLayer];
     CGRect theFrame = self.frame;
     CGSize theSize = theFrame.size;
+    UIScreen *theScreen = [UIScreen mainScreen];
     CGContextRef theContext;
     UIImage *theImage;
     
     if(thePresentationLayer) {
         theLayer = thePresentationLayer;
     }
-    UIGraphicsBeginImageContext(theSize);
+    if([theScreen respondsToSelector:@selector(scale)]) {
+        CGFloat theScreenScale = [theScreen scale];
+        
+        UIGraphicsBeginImageContextWithOptions(theSize, NO, theScreenScale);
+    }
+    else {
+        UIGraphicsBeginImageContext(theSize);        
+    }
     theContext = UIGraphicsGetCurrentContext();
     CGContextScaleCTM(theContext, 1.0, -inScale);
     CGContextTranslateCTM(theContext, 0.0, -theSize.height);
-    [theLayer setAllNeedsDisplay];
     [theLayer renderInContext:theContext];
     theImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -32,20 +39,20 @@
 }
 
 - (CGImageRef)createGradientImageWithSize:(CGSize)inSize gray:(float)inGray {
-	CGImageRef theImage = NULL;
+    CGImageRef theImage = NULL;
     CGColorSpaceRef theColorSpace = CGColorSpaceCreateDeviceGray();
-	CGContextRef theContext = CGBitmapContextCreate(NULL, inSize.width, inSize.height,
+    CGContextRef theContext = CGBitmapContextCreate(NULL, inSize.width, inSize.height,
                                                     8, 0, theColorSpace, kCGImageAlphaNone);
-	CGFloat theColors[] = {inGray, 1.0, 0.0, 1.0};
-	CGGradientRef theGradient = CGGradientCreateWithColorComponents(theColorSpace, theColors, NULL, 2);
-	CGContextDrawLinearGradient(theContext, theGradient,
-								CGPointZero, CGPointMake(0, inSize.height), 
+    CGFloat theColors[] = {inGray, 1.0, 0.0, 1.0};
+    CGGradientRef theGradient = CGGradientCreateWithColorComponents(theColorSpace, theColors, NULL, 2);
+    CGContextDrawLinearGradient(theContext, theGradient,
+                                CGPointZero, CGPointMake(0, inSize.height), 
                                 kCGGradientDrawsAfterEndLocation);
     
-	CGColorSpaceRelease(theColorSpace);	
-	CGGradientRelease(theGradient);
-	theImage = CGBitmapContextCreateImage(theContext);
-	CGContextRelease(theContext);
+    CGColorSpaceRelease(theColorSpace);    
+    CGGradientRelease(theGradient);
+    theImage = CGBitmapContextCreateImage(theContext);
+    CGContextRelease(theContext);
     return theImage;
 }
 

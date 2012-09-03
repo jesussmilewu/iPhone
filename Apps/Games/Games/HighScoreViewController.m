@@ -9,7 +9,6 @@ static NSString * const kScoreFilters[] = {
 @interface HighScoreViewController()<NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic, strong) NSData *cellData;
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 
 @end
@@ -19,7 +18,6 @@ static NSString * const kScoreFilters[] = {
 @synthesize filterControl;
 @synthesize managedObjectContext;
 @synthesize fetchedResultsController;
-@synthesize cellData;
 @synthesize dateFormatter;
 
 - (NSManagedObjectContext *)managedObjectContext {
@@ -54,10 +52,9 @@ static NSString * const kScoreFilters[] = {
     [super viewWillDisappear:inAnimated];
 }
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
     self.fetchedResultsController = nil;
-    self.cellData = nil;
     self.dateFormatter = nil;
 }
 

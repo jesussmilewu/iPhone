@@ -12,8 +12,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import <objc/runtime.h>
 
-#define SCALE 0.6
-
 @implementation NumberView
 
 @synthesize value;
@@ -44,7 +42,7 @@
 
 - (void)drawRect:(CGRect)inRect {
     for(UIView *theView in self.subviews) {
-        [theView drawMirrorWithScale:SCALE];
+        [theView drawMirrorWithScale:0.6];
     }
 }
 
