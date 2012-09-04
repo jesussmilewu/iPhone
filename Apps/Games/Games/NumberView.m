@@ -26,18 +26,24 @@
 }
 
 - (void)setValue:(NSUInteger)inValue animated:(BOOL)inAnimated {
-    NSUInteger theValue = inValue;
-    DigitViewAnimationDirection theDirection = inValue > value ? DigitViewAnimationDirectionForward : DigitViewAnimationDirectionBackward;
-
-    for(DigitView *theView in self.subviews) {        
-        [theView setDigit:theValue % 10 direction:theDirection];
-        theValue /= 10;
+    if(inAnimated) {
+        [UIView animateWithDuration:0.75 animations:^{
+            self.value = inValue;            
+        }];
     }
-    value = inValue;
+    else {
+        self.value = inValue;
+    }
 }
 
 - (void)setValue:(NSUInteger)inValue {
-    [self setValue:inValue animated:NO];
+    NSUInteger theValue = inValue;
+    
+    for(DigitView *theView in self.subviews) {
+        [theView setDigit:theValue % 10 forward:inValue > value];
+        theValue /= 10;
+    }
+    value = inValue;
 }
 
 - (void)drawRect:(CGRect)inRect {
