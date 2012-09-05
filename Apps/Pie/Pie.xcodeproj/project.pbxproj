@@ -146,6 +146,9 @@
 /* Begin PBXProject section */
 		ABCC9C7B1388129D006C6FDA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+			};
 			buildConfigurationList = ABCC9C7E1388129D006C6FDA /* Build configuration list for PBXProject "Pie" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;

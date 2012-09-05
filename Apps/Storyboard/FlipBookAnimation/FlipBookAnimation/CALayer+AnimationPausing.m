@@ -23,7 +23,8 @@
     self.speed = 1.0;
     self.timeOffset = 0.0;
     self.beginTime = 0.0;
-    self.beginTime = [self convertTime:CACurrentMediaTime() fromLayer:nil] - theTime;
+    theTime = [self convertTime:CACurrentMediaTime() fromLayer:nil] - theTime;
+    self.beginTime = theTime;
 }
 
 - (BOOL)isPausing {
