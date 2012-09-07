@@ -18,26 +18,24 @@
 @implementation FlipBookViewController
 @synthesize animationView;
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewDidAppear:(BOOL)inAnimated {
+    [super viewDidAppear:inAnimated];
     NSArray *theImages = [self readAnimationImages];
     CALayer *theLayer = self.animationView.layer;
-    CAKeyframeAnimation *theImageAnimation = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
-    CABasicAnimation *theAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.y"];
-    CATransform3D theTransform = CATransform3DIdentity;
+    CAKeyframeAnimation *theAnimation = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
     
-    theLayer.contents = [theImages objectAtIndex:0];
-    theImageAnimation.values = theImages;
-    theImageAnimation.repeatCount = HUGE_VALF;
-    theImageAnimation.duration = 1.0;
-    theImageAnimation.calculationMode = kCAAnimationDiscrete;
-    theAnimation.toValue = [NSNumber numberWithFloat:2 * M_PI];
+    theAnimation.values = theImages;
     theAnimation.repeatCount = HUGE_VALF;
-    theAnimation.duration = 8.0;
-    [theLayer addAnimation:theImageAnimation forKey:@"contents"];
-    [theLayer addAnimation:theAnimation forKey:@"transform.rotation.y"];
-    theTransform.m34 = 0.00125;
-    self.view.layer.sublayerTransform = theTransform;
+    theAnimation.duration = 1.0;
+    theAnimation.calculationMode = kCAAnimationDiscrete;
+    [theLayer addAnimation:theAnimation forKey:@"contents"];
+}
+
+- (void)viewWillDisappear:(BOOL)inAnimated {
+    CALayer *theLayer = self.animationView.layer;
+
+    [theLayer removeAllAnimations];
+    [super viewWillDisappear:inAnimated];
 }
 
 - (NSArray *)readAnimationImages {
@@ -48,12 +46,13 @@
                                                             (__bridge CFDictionaryRef)theOptions);
     size_t theCount = CGImageSourceGetCount(theSource);
     NSMutableArray *theResult = [NSMutableArray arrayWithCapacity:theCount];
-    
+
     for(size_t i = 0; i < theCount; ++i) {
         CGImageRef theImage = CGImageSourceCreateImageAtIndex(theSource, i, (__bridge CFDictionaryRef)theOptions);
         
         [theResult addObject:(__bridge_transfer id)theImage];
     }
+    CFRelease(theSource);
     return theResult;
 }
 
