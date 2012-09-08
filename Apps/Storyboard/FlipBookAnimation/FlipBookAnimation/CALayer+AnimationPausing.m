@@ -11,14 +11,15 @@
 @implementation CALayer (AnimationPausing)
 
 -(void)pause {
-    CFTimeInterval theTime = [self convertTime:CACurrentMediaTime() fromLayer:nil];
+    CFTimeInterval theCurrentTime = CACurrentMediaTime();
+    CFTimeInterval theTime = [self convertTime:theCurrentTime fromLayer:nil];
     
     self.speed = 0.0;
     self.timeOffset = theTime;
 }
 
 -(void)resume {
-    CFTimeInterval theTime = [self timeOffset];
+    CFTimeInterval theTime = self.timeOffset;
     
     self.speed = 1.0;
     self.timeOffset = 0.0;

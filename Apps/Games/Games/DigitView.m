@@ -5,7 +5,7 @@ static NSString * const kDigitKey = @"digit";
 
 @interface DigitLayer : CALayer
 
-@property (nonatomic, strong) NSNumber *digit;
+@property (nonatomic) CGFloat digit;
 
 @end
 
@@ -25,7 +25,6 @@ static NSString * const kDigitKey = @"digit";
     return [DigitLayer class];
 }
 
-
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.clipsToBounds = YES;
@@ -33,14 +32,14 @@ static NSString * const kDigitKey = @"digit";
 }
 
 - (NSUInteger)digit {
-    NSInteger theDigit = roundf([[self.layer valueForKey:kDigitKey] floatValue]);
+    NSInteger theDigit = roundf([(DigitLayer *)self.layer digit]);
 
     theDigit %= 10;
     return theDigit < 0 ? theDigit + 10 : theDigit;
 }
 
 - (void)setDigit:(NSUInteger)inDigit {
-    [self.layer setValue:[NSNumber numberWithFloat:inDigit % 10] forKey:kDigitKey];
+    [(DigitLayer *)self.layer setDigit:inDigit % 10];
 }
 
 - (void)setDigit:(NSUInteger)inDigit forward:(BOOL)inForward {
@@ -63,7 +62,7 @@ static NSString * const kDigitKey = @"digit";
 - (void)drawLayer:(CALayer *)inLayer inContext:(CGContextRef)inContext {
     CGRect theBounds = self.bounds;
     CGSize theSize = theBounds.size;
-    float theDigit = [[inLayer valueForKey:kDigitKey] floatValue];
+    CGFloat theDigit = [(DigitLayer *)inLayer digit];
     UIFont *theFont = self.font;
     CGSize theFontSize = [@"0" sizeWithFont:theFont];
     CGFloat theX = (theSize.width - theFontSize.width) / 2.0;
@@ -91,14 +90,12 @@ static NSString * const kDigitKey = @"digit";
 
 - (id<CAAction>)actionForLayer:(CALayer *)inLayer forKey:(NSString *)inKey {
     if([kDigitKey isEqualToString:inKey]) {
-        id theAnimation = [super actionForLayer:inLayer forKey:@"opacity"];
+        CABasicAnimation *theAnimation = (id)[inLayer actionForKey:@"opacity"];
         
-        if(![[NSNull null] isEqual:theAnimation]) {
-            [theAnimation setKeyPath:inKey];
-            [theAnimation setFromValue:self.fromValue];
-            [theAnimation setToValue:nil];
-            [theAnimation setByValue:nil];
-        }
+        theAnimation.keyPath = inKey;
+        theAnimation.fromValue = [inLayer valueForKey:kDigitKey];
+        theAnimation.toValue = nil;
+        theAnimation.byValue = nil;
         return theAnimation;
     }
     else {
@@ -117,10 +114,6 @@ static NSString * const kDigitKey = @"digit";
 
 + (BOOL)needsDisplayForKey:(NSString *)inKey {
     return [inKey isEqualToString:kDigitKey] || [super needsDisplayForKey:inKey];
-}
-
-- (NSString *)description {
-    return [NSString stringWithFormat:@"[0x%p, %@, %d]", self, self.digit, self.needsDisplay]; 
 }
 
 @end

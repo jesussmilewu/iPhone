@@ -16,6 +16,7 @@
 @end
 
 @implementation FlipBookViewController
+
 @synthesize animationView;
 
 - (void)viewDidAppear:(BOOL)inAnimated {
@@ -27,7 +28,7 @@
     theAnimation.values = theImages;
     theAnimation.repeatCount = HUGE_VALF;
     theAnimation.duration = 1.0;
-    theAnimation.calculationMode = kCAAnimationDiscrete;
+    theLayer.speed = 1.0;
     [theLayer addAnimation:theAnimation forKey:@"contents"];
 }
 
@@ -58,7 +59,7 @@
 
 - (IBAction)flipAnimation:(UIButton *)inButton {
     CALayer *theLayer = self.animationView.layer;
-
+    
     theLayer.isPausing ? [theLayer resume] : [theLayer pause];
     inButton.selected = theLayer.isPausing;
 }

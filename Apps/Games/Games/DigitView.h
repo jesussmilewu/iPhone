@@ -8,6 +8,5 @@
 @property (nonatomic) NSUInteger digit;
 
 - (void)setDigit:(NSUInteger)inDigit forward:(BOOL)inForward;
-- (void)addOffset:(NSInteger)inOffset animated:(BOOL)inAnimated;
 
 @end
