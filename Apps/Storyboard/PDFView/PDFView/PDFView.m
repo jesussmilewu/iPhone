@@ -67,6 +67,7 @@
     CGFloat theHeight = CGRectGetHeight(theBounds) / theCount;
     CGRect thePageFrame = theBounds;
 
+    NSLog(@"drawRect:%@", NSStringFromCGRect(inRect));
     thePageFrame.size.height = theHeight;
     for(int i = 0; i < theCount; ++i) {
         thePageFrame.origin.y = i * theHeight;
@@ -77,7 +78,7 @@
             CGContextSetGrayStrokeColor(theContext, 0.5, 1.0);
             CGContextStrokeRect(theContext, CGRectInset(thePageFrame, 10.0, 10.0));
             CGContextScaleCTM(theContext, 1.0, -1.0);
-            //thePageFrame.origin.y = -(i + 1) * theHeight;
+            thePageFrame.origin.y = -(i + 1) * theHeight;
             [self drawPage:thePage inRect:thePageFrame context:theContext];
             CGContextRestoreGState(theContext);
         }

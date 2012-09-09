@@ -13,18 +13,9 @@
 @end
 
 @implementation ViewController
+
 @synthesize scrollView;
 @synthesize contentView;
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-
-- (void)viewDidUnload {
-    [self setScrollView:nil];
-    [self setContentView:nil];
-    [super viewDidUnload];
-}
 
 - (void)viewWillAppear:(BOOL)inAppear {
     [super viewWillAppear:inAppear];

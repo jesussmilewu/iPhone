@@ -36,7 +36,7 @@
 
 - (IBAction)sliderDidFinish:(id)inSender {
     if(animationSwitch.on) {
-        [UIView animateWithDuration:3 delay:0.0
+        [UIView animateWithDuration:3.0 delay:0.0
                             options:UIViewAnimationOptionAllowUserInteraction
                          animations:^{
                              self.pieView.part = [(UISlider *)inSender value];
@@ -49,10 +49,10 @@
     CALayer *theLayer = self.pieView.layer;
     CABasicAnimation *theAnimation = [CABasicAnimation animation];
     
-    theAnimation.toValue = [NSNumber numberWithFloat:M_PI];
+    theAnimation.toValue = [NSNumber numberWithFloat:-M_PI];
     theAnimation.autoreverses = YES;
-    theAnimation.repeatDuration = 4;
-    theAnimation.duration = 1.0;
+    theAnimation.repeatCount = 1;
+    theAnimation.duration = 10.0;
     [theLayer addAnimation:theAnimation forKey:@"transform.rotation.x"];
     /*
     CABasicAnimation *theAnimation = [CABasicAnimation animation];

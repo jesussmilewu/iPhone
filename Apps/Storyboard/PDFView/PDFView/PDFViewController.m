@@ -34,12 +34,6 @@
     self.pdfView.frame = theFrame;
 }
 
-- (void)viewDidUnload {
-    [self setScrollView:nil];
-    [self setPdfView:nil];
-    [super viewDidUnload];
-}
-
 - (IBAction)zoomIn:(UITapGestureRecognizer *)inSender {
     CGFloat theScale = 2 * self.scrollView.zoomScale;
     
