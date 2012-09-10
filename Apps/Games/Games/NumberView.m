@@ -10,7 +10,6 @@
 #import "DigitView.h"
 #import "UIView+MirrorImage.h"
 #import <QuartzCore/QuartzCore.h>
-#import <objc/runtime.h>
 
 @implementation NumberView
 
@@ -40,7 +39,7 @@
     NSUInteger theValue = inValue;
     
     for(DigitView *theView in self.subviews) {
-        [theView setDigit:theValue % 10 forward:inValue > value];
+        theView.digit = theValue % 10;
         theValue /= 10;
     }
     value = inValue;

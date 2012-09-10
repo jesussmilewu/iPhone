@@ -9,9 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface NumberView : UIView {
-    @private
-}
+@interface NumberView : UIView
 
 @property (nonatomic) NSUInteger value;
 

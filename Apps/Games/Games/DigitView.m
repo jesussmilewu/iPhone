@@ -39,21 +39,17 @@ static NSString * const kDigitKey = @"digit";
 }
 
 - (void)setDigit:(NSUInteger)inDigit {
-    [(DigitLayer *)self.layer setDigit:inDigit % 10];
-}
-
-- (void)setDigit:(NSUInteger)inDigit forward:(BOOL)inForward {
     NSInteger theOldDigit = self.digit;
     NSInteger theNewDigit = inDigit % 10;
 
-    if(inForward) {
-        theNewDigit = theOldDigit > theNewDigit ? theOldDigit - 10 : theOldDigit;
+    if(theOldDigit == 9 && theNewDigit == 0) {
+        theOldDigit = -1;
     }
-    else {
-        theNewDigit = theOldDigit < theNewDigit ? theOldDigit + 10 : theOldDigit;
+    else if(theOldDigit == 0 && theNewDigit == 9) {
+        theOldDigit = 10;
     }
-    self.fromValue = [NSNumber numberWithInt:theNewDigit];
-    self.digit = inDigit;
+    self.fromValue = [NSNumber numberWithInt:theOldDigit];
+    [(DigitLayer *)self.layer setDigit:theNewDigit];
 }
 
 - (void)drawRect:(CGRect)inRect {
@@ -93,7 +89,7 @@ static NSString * const kDigitKey = @"digit";
         CABasicAnimation *theAnimation = (id)[inLayer actionForKey:@"opacity"];
         
         theAnimation.keyPath = inKey;
-        theAnimation.fromValue = [inLayer valueForKey:kDigitKey];
+        theAnimation.fromValue = self.fromValue;
         theAnimation.toValue = nil;
         theAnimation.byValue = nil;
         return theAnimation;
@@ -102,6 +98,7 @@ static NSString * const kDigitKey = @"digit";
         return [super actionForLayer:inLayer forKey:inKey];
     }    
 }
+
 @end
 
 @implementation DigitLayer
