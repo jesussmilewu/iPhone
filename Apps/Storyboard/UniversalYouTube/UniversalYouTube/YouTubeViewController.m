@@ -84,7 +84,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)inTableView cellForRowAtIndexPath:(NSIndexPath *)inIndexPath {
     UITableViewCell *theCell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    NSDictionary *theItem = [self.items objectAtIndex:inIndexPath.row];
+    NSDictionary *theItem = (self.items)[inIndexPath.row];
 
     theCell.textLabel.text = [theItem valueForKeyPath:@"title.$t"];
     theCell.detailTextLabel.text = [theItem valueForKeyPath:@"content.$t"];

@@ -29,8 +29,8 @@ static const CGFloat kCellTitleHeight = 24.0;
     
     theLayer.cornerRadius = 8.0;
     theLayer.masksToBounds = YES;
-    theLayer.colors = [NSArray arrayWithObjects:(id)[UIColor whiteColor].CGColor,
-                       (id)[UIColor colorWithWhite:0.75 alpha:1.0].CGColor, nil];
+    theLayer.colors = @[(id)[UIColor whiteColor].CGColor,
+                       (id)[UIColor colorWithWhite:0.75 alpha:1.0].CGColor];
 }
 
 - (id)initWithFrame:(CGRect)inFrame {

@@ -2,8 +2,4 @@
 
 @implementation ClockViewController
 
-- (void)dealloc {
-    [super dealloc];
-}
-
 @end

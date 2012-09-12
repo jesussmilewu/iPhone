@@ -91,7 +91,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)inCollectionView
                   cellForItemAtIndexPath:(NSIndexPath *)inIndexPath {
     YouTubeCell *theCell = [inCollectionView dequeueReusableCellWithReuseIdentifier:@"YouTube" forIndexPath:inIndexPath];
-    NSDictionary *theItem = [self.items objectAtIndex:inIndexPath.row];
+    NSDictionary *theItem = (self.items)[inIndexPath.row];
     float theRating = [[theItem valueForKeyPath:@"gd$rating.average"] floatValue];
     UIColor *theColor;
     
@@ -133,18 +133,18 @@
 #pragma mark UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)inCollectionView didSelectItemAtIndexPath:(NSIndexPath *)inIndexPath {
-    [inCollectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:inIndexPath]];
+    [inCollectionView reloadItemsAtIndexPaths:@[inIndexPath]];
 }
 
 - (void)collectionView:(UICollectionView *)inCollectionView didDeselectItemAtIndexPath:(NSIndexPath *)inIndexPath {
-    [inCollectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:inIndexPath]];
+    [inCollectionView reloadItemsAtIndexPaths:@[inIndexPath]];
 }
 
 #pragma mark UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)inCollectionView layout:(UICollectionViewLayout *)inCollectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)inIndexPath {
     YouTubeCell *theCell = [[YouTubeCell alloc] initWithFrame:CGRectNull];
-    NSDictionary *theItem = [self.items objectAtIndex:inIndexPath.row];
+    NSDictionary *theItem = (self.items)[inIndexPath.row];
     CGSize theSize = CGSizeMake(244.0, 300.0);
     
     theCell.text = [theItem valueForKeyPath:@"content.$t"];

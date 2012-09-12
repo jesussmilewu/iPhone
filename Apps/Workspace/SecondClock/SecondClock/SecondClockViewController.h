@@ -11,6 +11,6 @@
 
 @interface SecondClockViewController : UIViewController
 
-@property (strong, nonatomic) IBOutlet ClockView *clockView;
+@property (weak, nonatomic) IBOutlet ClockView *clockView;
 
 @end
