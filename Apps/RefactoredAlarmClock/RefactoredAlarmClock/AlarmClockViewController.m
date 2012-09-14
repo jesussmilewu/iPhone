@@ -20,7 +20,6 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
     self.clockControl = nil;
     self.alarmSwitch = nil;
     self.timeLabel = nil;    
-    [super dealloc];
 }
 
 - (NSTimeInterval)startTimeOfCurrentDay {
@@ -68,15 +67,14 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
     UILongPressGestureRecognizer *theRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(updateAlarmHand:)];
 
     [self.clockView addGestureRecognizer:theRecognizer];
-    [theRecognizer release];
 }
 
-- (void)viewDidUnload {
+- (void)didReceiveMemoryWarning {
     self.clockView = nil;
     self.clockControl = nil;
     self.alarmSwitch = nil;
     self.timeLabel = nil;    
-    [super viewDidUnload];
+    [super didReceiveMemoryWarning];
 }
 
 - (void)viewWillAppear:(BOOL)inAnimated {
@@ -110,7 +108,6 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
     theNotification.applicationIconBadgeNumber = 1;
     theApplication.applicationIconBadgeNumber = 0;
     [theApplication scheduleLocalNotification:theNotification];
-    [theNotification release];
 }
 
 - (IBAction)updateAlarm {

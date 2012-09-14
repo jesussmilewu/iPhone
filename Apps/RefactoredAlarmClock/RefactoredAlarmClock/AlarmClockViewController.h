@@ -5,10 +5,10 @@
 
 @interface AlarmClockViewController : UIViewController
 
-@property(nonatomic, assign) IBOutlet ClockView *clockView;
-@property(nonatomic, assign) IBOutlet ClockControl *clockControl;
-@property(nonatomic, assign) IBOutlet UISwitch *alarmSwitch;
-@property(nonatomic, assign) IBOutlet UILabel *timeLabel;
+@property(nonatomic, unsafe_unretained) IBOutlet ClockView *clockView;
+@property(nonatomic, unsafe_unretained) IBOutlet ClockControl *clockControl;
+@property(nonatomic, unsafe_unretained) IBOutlet UISwitch *alarmSwitch;
+@property(nonatomic, unsafe_unretained) IBOutlet UILabel *timeLabel;
 
 - (IBAction)updateAlarm;
 - (IBAction)updateTimeLabel;

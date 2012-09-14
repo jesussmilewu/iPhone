@@ -10,7 +10,6 @@
 		AB1BF98B12F2C878002BB9AC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB1BF98A12F2C878002BB9AC /* AudioToolbox.framework */; };
 		AB7AB2BC14B8989F0035FBE4 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7AB2BA14B8989F0035FBE4 /* MainWindow-iPad.xib */; };
 		AB7AB2BF14B898BE0035FBE4 /* AlarmClockViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7AB2BD14B898BE0035FBE4 /* AlarmClockViewController-iPad.xib */; };
-		AB7AB2C114B898CA0035FBE4 /* AlarmClockViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7AB2BD14B898BE0035FBE4 /* AlarmClockViewController-iPad.xib */; };
 		AB7AB2C814B898E00035FBE4 /* AlarmClockAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7AB2C314B898E00035FBE4 /* AlarmClockAppDelegate.m */; };
 		AB7AB2C914B898E00035FBE4 /* AlarmClockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7AB2C514B898E00035FBE4 /* AlarmClockViewController.m */; };
 		AB7AB2CA14B898E00035FBE4 /* UIView+AlarmClock.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7AB2C714B898E00035FBE4 /* UIView+AlarmClock.m */; };
@@ -21,7 +20,6 @@
 		AB7AB2DB14B899FE0035FBE4 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB7AB2D814B899FE0035FBE4 /* icon@2x.png */; };
 		AB7AB2EB14B89A730035FBE4 /* AlarmClockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7AB2E914B89A730035FBE4 /* AlarmClockViewController.xib */; };
 		AB7AB2EF14B89A800035FBE4 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7AB2ED14B89A800035FBE4 /* MainWindow.xib */; };
-		AB7AB2F014B89A800035FBE4 /* AlarmClockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7AB2E914B89A730035FBE4 /* AlarmClockViewController.xib */; };
 		AB7AB2F314B89AE60035FBE4 /* AbstractClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7AB2F214B89AE60035FBE4 /* AbstractClockView.m */; };
 		AB9F828312F09C4A002492BC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9F828212F09C4A002492BC /* UIKit.framework */; };
 		AB9F828512F09C4A002492BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9F828412F09C4A002492BC /* Foundation.framework */; };
@@ -184,7 +182,7 @@
 		AB9F827512F09C4A002492BC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0440;
 			};
 			buildConfigurationList = AB9F827812F09C4A002492BC /* Build configuration list for PBXProject "RefactoredAlarmClock" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -212,13 +210,11 @@
 				AB9F828D12F09C4A002492BC /* InfoPlist.strings in Resources */,
 				AB7AB2BC14B8989F0035FBE4 /* MainWindow-iPad.xib in Resources */,
 				AB7AB2BF14B898BE0035FBE4 /* AlarmClockViewController-iPad.xib in Resources */,
-				AB7AB2C114B898CA0035FBE4 /* AlarmClockViewController-iPad.xib in Resources */,
 				AB7AB2D914B899FE0035FBE4 /* icon-ipad.png in Resources */,
 				AB7AB2DA14B899FE0035FBE4 /* icon.png in Resources */,
 				AB7AB2DB14B899FE0035FBE4 /* icon@2x.png in Resources */,
 				AB7AB2EB14B89A730035FBE4 /* AlarmClockViewController.xib in Resources */,
 				AB7AB2EF14B89A800035FBE4 /* MainWindow.xib in Resources */,
-				AB7AB2F014B89A800035FBE4 /* AlarmClockViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +326,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -346,6 +343,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RefactoredAlarmClock/RefactoredAlarmClock-Prefix.pch";

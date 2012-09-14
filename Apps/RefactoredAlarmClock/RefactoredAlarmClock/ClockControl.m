@@ -6,9 +6,6 @@
 @synthesize time;
 @synthesize savedAngle;
 
-- (void)dealloc {
-    [super dealloc];
-}
 
 - (CGFloat)angle {
     return self.time * M_PI / 21600.0;

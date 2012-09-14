@@ -10,8 +10,8 @@
 
 @interface AbstractClockView : UIView
 
-@property (nonatomic, retain) NSDate *time;
-@property (nonatomic, retain, readonly) NSCalendar *calendar;
+@property (nonatomic, strong) NSDate *time;
+@property (nonatomic, strong, readonly) NSCalendar *calendar;
 
 - (void)startAnimation;
 - (void)stopAnimation;

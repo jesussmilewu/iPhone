@@ -10,8 +10,8 @@
 
 @interface AbstractClockView()
 
-@property (nonatomic, retain) NSTimer *timer;
-@property (nonatomic, retain, readwrite) NSCalendar *calendar;
+@property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, strong, readwrite) NSCalendar *calendar;
 
 @end
 
@@ -32,9 +32,6 @@
 
 - (void)dealloc {
     [self stopAnimation];
-    self.calendar = nil;
-    self.time = nil;
-    [super dealloc];
 }
 
 - (void)awakeFromNib {
