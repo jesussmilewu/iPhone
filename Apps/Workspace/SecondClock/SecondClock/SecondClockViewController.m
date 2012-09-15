@@ -26,13 +26,8 @@
 #endif
 }
 
-- (void)viewDidUnload {
-    [self setClockView:nil];
-    [super viewDidUnload];
-}
-
-- (void)viewWillAppear:(BOOL)inAnimated {
-    [super viewWillAppear:inAnimated];
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)inInterfaceOrientation {
+    return YES;
 }
 
 - (void)viewDidAppear:(BOOL)inAnimated {
@@ -43,14 +38,6 @@
 - (void)viewWillDisappear:(BOOL)inAnimated {
     [self.clockView stopAnimation];
 	[super viewWillDisappear:inAnimated];
-}
-
-- (void)viewDidDisappear:(BOOL)inAnimated {
-	[super viewDidDisappear:inAnimated];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)inInterfaceOrientation {
-    return YES;
 }
 
 @end

@@ -27,6 +27,7 @@
 		ABBBEC29140034EA00F0DAAD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ABA510D613F308F9000B0CA8 /* InfoPlist.strings */; };
 		ABBBEC2A140034EA00F0DAAD /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABA510DF13F308F9000B0CA8 /* MainStoryboard.storyboard */; };
 		ABBBEC35140045E800F0DAAD /* MainStoryboard-BlackClock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABBBEC33140045E800F0DAAD /* MainStoryboard-BlackClock.storyboard */; };
+		ABE9AA521604B7AE00DEF6F4 /* ClockFramework.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ABE9AA511604B7AE00DEF6F4 /* ClockFramework.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,9 +57,9 @@
 		ABA510E313F308F9000B0CA8 /* SecondClockViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondClockViewController.m; sourceTree = "<group>"; };
 		ABA510FD13F30FF3000B0CA8 /* ClockFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ClockFramework.xcodeproj; path = ../ClockFramework/ClockFramework.xcodeproj; sourceTree = "<group>"; };
 		ABBBEC2E140034EA00F0DAAD /* BlackClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlackClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		ABBBEC30140034EB00F0DAAD /* BlackClock-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BlackClock-Info.plist"; path = "SecondClock/BlackClock-Info.plist"; sourceTree = "<group>"; };
+		ABBBEC30140034EB00F0DAAD /* BlackClock-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BlackClock-Info.plist"; sourceTree = "<group>"; };
 		ABBBEC34140045E800F0DAAD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = "SecondClock/en.lproj/MainStoryboard-BlackClock.storyboard"; sourceTree = "<group>"; };
-		ABD5158213FFF01E00B2E722 /* ClockFramework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClockFramework.xcconfig; path = ../ClockFramework.xcconfig; sourceTree = "<group>"; };
+		ABE9AA511604B7AE00DEF6F4 /* ClockFramework.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = ClockFramework.xcconfig; path = ../ClockFramework.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +92,7 @@
 		ABA510BE13F308F8000B0CA8 = {
 			isa = PBXGroup;
 			children = (
-				ABD5158213FFF01E00B2E722 /* ClockFramework.xcconfig */,
+				ABE9AA511604B7AE00DEF6F4 /* ClockFramework.xcconfig */,
 				ABA510FD13F30FF3000B0CA8 /* ClockFramework.xcodeproj */,
 				ABA510D313F308F9000B0CA8 /* SecondClock */,
 				ABBBEC15140032AC00F0DAAD /* BlackClock */,
@@ -247,6 +248,7 @@
 			files = (
 				ABA510D813F308F9000B0CA8 /* InfoPlist.strings in Resources */,
 				ABA510E113F308F9000B0CA8 /* MainStoryboard.storyboard in Resources */,
+				ABE9AA521604B7AE00DEF6F4 /* ClockFramework.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,7 +317,7 @@
 /* Begin XCBuildConfiguration section */
 		ABA510E513F308F9000B0CA8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ABD5158213FFF01E00B2E722 /* ClockFramework.xcconfig */;
+			baseConfigurationReference = ABE9AA511604B7AE00DEF6F4 /* ClockFramework.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -341,7 +343,7 @@
 		};
 		ABA510E613F308F9000B0CA8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ABD5158213FFF01E00B2E722 /* ClockFramework.xcconfig */;
+			baseConfigurationReference = ABE9AA511604B7AE00DEF6F4 /* ClockFramework.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
