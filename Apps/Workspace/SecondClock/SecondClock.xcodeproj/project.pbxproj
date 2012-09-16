@@ -27,7 +27,6 @@
 		ABBBEC29140034EA00F0DAAD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ABA510D613F308F9000B0CA8 /* InfoPlist.strings */; };
 		ABBBEC2A140034EA00F0DAAD /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABA510DF13F308F9000B0CA8 /* MainStoryboard.storyboard */; };
 		ABBBEC35140045E800F0DAAD /* MainStoryboard-BlackClock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABBBEC33140045E800F0DAAD /* MainStoryboard-BlackClock.storyboard */; };
-		ABE9AA521604B7AE00DEF6F4 /* ClockFramework.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ABE9AA511604B7AE00DEF6F4 /* ClockFramework.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -205,7 +204,7 @@
 		ABA510C013F308F8000B0CA8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0450;
 			};
 			buildConfigurationList = ABA510C313F308F8000B0CA8 /* Build configuration list for PBXProject "SecondClock" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -248,7 +247,6 @@
 			files = (
 				ABA510D813F308F9000B0CA8 /* InfoPlist.strings in Resources */,
 				ABA510E113F308F9000B0CA8 /* MainStoryboard.storyboard in Resources */,
-				ABE9AA521604B7AE00DEF6F4 /* ClockFramework.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
