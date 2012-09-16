@@ -12,4 +12,8 @@
 
 @synthesize window;
 
+- (void)hello {
+    NSLog(@"hello");
+}
+
 @end
