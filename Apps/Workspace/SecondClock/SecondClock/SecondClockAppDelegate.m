@@ -12,8 +12,4 @@
 
 @synthesize window;
 
-- (void)helloConflict {
-    NSLog(@"hello, conflict");
-}
-
 @end
