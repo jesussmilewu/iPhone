@@ -16,6 +16,7 @@
 
 @interface SecUtils : NSObject
 +(NSString *)generateSHA256:(NSString *)inputString;
-+(BOOL)deletePreviousKeychainEntry;
 +(BOOL)addKeychainEntry:(NSString *)entry;
++(NSString *)getUserPwFromKeychain;
++(BOOL)checkJailbreak;
 @end

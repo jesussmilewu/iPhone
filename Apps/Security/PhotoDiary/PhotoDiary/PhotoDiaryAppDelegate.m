@@ -1,5 +1,6 @@
 #import "PhotoDiaryAppDelegate.h"
 #import "PhotoDiaryViewController.h"
+#import "SecUtils.h"
 
 @interface PhotoDiaryAppDelegate()
 
@@ -19,6 +20,7 @@
 @synthesize storeCoordinator;
 
 - (BOOL)application:(UIApplication *)inApplication didFinishLaunchingWithOptions:(NSDictionary *)inLaunchOptions {
+    [SecUtils checkJailbreak];
     self.managedObjectContext = [[NSManagedObjectContext alloc] init];
     self.managedObjectContext.persistentStoreCoordinator = self.storeCoordinator;
     self.viewController = self.window.rootViewController;
@@ -33,6 +35,15 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)inApplication {
     srand((unsigned) [NSDate timeIntervalSinceReferenceDate]);
+}
+
+
+- (void)applicationDidEnterBackground:(UIApplication *)inApplication{
+    NSLog(@"[+] %@", NSStringFromSelector(_cmd));
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"Login"];
+    [vc setModalPresentationStyle:UIModalPresentationFullScreen];
+    [self.viewController presentModalViewController:vc animated:YES];
 }
 
 - (NSURL *)applicationDocumentsURL {
@@ -56,10 +67,18 @@
         NSURL *theURL = [[self applicationDocumentsURL] URLByAppendingPathComponent:@"Diary.sqlite"];
         NSError *theError = nil;
         NSPersistentStoreCoordinator *theCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
+        NSDictionary *fileAttributes = [NSDictionary dictionaryWithObject:NSFileProtectionComplete forKey:NSFileProtectionKey];
+        [[NSFileManager defaultManager] setAttributes:fileAttributes ofItemAtPath:[theURL absoluteString] error:&theError];
         
         if ([theCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil 
                                                    URL:theURL options:nil error:&theError]) {
             self.storeCoordinator = theCoordinator;
+            [[NSFileManager defaultManager] fileExistsAtPath:[theURL path]];
+            BOOL result = [theURL setResourceValue:[NSNumber numberWithBool: YES]
+                                            forKey:NSURLIsExcludedFromBackupKey error: &theError];
+            if(!result){
+                NSLog(@"Fehler beim Schützen der Datenbank: %@ / %@", [theURL lastPathComponent], theError);
+            }
         }
         else {
             NSLog(@"storeCoordinator: %@", theError);

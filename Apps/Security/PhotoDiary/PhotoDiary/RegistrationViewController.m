@@ -56,14 +56,12 @@
         NSLog(@"[+] Password hash: %@", passwordHash);
         
         NSLog(@"[+] Password accepted. Writing to Keychain");
-        
-        [SecUtils deletePreviousKeychainEntry];
-        
+                
         if([SecUtils addKeychainEntry:passwordHash]){
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"passwordSet"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+            UIStoryboard *storyboard = self.storyboard;
             UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"Login"];
             [vc setModalPresentationStyle:UIModalPresentationFullScreen];
             [self presentModalViewController:vc animated:YES];
