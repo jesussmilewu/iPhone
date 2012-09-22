@@ -66,9 +66,6 @@
         [theHash appendString:[NSString stringWithFormat:@"%02x", thePass[i]]];
     }
     NSLog(@"theHash: %@", theHash);
-        
-    
-    
     
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
