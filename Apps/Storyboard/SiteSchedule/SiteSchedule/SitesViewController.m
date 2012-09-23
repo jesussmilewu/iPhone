@@ -24,15 +24,13 @@
 @synthesize resultsController;
 
 - (NSFetchedResultsController *)createFetchedResultsController {
-    NSFetchRequest *theRequest = [[NSFetchRequest alloc] init];
+    NSFetchRequest *theRequest = [NSFetchRequest fetchRequestWithEntityName:@"Site"];
     NSArray *theDescriptors = [NSArray arrayWithObjects:
                                [NSSortDescriptor sortDescriptorWithKey:@"city" ascending:YES],
                                [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES],
                                nil];
     NSFetchedResultsController *theController;
 
-    theRequest.entity = [NSEntityDescription entityForName:@"Site"
-                                    inManagedObjectContext:self.objectContext];
     theRequest.sortDescriptors = theDescriptors;
     theController = [[NSFetchedResultsController alloc] initWithFetchRequest:theRequest
                                                         managedObjectContext:self.objectContext

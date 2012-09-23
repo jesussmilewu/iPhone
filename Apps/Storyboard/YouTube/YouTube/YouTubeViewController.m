@@ -60,7 +60,7 @@
 }
 
 - (NSURL *)createURL {
-    NSString *theQuery = [self.searchBar.text encodedStringForURLWithEncoding:kCFStringEncodingUTF8];
+    NSString *theQuery = [self.searchBar.text encodedStringForURLWithEncoding:NSUTF8StringEncoding];
     NSString *theURL = [NSString stringWithFormat:@"http://gdata.youtube.com/feeds/api/videos?alt=json&q=%@", theQuery];
                         
     NSLog(@"URL = %@", theURL);

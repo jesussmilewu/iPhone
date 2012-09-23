@@ -25,12 +25,16 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)inSegue sender:(id)inSender {
+    NSIndexPath *theIndexPath = [self.tableView indexPathForSelectedRow];
+    Activity *theActivity = [self.activities objectAtIndex:theIndexPath.row];
+
     if([inSegue.identifier isEqualToString:@"Details"]) {
         DetailsViewController *theController = inSegue.destinationViewController;
-        NSIndexPath *theIndexPath = [self.tableView indexPathForSelectedRow];
-        Activity *theActivity = [self.activities objectAtIndex:theIndexPath.row];
         
         theController.activity = theActivity;
+    }
+    else if([inSegue.identifier isEqualToString:@"Photo"]) {
+        
     }
 }
 
@@ -51,11 +55,6 @@
     theCell.textLabel.text = theActivity.team.name;
     theCell.detailTextLabel.text = theActivity.details;
     return theCell;
-}
-
-#pragma mark - UITableViewDelegate
-
-- (void)tableView:(UITableView *)inTableView didSelectRowAtIndexPath:(NSIndexPath *)inIndexPath {
 }
 
 @end

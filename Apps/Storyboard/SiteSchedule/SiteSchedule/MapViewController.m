@@ -99,11 +99,9 @@
 }
 
 - (void)updateAnnotations {
-    NSFetchRequest *theRequest = [[NSFetchRequest alloc] init];
+    NSFetchRequest *theRequest = [NSFetchRequest fetchRequestWithEntityName:@"Site"];
     NSError *theError = nil;
     
-    theRequest.entity = [NSEntityDescription entityForName:@"Site"
-                                    inManagedObjectContext:self.managedObjectContext];
     self.sites = [self.managedObjectContext executeFetchRequest:theRequest error:&theError];
     if(theError == nil) {
         [self updateGeocoordinates:0];

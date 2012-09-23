@@ -7,6 +7,7 @@
 
 #import "NSDictionary+HTTPRequest.h"
 #import "NSDateFormatter+Extensions.h"
+#import "NSString+URLTools.h"
 
 @implementation NSDictionary(HTTPRequest)
 
@@ -53,6 +54,33 @@
     else {
         return HTTPContentRangeFromString(theRange);
     }
+}
+
+- (NSString *)parameterStringWithEncoding:(NSStringEncoding)inEncoding {
+    NSMutableString *theParameters = [NSMutableString stringWithCapacity:256];
+    NSString *theSeparator = @"";
+    
+    for(NSString *theName in self) {
+        NSString *theEncodedName = [theName encodedStringForURLWithEncoding:inEncoding];
+        id theValue = [self valueForKey:theName];
+        
+        if([theValue conformsToProtocol:@protocol(NSFastEnumeration)]) {
+            for(id theItem in theValue) {
+                [theParameters appendFormat:@"%@%@=%@",
+                 theSeparator, theEncodedName,
+                 [theItem encodedStringForURLWithEncoding:inEncoding]];
+            }
+            theSeparator = @"&";
+        }
+        else {
+            theValue = [theValue description];
+            [theParameters appendFormat:@"%@%@=%@",
+             theSeparator, theEncodedName,
+             [theValue encodedStringForURLWithEncoding:inEncoding]];            
+            theSeparator = @"&";
+        }
+    }
+    return [theParameters copy];
 }
 
 @end

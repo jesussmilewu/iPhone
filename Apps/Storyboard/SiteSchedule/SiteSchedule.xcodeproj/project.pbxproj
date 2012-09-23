@@ -15,6 +15,9 @@
 		AB60784615500B5B00CBC151 /* NSDateFormatter+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB60784515500B5B00CBC151 /* NSDateFormatter+Extensions.m */; };
 		AB723A9F15B2138200DDDFED /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB723AA115B2138200DDDFED /* Localizable.strings */; };
 		AB728AAF15A9AC8D007F247B /* NSURLCredentialStorage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB728AAE15A9AC8D007F247B /* NSURLCredentialStorage+Extensions.m */; };
+		AB76BE20160F8B57008D28D4 /* MIMEMultipart.m in Sources */ = {isa = PBXBuildFile; fileRef = AB76BE1F160F8B57008D28D4 /* MIMEMultipart.m */; };
+		AB76BE28160F8D7F008D28D4 /* NSString+URLTools.m in Sources */ = {isa = PBXBuildFile; fileRef = AB76BE27160F8D78008D28D4 /* NSString+URLTools.m */; };
+		AB76BE2F160F9BEA008D28D4 /* PhotoUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB76BE2E160F9BEA008D28D4 /* PhotoUploadViewController.m */; };
 		AB9EA00815AB6A90009944EF /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = AB9EA00715AB6A90009944EF /* Reachability.m */; };
 		AB9EA00B15AB700C009944EF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9EA00A15AB700C009944EF /* SystemConfiguration.framework */; };
 		ABD352A1154D70E7006DBF2F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD352A0154D70E7006DBF2F /* UIKit.framework */; };
@@ -59,6 +62,12 @@
 		AB723AA315B2138C00DDDFED /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AB728AAD15A9AC8D007F247B /* NSURLCredentialStorage+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLCredentialStorage+Extensions.h"; sourceTree = "<group>"; };
 		AB728AAE15A9AC8D007F247B /* NSURLCredentialStorage+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLCredentialStorage+Extensions.m"; sourceTree = "<group>"; };
+		AB76BE1E160F8B57008D28D4 /* MIMEMultipart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMEMultipart.h; sourceTree = "<group>"; };
+		AB76BE1F160F8B57008D28D4 /* MIMEMultipart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMEMultipart.m; sourceTree = "<group>"; };
+		AB76BE26160F8D78008D28D4 /* NSString+URLTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+URLTools.h"; sourceTree = "<group>"; };
+		AB76BE27160F8D78008D28D4 /* NSString+URLTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLTools.m"; sourceTree = "<group>"; };
+		AB76BE2D160F9BE9008D28D4 /* PhotoUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoUploadViewController.h; sourceTree = "<group>"; };
+		AB76BE2E160F9BEA008D28D4 /* PhotoUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoUploadViewController.m; sourceTree = "<group>"; };
 		AB9EA00615AB6A90009944EF /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		AB9EA00715AB6A90009944EF /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		AB9EA00A15AB700C009944EF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -125,6 +134,10 @@
 		AB60783C155005E700CBC151 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				AB76BE26160F8D78008D28D4 /* NSString+URLTools.h */,
+				AB76BE27160F8D78008D28D4 /* NSString+URLTools.m */,
+				AB76BE1E160F8B57008D28D4 /* MIMEMultipart.h */,
+				AB76BE1F160F8B57008D28D4 /* MIMEMultipart.m */,
 				AB9EA00615AB6A90009944EF /* Reachability.h */,
 				AB9EA00715AB6A90009944EF /* Reachability.m */,
 				AB60783E1550062900CBC151 /* NSDictionary+HTTPRequest.h */,
@@ -228,6 +241,8 @@
 				ABFD3269154D71920023B8AB /* MainStoryboard.storyboard */,
 				ABD65F2615B1AA0900DF8887 /* Annotation.h */,
 				ABD65F2715B1AA0900DF8887 /* Annotation.m */,
+				AB76BE2D160F9BE9008D28D4 /* PhotoUploadViewController.h */,
+				AB76BE2E160F9BEA008D28D4 /* PhotoUploadViewController.m */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -336,6 +351,9 @@
 				AB45D66D15B1777A00D8CE6C /* ActivitiesViewController.m in Sources */,
 				AB45D67115B189CD00D8CE6C /* DetailsViewController.m in Sources */,
 				ABD65F2815B1AA0900DF8887 /* Annotation.m in Sources */,
+				AB76BE20160F8B57008D28D4 /* MIMEMultipart.m in Sources */,
+				AB76BE28160F8D7F008D28D4 /* NSString+URLTools.m in Sources */,
+				AB76BE2F160F9BEA008D28D4 /* PhotoUploadViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

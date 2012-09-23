@@ -16,9 +16,10 @@
 #define RESUMABLE_DOWNLOAD 1
 
 #define kLocalDownloadURL @"http://nostromo.local/~clemens/SiteSchedule/schedule.xml"
+#define kLocalDigestDownloadURL @"http://nostromo.local/~clemens/SiteSchedule/digest/schedule.xml"
 #define kDefaultDownloadURL @"http://www.rodewig.de/iphone/without/schedule.xml"
 #define kProtectedDownloadURL @"http://www.rodewig.de/iphone/withauth/schedule.xml"
-static NSString * const kDownloadURL = kLocalDownloadURL;
+static NSString * const kDownloadURL = kProtectedDownloadURL;
 
 @interface DownloadViewController()<NSURLConnectionDataDelegate, UIAlertViewDelegate>
 
@@ -225,10 +226,8 @@ static NSString * const kDownloadURL = kLocalDownloadURL;
 }
 
 - (NSUInteger)countElementsForEntityNamed:(NSString *)inName {
-    NSFetchRequest *theRequest = [[NSFetchRequest alloc] init];
+    NSFetchRequest *theRequest = [NSFetchRequest fetchRequestWithEntityName:inName];
     
-    theRequest.entity = [NSEntityDescription entityForName:inName 
-                                    inManagedObjectContext:self.managedObjectContext];
     return [self.managedObjectContext countForFetchRequest:theRequest error:NULL];
 }
 
@@ -265,8 +264,16 @@ static NSString * const kDownloadURL = kLocalDownloadURL;
     return theAttributes.fileSize;
 }
 
-- (void)finishDownload:(NSInputStream *)inoutStream {    
-    [self updateScheduleWithStream:inoutStream];
+- (void)finishDownload:(NSInputStream *)inoutStream {
+    NSError *theError = [self.applicationDelegate updateWithInputStream:inoutStream];
+    NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if(theError) {
+        NSLog(@"updateScheduleWithStream: error = %@", theError);
+    }
+    [theDefaults setObject:[NSDate date] forKey:@"downloadTime"];
+    [theDefaults synchronize];
+    [self refresh];
     [self setOverlayHidden:YES animated:YES];
 #if RESUMABLE_DOWNLOAD
     [self deleteDownloadFile];
@@ -320,18 +327,6 @@ static NSString * const kDownloadURL = kLocalDownloadURL;
 #endif
 }
 
-- (void)updateScheduleWithStream:(NSInputStream *)inStream {
-    NSError *theError = [self.applicationDelegate updateWithInputStream:inStream];
-    NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
-    
-    if(theError) {
-        NSLog(@"updateSchedule: error = %@", theError);
-    }
-    [theDefaults setObject:[NSDate date] forKey:@"downloadTime"];
-    [theDefaults synchronize];
-    [self refresh];
-}
-
 - (IBAction)downloadData {
     [self setOverlayHidden:NO animated:YES];
     self.progressView.progress = 0.0;
@@ -346,16 +341,23 @@ static NSString * const kDownloadURL = kLocalDownloadURL;
 
 #if RESUMABLE_DOWNLOAD
 - (void)connection:(NSURLConnection *)inConnection didReceiveResponse:(NSURLResponse *)inResponse {
-    NSDictionary *theFields = [(id) inResponse allHeaderFields];
-    HTTPContentRange theRange = theFields.contentRange;
-    NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
+    NSHTTPURLResponse *theResponse = (id)inResponse;
+    NSDictionary *theFields = [theResponse allHeaderFields];
     
-    self.contentRange = theRange;
-    self.outputStream = [NSOutputStream outputStreamToFileAtPath:self.downloadFile
-                         append:theRange.range.location > 0];
-    [self.outputStream open];
-    self.progressView.progress = 0.0;
-    [theDefaults setValue:theFields.lastModified forKey:@"updateTime"];
+    if(theResponse.statusCode == 200) {
+        HTTPContentRange theRange = theFields.contentRange;
+        NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
+        
+        self.contentRange = theRange;
+        self.outputStream = [NSOutputStream outputStreamToFileAtPath:self.downloadFile
+                             append:theRange.range.location > 0];
+        [self.outputStream open];
+        self.progressView.progress = 0.0;
+        [theDefaults setValue:theFields.lastModified forKey:@"updateTime"];
+    }
+    else {
+        NSLog(@"Invalid status code: %d", theResponse.statusCode);
+    }
 }
 
 - (void)connection:(NSURLConnection *)inConnection didReceiveData:(NSData *)inData {
@@ -384,11 +386,20 @@ static NSString * const kDownloadURL = kLocalDownloadURL;
 }
 #else
 - (void)connection:(NSURLConnection *)inConnection didReceiveResponse:(NSURLResponse *)inResponse {    
-    self.dataLength = (NSUInteger) inResponse.expectedContentLength;
-    self.data = [NSMutableData dataWithCapacity:self.dataLength];
-    self.progressView.progress = 0.0;
-    if([inResponse respondsToSelector:@selector(allHeaderFields)]) {
-        self.lastModified = [(id)inResponse allHeaderFields].lastModified;
+    NSHTTPURLResponse *theResponse = (id)inResponse;
+    
+    if(theResponse.statusCode == 200) {
+        NSDictionary *theFields = [theResponse allHeaderFields];
+
+        self.dataLength = (NSUInteger) inResponse.expectedContentLength;
+        self.data = [NSMutableData dataWithCapacity:self.dataLength];
+        self.progressView.progress = 0.0;
+        if([inResponse respondsToSelector:@selector(allHeaderFields)]) {
+            self.lastModified = [(id)inResponse allHeaderFields].lastModified;
+        }
+    }
+    else {
+        NSLog(@"Invalid status code: %d", theResponse.statusCode);
     }
 }
 
@@ -417,22 +428,32 @@ static NSString * const kDownloadURL = kLocalDownloadURL;
 }
 #endif
 
-- (void)connection:(NSURLConnection *)inConnection 
-didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)inChallenge {
+- (void)sendAuthenticationChallenge:(NSURLAuthenticationChallenge *)inChallenge
+                      forConnection:(NSURLConnection *)inConnection {
     if([inChallenge previousFailureCount] < 3) {
-        UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Credentials required", @"")
+        NSString *theMethod = [inChallenge.protectionSpace authenticationMethod];
+        UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:theMethod
                                                            message:NSLocalizedString(@"Please enter your credentials.", @"")
-                                                          delegate:self 
-                                                 cancelButtonTitle:NSLocalizedString(@"Cancel", @"") 
+                                                          delegate:self
+                                                 cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
                                                  otherButtonTitles:NSLocalizedString(@"Login", @""), nil];
         
+        self.challenge = inChallenge;
         theAlert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
         [theAlert show];
-        self.challenge = inChallenge;
     }
     else {
         [inChallenge.sender cancelAuthenticationChallenge:inChallenge];
     }
+}
+
+- (void)connection:(NSURLConnection *)inConnection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)inChallenge {
+    [self sendAuthenticationChallenge:inChallenge forConnection:inConnection];
+}
+
+- (void)connection:(NSURLConnection *)inConnection 
+didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)inChallenge {
+    [self sendAuthenticationChallenge:inChallenge forConnection:inConnection];
 }
 
 #pragma mark UIAlertViewDelegate
@@ -443,7 +464,7 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)inChallenge {
         NSString *thePassword = [inAlertView textFieldAtIndex:1].text;
         NSURLCredential *theCredential = [NSURLCredential credentialWithUser:theLogin
                                                                     password:thePassword
-                                                                 persistence:NSURLCredentialPersistencePermanent];
+                                                                 persistence:NSURLCredentialPersistenceForSession];
         
         [self.challenge.sender useCredential:theCredential
                   forAuthenticationChallenge:self.challenge];
