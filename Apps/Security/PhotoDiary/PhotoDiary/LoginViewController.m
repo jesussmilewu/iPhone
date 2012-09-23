@@ -7,8 +7,6 @@
 //
 
 #import "LoginViewController.h"
-#import <CommonCrypto/CommonDigest.h>
-
 
 @interface LoginViewController ()
 
@@ -38,7 +36,7 @@
     if(!passwordSet){
         NSLog(@"Passwort nicht gesetzt");
         NSLog(@"Starte Registrierung");
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+        UIStoryboard *storyboard = self.storyboard;
         UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"Registration"];
         [vc setModalPresentationStyle:UIModalPresentationFullScreen];
         [self presentModalViewController:vc animated:YES];
@@ -57,30 +55,12 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
--(BOOL)checkCredentials:(NSString *)name pass:(NSString *)hash
-{
-    NSLog(@"[+] %@", NSStringFromSelector(_cmd));
-    
-    return YES;
-}
-
 - (IBAction)loginUser:(id)sender {
     NSLog(@"[+] %@", NSStringFromSelector(_cmd));
-    
-    NSArray *keys = [NSArray arrayWithObjects:(__bridge NSString *)kSecClass, kSecAttrAccount, kSecAttrService, kSecReturnData, nil];
-    NSArray *objects = [NSArray arrayWithObjects:(__bridge NSString *)kSecClassGenericPassword, KEYCHAIN_ACCOUNT, KEYCHAIN_SERVICE, kCFBooleanTrue, nil];
-    NSMutableDictionary *query = [NSMutableDictionary dictionaryWithObjects:objects forKeys:keys];
-    
-    CFDataRef pw = nil;
-    OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)query, (CFTypeRef*)&pw);
 
-    if(status != noErr){
-        NSLog(@"[+] Error reading PW from Keychain");
-    }
+    NSString *storedPassword = [SecUtils getUserPwFromKeychain];
     
-    NSData *result = (__bridge_transfer NSData*)pw;
-    NSString *storedPassword = [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding];
-    NSLog(@"[+] PW: %@", storedPassword);
+//    NSLog(@"[+] PW: %@", storedPassword);
     
     NSString *userPassword = [_password text];
     
@@ -89,7 +69,7 @@
     NSLog(@"[+] Password: %@", userPassword);
 
     if([passwordHash isEqualToString:storedPassword]){
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+        UIStoryboard *storyboard = self.storyboard;
         UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MainNavigationController"];
         [vc setModalPresentationStyle:UIModalPresentationFullScreen];
         [self presentModalViewController:vc animated:YES];

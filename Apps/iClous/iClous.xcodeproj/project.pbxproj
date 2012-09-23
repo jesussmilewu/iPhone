@@ -7,97 +7,95 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4054E88213BFB69500FC0D8B /* Entitlements.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 4054E88113BFB69500FC0D8B /* Entitlements.entitlements */; };
-		40D7A3CC13BF343B00D482B3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40D7A3CB13BF343B00D482B3 /* UIKit.framework */; };
-		40D7A3CE13BF343B00D482B3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40D7A3CD13BF343B00D482B3 /* Foundation.framework */; };
-		40D7A3D013BF343B00D482B3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40D7A3CF13BF343B00D482B3 /* CoreGraphics.framework */; };
-		40D7A3D613BF343B00D482B3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40D7A3D413BF343B00D482B3 /* InfoPlist.strings */; };
-		40D7A3D813BF343B00D482B3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D7A3D713BF343B00D482B3 /* main.m */; };
-		40D7A3DC13BF343B00D482B3 /* iclousAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D7A3DB13BF343B00D482B3 /* iclousAppDelegate.m */; };
-		40D7A3E513BF35DE00D482B3 /* DeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D7A3E413BF35DE00D482B3 /* DeviceInfo.m */; };
-		40D7A3E713BF368C00D482B3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40D7A3E613BF368C00D482B3 /* CoreLocation.framework */; };
+		4018E4AF1609071400B86C24 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4018E4AE1609071400B86C24 /* UIKit.framework */; };
+		4018E4B11609071400B86C24 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4018E4B01609071400B86C24 /* Foundation.framework */; };
+		4018E4B31609071400B86C24 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4018E4B21609071400B86C24 /* CoreGraphics.framework */; };
+		4018E4B91609071400B86C24 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4018E4B71609071400B86C24 /* InfoPlist.strings */; };
+		4018E4BB1609071400B86C24 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4018E4BA1609071400B86C24 /* main.m */; };
+		4018E4BF1609071400B86C24 /* KMRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4018E4BE1609071400B86C24 /* KMRAppDelegate.m */; };
+		4018E4C21609071400B86C24 /* KMRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4018E4C11609071400B86C24 /* KMRViewController.m */; };
+		4018E4C51609071400B86C24 /* KMRViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4018E4C31609071400B86C24 /* KMRViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4054E88113BFB69500FC0D8B /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Entitlements.entitlements; sourceTree = "<group>"; };
-		40D7A3C713BF343B00D482B3 /* iclous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iclous.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		40D7A3CB13BF343B00D482B3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		40D7A3CD13BF343B00D482B3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		40D7A3CF13BF343B00D482B3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		40D7A3D313BF343B00D482B3 /* iclous-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iclous-Info.plist"; sourceTree = "<group>"; };
-		40D7A3D513BF343B00D482B3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		40D7A3D713BF343B00D482B3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		40D7A3D913BF343B00D482B3 /* iclous-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iclous-Prefix.pch"; sourceTree = "<group>"; };
-		40D7A3DA13BF343B00D482B3 /* iclousAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iclousAppDelegate.h; sourceTree = "<group>"; };
-		40D7A3DB13BF343B00D482B3 /* iclousAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iclousAppDelegate.m; sourceTree = "<group>"; };
-		40D7A3E313BF35DE00D482B3 /* DeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInfo.h; sourceTree = "<group>"; };
-		40D7A3E413BF35DE00D482B3 /* DeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInfo.m; sourceTree = "<group>"; };
-		40D7A3E613BF368C00D482B3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		4018E4AA1609071400B86C24 /* iclous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iclous.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4018E4AE1609071400B86C24 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		4018E4B01609071400B86C24 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		4018E4B21609071400B86C24 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		4018E4B61609071400B86C24 /* iclous-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iclous-Info.plist"; sourceTree = "<group>"; };
+		4018E4B81609071400B86C24 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4018E4BA1609071400B86C24 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4018E4BC1609071400B86C24 /* iclous-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iclous-Prefix.pch"; sourceTree = "<group>"; };
+		4018E4BD1609071400B86C24 /* KMRAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KMRAppDelegate.h; sourceTree = "<group>"; };
+		4018E4BE1609071400B86C24 /* KMRAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KMRAppDelegate.m; sourceTree = "<group>"; };
+		4018E4C01609071400B86C24 /* KMRViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KMRViewController.h; sourceTree = "<group>"; };
+		4018E4C11609071400B86C24 /* KMRViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KMRViewController.m; sourceTree = "<group>"; };
+		4018E4C41609071400B86C24 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/KMRViewController.xib; sourceTree = "<group>"; };
+		4018E4CB1609071B00B86C24 /* iclous.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = iclous.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		40D7A3C413BF343B00D482B3 /* Frameworks */ = {
+		4018E4A71609071400B86C24 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40D7A3E713BF368C00D482B3 /* CoreLocation.framework in Frameworks */,
-				40D7A3CC13BF343B00D482B3 /* UIKit.framework in Frameworks */,
-				40D7A3CE13BF343B00D482B3 /* Foundation.framework in Frameworks */,
-				40D7A3D013BF343B00D482B3 /* CoreGraphics.framework in Frameworks */,
+				4018E4AF1609071400B86C24 /* UIKit.framework in Frameworks */,
+				4018E4B11609071400B86C24 /* Foundation.framework in Frameworks */,
+				4018E4B31609071400B86C24 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		40D7A3BC13BF343A00D482B3 = {
+		4018E49F1609071400B86C24 = {
 			isa = PBXGroup;
 			children = (
-				40D7A3D113BF343B00D482B3 /* iclous */,
-				40D7A3CA13BF343B00D482B3 /* Frameworks */,
-				40D7A3C813BF343B00D482B3 /* Products */,
+				4018E4B41609071400B86C24 /* iclous */,
+				4018E4AD1609071400B86C24 /* Frameworks */,
+				4018E4AB1609071400B86C24 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		40D7A3C813BF343B00D482B3 /* Products */ = {
+		4018E4AB1609071400B86C24 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				40D7A3C713BF343B00D482B3 /* iclous.app */,
+				4018E4AA1609071400B86C24 /* iclous.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		40D7A3CA13BF343B00D482B3 /* Frameworks */ = {
+		4018E4AD1609071400B86C24 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				40D7A3E613BF368C00D482B3 /* CoreLocation.framework */,
-				40D7A3CB13BF343B00D482B3 /* UIKit.framework */,
-				40D7A3CD13BF343B00D482B3 /* Foundation.framework */,
-				40D7A3CF13BF343B00D482B3 /* CoreGraphics.framework */,
+				4018E4AE1609071400B86C24 /* UIKit.framework */,
+				4018E4B01609071400B86C24 /* Foundation.framework */,
+				4018E4B21609071400B86C24 /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		40D7A3D113BF343B00D482B3 /* iclous */ = {
+		4018E4B41609071400B86C24 /* iclous */ = {
 			isa = PBXGroup;
 			children = (
-				4054E88113BFB69500FC0D8B /* Entitlements.entitlements */,
-				40D7A3E313BF35DE00D482B3 /* DeviceInfo.h */,
-				40D7A3E413BF35DE00D482B3 /* DeviceInfo.m */,
-				40D7A3DA13BF343B00D482B3 /* iclousAppDelegate.h */,
-				40D7A3DB13BF343B00D482B3 /* iclousAppDelegate.m */,
-				40D7A3D213BF343B00D482B3 /* Supporting Files */,
+				4018E4CB1609071B00B86C24 /* iclous.entitlements */,
+				4018E4BD1609071400B86C24 /* KMRAppDelegate.h */,
+				4018E4BE1609071400B86C24 /* KMRAppDelegate.m */,
+				4018E4C01609071400B86C24 /* KMRViewController.h */,
+				4018E4C11609071400B86C24 /* KMRViewController.m */,
+				4018E4C31609071400B86C24 /* KMRViewController.xib */,
+				4018E4B51609071400B86C24 /* Supporting Files */,
 			);
 			path = iclous;
 			sourceTree = "<group>";
 		};
-		40D7A3D213BF343B00D482B3 /* Supporting Files */ = {
+		4018E4B51609071400B86C24 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				40D7A3D313BF343B00D482B3 /* iclous-Info.plist */,
-				40D7A3D413BF343B00D482B3 /* InfoPlist.strings */,
-				40D7A3D713BF343B00D482B3 /* main.m */,
-				40D7A3D913BF343B00D482B3 /* iclous-Prefix.pch */,
+				4018E4B61609071400B86C24 /* iclous-Info.plist */,
+				4018E4B71609071400B86C24 /* InfoPlist.strings */,
+				4018E4BA1609071400B86C24 /* main.m */,
+				4018E4BC1609071400B86C24 /* iclous-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -105,13 +103,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		40D7A3C613BF343B00D482B3 /* iclous */ = {
+		4018E4A91609071400B86C24 /* iclous */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 40D7A3DF13BF343B00D482B3 /* Build configuration list for PBXNativeTarget "iclous" */;
+			buildConfigurationList = 4018E4C81609071400B86C24 /* Build configuration list for PBXNativeTarget "iclous" */;
 			buildPhases = (
-				40D7A3C313BF343B00D482B3 /* Sources */,
-				40D7A3C413BF343B00D482B3 /* Frameworks */,
-				40D7A3C513BF343B00D482B3 /* Resources */,
+				4018E4A61609071400B86C24 /* Sources */,
+				4018E4A71609071400B86C24 /* Frameworks */,
+				4018E4A81609071400B86C24 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -119,79 +117,90 @@
 			);
 			name = iclous;
 			productName = iclous;
-			productReference = 40D7A3C713BF343B00D482B3 /* iclous.app */;
+			productReference = 4018E4AA1609071400B86C24 /* iclous.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		40D7A3BE13BF343A00D482B3 /* Project object */ = {
+		4018E4A11609071400B86C24 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				CLASSPREFIX = KMR;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Foobar Ltd.";
 			};
-			buildConfigurationList = 40D7A3C113BF343A00D482B3 /* Build configuration list for PBXProject "iClous" */;
+			buildConfigurationList = 4018E4A41609071400B86C24 /* Build configuration list for PBXProject "iclous" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 40D7A3BC13BF343A00D482B3;
-			productRefGroup = 40D7A3C813BF343B00D482B3 /* Products */;
+			mainGroup = 4018E49F1609071400B86C24;
+			productRefGroup = 4018E4AB1609071400B86C24 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				40D7A3C613BF343B00D482B3 /* iclous */,
+				4018E4A91609071400B86C24 /* iclous */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		40D7A3C513BF343B00D482B3 /* Resources */ = {
+		4018E4A81609071400B86C24 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40D7A3D613BF343B00D482B3 /* InfoPlist.strings in Resources */,
-				4054E88213BFB69500FC0D8B /* Entitlements.entitlements in Resources */,
+				4018E4B91609071400B86C24 /* InfoPlist.strings in Resources */,
+				4018E4C51609071400B86C24 /* KMRViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		40D7A3C313BF343B00D482B3 /* Sources */ = {
+		4018E4A61609071400B86C24 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40D7A3D813BF343B00D482B3 /* main.m in Sources */,
-				40D7A3DC13BF343B00D482B3 /* iclousAppDelegate.m in Sources */,
-				40D7A3E513BF35DE00D482B3 /* DeviceInfo.m in Sources */,
+				4018E4BB1609071400B86C24 /* main.m in Sources */,
+				4018E4BF1609071400B86C24 /* KMRAppDelegate.m in Sources */,
+				4018E4C21609071400B86C24 /* KMRViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		40D7A3D413BF343B00D482B3 /* InfoPlist.strings */ = {
+		4018E4B71609071400B86C24 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				40D7A3D513BF343B00D482B3 /* en */,
+				4018E4B81609071400B86C24 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4018E4C31609071400B86C24 /* KMRViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4018E4C41609071400B86C24 /* en */,
+			);
+			name = KMRViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		40D7A3DD13BF343B00D482B3 /* Debug */ = {
+		4018E4C61609071400B86C24 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Klaus Rodewig (P4X78RAG54)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Klaus Rodewig (P4X78RAG54)";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -201,44 +210,39 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PROVISIONING_PROFILE = "F4E5C248-DD0E-4A2C-A148-A07D1C60E01D";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F4E5C248-DD0E-4A2C-A148-A07D1C60E01D";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
-		40D7A3DE13BF343B00D482B3 /* Release */ = {
+		4018E4C71609071400B86C24 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Klaus Rodewig (P4X78RAG54)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Klaus Rodewig (P4X78RAG54)";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "F4E5C248-DD0E-4A2C-A148-A07D1C60E01D";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F4E5C248-DD0E-4A2C-A148-A07D1C60E01D";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		40D7A3E013BF343B00D482B3 /* Debug */ = {
+		4018E4C91609071400B86C24 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = iclous/Entitlements.entitlements;
+				CODE_SIGN_ENTITLEMENTS = iclous/iclous.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iclous/iclous-Prefix.pch";
 				INFOPLIST_FILE = "iclous/iclous-Info.plist";
@@ -247,10 +251,10 @@
 			};
 			name = Debug;
 		};
-		40D7A3E113BF343B00D482B3 /* Release */ = {
+		4018E4CA1609071400B86C24 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = iclous/Entitlements.entitlements;
+				CODE_SIGN_ENTITLEMENTS = iclous/iclous.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iclous/iclous-Prefix.pch";
 				INFOPLIST_FILE = "iclous/iclous-Info.plist";
@@ -262,25 +266,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		40D7A3C113BF343A00D482B3 /* Build configuration list for PBXProject "iClous" */ = {
+		4018E4A41609071400B86C24 /* Build configuration list for PBXProject "iclous" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				40D7A3DD13BF343B00D482B3 /* Debug */,
-				40D7A3DE13BF343B00D482B3 /* Release */,
+				4018E4C61609071400B86C24 /* Debug */,
+				4018E4C71609071400B86C24 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		40D7A3DF13BF343B00D482B3 /* Build configuration list for PBXNativeTarget "iclous" */ = {
+		4018E4C81609071400B86C24 /* Build configuration list for PBXNativeTarget "iclous" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				40D7A3E013BF343B00D482B3 /* Debug */,
-				40D7A3E113BF343B00D482B3 /* Release */,
+				4018E4C91609071400B86C24 /* Debug */,
+				4018E4CA1609071400B86C24 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 40D7A3BE13BF343A00D482B3 /* Project object */;
+	rootObject = 4018E4A11609071400B86C24 /* Project object */;
 }

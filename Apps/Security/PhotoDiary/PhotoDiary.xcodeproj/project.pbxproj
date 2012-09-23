@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		40723B2015DA7C27007C51B9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40723B1F15DA7C27007C51B9 /* Security.framework */; };
+		404FDC661603BB9A00585B86 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40723B1F15DA7C27007C51B9 /* Security.framework */; };
 		40CFB15B15D98F92008B95AD /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CFB15A15D98F92008B95AD /* LoginViewController.m */; };
 		40CFB15F15DA76E8008B95AD /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CFB15E15DA76E8008B95AD /* RegistrationViewController.m */; };
 		40F621E515DAF8A40016218F /* SecUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F621E415DAF8A40016218F /* SecUtils.m */; };
@@ -130,7 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40723B2015DA7C27007C51B9 /* Security.framework in Frameworks */,
+				404FDC661603BB9A00585B86 /* Security.framework in Frameworks */,
 				40F91108152B840A00C3921B /* Twitter.framework in Frameworks */,
 				AB11CA6E12E1B47600F99C7B /* UIKit.framework in Frameworks */,
 				AB11CA7012E1B47600F99C7B /* Foundation.framework in Frameworks */,
@@ -431,6 +431,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -444,6 +445,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -454,6 +456,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -465,6 +468,7 @@
 				INFOPLIST_FILE = "PhotoDiary/PhotoDiary-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
