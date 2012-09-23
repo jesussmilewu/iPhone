@@ -10,6 +10,6 @@
 
 @interface NSString (URLTools)
 
-- (NSString *)encodedStringForURLWithEncoding:(CFStringEncoding)inEncoding;
+- (NSString *)encodedStringForURLWithEncoding:(NSStringEncoding)inEncoding;
 
 @end

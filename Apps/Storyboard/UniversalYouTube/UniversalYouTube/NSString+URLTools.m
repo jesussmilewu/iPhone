@@ -10,12 +10,13 @@
 
 @implementation NSString(URLTools)
 
-- (NSString *)encodedStringForURLWithEncoding:(CFStringEncoding)inEncoding {
-    CFStringRef theResult = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, 
+- (NSString *)encodedStringForURLWithEncoding:(NSStringEncoding)inEncoding {
+    CFStringEncoding theEncoding = CFStringConvertNSStringEncodingToEncoding(inEncoding);
+    CFStringRef theResult = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
                                                                     (__bridge CFStringRef) self, 
                                                                     NULL, 
                                                                     (CFStringRef)@"!*'();:@&=+$,/?%#[]", 
-                                                                    inEncoding);
+                                                                    theEncoding);
     
     return (__bridge_transfer NSString *)theResult;
 }

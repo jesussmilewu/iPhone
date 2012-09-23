@@ -2,11 +2,16 @@
 
 userDir=.
 configFile=$userDir/$USER.conf
-content="<Directoy \"/Users/$USER/Sites/\">\nOptions Indexes MultiViews\nAllowOverride All\nOrder allow,deny\nAllow from all\n</Directory>"
+head="<Directory \"/Users/$USER/Sites/\">"
 if [ -f $configFile ]
 then
 	echo "Config file $configFile already exists."
 else
 	echo "Create config file $configFile."
-	echo $content > $configFile
+	echo $head > $configFile
+	echo "    Options Indexes MultiViews" >> $configFile
+    echo "    AllowOverride None" >> $configFile
+    echo "    Order allow,deny" >> $configFile
+    echo "    Allow from all" >> $configFile
+    echo "</Directory>" >> $configFile
 fi
