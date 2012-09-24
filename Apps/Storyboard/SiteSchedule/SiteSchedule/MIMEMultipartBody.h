@@ -23,4 +23,6 @@
 
 - (NSData *)data;
 
+- (NSMutableURLRequest *)mutableRequestWithURL:(NSURL *)inURL timeout:(NSTimeInterval)inTimeout;
+
 @end

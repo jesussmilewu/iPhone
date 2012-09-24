@@ -400,12 +400,17 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" progress="0.5" id="iLZ-fp-0fH">
+                                <rect key="frame" x="20" y="199" width="280" height="9"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="LaU-lJ-K43"/>
                     <connections>
                         <outlet property="photoView" destination="uLB-rf-dA4" id="aqU-1q-paa"/>
+                        <outlet property="progressBar" destination="iLZ-fp-0fH" id="Zcn-c2-2vP"/>
                         <outlet property="result" destination="8Uc-HP-vBr" id="weQ-W6-4FU"/>
                         <outlet property="uploadButton" destination="eDY-85-Zoq" id="Z99-W8-1qB"/>
                     </connections>
@@ -782,6 +787,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoUploadViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="photoView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="progressBar" candidateClass="UIProgressView"/>
                 <relationship kind="outlet" name="result" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="uploadButton" candidateClass="UIButton"/>
             </relationships>

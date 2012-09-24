@@ -7,12 +7,18 @@
 //
 
 #import "PhotoUploadViewController.h"
+#import "MIMEMultipartBody.h"
 
-@interface PhotoUploadViewController()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+#define kUploadURL @"http://nostromo.local/~clemens/upload.php"
+// #define kUploadURL @"http://nostromo.local:10000"
+
+@interface PhotoUploadViewController()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, NSURLConnectionDataDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *photoView;
 @property (weak, nonatomic) IBOutlet UILabel *result;
 @property (weak, nonatomic) IBOutlet UIButton *uploadButton;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressBar;
+@property (strong, nonatomic) UIImage *photo;
 
 @end
 
@@ -22,6 +28,7 @@
 @synthesize result;
 @synthesize uploadButton;
 @synthesize activity;
+@dynamic photo;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,11 +39,25 @@
     [super viewWillAppear:inAnimated];
     self.result.text = @"";
     self.uploadButton.enabled = self.photoView.image != nil;
+    self.progressBar.progress = 0.0;
+    self.progressBar.hidden = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)inAnimated {
     self.photoView.image = nil;
     [super viewWillDisappear:inAnimated];
+}
+
+- (NSURL *)uploadURL {
+    return [NSURL URLWithString:kUploadURL];
+}
+
+- (UIImage *)photo {
+    return self.photoView.image;
+}
+
+- (void)setPhoto:(UIImage *)inImage {
+    self.photoView.image = inImage;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,13 +78,48 @@
 }
 
 - (IBAction)upload {
+    MIMEMultipartBody *theBody = [[MIMEMultipartBody alloc] init];
+    NSData *thePhoto = UIImageJPEGRepresentation(self.photo, 0.8);
+    Site *theSite = self.activity.site;
+    NSString *theFile = [NSString stringWithFormat:@"%@.jpg", theSite.code];
+    NSMutableURLRequest *theRequest;
+    
+    [theBody appendParameterValue:theSite.code withName:@"code"];
+    [theBody appendData:thePhoto withName:@"photo" contentType:@"image/jpeg" filename:theFile];
+    theRequest = [theBody mutableRequestWithURL:[self uploadURL] timeout:10.0];
+    [theRequest setValue:@"Close" forHTTPHeaderField:@"Connection"];
+    self.progressBar.hidden = NO;
+    [NSURLConnection connectionWithRequest:theRequest delegate:self];
+}
+
+#pragma mark NSURLConnectionDataDelegate
+
+- (void)connection:(NSURLConnection *)inConnection didSendBodyData:(NSInteger)inBytesWritten
+ totalBytesWritten:(NSInteger)inTotalBytesWritten totalBytesExpectedToWrite:(NSInteger)inTotalCount {
+    self.progressBar.progress = (float) inTotalBytesWritten / (float) inTotalCount;
+}
+
+- (void)connection:(NSURLConnection *)inConnection didReceiveResponse:(NSURLResponse *)inResponse {
+}
+
+- (void)connection:(NSURLConnection *)inConnection didReceiveData:(NSData *)inData {
+    NSString *theValue = [[NSString alloc] initWithData:inData encoding:NSUTF8StringEncoding];
+    
+    NSLog(@"data: %@", theValue);
+}
+
+- (void)connection:(NSURLConnection *)inConnection didFailWithError:(NSError *)inError {
+    self.progressBar.hidden = YES;
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)inConnection {
+    self.progressBar.hidden = YES;
 }
 
 #pragma mark UIImagePickerControllerDelegate
 
 - (void)imagePickerController:(UIImagePickerController *)inPicker didFinishPickingMediaWithInfo:(NSDictionary *)inInfo {
-    self.photoView.image = [inInfo objectForKey:UIImagePickerControllerOriginalImage];
-    NSLog(@"size = %@", NSStringFromCGSize(self.photoView.image.size));
+    self.photo = [inInfo objectForKey:UIImagePickerControllerOriginalImage];
     [inPicker dismissViewControllerAnimated:YES completion:NULL];
 }
 
@@ -71,4 +127,8 @@
     [inPicker dismissViewControllerAnimated:YES completion:NULL];
 }
 
+- (void)viewDidUnload {
+    [self setProgressBar:nil];
+    [super viewDidUnload];
+}
 @end

@@ -67,14 +67,23 @@
     NSUInteger theLength = theBody.length;
     NSData *theData;
 
-    [self appendString:[NSString stringWithFormat:@"\n\r%@", self.separator]];
+    [self appendString:[NSString stringWithFormat:@"\n\r%@--", self.separator]];
     theData = [theBody copy];
     theBody.length = theLength;
     return theData;
 }
 
+- (void)startNewPart {
+    if(self.body.length > 0) {
+        [self appendString:[NSString stringWithFormat:@"\n\r%@", self.separator]];
+    }
+    else {
+        [self appendString:[NSString stringWithFormat:@"%@", self.separator]];
+    }
+}
+
 - (void)appendParameterValue:(NSString *)inValue withName:(NSString *)inName {
-    [self appendString:[NSString stringWithFormat:@"\n\r%@", self.separator]];
+    [self startNewPart];
     [self appendString:[NSString stringWithFormat:@"\n\rContent-Disposition: form-data; name=\"%@\"", inName]];
     [self appendString:@"\n\r\n\r"];
     [self appendString:inValue];
@@ -84,12 +93,25 @@
           withName:(NSString *)inName
        contentType:(NSString *)inContentType
           filename:(NSString *)inFileName {
-    [self appendString:[NSString stringWithFormat:@"\n\r%@", self.separator]];
+    [self startNewPart];
     [self appendString:[NSString stringWithFormat:@"\n\rContent-Disposition: form-data; name=\"%@\"; filename=\"%@\"", inName, inFileName]];
-    [self appendString:[NSString stringWithFormat:@"\n\rContent-Type: %@", self.separator]];
+    [self appendString:[NSString stringWithFormat:@"\n\rContent-Type: %@", inContentType]];
     [self appendString:@"\n\r\n\r"];
     [self.body appendData:inData];
 }
 
+- (NSMutableURLRequest *)mutableRequestWithURL:(NSURL *)inURL timeout:(NSTimeInterval)inTimeout {
+    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:inURL
+                                                              cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                                          timeoutInterval:inTimeout];
+    NSData *theBody = self.data;
+    
+    [theRequest setHTTPMethod:@"POST"];
+    [theRequest setValue:self.contentType forHTTPHeaderField:@"Content-Type"];
+    [theRequest setValue:[NSString stringWithFormat:@"%d", theBody.length]
+      forHTTPHeaderField:@"Content-Length"];
+    [theRequest setHTTPBody:theBody];
+    return theRequest;
+}
 
 @end
