@@ -5,33 +5,23 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "MIMEMultipart.h"
+#import "MIMEMultipartBody.h"
 
-static const char * kEncodingsNames[] = {
-    NULL, "ASCII", "NEXTSTEP", "EUC", "UTF-8", "ISO-8859-1", NULL, NULL,
-    NULL, "ISO-8859-2", "Unicode", "CP1251", "CP1252", "CP1253", "CP1254", "CP1255",
-    "CP1250", NULL, NULL, NULL, NULL, NULL, NULL, NULL, 
-    NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 
-    NULL
-};
-
-static const char *NSStringEncodingGetName(NSStringEncoding inEncoding) {
-    return inEncoding < 32 ? kEncodingsNames[inEncoding] : NULL;
-}
-
-@interface MIMEMultipart()
+@interface MIMEMultipartBody()
 
 @property (nonatomic, readwrite) NSStringEncoding encoding;
+@property (nonatomic, copy, readwrite) NSString *charset;
 @property (nonatomic, copy, readwrite) NSString *separator;
-@property (nonatomic, retain, readwrite) NSMutableData *mutableData;
+@property (nonatomic, retain, readwrite) NSMutableData *body;
 
 @end
 
-@implementation MIMEMultipart
+@implementation MIMEMultipartBody
 
 @synthesize encoding;
+@synthesize charset;
 @synthesize separator;
-@synthesize mutableData;
+@synthesize body;
 
 - (id)init {
     return [self initWithEncoding:NSUTF8StringEncoding];
@@ -44,12 +34,12 @@ static const char *NSStringEncodingGetName(NSStringEncoding inEncoding) {
 
 - (id)initWithEncoding:(NSStringEncoding)inEncoding separator:(NSString *)inSeparator {
     self = [super init];
-    if(self == nil || NSStringEncodingGetName(inEncoding) == NULL) {
-        self = nil;
-    }
-    else {
+    if(self) {
+        CFStringEncoding theEncoding = CFStringConvertNSStringEncodingToEncoding(self.encoding);
+        
         self.encoding = inEncoding;
-        self.mutableData = [NSMutableData dataWithCapacity:8192];
+        self.charset = (id)CFStringConvertEncodingToIANACharSetName(theEncoding);
+        self.body = [NSMutableData dataWithCapacity:8192];
         if(inSeparator.length > 0) {
             self.separator = inSeparator;
         }
@@ -57,42 +47,48 @@ static const char *NSStringEncodingGetName(NSStringEncoding inEncoding) {
             NSUInteger theKey = (NSUInteger) [NSDate timeIntervalSinceReferenceDate] * 19 + (rand() % 123457);
             
             self.separator = [NSString stringWithFormat:@"------SiteSchedule%x", theKey]; 
-                        
         }
     }
     return self;
 }
 
+- (NSString *)contentType {
+    return [NSString stringWithFormat:@"multipart/form-data; boundary=%@", self.separator];
+}
+
 - (void)appendString:(NSString *)inValue {
-    NSUInteger theLength = [inValue lengthOfBytesUsingEncoding:self.encoding];
+    NSData *theData = [inValue dataUsingEncoding:self.encoding];
     
-    [self.mutableData appendBytes:[inValue cStringUsingEncoding:self.encoding] length:theLength];
+    [self.body appendData:theData];
 }
 
 - (NSData *)data {
-    NSMutableData *theMutableData = self.mutableData;
-    NSUInteger theLength = theMutableData.length;
+    NSMutableData *theBody = self.body;
+    NSUInteger theLength = theBody.length;
     NSData *theData;
 
     [self appendString:[NSString stringWithFormat:@"\n\r%@", self.separator]];
-    theData = [theMutableData copy];
-    theMutableData.length = theLength;
+    theData = [theBody copy];
+    theBody.length = theLength;
     return theData;
 }
 
-- (void)appendParameter:(NSString *)inValue withName:(NSString *)inName {
+- (void)appendParameterValue:(NSString *)inValue withName:(NSString *)inName {
     [self appendString:[NSString stringWithFormat:@"\n\r%@", self.separator]];
     [self appendString:[NSString stringWithFormat:@"\n\rContent-Disposition: form-data; name=\"%@\"", inName]];
     [self appendString:@"\n\r\n\r"];
     [self appendString:inValue];
 }
 
-- (void)appendData:(NSData *)inData withName:(NSString *)inName contentType:(NSString *)inContentType filename:(NSString *)inFileName {
+- (void)appendData:(NSData *)inData
+          withName:(NSString *)inName
+       contentType:(NSString *)inContentType
+          filename:(NSString *)inFileName {
     [self appendString:[NSString stringWithFormat:@"\n\r%@", self.separator]];
     [self appendString:[NSString stringWithFormat:@"\n\rContent-Disposition: form-data; name=\"%@\"; filename=\"%@\"", inName, inFileName]];
     [self appendString:[NSString stringWithFormat:@"\n\rContent-Type: %@", self.separator]];
     [self appendString:@"\n\r\n\r"];
-    [self.mutableData appendData:inData];
+    [self.body appendData:inData];
 }
 
 
