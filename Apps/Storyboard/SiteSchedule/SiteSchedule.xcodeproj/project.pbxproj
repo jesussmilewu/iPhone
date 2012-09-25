@@ -15,7 +15,7 @@
 		AB60784615500B5B00CBC151 /* NSDateFormatter+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB60784515500B5B00CBC151 /* NSDateFormatter+Extensions.m */; };
 		AB723A9F15B2138200DDDFED /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB723AA115B2138200DDDFED /* Localizable.strings */; };
 		AB728AAF15A9AC8D007F247B /* NSURLCredentialStorage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB728AAE15A9AC8D007F247B /* NSURLCredentialStorage+Extensions.m */; };
-		AB76BE20160F8B57008D28D4 /* MIMEMultipart.m in Sources */ = {isa = PBXBuildFile; fileRef = AB76BE1F160F8B57008D28D4 /* MIMEMultipart.m */; };
+		AB76BE20160F8B57008D28D4 /* MIMEMultipartBody.m in Sources */ = {isa = PBXBuildFile; fileRef = AB76BE1F160F8B57008D28D4 /* MIMEMultipartBody.m */; };
 		AB76BE28160F8D7F008D28D4 /* NSString+URLTools.m in Sources */ = {isa = PBXBuildFile; fileRef = AB76BE27160F8D78008D28D4 /* NSString+URLTools.m */; };
 		AB76BE2F160F9BEA008D28D4 /* PhotoUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB76BE2E160F9BEA008D28D4 /* PhotoUploadViewController.m */; };
 		AB9EA00815AB6A90009944EF /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = AB9EA00715AB6A90009944EF /* Reachability.m */; };
@@ -62,8 +62,8 @@
 		AB723AA315B2138C00DDDFED /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AB728AAD15A9AC8D007F247B /* NSURLCredentialStorage+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLCredentialStorage+Extensions.h"; sourceTree = "<group>"; };
 		AB728AAE15A9AC8D007F247B /* NSURLCredentialStorage+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLCredentialStorage+Extensions.m"; sourceTree = "<group>"; };
-		AB76BE1E160F8B57008D28D4 /* MIMEMultipart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMEMultipart.h; sourceTree = "<group>"; };
-		AB76BE1F160F8B57008D28D4 /* MIMEMultipart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMEMultipart.m; sourceTree = "<group>"; };
+		AB76BE1E160F8B57008D28D4 /* MIMEMultipartBody.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = MIMEMultipartBody.h; sourceTree = "<group>"; };
+		AB76BE1F160F8B57008D28D4 /* MIMEMultipartBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMEMultipartBody.m; sourceTree = "<group>"; };
 		AB76BE26160F8D78008D28D4 /* NSString+URLTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+URLTools.h"; sourceTree = "<group>"; };
 		AB76BE27160F8D78008D28D4 /* NSString+URLTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLTools.m"; sourceTree = "<group>"; };
 		AB76BE2D160F9BE9008D28D4 /* PhotoUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoUploadViewController.h; sourceTree = "<group>"; };
@@ -136,8 +136,8 @@
 			children = (
 				AB76BE26160F8D78008D28D4 /* NSString+URLTools.h */,
 				AB76BE27160F8D78008D28D4 /* NSString+URLTools.m */,
-				AB76BE1E160F8B57008D28D4 /* MIMEMultipart.h */,
-				AB76BE1F160F8B57008D28D4 /* MIMEMultipart.m */,
+				AB76BE1E160F8B57008D28D4 /* MIMEMultipartBody.h */,
+				AB76BE1F160F8B57008D28D4 /* MIMEMultipartBody.m */,
 				AB9EA00615AB6A90009944EF /* Reachability.h */,
 				AB9EA00715AB6A90009944EF /* Reachability.m */,
 				AB60783E1550062900CBC151 /* NSDictionary+HTTPRequest.h */,
@@ -351,7 +351,7 @@
 				AB45D66D15B1777A00D8CE6C /* ActivitiesViewController.m in Sources */,
 				AB45D67115B189CD00D8CE6C /* DetailsViewController.m in Sources */,
 				ABD65F2815B1AA0900DF8887 /* Annotation.m in Sources */,
-				AB76BE20160F8B57008D28D4 /* MIMEMultipart.m in Sources */,
+				AB76BE20160F8B57008D28D4 /* MIMEMultipartBody.m in Sources */,
 				AB76BE28160F8D7F008D28D4 /* NSString+URLTools.m in Sources */,
 				AB76BE2F160F9BEA008D28D4 /* PhotoUploadViewController.m in Sources */,
 			);
