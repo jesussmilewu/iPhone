@@ -65,7 +65,9 @@
         id theValue = [self valueForKey:theName];
         
         if([theValue conformsToProtocol:@protocol(NSFastEnumeration)]) {
-            for(id theItem in theValue) {
+            for(id theCollectionValue in theValue) {
+                NSString *theItem = [theCollectionValue description];
+                
                 [theParameters appendFormat:@"%@%@=%@",
                  theSeparator, theEncodedName,
                  [theItem encodedStringForURLWithEncoding:inEncoding]];

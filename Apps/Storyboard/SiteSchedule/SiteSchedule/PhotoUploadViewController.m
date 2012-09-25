@@ -10,7 +10,6 @@
 #import "MIMEMultipartBody.h"
 
 #define kUploadURL @"http://nostromo.local/~clemens/upload.php"
-// #define kUploadURL @"http://nostromo.local:10000"
 
 @interface PhotoUploadViewController()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, NSURLConnectionDataDelegate>
 
@@ -19,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *uploadButton;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressBar;
 @property (strong, nonatomic) UIImage *photo;
+@property (strong, nonatomic) NSMutableData *responseData;
 
 @end
 
@@ -87,7 +87,6 @@
     [theBody appendParameterValue:theSite.code withName:@"code"];
     [theBody appendData:thePhoto withName:@"photo" contentType:@"image/jpeg" filename:theFile];
     theRequest = [theBody mutableRequestWithURL:[self uploadURL] timeout:10.0];
-    [theRequest setValue:@"Close" forHTTPHeaderField:@"Connection"];
     self.progressBar.hidden = NO;
     [NSURLConnection connectionWithRequest:theRequest delegate:self];
 }
@@ -100,20 +99,32 @@
 }
 
 - (void)connection:(NSURLConnection *)inConnection didReceiveResponse:(NSURLResponse *)inResponse {
+    self.responseData = [NSMutableData dataWithCapacity:8192];
 }
 
 - (void)connection:(NSURLConnection *)inConnection didReceiveData:(NSData *)inData {
-    NSString *theValue = [[NSString alloc] initWithData:inData encoding:NSUTF8StringEncoding];
-    
-    NSLog(@"data: %@", theValue);
+    [self.responseData appendData:inData];
 }
 
 - (void)connection:(NSURLConnection *)inConnection didFailWithError:(NSError *)inError {
+    self.result.text = inError.localizedDescription;
     self.progressBar.hidden = YES;
+    self.responseData = nil;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)inConnection {
+    NSString *theText = [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding];
+    NSRange theRange = [theText rangeOfString:@"<p class='result'>"];
+    
+    if(theRange.location != NSNotFound) {
+        theText = [theText substringFromIndex:theRange.location + theRange.length];
+        theRange = [theText rangeOfString:@"</p>"];
+        if(theRange.location != NSNotFound) {
+            self.result.text = [theText substringToIndex:theRange.location];
+        }
+    }
     self.progressBar.hidden = YES;
+    self.responseData = nil;
 }
 
 #pragma mark UIImagePickerControllerDelegate

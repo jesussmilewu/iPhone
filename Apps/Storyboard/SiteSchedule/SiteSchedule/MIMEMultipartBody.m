@@ -46,7 +46,7 @@
         else {
             NSUInteger theKey = (NSUInteger) [NSDate timeIntervalSinceReferenceDate] * 19 + (rand() % 123457);
             
-            self.separator = [NSString stringWithFormat:@"------SiteSchedule%x", theKey]; 
+            self.separator = [NSString stringWithFormat:@"----MIMEMultipartBody%x", theKey]; 
         }
     }
     return self;
@@ -67,7 +67,7 @@
     NSUInteger theLength = theBody.length;
     NSData *theData;
 
-    [self appendString:[NSString stringWithFormat:@"\n\r%@--", self.separator]];
+    [self appendString:[NSString stringWithFormat:@"\n--%@--", self.separator]];
     theData = [theBody copy];
     theBody.length = theLength;
     return theData;
@@ -75,17 +75,17 @@
 
 - (void)startNewPart {
     if(self.body.length > 0) {
-        [self appendString:[NSString stringWithFormat:@"\n\r%@", self.separator]];
+        [self appendString:[NSString stringWithFormat:@"\n--%@", self.separator]];
     }
     else {
-        [self appendString:[NSString stringWithFormat:@"%@", self.separator]];
+        [self appendString:[NSString stringWithFormat:@"--%@", self.separator]];
     }
 }
 
 - (void)appendParameterValue:(NSString *)inValue withName:(NSString *)inName {
     [self startNewPart];
-    [self appendString:[NSString stringWithFormat:@"\n\rContent-Disposition: form-data; name=\"%@\"", inName]];
-    [self appendString:@"\n\r\n\r"];
+    [self appendString:[NSString stringWithFormat:@"\nContent-Disposition: form-data; name=\"%@\"", inName]];
+    [self appendString:@"\n\n"];
     [self appendString:inValue];
 }
 
@@ -94,9 +94,9 @@
        contentType:(NSString *)inContentType
           filename:(NSString *)inFileName {
     [self startNewPart];
-    [self appendString:[NSString stringWithFormat:@"\n\rContent-Disposition: form-data; name=\"%@\"; filename=\"%@\"", inName, inFileName]];
-    [self appendString:[NSString stringWithFormat:@"\n\rContent-Type: %@", inContentType]];
-    [self appendString:@"\n\r\n\r"];
+    [self appendString:[NSString stringWithFormat:@"\nContent-Disposition: form-data; name=\"%@\"; filename=\"%@\"", inName, inFileName]];
+    [self appendString:[NSString stringWithFormat:@"\nContent-Type: %@", inContentType]];
+    [self appendString:@"\n\n"];
     [self.body appendData:inData];
 }
 

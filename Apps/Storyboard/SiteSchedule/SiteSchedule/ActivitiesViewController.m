@@ -8,6 +8,7 @@
 
 #import "ActivitiesViewController.h"
 #import "DetailsViewController.h"
+#import "PhotoUploadViewController.h"
 #import "Model.h"
 
 @interface ActivitiesViewController ()
@@ -34,7 +35,9 @@
         theController.activity = theActivity;
     }
     else if([inSegue.identifier isEqualToString:@"Photo"]) {
+        PhotoUploadViewController *theController = inSegue.destinationViewController;
         
+        theController.activity = theActivity;
     }
 }
 
