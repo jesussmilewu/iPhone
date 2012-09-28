@@ -13,8 +13,7 @@
 		</form>
 		<?php
 			if(isset($_FILES['photo']) && move_uploaded_file($_FILES['photo']['tmp_name'], "uploads/".$_FILES['photo']['name'])) {
-				echo "<p class='result'>Moved <emph>".$_FILES['photo']['tmp_name']."</emph> to <emph>".$_FILES['photo']['name'].
-				"</emph> for <strong>".$_POST['code'].".</strong></p>";
+				echo "<p class='result'>Received ".$_FILES['photo']['name'].".</p>";
 			}
 		?>
 	</body>
