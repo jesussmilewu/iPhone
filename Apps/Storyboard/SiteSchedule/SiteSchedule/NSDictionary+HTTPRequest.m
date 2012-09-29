@@ -71,8 +71,8 @@
                 [theParameters appendFormat:@"%@%@=%@",
                  theSeparator, theEncodedName,
                  [theItem encodedStringForURLWithEncoding:inEncoding]];
+                theSeparator = @"&";
             }
-            theSeparator = @"&";
         }
         else {
             theValue = [theValue description];

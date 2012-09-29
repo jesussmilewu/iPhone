@@ -112,6 +112,14 @@ static NSString * const kDownloadURL = kProtectedDownloadURL;
     [super viewDidUnload];
 }
 
+- (void)viewWillDisappear:(BOOL)inAnimated {
+    NSNotificationCenter *theCenter = [NSNotificationCenter defaultCenter];
+    
+    [theCenter removeObserver:self];
+    [super viewWillDisappear:inAnimated];
+}
+
+
 - (void)viewWillAppear:(BOOL)inAnimated {
     [super viewWillAppear:inAnimated];
     id theDelegate = [[UIApplication sharedApplication] delegate];
@@ -123,13 +131,6 @@ static NSString * const kDownloadURL = kProtectedDownloadURL;
                   selector:@selector(reachabilityChanged:) 
                       name:kReachabilityChangedNotification 
                     object:nil];
-}
-
-- (void)viewWillDisappear:(BOOL)inAnimated {
-    NSNotificationCenter *theCenter = [NSNotificationCenter defaultCenter];
-
-    [theCenter removeObserver:self];
-    [super viewWillDisappear:inAnimated];
 }
 
 - (void)reachabilityChanged:(NSNotification *)inNotification {
