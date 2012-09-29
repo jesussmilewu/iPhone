@@ -63,6 +63,11 @@
 
 - (void)viewWillDisappear:(BOOL)inAnimated {
     self.resultsController = nil;
+    [super viewWillDisappear:inAnimated];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)inInterfaceOrientation {
+    return NO;
 }
 
 - (void)didReceiveMemoryWarning {

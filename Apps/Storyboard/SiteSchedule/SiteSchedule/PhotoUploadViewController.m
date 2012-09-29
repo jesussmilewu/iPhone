@@ -11,7 +11,7 @@
 
 #define USE_NETCAT 0
 
-#ifdef USE_NETCAT
+#if USE_NETCAT
 #define kUploadURL @"http://nostromo.local:1234/~clemens/upload.php"
 #else
 #define kUploadURL @"http://nostromo.local/~clemens/upload.php"
@@ -52,6 +52,10 @@
 - (void)viewWillDisappear:(BOOL)inAnimated {
     self.photoView.image = nil;
     [super viewWillDisappear:inAnimated];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)inInterfaceOrientation {
+    return NO;
 }
 
 - (NSURL *)uploadURL {

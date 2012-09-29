@@ -13,6 +13,7 @@
 #import "UIViewController+SiteSchedule.h"
 #import "Model.h"
 #import "Annotation.h"
+#import "NSString+URLTools.h"
 
 @interface MapViewController ()
 
@@ -42,6 +43,10 @@
 }
 
 - (IBAction)overview:(UIStoryboardSegue *)inSegue {
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)inInterfaceOrientation {
+    return NO;
 }
 
 - (void)addAnntationForSite:(Site *)inSite {
@@ -148,6 +153,17 @@
 
         [theController setUnorderedActivities:theSite.activities];
         [self.navigationController pushViewController:theController animated:YES];
+    }
+    else if(NSClassFromString(@"MKMapItem") == nil) {
+        CLLocationCoordinate2D theCoordinate = theSite.coordinate;
+        NSString *theQuery = [NSString stringWithFormat:@"%f,%f",
+                              theCoordinate.latitude, theCoordinate.longitude];
+        NSString *theString = [NSString stringWithFormat:@"http://maps.google.de/maps?q=%@",
+                               [theQuery encodedStringForURLWithEncoding:NSUTF8StringEncoding]];
+        NSURL *theURL = [NSURL URLWithString:theString];
+        UIApplication *theApplication = [UIApplication sharedApplication];
+        
+        [theApplication openURL:theURL];
     }
     else {
         MKPlacemark *thePlacemark = [[MKPlacemark alloc] initWithCoordinate:theSite.coordinate addressDictionary:theSite.address];

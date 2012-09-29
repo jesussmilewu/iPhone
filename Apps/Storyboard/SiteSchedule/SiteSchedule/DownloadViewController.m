@@ -133,6 +133,10 @@ static NSString * const kDownloadURL = kProtectedDownloadURL;
                     object:nil];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)inInterfaceOrientation {
+    return NO;
+}
+
 - (void)reachabilityChanged:(NSNotification *)inNotification {
     [self updateReachabilty:inNotification.object];
 }

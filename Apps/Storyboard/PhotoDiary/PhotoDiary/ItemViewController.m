@@ -57,20 +57,6 @@ static const NSInteger kOverviewButtonTag = 123;
     self.recordButton.enabled = [[AVAudioSession sharedInstance] inputIsAvailable];
 }
 
-- (void)viewDidUnload {
-    self.toolbar = nil;
-    self.imagePicker = nil;
-    self.cameraButton = nil;
-    self.photoLibraryButton = nil;
-    self.playButton = nil;
-    self.recordButton = nil;
-    self.popoverController = nil;
-    self.imageView = nil;
-    self.textView = nil;
-    self.tweetButton = nil;
-    [super viewDidUnload];
-}
-
 - (void)viewWillAppear:(BOOL)inAnimated {
     [super viewWillAppear:inAnimated];
     if(self.item == nil) {
@@ -110,6 +96,10 @@ static const NSInteger kOverviewButtonTag = 123;
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)inOrientation {
     return YES;
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskAll;
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)inInterfaceOrientation {
@@ -162,7 +152,7 @@ static const NSInteger kOverviewButtonTag = 123;
     if([UIImagePickerController isSourceTypeAvailable:inSourceType]) {
         self.imagePicker.sourceType = inSourceType;
         if(self.popoverController == nil) {
-            [self presentModalViewController:self.imagePicker animated:YES];            
+            [self presentViewController:self.imagePicker animated:YES completion:NULL];
         }
         else if(!self.popoverController.popoverVisible) {
             [self.popoverController presentPopoverFromBarButtonItem:inItem 
@@ -245,31 +235,25 @@ static const NSInteger kOverviewButtonTag = 123;
 
 - (IBAction)composeTweet:(id)sender {
     if([TWTweetComposeViewController canSendTweet]){
-        Medium *theMedium;
-        
-        theMedium = [self.item mediumForType:kMediumTypeImage];
+        Medium *theMedium = [self.item mediumForType:kMediumTypeImage];
+        TWTweetComposeViewController *theTweet = [[TWTweetComposeViewController alloc] init];
 
-        TWTweetComposeViewController *tweet = [[TWTweetComposeViewController alloc] init];
-
-        if(theMedium.data)
-            [tweet addImage:[UIImage imageWithData:theMedium.data]];
-        
-        [tweet setInitialText:[textView text]];        
-        [self presentModalViewController:tweet animated:YES];
+        if(theMedium.data) {
+            [theTweet addImage:[UIImage imageWithData:theMedium.data]];
+        }
+        [theTweet setInitialText:[self.textView text]];
+        [self presentViewController:theTweet animated:YES completion:NULL];
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Obacht!"
-                                                        message:@"Bitte Twitter-Account in den Systemeinstellungen einrichten."
-                                                       delegate:self
-                                              cancelButtonTitle:@"Ok"
-                                              otherButtonTitles:nil];
-        [alert show];
+        UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attention", @"")
+                                                           message:NSLocalizedString(@"Please register your Twitter account in the system preferences.", @"")
+                                                          delegate:self
+                                                 cancelButtonTitle:NSLocalizedString(@"Ok", @"")
+                                                 otherButtonTitles:nil];
+        [theAlert show];
     }
 }
 
 - (IBAction)saveText:(id)inSender {
-    if(![tweetButton isEnabled]){
-        [tweetButton setEnabled:YES];
-    }
     [self.view endEditing:YES];
     self.item.text = self.textView.text;
     [self saveItem];
@@ -306,7 +290,7 @@ static const NSInteger kOverviewButtonTag = 123;
 
 - (void)dismissImagePickerController:(UIImagePickerController *)inPicker {
     if(self.popoverController == nil) {
-        [inPicker dismissModalViewControllerAnimated:YES];
+        [inPicker dismissViewControllerAnimated:YES completion:NULL];
     }    
 }
 

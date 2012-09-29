@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="IxH-rQ-o5N">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12C54" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="IxH-rQ-o5N">
     <dependencies>
-        <deployment defaultVersion="1296" identifier="iOS"/>
-        <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
     <scenes>
         <!--Photo Diary View Controller - Fototagebuch-->
         <scene sceneID="qq4-E4-d8J">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HNK-Bn-9FL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="OCK-JN-PuQ" customClass="PhotoDiaryViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="1tU-JY-71x">
                         <rect key="frame" x="0.0" y="64" width="320" height="788"/>
@@ -77,6 +75,7 @@
                         <outlet property="tableView" destination="1tU-JY-71x" id="jcA-SX-pEI"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HNK-Bn-9FL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <searchDisplayController id="rKc-gh-2KX">
                     <connections>
                         <outlet property="delegate" destination="OCK-JN-PuQ" id="GMr-Nn-wBf"/>
@@ -92,7 +91,6 @@
         <!--Split View Controller-->
         <scene sceneID="dQZ-SE-T8f">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8QF-V0-S5n" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <splitViewController id="IxH-rQ-o5N" sceneMemberID="viewController">
                     <toolbarItems/>
                     <connections>
@@ -100,13 +98,13 @@
                         <segue destination="z9T-yo-zJC" kind="relationship" relationship="detailViewController" id="3bT-hp-CeR"/>
                     </connections>
                 </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8QF-V0-S5n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1369" y="783"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2xL-bK-396">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x8Q-ef-pdG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="5yT-qg-TBd" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
@@ -117,13 +115,13 @@
                         <segue destination="OCK-JN-PuQ" kind="relationship" relationship="rootViewController" id="eMh-sZ-bYi"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x8Q-ef-pdG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="13" y="336"/>
         </scene>
         <!--Item View Controller - Eintrag-->
         <scene sceneID="Mtd-cn-tb7">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RbP-bq-Vsd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="GpQ-ae-tNi" customClass="ItemViewController" sceneMemberID="viewController">
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="PsN-j1-M6l">
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
@@ -215,6 +213,7 @@
                         <outlet property="tweetButton" destination="TI2-RW-ttU" id="OdR-Zr-evE"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RbP-bq-Vsd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" id="bWs-Ib-U1n">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -238,7 +237,6 @@
         <!--Navigation Controller-->
         <scene sceneID="XOY-Px-3mv">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="T8g-tx-CYc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="z9T-yo-zJC" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="zgV-XV-zHe">
                         <autoresizingMask key="autoresizingMask"/>
@@ -247,13 +245,13 @@
                         <segue destination="GpQ-ae-tNi" kind="relationship" relationship="rootViewController" id="ng8-t5-fea"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T8g-tx-CYc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="27" y="1444"/>
         </scene>
         <!--Audio Player Controller-->
         <scene sceneID="9rF-He-cKo">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3lM-zz-WKT" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController autoresizesArchivedViewToFullSize="NO" id="UWt-kn-ecP" customClass="AudioPlayerController" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="6Hn-Ml-1rj">
                         <rect key="frame" x="0.0" y="0.0" width="280" height="110"/>
@@ -310,13 +308,13 @@
                         <outlet property="timeLabel" destination="HoV-Nk-YCm" id="Rc2-ld-Pca"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3lM-zz-WKT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2206" y="1684"/>
         </scene>
         <!--Audio Recorder Controller-->
         <scene sceneID="R6P-yE-gFX">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4HK-nd-CEY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController autoresizesArchivedViewToFullSize="NO" id="zpg-Cn-a7i" customClass="AudioRecorderController" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="7Dp-N8-3Px">
                         <rect key="frame" x="0.0" y="0.0" width="280" height="110"/>
@@ -385,13 +383,13 @@
                         <outlet property="toolbar" destination="xK4-Bf-tcY" id="seC-dA-avb"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4HK-nd-CEY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2190" y="2103"/>
         </scene>
         <!--Slide Show Controller - Diashow-->
         <scene sceneID="yw2-iH-xkI">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jUZ-Mi-Cxz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="slideshow" id="1c7-gZ-5VX" customClass="SlideShowController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ukJ-Hb-ahN" userLabel="View">
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
@@ -425,6 +423,7 @@
                         <outletCollection property="imageViews" destination="Hdp-Od-UI3" id="3JM-pZ-pXd"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jUZ-Mi-Cxz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1034" y="336"/>
         </scene>

@@ -22,7 +22,7 @@
 
 - (IBAction)takePhoto:(id)inSender;
 - (IBAction)takePhotoFromLibrary:(id)inSender;
-- (IBAction)composeTweet:(id)sender;
+- (IBAction)composeTweet:(id)inSender;
 
 - (IBAction)saveText:(id)inSender;
 - (IBAction)revertText:(id)inSender;
