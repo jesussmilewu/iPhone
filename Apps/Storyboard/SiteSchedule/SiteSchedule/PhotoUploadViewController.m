@@ -9,7 +9,13 @@
 #import "PhotoUploadViewController.h"
 #import "MIMEMultipartBody.h"
 
+#define USE_NETCAT 0
+
+#ifdef USE_NETCAT
+#define kUploadURL @"http://nostromo.local:1234/~clemens/upload.php"
+#else
 #define kUploadURL @"http://nostromo.local/~clemens/upload.php"
+#endif
 
 @interface PhotoUploadViewController()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, NSURLConnectionDataDelegate>
 
@@ -79,7 +85,11 @@
 
 - (IBAction)upload {
     MIMEMultipartBody *theBody = [[MIMEMultipartBody alloc] init];
+#if USE_NETCAT
+    NSData *thePhoto = [@"Hello, world!" dataUsingEncoding:NSUTF8StringEncoding];
+#else
     NSData *thePhoto = UIImageJPEGRepresentation(self.photo, 0.8);
+#endif
     Site *theSite = self.activity.site;
     NSString *theFile = [NSString stringWithFormat:@"%@.jpg", theSite.code];
     NSMutableURLRequest *theRequest;

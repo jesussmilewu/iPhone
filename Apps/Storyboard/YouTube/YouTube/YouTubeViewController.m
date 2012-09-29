@@ -10,7 +10,10 @@
 #import "JSONKit.h"
 #import "NSString+URLTools.h"
 
-@interface YouTubeViewController ()
+#define YOUTUBE_URL @"http://gdata.youtube.com/feeds/api/videos"
+#define USE_POST_REQUEST 1
+
+@interface YouTubeViewController()
 
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, copy) NSArray *items;
@@ -61,7 +64,7 @@
 
 - (NSURL *)createURL {
     NSString *theQuery = [self.searchBar.text encodedStringForURLWithEncoding:NSUTF8StringEncoding];
-    NSString *theURL = [NSString stringWithFormat:@"http://gdata.youtube.com/feeds/api/videos?alt=json&q=%@", theQuery];
+    NSString *theURL = [NSString stringWithFormat:@"%@?orderby=published&alt=json&q=%@", YOUTUBE_URL, theQuery];
                         
     NSLog(@"URL = %@", theURL);
     return [NSURL URLWithString:theURL];

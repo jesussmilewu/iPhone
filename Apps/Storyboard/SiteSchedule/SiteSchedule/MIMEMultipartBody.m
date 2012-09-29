@@ -6,13 +6,14 @@
 //
 
 #import "MIMEMultipartBody.h"
+#import "NSString+URLTools.h"
 
 @interface MIMEMultipartBody()
 
 @property (nonatomic, readwrite) NSStringEncoding encoding;
 @property (nonatomic, copy, readwrite) NSString *charset;
-@property (nonatomic, copy, readwrite) NSString *separator;
-@property (nonatomic, retain, readwrite) NSMutableData *body;
+@property (nonatomic, copy, readwrite) NSString *boundary;
+@property (nonatomic, retain, readwrite) NSMutableData *data;
 
 @end
 
@@ -20,96 +21,107 @@
 
 @synthesize encoding;
 @synthesize charset;
-@synthesize separator;
-@synthesize body;
+@synthesize boundary;
+@synthesize data;
 
 - (id)init {
     return [self initWithEncoding:NSUTF8StringEncoding];
 }
 
 - (id)initWithEncoding:(NSStringEncoding)inEncoding {
-    return [self initWithEncoding:inEncoding separator:nil];
+    return [self initWithEncoding:inEncoding boundary:nil];
 }
 
 
-- (id)initWithEncoding:(NSStringEncoding)inEncoding separator:(NSString *)inSeparator {
+- (id)initWithEncoding:(NSStringEncoding)inEncoding boundary:(NSString *)inBoundary {
     self = [super init];
     if(self) {
         CFStringEncoding theEncoding = CFStringConvertNSStringEncodingToEncoding(self.encoding);
         
         self.encoding = inEncoding;
         self.charset = (id)CFStringConvertEncodingToIANACharSetName(theEncoding);
-        self.body = [NSMutableData dataWithCapacity:8192];
-        if(inSeparator.length > 0) {
-            self.separator = inSeparator;
+        self.data = [NSMutableData dataWithCapacity:8192];
+        if(inBoundary.length > 0) {
+            self.boundary = inBoundary;
         }
         else {
             NSUInteger theKey = (NSUInteger) [NSDate timeIntervalSinceReferenceDate] * 19 + (rand() % 123457);
             
-            self.separator = [NSString stringWithFormat:@"----MIMEMultipartBody%x", theKey]; 
+            self.boundary = [NSString stringWithFormat:@"----MIMEMultipartBody%x", theKey];
         }
     }
     return self;
 }
 
 - (NSString *)contentType {
-    return [NSString stringWithFormat:@"multipart/form-data; boundary=%@", self.separator];
+    return [NSString stringWithFormat:@"multipart/form-data; boundary=%@", self.boundary];
 }
 
 - (void)appendString:(NSString *)inValue {
     NSData *theData = [inValue dataUsingEncoding:self.encoding];
     
-    [self.body appendData:theData];
+    [self.data appendData:theData];
 }
 
-- (NSData *)data {
-    NSMutableData *theBody = self.body;
+- (void)appendNewline {
+    [self appendString:@"\r\n"];
+}
+
+- (NSData *)body {
+    NSMutableData *theBody = self.data;
     NSUInteger theLength = theBody.length;
     NSData *theData;
 
-    [self appendString:[NSString stringWithFormat:@"\n--%@--", self.separator]];
+    [self appendString:[NSString stringWithFormat:@"--%@--", self.boundary]];
+    [self appendNewline];
     theData = [theBody copy];
     theBody.length = theLength;
     return theData;
 }
 
 - (void)startNewPart {
-    if(self.body.length > 0) {
-        [self appendString:[NSString stringWithFormat:@"\n--%@", self.separator]];
-    }
-    else {
-        [self appendString:[NSString stringWithFormat:@"--%@", self.separator]];
-    }
+    [self appendString:[NSString stringWithFormat:@"--%@", self.boundary]];
+    [self appendNewline];
 }
 
 - (void)appendParameterValue:(NSString *)inValue withName:(NSString *)inName {
+    NSString *theName = [inName encodedStringForURLWithEncoding:self.encoding];
+    
     [self startNewPart];
-    [self appendString:[NSString stringWithFormat:@"\nContent-Disposition: form-data; name=\"%@\"", inName]];
-    [self appendString:@"\n\n"];
+    [self appendString:[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"", theName]];
+    [self appendNewline];
+    [self appendNewline];
     [self appendString:inValue];
+    [self appendNewline];
 }
 
 - (void)appendData:(NSData *)inData
           withName:(NSString *)inName
        contentType:(NSString *)inContentType
           filename:(NSString *)inFileName {
+    NSString *theName = [inName encodedStringForURLWithEncoding:self.encoding];
+    NSString *theFileName = [inFileName encodedStringForURLWithEncoding:self.encoding];
+
     [self startNewPart];
-    [self appendString:[NSString stringWithFormat:@"\nContent-Disposition: form-data; name=\"%@\"; filename=\"%@\"", inName, inFileName]];
-    [self appendString:[NSString stringWithFormat:@"\nContent-Type: %@", inContentType]];
-    [self appendString:@"\n\n"];
-    [self.body appendData:inData];
+    [self appendString:[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"", theName, theFileName]];
+    [self appendNewline];
+    [self appendString:[NSString stringWithFormat:@"Content-Type: %@", inContentType]];
+    [self appendNewline];
+    [self appendNewline];
+    [self.data appendData:inData];
+    [self appendNewline];
 }
 
 - (NSMutableURLRequest *)mutableRequestWithURL:(NSURL *)inURL timeout:(NSTimeInterval)inTimeout {
     NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:inURL
                                                               cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                                           timeoutInterval:inTimeout];
-    NSData *theBody = self.data;
+    NSData *theBody = self.body;
+    NSString *theLength = [NSString stringWithFormat:@"%d", theBody.length];
     
     [theRequest setHTTPMethod:@"POST"];
     [theRequest setValue:self.contentType forHTTPHeaderField:@"Content-Type"];
-    [theRequest setValue:[NSString stringWithFormat:@"%d", theBody.length]
-      forHTTPHeaderField:@"Content-Length"];
+    [theRequest setValue:theLength forHTTPHeaderField:@"Content-Length"];
     [theRequest setHTTPBody:theBody];
     return theRequest;
 }
