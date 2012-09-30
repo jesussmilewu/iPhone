@@ -4,26 +4,18 @@
 
 @synthesize rotationControl;
 
-- (void)dealloc {
-    self.rotationControl = nil;
-    [super dealloc];
-}
-
--(void)viewDidUnload {
-    self.rotationControl = nil;
-    [super viewDidUnload];
-}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)inInterfaceOrientation {
+    NSLog(@"shouldAutorotateToInterfaceOrientation: %d", self.rotationControl.selectedSegmentIndex);
     return self.rotationControl.selectedSegmentIndex || inInterfaceOrientation == UIInterfaceOrientationPortrait;
 }
 
 - (BOOL)shouldAutorotate {
-    return YES;
+    NSLog(@"shouldAutorotate: %d", self.rotationControl.selectedSegmentIndex);
+    return self.rotationControl.selectedSegmentIndex;
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
-    return self.rotationControl.selectedSegmentIndex ? UIInterfaceOrientationMaskPortrait : UIInterfaceOrientationMaskAll;
+    return UIInterfaceOrientationMaskAll;
 }
 
 @end

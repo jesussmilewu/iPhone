@@ -2,11 +2,9 @@
 
 @class RotationViewController;
 
-@interface RotationAppDelegate : NSObject <UIApplicationDelegate> {
-    @private
-}
+@interface RotationAppDelegate : NSObject <UIApplicationDelegate>
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet RotationViewController *viewController;
+@property (nonatomic, strong) IBOutlet UIWindow *window;
+@property (nonatomic, strong) IBOutlet RotationViewController *viewController;
 
 @end

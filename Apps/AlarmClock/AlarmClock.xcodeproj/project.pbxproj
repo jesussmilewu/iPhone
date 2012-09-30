@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		AB1BF98B12F2C878002BB9AC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB1BF98A12F2C878002BB9AC /* AudioToolbox.framework */; };
+		AB273FBA1618A7F200EE36FC /* icon-ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB273FB91618A7F200EE36FC /* icon-ipad@2x.png */; };
+		AB273FBD1618AC0400EE36FC /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = AB273FBC1618AC0400EE36FC /* Default.png */; };
+		AB273FBF1618AC0800EE36FC /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB273FBE1618AC0800EE36FC /* Default@2x.png */; };
+		AB273FC11618AC1F00EE36FC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB273FC01618AC1F00EE36FC /* Default-568h@2x.png */; };
+		AB273FC31618AC3100EE36FC /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AB273FC21618AC3100EE36FC /* Default-Portrait~ipad.png */; };
+		AB273FC51618AC3700EE36FC /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AB273FC41618AC3700EE36FC /* Default-Portrait@2x~ipad.png */; };
+		AB273FC71618AC3C00EE36FC /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AB273FC61618AC3C00EE36FC /* Default-Landscape~ipad.png */; };
+		AB273FC91618AC4100EE36FC /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AB273FC81618AC4100EE36FC /* Default-Landscape@2x~ipad.png */; };
 		AB35C18315D7B1F1006B7D71 /* ringtone.caf in Resources */ = {isa = PBXBuildFile; fileRef = AB35C18215D7B1F1006B7D71 /* ringtone.caf */; };
 		AB35C18515D7BB1B006B7D71 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB9F82A812F09CCB002492BC /* Localizable.strings */; };
 		AB74D36A12F183E80004B790 /* AlarmClockViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB74D36C12F183E80004B790 /* AlarmClockViewController-iPad.xib */; };
@@ -29,6 +37,14 @@
 
 /* Begin PBXFileReference section */
 		AB1BF98A12F2C878002BB9AC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		AB273FB91618A7F200EE36FC /* icon-ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-ipad@2x.png"; sourceTree = "<group>"; };
+		AB273FBC1618AC0400EE36FC /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		AB273FBE1618AC0800EE36FC /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		AB273FC01618AC1F00EE36FC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		AB273FC21618AC3100EE36FC /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		AB273FC41618AC3700EE36FC /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
+		AB273FC61618AC3C00EE36FC /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		AB273FC81618AC4100EE36FC /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		AB35C18215D7B1F1006B7D71 /* ringtone.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ringtone.caf; sourceTree = "<group>"; };
 		AB74D36B12F183E80004B790 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "en.lproj/AlarmClockViewController-iPad.xib"; sourceTree = "<group>"; };
 		AB74D36D12F183F20004B790 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = "de.lproj/AlarmClockViewController-iPad.xib"; sourceTree = "<group>"; };
@@ -79,6 +95,14 @@
 		AB9F827312F09C4A002492BC = {
 			isa = PBXGroup;
 			children = (
+				AB273FC81618AC4100EE36FC /* Default-Landscape@2x~ipad.png */,
+				AB273FC61618AC3C00EE36FC /* Default-Landscape~ipad.png */,
+				AB273FC41618AC3700EE36FC /* Default-Portrait@2x~ipad.png */,
+				AB273FC21618AC3100EE36FC /* Default-Portrait~ipad.png */,
+				AB273FC01618AC1F00EE36FC /* Default-568h@2x.png */,
+				AB273FBE1618AC0800EE36FC /* Default@2x.png */,
+				AB273FBC1618AC0400EE36FC /* Default.png */,
+				AB273FB91618A7F200EE36FC /* icon-ipad@2x.png */,
 				AB9F828812F09C4A002492BC /* AlarmClock */,
 				AB9F828112F09C4A002492BC /* Frameworks */,
 				AB9F827F12F09C4A002492BC /* Products */,
@@ -200,6 +224,14 @@
 				AB74D36F12F192670004B790 /* icon-ipad.png in Resources */,
 				AB35C18315D7B1F1006B7D71 /* ringtone.caf in Resources */,
 				AB35C18515D7BB1B006B7D71 /* Localizable.strings in Resources */,
+				AB273FBA1618A7F200EE36FC /* icon-ipad@2x.png in Resources */,
+				AB273FBD1618AC0400EE36FC /* Default.png in Resources */,
+				AB273FBF1618AC0800EE36FC /* Default@2x.png in Resources */,
+				AB273FC11618AC1F00EE36FC /* Default-568h@2x.png in Resources */,
+				AB273FC31618AC3100EE36FC /* Default-Portrait~ipad.png in Resources */,
+				AB273FC51618AC3700EE36FC /* Default-Portrait@2x~ipad.png in Resources */,
+				AB273FC71618AC3C00EE36FC /* Default-Landscape~ipad.png in Resources */,
+				AB273FC91618AC4100EE36FC /* Default-Landscape@2x~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

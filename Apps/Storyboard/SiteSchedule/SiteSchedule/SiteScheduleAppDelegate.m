@@ -74,16 +74,17 @@
     return storeCoordinator;
 }
 
-- (NSError *)updateWithInputStream:(NSInputStream *)inStream {
+- (NSError *)updateWithInputStream:(NSInputStream *)inoutStream {
     NSManagedObjectContext *theContext = [[NSManagedObjectContext alloc] init];
-    NSXMLParser *theParser = [[NSXMLParser alloc] initWithStream:inStream];
+    NSXMLParser *theParser = [[NSXMLParser alloc] initWithStream:inoutStream];
     SiteScheduleParser *theDelegate = [[SiteScheduleParser alloc] initWithManagedObjectContext:theContext];
     
     theContext.persistentStoreCoordinator = self.storeCoordinator;
-    theParser.delegate = theDelegate;
     theParser.shouldProcessNamespaces = YES;
     theParser.shouldReportNamespacePrefixes = YES;
+    theParser.delegate = theDelegate;
     [theParser parse];
+    [inoutStream close];
     return theDelegate.error;
 }
 

@@ -24,6 +24,7 @@
 		AB1F336B12EB330200A97E41 /* UIToolbar+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1F336A12EB330200A97E41 /* UIToolbar+Extensions.m */; };
 		AB1F336F12EB70C700A97E41 /* SlideShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1F336D12EB70C700A97E41 /* SlideShowController.m */; };
 		AB2BF53312E4CCC2000AD0D3 /* Medium.m in Sources */ = {isa = PBXBuildFile; fileRef = AB2BF53212E4CCC2000AD0D3 /* Medium.m */; };
+		AB35208C161782A8007B5418 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB35208B161782A8007B5418 /* NavigationController.m */; };
 		AB49B36E12E6126D003B0F24 /* UIImage+ImageTools.m in Sources */ = {isa = PBXBuildFile; fileRef = AB49B36D12E6126D003B0F24 /* UIImage+ImageTools.m */; };
 		AB49B37212E622EE003B0F24 /* DiaryEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB49B37112E622EE003B0F24 /* DiaryEntryCell.m */; };
 		AB4C357312E36C0200F12B17 /* DiaryEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4C357212E36C0200F12B17 /* DiaryEntry.m */; };
@@ -82,6 +83,8 @@
 		AB1F336D12EB70C700A97E41 /* SlideShowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideShowController.m; sourceTree = "<group>"; };
 		AB2BF53112E4CCC2000AD0D3 /* Medium.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Medium.h; sourceTree = "<group>"; };
 		AB2BF53212E4CCC2000AD0D3 /* Medium.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Medium.m; sourceTree = "<group>"; };
+		AB35208A161782A8007B5418 /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
+		AB35208B161782A8007B5418 /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		AB49B36C12E6126D003B0F24 /* UIImage+ImageTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageTools.h"; sourceTree = "<group>"; };
 		AB49B36D12E6126D003B0F24 /* UIImage+ImageTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageTools.m"; sourceTree = "<group>"; };
 		AB49B37012E622EE003B0F24 /* DiaryEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiaryEntryCell.h; sourceTree = "<group>"; };
@@ -208,6 +211,8 @@
 				AB4E355812E238B60087EA14 /* AudioRecorderController.m */,
 				AB1F336012EB1E2800A97E41 /* AudioPlayerController.h */,
 				AB1F336112EB1E2800A97E41 /* AudioPlayerController.m */,
+				AB35208A161782A8007B5418 /* NavigationController.h */,
+				AB35208B161782A8007B5418 /* NavigationController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -288,7 +293,7 @@
 		AB11CA6012E1B47600F99C7B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0450;
 			};
 			buildConfigurationList = AB11CA6312E1B47600F99C7B /* Build configuration list for PBXProject "PhotoDiary" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -357,6 +362,7 @@
 				AB85E0BF152783DD00C28975 /* UIViewController+PhotoDiary.m in Sources */,
 				AB85E0C7152791E300C28975 /* SubviewSegue.m in Sources */,
 				AB6FEE301528527E00F7B45E /* SubviewController.m in Sources */,
+				AB35208C161782A8007B5418 /* NavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,16 +6,16 @@
 @synthesize window;
 @synthesize viewController;
 
-- (void)dealloc {
-    self.viewController = nil;
-    self.window = nil;
-    [super dealloc];
-}
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;
 }
+
+/*
+- (NSUInteger)application:(UIApplication *)inApplication supportedInterfaceOrientationsForWindow:(UIWindow *)inWindow {
+    return UIInterfaceOrientationMaskAll;
+}
+ */
 
 @end

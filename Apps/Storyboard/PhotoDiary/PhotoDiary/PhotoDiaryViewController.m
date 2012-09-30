@@ -81,6 +81,10 @@
     [self.navigationController setToolbarHidden:YES animated:YES];
 }
 
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskAll;
+}
+
 - (IBAction)addItem {
     UINavigationController *theDetailController = self.splitViewController.viewControllers.lastObject;
     ItemViewController *theController = [theDetailController.viewControllers objectAtIndex:0];

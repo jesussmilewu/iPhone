@@ -70,13 +70,10 @@
 }
 
 - (id)entityNamed:(NSString *)inName withCode:(NSString *)inCode {
-    NSEntityDescription *theDescription = [NSEntityDescription entityForName:inName 
-                                                      inManagedObjectContext:self.managedObjectContext];
-    NSFetchRequest *theRequest = [[NSFetchRequest alloc] init];
+    NSFetchRequest *theRequest = [NSFetchRequest fetchRequestWithEntityName:inName];
     NSArray *theResult;
     NSError *theError = nil;
     
-    theRequest.entity = theDescription;
     theRequest.predicate = [NSPredicate predicateWithFormat:@"code = %@", inCode];
     theResult = [self.managedObjectContext executeFetchRequest:theRequest error:&theError];
     if(theError == nil && theResult.count > 0) {
@@ -144,6 +141,7 @@
 
 - (void)parser:(NSXMLParser *)inParser parseErrorOccurred:(NSError *)inParseError {
     if(self.error == nil) {
+        NSLog(@"line = %d, column = %d", inParser.lineNumber, inParser.columnNumber);
         self.error = inParseError;
     }
 }
@@ -297,4 +295,3 @@
 }
 
 @end
-

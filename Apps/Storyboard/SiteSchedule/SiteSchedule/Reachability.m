@@ -1,6 +1,5 @@
 //
 //  Reachability.m
-//  TheMiniInternational
 //
 //  Created by Clemens Wagner on 04.07.11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
@@ -28,8 +27,7 @@ NSString * const kReachabilityChangedNotification = @"kNetworkReachabilityChange
 @synthesize networkReachability;
 @synthesize localWiFiReference;
 
-static void ReachabilityCallback(SCNetworkReachabilityRef inTarget, SCNetworkReachabilityFlags inFlags, void *inInfo)
-{
+static void ReachabilityCallback(SCNetworkReachabilityRef inTarget, SCNetworkReachabilityFlags inFlags, void *inInfo) {
 #pragma unused (inTarget, inFlags)
     id theInfo = (__bridge id)inInfo;
     

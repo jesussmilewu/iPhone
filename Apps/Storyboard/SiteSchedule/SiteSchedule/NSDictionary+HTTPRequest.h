@@ -17,4 +17,6 @@
 - (long long)contentLength;
 - (HTTPContentRange)contentRange;
 
+- (NSString *)parameterStringWithEncoding:(NSStringEncoding)inEncoding;
+
 @end

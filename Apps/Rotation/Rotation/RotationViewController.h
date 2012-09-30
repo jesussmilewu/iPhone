@@ -4,6 +4,6 @@
     @private
 }
 
-@property (nonatomic, assign) IBOutlet UISegmentedControl *rotationControl;
+@property (nonatomic, weak) IBOutlet UISegmentedControl *rotationControl;
 
 @end
