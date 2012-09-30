@@ -13,7 +13,8 @@
 @interface KMRAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
 @property (strong, nonatomic) KMRViewController *viewController;
+@property BOOL theCloud;
+@property (strong) NSMetadataQuery *query;
 
 @end

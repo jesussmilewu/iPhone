@@ -7,8 +7,8 @@
 //
 
 #import "KMRAppDelegate.h"
-
 #import "KMRViewController.h"
+#import "CloudDoc.h"
 
 @implementation KMRAppDelegate
 
@@ -21,11 +21,37 @@
     [self.window makeKeyAndVisible];
     
     // check for iCloud
-    NSURL *iCloud = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
-    if(iCloud)
-        NSLog(@"iCloud");
-    else
-        NSLog(@"NoiCloud");
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSURL *iCloud = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
+        if (iCloud) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"iCloud-Verzeichnis: %@", iCloud);
+                NSURL *cloudFile = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
+                NSURL *cloudURL = [[cloudFile URLByAppendingPathComponent: @"Documents"] URLByAppendingPathComponent:@"iclous.txt"];
+                
+                CloudDoc *theDoc = [[CloudDoc alloc] initWithFileURL:cloudURL];
+
+                [theDoc setCloudText:@"Foobar"];
+                [theDoc saveToURL:[theDoc fileURL] forSaveOperation:UIDocumentSaveForCreating
+                completionHandler:^(BOOL success) {
+                    [theDoc openWithCompletionHandler:^(BOOL success) {
+                        NSLog(@"Cloud file created");
+                        NSLog(@"Cloud-Text: %@", [theDoc cloudText]);
+                    }];
+                }];
+                
+                
+                NSLog(@"Cloud file: %@", [self accessCloudFile]);
+                [self setTheCloud:YES];
+            });
+        }
+        else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"No iCloud");
+                [self setTheCloud:NO];
+            });
+        }
+    });
     
     return YES;
 }
