@@ -85,6 +85,10 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
 
 - (void)viewWillAppear:(BOOL)inAnimated {
     [super viewWillAppear:inAnimated];
+    CGRect theFrame = self.clockView.frame;
+    
+    theFrame.size.height = theFrame.size.width;
+    self.clockView.frame = theFrame;
     [self updateViews];
 }
 
