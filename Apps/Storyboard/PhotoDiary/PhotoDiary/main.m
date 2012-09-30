@@ -3,7 +3,6 @@
 
 int main(int argc, char *argv[]) {
     @autoreleasepool {
-        int retVal = UIApplicationMain(argc, argv, nil, NSStringFromClass([PhotoDiaryAppDelegate class]));
-        return retVal;
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([PhotoDiaryAppDelegate class]));
     }
 }
