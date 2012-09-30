@@ -39,9 +39,6 @@
                         NSLog(@"Cloud-Text: %@", [theDoc cloudText]);
                     }];
                 }];
-                
-                
-                NSLog(@"Cloud file: %@", [self accessCloudFile]);
                 [self setTheCloud:YES];
             });
         }
