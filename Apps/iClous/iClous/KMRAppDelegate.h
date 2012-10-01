@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CloudDoc.h"
 
 @class KMRViewController;
 
@@ -16,5 +17,9 @@
 @property (strong, nonatomic) KMRViewController *viewController;
 @property BOOL theCloud;
 @property (strong) NSMetadataQuery *query;
+@property (strong) CloudDoc *cloudDoc;
+@property (strong) NSURL *iCloudPath;
+
+- (void)loadFileFromCloud;
 
 @end

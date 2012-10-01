@@ -10,9 +10,10 @@
 
 @implementation CloudDoc
 
-- (id)contentsForType:(NSString *)typeName error:(NSError **)outError {
+- (id)contentsForType:(NSString *)typeName
+                error:(NSError **)outError {
     if (!self.cloudText)
-        self.cloudText = @"";
+        self.cloudText = @"Bar";
     
     NSData *cloudData = [self.cloudText dataUsingEncoding:NSUTF8StringEncoding];
     return cloudData;
@@ -22,11 +23,9 @@
                   ofType:(NSString *)typeName
                    error:(NSError **)outError {
     if ([contents length] > 0)
-        self.cloudText = [[NSString alloc]
-                             initWithData:contents
-                             encoding:NSUTF8StringEncoding];
+        self.cloudText = [[NSString alloc] initWithData:contents encoding:NSUTF8StringEncoding];
     else
-        self.cloudText = @"";
+        self.cloudText = @"Foo";
     
     return YES;
 }
