@@ -13,9 +13,9 @@
 		40B49FFB14E9A3FC00F457DC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40B49FF914E9A3FC00F457DC /* InfoPlist.strings */; };
 		40B49FFD14E9A3FC00F457DC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B49FFC14E9A3FC00F457DC /* main.m */; };
 		40B4A00114E9A3FC00F457DC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B4A00014E9A3FC00F457DC /* AppDelegate.m */; };
-		40B4A00414E9A3FC00F457DC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B4A00314E9A3FC00F457DC /* ViewController.m */; };
 		40B4A00714E9A3FC00F457DC /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40B4A00514E9A3FC00F457DC /* ViewController.xib */; };
-		40E8E3C914EAA5940045420A /* GetURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E8E3C814EAA5940045420A /* GetURL.m */; };
+		AB1683A4161CCEF80022C2B3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB1683A3161CCEF80022C2B3 /* Default-568h@2x.png */; };
+		AB1683EB161CD19E0022C2B3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1683EA161CD19E0022C2B3 /* ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,13 +27,12 @@
 		40B49FFA14E9A3FC00F457DC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		40B49FFC14E9A3FC00F457DC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		40B49FFE14E9A3FC00F457DC /* GetURL-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GetURL-Prefix.pch"; sourceTree = "<group>"; };
-		40B49FFF14E9A3FC00F457DC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		40B49FFF14E9A3FC00F457DC /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		40B4A00014E9A3FC00F457DC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		40B4A00214E9A3FC00F457DC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		40B4A00314E9A3FC00F457DC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		40B4A00614E9A3FC00F457DC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
-		40E8E3C714EAA5940045420A /* GetURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetURL.h; sourceTree = SOURCE_ROOT; };
-		40E8E3C814EAA5940045420A /* GetURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetURL.m; sourceTree = SOURCE_ROOT; };
+		AB1683A3161CCEF80022C2B3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		AB1683E9161CD19E0022C2B3 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		AB1683EA161CD19E0022C2B3 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,12 +79,10 @@
 		40B49FF614E9A3FC00F457DC /* GetURL */ = {
 			isa = PBXGroup;
 			children = (
+				AB1683E9161CD19E0022C2B3 /* ViewController.h */,
+				AB1683EA161CD19E0022C2B3 /* ViewController.m */,
 				40B49FFF14E9A3FC00F457DC /* AppDelegate.h */,
 				40B4A00014E9A3FC00F457DC /* AppDelegate.m */,
-				40E8E3C714EAA5940045420A /* GetURL.h */,
-				40E8E3C814EAA5940045420A /* GetURL.m */,
-				40B4A00214E9A3FC00F457DC /* ViewController.h */,
-				40B4A00314E9A3FC00F457DC /* ViewController.m */,
 				40B4A00514E9A3FC00F457DC /* ViewController.xib */,
 				40B49FF714E9A3FC00F457DC /* Supporting Files */,
 			);
@@ -99,6 +96,7 @@
 				40B49FF914E9A3FC00F457DC /* InfoPlist.strings */,
 				40B49FFC14E9A3FC00F457DC /* main.m */,
 				40B49FFE14E9A3FC00F457DC /* GetURL-Prefix.pch */,
+				AB1683A3161CCEF80022C2B3 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -156,6 +154,7 @@
 			files = (
 				40B49FFB14E9A3FC00F457DC /* InfoPlist.strings in Resources */,
 				40B4A00714E9A3FC00F457DC /* ViewController.xib in Resources */,
+				AB1683A4161CCEF80022C2B3 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,8 +167,7 @@
 			files = (
 				40B49FFD14E9A3FC00F457DC /* main.m in Sources */,
 				40B4A00114E9A3FC00F457DC /* AppDelegate.m in Sources */,
-				40B4A00414E9A3FC00F457DC /* ViewController.m in Sources */,
-				40E8E3C914EAA5940045420A /* GetURL.m in Sources */,
+				AB1683EB161CD19E0022C2B3 /* ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,7 +213,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -233,7 +231,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -246,6 +244,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GetURL/GetURL-Prefix.pch";
 				INFOPLIST_FILE = "GetURL/GetURL-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -257,6 +256,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GetURL/GetURL-Prefix.pch";
 				INFOPLIST_FILE = "GetURL/GetURL-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

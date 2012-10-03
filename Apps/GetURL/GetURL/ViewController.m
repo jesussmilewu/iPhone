@@ -8,15 +8,11 @@
 
 #import "ViewController.h"
 
+@interface ViewController ()
+
+@end
+
 @implementation ViewController
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Release any cached data, images, etc that aren't in use.
-}
-
-#pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
@@ -24,37 +20,31 @@
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
-- (void)viewDidUnload
+- (void)didReceiveMemoryWarning
 {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
+- (void)viewWillAppear:(BOOL)inAnimated {
+    [super viewWillAppear:inAnimated];
+    NSLog(@"[+] viewWillAppear:");
+    [self.label setText:@"Moin!"];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+- (IBAction)go:(id)sender {
+    NSLog(@"[+] go:");
+    NSError *theError = nil;
+    NSURL *theURL = [NSURL URLWithString:@"http://www.rodewig.de/ip.php"];
+    NSString *theIP = [NSString stringWithContentsOfURL:theURL encoding:NSASCIIStringEncoding error:&theError];
+    
+    if(theError == nil) {
+        NSLog(@"[+] IP: %@", theIP);
+    }
+    else {
+        NSLog(@"[+] Error: %@", [theError localizedDescription]);
+    }
+    [self.label setText:theIP];
 }
 
 @end
