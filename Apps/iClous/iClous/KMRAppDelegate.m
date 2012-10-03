@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Foobar Ltd. All rights reserved.
 //
 
+#define CLOUDFILE @"iclous.txt"
 #import "KMRAppDelegate.h"
 #import "KMRViewController.h"
 #import "CloudDoc.h"
@@ -20,26 +21,20 @@
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     
+    // write local file
+    NSString *theLocalText = @"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.";
+    
     // check for iCloud
+    self.theCloud = NO;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSURL *iCloud = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
-        if (iCloud) {
+        self.iCloudPath = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
+        if (self.iCloudPath) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"iCloud-Verzeichnis: %@", iCloud);
-                NSURL *cloudFile = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
-                NSURL *cloudURL = [[cloudFile URLByAppendingPathComponent: @"Documents"] URLByAppendingPathComponent:@"iclous.txt"];
-                
-                CloudDoc *theDoc = [[CloudDoc alloc] initWithFileURL:cloudURL];
+                NSLog(@"iCloud-Verzeichnis: %@", self.iCloudPath);
+                self.theCloud = YES;
+                [self loadFileFromCloud];
 
-                [theDoc setCloudText:@"Foobar"];
-                [theDoc saveToURL:[theDoc fileURL] forSaveOperation:UIDocumentSaveForCreating
-                completionHandler:^(BOOL success) {
-                    [theDoc openWithCompletionHandler:^(BOOL success) {
-                        NSLog(@"Cloud file created");
-                        NSLog(@"Cloud-Text: %@", [theDoc cloudText]);
-                    }];
-                }];
-                [self setTheCloud:YES];
+                
             });
         }
         else {
@@ -52,6 +47,55 @@
     
     return YES;
 }
+
+- (void)loadFileFromCloud{
+    NSLog(@"[+] %@", NSStringFromSelector(_cmd));
+    NSMetadataQuery *query = [[NSMetadataQuery alloc] init];
+    _query = query;
+    [query setSearchScopes:[NSArray arrayWithObject:NSMetadataQueryUbiquitousDocumentsScope]];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"%K == %@", NSMetadataItemFSNameKey, CLOUDFILE]; [query setPredicate:pred];
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(queryDidFinishGathering:) name:NSMetadataQueryDidFinishGatheringNotification object:query];
+    [query startQuery];
+}
+
+- (void)loadData:(NSMetadataQuery *)query {
+    if ([query resultCount] == 1) {
+        NSMetadataItem *item = [query resultAtIndex:0];
+        NSURL *url = [item valueForAttribute:NSMetadataItemURLKey];
+        CloudDoc *theDoc = [[CloudDoc alloc] initWithFileURL:url];
+        self.cloudDoc = theDoc;
+        [self.cloudDoc openWithCompletionHandler:^(BOOL success) {
+            if (success) {
+                NSLog(@"iCloud document opened");
+            } else {
+                NSLog(@"failed opening document from iCloud"); }
+        }];
+    } else {
+        NSURL *ubiq = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
+        NSURL *ubiquitousPackage = [[ubiq URLByAppendingPathComponent: @"Documents"] URLByAppendingPathComponent:CLOUDFILE];
+        CloudDoc *theDoc = [[CloudDoc alloc] initWithFileURL:ubiquitousPackage];
+        self.cloudDoc = theDoc;
+        [theDoc saveToURL:[theDoc fileURL] forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
+            if (success) {
+                [theDoc openWithCompletionHandler:^(BOOL success) {
+                    NSLog(@"new document opened from iCloud");
+                }];
+            }
+        }];
+    }
+}
+
+- (void)queryDidFinishGathering:(NSNotification *)notification {
+    NSMetadataQuery *query = [notification object];
+    [query disableUpdates];
+    [query stopQuery];
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSMetadataQueryDidFinishGatheringNotification object:query];
+    _query = nil;
+    [self loadData:query];
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
