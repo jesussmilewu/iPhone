@@ -27,6 +27,8 @@
     else
         self.cloudText = @"Foo";
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"docModified" object:self];
+    
     return YES;
 }
 
