@@ -9,7 +9,6 @@
 #define CLOUDKEY @"Motto des Tages"
 #import "KMRAppDelegate.h"
 #import "KMRViewController.h"
-#import "CloudDoc.h"
 
 @implementation KMRAppDelegate
 
@@ -32,6 +31,7 @@
                 NSLog(@"iCloud-Verzeichnis: %@", self.iCloudPath);
                 self.theCloud = YES;
                 
+                // Key Value Store
                 NSUbiquitousKeyValueStore *cloudStore = [NSUbiquitousKeyValueStore defaultStore];
                 if([[cloudStore stringForKey:CLOUDKEY] length] == 0){
                     NSLog(@"Kein Text in der Cloud gefunden");
@@ -39,6 +39,21 @@
                     [cloudStore synchronize];
                 } else {
                     NSLog(@"Die Cloud sagt: %@", [cloudStore stringForKey:CLOUDKEY]);
+                }
+                
+                // Dateiablage
+                NSError *theError;
+               
+                NSString *cloudFile = [NSString stringWithFormat:@"%@/%@", [self.iCloudPath path], @"foobar.txt"];
+                NSString *theCloudString = [NSString stringWithFormat:@"%@: %@", [NSDate date], theLocalText];
+                
+                NSLog(@"cloudFile: %@", cloudFile);
+                [theCloudString writeToFile:cloudFile
+                               atomically:YES
+                                 encoding:NSUTF8StringEncoding
+                                    error:&theError];
+                if(theError){
+                    NSLog(@"Fehler beim Speichern: %@", [theError localizedDescription]);
                 }
             });
         }
