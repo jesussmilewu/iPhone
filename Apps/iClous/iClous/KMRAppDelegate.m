@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Foobar Ltd. All rights reserved.
 //
 
-#define CLOUDFILE @"iclous.txt"
+#define CLOUDKEY @"Motto des Tages"
 #import "KMRAppDelegate.h"
 #import "KMRViewController.h"
 #import "CloudDoc.h"
@@ -23,7 +23,6 @@
     
     // write local file
     NSString *theLocalText = @"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.";
-    
     // check for iCloud
     self.theCloud = NO;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -32,9 +31,15 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 NSLog(@"iCloud-Verzeichnis: %@", self.iCloudPath);
                 self.theCloud = YES;
-                [self loadFileFromCloud];
-
                 
+                NSUbiquitousKeyValueStore *cloudStore = [NSUbiquitousKeyValueStore defaultStore];
+                if([[cloudStore stringForKey:CLOUDKEY] length] == 0){
+                    NSLog(@"Kein Text in der Cloud gefunden");
+                    [cloudStore setString:theLocalText forKey:CLOUDKEY];
+                    [cloudStore synchronize];
+                } else {
+                    NSLog(@"Die Cloud sagt: %@", [cloudStore stringForKey:CLOUDKEY]);
+                }
             });
         }
         else {
@@ -44,58 +49,9 @@
             });
         }
     });
-    
+
     return YES;
 }
-
-- (void)loadFileFromCloud{
-    NSLog(@"[+] %@", NSStringFromSelector(_cmd));
-    NSMetadataQuery *query = [[NSMetadataQuery alloc] init];
-    _query = query;
-    [query setSearchScopes:[NSArray arrayWithObject:NSMetadataQueryUbiquitousDocumentsScope]];
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"%K == %@", NSMetadataItemFSNameKey, CLOUDFILE]; [query setPredicate:pred];
-    [[NSNotificationCenter defaultCenter]
-     addObserver:self selector:@selector(queryDidFinishGathering:) name:NSMetadataQueryDidFinishGatheringNotification object:query];
-    [query startQuery];
-}
-
-- (void)loadData:(NSMetadataQuery *)query {
-    if ([query resultCount] == 1) {
-        NSMetadataItem *item = [query resultAtIndex:0];
-        NSURL *url = [item valueForAttribute:NSMetadataItemURLKey];
-        CloudDoc *theDoc = [[CloudDoc alloc] initWithFileURL:url];
-        self.cloudDoc = theDoc;
-        [self.cloudDoc openWithCompletionHandler:^(BOOL success) {
-            if (success) {
-                NSLog(@"iCloud document opened");
-            } else {
-                NSLog(@"failed opening document from iCloud"); }
-        }];
-    } else {
-        NSURL *ubiq = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
-        NSURL *ubiquitousPackage = [[ubiq URLByAppendingPathComponent: @"Documents"] URLByAppendingPathComponent:CLOUDFILE];
-        CloudDoc *theDoc = [[CloudDoc alloc] initWithFileURL:ubiquitousPackage];
-        self.cloudDoc = theDoc;
-        [theDoc saveToURL:[theDoc fileURL] forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
-            if (success) {
-                [theDoc openWithCompletionHandler:^(BOOL success) {
-                    NSLog(@"new document opened from iCloud");
-                }];
-            }
-        }];
-    }
-}
-
-- (void)queryDidFinishGathering:(NSNotification *)notification {
-    NSMetadataQuery *query = [notification object];
-    [query disableUpdates];
-    [query stopQuery];
-
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSMetadataQueryDidFinishGatheringNotification object:query];
-    _query = nil;
-    [self loadData:query];
-}
-
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
