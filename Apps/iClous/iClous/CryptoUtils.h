@@ -10,4 +10,6 @@
 
 @interface CryptoUtils : NSObject
 
++(NSString *)encryptData:(NSData *)clearText
+               key:(NSString *)passPhrase;
 @end

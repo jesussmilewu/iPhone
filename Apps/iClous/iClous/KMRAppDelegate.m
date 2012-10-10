@@ -9,6 +9,7 @@
 #define CLOUDKEY @"Motto des Tages"
 #import "KMRAppDelegate.h"
 #import "KMRViewController.h"
+#import "CryptoUtils.h"
 
 @implementation KMRAppDelegate
 
@@ -40,6 +41,11 @@
                 } else {
                     NSLog(@"Die Cloud sagt: %@", [cloudStore stringForKey:CLOUDKEY]);
                 }
+                
+                // Verschlüsselte Datenablage über Key Value Store
+                NSString *cyphertext = [CryptoUtils encryptData:[theLocalText dataUsingEncoding:NSUTF8StringEncoding] key:@"4711"];
+                NSLog(@"cyphertext= %@", cyphertext);
+                
                 
                 // Dateiablage
                 NSError *theError;
