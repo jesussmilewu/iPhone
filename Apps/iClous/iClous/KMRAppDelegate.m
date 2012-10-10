@@ -20,8 +20,6 @@
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     
-    // write local file
-    NSString *theLocalText = @"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.";
     // check for iCloud
     self.theCloud = NO;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -31,6 +29,8 @@
                 NSLog(@"iCloud-Verzeichnis: %@", self.iCloudPath);
                 self.theCloud = YES;
                 
+                NSString *theLocalText = @"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.";
+
                 // Key Value Store
                 NSUbiquitousKeyValueStore *cloudStore = [NSUbiquitousKeyValueStore defaultStore];
                 if([[cloudStore stringForKey:CLOUDKEY] length] == 0){
