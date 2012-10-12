@@ -8,16 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Model : NSObject{
-    @private
-        NSMutableArray *objects;
-}
-@property(retain) NSString *status;
-@property(retain) NSDate *creation;
-@property(retain) NSString *name;
-@property(retain) NSNumber *objCount;
+@interface Model : NSObject
 
--(void)getObjects;
--(NSNumber *)handleObject:(NSNumber *)stepperValue;
+@property(strong) NSString *status;
+@property(strong) NSDate *creation;
+@property(strong) NSString *name;
+
+- (NSInteger) countOfObjects;
+
 -(id)initWithName:(NSString *)inName;
+
+-(void)listDroids;
+-(void)updateDroids:(NSInteger)inValue;
+
 @end

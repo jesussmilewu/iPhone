@@ -7,8 +7,12 @@
 //
 
 #import "ProtocolDroid.h"
+#import "NSString+ReverseString.h"
 
 @implementation ProtocolDroid
 
+- (NSString *)droidID {
+    return [[super droidID] reversedString];
+}
 
 @end

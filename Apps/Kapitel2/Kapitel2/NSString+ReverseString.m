@@ -8,14 +8,13 @@
 
 #import "NSString+ReverseString.h"
 
-
 @implementation NSString (ReverseString)
 
--(NSString*)reversedString {
-    NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));
-    NSMutableString *theReverse = [NSMutableString stringWithCapacity:[self length]];
+- (NSString *)reversedString {
+    int theLength = [self length];
+    NSMutableString *theReverse = [[NSMutableString alloc] init];
 
-    for(int i = [self length]-1; i>=0; i--){
+    for(int i = theLength - 1; i>=0; i--){
         [theReverse appendFormat:@"%C", [self characterAtIndex:i]];
     }
     return theReverse;

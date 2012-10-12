@@ -289,6 +289,7 @@
 		40869FC51512920700A94D11 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Kapitel2/Kapitel2-Prefix.pch";
 				INFOPLIST_FILE = "Kapitel2/Kapitel2-Info.plist";
@@ -301,6 +302,7 @@
 		40869FC61512920700A94D11 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Kapitel2/Kapitel2-Prefix.pch";
 				INFOPLIST_FILE = "Kapitel2/Kapitel2-Info.plist";

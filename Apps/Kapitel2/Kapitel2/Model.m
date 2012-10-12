@@ -12,58 +12,72 @@
 #import "AstroDroid.h"
 #import "Wookie.h"
 
+@interface Model()
+
+@property (nonatomic, strong) NSMutableArray *objects;
+
+@end
+
 @implementation Model
 
-@synthesize status, name, creation, objCount;
+@synthesize status;
+@synthesize name;
+@synthesize creation;
+@synthesize objects;
 
--(void)getObjects
-{
-    for(Droid *obj in objects){
-        self.status = obj.droidID;
-        self.status = [obj revMem:obj.droidID];
-        NSLog(@"obj description: %@", obj);
-    }
-    
-    Wookie *chewie = [[Wookie alloc] initWithName:@"Chewbacca"];
-    [objects addObject:chewie];
-    for (id obj in objects) {
-        [obj sayName];
-    }
-}
-
-- (id)init
-{
+- (id)init {
     self = [super init];
     if (self) {
         self.creation = [NSDate date];
-        objects = [[NSMutableArray alloc] init];
+        self.objects = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
--(id)initWithName:(NSString *)inName{
-    name = inName;
-    return [self init];
+-(id)initWithName:(NSString *)inName {
+    self = [self init];
+    if(self) {
+        self.name = inName;
+    }
+    return self;
 }
 
--(NSNumber *)handleObject:(NSNumber *)stepperValue{
-    if([stepperValue intValue] > [objects count]){
-        if([stepperValue intValue] % 3 == 0) {
-            Droid *newDroid = [[Droid alloc] initWithID:stepperValue];
-            [objects addObject:newDroid];
-        } else if([stepperValue intValue] % 3 == 1) {
-            ProtocolDroid *newDroid = [[ProtocolDroid alloc] initWithID:stepperValue];
-            [objects addObject:newDroid];
-        } else if([stepperValue intValue] % 3 == 2) {
-            AstroDroid *newDroid = [[AstroDroid alloc] initWithID:stepperValue];
-            [objects addObject:newDroid];
-        }
-    } else if (([stepperValue intValue] < [objects count])) {
-        [objects removeLastObject];
+- (NSInteger)countOfObjects {
+    return [self.objects count];
+}
+
+- (void)listDroids {
+    Wookie *theWookie = [[Wookie alloc] initWithName:@"Chewbacca"];
+    
+    [objects addObject:theWookie];
+    NSLog(@"[+] Current droids (%d):", [self countOfObjects]);
+    for(id anItem in objects) {
+        [anItem sayName];
     }
-    self.objCount = [NSNumber numberWithInt:[objects count]];
+}
+
+- (void)updateDroids:(NSInteger)inValue {
+    [self willChangeValueForKey:@"countOfObjects"];
+    if(inValue > [self.objects count]) {
+        NSInteger theRemainder = inValue % 3;
+        Droid *theDroid;
         
-    return self.objCount;
+        if(theRemainder == 0) {
+            theDroid = [[Droid alloc] initWithID:inValue];
+        }
+        else if(theRemainder == 1) {
+            theDroid = [[ProtocolDroid alloc] initWithID:inValue];
+        }
+        else {
+            theDroid = [[AstroDroid alloc] initWithID:inValue];
+        }
+        self.status = theDroid.droidID;
+        [self.objects addObject:theDroid];
+    }
+    else if (inValue < [self.objects count]) {
+        [self.objects removeLastObject];
+    }
+    [self didChangeValueForKey:@"countOfObjects"];
 }
 
 @end

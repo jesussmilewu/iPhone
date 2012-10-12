@@ -9,7 +9,9 @@
 #import "Droid.h"
 
 @interface AstroDroid : Droid
+
 @property(copy) NSString *droidID;
--(id)initWithID:(NSNumber *)id;
+
 -(void)sayName;
+
 @end

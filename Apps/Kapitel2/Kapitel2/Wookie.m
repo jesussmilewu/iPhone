@@ -10,20 +10,19 @@
 
 @implementation Wookie
 
-@synthesize myName;
+@synthesize name;
 
-- (id)initWithName:(NSString *)name
-{
-    NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));
+- (id)initWithName:(NSString *)inName {
     self = [super init];
     if(self != nil){
-        self.myName = name;
+        self.name = inName;
     }
+    NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));
     return self;
 }
 
 -(void)sayName{
-    NSLog(@"[+] %@.%@: %@", self, NSStringFromSelector(_cmd), self.myName);
+    NSLog(@"[+] %@.%@: %@", self, NSStringFromSelector(_cmd), self.name);
 }
 
 @end

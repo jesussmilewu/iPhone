@@ -11,11 +11,10 @@
 #import "LogUtility.h"
 
 @interface ViewController : UIViewController <LogUtilityDelegate>
-- (IBAction)iterateObjects:(id)sender;
-- (IBAction)objectMaster:(id)sender;
-@property (retain, nonatomic) IBOutlet UILabel *objectCount;
-@property (retain, nonatomic) IBOutlet UIStepper *stepper;
-@property (retain, nonatomic) IBOutlet UITextView *textView;
+
+@property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (strong) Model *model;
+
+- (IBAction)updateModel:(UIStepper *)sender;
 
 @end
