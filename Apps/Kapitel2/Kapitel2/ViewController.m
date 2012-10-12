@@ -16,21 +16,10 @@
 @end
 
 @implementation ViewController
-<<<<<<< HEAD
 
 @synthesize countLabel;
 @synthesize textView;
 @synthesize model;
-
--(void)finishedWithLogging{
-    [self writeLog:@"Finished logging to console"];
-}
-=======
-
-@synthesize countLabel;
-@synthesize textView;
-@synthesize model;
->>>>>>> 6cc8a5bf717bdf3814324db8a23a3cc8a5f6b337
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,26 +29,6 @@
     self.model = [[Model alloc] initWithName:@"LoremIpsum"];
     [self writeLog:[NSString stringWithFormat:@"Model.name: %@", [self.model name]]];
     
-<<<<<<< HEAD
-    LogUtility *consoleLog = [[LogUtility alloc] init];
-    consoleLog.delegate = self;
-    [consoleLog logToConsole:[self.model name]];
-    
-}
-
-- (void)viewDidAppear:(BOOL)inAnimated {
-    [super viewDidAppear:inAnimated];
-    [self.model addObserver:self
-                 forKeyPath:@"status"
-                    options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
-                    context:NULL];
-    [self.model addObserver:self
-                 forKeyPath:@"countOfObjects"
-                    options:NSKeyValueObservingOptionNew
-                    context:NULL];
-}
-
-=======
     Log *theLog = [[Log alloc] init];
     theLog.delegate = self;
     [theLog logToConsole:[self.model name]];
@@ -77,7 +46,6 @@
                     context:NULL];
 }
 
->>>>>>> 6cc8a5bf717bdf3814324db8a23a3cc8a5f6b337
 - (void)viewWillDisappear:(BOOL)inAnimated {
     [self.model removeObserver:self forKeyPath:@"status"];
     [self.model removeObserver:self forKeyPath:@"countOfObjects"];    
@@ -130,11 +98,8 @@
     [self writeLog:[NSString stringWithFormat:@"countOfObjects = %d", [self.model countOfObjects]]];
 }
 
-<<<<<<< HEAD
-=======
 -(void)logDidFinishLogging:(Log *)inLog {
     [self writeLog:@"Finished logging to console"];
 }
 
->>>>>>> 6cc8a5bf717bdf3814324db8a23a3cc8a5f6b337
 @end
