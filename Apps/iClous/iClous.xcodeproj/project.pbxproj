@@ -15,7 +15,8 @@
 		4018E4BF1609071400B86C24 /* KMRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4018E4BE1609071400B86C24 /* KMRAppDelegate.m */; };
 		4018E4C21609071400B86C24 /* KMRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4018E4C11609071400B86C24 /* KMRViewController.m */; };
 		4018E4C51609071400B86C24 /* KMRViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4018E4C31609071400B86C24 /* KMRViewController.xib */; };
-		40C434EE1610EE9C00599700 /* CloudDoc.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C434ED1610EE9C00599700 /* CloudDoc.m */; };
+		407E5462162598B600DD4BC1 /* CryptoUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 407E5461162598B600DD4BC1 /* CryptoUtils.m */; };
+		40D1B9CC1625D60300DA6E6C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40D1B9CB1625D60300DA6E6C /* Security.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,8 +34,9 @@
 		4018E4C11609071400B86C24 /* KMRViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KMRViewController.m; sourceTree = "<group>"; };
 		4018E4C41609071400B86C24 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/KMRViewController.xib; sourceTree = "<group>"; };
 		4018E4CB1609071B00B86C24 /* iclous.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = iclous.entitlements; sourceTree = "<group>"; };
-		40C434EC1610EE9C00599700 /* CloudDoc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloudDoc.h; sourceTree = "<group>"; };
-		40C434ED1610EE9C00599700 /* CloudDoc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloudDoc.m; sourceTree = "<group>"; };
+		407E5460162598B600DD4BC1 /* CryptoUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CryptoUtils.h; sourceTree = "<group>"; };
+		407E5461162598B600DD4BC1 /* CryptoUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CryptoUtils.m; sourceTree = "<group>"; };
+		40D1B9CB1625D60300DA6E6C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40D1B9CC1625D60300DA6E6C /* Security.framework in Frameworks */,
 				4018E4AF1609071400B86C24 /* UIKit.framework in Frameworks */,
 				4018E4B11609071400B86C24 /* Foundation.framework in Frameworks */,
 				4018E4B31609071400B86C24 /* CoreGraphics.framework in Frameworks */,
@@ -54,6 +57,7 @@
 		4018E49F1609071400B86C24 = {
 			isa = PBXGroup;
 			children = (
+				40D1B9CB1625D60300DA6E6C /* Security.framework */,
 				4018E4B41609071400B86C24 /* iclous */,
 				4018E4AD1609071400B86C24 /* Frameworks */,
 				4018E4AB1609071400B86C24 /* Products */,
@@ -82,8 +86,8 @@
 			isa = PBXGroup;
 			children = (
 				4018E4CB1609071B00B86C24 /* iclous.entitlements */,
-				40C434EC1610EE9C00599700 /* CloudDoc.h */,
-				40C434ED1610EE9C00599700 /* CloudDoc.m */,
+				407E5460162598B600DD4BC1 /* CryptoUtils.h */,
+				407E5461162598B600DD4BC1 /* CryptoUtils.m */,
 				4018E4BD1609071400B86C24 /* KMRAppDelegate.h */,
 				4018E4BE1609071400B86C24 /* KMRAppDelegate.m */,
 				4018E4C01609071400B86C24 /* KMRViewController.h */,
@@ -135,7 +139,7 @@
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Foobar Ltd.";
 			};
-			buildConfigurationList = 4018E4A41609071400B86C24 /* Build configuration list for PBXProject "iclous" */;
+			buildConfigurationList = 4018E4A41609071400B86C24 /* Build configuration list for PBXProject "iClous" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -172,7 +176,7 @@
 				4018E4BB1609071400B86C24 /* main.m in Sources */,
 				4018E4BF1609071400B86C24 /* KMRAppDelegate.m in Sources */,
 				4018E4C21609071400B86C24 /* KMRViewController.m in Sources */,
-				40C434EE1610EE9C00599700 /* CloudDoc.m in Sources */,
+				407E5462162598B600DD4BC1 /* CryptoUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,7 +276,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4018E4A41609071400B86C24 /* Build configuration list for PBXProject "iclous" */ = {
+		4018E4A41609071400B86C24 /* Build configuration list for PBXProject "iClous" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4018E4C61609071400B86C24 /* Debug */,
