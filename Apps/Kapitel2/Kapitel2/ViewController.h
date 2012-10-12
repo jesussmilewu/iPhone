@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Model.h"
-#import "LogUtility.h"
+#import "Log.h"
 
-@interface ViewController : UIViewController <LogUtilityDelegate>
+@interface ViewController : UIViewController <LogDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (strong) Model *model;

@@ -21,10 +21,6 @@
 @synthesize textView;
 @synthesize model;
 
--(void)finishedWithLogging{
-    [self writeLog:@"Finished logging to console"];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.textView setText:nil];
@@ -33,10 +29,9 @@
     self.model = [[Model alloc] initWithName:@"LoremIpsum"];
     [self writeLog:[NSString stringWithFormat:@"Model.name: %@", [self.model name]]];
     
-    LogUtility *consoleLog = [[LogUtility alloc] init];
-    consoleLog.delegate = self;
-    [consoleLog logToConsole:[self.model name]];
-    
+    Log *theLog = [[Log alloc] init];
+    theLog.delegate = self;
+    [theLog logToConsole:[self.model name]];
 }
 
 - (void)viewDidAppear:(BOOL)inAnimated {
@@ -101,6 +96,10 @@
     
     [self.model updateDroids:theValue];
     [self writeLog:[NSString stringWithFormat:@"countOfObjects = %d", [self.model countOfObjects]]];
+}
+
+-(void)logDidFinishLogging:(Log *)inLog {
+    [self writeLog:@"Finished logging to console"];
 }
 
 @end

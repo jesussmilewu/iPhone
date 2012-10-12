@@ -9,13 +9,18 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol LogUtilityDelegate <NSObject>
--(void)finishedWithLogging;
-@end
+@protocol LogDelegate;
 
-@interface LogUtility : NSObject
-@property (nonatomic,weak) id<LogUtilityDelegate> delegate;
+@interface Log : NSObject
+
+@property (nonatomic, weak) id<LogDelegate> delegate;
 
 -(void)logToConsole:(NSString *)theMessage;
+
+@end
+
+@protocol LogDelegate<NSObject>
+
+-(void)logDidFinishLogging:(Log *)inLog;
 
 @end

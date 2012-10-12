@@ -6,16 +6,15 @@
 //  Copyright (c) 2012 Klaus M. Rodewig. All rights reserved.
 //
 
-#import "LogUtility.h"
+#import "Log.h"
 
-@implementation LogUtility
+@implementation Log
 
 @synthesize delegate;
 
 -(void)logToConsole:(NSString *)theMessage {
     NSLog(@"[+] %@.%@: %@", self, NSStringFromSelector(_cmd), theMessage);
-    [delegate performSelector:@selector(finishedWithLogging)];
+    [self.delegate logDidFinishLogging:self];
 }
-
 
 @end
