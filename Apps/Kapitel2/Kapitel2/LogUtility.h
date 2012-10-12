@@ -14,7 +14,7 @@
 @end
 
 @interface LogUtility : NSObject
-@property (nonatomic,assign) id<LogUtilityDelegate> delegate;
+@property (nonatomic,weak) id<LogUtilityDelegate> delegate;
 
 -(void)logToConsole:(NSString *)theMessage;
 

@@ -12,18 +12,17 @@
 
 @synthesize droidID;
 
-- (id)initWithID:(NSNumber *)id
-{
-    NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));
+- (id)initWithID:(NSInteger)inID {
     self = [super init];
     if(self != nil){
-        self.droidID = [NSString stringWithFormat:@"0xBEEFCAFE%02i", [id intValue]];
+        self.droidID = [NSString stringWithFormat:@"0xBEEFCAFE%i", inID];
     }
+    NSLog(@"[+] %@.%@", self, NSStringFromSelector(_cmd));
     return self;
 }
 
 -(void)sayName{
-    NSLog(@"[-] %@.%@: %@", self, NSStringFromSelector(_cmd), self.droidID);
+    NSLog(@"[*] %@.%@: %@", self, NSStringFromSelector(_cmd), self.droidID);
 }
 
 

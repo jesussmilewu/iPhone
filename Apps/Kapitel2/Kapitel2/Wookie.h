@@ -9,7 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface Wookie : NSObject
-@property(copy) NSString * myName;
+
+@property(copy) NSString *name;
+
+-(id)initWithName:(NSString *)inName;
 -(void)sayName;
--(id)initWithName:(NSString *)name;
+
 @end
