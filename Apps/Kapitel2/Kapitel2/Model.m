@@ -14,6 +14,7 @@
 
 @interface Model()
 
+@property (strong, readwrite) NSString *name;
 @property (nonatomic, strong) NSMutableArray *objects;
 
 @end

@@ -12,7 +12,7 @@
 
 @property(strong) NSString *status;
 @property(strong) NSDate *creation;
-@property(strong) NSString *name;
+@property(strong, readonly) NSString *name;
 
 - (NSInteger) countOfObjects;
 
