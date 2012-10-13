@@ -10,57 +10,83 @@
 #import <CommonCrypto/CommonKeyDerivation.h>
 #import <CommonCrypto/CommonCryptor.h>
 
-NSString * const Salt = @"salz1234salz";
-
-const NSUInteger kPBKDFRounds = 10000;
+NSUInteger const PBKDFRounds = 10000;
 
 @implementation CryptoUtils
 
-+(NSString *)encryptData:(NSData *)clearText
-                     key:(NSString *)passPhrase {
+- (id)initWithPassword:(NSString *)thePassword
+{
+    self = [super init];
+    if (self) {
+        NSMutableData *theData = [NSMutableData dataWithLength:kCCBlockSizeAES128];
+        SecRandomCopyBytes(kSecRandomDefault, kCCBlockSizeAES128, theData.mutableBytes);
+        self.iv = theData;
+        theData = nil;
+        
+        theData = [NSMutableData dataWithLength:kCCBlockSizeAES128];
+        SecRandomCopyBytes(kSecRandomDefault, kCCBlockSizeAES128, theData.mutableBytes);
+        self.salt = theData;
+        theData = nil;
+        
+        self.password = thePassword;
+    }
+    return self;
+}
+
+-(NSData *)encryptData:(NSData *)clearText {
     NSLog(@"[+] %@", NSStringFromSelector(_cmd));
     
-    NSMutableData *iv = [NSMutableData dataWithLength:kCCBlockSizeAES128];
+    [self createKey:[self.password dataUsingEncoding:NSUTF8StringEncoding]];
     
-    SecRandomCopyBytes(kSecRandomDefault, kCCBlockSizeAES128, iv.mutableBytes);
-    
-    NSString *passwordWithSalt = [NSString stringWithFormat:@"%@%@", Salt, passPhrase];
-
-    NSData *thePassword = [passwordWithSalt dataUsingEncoding:NSUTF8StringEncoding];
-    
+    // Puffer für Ciphertext
     NSMutableData *cipherData = [NSMutableData dataWithLength:clearText.length + kCCBlockSizeAES128];
 
+    // Länge des Ciphertextes
     size_t ciperLength;
     
-    CCCryptorStatus cryptStatus = CCCrypt(kCCEncrypt,
-                                          kCCAlgorithmAES128,
-                                          kCCOptionPKCS7Padding,
-                                          [thePassword bytes],
-                                          [thePassword length],
-                                          [iv bytes],
-                                          [clearText bytes],
-                                          [clearText length],
-                                          [cipherData mutableBytes],
-                                          [cipherData length],
-                                          &ciperLength);
-    
-
-              
+    // Durchführen der Verschlüsselung
+    CCCryptorStatus cryptStatus = CCCrypt(kCCEncrypt,                   // Verschlüsselung
+                                          kCCAlgorithmAES128,           // Algoritmus
+                                          kCCOptionPKCS7Padding,        // Padding
+                                          self.cryptKey.bytes,          // Passwort
+                                          self.cryptKey.length,         // Länge des Passwortes
+                                          self.iv.bytes,                // Initialisierungsvektor
+                                          clearText.bytes,              // Klartext
+                                          clearText.length,             // Länge des Klartextes
+                                          cipherData.mutableBytes,      // Puffer des Ciphertextes
+                                          cipherData.length,            // Länge des Ciphertextes
+                                          &ciperLength);                // Länge der verarbeiteten Daten
+        
     if(cryptStatus){
-        NSLog(@"Something terrible happened!");
+        NSLog(@"Something terrible during encryption happened!");
     } else {
         NSLog(@"Ciphertext length: %i", [cipherData length]);
     }
-    
-    // Todo: base64-encryption des Ciphertexte
-    
-    return [[NSString alloc] initWithData:cipherData encoding:NSASCIIStringEncoding];
+       
+    return cipherData;
 }
 
--(NSData *)createEncryptionKey:(NSString *)key{
+-(BOOL)createKey:(NSData *)key{
     NSLog(@"[+] %@", NSStringFromSelector(_cmd));
     
+    NSMutableData *localKey = [NSMutableData dataWithLength:kCCKeySizeAES128];
     
+    int result = CCKeyDerivationPBKDF(kCCPBKDF2,
+                                      self.password.UTF8String,
+                                      self.password.length,
+                                      self.salt.bytes,
+                                      self.salt.length,
+                                      kCCPRFHmacAlgSHA1,
+                                      PBKDFRounds,
+                                      localKey.mutableBytes,
+                                      localKey.length);
+    if(kCCSuccess){
+        NSLog(@"Fehler beim Erstellen des Schlüssels: %d", result);
+    }
+    
+    self.cryptKey = localKey;
+    
+    return YES;
 }
 
 @end

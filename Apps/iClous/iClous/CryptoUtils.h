@@ -10,6 +10,12 @@
 
 @interface CryptoUtils : NSObject
 
-+(NSString *)encryptData:(NSData *)clearText
-               key:(NSString *)passPhrase;
+-(NSData *)encryptData:(NSData *)clearText;
+-(id)initWithPassword:(NSString *)thePassword;
+
+@property (retain) NSData *salt;
+@property (retain) NSData *iv;
+@property (retain) NSString *password;
+@property (retain) NSData *cryptKey;
+
 @end

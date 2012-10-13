@@ -6,10 +6,11 @@
 //  Copyright (c) 2012 Foobar Ltd. All rights reserved.
 //
 
-#define CLOUDKEY @"Motto des Tages"
 #import "KMRAppDelegate.h"
 #import "KMRViewController.h"
 #import "CryptoUtils.h"
+
+NSString * const CLOUDKEY = @"iClous";
 
 @implementation KMRAppDelegate
 
@@ -43,9 +44,13 @@
                 }
                 
                 // Verschlüsselte Datenablage über Key Value Store
-                NSString *cyphertext = [CryptoUtils encryptData:[theLocalText dataUsingEncoding:NSUTF8StringEncoding] key:@"4711"];
-                NSLog(@"cyphertext= %@", cyphertext);
-                
+                CryptoUtils *theCrypt = [[CryptoUtils alloc] initWithPassword:@"4711"];
+                NSData *ciphertext = [theCrypt encryptData:[theLocalText dataUsingEncoding:NSUTF8StringEncoding]];
+                NSLog(@"Ciphertext: %@", ciphertext);
+                // verschlüsselte Daten in der Cloud ablegen
+                [cloudStore setData:theCrypt.salt forKey:@"Salt"];
+                [cloudStore setData:theCrypt.iv forKey:@"IV"];
+                [cloudStore setData:ciphertext forKey:@"Secret"];
                 
                 // Dateiablage
                 NSError *theError;
