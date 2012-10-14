@@ -45,17 +45,17 @@ NSUInteger const PBKDFRounds = 10000;
     size_t ciperLength;
     
     // Durchführen der Verschlüsselung
-    CCCryptorStatus cryptStatus = CCCrypt(kCCEncrypt,                   // Verschlüsselung
-                                          kCCAlgorithmAES128,           // Algoritmus
-                                          kCCOptionPKCS7Padding,        // Padding
-                                          self.cryptKey.bytes,          // Passwort
-                                          self.cryptKey.length,         // Länge des Passwortes
-                                          self.iv.bytes,                // Initialisierungsvektor
-                                          clearText.bytes,              // Klartext
-                                          clearText.length,             // Länge des Klartextes
-                                          cipherData.mutableBytes,      // Puffer des Ciphertextes
-                                          cipherData.length,            // Länge des Ciphertextes
-                                          &ciperLength);                // Länge der verarbeiteten Daten
+    CCCryptorStatus cryptStatus = CCCrypt(kCCEncrypt,
+                                          kCCAlgorithmAES128,
+                                          kCCOptionPKCS7Padding,
+                                          self.cryptKey.bytes,
+                                          self.cryptKey.length,
+                                          self.iv.bytes,
+                                          clearText.bytes,
+                                          clearText.length,
+                                          cipherData.mutableBytes,
+                                          cipherData.length,
+                                          &ciperLength);
         
     if(cryptStatus){
         NSLog(@"Something terrible during encryption happened!");
