@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4001951C15AEED3D00F5E8C7 /* AstroDroid.m in Sources */ = {isa = PBXBuildFile; fileRef = 4001951B15AEED3D00F5E8C7 /* AstroDroid.m */; };
-		4039CA1A15AF4B300083946B /* Wookie.m in Sources */ = {isa = PBXBuildFile; fileRef = 4039CA1915AF4B300083946B /* Wookie.m */; };
+		4039CA1A15AF4B300083946B /* Wookiee.m in Sources */ = {isa = PBXBuildFile; fileRef = 4039CA1915AF4B300083946B /* Wookiee.m */; };
 		4061F4DD155D901B009E138A /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 4061F4DC155D901B009E138A /* Model.m */; };
 		407F0976157608A900AEE30B /* NSString+ReverseString.m in Sources */ = {isa = PBXBuildFile; fileRef = 407F0975157608A900AEE30B /* NSString+ReverseString.m */; };
 		40869FAB1512920700A94D11 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40869FAA1512920700A94D11 /* UIKit.framework */; };
@@ -28,8 +28,8 @@
 /* Begin PBXFileReference section */
 		4001951A15AEED3D00F5E8C7 /* AstroDroid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AstroDroid.h; sourceTree = "<group>"; };
 		4001951B15AEED3D00F5E8C7 /* AstroDroid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AstroDroid.m; sourceTree = "<group>"; };
-		4039CA1815AF4B300083946B /* Wookie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wookie.h; sourceTree = "<group>"; };
-		4039CA1915AF4B300083946B /* Wookie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wookie.m; sourceTree = "<group>"; };
+		4039CA1815AF4B300083946B /* Wookiee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wookiee.h; sourceTree = "<group>"; };
+		4039CA1915AF4B300083946B /* Wookiee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wookiee.m; sourceTree = "<group>"; };
 		4061F4DB155D901B009E138A /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		4061F4DC155D901B009E138A /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		407F0974157608A900AEE30B /* NSString+ReverseString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ReverseString.h"; sourceTree = "<group>"; };
@@ -130,8 +130,8 @@
 		40CFA08015720C1400E68AE5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4039CA1815AF4B300083946B /* Wookie.h */,
-				4039CA1915AF4B300083946B /* Wookie.m */,
+				4039CA1815AF4B300083946B /* Wookiee.h */,
+				4039CA1915AF4B300083946B /* Wookiee.m */,
 				40A01F841583E96A00B1E1F5 /* ProtocolDroid.h */,
 				40A01F851583E96A00B1E1F5 /* ProtocolDroid.m */,
 				4001951A15AEED3D00F5E8C7 /* AstroDroid.h */,
@@ -216,7 +216,7 @@
 				407F0976157608A900AEE30B /* NSString+ReverseString.m in Sources */,
 				40A01F861583E96A00B1E1F5 /* ProtocolDroid.m in Sources */,
 				4001951C15AEED3D00F5E8C7 /* AstroDroid.m in Sources */,
-				4039CA1A15AF4B300083946B /* Wookie.m in Sources */,
+				4039CA1A15AF4B300083946B /* Wookiee.m in Sources */,
 				408C1F7315B3587900B92C97 /* Log.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,7 +10,7 @@
 #import "Droid.h"
 #import "ProtocolDroid.h"
 #import "AstroDroid.h"
-#import "Wookie.h"
+#import "Wookiee.h"
 
 @interface Model()
 
@@ -48,9 +48,9 @@
 }
 
 - (void)listDroids {
-    Wookie *theWookie = [[Wookie alloc] initWithName:@"Chewbacca"];
+    Wookiee *theWookiee = [[Wookiee alloc] initWithName:@"Chewbacca"];
     
-    [objects addObject:theWookie];
+    [objects addObject:theWookiee];
     NSLog(@"[+] Current droids (%d):", [self countOfObjects]);
     for(id anItem in objects) {
         [anItem sayName];

@@ -1,14 +1,14 @@
 //
-//  Wookie.m
+//  Wookiee.m
 //  Kapitel2
 //
 //  Created by Rodewig Klaus on 12.07.12.
 //  Copyright (c) 2012 Klaus M. Rodewig. All rights reserved.
 //
 
-#import "Wookie.h"
+#import "Wookiee.h"
 
-@implementation Wookie
+@implementation Wookiee
 
 @synthesize name;
 
