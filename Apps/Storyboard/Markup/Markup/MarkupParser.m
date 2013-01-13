@@ -62,6 +62,9 @@
         NSDictionary *theAttributes = [self attributesForTagName:inElementName];
         MarkupTag *theTag = [MarkupTag markupTagWithName:inElementName position:thePosition attributes:theAttributes];
 
+        if([inElementName isEqualToString:@"p"]) {
+            [self.text.mutableString appendString:@"\n"];
+        }
         [theTag addAttribute:[UIColor colorWithString:[inAttributes valueForKey:@"color"]]
                      forName:NSForegroundColorAttributeName];
         [theTag addAttribute:[UIColor colorWithString:[inAttributes valueForKey:@"background-color"]]
