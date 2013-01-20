@@ -29,19 +29,27 @@
         <p><img src="http://cover.galileo-press.de/9783836219150.jpg" alt="Cover"></p>
 
 <hr><h3>Fehler im Buch</h3>
-<p>Trotz sorgf&auml;ltiger Pr&uuml;fung haben sich einige Fehler eingeschlichen, die wir auf dieser Seite zusammengetragen. Bei Problemen mit den Listings empfiehlt sich auch immer ein Blick in den Sourcecode im Git.</p>
+<p>Trotz sorgf&auml;ltiger Pr&uuml;fung haben sich einige Fehler eingeschlichen, die wir auf dieser Seite zusammengetragen haben. Bei Problemen mit den Listings empfiehlt sich auch immer ein Blick in den Sourcecode im Git.</p>
 <h4>Seite 81</h4>
 <p>Der erste Klammeraffe in Listing 2.8 muss durch <tt>nil</tt> ersetzt werden:
 <pre>
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.textView setText:nil];
+    [self.textView setText:<b>nil</b>];
     [self writeLog:@"viewDidLoad"];
 }
 </pre>
 <em>Danke, Matthias</em>
 </p>
+<h4>Seite 89</h4>
+<p>Im grauen Kasten fehlt bei den <tt>@synthesize</tt>-Anweisungen ein Bezeichner:
+<pre>
+@synthesize <b>status</b>;
+@synthesize name;
+@synthesize creation;
+</pre>
+<em>Danke, Claus</em></p>
 <h4>Seite 219</h4>
 <p>Die Oder-Operatoren "|" sind in Listing 3.10 beim Satz verlorengegangen. Der Anfang der Methode muss lauten:
 <pre>
@@ -49,19 +57,22 @@ CGContextRef theContext = UIGraphicsGetCurrentContext();
 CGPoint theCenter = [self midPoint];
 CGFloat theRadius = CGRectGetWidth(self.bounds) / 2.0;
 NSDateComponents *theComponents =
-    [self.calendar components:NSHourCalendarUnit |
-                              NSMinuteCalendarUnit |
-                              NSSecondCalendarUnit 
+    [self.calendar components:<b>NSHourCalendarUnit |
+                          NSMinuteCalendarUnit |
+                          NSSecondCalendarUnit</b>
                      fromDate:self.time];
 </pre>
 <em>Danke, Thomas</em>
 </p>
+<h4>Seite 121</h4>
+<p>In Listing 256 hat sich ein &uuml;berfl&uuml;ssiges <tt>#zonk</tt> eingeschlichen.<br/>
+<em>Danke, Claus</em></p>
 <h4>Seite 238</h4>
 <p>In Listing 3.23 fehlt ein <tt>self</tt>:
 <pre>
 - (void)viewDidAppear:(BOOL)inAnimated {
     [super viewDidAppear:inAnimated];
-    [self.clockView startAnimation];
+    [<b>self</b>.clockView startAnimation];
 }
 </pre>
 <em>Danke, Thomas</em>
