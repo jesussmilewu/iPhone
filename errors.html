@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Apps programmieren für iPhone und iPad by Cocoaneheads</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Apps programmieren für iPhone und iPad</h1>
+        <p>Der Code zum Buch</p>
+
+        <p class="view"><a href="https://github.com/Cocoaneheads/iPhone">View the Project on GitHub <small>Cocoaneheads/iPhone</small></a></p>
+        <ul>
+          <li><a href="https://github.com/Cocoaneheads/iPhone/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/Cocoaneheads/iPhone/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/Cocoaneheads/iPhone">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p><img src="http://cover.galileo-press.de/9783836219150.jpg" alt="Cover"></p>
+
+<hr><h3>Fehler im Buch</h3>
+
+<h4>Seite 219</h4>
+<p>Die Oder-Operatoren "|" sind in Listing 3.10 beim Satz verlorengegangen. Der Anfang der Methode muss lauten:
+<pre>
+CGContextRef theContext = UIGraphicsGetCurrentContext();
+CGPoint theCenter = [self midPoint];
+CGFloat theRadius = CGRectGetWidth(self.bounds) / 2.0;
+NSDateComponents *theComponents =
+    [self.calendar components:NSHourCalendarUnit |
+                              NSMinuteCalendarUnit |
+                              NSSecondCalendarUnit 
+                     fromDate:self.time];
+</pre>
+<em>Danke, Thomas</em>
+</p>
+<h4>Seite 238</h4>
+<p>In Listing 3.23 fehlt ein <tt>self</tt>:
+<pre>
+- (void)viewDidAppear:(BOOL)inAnimated {
+    [super viewDidAppear:inAnimated];
+    [self.clockView startAnimation];
+}
+</pre>
+<em>Danke, Thomas</em>
+</p>
+<h4>Seite 387</h4>
+<p>Die seltsamen Zeichen am Ende einiger Zeilen stehen f&uuml;r Zeilenumbr&uuml;che und k&ouml;nnen ignoriert werden.</p>
+<h3>Kontakt &amp; Impressum</h3>
+
+<p>Autoren: Clemens Wagner, Klaus Rodewig: <a href="mailto:dingdong@cocoaneheads.de">dingdong@cocoaneheads.de</a></p>
+
+<p><a href="http://www.galileocomputing.de/hilfe/Impressum?GalileoSession=13813102A5s4U69QHQc">Impressum Verlag</a></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/Cocoaneheads">Cocoaneheads</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
