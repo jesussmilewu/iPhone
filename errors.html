@@ -29,7 +29,19 @@
         <p><img src="http://cover.galileo-press.de/9783836219150.jpg" alt="Cover"></p>
 
 <hr><h3>Fehler im Buch</h3>
-
+<p>Trotz sorgf&auml;ltiger Pr&uuml;fung haben sich einige Fehler eingeschlichen, die wir auf dieser Seite zusammengetragen. Bei Problemen mit den Listings empfiehlt sich auch immer ein Blick in den Sourcecode im Git.</p>
+<h4>Seite 81</h4>
+<p>Der erste Klammeraffe in Listing 2.8 muss durch <tt>nil</tt> ersetzt werden:
+<pre>
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self.textView setText:nil];
+    [self writeLog:@"viewDidLoad"];
+}
+</pre>
+<em>Danke, Matthias</em>
+</p>
 <h4>Seite 219</h4>
 <p>Die Oder-Operatoren "|" sind in Listing 3.10 beim Satz verlorengegangen. Der Anfang der Methode muss lauten:
 <pre>
