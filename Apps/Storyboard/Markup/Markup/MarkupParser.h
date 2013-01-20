@@ -10,8 +10,9 @@
 
 @interface MarkupParser : NSObject<NSXMLParserDelegate>
 
-- (NSAttributedString *)attributedText;
-- (void)setAttributes:(NSDictionary *)inAttributes forTagName:(NSString *)inTagName;
-- (NSDictionary *)attributesForTagName:(NSString *)inTagName;
+- (NSAttributedString *)attributedStringWithContentsOfURL:(NSURL *)inURL error:(NSError **)outError;
+
+- (NSDictionary *)attributesForTagName:(NSString *)inName;
+- (void)setAttributes:(NSDictionary *)inAttributes forTagName:(NSString *)inName;
 
 @end

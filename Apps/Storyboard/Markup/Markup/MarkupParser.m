@@ -9,13 +9,12 @@
 #import "MarkupParser.h"
 #import "UIColor+StringParsing.h"
 
-@interface MarkupTag : NSObject
+@interface Markup : NSObject
 
-@property (nonatomic, strong) NSString *name;
 @property (nonatomic) NSUInteger position;
 @property (nonatomic, strong) NSMutableDictionary *attributes;
 
-+ (id)markupTagWithName:(NSString *)inName position:(NSUInteger)inPosition attributes:(NSDictionary *)inAttributes;
++ (id)markupWithPosition:(NSUInteger)inPosition attributes:(NSDictionary *)inAttributes;
 - (void)addAttribute:(id)inValue forName:(NSString *)inName;
 
 @end
@@ -34,52 +33,70 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.text = [[NSMutableAttributedString alloc] init];
         self.attributesByTagName = [NSMutableDictionary dictionary];
-        self.stack = [NSMutableArray arrayWithCapacity:20];
     }
     return self;
 }
 
-- (NSAttributedString *)attributedText {
+- (NSAttributedString *)attributedString {
     return [self.text copy];
 }
 
-- (void)setAttributes:(NSDictionary *)inAttributes forTagName:(NSString *)inTagName {
-    [self.attributesByTagName setValue:inAttributes forKey:inTagName];
+- (NSDictionary *)attributesForTagName:(NSString *)inName {
+    return [self.attributesByTagName valueForKey:inName];
 }
 
-- (NSDictionary *)attributesForTagName:(NSString *)inTagName {
-    return [self.attributesByTagName valueForKey:inTagName];
+- (void)setAttributes:(NSDictionary *)inAttributes forTagName:(NSString *)inName {
+    [self.attributesByTagName setValue:inAttributes forKey:inName];
+}
+
+- (NSAttributedString *)attributedStringWithContentsOfURL:(NSURL *)inURL error:(NSError **)outError {
+    NSXMLParser *theParser = [[NSXMLParser alloc] initWithContentsOfURL:inURL];
+
+    theParser.delegate = self;
+    [theParser parse];
+    if(outError != NULL) {
+        *outError = theParser.parserError;
+    }
+    return theParser.parserError == nil ? [self attributedString] : nil;
+}
+
+#pragma mark NSXMLParserDelegate
+
+- (void)parserDidStartDocument:(NSXMLParser *)inParser {
+    self.text = [[NSMutableAttributedString alloc] init];
+    self.stack = [NSMutableArray arrayWithCapacity:20];
+}
+
+- (void)parserDidEndDocument:(NSXMLParser *)inParser {
 }
 
 - (void)parser:(NSXMLParser *)inParser didStartElement:(NSString *)inElementName namespaceURI:(NSString *)inNamespaceURI qualifiedName:(NSString *)inQualifiedName attributes:(NSDictionary *)inAttributes {
-    if([inElementName isEqualToString:@"text"]) {
-        [self.text deleteCharactersInRange:NSMakeRange(0, [self.text length])];
-    }
-    else {
-        NSUInteger thePosition = [self.text length];
-        NSDictionary *theAttributes = [self attributesForTagName:inElementName];
-        MarkupTag *theTag = [MarkupTag markupTagWithName:inElementName position:thePosition attributes:theAttributes];
+    NSDictionary *theAttributes = [self attributesForTagName:inElementName];
 
-        if([inElementName isEqualToString:@"p"]) {
-            [self.text.mutableString appendString:@"\n"];
-        }
-        [theTag addAttribute:[UIColor colorWithString:[inAttributes valueForKey:@"color"]]
-                     forName:NSForegroundColorAttributeName];
-        [theTag addAttribute:[UIColor colorWithString:[inAttributes valueForKey:@"background-color"]]
-                     forName:NSBackgroundColorAttributeName];
-        [self.stack addObject:theTag];
+    if([inElementName isEqualToString:@"p"]) {
+        [self.text.mutableString appendString:@"\n"];
+    }
+    if(theAttributes != nil) {
+        NSUInteger thePosition = [self.text length];
+        Markup *theMarkup = [Markup markupWithPosition:thePosition attributes:theAttributes];
+        UIColor *theTextColor = [UIColor colorWithString:[inAttributes valueForKey:@"color"]];
+        UIColor *theBackgroundColor = [UIColor colorWithString:[inAttributes valueForKey:@"background-color"]];
+
+        [theMarkup addAttribute:theTextColor forName:NSForegroundColorAttributeName];
+        [theMarkup addAttribute:theBackgroundColor forName:NSBackgroundColorAttributeName];
+        [self.stack addObject:theMarkup];
     }
 }
 
 - (void)parser:(NSXMLParser *)inParser didEndElement:(NSString *)inElementName namespaceURI:(NSString *)inNamespaceURI qualifiedName:(NSString *)inQualifiedName {
     if([self.attributesByTagName objectForKey:inElementName] != nil) {
-        MarkupTag *theTag = [self.stack lastObject];
-        NSRange theRange = NSMakeRange(theTag.position, [self.text length] - theTag.position);
+        NSUInteger thePosition = [self.text length];
+        Markup *theMarkup = [self.stack lastObject];
+        NSRange theRange = NSMakeRange(theMarkup.position, thePosition - theMarkup.position);
 
         [self.stack removeLastObject];
-        [self.text addAttributes:theTag.attributes range:theRange];
+        [self.text addAttributes:theMarkup.attributes range:theRange];
     }
 }
 
@@ -91,13 +108,15 @@
 
 @end
 
-@implementation MarkupTag
+@implementation Markup
 
-+ (id)markupTagWithName:(NSString *)inName position:(NSUInteger)inPosition attributes:(NSDictionary *)inAttributes {
+@synthesize position;
+@synthesize attributes;
+
++ (id)markupWithPosition:(NSUInteger)inPosition attributes:(NSDictionary *)inAttributes {
     id theTag = [[[self class] alloc] init];
     NSMutableDictionary *theAttributes = [NSMutableDictionary dictionaryWithDictionary:inAttributes];
 
-    [theTag setName:inName];
     [theTag setPosition:inPosition];
     [theTag setAttributes:theAttributes];
     return theTag;
