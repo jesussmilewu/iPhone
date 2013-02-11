@@ -49,6 +49,19 @@
 </pre>
 <em>Danke, Timmy</em>
 </p>
+<h4>Seite 87</h4>
+<p>In der Klassendeklaration von <tt>Model</tt> fehlt der Bezeichner f&uuml;r das erste Attribut:
+<pre>
+@interface Model : NSObject {
+    @private
+    NSStrong *<b>status</b>;
+    NSDate *creation;
+    NSString *name;
+    NSMutableArray *objects;
+}
+@end
+</pre>
+<em>Danke, Werner</em></p>
 <h4>Seite 89</h4>
 <p>Im grauen Kasten fehlt bei den <tt>@synthesize</tt>-Anweisungen ein Bezeichner:
 <pre>
