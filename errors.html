@@ -108,6 +108,26 @@ NSDateComponents *theComponents =
 </p>
 <h4>Seite 387</h4>
 <p>Die seltsamen Zeichen am Ende einiger Zeilen von Listing 4.50 stehen f&uuml;r Zeilenumbr&uuml;che und k&ouml;nnen ignoriert werden.</p>
+<h4>Seite 781</h4>
+<p>Listing 8.8 verwendet die nicht die Variable <tt>theEncoding</tt> f&uuml;r die Konverterung:
+<pre>
+- (NSString *)encodedStringForURLWithEncoding:
+    (NSStringEncoding)inEncoding {
+    CFStringEncoding theEncoding = 
+        CFStringConvertNSStringEncodingToEncoding(
+            inEncoding);
+    CFStringRef theResult =
+        CFURLCreateStringByAddingPercentEscapes(
+            kCFAllocatorDefault,
+            (__bridge CFStringRef)self,
+            NULL,
+            (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+            <b>theEncoding</b>);
+
+    return (__bridge_transfer NSString *)theResult;
+}
+</pre>
+</p>
 <h4>Seite 852</h4>
 <p>In Listing 8.63 hat sich ein &uuml;berfl&uuml;ssiges <tt>#tonk#</tt> eingeschlichen.</p>
 <h3>Kontakt &amp; Impressum</h3>
