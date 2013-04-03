@@ -13,37 +13,43 @@
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 
 + (UIColor *)colorWithString:(NSString *)inString {
-    UIColor *theColor = nil;
-    
-    if([inString hasPrefix:@"#"]) {
-        NSScanner *theScanner = [NSScanner scannerWithString:[inString substringFromIndex:1]];
-        NSUInteger theValue;
-
-        if([theScanner scanHexInt:&theValue]) {
-            NSUInteger theLength = inString.length - 1;
-            NSUInteger theMask = theLength > 5 ? 0xFF : 0xF;
-            NSUInteger theStart = theLength == 3 || theLength == 6 ? 1 : 0;
-            CGFloat theComponents[4];
-
-            theComponents[0] = 1.0;
-            for(int i = theStart; i < 4; ++i) {
-                theComponents[i] = (theValue & theMask) / (theMask + 1.0);
-                theValue /= theMask + 1;
-            }
-            theColor = [UIColor colorWithRed:theComponents[3]
-                                       green:theComponents[2]
-                                        blue:theComponents[1]
-                                       alpha:theComponents[0]];
-        }
+    if(inString == nil) {
+        return nil;
     }
     else {
-        SEL theSelector = NSSelectorFromString([NSString stringWithFormat:@"%@Color", inString]);
+        NSScanner *theScanner = [NSScanner scannerWithString:inString];
+        UIColor *theColor = nil;
 
-        if([[UIColor class] respondsToSelector:theSelector]) {
-            theColor = [[UIColor class] performSelector:theSelector];
+        if([theScanner scanString:@"#" intoString:NULL]) {
+            unsigned theValue;
+
+            if([theScanner scanHexInt:&theValue]) {
+                CGFloat theComponents[3];
+
+                for(int i = 0; i < 3; ++i) {
+                    theComponents[i] = (theValue & 0xFF) / 255.0;
+                    theValue >>= 8;
+                }
+                theColor = [self colorWithRed:theComponents[2]
+                                        green:theComponents[1]
+                                         blue:theComponents[0]
+                                        alpha:1.0];
+            }
         }
+        else {
+            NSString *theName = [NSString stringWithFormat:@"%@Color", inString];
+            SEL theSelector = NSSelectorFromString(theName);
+
+            if([self respondsToSelector:theSelector]) {
+                theColor = [self performSelector:theSelector];
+            }
+        }
+        return theColor;
     }
-    return theColor;
+}
+
++ (id)oliveColor {
+    return [UIColor colorWithRed:0.5 green:0.7 blue:0.2 alpha:1.0];
 }
 
 @end
