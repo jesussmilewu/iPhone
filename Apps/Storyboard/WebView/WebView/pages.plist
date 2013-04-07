@@ -5,16 +5,12 @@
 	<dict>
 		<key>title</key>
 		<string>HTML String</string>
-		<key>selector</key>
-		<string>loadContent:</string>
 		<key>content</key>
 		<string>&lt;html&gt;&lt;head&gt;&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;style.css&quot; /&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;ball.png&quot; /&gt;Hallo Welt&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
 	</dict>
 	<dict>
 		<key>title</key>
 		<string>Image</string>
-		<key>selector</key>
-		<string>loadData:</string>
 		<key>contentType</key>
 		<string>image/gif</string>
 		<key>name</key>
@@ -25,8 +21,6 @@
 	<dict>
 		<key>title</key>
 		<string>PDF</string>
-		<key>selector</key>
-		<string>loadData:</string>
 		<key>contentType</key>
 		<string>application/pdf</string>
 		<key>name</key>
@@ -37,8 +31,6 @@
 	<dict>
 		<key>title</key>
 		<string>Text</string>
-		<key>selector</key>
-		<string>loadData:</string>
 		<key>contentType</key>
 		<string>text/plain</string>
 		<key>name</key>
@@ -51,14 +43,24 @@
 	<dict>
 		<key>title</key>
 		<string>XML</string>
-		<key>selector</key>
-		<string>loadData:</string>
 		<key>contentType</key>
 		<string>text/xml</string>
 		<key>name</key>
 		<string>text</string>
 		<key>extension</key>
 		<string>xml</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Cocoaneheads</string>
+		<key>url</key>
+		<string>http://www.cocoaneheads.de/</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Ungültige URL</string>
+		<key>url</key>
+		<string>http://error.cocoaneheads.de/</string>
 	</dict>
 </array>
 </plist>

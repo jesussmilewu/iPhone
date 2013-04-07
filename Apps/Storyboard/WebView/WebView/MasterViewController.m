@@ -53,9 +53,8 @@
 
 - (void)tableView:(UITableView *)inTableView didSelectRowAtIndexPath:(NSIndexPath *)inIndexPath {
     NSDictionary *theItem = self.items[inIndexPath.row];
-    SEL theSelector = NSSelectorFromString(theItem[@"selector"]);
 
-    [self.detailViewController performSelector:theSelector withObject:theItem];
+    [self.detailViewController loadContent:theItem];
 }
 
 @end

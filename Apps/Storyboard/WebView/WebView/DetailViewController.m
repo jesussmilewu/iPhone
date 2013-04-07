@@ -12,11 +12,18 @@
 
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
 @end
 
 @implementation DetailViewController
 
 #pragma mark - Managing the detail item
+
+- (void)dealloc {
+    self.webView.delegate = nil;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,32 +35,58 @@
 }
 
 - (void)loadContent:(NSDictionary *)inItem {
-    NSString *theContent = inItem[@"content"];
-    NSURL *theURL = [[NSBundle mainBundle] URLForResource:@"style" withExtension:@"css"];
-               
-    [self.webView loadHTMLString:theContent baseURL:theURL];
-    [self.activityIndicator startAnimating];
-}
+    if(inItem[@"url"] != nil) {
+        NSURL *theURL = [NSURL URLWithString:inItem[@"url"]];
+        NSURLRequest *theRequest = [NSURLRequest requestWithURL:theURL];
 
-- (void)loadData:(NSDictionary *)inItem {
-    NSURL *theURL = [[NSBundle mainBundle] URLForResource:inItem[@"name"] withExtension:inItem[@"extension"]];
-    NSData *theData = [NSData dataWithContentsOfURL:theURL];
+        [self.webView loadRequest:theRequest];
+    }
+    else if(inItem[@"content"] != nil) {
+        NSString *theContent = inItem[@"content"];
+        NSURL *theURL = [[NSBundle mainBundle] URLForResource:@"pages" withExtension:@"plist"];
 
-    [self.webView loadData:theData
-                  MIMEType:inItem[@"contentType"]
-          textEncodingName:inItem[@"encoding"]
-                   baseURL:theURL];
+        [self.webView loadHTMLString:theContent baseURL:theURL];
+    }
+    else {
+        NSURL *theURL = [[NSBundle mainBundle] URLForResource:inItem[@"name"] withExtension:inItem[@"extension"]];
+        NSData *theData = [NSData dataWithContentsOfURL:theURL];
+
+        [self.webView loadData:theData
+                      MIMEType:inItem[@"contentType"]
+              textEncodingName:inItem[@"encoding"]
+                       baseURL:theURL];
+    }
     [self.activityIndicator startAnimating];
 }
 
 #pragma mark UIWebViewDelegate
 
 - (void)webViewDidStartLoad:(UIWebView *)inWebView {
-    [self.activityIndicator startAnimating];
+    if(![self.activityIndicator isAnimating]) {
+        [self.activityIndicator startAnimating];
+    }
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)inWebView {
     [self.activityIndicator stopAnimating];
+}
+
+- (void)webView:(UIWebView *)inWebView didFailLoadWithError:(NSError *)inError {
+    UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"")
+                                                       message:inError.localizedDescription
+                                                      delegate:nil
+                                             cancelButtonTitle:@"OK"
+                                             otherButtonTitles:nil];
+    
+    [self.activityIndicator stopAnimating];
+    [theAlert show];
+}
+
+- (BOOL)webView:(UIWebView *)inWebView shouldStartLoadWithRequest:(NSURLRequest *)inRequest
+ navigationType:(UIWebViewNavigationType)inType {
+    NSString *thePath = [inRequest.URL path];
+
+    return [thePath rangeOfString:@".gz"].location == NSNotFound && [thePath rangeOfString:@".zip"].location == NSNotFound;
 }
 
 #pragma mark - SplitViewControllerDelegate

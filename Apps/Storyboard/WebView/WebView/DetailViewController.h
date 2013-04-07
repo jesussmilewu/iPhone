@@ -10,7 +10,6 @@
 
 @interface DetailViewController : UIViewController <UISplitViewControllerDelegate, UIWebViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+- (void)loadContent:(NSDictionary *)inItem;
 
 @end
