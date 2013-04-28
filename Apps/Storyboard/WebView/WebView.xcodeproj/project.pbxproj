@@ -11,6 +11,16 @@
 		AB41CD3D170CB78600231D07 /* lorem-ipsum.pdf in Resources */ = {isa = PBXBuildFile; fileRef = AB41CD3C170CB78600231D07 /* lorem-ipsum.pdf */; };
 		AB41CD3F170CC31000231D07 /* text.xml in Resources */ = {isa = PBXBuildFile; fileRef = AB41CD3E170CC31000231D07 /* text.xml */; };
 		AB41CD41170CC40600231D07 /* text.txt in Resources */ = {isa = PBXBuildFile; fileRef = AB41CD40170CC40600231D07 /* text.txt */; };
+		AB667E10172C07DD00144DC7 /* script.js in Resources */ = {isa = PBXBuildFile; fileRef = AB667E0F172C07DD00144DC7 /* script.js */; };
+		AB667E17172C657500144DC7 /* DataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB667E16172C657500144DC7 /* DataViewController.m */; };
+		AB667E1A172C70A400144DC7 /* NSString+Template.m in Sources */ = {isa = PBXBuildFile; fileRef = AB667E19172C70A400144DC7 /* NSString+Template.m */; };
+		AB667E1C172C756D00144DC7 /* hello.tmpl in Resources */ = {isa = PBXBuildFile; fileRef = AB667E1B172C756D00144DC7 /* hello.tmpl */; };
+		AB79C9F917287B4300A9F14F /* jquery-1.9.1.js in Resources */ = {isa = PBXBuildFile; fileRef = AB79C9F717287B2300A9F14F /* jquery-1.9.1.js */; };
+		AB87D504171B06440010F673 /* viewport.html in Resources */ = {isa = PBXBuildFile; fileRef = AB87D503171B06440010F673 /* viewport.html */; };
+		AB87D506171B08990010F673 /* viewport-320.html in Resources */ = {isa = PBXBuildFile; fileRef = AB87D505171B08990010F673 /* viewport-320.html */; };
+		AB87D508171B08B90010F673 /* viewport-640.html in Resources */ = {isa = PBXBuildFile; fileRef = AB87D507171B08B90010F673 /* viewport-640.html */; };
+		AB87D50A171B08C70010F673 /* viewport-1280.html in Resources */ = {isa = PBXBuildFile; fileRef = AB87D509171B08C70010F673 /* viewport-1280.html */; };
+		AB87D50C171B08EE0010F673 /* viewport-device.html in Resources */ = {isa = PBXBuildFile; fileRef = AB87D50B171B08EE0010F673 /* viewport-device.html */; };
 		AB984495170B62FE0058F0C8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB984494170B62FE0058F0C8 /* UIKit.framework */; };
 		AB984497170B62FE0058F0C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB984496170B62FE0058F0C8 /* Foundation.framework */; };
 		AB984499170B62FE0058F0C8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB984498170B62FE0058F0C8 /* CoreGraphics.framework */; };
@@ -33,6 +43,18 @@
 		AB41CD3C170CB78600231D07 /* lorem-ipsum.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "lorem-ipsum.pdf"; sourceTree = "<group>"; };
 		AB41CD3E170CC31000231D07 /* text.xml */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = text.xml; path = text.xml; sourceTree = "<group>"; };
 		AB41CD40170CC40600231D07 /* text.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = text.txt; sourceTree = "<group>"; };
+		AB667E0F172C07DD00144DC7 /* script.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = script.js; sourceTree = "<group>"; };
+		AB667E15172C657500144DC7 /* DataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataViewController.h; sourceTree = "<group>"; };
+		AB667E16172C657500144DC7 /* DataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataViewController.m; sourceTree = "<group>"; };
+		AB667E18172C70A400144DC7 /* NSString+Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Template.h"; sourceTree = "<group>"; };
+		AB667E19172C70A400144DC7 /* NSString+Template.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Template.m"; sourceTree = "<group>"; };
+		AB667E1B172C756D00144DC7 /* hello.tmpl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hello.tmpl; sourceTree = "<group>"; };
+		AB79C9F717287B2300A9F14F /* jquery-1.9.1.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "jquery-1.9.1.js"; sourceTree = "<group>"; };
+		AB87D503171B06440010F673 /* viewport.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = viewport.html; sourceTree = "<group>"; };
+		AB87D505171B08990010F673 /* viewport-320.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "viewport-320.html"; sourceTree = "<group>"; };
+		AB87D507171B08B90010F673 /* viewport-640.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "viewport-640.html"; sourceTree = "<group>"; };
+		AB87D509171B08C70010F673 /* viewport-1280.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "viewport-1280.html"; sourceTree = "<group>"; };
+		AB87D50B171B08EE0010F673 /* viewport-device.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "viewport-device.html"; sourceTree = "<group>"; };
 		AB984491170B62FE0058F0C8 /* WebView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WebView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB984494170B62FE0058F0C8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AB984496170B62FE0058F0C8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -107,6 +129,10 @@
 				AB9844B0170B62FF0058F0C8 /* MasterViewController.m */,
 				AB9844B2170B62FF0058F0C8 /* DetailViewController.h */,
 				AB9844B3170B62FF0058F0C8 /* DetailViewController.m */,
+				AB667E15172C657500144DC7 /* DataViewController.h */,
+				AB667E16172C657500144DC7 /* DataViewController.m */,
+				AB667E18172C70A400144DC7 /* NSString+Template.h */,
+				AB667E19172C70A400144DC7 /* NSString+Template.m */,
 				AB98449B170B62FE0058F0C8 /* Supporting Files */,
 			);
 			path = WebView;
@@ -115,11 +141,19 @@
 		AB98449B170B62FE0058F0C8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AB667E0F172C07DD00144DC7 /* script.js */,
+				AB9844BC170B6A060058F0C8 /* style.css */,
 				AB41CD3C170CB78600231D07 /* lorem-ipsum.pdf */,
 				AB9844C3170B6F890058F0C8 /* ball.png */,
 				AB41CD3A170CB53300231D07 /* atom.gif */,
 				AB41CD3E170CC31000231D07 /* text.xml */,
 				AB41CD40170CC40600231D07 /* text.txt */,
+				AB87D503171B06440010F673 /* viewport.html */,
+				AB667E1B172C756D00144DC7 /* hello.tmpl */,
+				AB87D50B171B08EE0010F673 /* viewport-device.html */,
+				AB87D505171B08990010F673 /* viewport-320.html */,
+				AB87D507171B08B90010F673 /* viewport-640.html */,
+				AB87D509171B08C70010F673 /* viewport-1280.html */,
 				AB98449C170B62FE0058F0C8 /* WebView-Info.plist */,
 				AB98449D170B62FE0058F0C8 /* InfoPlist.strings */,
 				AB9844A0170B62FE0058F0C8 /* main.m */,
@@ -127,8 +161,8 @@
 				AB9844A6170B62FE0058F0C8 /* Default.png */,
 				AB9844A8170B62FF0058F0C8 /* Default@2x.png */,
 				AB9844AA170B62FF0058F0C8 /* Default-568h@2x.png */,
+				AB79C9F717287B2300A9F14F /* jquery-1.9.1.js */,
 				AB9844BA170B636B0058F0C8 /* pages.plist */,
-				AB9844BC170B6A060058F0C8 /* style.css */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -185,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB98449F170B62FE0058F0C8 /* InfoPlist.strings in Resources */,
+				AB667E10172C07DD00144DC7 /* script.js in Resources */,
 				AB9844A7170B62FE0058F0C8 /* Default.png in Resources */,
 				AB9844A9170B62FF0058F0C8 /* Default@2x.png in Resources */,
 				AB9844AB170B62FF0058F0C8 /* Default-568h@2x.png in Resources */,
@@ -196,6 +231,13 @@
 				AB41CD3D170CB78600231D07 /* lorem-ipsum.pdf in Resources */,
 				AB41CD3F170CC31000231D07 /* text.xml in Resources */,
 				AB41CD41170CC40600231D07 /* text.txt in Resources */,
+				AB87D504171B06440010F673 /* viewport.html in Resources */,
+				AB87D506171B08990010F673 /* viewport-320.html in Resources */,
+				AB87D508171B08B90010F673 /* viewport-640.html in Resources */,
+				AB87D50A171B08C70010F673 /* viewport-1280.html in Resources */,
+				AB87D50C171B08EE0010F673 /* viewport-device.html in Resources */,
+				AB79C9F917287B4300A9F14F /* jquery-1.9.1.js in Resources */,
+				AB667E1C172C756D00144DC7 /* hello.tmpl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +252,8 @@
 				AB9844A5170B62FE0058F0C8 /* AppDelegate.m in Sources */,
 				AB9844B1170B62FF0058F0C8 /* MasterViewController.m in Sources */,
 				AB9844B4170B62FF0058F0C8 /* DetailViewController.m in Sources */,
+				AB667E17172C657500144DC7 /* DataViewController.m in Sources */,
+				AB667E1A172C70A400144DC7 /* NSString+Template.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

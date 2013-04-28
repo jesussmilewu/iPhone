@@ -6,7 +6,7 @@
 		<key>title</key>
 		<string>HTML String</string>
 		<key>content</key>
-		<string>&lt;html&gt;&lt;head&gt;&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;style.css&quot; /&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;ball.png&quot; /&gt;Hallo Welt&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+		<string>&lt;html&gt;&lt;head&gt;&lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;style.css&quot; /&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;ball.png&quot; /&gt;&lt;a onclick=&quot;showAlert(); return false;&quot;&gt;Hallo Welt&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -42,6 +42,12 @@
 	</dict>
 	<dict>
 		<key>title</key>
+		<string>Template</string>
+		<key>template</key>
+		<string>hello</string>
+	</dict>
+	<dict>
+		<key>title</key>
 		<string>XML</string>
 		<key>contentType</key>
 		<string>text/xml</string>
@@ -55,6 +61,56 @@
 		<string>Cocoaneheads</string>
 		<key>url</key>
 		<string>http://www.cocoaneheads.de/</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Viewport (Standard)</string>
+		<key>contentType</key>
+		<string>text/html</string>
+		<key>name</key>
+		<string>viewport</string>
+		<key>extension</key>
+		<string>html</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Viewport (Gerätebreite)</string>
+		<key>contentType</key>
+		<string>text/html</string>
+		<key>name</key>
+		<string>viewport-device</string>
+		<key>extension</key>
+		<string>html</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Viewport (320)</string>
+		<key>contentType</key>
+		<string>text/html</string>
+		<key>name</key>
+		<string>viewport-320</string>
+		<key>extension</key>
+		<string>html</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Viewport (640)</string>
+		<key>contentType</key>
+		<string>text/html</string>
+		<key>name</key>
+		<string>viewport-640</string>
+		<key>extension</key>
+		<string>html</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Viewport (1280)</string>
+		<key>contentType</key>
+		<string>text/html</string>
+		<key>name</key>
+		<string>viewport-1280</string>
+		<key>extension</key>
+		<string>html</string>
 	</dict>
 	<dict>
 		<key>title</key>

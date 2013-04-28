@@ -10,6 +10,8 @@
 
 @interface DetailViewController : UIViewController <UISplitViewControllerDelegate, UIWebViewDelegate>
 
+@property (nonatomic, weak) id valueObject;
+
 - (void)loadContent:(NSDictionary *)inItem;
 
 @end
