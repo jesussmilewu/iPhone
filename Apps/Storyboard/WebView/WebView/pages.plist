@@ -48,6 +48,18 @@
 	</dict>
 	<dict>
 		<key>title</key>
+		<string>Callbacks</string>
+		<key>contentType</key>
+		<string>text/html</string>
+		<key>encoding</key>
+		<string>UTF-8</string>
+		<key>name</key>
+		<string>callback</string>
+		<key>extension</key>
+		<string>html</string>
+	</dict>
+	<dict>
+		<key>title</key>
 		<string>XML</string>
 		<key>contentType</key>
 		<string>text/xml</string>

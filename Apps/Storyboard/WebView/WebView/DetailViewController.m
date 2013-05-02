@@ -36,13 +36,27 @@
     [super didReceiveMemoryWarning];
 }
 
-- (IBAction)deleteMetaTag {
-    NSLog(@"delete = %@", [self.webView stringByEvaluatingJavaScriptFromString:@"$('meta').remove()"]);
+- (NSString *)stringForResource:(NSString *)inResource withExtension:(NSString *)inExtension {
+    NSURL *theURL = [[NSBundle mainBundle] URLForResource:inResource withExtension:inExtension];
+    NSError *theError = nil;
+    NSString *theContent = [NSString stringWithContentsOfURL:theURL usedEncoding:NULL error:&theError];
+
+    if(theContent == nil) {
+        NSLog(@"loadStringForResource:%@ withExtension:%@: url=%@, error=%@",
+              inResource, inExtension, theURL, theError);
+    }
+    return theContent;
 }
 
-- (IBAction)insertMetaTag {
-    [self deleteMetaTag];
-    NSLog(@"delete = %@", [self.webView stringByEvaluatingJavaScriptFromString:@"$('meta').remove()"]);
+- (IBAction)highlightLinks {
+    UIWebView *theView = self.webView;
+
+    if(![[theView stringByEvaluatingJavaScriptFromString:@"typeof $"] isEqualToString:@"function"]) {
+        NSString *theScript = [self stringForResource:@"jquery-1.9.1" withExtension:@"js"];
+
+        [theView stringByEvaluatingJavaScriptFromString:theScript];
+    }
+    [theView stringByEvaluatingJavaScriptFromString:@"$('a').css('color', 'red')"];
 }
 
 - (void)loadContent:(NSDictionary *)inItem {
@@ -59,12 +73,8 @@
         [self.webView loadHTMLString:theContent baseURL:theURL];
     }
     else if(inItem[@"template"] != nil) {
-        NSURL *theURL = [[NSBundle mainBundle] URLForResource:inItem[@"template"] withExtension:@"tmpl"];
-        NSStringEncoding theEncoding = NSUTF8StringEncoding;
-        NSError *theError = nil;
-        NSString *theData = [NSString stringWithContentsOfURL:theURL
-                                                 usedEncoding:&theEncoding
-                                                        error:&theError];
+        NSString *theData = [self stringForResource:inItem[@"template"] withExtension:@"tmpl"];
+        NSURL *theURL = [[NSBundle mainBundle] bundleURL];
 
         theData = [theData stringWithValuesOfObject:self];
         [self.webView loadHTMLString:theData baseURL:theURL];
@@ -79,6 +89,16 @@
                        baseURL:theURL];
     }
     [self.activityIndicator startAnimating];
+}
+
+- (void)setBarTitle:(NSString *)inTitle {
+    self.navigationItem.title = inTitle;
+}
+
+- (void)animateActivityIndicator:(NSString *)inValue {
+    UIApplication *theApplication = [UIApplication sharedApplication];
+
+    theApplication.networkActivityIndicatorVisible = [inValue isEqualToString:@"yes"];
 }
 
 - (NSString *)date {
@@ -131,6 +151,14 @@
     [theScrollView setContentOffset:theOffset animated:YES];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)inSegue sender:(id)inSender {
+    id theDestination = inSegue.destinationViewController;
+
+    if([theDestination respondsToSelector:@selector(setWebView:)]) {
+        [theDestination setWebView:self.webView];
+    }
+}
+
 #pragma mark UIWebViewDelegate
 
 - (void)webViewDidStartLoad:(UIWebView *)inWebView {
@@ -164,9 +192,20 @@
 
 - (BOOL)webView:(UIWebView *)inWebView shouldStartLoadWithRequest:(NSURLRequest *)inRequest
  navigationType:(UIWebViewNavigationType)inType {
-    NSString *thePath = [inRequest.URL path];
+    NSURL *theURL = inRequest.URL;
+    NSString *theScheme = theURL.scheme;
 
-    return [thePath rangeOfString:@".gz"].location == NSNotFound && [thePath rangeOfString:@".zip"].location == NSNotFound;
+    if([theScheme isEqualToString:@"callback"]) {
+        NSString *theMethod = [theURL.host stringByAppendingString:@":"];
+        SEL theSelector = NSSelectorFromString(theMethod);
+        NSString *theParameter = [theURL.path substringFromIndex:1];
+
+        [self performSelector:theSelector withObject:theParameter];
+        return NO;
+    }
+    else {
+        return YES;
+    }
 }
 
 #pragma mark - SplitViewControllerDelegate
