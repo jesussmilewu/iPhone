@@ -37,6 +37,8 @@
 		AB9844BB170B636B0058F0C8 /* pages.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB9844BA170B636B0058F0C8 /* pages.plist */; };
 		AB9844BD170B6A060058F0C8 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = AB9844BC170B6A060058F0C8 /* style.css */; };
 		AB9844C4170B6F890058F0C8 /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = AB9844C3170B6F890058F0C8 /* ball.png */; };
+		ABCF102A173515B80039657B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCF1029173515B80039657B /* AudioToolbox.framework */; };
+		ABCF102B173516850039657B /* ringtone.caf in Resources */ = {isa = PBXBuildFile; fileRef = ABCF10281735111C0039657B /* ringtone.caf */; };
 		ABDD9B41172EE4AE00DEC843 /* JavaScriptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDD9B40172EE4AE00DEC843 /* JavaScriptViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +81,8 @@
 		AB9844BA170B636B0058F0C8 /* pages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = pages.plist; sourceTree = "<group>"; };
 		AB9844BC170B6A060058F0C8 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		AB9844C3170B6F890058F0C8 /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball.png; sourceTree = "<group>"; };
+		ABCF10281735111C0039657B /* ringtone.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ringtone.caf; sourceTree = "<group>"; };
+		ABCF1029173515B80039657B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		ABDD9B3F172EE4AE00DEC843 /* JavaScriptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaScriptViewController.h; sourceTree = "<group>"; };
 		ABDD9B40172EE4AE00DEC843 /* JavaScriptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaScriptViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABCF102A173515B80039657B /* AudioToolbox.framework in Frameworks */,
 				AB984495170B62FE0058F0C8 /* UIKit.framework in Frameworks */,
 				AB984497170B62FE0058F0C8 /* Foundation.framework in Frameworks */,
 				AB984499170B62FE0058F0C8 /* CoreGraphics.framework in Frameworks */,
@@ -117,6 +122,7 @@
 		AB984493170B62FE0058F0C8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ABCF1029173515B80039657B /* AudioToolbox.framework */,
 				AB984494170B62FE0058F0C8 /* UIKit.framework */,
 				AB984496170B62FE0058F0C8 /* Foundation.framework */,
 				AB984498170B62FE0058F0C8 /* CoreGraphics.framework */,
@@ -148,6 +154,7 @@
 		AB98449B170B62FE0058F0C8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ABCF10281735111C0039657B /* ringtone.caf */,
 				AB667E0F172C07DD00144DC7 /* script.js */,
 				AB9844BC170B6A060058F0C8 /* style.css */,
 				AB41CD3C170CB78600231D07 /* lorem-ipsum.pdf */,
@@ -247,6 +254,7 @@
 				AB79C9F917287B4300A9F14F /* jquery-1.9.1.js in Resources */,
 				AB667E1C172C756D00144DC7 /* hello.tmpl in Resources */,
 				AB86E1BF1732F1BB00E91E03 /* callback.html in Resources */,
+				ABCF102B173516850039657B /* ringtone.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

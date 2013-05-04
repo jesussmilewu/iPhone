@@ -9,9 +9,12 @@
 #import "DetailViewController.h"
 #import "NSString+Template.h"
 
+#import <AudioToolbox/AudioToolbox.h>
+
 @interface DetailViewController ()
 
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
+@property (strong, nonatomic) NSMutableDictionary *sounds;
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UISlider *slider;
@@ -21,9 +24,17 @@
 
 @implementation DetailViewController
 
-#pragma mark - Managing the detail item
+- (void)clearSounds {
+    NSArray *theValues = self.sounds.allValues;
+
+    self.sounds = nil;
+    for(id theValue in theValues) {
+        AudioServicesDisposeSystemSoundID([theValue unsignedIntValue]);
+    }
+}
 
 - (void)dealloc {
+    [self clearSounds];
     self.webView.delegate = nil;
 }
 
@@ -33,6 +44,7 @@
 }
 
 - (void)didReceiveMemoryWarning {
+    [self clearSounds];
     [super didReceiveMemoryWarning];
 }
 
@@ -91,16 +103,6 @@
     [self.activityIndicator startAnimating];
 }
 
-- (void)setBarTitle:(NSString *)inTitle {
-    self.navigationItem.title = inTitle;
-}
-
-- (void)animateActivityIndicator:(NSString *)inValue {
-    UIApplication *theApplication = [UIApplication sharedApplication];
-
-    theApplication.networkActivityIndicatorVisible = [inValue isEqualToString:@"yes"];
-}
-
 - (NSString *)date {
     NSDateFormatter *theFormatter = [[NSDateFormatter alloc] init];
     NSString *theDate;
@@ -118,6 +120,41 @@
 
     return theValue == nil ? @"" : [[theValue description] stringByEscapingSpecialXMLCharacters];
 }
+
+#pragma mark Callbacks
+
+- (void)setBarTitle:(NSString *)inTitle {
+    self.navigationItem.title = inTitle;
+}
+
+- (void)animateActivityIndicator:(NSString *)inValue {
+    UIApplication *theApplication = [UIApplication sharedApplication];
+
+    theApplication.networkActivityIndicatorVisible = [inValue isEqualToString:@"yes"];
+}
+
+- (void)playSound:(NSString *)inName {
+    id theSoundId;
+    
+    if(self.sounds == nil) {
+        self.sounds = [NSMutableDictionary dictionary];
+    }
+    theSoundId = [self.sounds objectForKey:inName];
+    if(theSoundId == nil) {
+        NSURL *theURL = [[NSBundle mainBundle] URLForResource:inName withExtension:@"caf"];
+        SystemSoundID theId;
+
+        if(AudioServicesCreateSystemSoundID((__bridge CFURLRef)theURL, &theId) == kAudioServicesNoError) {
+            theSoundId = @(theId);
+            [self.sounds setValue:theSoundId forKey:inName];
+        }
+    }
+    if(theSoundId != nil) {
+        AudioServicesPlaySystemSound([theSoundId unsignedIntValue]);
+    }
+}
+
+#pragma mark Zooming and Scrolling
 
 - (IBAction)updateZoomScale:(id)inSlider {
     UIScrollView *theScrollView = self.webView.scrollView;
