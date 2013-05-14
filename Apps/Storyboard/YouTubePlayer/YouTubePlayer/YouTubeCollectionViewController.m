@@ -11,20 +11,6 @@
 #import "YouTubeCell.h"
 
 #define USE_CACHING 0
-#define USE_CONNECTION_DELEGATE 1
-
-#if USE_CONNECTION_DELEGATE
-@interface ImageDownloader : NSObject<NSURLConnectionDelegate, NSURLConnectionDataDelegate>
-
-@property (nonatomic, weak) UICollectionView *collectionView;
-@property (nonatomic, strong) NSIndexPath *indexPath;
-@property (nonatomic, strong) NSMutableData *data;
-
-- (id)initWithCollectionView:(UICollectionView *)inCollectionView indexPath:(NSIndexPath *)inIndexPath;
-- (id)cell;
-
-@end
-#endif
 
 @interface YouTubeCollectionViewController ()<UICollectionViewDelegateFlowLayout, UISearchBarDelegate>
 
@@ -133,21 +119,18 @@
     theTitleLabel.text = [theItem valueForKeyPath:@"title.$t"];
     theTitleLabel.backgroundColor = theColor;
     theCell.text = [theItem valueForKeyPath:@"content.$t"];
+    theCell.image = nil;
     if([theThumbnails count] > 0) {
-        NSURL *theURL = [NSURL URLWithString:[theThumbnails[0] objectForKey:@"url"]];
-        NSURLRequest *theRequest = [NSURLRequest requestWithURL:theURL cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:5.0];
-
-        theCell.image = nil;
-        [theCell startLoadAnimation];
-#if USE_CONNECTION_DELEGATE
-        ImageDownloader *theDownloader = [[ImageDownloader alloc] initWithCollectionView:inCollectionView indexPath:inIndexPath];
-
-        [NSURLConnection connectionWithRequest:theRequest delegate:theDownloader];
-#else
         NSOperationQueue *theQueue = [NSOperationQueue mainQueue];
+        NSString *theURLString = [theThumbnails[0] objectForKey:@"url"];
+        NSURL *theURL = [NSURL URLWithString:theURLString];
+        NSURLRequest *theRequest = [NSURLRequest requestWithURL:theURL];
 
+        [theCell startLoadAnimation];
         [NSURLConnection sendAsynchronousRequest:theRequest queue:theQueue
                                completionHandler:^(NSURLResponse *inResponse, NSData *inData, NSError *inError) {
+                                   YouTubeCell *theCell = (YouTubeCell *)[inCollectionView cellForItemAtIndexPath:inIndexPath];
+
                                    if(inData == nil) {
                                        NSLog(@"%@: %@", theURL, inError);
                                    }
@@ -156,10 +139,6 @@
                                    }
                                    [theCell stopLoadAnimation];
                                }];
-#endif
-    }
-    else {
-        theCell.image = nil;
     }
     return theCell;
 }
@@ -203,94 +182,4 @@
     [self updateItems];
 }
 
-
-
 @end
-
-#if USE_CONNECTION_DELEGATE
-@implementation ImageDownloader
-
-@synthesize collectionView;
-@synthesize indexPath;
-@synthesize data;
-
-- (id)initWithCollectionView:(UICollectionView *)inCollectionView indexPath:(NSIndexPath *)inIndexPath {
-    self = [super init];
-    if (self) {
-        self.collectionView = inCollectionView;
-        self.indexPath = inIndexPath;
-    }
-    return self;
-}
-
-- (id)cell {
-    return [self.collectionView cellForItemAtIndexPath:self.indexPath];
-}
-
-#pragma mark NSURLConnectionDelegate
-
-- (void)connection:(NSURLConnection *)inConnection didFailWithError:(NSError *)inError {
-    YouTubeCell *theCell = self.cell;
-
-    [theCell stopLoadAnimation];
-    NSLog(@"Error: %@", inError);
-}
-
-#pragma mark NSURLConnectionDataDelegate
-
-- (void)connection:(NSURLConnection *)inConnection didReceiveResponse:(NSURLResponse *)inResponse {
-    long long theCapacity = inResponse.expectedContentLength;
-
-    if(theCapacity == NSURLResponseUnknownLength) {
-        theCapacity = 8192;
-    }
-    self.data = [NSMutableData dataWithCapacity:theCapacity];
-}
-
-- (void)connection:(NSURLConnection *)inConnection didReceiveData:(NSData *)inData {
-    [self.data appendData:inData];
-}
-
-/*
-- (NSCachedURLResponse *)connection:(NSURLConnection *)inConnection willCacheResponse:(NSCachedURLResponse *)inResponse {
-    id theResponse = inResponse.response;
-    static NSDateFormatter *sDateFormatter = nil;
-
-    if(sDateFormatter == nil) {
-        NSDateFormatter *theFormatter = [[NSDateFormatter alloc] init];
-        
-        theFormatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-        theFormatter.dateFormat = @"EEE',' dd MMM yyyy HH':'mm':'ss 'GMT'";
-        theFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-        sDateFormatter = theFormatter;
-    }
-
-    NSLog(@"Cache URL: %@, User-Info: %@", [theResponse URL], inResponse.userInfo);
-    if([theResponse respondsToSelector:@selector(allHeaderFields)]) {
-        NSMutableDictionary *theHeaders = [[theResponse allHeaderFields] mutableCopy];
-
-        theHeaders[@"Cache-Control"] = @"public, max-age=120";
-        theHeaders[@"Date"] = [sDateFormatter stringFromDate:[NSDate date]];
-        [theHeaders removeObjectForKey:@"Expires"];
-        NSLog(@"Headers: %@", theHeaders);
-        theResponse = [[NSHTTPURLResponse alloc] initWithURL:[theResponse URL]
-                                                  statusCode:[theResponse statusCode]
-                                                 HTTPVersion:@"HTTP/1.1"
-                                                headerFields:theHeaders];
-        return [[NSCachedURLResponse alloc] initWithResponse:theResponse data:inResponse.data];
-    }
-    else {
-        return inResponse;
-    }
-}
- */
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)inConnection {
-    YouTubeCell *theCell = self.cell;
-    
-    theCell.image = [UIImage imageWithData:self.data];
-    [theCell stopLoadAnimation];
-}
-
-@end
-#endif
