@@ -1,5 +1,5 @@
 //
-//  ResponseCache.m
+//  OfflineCache.m
 //  YouTubePlayer
 //
 //  Created by Clemens Wagner on 11.05.13.
@@ -8,7 +8,10 @@
 
 #import "OfflineCache.h"
 #import "FMDatabase.h"
+#import "FMDatabaseAdditions.h"
 #import "NSString+Extensions.h"
+
+#define USE_DELEGATE 0
 
 static const NSUInteger kInvalidSize = ~0U;
 
@@ -17,23 +20,24 @@ static const NSUInteger kInvalidSize = ~0U;
 @property (nonatomic, copy) NSString *baseDirectory;
 @property (nonatomic, strong) FMDatabase *database;
 @property (nonatomic, readwrite) NSUInteger size;
+@property (nonatomic) BOOL searchKeysAreUnique;
 
 - (NSString *)databaseFile;
 - (NSOperationQueue *)operationQueue;
 - (BOOL)open;
 - (void)close;
-- (NSInteger)currentSize;
+- (NSInteger)logicalSize;
 - (void)scheduleShrinkIfNeeded;
 - (void)shrinkIfNeeded;
 
 - (NSString *)searchKeyForRequest:(NSURLRequest *)inRequest;
-- (BOOL)requestInCache:(NSURLRequest *)inCachedRequest matchesRequest:(NSURLRequest *)inRequest;
+- (BOOL)cachedRequest:(NSURLRequest *)inCachedRequest isEqualToRequest:(NSURLRequest *)inRequest;
 - (NSCachedURLResponse *)cachedResponseForId:(NSInteger)inId;
-- (BOOL)findCachedResponseWithRequest:(NSURLRequest *)inRequest responseId:(NSInteger *)outId;
+- (BOOL)cacheEntryId:(NSInteger *)outId withRequest:(NSURLRequest *)inRequest;
 
 @end
 
-@interface FMResultSet(ResponseCache)
+@interface FMResultSet(OfflineCache)
 
 - (id)decodedObjectForColumnIndex:(int)inIndex;
 
@@ -41,17 +45,18 @@ static const NSUInteger kInvalidSize = ~0U;
 
 @implementation OfflineCache
 
+@synthesize delegate;
 @synthesize capacity;
 @synthesize size;
 
-static OfflineCache *sharedResponseCache;
+static OfflineCache *sharedOfflineCache;
 
-+ (OfflineCache *)sharedResponseCache {
-    return sharedResponseCache;
++ (OfflineCache *)sharedOfflineCache {
+    return sharedOfflineCache;
 }
 
-+ (void)setSharedResponseCache:(OfflineCache *)inCache {
-    sharedResponseCache = inCache;
++ (void)setSharedOfflineCache:(OfflineCache *)inCache {
+    sharedOfflineCache = inCache;
 }
 
 - (id)initWithCapacity:(NSUInteger)inCapacity path:(NSString *)inPath {
@@ -68,14 +73,32 @@ static OfflineCache *sharedResponseCache;
 }
 
 - (NSCachedURLResponse *)cachedResponseForRequest:(NSURLRequest *)inRequest {
-    NSInteger theId;
+#if USE_DELEGATE
     NSCachedURLResponse *theResponse = nil;
+    NSInteger theId;
 
-    if([self findCachedResponseWithRequest:inRequest responseId:&theId]) {
+    if([self cacheEntryId:&theId withRequest:inRequest]) {
         theResponse = [self cachedResponseForId:theId];
     }
-    NSLog(@"cachedResponseForRequest:%@ (%u)", inRequest.URL, theResponse.data.length);
     return theResponse;
+#else
+    NSString *theKey = [self searchKeyForRequest:inRequest];
+    FMResultSet *theResultSet = [self.database executeQuery:@"SELECT response, data, user_info FROM cache_entry WHERE search_key = ?", theKey];
+
+    if([theResultSet next]) {
+        NSURLResponse *theResponse = [theResultSet decodedObjectForColumnIndex:0];
+        NSData *theData = [theResultSet dataForColumnIndex:1];
+        NSDictionary *theUserInfo = [theResultSet decodedObjectForColumnIndex:2];
+
+        return [[NSCachedURLResponse alloc] initWithResponse:theResponse
+                                                        data:theData
+                                                    userInfo:theUserInfo
+                                               storagePolicy:NSURLCacheStorageAllowed];
+    }
+    else {
+        return nil;
+    }
+#endif
 }
 
 - (void)storeCachedResponse:(NSCachedURLResponse *)inResponse forRequest:(NSURLRequest *)inRequest {
@@ -86,19 +109,16 @@ static OfflineCache *sharedResponseCache;
 
     NSLog(@"storeCachedResponse:%u forRequest:%@", inResponse.data.length, inRequest.URL);
     @synchronized(self.database) {
-        if([self findCachedResponseWithRequest:inRequest responseId:&theId]) {
-            if(![self.database executeUpdate:@"UPDATE response_cache SET last_access_time = CURRENT_TIMESTAMP, request = ?, response = ?, data = ?, user_info = ? WHERE id = ?"
-                    withArgumentsInArray:@[
-             theRequestData, theResponseData, inResponse.data, theUserInfo, @(theId)
-                 ]]) {
+        if([self cacheEntryId:&theId withRequest:inRequest]) {
+            if(![self.database executeUpdate:@"UPDATE cache_entry SET last_access_time = CURRENT_TIMESTAMP, request = ?, response = ?, data = ?, user_info = ? WHERE id = ?", theRequestData, theResponseData, inResponse.data, theUserInfo, @(theId)]) {
                 NSLog(@"error: %@", [self.database lastError]);
             }
         }
         else {
             NSString *theSearchKey = [self searchKeyForRequest:inRequest];
 
-            if(![self.database executeUpdate:@"INSERT INTO response_cache (search_key, request, response, data, user_info) VALUES (?, ?, ?, ?, ?)"
-                       withArgumentsInArray:@[ theSearchKey, theRequestData, theResponseData, inResponse.data, theUserInfo ]]) {
+            if(![self.database executeUpdate:@"INSERT INTO cache_entry (search_key, request, response, data, user_info) VALUES (?, ?, ?, ?, ?)",
+                 theSearchKey, theRequestData, theResponseData, inResponse.data, theUserInfo]) {
                 NSLog(@"error: %@", [self.database lastError]);
             }
         }
@@ -109,7 +129,7 @@ static OfflineCache *sharedResponseCache;
 
 - (void)removeAllCachedResponses {
     @synchronized(self.database) {
-        [self.database executeUpdate:@"DELETE FROM response_cache"];
+        [self.database executeUpdate:@"DELETE FROM cache_entry"];
         self.size = 0;
     }
 }
@@ -118,8 +138,8 @@ static OfflineCache *sharedResponseCache;
     NSInteger theId;
 
     @synchronized(self.database) {
-        if([self findCachedResponseWithRequest:inRequest responseId:&theId]) {
-            [self.database executeUpdate:@"DELETE FROM response_cache WHERE id = ?", @(theId)];
+        if([self cacheEntryId:&theId withRequest:inRequest]) {
+            [self.database executeUpdate:@"DELETE FROM cache_entry WHERE id = ?", @(theId)];
             self.size = kInvalidSize;
         }
     }
@@ -144,7 +164,7 @@ static OfflineCache *sharedResponseCache;
 
 - (NSUInteger)size {
     if(size == kInvalidSize) {
-        self.size = [self currentSize];
+        self.size = [self logicalSize];
     }
     return size;
 }
@@ -174,26 +194,33 @@ static OfflineCache *sharedResponseCache;
     }
 }
 
-- (BOOL)open {
-    NSFileManager *theManager = [NSFileManager new];
-    NSError *theError = nil;
+- (FMDatabase *)createDatabaseWithError:(NSError **)outError {
+    NSFileManager *theManager = [NSFileManager defaultManager];
+    FMDatabase *theDatabase = nil;
 
-    if([theManager createDirectoryAtPath:self.baseDirectory withIntermediateDirectories:YES attributes:nil error:&theError]) {
-        BOOL theExistsFlag = [theManager fileExistsAtPath:self.databaseFile];
-        FMDatabase *theDatabase = [FMDatabase databaseWithPath:self.databaseFile];
-        
-        if([theDatabase open] && (theExistsFlag || [self createSchemaWithDatabase:theDatabase])) {
-            self.database = theDatabase;
-            [self scheduleShrinkIfNeeded];
-            return YES;
+    if([theManager createDirectoryAtPath:self.baseDirectory withIntermediateDirectories:YES attributes:nil error:outError]) {
+        if([theManager fileExistsAtPath:self.databaseFile]) {
+            theDatabase = [FMDatabase databaseWithPath:self.databaseFile];
         }
         else {
-            [theDatabase close];
-            if(![theManager removeItemAtPath:self.databaseFile error:&theError]) {
-                NSLog(@"open: Can't remove file '%@'", self.databaseFile);
+            NSString *thePath = [[NSBundle mainBundle] pathForResource:@"cache" ofType:@"db"];
+
+            if([theManager copyItemAtPath:thePath toPath:self.databaseFile error:outError]) {
+                theDatabase = [FMDatabase databaseWithPath:self.databaseFile];
             }
-            return NO;
         }
+    }
+    return theDatabase;
+}
+
+- (BOOL)open {
+    NSError *theError = nil;
+    FMDatabase *theDatabase = [self createDatabaseWithError:&theError];
+        
+    if([theDatabase open]) {
+        self.database = theDatabase;
+        [self scheduleShrinkIfNeeded];
+        return YES;
     }
     else {
         NSLog(@"open: %@", theError);
@@ -205,12 +232,17 @@ static OfflineCache *sharedResponseCache;
     [self.database close];
 }
 
-- (NSInteger)currentSize {
+- (NSInteger)logicalSize {
     @synchronized(self.database) {
-        FMResultSet *theResultSet = [self.database executeQuery:@"SELECT SUM(LENGTH(data)) FROM response_cache"];
-
-        return [theResultSet next] ? [theResultSet intForColumnIndex:0] : 0;
+        return [self.database intForQuery:@"SELECT SUM(LENGTH(data)) FROM cache_entry"];
     }
+}
+
+- (NSInteger)physicalSize {
+    NSFileManager *theManager = [NSFileManager defaultManager];
+    NSDictionary *theAttributes = [theManager attributesOfItemAtPath:self.databaseFile error:NULL];
+
+    return theAttributes == nil ? kInvalidSize : theAttributes.fileSize;
 }
 
 - (void)scheduleShrinkIfNeeded {
@@ -227,14 +259,14 @@ static OfflineCache *sharedResponseCache;
 - (void)shrinkIfNeeded {
     @synchronized(self.database) {
         if(self.size > self.capacity) {
-            FMResultSet *theResultSet = [self.database executeQuery:@"SELECT id, LENGTH(data) FROM response_cache ORDER BY last_access_time LIMIT 1"];
+            FMResultSet *theResultSet = [self.database executeQuery:@"SELECT id, LENGTH(data) FROM cache_entry ORDER BY last_access_time LIMIT 1"];
             
             if([theResultSet next]) {
                 NSInteger theId = [theResultSet intForColumnIndex:0];
                 NSInteger theLength = [theResultSet intForColumnIndex:1];
 
                 [theResultSet close];
-                if([self.database executeUpdate:@"DELETE FROM response_cache WHERE id = ?", @(theId)]) {
+                if([self.database executeUpdate:@"DELETE FROM cache_entry WHERE id = ?", @(theId)]) {
                     self.size = theLength < self.size ? self.size - theLength : kInvalidSize;
                 }
                 [self scheduleShrinkIfNeeded];
@@ -243,31 +275,41 @@ static OfflineCache *sharedResponseCache;
     }
 }
 
-- (BOOL)requestInCache:(NSURLRequest *)inCachedRequest matchesRequest:(NSURLRequest *)inRequest {
-    if([self.delegate respondsToSelector:@selector(responseCache:requestInCache:matchesRequest:)]) {
-        return [self.delegate responseCache:self requestInCache:inCachedRequest matchesRequest:inRequest];
+- (BOOL)cachedRequest:(NSURLRequest *)inCachedRequest isEqualToRequest:(NSURLRequest *)inRequest {
+#if USE_DELEGATE
+    if([self.delegate respondsToSelector:@selector(offlineCache:cachedRequest:isEqualToRequest:)]) {
+        return [self.delegate offlineCache:self cachedRequest:inCachedRequest isEqualToRequest:inRequest];
     }
-    else {
+    else
+#endif
+    if([inCachedRequest.HTTPMethod isEqualToString:inRequest.HTTPMethod]) {
         NSURL *theCachedURL = [inCachedRequest.URL standardizedURL];
         NSURL *theURL = [inRequest.URL standardizedURL];
         
         return [theCachedURL isEqual:theURL];
     }
+    else {
+        return NO;
+    }
 }
 
 - (NSString *)searchKeyForRequest:(NSURLRequest *)inRequest {
-    if([self.delegate respondsToSelector:@selector(responseCache:searchKeyForRequest:)]) {
-        return [self.delegate responseCache:self searchKeyForRequest:inRequest];
+#if USE_DELEGATE
+    if([self.delegate respondsToSelector:@selector(offlineCache:searchKeyForRequest:)]) {
+        return [self.delegate offlineCache:self searchKeyForRequest:inRequest];
     }
     else {
+#endif
         NSURL *theURL = [inRequest.URL standardizedURL];
 
-        return [theURL absoluteString];
+        return [NSString stringWithFormat:@"%@:%@", inRequest.HTTPMethod, theURL];
+#if USE_DELEGATE
     }
+#endif
 }
 
 - (NSCachedURLResponse *)cachedResponseForId:(NSInteger)inId {
-    FMResultSet *theResultSet = [self.database executeQuery:@"SELECT response, data, user_info FROM response_cache WHERE id = ?", @(inId)];
+    FMResultSet *theResultSet = [self.database executeQuery:@"SELECT response, data, user_info FROM cache_entry WHERE id = ?", @(inId)];
 
     if([theResultSet next]) {
         NSURLResponse *theResponse = [theResultSet decodedObjectForColumnIndex:0];
@@ -284,25 +326,29 @@ static OfflineCache *sharedResponseCache;
     }
 }
 
-- (BOOL)findCachedResponseWithRequest:(NSURLRequest *)inRequest responseId:(NSInteger *)outId {
+- (BOOL)cacheEntryId:(NSInteger *)outId withRequest:(NSURLRequest *)inRequest {
     NSString *theSearchKey = [self searchKeyForRequest:inRequest];
-    FMResultSet *theResultSet = [self.database executeQuery:@"SELECT id, request FROM response_cache WHERE search_key = ?", theSearchKey];
+#if USE_DELEGATE
+    FMResultSet *theResultSet = [self.database executeQuery:@"SELECT id, request FROM cache_entry WHERE search_key = ?", theSearchKey];
 
     while([theResultSet next]) {
         NSURLRequest *theCachedRequest = [theResultSet decodedObjectForColumnIndex:1];
 
-        if([self requestInCache:theCachedRequest matchesRequest:inRequest]) {
+        if([self cachedRequest:theCachedRequest isEqualToRequest:inRequest]) {
             *outId = [theResultSet intForColumnIndex:0];
             return YES;
         }
     }
     return NO;
+#else
+    *outId = [self.database intForQuery:@"SELECT id FROM cache_entry WHERE search_key = ?", theSearchKey];
+    return *outId > 0;
+#endif
 }
-
 
 @end
 
-@implementation FMResultSet(ResponseCache)
+@implementation FMResultSet(OfflineCache)
 
 - (id)decodedObjectForColumnIndex:(int)inIndex {
     NSData *theData = [self dataForColumnIndex:inIndex];

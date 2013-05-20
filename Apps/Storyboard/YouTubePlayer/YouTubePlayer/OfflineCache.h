@@ -16,8 +16,8 @@
 @property (nonatomic) NSUInteger capacity;
 @property (nonatomic, readonly) NSUInteger size;
 
-+ (OfflineCache *)sharedResponseCache;
-+ (void)setSharedResponseCache:(OfflineCache *)inCache;
++ (OfflineCache *)sharedOfflineCache;
++ (void)setSharedOfflineCache:(OfflineCache *)inCache;
 
 - (id)initWithCapacity:(NSUInteger)inCapacity path:(NSString *)inBaseDirectory;
 - (NSCachedURLResponse *)cachedResponseForRequest:(NSURLRequest *)inRequest;
@@ -30,7 +30,9 @@
 @protocol OfflineCacheDelegate<NSObject>
 
 @optional
-- (NSString *)responseCache:(OfflineCache *)inCache searchKeyForRequest:(NSURLRequest *)inRequest;
-- (BOOL)responseCache:(OfflineCache *)inCache requestInCache:(NSURLRequest *)inRequestInCache matchesRequest:(NSURLRequest *)inRequest;
+- (BOOL)offlineCacheHasUniqueSearchKeys:(OfflineCache *)inCache;
+- (BOOL)offlineCache:(OfflineCache *)inCache shouldStoreResponse:(NSCachedURLResponse *)inResponse forRequest:(NSURLRequest *)inRequest;
+- (NSString *)offlineCache:(OfflineCache *)inCache searchKeyForRequest:(NSURLRequest *)inRequest;
+- (BOOL)offlineCache:(OfflineCache *)inCache cachedRequest:(NSURLRequest *)inRequestInCache isEqualToRequest:(NSURLRequest *)inRequest;
 
 @end

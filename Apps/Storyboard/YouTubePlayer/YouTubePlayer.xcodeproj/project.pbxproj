@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ABBFC5701748038400ACE75E /* cache.db in Resources */ = {isa = PBXBuildFile; fileRef = ABBFC56F1748038400ACE75E /* cache.db */; };
 		ABCF103B173560D20039657B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCF103A173560D20039657B /* UIKit.framework */; };
 		ABCF103D173560D20039657B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCF103C173560D20039657B /* Foundation.framework */; };
 		ABCF103F173560D20039657B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCF103E173560D20039657B /* CoreGraphics.framework */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		ABBFC56F1748038400ACE75E /* cache.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = cache.db; sourceTree = "<group>"; };
 		ABCF1037173560D20039657B /* YouTubePlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTubePlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABCF103A173560D20039657B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		ABCF103C173560D20039657B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -133,11 +135,11 @@
 				ABCF1067173562EB0039657B /* YouTubeCollectionViewController.m */,
 				ABCF1068173565920039657B /* YouTubeCell.h */,
 				ABCF1069173565920039657B /* YouTubeCell.m */,
-				ABCF1041173560D20039657B /* Supporting Files */,
 				ABDB505D173E2EC100BE1BDE /* OfflineHTTPProtocol.h */,
 				ABDB505E173E2EC100BE1BDE /* OfflineHTTPProtocol.m */,
 				ABDB5060173E47A500BE1BDE /* OfflineCache.h */,
 				ABDB5061173E47A500BE1BDE /* OfflineCache.m */,
+				ABCF1041173560D20039657B /* Supporting Files */,
 			);
 			path = YouTubePlayer;
 			sourceTree = "<group>";
@@ -145,6 +147,7 @@
 		ABCF1041173560D20039657B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ABBFC56F1748038400ACE75E /* cache.db */,
 				ABCF1042173560D20039657B /* YouTubePlayer-Info.plist */,
 				ABCF1043173560D20039657B /* InfoPlist.strings */,
 				ABCF1046173560D20039657B /* main.m */,
@@ -235,6 +238,7 @@
 				ABCF1051173560D20039657B /* Default-568h@2x.png in Resources */,
 				ABCF10611735619D0039657B /* MainStoryboard.storyboard in Resources */,
 				ABDB507A173F999200BE1BDE /* cache-schema.sql in Resources */,
+				ABBFC5701748038400ACE75E /* cache.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,7 +9,7 @@
 #import "OfflineHTTPProtocol.h"
 #import "OfflineCache.h"
 
-static NSString * const kHTTPProtocolUseDefault = @"X-HTTPProtocol-Use-Default";
+static NSString * const kUseHTTPProtocol = @"kUseHTTPProtocol";
 
 @interface OfflineHTTPProtocol()<NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 
@@ -27,29 +27,21 @@ static NSString * const kHTTPProtocolUseDefault = @"X-HTTPProtocol-Use-Default";
                client:(id<NSURLProtocolClient>)inClient {
     NSMutableURLRequest *theRequest = [inRequest mutableCopy];
 
-    [theRequest setCachePolicy:NSURLRequestReturnCacheDataElseLoad];
-    [theRequest setValue:@"1" forHTTPHeaderField:kHTTPProtocolUseDefault];
+    [NSURLProtocol setProperty:@YES forKey:kUseHTTPProtocol inRequest:theRequest];
+    [theRequest setCachePolicy:NSURLRequestReloadIgnoringCacheData];
     return [super initWithRequest:theRequest cachedResponse:inResponse client:inClient];
 }
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)inRequest {
-    NSURL *theURL = inRequest.URL;
-
-    return [theURL.scheme hasPrefix:@"http"] && [inRequest valueForHTTPHeaderField:kHTTPProtocolUseDefault] == nil;
+    return [inRequest.URL.scheme hasPrefix:@"http"] && [NSURLProtocol propertyForKey:kUseHTTPProtocol inRequest:inRequest] == nil;
 }
 
 + (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)inRequest {
     return inRequest;
 }
 
-+ (BOOL)requestIsCacheEquivalent:(NSURLRequest *)inLeft toRequest:(NSURLRequest *)inRight {
-    BOOL theResult = [super requestIsCacheEquivalent:inLeft toRequest:inRight];
-    
-    return theResult;
-}
-
 - (void)startLoading {
-    OfflineCache *theCache = [OfflineCache sharedResponseCache];
+    OfflineCache *theCache = [OfflineCache sharedOfflineCache];
     NSCachedURLResponse *theResponse = [theCache cachedResponseForRequest:self.request];
 
     if(theResponse == nil) {
@@ -90,8 +82,20 @@ static NSString * const kHTTPProtocolUseDefault = @"X-HTTPProtocol-Use-Default";
     [self.client URLProtocol:self didLoadData:inData];
 }
 
+- (void)connection:(NSURLConnection *)inConnection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)inChallenge {
+    [self.client URLProtocol:self didReceiveAuthenticationChallenge:inChallenge];
+}
+
+- (void)connection:(NSURLConnection *)inConnection didCancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)inChallenge {
+    [self.client URLProtocol:self didCancelAuthenticationChallenge:inChallenge];
+}
+
+- (NSCachedURLResponse *)connection:(NSURLConnection *)inConnection willCacheResponse:(NSCachedURLResponse *)inCachedResponse {
+    return nil;
+}
+
 - (void)connectionDidFinishLoading:(NSURLConnection *)inConnection {
-    OfflineCache *theCache = [OfflineCache sharedResponseCache];
+    OfflineCache *theCache = [OfflineCache sharedOfflineCache];
     NSCachedURLResponse *theResponse = [[NSCachedURLResponse alloc] initWithResponse:self.response data:self.data];
 
     [theCache storeCachedResponse:theResponse forRequest:self.request];
