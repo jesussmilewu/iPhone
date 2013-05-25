@@ -10,6 +10,7 @@
 		ABA61B77174BFF6300DC195A /* NSHTTPURLResponse+TimestampHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA61B76174BFF6300DC195A /* NSHTTPURLResponse+TimestampHeaders.m */; };
 		ABAAA7AC1750C8B900604EA3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAAA7A91750A54400604EA3 /* Reachability.m */; };
 		ABAAA7AE1750C8CF00604EA3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABAAA7AD1750C8CF00604EA3 /* SystemConfiguration.framework */; };
+		ABAAA7B11751405000604EA3 /* YouTubeWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAAA7B01751405000604EA3 /* YouTubeWebViewController.m */; };
 		ABBFC5701748038400ACE75E /* cache.db in Resources */ = {isa = PBXBuildFile; fileRef = ABBFC56F1748038400ACE75E /* cache.db */; };
 		ABCF103B173560D20039657B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCF103A173560D20039657B /* UIKit.framework */; };
 		ABCF103D173560D20039657B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCF103C173560D20039657B /* Foundation.framework */; };
@@ -42,6 +43,8 @@
 		ABAAA7A81750A54400604EA3 /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		ABAAA7A91750A54400604EA3 /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		ABAAA7AD1750C8CF00604EA3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		ABAAA7AF1751405000604EA3 /* YouTubeWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTubeWebViewController.h; sourceTree = "<group>"; };
+		ABAAA7B01751405000604EA3 /* YouTubeWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTubeWebViewController.m; sourceTree = "<group>"; };
 		ABBFC56F1748038400ACE75E /* cache.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = cache.db; sourceTree = "<group>"; };
 		ABCF1037173560D20039657B /* YouTubePlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTubePlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABCF103A173560D20039657B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -143,6 +146,8 @@
 				ABCF104A173560D20039657B /* YouTubeAppDelegate.m */,
 				ABCF1066173562EB0039657B /* YouTubeCollectionViewController.h */,
 				ABCF1067173562EB0039657B /* YouTubeCollectionViewController.m */,
+				ABAAA7AF1751405000604EA3 /* YouTubeWebViewController.h */,
+				ABAAA7B01751405000604EA3 /* YouTubeWebViewController.m */,
 				ABCF1068173565920039657B /* YouTubeCell.h */,
 				ABCF1069173565920039657B /* YouTubeCell.m */,
 				ABAAA7A81750A54400604EA3 /* Reachability.h */,
@@ -277,6 +282,7 @@
 				ABDB5072173F931D00BE1BDE /* FMResultSet.m in Sources */,
 				ABA61B77174BFF6300DC195A /* NSHTTPURLResponse+TimestampHeaders.m in Sources */,
 				ABAAA7AC1750C8B900604EA3 /* Reachability.m in Sources */,
+				ABAAA7B11751405000604EA3 /* YouTubeWebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

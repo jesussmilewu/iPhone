@@ -102,8 +102,8 @@ static OfflineCache *sharedOfflineCache;
 }
 
 - (NSDate *)expirationDateForResponse:(NSURLResponse *)inResponse {
-    if([inResponse respondsToSelector:@selector(expirationDate)]) {
-        return [(id)inResponse expirationDate];
+    if([inResponse respondsToSelector:@selector(dateOfExpiry)]) {
+        return [(id)inResponse dateOfExpiry];
     }
     else {
         return [NSDate date];

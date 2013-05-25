@@ -31,7 +31,7 @@
     return theValue == nil ? [NSDate date] : [theFormatter dateFromString:theValue];
 }
 
-- (NSDate *)expirationDate {
+- (NSDate *)dateOfExpiry {
     NSString *theValue = self.allHeaderFields[@"Cache-Control"];
     NSRange theRange = theValue == nil ? NSMakeRange(NSNotFound, 0) : [theValue rangeOfString:@"max-age="];
 

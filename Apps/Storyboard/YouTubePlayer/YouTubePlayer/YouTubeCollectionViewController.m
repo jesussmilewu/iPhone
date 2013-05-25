@@ -15,6 +15,7 @@
 @interface YouTubeCollectionViewController ()<UICollectionViewDelegateFlowLayout, UISearchBarDelegate>
 
 @property (copy, nonatomic) NSArray *items;
+@property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
 
 @end
 
@@ -26,6 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.query = @"iOS";
+    self.searchBar.text = self.query;
     [self updateItems];
 }
 
@@ -141,27 +143,6 @@
                                }];
     }
     return theCell;
-}
-
-- (UICollectionReusableView *)collectionView:(UICollectionView *)inCollectionView
-           viewForSupplementaryElementOfKind:(NSString *)inKind atIndexPath:(NSIndexPath *)inIndexPath {
-    UICollectionReusableView *theView = nil;
-    
-    if([UICollectionElementKindSectionHeader isEqualToString:inKind]) {
-        theView = [inCollectionView dequeueReusableSupplementaryViewOfKind:inKind
-                                                       withReuseIdentifier:@"Searchbar"
-                                                              forIndexPath:inIndexPath];
-        UISearchBar *theSearchBar = (UISearchBar *)[theView viewWithTag:10];
-        
-        theSearchBar.text = self.query;
-        theSearchBar.delegate = self;
-    }
-    else if([UICollectionElementKindSectionFooter isEqualToString:inKind]) {
-        theView = [inCollectionView dequeueReusableSupplementaryViewOfKind:inKind
-                                                       withReuseIdentifier:@"Toolbar"
-                                                              forIndexPath:inIndexPath];
-    }
-    return theView;
 }
 
 #pragma mark UICollectionViewDelegate

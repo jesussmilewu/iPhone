@@ -12,6 +12,6 @@
 
 + (NSDateFormatter *)timestampFormatter;
 - (NSDate *)timestampHeaderForKey:(NSString *)inKey;
-- (NSDate *)expirationDate;
+- (NSDate *)dateOfExpiry;
 
 @end
