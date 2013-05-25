@@ -19,7 +19,6 @@ static NSString * const kUseHTTPProtocol = @"kUseHTTPProtocol";
 
 @end
 
-
 @implementation OfflineHTTPProtocol
 
 - (id)initWithRequest:(NSURLRequest *)inRequest

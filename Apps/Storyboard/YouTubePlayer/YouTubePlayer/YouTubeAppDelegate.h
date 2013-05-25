@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Reachability.h"
 
 @interface YouTubeAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, strong, readonly) Reachability *reachability;
 
 @end

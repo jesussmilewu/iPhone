@@ -10,7 +10,7 @@
 #import "NSString+Extensions.h"
 #import "YouTubeCell.h"
 
-#define USE_CACHING 1
+#define USE_CACHING 0
 
 @interface YouTubeCollectionViewController ()<UICollectionViewDelegateFlowLayout, UISearchBarDelegate>
 

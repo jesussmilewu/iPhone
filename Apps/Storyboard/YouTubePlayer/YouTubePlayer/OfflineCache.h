@@ -14,7 +14,7 @@
 
 @property (nonatomic, weak) id<OfflineCacheDelegate> delegate;
 @property (nonatomic) NSUInteger capacity;
-@property (nonatomic, readonly) NSUInteger size;
+@property (nonatomic, readonly) NSInteger size;
 
 + (OfflineCache *)sharedOfflineCache;
 + (void)setSharedOfflineCache:(OfflineCache *)inCache;
@@ -22,6 +22,7 @@
 - (id)initWithCapacity:(NSUInteger)inCapacity path:(NSString *)inBaseDirectory;
 - (NSCachedURLResponse *)cachedResponseForRequest:(NSURLRequest *)inRequest;
 - (void)storeCachedResponse:(NSCachedURLResponse *)inResponse forRequest:(NSURLRequest *)inRequest;
+- (NSDate *)expirationDateOfResponseForRequest:(NSURLRequest *)inRequest;
 - (void)removeAllCachedResponses;
 - (void)removeCachedResponseForRequest:(NSURLRequest *)inRequest;
 
@@ -30,9 +31,7 @@
 @protocol OfflineCacheDelegate<NSObject>
 
 @optional
-- (BOOL)offlineCacheHasUniqueSearchKeys:(OfflineCache *)inCache;
-- (BOOL)offlineCache:(OfflineCache *)inCache shouldStoreResponse:(NSCachedURLResponse *)inResponse forRequest:(NSURLRequest *)inRequest;
-- (NSString *)offlineCache:(OfflineCache *)inCache searchKeyForRequest:(NSURLRequest *)inRequest;
-- (BOOL)offlineCache:(OfflineCache *)inCache cachedRequest:(NSURLRequest *)inRequestInCache isEqualToRequest:(NSURLRequest *)inRequest;
+- (BOOL)offlineCache:(OfflineCache *)inOfflineCache shouldReturnCachedResponseForRequest:(NSURLRequest *)inRequest;
+- (NSInteger)sizeForOfflineCache:(OfflineCache *)inOfflineCache;
 
 @end
