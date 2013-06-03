@@ -90,6 +90,24 @@
 <h4>Seite 123f</h4>
 <p>Der Schlüssel in Listing 2.63 muss <tt>countOfObjects</tt> und nicht <tt>objects</tt> lauten.
 <em>Danke, Fabian</em></p>
+<h4>Seite 183</h4>
+<p>Listing 2.116 verwendet das falsche Format f&uuml;r <tt>float</tt>:
+<pre>
+NSNumber *theValue = [NSNumber numberWithInt:42];
+NSLog(@"int = %d", [theValue intValue]);
+NSLog(@"float = <b>%f</b>", [theValue floatValue]);
+NSLog(@"BOOL = %@«, [theValue boolValue] ? @"YES" : @"NO"]
+</pre>
+<em>Danke, Sven</em>
+</p>
+<h4>Seite 187</h4>
+<p>Der Schl&uuml;ssel muss <em>city</em> hei&szlig;en:
+<pre>
+[theDictionary valueForKey:@"city"] // Fehler
+[theDictionary objectForKey:@"<b>city</b>"] // OK -> nil
+</pre>
+<em>Danke, Sven</em>
+</p>
 <h4>Seite 219</h4>
 <p>Die Oder-Operatoren "|" sind in Listing 3.10 beim Satz verlorengegangen. Der Anfang der Methode muss lauten:
 <pre>
@@ -117,6 +135,14 @@ NSDateComponents *theComponents =
 <h4>Seite 249</h4>
 <p>Die Erzeugung der Dateien <em>UIView+AlarmClock.h</em> und <em>UIView+AlarmClock.m</em> erfolgt &uuml;ber die Vorlage <em>Objective-C category</em> anstelle von <em>Objective-C class extension</em>.<br />
 <em>Danke, Thomas</em>
+</p>
+<h4>Seite 259</h4>
+<p>Hier fehlt für neuere Xcode-Versionen ein Hinweis, welcher &Uuml;bergangstyp im schwarzen Popup-Fenster (am besten <em>modal</em>) auszuw&auml;hlen ist.<br />
+<em>Danke, Sven</em>
+</p>
+<h4>Seite 271</h4>
+<p><pre>NSTimeInterval theTime = self.startTimeOfCurrentDay + <b>self.</b>clockControl.time;</pre>
+<em>Danke, Sven</em>
 </p>
 <h4>Seite 387</h4>
 <p>Die seltsamen Zeichen am Ende einiger Zeilen von Listing 4.50 stehen f&uuml;r Zeilenumbr&uuml;che und k&ouml;nnen ignoriert werden.</p>
