@@ -18,8 +18,7 @@
 
 - (void)viewWillAppear:(BOOL)inAnimated {
     [super viewWillAppear:inAnimated];
-    NSURL *theURL = [NSURL URLWithString:@"http://www.youtube.com/yt/dev/de/"];
-    NSURLRequest *theRequest = [NSURLRequest requestWithURL:theURL];
+    NSURLRequest *theRequest = [NSURLRequest requestWithURL:self.url];
 
     [self.webView loadRequest:theRequest];
 }

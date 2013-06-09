@@ -10,4 +10,6 @@
 
 @interface YouTubeWebViewController : UIViewController
 
+@property (nonatomic, strong) NSURL *url;
+
 @end

@@ -9,6 +9,8 @@
 #import "YouTubeCollectionViewController.h"
 #import "NSString+Extensions.h"
 #import "YouTubeCell.h"
+#import "YouTubeWebViewController.h"
+#import "NSURL+Extensions.h"
 
 #define USE_CACHING 0
 
@@ -91,6 +93,14 @@
     return [NSURL URLWithString:theURL];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)inSegue sender:(id)inSender {
+    if([inSegue.identifier isEqualToString:@"developer"]) {
+        YouTubeWebViewController *theController = inSegue.destinationViewController;
+
+        theController.url = [NSURL URLWithString:@"http://www.youtube.com/yt/dev/de/"];
+    }
+}
+
 #pragma mark UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)inCollectionView {
@@ -148,11 +158,21 @@
 #pragma mark UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)inCollectionView didSelectItemAtIndexPath:(NSIndexPath *)inIndexPath {
-    [inCollectionView reloadItemsAtIndexPaths:@[inIndexPath]];
+    YouTubeWebViewController *theController = [self.storyboard instantiateViewControllerWithIdentifier:@"webView"];
+    NSDictionary *theItem = self.items[inIndexPath.row];
+    NSArray *theLinks = theItem[@"link"];
+    NSString *theLink = [theLinks[0] objectForKey:@"href"];
+    NSURL *theURL = [NSURL URLWithString:theLink];
+    NSDictionary *theParameters = [theURL queryParametersWithEncoding:NSUTF8StringEncoding];
+    NSString *theId = [theParameters[@"v"] objectAtIndex:0];
+
+    theController.title = [theItem valueForKeyPath:@"title.$t"];
+    theLink = [NSString stringWithFormat:@"http://www.youtube.com/embed/%@", theId];
+    theController.url = [NSURL URLWithString:theLink];
+    [self.navigationController pushViewController:theController animated:YES];
 }
 
 - (void)collectionView:(UICollectionView *)inCollectionView didDeselectItemAtIndexPath:(NSIndexPath *)inIndexPath {
-    [inCollectionView reloadItemsAtIndexPaths:@[inIndexPath]];
 }
 
 #pragma mark UISearchBarDelegate
