@@ -237,7 +237,10 @@
         SEL theSelector = NSSelectorFromString(theMethod);
         NSString *theParameter = [theURL.path substringFromIndex:1];
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         [self performSelector:theSelector withObject:theParameter];
+#pragma clang diagnostic pop
         return NO;
     }
     else {
