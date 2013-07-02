@@ -19,8 +19,11 @@
     
     UIDevice *thisDevice = [UIDevice currentDevice];
     
-//    NSString *passwordWithSalt = [NSString stringWithFormat:@"%@%@", [[thisDevice identifierForVendor] UUIDString], inputString];
-    NSString *passwordWithSalt = [NSString stringWithFormat:@"%@%@", [thisDevice uniqueIdentifier], inputString];
+    NSLog(@"udid: %@", [thisDevice identifierForVendor]);
+
+    NSString *passwordWithSalt = [NSString stringWithFormat:@"%@%@", [[thisDevice identifierForVendor] UUIDString], inputString];
+//    NSString *passwordWithSalt = [NSString stringWithFormat:@"%@%@", @"foobar", inputString];
+
 //    NSLog(@"[+] passwordWithSalt: %@", passwordWithSalt);
     
     NSMutableString *passwordHash = [NSMutableString stringWithCapacity:CC_SHA256_DIGEST_LENGTH];
