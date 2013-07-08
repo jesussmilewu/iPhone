@@ -10,6 +10,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import <QuartzCore/QuartzCore.h>
 
+static const CGSize kCubiodSize = { 360.0, 240.0 };
+
 @interface IntroViewController()<AVAudioPlayerDelegate>
 
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
@@ -21,18 +23,20 @@
 - (CALayer *)makePlayerLayerWithStep:(int)inStep {
     NSURL *theURL = [[NSBundle mainBundle] URLForResource:@"elephants-dream" withExtension:@"mp4"];
     AVPlayer *thePlayer = [AVPlayer playerWithURL:theURL];
-    AVPlayerLayer *theLayer = [AVPlayerLayer playerLayerWithPlayer:thePlayer];
+    CALayer *theLayer = [AVPlayerLayer playerLayerWithPlayer:thePlayer];
     CGRect theBounds = self.view.layer.bounds;
-    CGRect theFrame = CGRectMake(0.0, 0.0, 360.0, 240.0);
-    CMTime theTime = { inStep * 30.0, 1.0, kCMTimeFlags_Valid, 0 };
+    CMTime theStartTime = { inStep * 30, 1, kCMTimeFlags_Valid, 0 };
+    CGRect theFrame;
 
-    theFrame.origin = CGPointMake(CGRectGetMidX(theBounds) - 180.0, CGRectGetMidY(theBounds) - 120.0);
+    theFrame.origin = CGPointMake(CGRectGetMidX(theBounds) - kCubiodSize.width / 2.0,
+                                  CGRectGetMidY(theBounds) - kCubiodSize.height / 2.0);
+    theFrame.size = kCubiodSize;
     theLayer.frame = theFrame;
-    theLayer.anchorPointZ = 180.0;
+    theLayer.anchorPointZ = kCubiodSize.width / 2.0;
     theLayer.transform = CATransform3DMakeRotation(inStep * M_PI / 2.0, 0.0, 1.0, 0.0);
     theLayer.doubleSided = NO;
     [thePlayer play];
-    [thePlayer seekToTime:theTime];
+    [thePlayer seekToTime:theStartTime];
     [thePlayer setVolume:0.0];
     return theLayer;
 }
@@ -75,26 +79,33 @@
 - (void)viewDidAppear:(BOOL)inAnimated {
     [super viewDidAppear:inAnimated];
     CATransform3D theTransform = CATransform3DIdentity;
-    CALayer *theLayer = self.view.layer;
-    CALayer *theRotationLayer = [CATransformLayer layer];
+    CALayer *theViewLayer = self.view.layer;
+    CALayer *theLayer = [CATransformLayer layer];
     CABasicAnimation *theAnimation = [CABasicAnimation animation];
 
-    self.audioPlayer = [self makeAudioPlayer];
-    theAnimation.toValue = @(M_PI);
-    theAnimation.duration = 4.0;
-    theAnimation.repeatCount = MAXFLOAT;
-    theAnimation.autoreverses = NO;
     theTransform.m34 = 0.0005;
-    theLayer.sublayerTransform = theTransform;
-    [theLayer addSublayer:theRotationLayer];
-    [theLayer addSublayer:[self makeTitleLayer]];
-    theRotationLayer.frame = theLayer.bounds;
+    theViewLayer.sublayerTransform = theTransform;
+    theLayer.frame = theViewLayer.bounds;
+    [theViewLayer addSublayer:theLayer];
     for(int i = 0; i < 4; i += 1) {
         CALayer *theSublayer = [self makePlayerLayerWithStep:i];
 
-        [theRotationLayer addSublayer:theSublayer];
+        [theLayer addSublayer:theSublayer];
     }
-    [theRotationLayer addAnimation:theAnimation forKey:@"transform.rotation.y"];
+    theAnimation.toValue = @(2 * M_PI);
+    theAnimation.duration = 8.0;
+    theAnimation.repeatCount = MAXFLOAT;
+    theAnimation.autoreverses = NO;
+    [theLayer addAnimation:theAnimation forKey:@"transform.rotation.y"];
+    theAnimation = [CABasicAnimation animation];
+    theAnimation.fromValue = @(-M_PI / 16.0);
+    theAnimation.toValue = @(M_PI / 16.0);
+    theAnimation.repeatCount = MAXFLOAT;
+    theAnimation.autoreverses = YES;
+    theAnimation.duration = 5.0;
+    [theLayer addAnimation:theAnimation forKey:@"transform.rotation.x"];
+    [theViewLayer addSublayer:[self makeTitleLayer]];
+    self.audioPlayer = [self makeAudioPlayer];
 }
 
 - (void)viewDidDisappear:(BOOL)inAnimated {

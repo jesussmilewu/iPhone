@@ -52,17 +52,14 @@ static const CGFloat kAngle = 1.5 * M_PI / 180.0;
 
 - (IBAction)toggleDelete:(UIBarButtonItem *)inButton {
     self.deleteButton.tintColor = self.deleteMode ? nil : [UIColor redColor];
+    CAAnimation *theAnimation = self.deleteMode ? [self deleteAnimation] : nil;
 
-    if(self.deleteMode) {
-        CAAnimation *theAnimation = [self deleteAnimation];
-
-        for(UICollectionViewCell *theCell in self.collectionView.visibleCells) {
-            [theCell.layer addAnimation:theAnimation forKey:@"transform.rotation.z"];
-        }
-    }
-    else {
-        for(UICollectionViewCell *theCell in self.collectionView.visibleCells) {
+    for(UICollectionViewCell *theCell in self.collectionView.visibleCells) {
+        if(theAnimation == nil) {
             [theCell.layer removeAllAnimations];
+        }
+        else {
+            [theCell.layer addAnimation:theAnimation forKey:@"transform.rotation.z"];
         }
     }
 }
