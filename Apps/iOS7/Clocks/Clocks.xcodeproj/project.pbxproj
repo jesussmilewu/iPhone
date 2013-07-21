@@ -461,6 +461,7 @@
 				ABD9A9CA179BF98100EED0EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ABD9A9CB179BF98100EED0EE /* Build configuration list for PBXNativeTarget "ClocksTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +470,7 @@
 				ABD9A9CD179BF98100EED0EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

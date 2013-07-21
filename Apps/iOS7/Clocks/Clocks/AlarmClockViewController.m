@@ -13,8 +13,10 @@
 
 @property (strong, nonatomic) IBOutletCollection(ClockView) NSArray *clockViews;
 @property (weak, nonatomic) IBOutlet UISwitch *animationSwitch;
+@property (weak, nonatomic) IBOutlet UIButton *animationButton;
 
 - (IBAction)switchAnimation:(UISwitch *)inSender;
+- (IBAction)toggleAnimation:(UIButton *)sender;
 
 @end
 
@@ -23,7 +25,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    NSString *theTitle = [self.animationButton titleForState:UIControlStateHighlighted];
+    [self.animationButton setTitle:theTitle forState:UIControlStateSelected | UIControlStateHighlighted];
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,6 +68,18 @@
     else {
         [self stopAnimations];
     }
+    self.animationButton.selected = inSender.on;
+}
+
+- (IBAction)toggleAnimation:(UIButton *)inSender {
+    inSender.selected = !inSender.selected;
+    if(inSender.selected) {
+        [self startAnimations];
+    }
+    else {
+        [self stopAnimations];
+    }
+    self.animationSwitch.on = inSender.selected;
 }
 
 @end
