@@ -8,10 +8,15 @@
 
 #import "AlarmClockViewController.h"
 #import "ClockView.h"
+#import "ClockControl.h"
 
 @interface AlarmClockViewController ()
 
 @property (weak, nonatomic) IBOutlet ClockView *clockView;
+@property (weak, nonatomic) IBOutlet ClockControl *clockControl;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+
+- (IBAction)updateTimeLabel;
 
 @end
 
@@ -36,6 +41,14 @@
 - (void)viewWillDisappear:(BOOL)inAnimated {
     [self.clockView stopAnimation];
     [super viewWillDisappear:inAnimated];
+}
+
+- (IBAction)updateTimeLabel {
+    NSInteger theTime = round(self.clockControl.time / 60.0);
+    NSInteger theMinutes = theTime % 60;
+    NSInteger theHours = theTime / 60;
+
+    self.timeLabel.text = [NSString stringWithFormat:@"%d:%02d", theHours, theMinutes];
 }
 
 @end
