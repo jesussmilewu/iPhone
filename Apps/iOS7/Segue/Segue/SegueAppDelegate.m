@@ -1,18 +1,17 @@
 //
-//  AlarmClockAppDelegate.m
-//  AlarmClock
+//  SegueAppDelegate.m
+//  Segue
 //
-//  Created by Clemens Wagner on 17.07.13.
+//  Created by Clemens Wagner on 24.07.13.
 //  Copyright (c) 2013 Cocoaneheads. All rights reserved.
 //
 
-#import "AlarmClockAppDelegate.h"
+#import "SegueAppDelegate.h"
 
-@implementation AlarmClockAppDelegate
+@implementation SegueAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    application.applicationIconBadgeNumber = 1;
     // Override point for customization after application launch.
     return YES;
 }

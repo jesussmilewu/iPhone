@@ -12,5 +12,6 @@
 
 - (CGPoint)midPoint;
 - (CGPoint)pointWithRadius:(CGFloat)inRadius angle:(CGFloat)inAngle;
+- (CGFloat)angleWithPoint:(CGPoint)inPoint;
 
 @end
