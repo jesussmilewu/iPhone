@@ -41,13 +41,36 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)inAnimated {
+    [super viewWillAppear:inAnimated];
+    [self updateViews];
+}
+
 - (void)viewDidAppear:(BOOL)inAnimated {
     [super viewDidAppear:inAnimated];
     [self.clockView startAnimation];
 }
+
 - (void)viewWillDisappear:(BOOL)inAnimated {
     [self.clockView stopAnimation];
     [super viewWillDisappear:inAnimated];
+}
+
+- (void)updateViews {
+    UIApplication *theApplication = [UIApplication sharedApplication];
+    UILocalNotification *theNotification = [[theApplication scheduledLocalNotifications] lastObject];
+
+    if(theNotification == nil) {
+        self.alarmHidden = YES;
+    }
+    else {
+        NSTimeInterval theTime = [theNotification.fireDate timeIntervalSinceReferenceDate] - self.startTimeOfCurrentDay;
+
+        theTime = remainder(theTime, kSecondsOfDay / 2.0);
+        self.clockControl.time = theTime < 0 ? theTime + kSecondsOfDay / 2.0 : theTime;
+        self.alarmHidden = NO;
+    }
+    [self updateTimeLabel];
 }
 
 - (BOOL)alarmHidden {

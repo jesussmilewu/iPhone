@@ -50,12 +50,10 @@
     self.time = 21600.0 * inAngle / M_PI;
 }
 
-/*
 - (void)setTime:(NSTimeInterval)inTime {
     _time = inTime;
     [self setNeedsDisplay];
 }
-*/
 
 - (BOOL)pointInside:(CGPoint)inPoint withEvent:(UIEvent *)inEvent {
     CGFloat theAngle = [self angleWithPoint:inPoint];
