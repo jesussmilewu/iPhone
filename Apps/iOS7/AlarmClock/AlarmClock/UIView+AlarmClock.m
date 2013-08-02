@@ -22,4 +22,13 @@
                        theCenter.y - inRadius * cos(inAngle));
 }
 
+- (CGFloat)angleWithPoint:(CGPoint)inPoint {
+    CGPoint theCenter = [self midPoint];
+    CGFloat theX = inPoint.x - theCenter.x;
+    CGFloat theY = inPoint.y - theCenter.y;
+    CGFloat theAngle = atan2f(theX, -theY);
+
+    return theAngle < 0 ? theAngle + 2.0 * M_PI : theAngle;
+}
+
 @end
