@@ -53,6 +53,7 @@
 		4064B2BA17A30A120061F7FC /* OktolupeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OktolupeTests-Info.plist"; sourceTree = "<group>"; };
 		4064B2BC17A30A120061F7FC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4064B2BE17A30A120061F7FC /* OktolupeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OktolupeTests.m; sourceTree = "<group>"; };
+		4064B2C817A30C600061F7FC /* Oktolupe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Oktolupe.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +113,7 @@
 		4064B29917A30A120061F7FC /* Oktolupe */ = {
 			isa = PBXGroup;
 			children = (
+				4064B2C817A30C600061F7FC /* Oktolupe.entitlements */,
 				4064B2A217A30A120061F7FC /* AppDelegate.h */,
 				4064B2A317A30A120061F7FC /* AppDelegate.m */,
 				4064B2A517A30A120061F7FC /* Main.storyboard */,
@@ -199,6 +201,16 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Cocoaneheads;
 				TargetAttributes = {
+					4064B28F17A30A120061F7FC = {
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+						};
+					};
 					4064B2B017A30A120061F7FC = {
 						TestTargetID = 4064B28F17A30A120061F7FC;
 					};
