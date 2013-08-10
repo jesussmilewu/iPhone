@@ -136,7 +136,7 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
     [theApplication cancelAllLocalNotifications];
     theNotification.fireDate = [self alarmDate];
     theNotification.timeZone = [NSTimeZone defaultTimeZone];
-    theNotification.alertBody = @"Aufwachen";
+    theNotification.alertBody = NSLocalizedString(@"Wake up", @"Alarm message");
     theNotification.soundName = UILocalNotificationDefaultSoundName;
     [theApplication scheduleLocalNotification:theNotification];
 }
@@ -147,6 +147,16 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
     NSDate *theDate = [theCalendar dateFromComponents:theComponents];
 
     return [theDate timeIntervalSinceReferenceDate];
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"alarm: %@ (%@)", self.timeLabel.text, self.alarmHidden ? @"off" : @"on"];
+}
+
+- (NSString *)debugDescription {
+    return [NSString stringWithFormat:@"debug alarm: %@ (%.3fs, %@)",
+            self.timeLabel.text, self.clockControl.time,
+            self.alarmHidden ? @"off" : @"on"];
 }
 
 @end

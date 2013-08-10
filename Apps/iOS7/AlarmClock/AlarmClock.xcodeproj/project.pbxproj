@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB05753417AEBDF90058B0D0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB05753217AEBDF90058B0D0 /* Localizable.strings */; };
+		AB05753917B031F80058B0D0 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB05753717B031F80058B0D0 /* Main-iPad.storyboard */; };
 		ABD16772179C65FC00710AD4 /* ClockControl.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD16771179C65FC00710AD4 /* ClockControl.m */; };
 		ABD16775179C668800710AD4 /* UIView+AlarmClock.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD16774179C668800710AD4 /* UIView+AlarmClock.m */; };
 		ABD1B3CB17A54B7D0080FB4E /* ringtone.caf in Resources */ = {isa = PBXBuildFile; fileRef = ABD1B3CA17A54B7D0080FB4E /* ringtone.caf */; };
@@ -39,6 +41,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB05752F17AEB9640058B0D0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		AB05753017AEB9640058B0D0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AB05753117AEB9650058B0D0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AB05753317AEBDF90058B0D0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AB05753517AEBE010058B0D0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AB05753817B031F80058B0D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Main-iPad.storyboard"; sourceTree = "<group>"; };
 		ABD16770179C65FC00710AD4 /* ClockControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClockControl.h; sourceTree = "<group>"; };
 		ABD16771179C65FC00710AD4 /* ClockControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClockControl.m; sourceTree = "<group>"; };
 		ABD16773179C668800710AD4 /* UIView+AlarmClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AlarmClock.h"; sourceTree = "<group>"; };
@@ -93,6 +101,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB05753617B02E7E0058B0D0 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				AB05753717B031F80058B0D0 /* Main-iPad.storyboard */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
 		ABF24045179723ED002B4138 = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +143,7 @@
 		ABF24057179723ED002B4138 /* AlarmClock */ = {
 			isa = PBXGroup;
 			children = (
+				AB05753617B02E7E0058B0D0 /* iPad */,
 				ABF240861797308B002B4138 /* ClockView.h */,
 				ABF240871797308B002B4138 /* ClockView.m */,
 				ABD16770179C65FC00710AD4 /* ClockControl.h */,
@@ -147,6 +164,7 @@
 		ABF24058179723ED002B4138 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AB05753217AEBDF90058B0D0 /* Localizable.strings */,
 				ABD1B3CA17A54B7D0080FB4E /* ringtone.caf */,
 				ABF24059179723ED002B4138 /* AlarmClock-Info.plist */,
 				ABF2405A179723ED002B4138 /* InfoPlist.strings */,
@@ -234,6 +252,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = ABF24045179723ED002B4138;
 			productRefGroup = ABF2404F179723ED002B4138 /* Products */;
@@ -251,10 +270,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB05753417AEBDF90058B0D0 /* Localizable.strings in Resources */,
 				ABF2405C179723ED002B4138 /* InfoPlist.strings in Resources */,
 				ABD1B3D217A716A60080FB4E /* Images.xcassets in Resources */,
 				ABD1B3CB17A54B7D0080FB4E /* ringtone.caf in Resources */,
 				ABF24065179723ED002B4138 /* Main.storyboard in Resources */,
+				AB05753917B031F80058B0D0 /* Main-iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,10 +322,28 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		AB05753217AEBDF90058B0D0 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB05753317AEBDF90058B0D0 /* en */,
+				AB05753517AEBE010058B0D0 /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		AB05753717B031F80058B0D0 /* Main-iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB05753817B031F80058B0D0 /* Base */,
+			);
+			name = "Main-iPad.storyboard";
+			sourceTree = "<group>";
+		};
 		ABF2405A179723ED002B4138 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				ABF2405B179723ED002B4138 /* en */,
+				AB05753017AEB9640058B0D0 /* de */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -313,6 +352,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				ABF24064179723ED002B4138 /* Base */,
+				AB05752F17AEB9640058B0D0 /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -321,6 +361,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				ABF2407A179723ED002B4138 /* en */,
+				AB05753117AEB9650058B0D0 /* de */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -359,7 +400,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -390,7 +431,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -404,8 +445,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AlarmClock/AlarmClock-Prefix.pch";
 				INFOPLIST_FILE = "AlarmClock/AlarmClock-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -418,8 +460,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AlarmClock/AlarmClock-Prefix.pch";
 				INFOPLIST_FILE = "AlarmClock/AlarmClock-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
