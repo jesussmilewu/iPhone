@@ -7,160 +7,157 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AB1BF98B12F2C878002BB9AC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB1BF98A12F2C878002BB9AC /* AudioToolbox.framework */; };
-		AB273FBA1618A7F200EE36FC /* icon-ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB273FB91618A7F200EE36FC /* icon-ipad@2x.png */; };
-		AB273FBD1618AC0400EE36FC /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = AB273FBC1618AC0400EE36FC /* Default.png */; };
-		AB273FBF1618AC0800EE36FC /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB273FBE1618AC0800EE36FC /* Default@2x.png */; };
-		AB273FC11618AC1F00EE36FC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB273FC01618AC1F00EE36FC /* Default-568h@2x.png */; };
-		AB273FC31618AC3100EE36FC /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AB273FC21618AC3100EE36FC /* Default-Portrait~ipad.png */; };
-		AB273FC51618AC3700EE36FC /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AB273FC41618AC3700EE36FC /* Default-Portrait@2x~ipad.png */; };
-		AB273FC71618AC3C00EE36FC /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AB273FC61618AC3C00EE36FC /* Default-Landscape~ipad.png */; };
-		AB273FC91618AC4100EE36FC /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AB273FC81618AC4100EE36FC /* Default-Landscape@2x~ipad.png */; };
-		AB35C18315D7B1F1006B7D71 /* ringtone.caf in Resources */ = {isa = PBXBuildFile; fileRef = AB35C18215D7B1F1006B7D71 /* ringtone.caf */; };
-		AB35C18515D7BB1B006B7D71 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB9F82A812F09CCB002492BC /* Localizable.strings */; };
-		AB74D36A12F183E80004B790 /* AlarmClockViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB74D36C12F183E80004B790 /* AlarmClockViewController-iPad.xib */; };
-		AB74D36F12F192670004B790 /* icon-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AB74D36E12F192670004B790 /* icon-ipad.png */; };
-		AB9F828312F09C4A002492BC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9F828212F09C4A002492BC /* UIKit.framework */; };
-		AB9F828512F09C4A002492BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9F828412F09C4A002492BC /* Foundation.framework */; };
-		AB9F828712F09C4A002492BC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9F828612F09C4A002492BC /* CoreGraphics.framework */; };
-		AB9F828D12F09C4A002492BC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB9F828B12F09C4A002492BC /* InfoPlist.strings */; };
-		AB9F829012F09C4A002492BC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB9F828F12F09C4A002492BC /* main.m */; };
-		AB9F829312F09C4B002492BC /* AlarmClockAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB9F829212F09C4B002492BC /* AlarmClockAppDelegate.m */; };
-		AB9F829912F09C4B002492BC /* AlarmClockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB9F829812F09C4B002492BC /* AlarmClockViewController.m */; };
-		AB9F829C12F09C4B002492BC /* AlarmClockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB9F829A12F09C4B002492BC /* AlarmClockViewController.xib */; };
-		AB9F82A612F09C7F002492BC /* ClockControl.m in Sources */ = {isa = PBXBuildFile; fileRef = AB9F82A312F09C7F002492BC /* ClockControl.m */; };
-		AB9F82A712F09C7F002492BC /* ClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB9F82A512F09C7F002492BC /* ClockView.m */; };
-		AB9F82B512F09EB6002492BC /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AB9F82B412F09EB6002492BC /* icon.png */; };
-		AB9F82B712F09ED6002492BC /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB9F82B612F09ED6002492BC /* icon@2x.png */; };
-		ABD05EC912F4E0D800DE244F /* UIView+AlarmClock.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD05EC812F4E0D800DE244F /* UIView+AlarmClock.m */; };
+		AB05753417AEBDF90058B0D0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB05753217AEBDF90058B0D0 /* Localizable.strings */; };
+		AB34BE0317B7DF390051F624 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB34BE0217B7DF390051F624 /* MainWindow.xib */; };
+		AB34BE0517B7DF900051F624 /* AlarmClockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB34BE0417B7DF900051F624 /* AlarmClockViewController.xib */; };
+		AB34BE0717B7E40E0051F624 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB34BE0617B7E40E0051F624 /* MainWindow-iPad.xib */; };
+		AB34BE0917B7E4980051F624 /* AlarmClockViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB34BE0817B7E4980051F624 /* AlarmClockViewController-iPad.xib */; };
+		ABD16772179C65FC00710AD4 /* ClockControl.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD16771179C65FC00710AD4 /* ClockControl.m */; };
+		ABD16775179C668800710AD4 /* UIView+AlarmClock.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD16774179C668800710AD4 /* UIView+AlarmClock.m */; };
+		ABD1B3CB17A54B7D0080FB4E /* ringtone.caf in Resources */ = {isa = PBXBuildFile; fileRef = ABD1B3CA17A54B7D0080FB4E /* ringtone.caf */; };
+		ABD1B3D017A54E340080FB4E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD1B3CE17A54DF40080FB4E /* AudioToolbox.framework */; };
+		ABE562DD17B7EC1C00739B33 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = ABE562DC17B7EC1C00739B33 /* Icon.png */; };
+		ABE562DF17B7EC4000739B33 /* Icon-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = ABE562DE17B7EC4000739B33 /* Icon-iPad.png */; };
+		ABE562E117B7EC9500739B33 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = ABE562E017B7EC9500739B33 /* Default.png */; };
+		ABE562E317B7EC9B00739B33 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABE562E217B7EC9B00739B33 /* Default@2x.png */; };
+		ABE562E517B7ECA300739B33 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABE562E417B7ECA300739B33 /* Default-568h@2x.png */; };
+		ABE562E717B7ED3A00739B33 /* Icon@2x-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = ABE562E617B7ED3A00739B33 /* Icon@2x-iPad.png */; };
+		ABF24052179723ED002B4138 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF24051179723ED002B4138 /* Foundation.framework */; };
+		ABF24054179723ED002B4138 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF24053179723ED002B4138 /* CoreGraphics.framework */; };
+		ABF24056179723ED002B4138 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF24055179723ED002B4138 /* UIKit.framework */; };
+		ABF2405C179723ED002B4138 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ABF2405A179723ED002B4138 /* InfoPlist.strings */; };
+		ABF2405E179723ED002B4138 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF2405D179723ED002B4138 /* main.m */; };
+		ABF24062179723ED002B4138 /* AlarmClockAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF24061179723ED002B4138 /* AlarmClockAppDelegate.m */; };
+		ABF24068179723ED002B4138 /* AlarmClockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF24067179723ED002B4138 /* AlarmClockViewController.m */; };
+		ABF240881797308B002B4138 /* ClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF240871797308B002B4138 /* ClockView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AB1BF98A12F2C878002BB9AC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		AB273FB91618A7F200EE36FC /* icon-ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-ipad@2x.png"; sourceTree = "<group>"; };
-		AB273FBC1618AC0400EE36FC /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		AB273FBE1618AC0800EE36FC /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		AB273FC01618AC1F00EE36FC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		AB273FC21618AC3100EE36FC /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
-		AB273FC41618AC3700EE36FC /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
-		AB273FC61618AC3C00EE36FC /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
-		AB273FC81618AC4100EE36FC /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
-		AB35C18215D7B1F1006B7D71 /* ringtone.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ringtone.caf; sourceTree = "<group>"; };
-		AB74D36B12F183E80004B790 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "en.lproj/AlarmClockViewController-iPad.xib"; sourceTree = "<group>"; };
-		AB74D36D12F183F20004B790 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = "de.lproj/AlarmClockViewController-iPad.xib"; sourceTree = "<group>"; };
-		AB74D36E12F192670004B790 /* icon-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-ipad.png"; path = "../icon-ipad.png"; sourceTree = "<group>"; };
-		AB9F827E12F09C4A002492BC /* AlarmClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB9F828212F09C4A002492BC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		AB9F828412F09C4A002492BC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		AB9F828612F09C4A002492BC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		AB9F828A12F09C4A002492BC /* AlarmClock-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AlarmClock-Info.plist"; sourceTree = "<group>"; };
-		AB9F828C12F09C4A002492BC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		AB9F828E12F09C4A002492BC /* AlarmClock-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AlarmClock-Prefix.pch"; sourceTree = "<group>"; };
-		AB9F828F12F09C4A002492BC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		AB9F829112F09C4B002492BC /* AlarmClockAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlarmClockAppDelegate.h; sourceTree = "<group>"; };
-		AB9F829212F09C4B002492BC /* AlarmClockAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlarmClockAppDelegate.m; sourceTree = "<group>"; };
-		AB9F829712F09C4B002492BC /* AlarmClockViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlarmClockViewController.h; sourceTree = "<group>"; };
-		AB9F829812F09C4B002492BC /* AlarmClockViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlarmClockViewController.m; sourceTree = "<group>"; };
-		AB9F829B12F09C4B002492BC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AlarmClockViewController.xib; sourceTree = "<group>"; };
-		AB9F82A212F09C7F002492BC /* ClockControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClockControl.h; sourceTree = "<group>"; };
-		AB9F82A312F09C7F002492BC /* ClockControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClockControl.m; sourceTree = "<group>"; };
-		AB9F82A412F09C7F002492BC /* ClockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClockView.h; sourceTree = "<group>"; };
-		AB9F82A512F09C7F002492BC /* ClockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClockView.m; sourceTree = "<group>"; };
-		AB9F82A912F09CCB002492BC /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		AB9F82AA12F09D0C002492BC /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/AlarmClockViewController.xib; sourceTree = "<group>"; };
-		AB9F82AB12F09D4A002492BC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		AB9F82AC12F09D4A002492BC /* de */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		AB9F82AE12F09DBA002492BC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		AB9F82B412F09EB6002492BC /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
-		AB9F82B612F09ED6002492BC /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../icon@2x.png"; sourceTree = "<group>"; };
-		ABD05EC712F4E0D800DE244F /* UIView+AlarmClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AlarmClock.h"; sourceTree = "<group>"; };
-		ABD05EC812F4E0D800DE244F /* UIView+AlarmClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AlarmClock.m"; sourceTree = "<group>"; };
+		AB05753017AEB9640058B0D0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AB05753317AEBDF90058B0D0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AB05753517AEBE010058B0D0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AB34BE0217B7DF390051F624 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		AB34BE0417B7DF900051F624 /* AlarmClockViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlarmClockViewController.xib; sourceTree = "<group>"; };
+		AB34BE0617B7E40E0051F624 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MainWindow-iPad.xib"; sourceTree = "<group>"; };
+		AB34BE0817B7E4980051F624 /* AlarmClockViewController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AlarmClockViewController-iPad.xib"; sourceTree = "<group>"; };
+		ABD16770179C65FC00710AD4 /* ClockControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClockControl.h; sourceTree = "<group>"; };
+		ABD16771179C65FC00710AD4 /* ClockControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClockControl.m; sourceTree = "<group>"; };
+		ABD16773179C668800710AD4 /* UIView+AlarmClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AlarmClock.h"; sourceTree = "<group>"; };
+		ABD16774179C668800710AD4 /* UIView+AlarmClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AlarmClock.m"; sourceTree = "<group>"; };
+		ABD1B3CA17A54B7D0080FB4E /* ringtone.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ringtone.caf; sourceTree = "<group>"; };
+		ABD1B3CE17A54DF40080FB4E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		ABE562DC17B7EC1C00739B33 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		ABE562DE17B7EC4000739B33 /* Icon-iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-iPad.png"; sourceTree = "<group>"; };
+		ABE562E017B7EC9500739B33 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		ABE562E217B7EC9B00739B33 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		ABE562E417B7ECA300739B33 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		ABE562E617B7ED3A00739B33 /* Icon@2x-iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x-iPad.png"; sourceTree = "<group>"; };
+		ABF2404E179723ED002B4138 /* AlarmClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABF24051179723ED002B4138 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		ABF24053179723ED002B4138 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		ABF24055179723ED002B4138 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		ABF24059179723ED002B4138 /* AlarmClock-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AlarmClock-Info.plist"; sourceTree = "<group>"; };
+		ABF2405B179723ED002B4138 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		ABF2405D179723ED002B4138 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		ABF2405F179723ED002B4138 /* AlarmClock-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AlarmClock-Prefix.pch"; sourceTree = "<group>"; };
+		ABF24060179723ED002B4138 /* AlarmClockAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlarmClockAppDelegate.h; sourceTree = "<group>"; };
+		ABF24061179723ED002B4138 /* AlarmClockAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlarmClockAppDelegate.m; sourceTree = "<group>"; };
+		ABF24066179723ED002B4138 /* AlarmClockViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlarmClockViewController.h; sourceTree = "<group>"; };
+		ABF24067179723ED002B4138 /* AlarmClockViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AlarmClockViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		ABF24070179723ED002B4138 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		ABF240861797308B002B4138 /* ClockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClockView.h; sourceTree = "<group>"; };
+		ABF240871797308B002B4138 /* ClockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClockView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		AB9F827B12F09C4A002492BC /* Frameworks */ = {
+		ABF2404B179723ED002B4138 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB1BF98B12F2C878002BB9AC /* AudioToolbox.framework in Frameworks */,
-				AB9F828312F09C4A002492BC /* UIKit.framework in Frameworks */,
-				AB9F828512F09C4A002492BC /* Foundation.framework in Frameworks */,
-				AB9F828712F09C4A002492BC /* CoreGraphics.framework in Frameworks */,
+				ABD1B3D017A54E340080FB4E /* AudioToolbox.framework in Frameworks */,
+				ABF24054179723ED002B4138 /* CoreGraphics.framework in Frameworks */,
+				ABF24056179723ED002B4138 /* UIKit.framework in Frameworks */,
+				ABF24052179723ED002B4138 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AB9F827312F09C4A002492BC = {
+		AB05753617B02E7E0058B0D0 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
-				AB273FC81618AC4100EE36FC /* Default-Landscape@2x~ipad.png */,
-				AB273FC61618AC3C00EE36FC /* Default-Landscape~ipad.png */,
-				AB273FC41618AC3700EE36FC /* Default-Portrait@2x~ipad.png */,
-				AB273FC21618AC3100EE36FC /* Default-Portrait~ipad.png */,
-				AB273FC01618AC1F00EE36FC /* Default-568h@2x.png */,
-				AB273FBE1618AC0800EE36FC /* Default@2x.png */,
-				AB273FBC1618AC0400EE36FC /* Default.png */,
-				AB273FB91618A7F200EE36FC /* icon-ipad@2x.png */,
-				AB9F828812F09C4A002492BC /* AlarmClock */,
-				AB9F828112F09C4A002492BC /* Frameworks */,
-				AB9F827F12F09C4A002492BC /* Products */,
+				AB34BE0617B7E40E0051F624 /* MainWindow-iPad.xib */,
+				AB34BE0817B7E4980051F624 /* AlarmClockViewController-iPad.xib */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
+		ABF24045179723ED002B4138 = {
+			isa = PBXGroup;
+			children = (
+				ABE562E617B7ED3A00739B33 /* Icon@2x-iPad.png */,
+				ABE562E417B7ECA300739B33 /* Default-568h@2x.png */,
+				ABE562E217B7EC9B00739B33 /* Default@2x.png */,
+				ABE562E017B7EC9500739B33 /* Default.png */,
+				ABE562DE17B7EC4000739B33 /* Icon-iPad.png */,
+				ABE562DC17B7EC1C00739B33 /* Icon.png */,
+				ABF24057179723ED002B4138 /* AlarmClock */,
+				ABF24050179723ED002B4138 /* Frameworks */,
+				ABF2404F179723ED002B4138 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		AB9F827F12F09C4A002492BC /* Products */ = {
+		ABF2404F179723ED002B4138 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AB9F827E12F09C4A002492BC /* AlarmClock.app */,
+				ABF2404E179723ED002B4138 /* AlarmClock.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AB9F828112F09C4A002492BC /* Frameworks */ = {
+		ABF24050179723ED002B4138 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AB1BF98A12F2C878002BB9AC /* AudioToolbox.framework */,
-				AB9F82AE12F09DBA002492BC /* AudioToolbox.framework */,
-				AB9F828212F09C4A002492BC /* UIKit.framework */,
-				AB9F828412F09C4A002492BC /* Foundation.framework */,
-				AB9F828612F09C4A002492BC /* CoreGraphics.framework */,
+				ABD1B3CE17A54DF40080FB4E /* AudioToolbox.framework */,
+				ABF24051179723ED002B4138 /* Foundation.framework */,
+				ABF24053179723ED002B4138 /* CoreGraphics.framework */,
+				ABF24055179723ED002B4138 /* UIKit.framework */,
+				ABF24070179723ED002B4138 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		AB9F828812F09C4A002492BC /* AlarmClock */ = {
+		ABF24057179723ED002B4138 /* AlarmClock */ = {
 			isa = PBXGroup;
 			children = (
-				AB9F82A212F09C7F002492BC /* ClockControl.h */,
-				AB9F82A312F09C7F002492BC /* ClockControl.m */,
-				AB9F82A412F09C7F002492BC /* ClockView.h */,
-				AB9F82A512F09C7F002492BC /* ClockView.m */,
-				ABD05EC712F4E0D800DE244F /* UIView+AlarmClock.h */,
-				ABD05EC812F4E0D800DE244F /* UIView+AlarmClock.m */,
-				AB9F829112F09C4B002492BC /* AlarmClockAppDelegate.h */,
-				AB9F829212F09C4B002492BC /* AlarmClockAppDelegate.m */,
-				AB9F829712F09C4B002492BC /* AlarmClockViewController.h */,
-				AB9F829812F09C4B002492BC /* AlarmClockViewController.m */,
-				AB9F829A12F09C4B002492BC /* AlarmClockViewController.xib */,
-				AB74D36C12F183E80004B790 /* AlarmClockViewController-iPad.xib */,
-				AB9F828912F09C4A002492BC /* Supporting Files */,
+				AB05753617B02E7E0058B0D0 /* iPad */,
+				AB34BE0217B7DF390051F624 /* MainWindow.xib */,
+				AB34BE0417B7DF900051F624 /* AlarmClockViewController.xib */,
+				ABF240861797308B002B4138 /* ClockView.h */,
+				ABF240871797308B002B4138 /* ClockView.m */,
+				ABD16770179C65FC00710AD4 /* ClockControl.h */,
+				ABD16771179C65FC00710AD4 /* ClockControl.m */,
+				ABD16773179C668800710AD4 /* UIView+AlarmClock.h */,
+				ABD16774179C668800710AD4 /* UIView+AlarmClock.m */,
+				ABF24060179723ED002B4138 /* AlarmClockAppDelegate.h */,
+				ABF24061179723ED002B4138 /* AlarmClockAppDelegate.m */,
+				ABF24066179723ED002B4138 /* AlarmClockViewController.h */,
+				ABF24067179723ED002B4138 /* AlarmClockViewController.m */,
+				ABF24058179723ED002B4138 /* Supporting Files */,
 			);
 			path = AlarmClock;
 			sourceTree = "<group>";
 		};
-		AB9F828912F09C4A002492BC /* Supporting Files */ = {
+		ABF24058179723ED002B4138 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				AB35C18215D7B1F1006B7D71 /* ringtone.caf */,
-				AB9F82B412F09EB6002492BC /* icon.png */,
-				AB9F82B612F09ED6002492BC /* icon@2x.png */,
-				AB74D36E12F192670004B790 /* icon-ipad.png */,
-				AB9F82A812F09CCB002492BC /* Localizable.strings */,
-				AB9F828A12F09C4A002492BC /* AlarmClock-Info.plist */,
-				AB9F828B12F09C4A002492BC /* InfoPlist.strings */,
-				AB9F828E12F09C4A002492BC /* AlarmClock-Prefix.pch */,
-				AB9F828F12F09C4A002492BC /* main.m */,
+				AB05753217AEBDF90058B0D0 /* Localizable.strings */,
+				ABD1B3CA17A54B7D0080FB4E /* ringtone.caf */,
+				ABF24059179723ED002B4138 /* AlarmClock-Info.plist */,
+				ABF2405A179723ED002B4138 /* InfoPlist.strings */,
+				ABF2405D179723ED002B4138 /* main.m */,
+				ABF2405F179723ED002B4138 /* AlarmClock-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -168,13 +165,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AB9F827D12F09C4A002492BC /* AlarmClock */ = {
+		ABF2404D179723ED002B4138 /* AlarmClock */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AB9F829F12F09C4B002492BC /* Build configuration list for PBXNativeTarget "AlarmClock" */;
+			buildConfigurationList = ABF24080179723ED002B4138 /* Build configuration list for PBXNativeTarget "AlarmClock" */;
 			buildPhases = (
-				AB9F827A12F09C4A002492BC /* Sources */,
-				AB9F827B12F09C4A002492BC /* Frameworks */,
-				AB9F827C12F09C4A002492BC /* Resources */,
+				ABF2404A179723ED002B4138 /* Sources */,
+				ABF2404B179723ED002B4138 /* Frameworks */,
+				ABF2404C179723ED002B4138 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -182,184 +179,187 @@
 			);
 			name = AlarmClock;
 			productName = AlarmClock;
-			productReference = AB9F827E12F09C4A002492BC /* AlarmClock.app */;
+			productReference = ABF2404E179723ED002B4138 /* AlarmClock.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		AB9F827512F09C4A002492BC /* Project object */ = {
+		ABF24046179723ED002B4138 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0440;
+				CLASSPREFIX = AlarmClock;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = Cocoaneheads;
 			};
-			buildConfigurationList = AB9F827812F09C4A002492BC /* Build configuration list for PBXProject "AlarmClock" */;
+			buildConfigurationList = ABF24049179723ED002B4138 /* Build configuration list for PBXProject "AlarmClock" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 				de,
 			);
-			mainGroup = AB9F827312F09C4A002492BC;
-			productRefGroup = AB9F827F12F09C4A002492BC /* Products */;
+			mainGroup = ABF24045179723ED002B4138;
+			productRefGroup = ABF2404F179723ED002B4138 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AB9F827D12F09C4A002492BC /* AlarmClock */,
+				ABF2404D179723ED002B4138 /* AlarmClock */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		AB9F827C12F09C4A002492BC /* Resources */ = {
+		ABF2404C179723ED002B4138 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB9F828D12F09C4A002492BC /* InfoPlist.strings in Resources */,
-				AB9F829C12F09C4B002492BC /* AlarmClockViewController.xib in Resources */,
-				AB9F82B512F09EB6002492BC /* icon.png in Resources */,
-				AB9F82B712F09ED6002492BC /* icon@2x.png in Resources */,
-				AB74D36A12F183E80004B790 /* AlarmClockViewController-iPad.xib in Resources */,
-				AB74D36F12F192670004B790 /* icon-ipad.png in Resources */,
-				AB35C18315D7B1F1006B7D71 /* ringtone.caf in Resources */,
-				AB35C18515D7BB1B006B7D71 /* Localizable.strings in Resources */,
-				AB273FBA1618A7F200EE36FC /* icon-ipad@2x.png in Resources */,
-				AB273FBD1618AC0400EE36FC /* Default.png in Resources */,
-				AB273FBF1618AC0800EE36FC /* Default@2x.png in Resources */,
-				AB273FC11618AC1F00EE36FC /* Default-568h@2x.png in Resources */,
-				AB273FC31618AC3100EE36FC /* Default-Portrait~ipad.png in Resources */,
-				AB273FC51618AC3700EE36FC /* Default-Portrait@2x~ipad.png in Resources */,
-				AB273FC71618AC3C00EE36FC /* Default-Landscape~ipad.png in Resources */,
-				AB273FC91618AC4100EE36FC /* Default-Landscape@2x~ipad.png in Resources */,
+				AB05753417AEBDF90058B0D0 /* Localizable.strings in Resources */,
+				AB34BE0317B7DF390051F624 /* MainWindow.xib in Resources */,
+				ABF2405C179723ED002B4138 /* InfoPlist.strings in Resources */,
+				AB34BE0517B7DF900051F624 /* AlarmClockViewController.xib in Resources */,
+				ABD1B3CB17A54B7D0080FB4E /* ringtone.caf in Resources */,
+				AB34BE0717B7E40E0051F624 /* MainWindow-iPad.xib in Resources */,
+				AB34BE0917B7E4980051F624 /* AlarmClockViewController-iPad.xib in Resources */,
+				ABE562DD17B7EC1C00739B33 /* Icon.png in Resources */,
+				ABE562DF17B7EC4000739B33 /* Icon-iPad.png in Resources */,
+				ABE562E117B7EC9500739B33 /* Default.png in Resources */,
+				ABE562E317B7EC9B00739B33 /* Default@2x.png in Resources */,
+				ABE562E517B7ECA300739B33 /* Default-568h@2x.png in Resources */,
+				ABE562E717B7ED3A00739B33 /* Icon@2x-iPad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		AB9F827A12F09C4A002492BC /* Sources */ = {
+		ABF2404A179723ED002B4138 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB9F829012F09C4A002492BC /* main.m in Sources */,
-				AB9F829312F09C4B002492BC /* AlarmClockAppDelegate.m in Sources */,
-				AB9F829912F09C4B002492BC /* AlarmClockViewController.m in Sources */,
-				AB9F82A612F09C7F002492BC /* ClockControl.m in Sources */,
-				AB9F82A712F09C7F002492BC /* ClockView.m in Sources */,
-				ABD05EC912F4E0D800DE244F /* UIView+AlarmClock.m in Sources */,
+				ABF2405E179723ED002B4138 /* main.m in Sources */,
+				ABD16772179C65FC00710AD4 /* ClockControl.m in Sources */,
+				ABF240881797308B002B4138 /* ClockView.m in Sources */,
+				ABD16775179C668800710AD4 /* UIView+AlarmClock.m in Sources */,
+				ABF24068179723ED002B4138 /* AlarmClockViewController.m in Sources */,
+				ABF24062179723ED002B4138 /* AlarmClockAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		AB74D36C12F183E80004B790 /* AlarmClockViewController-iPad.xib */ = {
+		AB05753217AEBDF90058B0D0 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				AB74D36B12F183E80004B790 /* en */,
-				AB74D36D12F183F20004B790 /* de */,
-			);
-			name = "AlarmClockViewController-iPad.xib";
-			sourceTree = "<group>";
-		};
-		AB9F828B12F09C4A002492BC /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AB9F828C12F09C4A002492BC /* en */,
-				AB9F82AB12F09D4A002492BC /* de */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		AB9F829A12F09C4B002492BC /* AlarmClockViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AB9F829B12F09C4B002492BC /* en */,
-				AB9F82AA12F09D0C002492BC /* de */,
-			);
-			name = AlarmClockViewController.xib;
-			sourceTree = "<group>";
-		};
-		AB9F82A812F09CCB002492BC /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AB9F82A912F09CCB002492BC /* en */,
-				AB9F82AC12F09D4A002492BC /* de */,
+				AB05753317AEBDF90058B0D0 /* en */,
+				AB05753517AEBE010058B0D0 /* de */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		ABF2405A179723ED002B4138 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ABF2405B179723ED002B4138 /* en */,
+				AB05753017AEB9640058B0D0 /* de */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		AB9F829D12F09C4B002492BC /* Debug */ = {
+		ABF2407E179723ED002B4138 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					armv6,
-					armv7,
-				);
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				GCC_THUMB_SUPPORT = NO;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
-		AB9F829E12F09C4B002492BC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = (
-					armv6,
-					armv7,
-				);
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_THUMB_SUPPORT = NO;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				SDKROOT = iphoneos;
-			};
-			name = Release;
-		};
-		AB9F82A012F09C4B002492BC /* Debug */ = {
+		ABF2407F179723ED002B4138 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		ABF24081179723ED002B4138 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AlarmClock/AlarmClock-Prefix.pch";
-				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "AlarmClock/AlarmClock-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
-		AB9F82A112F09C4B002492BC /* Release */ = {
+		ABF24082179723ED002B4138 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AlarmClock/AlarmClock-Prefix.pch";
-				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "AlarmClock/AlarmClock-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -367,25 +367,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AB9F827812F09C4A002492BC /* Build configuration list for PBXProject "AlarmClock" */ = {
+		ABF24049179723ED002B4138 /* Build configuration list for PBXProject "AlarmClock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AB9F829D12F09C4B002492BC /* Debug */,
-				AB9F829E12F09C4B002492BC /* Release */,
+				ABF2407E179723ED002B4138 /* Debug */,
+				ABF2407F179723ED002B4138 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AB9F829F12F09C4B002492BC /* Build configuration list for PBXNativeTarget "AlarmClock" */ = {
+		ABF24080179723ED002B4138 /* Build configuration list for PBXNativeTarget "AlarmClock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AB9F82A012F09C4B002492BC /* Debug */,
-				AB9F82A112F09C4B002492BC /* Release */,
+				ABF24081179723ED002B4138 /* Debug */,
+				ABF24082179723ED002B4138 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = AB9F827512F09C4A002492BC /* Project object */;
+	rootObject = ABF24046179723ED002B4138 /* Project object */;
 }

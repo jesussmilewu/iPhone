@@ -1,18 +1,15 @@
+//
+//  AlarmClockAppDelegate.h
+//  AlarmClock
+//
+//  Created by Clemens Wagner on 17.07.13.
+//  Copyright (c) 2013 Cocoaneheads. All rights reserved.
+//
+
 #import <UIKit/UIKit.h>
 
-/** AppDelegate der Wecker-App.
- 
- Diese Klasse ist der von Xcode automatisch erzeugte Delegate von UIApplication
+@interface AlarmClockAppDelegate : UIResponder <UIApplicationDelegate>
 
-*/
-
-@class AlarmClockViewController;
-
-@interface AlarmClockAppDelegate : NSObject <UIApplicationDelegate>
-
-@property (nonatomic, retain) NSNumber *soundId;
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet AlarmClockViewController *viewController;
+@property (strong, nonatomic) IBOutlet UIWindow *window;
 
 @end
-

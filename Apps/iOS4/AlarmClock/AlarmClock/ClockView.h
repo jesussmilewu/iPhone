@@ -1,36 +1,22 @@
+//
+//  ClockView.h
+//  AlarmClock
+//
+//  Created by Clemens Wagner on 17.07.13.
+//  Copyright (c) 2013 Cocoaneheads. All rights reserved.
+//
+
 #import <UIKit/UIKit.h>
 
-/** View-Klasse für die Anzeige des Ziffernblatts
- 
- Alle Operationen zum Zeichnen der Zeiger erfolgen über CoreGraphic.
- 
- */
-
+/*!
+ zeichnet ein Zifferblatt mit Uhrzeigern.
+*/
 @interface ClockView : UIView
 
-@property (nonatomic, retain) NSDate *time;
-@property (nonatomic, retain, readonly) NSCalendar *calendar;
-/**---------------------------------------------------------------------------------------
- * @name Name unter Task
- *  ---------------------------------------------------------------------------------------
- */
+@property (nonatomic, strong) NSDate *time;
+@property (nonatomic, strong) NSCalendar *calendar;
 
-/** Starten der Zeiger-Animation.
- 
- @param none
- @return none
- */
 - (void)startAnimation;
-/**---------------------------------------------------------------------------------------
- * @name Name unter Task
- *  ---------------------------------------------------------------------------------------
- */
-
-/** Anhalten der Zeiger-Animation.
- 
- @param none
- @return none
- */
 - (void)stopAnimation;
 
 @end

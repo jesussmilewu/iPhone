@@ -1,17 +1,13 @@
-#import <UIKit/UIKit.h>
+//
+//  AlarmClockViewController.h
+//  AlarmClock
+//
+//  Created by Clemens Wagner on 17.07.13.
+//  Copyright (c) 2013 Cocoaneheads. All rights reserved.
+//
 
-@class ClockView;
-@class ClockControl;
+#import <UIKit/UIKit.h>
 
 @interface AlarmClockViewController : UIViewController
 
-@property(nonatomic, assign) IBOutlet ClockView *clockView;
-@property(nonatomic, assign) IBOutlet ClockControl *clockControl;
-@property(nonatomic, assign) IBOutlet UISwitch *alarmSwitch;
-@property(nonatomic, assign) IBOutlet UILabel *timeLabel;
-
-- (IBAction)updateAlarm;
-- (IBAction)updateTimeLabel;
-
 @end
-
