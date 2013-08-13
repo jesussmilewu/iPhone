@@ -284,6 +284,7 @@
 				ABD9E44B15E0E40F00CEEB93 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

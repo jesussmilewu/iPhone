@@ -24,11 +24,6 @@ static NSUInteger counter;
                                  theName, counter++];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    NSLog(@"didReceiveMemoryWarning: %@", self.navigationItem.title);
-}
-
 - (BOOL)canPerformUnwindSegueAction:(SEL)inAction
                  fromViewController:(UIViewController *)inFromViewController
                          withSender:(id)inSender {
@@ -39,7 +34,7 @@ static NSUInteger counter;
           NSStringFromSelector(inAction),
           inFromViewController.navigationItem.title,
           inSender);
-    return NO;
+    return theFlag;
 }
 
 @end
