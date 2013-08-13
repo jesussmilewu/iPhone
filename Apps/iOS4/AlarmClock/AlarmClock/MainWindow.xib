@@ -95,19 +95,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">rootViewController</string>
-						<reference key="source" ref="762163592"/>
-						<reference key="destination" ref="806544099"/>
-					</object>
-					<string key="id">ZLj-Y3-cx9</string>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">window</string>
 						<reference key="source" ref="425901222"/>
 						<reference key="destination" ref="762163592"/>
 					</object>
 					<string key="id">GOs-Tc-oVE</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">viewController</string>
+						<reference key="source" ref="425901222"/>
+						<reference key="destination" ref="806544099"/>
+					</object>
+					<string key="id">Xdd-YN-Neg</string>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">

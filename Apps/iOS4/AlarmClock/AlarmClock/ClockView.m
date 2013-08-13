@@ -17,6 +17,10 @@
 
 @implementation ClockView
 
+@synthesize time;
+@synthesize calendar;
+@synthesize timer;
+
 - (id)initWithFrame:(CGRect)inFrame {
     self = [super initWithFrame:inFrame];
     if(self) {

@@ -29,6 +29,11 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
 
 @implementation AlarmClockViewController
 
+@synthesize clockView;
+@synthesize clockControl;
+@synthesize timeLabel;
+@synthesize alarmHidden;
+
 - (void)dealloc {
     self.clockView = nil;
     self.clockControl = nil;

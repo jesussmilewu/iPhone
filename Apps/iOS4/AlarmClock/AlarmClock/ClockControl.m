@@ -17,6 +17,9 @@
 
 @implementation ClockControl
 
+@synthesize time;
+@synthesize savedAngle;
+
 - (id)initWithFrame:(CGRect)inFrame {
     self = [super initWithFrame:inFrame];
     if (self) {
@@ -51,7 +54,7 @@
 }
 
 - (void)setTime:(NSTimeInterval)inTime {
-    _time = inTime;
+    time = inTime;
     [self setNeedsDisplay];
 }
 
