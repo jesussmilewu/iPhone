@@ -17,6 +17,7 @@
 
 - (IBAction)showModalDialog;
 - (IBAction)showPopoverDialog:(id)inSender;
+- (IBAction)triggerDialogSegue:(id)inSender;
 
 @end
 
@@ -40,6 +41,10 @@
     theController.counter = ++self.viewCounter;
     theController.delegate = self;
     [self.popover presentPopoverFromRect:[inSender bounds] inView:inSender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+}
+
+- (IBAction)triggerDialogSegue:(id)inSender {
+    [self performSegueWithIdentifier:@"dialog" sender:inSender];
 }
 
 #pragma mark ModalViewControllerDelegate

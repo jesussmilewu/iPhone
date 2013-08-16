@@ -44,7 +44,22 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="J3i-tL-np9" kind="modal" modalTransitionStyle="flipHorizontal" id="qdI-vX-Du6"/>
+                                    <segue destination="J3i-tL-np9" kind="modal" identifier="" modalTransitionStyle="flipHorizontal" id="qdI-vX-Du6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="boS-UM-Czk">
+                                <rect key="frame" x="98" y="485" width="68" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Action">
+                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="triggerDialogSegue:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="gTK-ok-vHx"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -52,6 +67,7 @@
                     </view>
                     <connections>
                         <outlet property="label" destination="hab-Cn-9E1" id="k6X-GS-fqG"/>
+                        <segue destination="J3i-tL-np9" kind="modal" identifier="dialog" id="eMW-fO-kfw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -105,4 +121,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="eMW-fO-kfw"/>
+    </inferredMetricsTieBreakers>
 </document>
