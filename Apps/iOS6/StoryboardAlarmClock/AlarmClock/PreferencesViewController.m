@@ -14,11 +14,13 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *partitionControl;
 @property (weak, nonatomic) IBOutlet UISwitch *soundSwitch;
 
+- (IBAction)savePreferences;
+
 @end
 
 @implementation PreferencesViewController
 
-- (void)savePreferences {
+- (IBAction)savePreferences {
     NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
 
     [theDefaults setBool:self.digitsSwitch.on forKey:@"showDigits"];

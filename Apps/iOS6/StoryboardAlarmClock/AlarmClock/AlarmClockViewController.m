@@ -62,12 +62,26 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
 
 - (void)viewDidAppear:(BOOL)inAnimated {
     [super viewDidAppear:inAnimated];
+    NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
+
+    [theDefaults addObserver:self forKeyPath:@"showDigits" options:0 context:nil];
+    [theDefaults addObserver:self forKeyPath:@"partitionOfDial" options:0 context:nil];
     [self.clockView startAnimation];
 }
 
 - (void)viewWillDisappear:(BOOL)inAnimated {
+    NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
+
+    [theDefaults removeObserver:self forKeyPath:@"showDigits"];
+    [theDefaults removeObserver:self forKeyPath:@"partitionOfDial"];
     [self.clockView stopAnimation];
     [super viewWillDisappear:inAnimated];
+}
+
+- (void)observeValueForKeyPath:(NSString *)inKeyPath
+                      ofObject:(id)inObject change:(NSDictionary *)inChange
+                       context:(void *)inContext {
+    [self updateClockView];
 }
 
 - (void)updateViews {
