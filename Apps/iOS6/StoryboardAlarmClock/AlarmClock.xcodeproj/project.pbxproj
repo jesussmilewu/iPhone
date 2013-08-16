@@ -11,6 +11,7 @@
 		AB18B67817B7FBED00C0F069 /* AlarmClock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB18B67717B7FBED00C0F069 /* AlarmClock.storyboard */; };
 		AB18B67A17B8271700C0F069 /* AlarmClock-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB18B67917B8271700C0F069 /* AlarmClock-iPad.storyboard */; };
 		ABB4E77017B7F4D4004E1066 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB4E76F17B7F4D4004E1066 /* Icon@2x.png */; };
+		ABC03D1A17BE7E96006C15DB /* PreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC03D1917BE7E96006C15DB /* PreferencesViewController.m */; };
 		ABD16772179C65FC00710AD4 /* ClockControl.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD16771179C65FC00710AD4 /* ClockControl.m */; };
 		ABD16775179C668800710AD4 /* UIView+AlarmClock.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD16774179C668800710AD4 /* UIView+AlarmClock.m */; };
 		ABD1B3CB17A54B7D0080FB4E /* ringtone.caf in Resources */ = {isa = PBXBuildFile; fileRef = ABD1B3CA17A54B7D0080FB4E /* ringtone.caf */; };
@@ -38,6 +39,8 @@
 		AB18B67717B7FBED00C0F069 /* AlarmClock.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AlarmClock.storyboard; sourceTree = "<group>"; };
 		AB18B67917B8271700C0F069 /* AlarmClock-iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "AlarmClock-iPad.storyboard"; sourceTree = "<group>"; };
 		ABB4E76F17B7F4D4004E1066 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		ABC03D1817BE7E96006C15DB /* PreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesViewController.h; sourceTree = "<group>"; };
+		ABC03D1917BE7E96006C15DB /* PreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesViewController.m; sourceTree = "<group>"; };
 		ABD16770179C65FC00710AD4 /* ClockControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClockControl.h; sourceTree = "<group>"; };
 		ABD16771179C65FC00710AD4 /* ClockControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClockControl.m; sourceTree = "<group>"; };
 		ABD16773179C668800710AD4 /* UIView+AlarmClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AlarmClock.h"; sourceTree = "<group>"; };
@@ -141,6 +144,8 @@
 				ABF24061179723ED002B4138 /* AlarmClockAppDelegate.m */,
 				ABF24066179723ED002B4138 /* AlarmClockViewController.h */,
 				ABF24067179723ED002B4138 /* AlarmClockViewController.m */,
+				ABC03D1817BE7E96006C15DB /* PreferencesViewController.h */,
+				ABC03D1917BE7E96006C15DB /* PreferencesViewController.m */,
 				ABF24058179723ED002B4138 /* Supporting Files */,
 			);
 			path = AlarmClock;
@@ -240,6 +245,7 @@
 				ABF240881797308B002B4138 /* ClockView.m in Sources */,
 				ABD16775179C668800710AD4 /* UIView+AlarmClock.m in Sources */,
 				ABF24068179723ED002B4138 /* AlarmClockViewController.m in Sources */,
+				ABC03D1A17BE7E96006C15DB /* PreferencesViewController.m in Sources */,
 				ABF24062179723ED002B4138 /* AlarmClockAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

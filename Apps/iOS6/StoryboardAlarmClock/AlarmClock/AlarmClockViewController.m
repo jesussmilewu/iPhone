@@ -46,8 +46,17 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
     [super viewDidUnload];
 }
 
+- (void)updateClockView {
+    NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
+
+    self.clockView.showDigits = [theDefaults boolForKey:@"showDigits"];
+    self.clockView.partitionOfDial = [theDefaults integerForKey:@"partitionOfDial"];
+    [self.clockView setNeedsDisplay];
+}
+
 - (void)viewWillAppear:(BOOL)inAnimated {
     [super viewWillAppear:inAnimated];
+    [self updateClockView];
     [self updateViews];
 }
 
@@ -142,7 +151,9 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
     theNotification.fireDate = [self alarmDate];
     theNotification.timeZone = [NSTimeZone defaultTimeZone];
     theNotification.alertBody = NSLocalizedString(@"Wake up", @"Alarm message");
-    theNotification.soundName = UILocalNotificationDefaultSoundName;
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"playSound"]) {
+        theNotification.soundName = UILocalNotificationDefaultSoundName;
+    }
     [theApplication scheduleLocalNotification:theNotification];
 }
 

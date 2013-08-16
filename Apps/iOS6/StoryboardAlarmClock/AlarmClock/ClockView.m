@@ -40,6 +40,28 @@
     self.time = [NSDate date];
 }
 
+- (void)drawDigits {
+    CGFloat theRadius = CGRectGetWidth(self.bounds) / 2.0;
+    UIFont *theFont = [UIFont systemFontOfSize:24];
+    CGRect theFrame;
+
+    [[UIColor darkGrayColor] set];
+    theRadius *= self.partitionOfDial == PartitionOfDialNone ?
+    0.9 : 0.6;
+    for(int i = 1; i <= 12; ++i) {
+        NSString *theText =
+        [NSString stringWithFormat:@"%d", i];
+
+        theFrame.origin = [self pointWithRadius:theRadius
+                                          angle:i * M_PI / 6];
+        theFrame.size = [theText sizeWithFont:theFont];
+        theFrame = CGRectOffset(theFrame,
+                                -CGRectGetWidth(theFrame) / 2.0,
+                                -CGRectGetHeight(theFrame) / 2.0);
+        [theText drawInRect:theFrame withFont:theFont];
+    }
+}
+
 - (void)drawClockHands {
     CGContextRef theContext = UIGraphicsGetCurrentContext();
     CGPoint theCenter = [self midPoint];
@@ -90,22 +112,29 @@
     CGContextSetRGBFillColor(theContext, 0.25, 0.25, 0.25, 1.0);
     CGContextSetLineWidth(theContext, theRadius / 20.0);
     CGContextSetLineCap(theContext, kCGLineCapRound);
-    for(NSInteger i = 0; i < 60; ++i) {
-        CGFloat theAngle = i * M_PI / 30.0;
+    if(self.partitionOfDial != PartitionOfDialNone) {
+        // Zifferneinteilung zeichnen
+        for(NSInteger i = 0; i < 60; ++i) {
+            CGFloat theAngle = i * M_PI / 30.0;
 
-        if(i % 5 == 0) {
-            CGFloat theInnerRadius = theRadius * (i % 15 == 0 ? 0.7 : 0.8);
-            CGPoint theInnerPoint = [self pointWithRadius:theInnerRadius angle:theAngle];
-            CGPoint theOuterPoint = [self pointWithRadius:theRadius angle:theAngle];
-            CGContextMoveToPoint(theContext, theInnerPoint.x, theInnerPoint.y);
-            CGContextAddLineToPoint(theContext, theOuterPoint.x, theOuterPoint.y);
-            CGContextStrokePath(theContext);
+            if(i % 5 == 0) {
+                CGFloat theInnerRadius = theRadius * (i % 15 == 0 ? 0.7 : 0.8);
+                CGPoint theInnerPoint = [self pointWithRadius:theInnerRadius angle:theAngle];
+                CGPoint theOuterPoint = [self pointWithRadius:theRadius angle:theAngle];
+                CGContextMoveToPoint(theContext, theInnerPoint.x, theInnerPoint.y);
+                CGContextAddLineToPoint(theContext, theOuterPoint.x, theOuterPoint.y);
+                CGContextStrokePath(theContext);
+            }
+            else if(self.partitionOfDial == PartitionOfDialMinutes) {
+                // Minuteneinteilungsstrich darstellen
+                CGPoint thePoint = [self pointWithRadius:theRadius * 0.95 angle:theAngle];
+                CGContextAddArc(theContext,thePoint.x, thePoint.y, theRadius / 40.0, 0.0, 2 * M_PI, YES);
+                CGContextFillPath(theContext);
+            }
         }
-        else {
-            CGPoint thePoint = [self pointWithRadius:theRadius * 0.95 angle:theAngle];
-            CGContextAddArc(theContext,thePoint.x, thePoint.y, theRadius / 40.0, 0.0, 2 * M_PI, YES);
-            CGContextFillPath(theContext);
-        }
+    }
+    if(self.showDigits) {
+        [self drawDigits];
     }
     [self drawClockHands];
     CGContextRestoreGState(theContext);

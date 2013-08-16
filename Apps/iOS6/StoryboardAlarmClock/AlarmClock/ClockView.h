@@ -8,13 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-/*!
- zeichnet ein Zifferblatt mit Uhrzeigern.
-*/
+typedef enum {
+    PartitionOfDialNone = 0,
+    PartitionOfDialHours,
+    PartitionOfDialMinutes
+} PartitionOfDial;
+
 @interface ClockView : UIView
 
 @property (nonatomic, strong) NSDate *time;
 @property (nonatomic, strong) NSCalendar *calendar;
+@property (nonatomic) BOOL showDigits;
+@property (nonatomic) PartitionOfDial partitionOfDial;
 
 - (void)startAnimation;
 - (void)stopAnimation;

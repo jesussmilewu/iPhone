@@ -8,6 +8,7 @@
 
 #import "AlarmClockAppDelegate.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import "ClockView.h"
 
 @interface AlarmClockAppDelegate()
 
@@ -23,7 +24,12 @@
     self.soundId = nil;
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)inApplication didFinishLaunchingWithOptions:(NSDictionary *)inOptions {
+    NSUserDefaults *theDefaults = [NSUserDefaults standardUserDefaults];
+
+    [theDefaults registerDefaults:@{ @"showDigits": @YES,
+                                     @"partitionOfDial" : @(PartitionOfDialMinutes),
+                                     @"playSound": @YES }];
     return YES;
 }
 							
@@ -61,10 +67,12 @@
 }
 
 - (void)playSound {
-    NSNumber *theId = self.soundId;
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"playSound"]) {
+        NSNumber *theId = self.soundId;
 
-    if(theId) {
-        AudioServicesPlaySystemSound([theId unsignedIntValue]);
+        if(theId) {
+            AudioServicesPlaySystemSound([theId unsignedIntValue]);
+        }
     }
 }
 
