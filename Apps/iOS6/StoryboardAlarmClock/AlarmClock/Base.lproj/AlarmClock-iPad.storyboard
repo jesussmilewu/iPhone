@@ -72,7 +72,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="424" y="32"/>
+            <point key="canvasLocation" x="360" y="32"/>
         </scene>
         <!--Preferences View Controller - Preferences-->
         <scene sceneID="dG9-FB-fpG">
@@ -184,7 +184,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vcL-Ku-RXy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1437" y="32"/>
+            <point key="canvasLocation" x="1381" y="384"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oNq-6L-4oA">
