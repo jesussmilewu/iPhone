@@ -13,7 +13,7 @@
 		AB18891013E545AE0052316D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB18890E13E545AE0052316D /* InfoPlist.strings */; };
 		AB18891213E545AE0052316D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB18891113E545AE0052316D /* main.m */; };
 		AB18891613E545AE0052316D /* ContainerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB18891513E545AE0052316D /* ContainerAppDelegate.m */; };
-		AB18891913E545AE0052316D /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB18891713E545AE0052316D /* MainStoryboard.storyboard */; };
+		AB18891913E545AE0052316D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB18891713E545AE0052316D /* Main.storyboard */; };
 		AB18892313E546690052316D /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB18892213E546690052316D /* ContainerViewController.m */; };
 		AB18892613E548520052316D /* SupernumeraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB18892513E548520052316D /* SupernumeraryViewController.m */; };
 		AB18892913E54ABF0052316D /* RaisingSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = AB18892813E54ABF0052316D /* RaisingSegue.m */; };
@@ -30,7 +30,7 @@
 		AB18891313E545AE0052316D /* Container-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Container-Prefix.pch"; sourceTree = "<group>"; };
 		AB18891413E545AE0052316D /* ContainerAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContainerAppDelegate.h; sourceTree = "<group>"; };
 		AB18891513E545AE0052316D /* ContainerAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContainerAppDelegate.m; sourceTree = "<group>"; };
-		AB18891813E545AE0052316D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		AB18891813E545AE0052316D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AB18891A13E545AE0052316D /* ContainerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContainerViewController.h; sourceTree = "<group>"; };
 		AB18892213E546690052316D /* ContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerViewController.m; sourceTree = "<group>"; };
 		AB18892413E548520052316D /* SupernumeraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupernumeraryViewController.h; sourceTree = "<group>"; };
@@ -85,7 +85,7 @@
 			children = (
 				AB18891413E545AE0052316D /* ContainerAppDelegate.h */,
 				AB18891513E545AE0052316D /* ContainerAppDelegate.m */,
-				AB18891713E545AE0052316D /* MainStoryboard.storyboard */,
+				AB18891713E545AE0052316D /* Main.storyboard */,
 				AB18891A13E545AE0052316D /* ContainerViewController.h */,
 				AB18892213E546690052316D /* ContainerViewController.m */,
 				AB18892413E548520052316D /* SupernumeraryViewController.h */,
@@ -159,7 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB18891013E545AE0052316D /* InfoPlist.strings in Resources */,
-				AB18891913E545AE0052316D /* MainStoryboard.storyboard in Resources */,
+				AB18891913E545AE0052316D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,12 +189,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		AB18891713E545AE0052316D /* MainStoryboard.storyboard */ = {
+		AB18891713E545AE0052316D /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				AB18891813E545AE0052316D /* en */,
 			);
-			name = MainStoryboard.storyboard;
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
