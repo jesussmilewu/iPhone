@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB01EE9017C551A00001E01A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB01EE8F17C551A00001E01A /* CoreData.framework */; };
 		ABC5000A17C2A13D004BAB78 /* flower.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ABC5000017C2A13D004BAB78 /* flower.jpg */; };
 		ABC5000B17C2A13D004BAB78 /* flower@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ABC5000117C2A13D004BAB78 /* flower@2x.jpg */; };
 		ABC5000E17C2A13D004BAB78 /* Puzzle.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5000517C2A13D004BAB78 /* Puzzle.m */; };
@@ -43,6 +44,8 @@
 		ABC5FFFD17C2A114004BAB78 /* NumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5FFF717C2A114004BAB78 /* NumberView.m */; };
 		ABC5FFFE17C2A114004BAB78 /* UIView+MirrorImage.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5FFF917C2A114004BAB78 /* UIView+MirrorImage.m */; };
 		ABC5FFFF17C2A114004BAB78 /* GradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5FFFB17C2A114004BAB78 /* GradientButton.m */; };
+		ABE3131317C55E0600B143CC /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE3131117C55E0600B143CC /* CoreMotion.framework */; };
+		ABE3131417C55E0600B143CC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE3131217C55E0600B143CC /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +59,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB01EE8F17C551A00001E01A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		ABC5000017C2A13D004BAB78 /* flower.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower.jpg; sourceTree = "<group>"; };
 		ABC5000117C2A13D004BAB78 /* flower@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "flower@2x.jpg"; sourceTree = "<group>"; };
 		ABC5000417C2A13D004BAB78 /* Puzzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Puzzle.h; sourceTree = "<group>"; };
@@ -113,6 +117,8 @@
 		ABC5FFF917C2A114004BAB78 /* UIView+MirrorImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MirrorImage.m"; sourceTree = "<group>"; };
 		ABC5FFFA17C2A114004BAB78 /* GradientButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientButton.h; sourceTree = "<group>"; };
 		ABC5FFFB17C2A114004BAB78 /* GradientButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientButton.m; sourceTree = "<group>"; };
+		ABE3131117C55E0600B143CC /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		ABE3131217C55E0600B143CC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +126,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABE3131317C55E0600B143CC /* CoreMotion.framework in Frameworks */,
+				ABE3131417C55E0600B143CC /* QuartzCore.framework in Frameworks */,
+				AB01EE9017C551A00001E01A /* CoreData.framework in Frameworks */,
 				ABC5FFA117C29E3D004BAB78 /* CoreGraphics.framework in Frameworks */,
 				ABC5FFA317C29E3D004BAB78 /* UIKit.framework in Frameworks */,
 				ABC5FF9F17C29E3D004BAB78 /* Foundation.framework in Frameworks */,
@@ -179,6 +188,9 @@
 		ABC5FF9D17C29E3D004BAB78 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ABE3131117C55E0600B143CC /* CoreMotion.framework */,
+				ABE3131217C55E0600B143CC /* QuartzCore.framework */,
+				AB01EE8F17C551A00001E01A /* CoreData.framework */,
 				ABC5FF9E17C29E3D004BAB78 /* Foundation.framework */,
 				ABC5FFA017C29E3D004BAB78 /* CoreGraphics.framework */,
 				ABC5FFA217C29E3D004BAB78 /* UIKit.framework */,

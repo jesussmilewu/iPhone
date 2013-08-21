@@ -48,7 +48,7 @@ static NSString * const kDigitKey = @"digit";
     else if(theOldDigit == 0 && theNewDigit == 9) {
         theOldDigit = 10;
     }
-    self.fromValue = [NSNumber numberWithInt:theOldDigit];
+    self.fromValue = @(theOldDigit);
     [(DigitLayer *)self.layer setDigit:theNewDigit];
 }
 
@@ -106,7 +106,7 @@ static NSString * const kDigitKey = @"digit";
 @dynamic digit;
 
 + (id)defaultValueForKey:(NSString *)inKey {
-    return [inKey isEqualToString:kDigitKey] ? [NSNumber numberWithFloat:0.0] : [super defaultValueForKey:inKey];
+    return [inKey isEqualToString:kDigitKey] ? @0.0f : [super defaultValueForKey:inKey];
 }
 
 + (BOOL)needsDisplayForKey:(NSString *)inKey {

@@ -20,7 +20,7 @@
                                                         inManagedObjectContext:self.managedObjectContext];
         
 
-        theScore.score = [NSNumber numberWithUnsignedInteger:inScore];
+        theScore.score = @(inScore);
         theScore.game = self.game;
         [self.managedObjectContext save:NULL];
         theItem.badgeValue = theValue;

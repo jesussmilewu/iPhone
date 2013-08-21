@@ -18,4 +18,8 @@
     return self.applicationDelegate.managedObjectContext;
 }
 
+- (CMMotionManager *)motionManager {
+    return self.applicationDelegate.motionManager;
+}
+
 @end

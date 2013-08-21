@@ -7,6 +7,7 @@
 //
 
 #import "PuzzleViewController.h"
+#import "UIViewController+Games.h"
 #import "UIImage+Subimage.h"
 #import "Puzzle.h"
 #import "NumberView.h"
@@ -21,6 +22,11 @@ const float kVerticalMaximalThreshold = 0.5;
 
 @property (nonatomic) PuzzleDirection lastDirection;
 @property (nonatomic, strong) NSUndoManager *undoManager;
+
+- (IBAction)handleLeftSwipe:(UISwipeGestureRecognizer *)inRecognizer;
+- (IBAction)handleRightSwipe:(UISwipeGestureRecognizer *)inRecognizer;
+- (IBAction)handleUpSwipe:(UISwipeGestureRecognizer *)inRecognizer;
+- (IBAction)handleDownSwipe:(UISwipeGestureRecognizer *)inRecognizer;
 
 - (void)buildView;
 
@@ -39,13 +45,6 @@ const float kVerticalMaximalThreshold = 0.5;
     return @"puzzle";
 }
 
-- (void)addSwipeGestureRecognizerWithDirection:(UISwipeGestureRecognizerDirection)inDirection action:(SEL)inAction {
-    UISwipeGestureRecognizer *theRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:inAction];
-    
-    theRecognizer.direction = inDirection;
-    [self.puzzleView addGestureRecognizer:theRecognizer];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSNotificationCenter *theCenter = [NSNotificationCenter defaultCenter];
@@ -54,14 +53,6 @@ const float kVerticalMaximalThreshold = 0.5;
     [theCenter addObserver:self selector:@selector(puzzleDidTilt:) name:kPuzzleDidTiltNotification object:nil];
     [theCenter addObserver:self selector:@selector(puzzleDidTilt:) name:kPuzzleDidMoveNotification object:nil];
     self.image = [UIImage imageNamed:@"flower.jpg"];
-    [self addSwipeGestureRecognizerWithDirection:UISwipeGestureRecognizerDirectionLeft 
-                                          action:@selector(handleLeftSwipe:)];
-    [self addSwipeGestureRecognizerWithDirection:UISwipeGestureRecognizerDirectionRight 
-                                          action:@selector(handleRightSwipe:)];
-    [self addSwipeGestureRecognizerWithDirection:UISwipeGestureRecognizerDirectionUp 
-                                          action:@selector(handleUpSwipe:)];
-    [self addSwipeGestureRecognizerWithDirection:UISwipeGestureRecognizerDirectionDown 
-                                          action:@selector(handleDownSwipe:)];
     [self clear];
 }
 
@@ -72,16 +63,23 @@ const float kVerticalMaximalThreshold = 0.5;
 
 - (void)viewDidAppear:(BOOL)inAnimated {
     [super viewDidAppear:inAnimated];
-    UIAccelerometer *theAccelerometer = [UIAccelerometer sharedAccelerometer];
-    
-    theAccelerometer.delegate = self;
-    theAccelerometer.updateInterval = 0.05;
+    CMMotionManager *theManager = self.motionManager;
+
+    [theManager startAccelerometerUpdatesToQueue:[NSOperationQueue mainQueue]
+                                     withHandler:^(CMAccelerometerData *inData, NSError *inError) {
+                                         if(inData == nil) {
+                                             NSLog(@"error: %@", inError);
+                                         }
+                                         else {
+                                             [self handleAcceleration:inData.acceleration];
+                                         }
+                                     }];
 }
 
 - (void)viewWillDisappear:(BOOL)inAnimated {
-    UIAccelerometer *theAccelerometer = [UIAccelerometer sharedAccelerometer];
+    CMMotionManager *theManager = self.motionManager;
 
-    theAccelerometer.delegate = nil;
+    [theManager stopAccelerometerUpdates];
     [super viewWillDisappear:inAnimated];
 }
 
@@ -113,8 +111,8 @@ const float kVerticalMaximalThreshold = 0.5;
     [self.undoManager redo];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)inInterfaceOrientation {
-    return inInterfaceOrientation == UIInterfaceOrientationPortrait;
+- (BOOL)shouldAutorotate {
+    return NO;
 }
 
 - (void)buildView {
@@ -130,7 +128,7 @@ const float kVerticalMaximalThreshold = 0.5;
         theFrame.origin.y = theRow * CGRectGetHeight(theFrame);
         for(NSUInteger theColumn = 0; theColumn < theLength; ++theColumn) {
             UIImageView *theImageView = theIndex < thePuzzleView.subviews.count ? 
-            [thePuzzleView.subviews objectAtIndex:theIndex] : nil;
+            (thePuzzleView.subviews)[theIndex] : nil;
             NSUInteger theItemIndex = [thePuzzle valueAtIndex:theIndex];
 
             theFrame.origin.x = theColumn * CGRectGetWidth(theFrame);
@@ -144,7 +142,7 @@ const float kVerticalMaximalThreshold = 0.5;
                 theImageView.image = nil;
             }
             else {
-                theImageView.image = [theImages objectAtIndex:theItemIndex];
+                theImageView.image = theImages[theItemIndex];
             }
             theImageView.tag = theItemIndex;
             theImageView.frame = theFrame;
@@ -169,11 +167,11 @@ const float kVerticalMaximalThreshold = 0.5;
 
 - (void)puzzleDidTilt:(NSNotification *)inNotification {
     NSDictionary *theInfo = inNotification.userInfo;
-    NSUInteger theFromIndex = [[theInfo objectForKey:kPuzzleFromIndexKey] intValue];
-    NSUInteger theToIndex = [[theInfo objectForKey:kPuzzleToIndexKey] intValue];
+    NSUInteger theFromIndex = [theInfo[kPuzzleFromIndexKey] intValue];
+    NSUInteger theToIndex = [theInfo[kPuzzleToIndexKey] intValue];
     UIView *thePuzzleView = self.puzzleView;
-    UIView *theFromView = [thePuzzleView.subviews objectAtIndex:theFromIndex];
-    UIView *theToView = [thePuzzleView.subviews objectAtIndex:theToIndex];
+    UIView *theFromView = (thePuzzleView.subviews)[theFromIndex];
+    UIView *theToView = (thePuzzleView.subviews)[theToIndex];
     
     [thePuzzleView exchangeSubviewAtIndex:theFromIndex withSubviewAtIndex:theToIndex];
     [UIView animateWithDuration:0.4 
@@ -196,19 +194,19 @@ const float kVerticalMaximalThreshold = 0.5;
     [thePuzzle moveItemAtIndex:theIndex toDirection:inDirection];
 }
 
-- (void)handleLeftSwipe:(UISwipeGestureRecognizer *)inRecognizer {
+- (IBAction)handleLeftSwipe:(UISwipeGestureRecognizer *)inRecognizer {
     [self handleGestureRecognizer:inRecognizer withDirection:PuzzleDirectionLeft];
 }
 
-- (void)handleRightSwipe:(UISwipeGestureRecognizer *)inRecognizer {
+- (IBAction)handleRightSwipe:(UISwipeGestureRecognizer *)inRecognizer {
     [self handleGestureRecognizer:inRecognizer withDirection:PuzzleDirectionRight];
 }
 
-- (void)handleUpSwipe:(UISwipeGestureRecognizer *)inRecognizer {
+- (IBAction)handleUpSwipe:(UISwipeGestureRecognizer *)inRecognizer {
     [self handleGestureRecognizer:inRecognizer withDirection:PuzzleDirectionUp];
 }
 
-- (void)handleDownSwipe:(UISwipeGestureRecognizer *)inRecognizer {
+- (IBAction)handleDownSwipe:(UISwipeGestureRecognizer *)inRecognizer {
     [self handleGestureRecognizer:inRecognizer withDirection:PuzzleDirectionDown];
 }
 
@@ -233,9 +231,7 @@ const float kVerticalMaximalThreshold = 0.5;
     }
 }
 
-#pragma mark UIAccelerometerDelegate
-
-- (void)accelerometer:(UIAccelerometer *)inAccelerometer didAccelerate:(UIAcceleration *)inAcceleration {
+- (void)handleAcceleration:(CMAcceleration)inAcceleration {
     float theX = inAcceleration.x;
     float theY = inAcceleration.y;
     

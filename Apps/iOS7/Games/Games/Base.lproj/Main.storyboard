@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4488.2" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="4488.2" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
+        <development version="4600" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3715.3"/>
     </dependencies>
     <scenes>
@@ -32,11 +33,11 @@
             <objects>
                 <viewController id="ubr-CL-vfZ" customClass="HelpViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="H9i-kK-pDa">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="499"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" id="gjS-hk-VJb">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="499"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -61,15 +62,15 @@
             <objects>
                 <tableViewController id="LHc-0r-nZG" customClass="HighScoreViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="VCb-Jt-VLv">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="499"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="score" textLabel="DZq-1e-bxN" detailTextLabel="awV-qf-ZBP" style="IBUITableViewCellStyleSubtitle" id="wct-qt-UCT">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wct-qt-UCT" id="jiO-F8-5xL">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DZq-1e-bxN">
@@ -87,7 +88,8 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                </tableViewCellContentView>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
                             </tableViewCell>
                         </prototypes>
                     </tableView>
@@ -101,7 +103,7 @@
         <scene sceneID="Wdx-HN-DC0">
             <objects>
                 <navigationController definesPresentationContext="YES" navigationBarHidden="YES" id="VRo-Jx-cqJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Highscore" image="highscore" badgeValue="3" id="8cf-3U-wfk"/>
+                    <tabBarItem key="tabBarItem" title="Highscore" image="highscore" id="8cf-3U-wfk"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RWK-a0-2Hd">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -118,7 +120,7 @@
             <objects>
                 <viewController id="kX5-eg-5f7" customClass="MemoryViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="McE-4i-Ypn">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="499"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="yiq-Nr-7Yk">
@@ -200,13 +202,20 @@
             <objects>
                 <viewController id="ppD-kx-zhq" customClass="PuzzleViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IVH-Kj-TLj">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="499"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="Bi0-3I-jU6">
                                 <rect key="frame" x="10" y="10" width="300" height="300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="fqy-EK-v8i" appends="YES" id="dlK-fe-9yW"/>
+                                    <outletCollection property="gestureRecognizers" destination="1T6-cG-6V3" appends="YES" id="o8f-Aq-miV"/>
+                                    <outletCollection property="gestureRecognizers" destination="RkZ-M5-h7e" appends="YES" id="3bT-8w-igE"/>
+                                    <outletCollection property="gestureRecognizers" destination="MYX-5K-f6N" appends="YES" id="u8T-K6-TE8"/>
+                                </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="FOb-LH-C2R" customClass="GradientButton">
                                 <rect key="frame" x="10" y="325" width="75" height="37"/>
@@ -296,6 +305,26 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R6E-5d-Tds" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="fqy-EK-v8i">
+                    <connections>
+                        <action selector="handleLeftSwipe:" destination="ppD-kx-zhq" id="jWE-Qq-maU"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="1T6-cG-6V3">
+                    <connections>
+                        <action selector="handleRightSwipe:" destination="ppD-kx-zhq" id="eyE-k2-oyv"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="up" id="RkZ-M5-h7e">
+                    <connections>
+                        <action selector="handleUpSwipe:" destination="ppD-kx-zhq" id="8Am-3G-v1o"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="down" id="MYX-5K-f6N">
+                    <connections>
+                        <action selector="handleDownSwipe:" destination="ppD-kx-zhq" id="u7I-J1-zs5"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="681" y="-650"/>
         </scene>

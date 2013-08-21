@@ -50,19 +50,15 @@
 }
 
 - (NSArray *)normalColors {
-    return [NSArray arrayWithObjects:
-            (id)[UIColor colorWithRed:0.4 green:0.4 blue:1.0 alpha:1.0].CGColor,
+    return @[(id)[UIColor colorWithRed:0.4 green:0.4 blue:1.0 alpha:1.0].CGColor,
             (id)[UIColor colorWithRed:0.0 green:0.0 blue:0.6 alpha:1.0].CGColor,
-            (id)[UIColor colorWithRed:0.0 green:0.0 blue:0.8 alpha:1.0].CGColor,
-            nil];
+            (id)[UIColor colorWithRed:0.0 green:0.0 blue:0.8 alpha:1.0].CGColor];
 }
 
 - (NSArray *)highligthedColors {
-    return [NSArray arrayWithObjects:
-            (id)[UIColor colorWithRed:1.0 green:0.4 blue:0.4 alpha:1.0].CGColor,
+    return @[(id)[UIColor colorWithRed:1.0 green:0.4 blue:0.4 alpha:1.0].CGColor,
             (id)[UIColor colorWithRed:0.6 green:0.0 blue:0.0 alpha:1.0].CGColor,
-            (id)[UIColor colorWithRed:0.8 green:0.0 blue:0.0 alpha:1.0].CGColor,
-            nil];
+            (id)[UIColor colorWithRed:0.8 green:0.0 blue:0.0 alpha:1.0].CGColor];
 }
 
 @end

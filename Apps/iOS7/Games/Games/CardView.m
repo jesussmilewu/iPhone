@@ -75,7 +75,7 @@
 }
 
 - (void)setShowsFrontSide:(BOOL)inShowingFront {
-    [[self.subviews objectAtIndex:0] setHidden:inShowingFront];
+    [(self.subviews)[0] setHidden:inShowingFront];
     self.frontView.hidden = !inShowingFront;
 }
 

@@ -13,5 +13,6 @@
 
 - (GamesAppDelegate *)applicationDelegate;
 - (NSManagedObjectContext *)managedObjectContext;
+- (CMMotionManager *)motionManager;
 
 @end

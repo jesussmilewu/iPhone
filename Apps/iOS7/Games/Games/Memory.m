@@ -68,7 +68,7 @@ NSString * const kMemoryUserInfoCardsKey = @"kMemoryUserInfoCardsKey";
     
     while(theCount > 0) {
         NSUInteger theIndex = rand() % theCount;
-        Card *theCard = [theOrderedCards objectAtIndex:theIndex];
+        Card *theCard = theOrderedCards[theIndex];
         
         theCard.index = theCards.count;
         [theCards addObject:theCard];
@@ -101,8 +101,8 @@ NSString * const kMemoryUserInfoCardsKey = @"kMemoryUserInfoCardsKey";
     NSArray *theCards = self.flippedCards;
     
     if(theCards.count == 2) {
-        if([(Card *)[theCards objectAtIndex:0] type] == [(Card *)[theCards objectAtIndex:1] type]) {
-            NSDictionary *theInfo = [NSDictionary dictionaryWithObjectsAndKeys:theCards, kMemoryUserInfoCardsKey, nil];
+        if([(Card *)theCards[0] type] == [(Card *)theCards[1] type]) {
+            NSDictionary *theInfo = @{kMemoryUserInfoCardsKey: theCards};
             [theCards enumerateObjectsUsingBlock:^(id inCard, NSUInteger inIndex, BOOL *outStop) {
                 [inCard setSolved:YES];                
             }];
@@ -130,12 +130,12 @@ NSString * const kMemoryUserInfoCardsKey = @"kMemoryUserInfoCardsKey";
         NSArray *theCards = [self.flippedCards filteredArrayUsingPredicate:thePredicate];
 
         if(theCard.showsFrontSide) {
-            theCards = theCards == nil ? [NSArray arrayWithObject:theCard] : [theCards arrayByAddingObject:theCard];
+            theCards = theCards == nil ? @[theCard] : [theCards arrayByAddingObject:theCard];
             self.flipCount++;
         }
         self.flippedCards = theCards;
         if(theCards.count > 2) {
-            [[theCards objectAtIndex:0] setShowsFrontSide:NO];
+            [theCards[0] setShowsFrontSide:NO];
         }
     }
 }

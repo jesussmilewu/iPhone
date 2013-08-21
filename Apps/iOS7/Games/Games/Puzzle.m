@@ -32,16 +32,8 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
 @end
 
 @implementation Puzzle {
-@private
     NSInteger offsets[4];
 }
-
-@synthesize length;
-@synthesize items;
-@synthesize freeIndex;
-@synthesize moveCount;
-@synthesize undoManager;
-@synthesize solved;
 
 + (id)puzzleWithLength:(NSUInteger)inLength {
     return [[self alloc] initWithLength:inLength];
@@ -104,7 +96,7 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
     if(inIndex == theFreeIndex) {
         return PuzzleNoDirection;
     }
-    else if([self rowOfIndex:theFreeIndex isEqualToRowOfIndex:inIndex]) {
+    else if([self rowOfFreeIndexIsEqualToRowOfIndex:inIndex]) {
         return inIndex < theFreeIndex ? PuzzleDirectionRight : PuzzleDirectionLeft;
     }
     else {
@@ -114,12 +106,10 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
 
 - (NSUInteger)nextIndex {
     NSUInteger theSize = self.size;
-    NSUInteger theIndex = 0;
-    PuzzleDirection theDirection = PuzzleNoDirection;
-    
-    while(theDirection == PuzzleNoDirection) {
+    NSUInteger theIndex = rand() % theSize;
+
+    while(theIndex == self.freeIndex) {
         theIndex = rand() % theSize;
-        theDirection = [self tiltDirectionForIndex:theIndex];
     }
     return theIndex;
 }
@@ -141,18 +131,20 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
     [self.undoManager removeAllActionsWithTarget:self];
 }
 
-- (BOOL)rowOfIndex:(NSUInteger)inFromIndex isEqualToRowOfIndex:(NSUInteger)inToIndex {
+- (BOOL)rowOfFreeIndexIsEqualToRowOfIndex:(NSUInteger)inToIndex {
     NSUInteger theLength = self.length;
     NSUInteger theSize = self.size;
+    NSUInteger theIndex = self.freeIndex;
 
-    return inFromIndex < theSize && inToIndex < theSize && (inFromIndex / theLength) == (inToIndex / theLength);
+    return inToIndex < theSize && (theIndex / theLength) == (inToIndex / theLength);
 }
 
-- (BOOL)columnOfIndex:(NSUInteger)inFromIndex isEqualColumnOfIndex:(NSUInteger)inToIndex {
+- (BOOL)columnOfFreeIndexIsEqualColumnOfIndex:(NSUInteger)inToIndex {
     NSUInteger theLength = self.length;
     NSUInteger theSize = self.size;
-    
-    return inFromIndex < theSize && inToIndex < theSize && (inFromIndex % theLength) == (inToIndex % theLength);
+    NSUInteger theIndex = self.freeIndex;
+
+    return inToIndex < theSize && (theIndex % theLength) == (inToIndex % theLength);
 }
 
 - (void)swapItemFromIndex:(NSUInteger)inFromIndex toIndex:(NSUInteger)inToIndex {
@@ -167,12 +159,10 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
                 withDirection:(PuzzleDirection)inDirection 
                     fromIndex:(NSUInteger)inFromIndex 
                       toIndex:(NSUInteger)inToIndex {
-    NSDictionary *theInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                             [NSNumber numberWithUnsignedInteger:inDirection], kPuzzleDirectionKey,
-                             [NSNumber numberWithUnsignedInteger:inFromIndex], kPuzzleFromIndexKey,
-                             [NSNumber numberWithUnsignedInteger:inToIndex], kPuzzleToIndexKey,
-                             nil];
-    
+    NSDictionary *theInfo = @{kPuzzleDirectionKey: @(inDirection),
+                              kPuzzleFromIndexKey: @(inFromIndex),
+                              kPuzzleToIndexKey: @(inToIndex)};
+
     [[NSNotificationCenter defaultCenter] postNotificationName:inName object:self userInfo:theInfo];
 }
 
@@ -181,8 +171,8 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
         NSUInteger theFreeIndex = self.freeIndex;
         NSUInteger theIndex = theFreeIndex + offsets[inDirection];
         
-        if([self rowOfIndex:theFreeIndex isEqualToRowOfIndex:theIndex] || 
-           [self columnOfIndex:theFreeIndex isEqualColumnOfIndex:theIndex]) {
+        if([self rowOfFreeIndexIsEqualToRowOfIndex:theIndex] ||
+           [self columnOfFreeIndexIsEqualColumnOfIndex:theIndex]) {
             PuzzleDirection theReverseDirection = PuzzleDirectionRevert(inDirection);
             Puzzle *thePuzzle = [self.undoManager prepareWithInvocationTarget:self];
             

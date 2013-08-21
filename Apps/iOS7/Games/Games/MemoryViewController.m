@@ -84,15 +84,15 @@ const NSUInteger kMemorySize = 6 * 6;
     NSUInteger theSize = theCards.count;
     
     for(NSUInteger theIndex = 0; theIndex < theSize; ++theIndex) {
-        Card *theCard = [theCards objectAtIndex:theIndex];
-        CardView *theCardView = [theViews objectAtIndex:theIndex];
+        Card *theCard = theCards[theIndex];
+        CardView *theCardView = theViews[theIndex];
         
         [theCardView updateWithCard:theCard]; 
     }
 }
 
 - (IBAction)cardTouched:(id)inCardView {
-    Card *theCard = [self.memory.cards objectAtIndex:[inCardView tag]];
+    Card *theCard = (self.memory.cards)[[inCardView tag]];
     
     theCard.showsFrontSide = !theCard.showsFrontSide;
 }
@@ -103,7 +103,7 @@ const NSUInteger kMemorySize = 6 * 6;
 
 - (void)cardDidFlipped:(NSNotification *)inNotification {
     Card *theCard = inNotification.object;
-    CardView *theView = [self.memoryView.subviews objectAtIndex:theCard.index];
+    CardView *theView = (self.memoryView.subviews)[theCard.index];
     
     [theView showFrontSide:theCard.showsFrontSide withAnimationCompletion:^(BOOL inFinished) {
         [self.memory checkFlippedCards];
@@ -111,19 +111,19 @@ const NSUInteger kMemorySize = 6 * 6;
 }
 
 - (void)cardsDidSolved:(NSNotification *)inNotification {
-    NSArray *theCards = [inNotification.userInfo objectForKey:kMemoryUserInfoCardsKey];
+    NSArray *theCards = (inNotification.userInfo)[kMemoryUserInfoCardsKey];
     
     [UIView animateWithDuration:0.75
                      animations:^{
                          for(Card *theCard in theCards) {
-                             CardView *theView = [self.memoryView.subviews objectAtIndex:theCard.index];
+                             CardView *theView = (self.memoryView.subviews)[theCard.index];
 
                              theView.transform = CGAffineTransformScale(CGAffineTransformMakeRotation(M_PI), 0.1, 0.1);
                          }        
                      }
                      completion:^(BOOL inFinished) {
                          for(Card *theCard in theCards) {
-                             CardView *theView = [self.memoryView.subviews objectAtIndex:theCard.index];
+                             CardView *theView = (self.memoryView.subviews)[theCard.index];
                              
                              theView.hidden = theCard.solved;
                              theView.transform = CGAffineTransformIdentity;
@@ -140,8 +140,8 @@ const NSUInteger kMemorySize = 6 * 6;
     UIViewAnimationOptions theOptions = inShow ? UIViewAnimationOptionTransitionCurlUp : UIViewAnimationOptionTransitionCurlDown;
     
     if(inIndex < theViews.count) {
-        Card *theCard = [self.memory.cards objectAtIndex:inIndex];
-        CardView *theView = [theViews objectAtIndex:inIndex];
+        Card *theCard = (self.memory.cards)[inIndex];
+        CardView *theView = theViews[inIndex];
         
         [UIView transitionWithView:theView duration:0.25
                            options:theOptions

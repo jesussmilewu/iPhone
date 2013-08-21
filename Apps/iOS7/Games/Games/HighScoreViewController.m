@@ -84,7 +84,7 @@ static NSString * const kScoreFilters[] = {
     NSSortDescriptor *theDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"score" ascending:YES];
     
     theFetch.entity = theEntity;
-    theFetch.sortDescriptors = [NSArray arrayWithObject:theDescriptor];
+    theFetch.sortDescriptors = @[theDescriptor];
     if(theFilter) {
         theFetch.predicate = [NSPredicate predicateWithFormat:@"game = %@", theFilter];
     }
@@ -122,14 +122,14 @@ static NSString * const kScoreFilters[] = {
 }
 
 - (NSInteger)tableView:(UITableView *)inTableView numberOfRowsInSection:(NSInteger)inSection {
-    id<NSFetchedResultsSectionInfo> theInfo = [[self.fetchedResultsController sections] objectAtIndex:inSection];
+    id<NSFetchedResultsSectionInfo> theInfo = [self.fetchedResultsController sections][inSection];
     
     return [theInfo numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)inTableView cellForRowAtIndexPath:(NSIndexPath *)inIndexPath {
     UITableViewCell *theCell = [inTableView dequeueReusableCellWithIdentifier:@"score"];
-    Score *theScore = [self.fetchedResultsController.fetchedObjects objectAtIndex:inIndexPath.row];
+    Score *theScore = (self.fetchedResultsController.fetchedObjects)[inIndexPath.row];
     
     [self applyScore:theScore toCell:theCell];
     return theCell;
@@ -150,17 +150,17 @@ static NSString * const kScoreFilters[] = {
     
     switch(inType) {
         case NSFetchedResultsChangeInsert:
-            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:inNewIndexPath] 
+            [self.tableView insertRowsAtIndexPaths:@[inNewIndexPath] 
                                   withRowAnimation:UITableViewRowAnimationRight];
             break;
         case NSFetchedResultsChangeDelete:
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:inIndexPath] 
+            [self.tableView deleteRowsAtIndexPaths:@[inIndexPath] 
                                   withRowAnimation:UITableViewRowAnimationRight];
             break;
         case NSFetchedResultsChangeMove:
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:inIndexPath] 
+            [self.tableView deleteRowsAtIndexPaths:@[inIndexPath] 
                                   withRowAnimation:UITableViewRowAnimationFade];
-            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:inNewIndexPath] 
+            [self.tableView insertRowsAtIndexPaths:@[inNewIndexPath] 
                                   withRowAnimation:UITableViewRowAnimationFade];
             break;
         case NSFetchedResultsChangeUpdate:

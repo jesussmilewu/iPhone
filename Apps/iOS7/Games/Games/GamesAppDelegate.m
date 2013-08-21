@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong, readwrite) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, strong, readwrite) NSPersistentStoreCoordinator *storeCoordinator;
+@property (nonatomic, strong, readwrite) CMMotionManager *motionManager;
 
 @end
 
@@ -23,6 +24,8 @@
 
     self.managedObjectContext.persistentStoreCoordinator = self.storeCoordinator;
     theTabBarController.customizableViewControllers = theTabBarController.viewControllers;
+    self.motionManager = [CMMotionManager new];
+    [self.motionManager setAccelerometerUpdateInterval:0.1];
     return YES;
 }
 
