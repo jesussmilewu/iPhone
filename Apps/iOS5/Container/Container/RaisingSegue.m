@@ -16,7 +16,7 @@
     CGRect theBounds = theFromViewController.view.bounds;
     UIView *theView = theToViewController.view;
     UIView *theBackgroundView = [[UIView alloc] initWithFrame:theBounds];
-    
+
     [theFromViewController addChildViewController:theToViewController];
     theBackgroundView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
     theBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;

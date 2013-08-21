@@ -20,6 +20,7 @@ typedef enum {
 @property (nonatomic, strong) NSCalendar *calendar;
 @property (nonatomic) BOOL showDigits;
 @property (nonatomic) PartitionOfDial partitionOfDial;
+@property (nonatomic, strong) UIColor *dialColor;
 
 - (void)startAnimation;
 - (void)stopAnimation;

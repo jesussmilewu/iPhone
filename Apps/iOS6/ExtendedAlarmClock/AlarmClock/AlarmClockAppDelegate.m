@@ -36,6 +36,16 @@
     [theDefaults registerDefaults:@{ @"showDigits": @YES,
                                      @"partitionOfDial" : @(PartitionOfDialMinutes),
                                      @"playSound": @YES }];
+
+    // Alle Labels haben eine graue Schriftfarbe
+    [[UILabel appearance] setTextColor:[UIColor darkGrayColor]];
+    // Die Buttons in einer Navigationsleiste sind rot.
+    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTintColor:[UIColor redColor]];
+    // Die Labels in einem Tableview sind blau, sofern sie nicht
+    // in einer Zelle liegen.
+    [[UILabel appearanceWhenContainedIn:[UITableView class], nil] setTextColor:[UIColor blueColor]];
+    [[UILabel appearanceWhenContainedIn:[UITableViewCell class], [UITableView class], nil] setTextColor:[UIColor darkGrayColor]];
+    [[ClockView appearance] setDialColor:[UIColor whiteColor]];
     return YES;
 }
 							
