@@ -19,7 +19,7 @@
     UITapGestureRecognizer *theRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     CATransform3D theTransform = CATransform3DIdentity;
     
-    theTransform.m34 = 0.0005;
+    theTransform.m34 = -0.005;
     self.view.layer.sublayerTransform = theTransform;
     [self.pieView addGestureRecognizer:theRecognizer];
 }
@@ -51,7 +51,7 @@
     theAnimation.toValue = @(-M_PI);
     theAnimation.autoreverses = YES;
     theAnimation.repeatCount = 1;
-    theAnimation.duration = 10.0;
+    theAnimation.duration = 4.0;
     [theLayer addAnimation:theAnimation forKey:@"transform.rotation.x"];
     /*
     CABasicAnimation *theAnimation = [CABasicAnimation animation];
