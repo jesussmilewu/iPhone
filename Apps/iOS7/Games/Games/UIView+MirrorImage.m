@@ -42,7 +42,8 @@
     CGImageRef theImage = NULL;
     CGColorSpaceRef theColorSpace = CGColorSpaceCreateDeviceGray();
     CGContextRef theContext = CGBitmapContextCreate(NULL, inSize.width, inSize.height,
-                                                    8, 0, theColorSpace, kCGBitmapAlphaInfoMask);
+                                                    8, 0, theColorSpace,
+                                                    kCGBitmapByteOrderDefault);
     CGFloat theColors[] = {inGray, 1.0, 0.0, 1.0};
     CGGradientRef theGradient = CGGradientCreateWithColorComponents(theColorSpace, theColors, NULL, 2);
     CGContextDrawLinearGradient(theContext, theGradient,

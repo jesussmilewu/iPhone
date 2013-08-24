@@ -18,9 +18,6 @@ static NSString * const kDigitKey = @"digit";
 
 @implementation DigitView
 
-@synthesize font;
-@synthesize fromValue;
-
 + (id)layerClass {
     return [DigitLayer class];
 }

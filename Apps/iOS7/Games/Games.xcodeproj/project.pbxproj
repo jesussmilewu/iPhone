@@ -46,6 +46,7 @@
 		ABC5FFFF17C2A114004BAB78 /* GradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5FFFB17C2A114004BAB78 /* GradientButton.m */; };
 		ABE3131317C55E0600B143CC /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE3131117C55E0600B143CC /* CoreMotion.framework */; };
 		ABE3131417C55E0600B143CC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE3131217C55E0600B143CC /* QuartzCore.framework */; };
+		ABE3131517C670CD00B143CC /* Puzzle.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5000517C2A13D004BAB78 /* Puzzle.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -213,10 +214,10 @@
 				ABC5FFD617C29FF2004BAB78 /* Games.xcdatamodel */,
 				ABC5FFD717C29FF2004BAB78 /* GameViewController.h */,
 				ABC5FFD817C29FF2004BAB78 /* GameViewController.m */,
-				ABC5FFB917C29E3D004BAB78 /* Images.xcassets */,
-				ABC5FFA517C29E3D004BAB78 /* Supporting Files */,
 				ABC5002717C2A692004BAB78 /* UIViewController+Games.h */,
 				ABC5002817C2A692004BAB78 /* UIViewController+Games.m */,
+				ABC5FFB917C29E3D004BAB78 /* Images.xcassets */,
+				ABC5FFA517C29E3D004BAB78 /* Supporting Files */,
 			);
 			path = Games;
 			sourceTree = "<group>";
@@ -433,6 +434,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABC5FFCD17C29E3D004BAB78 /* GamesTests.m in Sources */,
+				ABE3131517C670CD00B143CC /* Puzzle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

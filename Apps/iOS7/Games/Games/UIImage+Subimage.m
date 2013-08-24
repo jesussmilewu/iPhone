@@ -11,8 +11,13 @@
 @implementation UIImage(Subimage)
 
 - (UIImage *)subimageWithRect:(CGRect)inRect {
-    CGImageRef theImage = CGImageCreateWithImageInRect(self.CGImage, inRect);
-    UIImage *theResult = [UIImage imageWithCGImage:theImage];
+    CGFloat theScale = self.scale;
+    CGRect theRect = CGRectMake(theScale * CGRectGetMinX(inRect),
+                                theScale * CGRectGetMinY(inRect),
+                                theScale * CGRectGetWidth(inRect),
+                                theScale * CGRectGetHeight(inRect));
+    CGImageRef theImage = CGImageCreateWithImageInRect(self.CGImage, theRect);
+    UIImage *theResult = [UIImage imageWithCGImage:theImage scale:theScale orientation:UIImageOrientationUp];
                     
     CGImageRelease(theImage);
     return theResult;
@@ -20,9 +25,9 @@
 
 - (NSArray *)splitIntoSubimagesWithRows:(NSUInteger)inRows columns:(NSUInteger)inColumns {
     CGSize theSize = self.size;
-    CGRect theRect = CGRectMake(0.0, 0.0, 
-                                self.scale * theSize.width / inColumns, 
-                                self.scale * theSize.height / inRows);
+    CGRect theRect = CGRectMake(0.0, 0.0,
+                                theSize.width / inColumns,
+                                theSize.height / inRows);
     NSMutableArray *theResult = [NSMutableArray arrayWithCapacity:inRows * inColumns];
     
     theSize = theRect.size;

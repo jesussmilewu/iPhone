@@ -174,7 +174,7 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
         if([self rowOfFreeIndexIsEqualToRowOfIndex:theIndex] ||
            [self columnOfFreeIndexIsEqualColumnOfIndex:theIndex]) {
             PuzzleDirection theReverseDirection = PuzzleDirectionRevert(inDirection);
-            Puzzle *thePuzzle = [self.undoManager prepareWithInvocationTarget:self];
+            id theProxy = [self.undoManager prepareWithInvocationTarget:self];
             
             self.moveCount += inOffset;            
             [self swapItemFromIndex:theFreeIndex toIndex:theIndex];
@@ -183,7 +183,7 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
                               fromIndex:theIndex 
                                 toIndex:theFreeIndex];
             self.freeIndex = theIndex;
-            [thePuzzle tiltToDirection:theReverseDirection withCountOffset:-inOffset];
+            [theProxy tiltToDirection:theReverseDirection withCountOffset:-inOffset];
             return YES;
         }
     }

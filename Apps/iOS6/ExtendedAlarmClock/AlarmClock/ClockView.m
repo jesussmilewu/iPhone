@@ -108,8 +108,8 @@
     CGContextFillPath(theContext);
     CGContextAddEllipseInRect(theContext, theBounds);
     CGContextClip(theContext);
-    CGContextSetRGBStrokeColor(theContext, 0.25, 0.25, 0.25, 1.0);
-    CGContextSetRGBFillColor(theContext, 0.25, 0.25, 0.25, 1.0);
+    CGContextSetStrokeColorWithColor(theContext, self.tintColor.CGColor);
+    CGContextSetFillColorWithColor(theContext, self.tintColor.CGColor);
     CGContextSetLineWidth(theContext, theRadius / 20.0);
     CGContextSetLineCap(theContext, kCGLineCapRound);
     if(self.partitionOfDial != PartitionOfDialNone) {
