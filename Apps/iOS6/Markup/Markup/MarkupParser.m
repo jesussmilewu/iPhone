@@ -114,7 +114,7 @@
 @synthesize attributes;
 
 + (id)markupWithPosition:(NSUInteger)inPosition attributes:(NSDictionary *)inAttributes {
-    id theTag = [[[self class] alloc] init];
+    Markup *theTag = [[[self class] alloc] init];
     NSMutableDictionary *theAttributes = [NSMutableDictionary dictionaryWithDictionary:inAttributes];
 
     [theTag setPosition:inPosition];
