@@ -14,7 +14,7 @@
 
 #define USE_CACHING 0
 
-@interface YouTubeCollectionViewController ()<UICollectionViewDelegateFlowLayout, UISearchBarDelegate>
+@interface YouTubeCollectionViewController ()<UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UIPopoverControllerDelegate>
 
 @property (copy, nonatomic) NSArray *items;
 @property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
@@ -22,9 +22,6 @@
 @end
 
 @implementation YouTubeCollectionViewController
-
-@synthesize query;
-@synthesize items;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -98,6 +95,10 @@
         YouTubeWebViewController *theController = inSegue.destinationViewController;
 
         theController.url = [NSURL URLWithString:@"http://www.youtube.com/yt/dev/de/"];
+        [inSender setEnabled:NO];
+    }
+    if([inSegue respondsToSelector:@selector(popoverController)]) {
+        [[(id)inSegue popoverController] setDelegate:self];
     }
 }
 
@@ -181,6 +182,14 @@
     [inSearchBar endEditing:YES];
     self.query = inSearchBar.text;
     [self updateItems];
+}
+
+#pragma mark UIPopoverControllerDelegate
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)inPopoverController {
+    id theButton = self.toolbarItems[0];
+
+    [theButton setEnabled:YES];
 }
 
 @end
