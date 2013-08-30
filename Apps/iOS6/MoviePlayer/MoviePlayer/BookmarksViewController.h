@@ -18,7 +18,7 @@
 
 @protocol BookmarksViewControllerDelegate<NSObject>
 
-- (UIImage *)bookmarksViewController:(BookmarksViewController *)inController imageAtTime:(NSTimeInterval)inTime;
+- (void)bookmarksViewController:(BookmarksViewController *)inController needsImageAtTime:(NSTimeInterval)inTime;
 - (void)bookmarksViewController:(BookmarksViewController *)inController didUpdatePlaybackTime:(NSTimeInterval)inTime;
 
 @end

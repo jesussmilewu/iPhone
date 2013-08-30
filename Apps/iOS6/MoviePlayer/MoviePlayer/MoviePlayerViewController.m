@@ -75,8 +75,9 @@
 
 #pragma mark BookmarksViewControllerDelegate
 
-- (UIImage *)bookmarksViewController:(BookmarksViewController *)inController imageAtTime:(NSTimeInterval)inTime {
-    return [self.moviePlayerController thumbnailImageAtTime:inTime timeOption:MPMovieTimeOptionNearestKeyFrame];
+- (void)bookmarksViewController:(BookmarksViewController *)inController needsImageAtTime:(NSTimeInterval)inTime {
+    [self.moviePlayerController requestThumbnailImagesAtTimes:@[@(inTime)]
+                                                   timeOption:MPMovieTimeOptionExact];
 }
 
 - (void)bookmarksViewController:(BookmarksViewController *)inController didUpdatePlaybackTime:(NSTimeInterval)inTime {

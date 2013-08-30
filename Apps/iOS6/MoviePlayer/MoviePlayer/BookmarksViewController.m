@@ -10,6 +10,7 @@
 #import "UIViewController+MoviePlayer.h"
 #import "MovieCell.h"
 #import <QuartzCore/QuartzCore.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 static const CGFloat kAngle = 1.5 * M_PI / 180.0;
 
@@ -31,7 +32,51 @@ static const CGFloat kAngle = 1.5 * M_PI / 180.0;
 - (void)viewWillAppear:(BOOL)inAnimated {
     [super viewWillAppear:inAnimated];
     self.items = self.bookmarks;
+    [[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerThumbnailImageRequestDidFinishNotification
+                                                      object:nil
+                                                       queue:[NSOperationQueue mainQueue]
+                                                  usingBlock:^(NSNotification *inNotification) {
+                                                      NSDictionary *theInfo = inNotification.userInfo;
+                                                      UIImage *theImage = theInfo[MPMoviePlayerThumbnailImageKey];
+                                                      NSTimeInterval theTime = [theInfo[MPMoviePlayerThumbnailTimeKey] doubleValue];
+
+                                                      [self updateImage:theImage withTime:theTime];
+                                                  }];
     [self.collectionView reloadData];
+}
+
+- (void)viewWillDisappear:(BOOL)inAnimated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super viewWillDisappear:inAnimated];
+}
+
+- (void)updateImage:(UIImage *)inImage withTime:(NSTimeInterval)inTime {
+    NSUInteger theIndex = [self nearestIndexForTime:inTime];
+
+    if(theIndex != NSNotFound) {
+        NSIndexPath *thePath = [NSIndexPath indexPathForRow:theIndex inSection:0];
+        MovieCell *theCell = (MovieCell *)[self.collectionView cellForItemAtIndexPath:thePath];
+
+        theCell.image = inImage;
+    }
+}
+
+- (NSUInteger)nearestIndexForTime:(NSTimeInterval)inTime {
+    double theDelta = MAXFLOAT;
+    NSUInteger theNearestIndex = NSNotFound;
+    NSUInteger theIndex = 0;
+
+    for(id theValue in self.bookmarks) {
+        double theCurrentDelta = fabs(inTime - [theValue doubleValue]);
+
+        if(theCurrentDelta < theDelta) {
+            theDelta = theCurrentDelta;
+            theNearestIndex = theIndex;
+        }
+        ++theIndex;
+    }
+    NSLog(@"nearestIndexForTime:%.3f (delta = %.6f)", inTime, theDelta);
+    return theNearestIndex;
 }
 
 - (BOOL)deleteMode {
@@ -170,7 +215,8 @@ static const CGFloat kAngle = 1.5 * M_PI / 180.0;
 
     theCell.text = [NSString stringWithFormat:@"%d:%02d,%03ds",
                     (int)(theTime / 60), (int)theTime % 60, (int)(theTime * 1000) % 1000];
-    theCell.image = [self.delegate bookmarksViewController:self imageAtTime:theTime];
+    theCell.image = nil;
+    [self.delegate bookmarksViewController:self needsImageAtTime:theTime];
     if(self.deleteMode) {
         CAAnimation *theAnimation = [self deleteAnimation];
 

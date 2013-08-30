@@ -11,14 +11,13 @@
 
 @interface MovieCell()
 
-@property (nonatomic, weak) IBOutlet UIView *imageView;
+@property (nonatomic, weak) IBOutlet UIImageView *imageView;
 @property (nonatomic, weak) IBOutlet UILabel *textLabel;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
 @end
 
 @implementation MovieCell
-
-@synthesize image;
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -26,9 +25,18 @@
     self.layer.borderWidth = 1.0;
 }
 
+- (UIImage *)image {
+    return self.imageView.image;
+}
+
 - (void)setImage:(UIImage *)inImage {
-    image = inImage;
-    self.imageView.layer.contents = (id)inImage.CGImage;
+    self.imageView.image = inImage;
+    if(inImage == nil) {
+        [self.activityIndicatorView startAnimating];
+    }
+    else {
+        [self.activityIndicatorView stopAnimating];
+    }
 }
 
 - (NSString *)text {
