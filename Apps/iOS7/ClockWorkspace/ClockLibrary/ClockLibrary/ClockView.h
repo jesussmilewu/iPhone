@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+#if DEBUG
+#define DEBUG_LOG(MESSAGE, ...) NSLog(MESSAGE, __VA_ARGS__)
+#else
+#define DEBUG_LOG(MESSAGE, ...) /**/
+#endif
+
 /*!
  Ein ClockView zeichnet ein Zifferblatt mit Uhrzeigern.
 */

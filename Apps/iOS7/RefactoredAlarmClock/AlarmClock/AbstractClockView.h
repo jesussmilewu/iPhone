@@ -1,17 +1,14 @@
 //
-//  ClockView.h
-//  AlarmClock
+//  AbstractClockView.h
+//  
 //
-//  Created by Clemens Wagner on 17.07.13.
-//  Copyright (c) 2013 Cocoaneheads. All rights reserved.
+//  Created by Clemens Wagner on 01.09.13.
+//
 //
 
 #import <UIKit/UIKit.h>
 
-/*!
- Ein ClockView zeichnet ein Zifferblatt mit Uhrzeigern.
-*/
-@interface ClockView : UIView
+@interface AbstractClockView : UIView
 
 /// Die angezeigte Zeit des Views
 @property (nonatomic, strong) NSDate *time;
@@ -26,6 +23,7 @@
  @see calendar
  */
 - (void)startAnimation;
+
 /*!
  stoppt die kontinuierliche Aktualisierung der Zeit.
 

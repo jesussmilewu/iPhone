@@ -19,9 +19,6 @@
 
 @implementation GradientButton
 
-@synthesize backgroundLayer;
-
-
 - (void)awakeFromNib {
     [super awakeFromNib];
     CALayer *theLayer = self.layer;
