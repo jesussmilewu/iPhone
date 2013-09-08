@@ -33,6 +33,10 @@
     [self.window makeKeyAndVisible];
     return YES;
 }
+
+- (void)helloWorld {
+	NSLog(@"Hello AlarmClock");
+}
 							
 - (void)application:(UIApplication *)inApplication didReceiveLocalNotification:(UILocalNotification *)inNotification {
     if(inApplication.applicationState == UIApplicationStateActive) {
