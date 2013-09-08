@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AB01EE9017C551A00001E01A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB01EE8F17C551A00001E01A /* CoreData.framework */; };
+		AB79529917DC72B200B1F200 /* HighscoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5FFEE17C2A0DE004BAB78 /* HighscoreViewController.m */; };
 		ABC5000A17C2A13D004BAB78 /* flower.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ABC5000017C2A13D004BAB78 /* flower.jpg */; };
 		ABC5000B17C2A13D004BAB78 /* flower@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ABC5000117C2A13D004BAB78 /* flower@2x.jpg */; };
 		ABC5000E17C2A13D004BAB78 /* Puzzle.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5000517C2A13D004BAB78 /* Puzzle.m */; };
@@ -39,7 +40,6 @@
 		ABC5FFE717C2A0B1004BAB78 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = ABC5FFE217C2A0B1004BAB78 /* index.html */; };
 		ABC5FFE817C2A0B1004BAB78 /* games.css in Resources */ = {isa = PBXBuildFile; fileRef = ABC5FFE317C2A0B1004BAB78 /* games.css */; };
 		ABC5FFF117C2A0DE004BAB78 /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5FFEC17C2A0DE004BAB78 /* Score.m */; };
-		ABC5FFF217C2A0DE004BAB78 /* HighScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5FFEE17C2A0DE004BAB78 /* HighScoreViewController.m */; };
 		ABC5FFFC17C2A114004BAB78 /* DigitView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5FFF517C2A114004BAB78 /* DigitView.m */; };
 		ABC5FFFD17C2A114004BAB78 /* NumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5FFF717C2A114004BAB78 /* NumberView.m */; };
 		ABC5FFFE17C2A114004BAB78 /* UIView+MirrorImage.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5FFF917C2A114004BAB78 /* UIView+MirrorImage.m */; };
@@ -108,8 +108,8 @@
 		ABC5FFE317C2A0B1004BAB78 /* games.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = games.css; sourceTree = "<group>"; };
 		ABC5FFEB17C2A0DE004BAB78 /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
 		ABC5FFEC17C2A0DE004BAB78 /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Score.m; sourceTree = "<group>"; };
-		ABC5FFED17C2A0DE004BAB78 /* HighScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighScoreViewController.h; sourceTree = "<group>"; };
-		ABC5FFEE17C2A0DE004BAB78 /* HighScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighScoreViewController.m; sourceTree = "<group>"; };
+		ABC5FFED17C2A0DE004BAB78 /* HighscoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighscoreViewController.h; sourceTree = "<group>"; };
+		ABC5FFEE17C2A0DE004BAB78 /* HighscoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighscoreViewController.m; sourceTree = "<group>"; };
 		ABC5FFF417C2A114004BAB78 /* DigitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DigitView.h; sourceTree = "<group>"; };
 		ABC5FFF517C2A114004BAB78 /* DigitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DigitView.m; sourceTree = "<group>"; };
 		ABC5FFF617C2A114004BAB78 /* NumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberView.h; sourceTree = "<group>"; };
@@ -282,8 +282,8 @@
 			children = (
 				ABC5FFEB17C2A0DE004BAB78 /* Score.h */,
 				ABC5FFEC17C2A0DE004BAB78 /* Score.m */,
-				ABC5FFED17C2A0DE004BAB78 /* HighScoreViewController.h */,
-				ABC5FFEE17C2A0DE004BAB78 /* HighScoreViewController.m */,
+				ABC5FFED17C2A0DE004BAB78 /* HighscoreViewController.h */,
+				ABC5FFEE17C2A0DE004BAB78 /* HighscoreViewController.m */,
 			);
 			name = Highscore;
 			sourceTree = "<group>";
@@ -407,7 +407,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABC5FFF117C2A0DE004BAB78 /* Score.m in Sources */,
-				ABC5FFF217C2A0DE004BAB78 /* HighScoreViewController.m in Sources */,
 				ABC5000F17C2A13D004BAB78 /* PuzzleViewController.m in Sources */,
 				ABC5FFFD17C2A114004BAB78 /* NumberView.m in Sources */,
 				ABC5FFFF17C2A114004BAB78 /* GradientButton.m in Sources */,
@@ -418,6 +417,7 @@
 				ABC5FFFE17C2A114004BAB78 /* UIView+MirrorImage.m in Sources */,
 				ABC5002417C2A174004BAB78 /* FrontView.m in Sources */,
 				ABC5FFDA17C29FF2004BAB78 /* GameViewController.m in Sources */,
+				AB79529917DC72B200B1F200 /* HighscoreViewController.m in Sources */,
 				ABC5002317C2A174004BAB78 /* CardView.m in Sources */,
 				ABC5FFD917C29FF2004BAB78 /* Games.xcdatamodel in Sources */,
 				ABC5000E17C2A13D004BAB78 /* Puzzle.m in Sources */,

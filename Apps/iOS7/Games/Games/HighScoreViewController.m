@@ -1,4 +1,4 @@
-#import "HighScoreViewController.h"
+#import "HighscoreViewController.h"
 #import "Score.h"
 #import "GamesAppDelegate.h"
 
@@ -6,14 +6,14 @@ static NSString * const kScoreFilters[] = {
     nil, @"puzzle", @"memory"
 };
 
-@interface HighScoreViewController()<NSFetchedResultsControllerDelegate>
+@interface HighscoreViewController()<NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 
 @end
 
-@implementation HighScoreViewController
+@implementation HighscoreViewController
 
 @synthesize filterControl;
 @synthesize managedObjectContext;
@@ -64,7 +64,24 @@ static NSString * const kScoreFilters[] = {
 
 - (void)managedObjectContextDidSave:(NSNotification *)inNotification {
     if(inNotification.object != self.managedObjectContext) {
+        NSInteger theCount = [inNotification.userInfo[NSInsertedObjectsKey] count];
+
         [self.managedObjectContext mergeChangesFromContextDidSaveNotification:inNotification];
+        [self updateBadgeWithCount:theCount];
+    }
+}
+
+- (void)updateBadgeWithCount:(NSInteger)inCount {
+    UITabBarItem *theItem = self.navigationController.tabBarItem;
+    NSInteger theCount = [theItem.badgeValue intValue] + inCount;
+
+    if(theCount > 0) {
+        NSString *theValue = [NSString stringWithFormat:@"%d", theCount];
+
+        theItem.badgeValue = theValue;
+    }
+    else {
+        theItem.badgeValue = nil;
     }
 }
 
