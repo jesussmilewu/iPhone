@@ -34,7 +34,7 @@
     return YES;
 }
 
-- (void)helloWorld {
+- (void)helloAlarmClock {
 	NSLog(@"Hello AlarmClock");
 }
 							
