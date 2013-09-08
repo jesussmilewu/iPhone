@@ -22,6 +22,7 @@
 - (BOOL)application:(UIApplication *)inApplication didFinishLaunchingWithOptions:(NSDictionary *)inLaunchOptions {
     UITabBarController *theTabBarController = (UITabBarController *)self.window.rootViewController;
 
+    self.managedObjectContext = [NSManagedObjectContext new];
     self.managedObjectContext.persistentStoreCoordinator = self.storeCoordinator;
     theTabBarController.customizableViewControllers = theTabBarController.viewControllers;
     self.motionManager = [CMMotionManager new];

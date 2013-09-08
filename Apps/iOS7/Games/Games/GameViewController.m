@@ -8,22 +8,15 @@
     return nil;
 }
 
-- (UITabBarItem *)highscoreItem {
-    return nil;
-}
-
 - (void)saveScore:(NSUInteger)inScore {
     if(inScore > 0) {
-        UITabBarItem *theItem = self.highscoreItem;
-        NSString *theValue = [NSString stringWithFormat:@"%d", [theItem.badgeValue intValue] + 1];
         Score *theScore = [NSEntityDescription insertNewObjectForEntityForName:@"Score"
                                                         inManagedObjectContext:self.managedObjectContext];
-        
+
 
         theScore.score = @(inScore);
         theScore.game = self.game;
         [self.managedObjectContext save:NULL];
-        theItem.badgeValue = theValue;
     }
 }
 

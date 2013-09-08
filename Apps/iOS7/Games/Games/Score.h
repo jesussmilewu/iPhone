@@ -10,12 +10,11 @@
 #import <CoreData/CoreData.h>
 
 
-@interface Score : NSManagedObject {
-@private
-}
-@property (nonatomic, strong) NSNumber * score;
-@property (nonatomic, strong) NSDate * creationTime;
-@property (nonatomic, strong) NSDate * updateTime;
-@property (nonatomic, strong) NSString * game;
+@interface Score : NSManagedObject
+
+@property (nonatomic, strong) NSNumber *score;
+@property (nonatomic, strong) NSDate *creationTime;
+@property (nonatomic, strong) NSDate *updateTime;
+@property (nonatomic, strong) NSString *game;
 
 @end
