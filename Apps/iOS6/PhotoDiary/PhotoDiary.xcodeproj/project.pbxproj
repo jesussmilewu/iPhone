@@ -24,6 +24,11 @@
 		ABCFA92917E39F86000CE124 /* twitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABCFA91B17E39F86000CE124 /* twitter@2x.png */; };
 		ABCFA92C17E3AB3E000CE124 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCFA92B17E3AB3E000CE124 /* AVFoundation.framework */; };
 		ABCFA93017E462ED000CE124 /* UINavigationController+BarManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCFA92F17E462ED000CE124 /* UINavigationController+BarManagement.m */; };
+		ABCFA93C17E4B930000CE124 /* AudioPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCFA93517E4B930000CE124 /* AudioPlayerController.m */; };
+		ABCFA93D17E4B930000CE124 /* AudioRecorderController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCFA93717E4B930000CE124 /* AudioRecorderController.m */; };
+		ABCFA93E17E4B930000CE124 /* SubviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCFA93917E4B930000CE124 /* SubviewController.m */; };
+		ABCFA94217E4B97C000CE124 /* MeterView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCFA94117E4B97C000CE124 /* MeterView.m */; };
+		ABCFA94817E4C366000CE124 /* UIToolbar+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCFA94717E4C366000CE124 /* UIToolbar+Extensions.m */; };
 		ABE5784C17DFB84F00BF5DD9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE5784B17DFB84F00BF5DD9 /* Foundation.framework */; };
 		ABE5784E17DFB84F00BF5DD9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE5784D17DFB84F00BF5DD9 /* CoreGraphics.framework */; };
 		ABE5785017DFB84F00BF5DD9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE5784F17DFB84F00BF5DD9 /* UIKit.framework */; };
@@ -83,6 +88,16 @@
 		ABCFA93117E49DBD000CE124 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		ABCFA93217E49DBD000CE124 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		ABCFA93317E49DBD000CE124 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		ABCFA93417E4B930000CE124 /* AudioPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlayerController.h; sourceTree = "<group>"; };
+		ABCFA93517E4B930000CE124 /* AudioPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayerController.m; sourceTree = "<group>"; };
+		ABCFA93617E4B930000CE124 /* AudioRecorderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecorderController.h; sourceTree = "<group>"; };
+		ABCFA93717E4B930000CE124 /* AudioRecorderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecorderController.m; sourceTree = "<group>"; };
+		ABCFA93817E4B930000CE124 /* SubviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubviewController.h; sourceTree = "<group>"; };
+		ABCFA93917E4B930000CE124 /* SubviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubviewController.m; sourceTree = "<group>"; };
+		ABCFA94017E4B97C000CE124 /* MeterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeterView.h; sourceTree = "<group>"; };
+		ABCFA94117E4B97C000CE124 /* MeterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeterView.m; sourceTree = "<group>"; };
+		ABCFA94617E4C366000CE124 /* UIToolbar+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIToolbar+Extensions.h"; sourceTree = "<group>"; };
+		ABCFA94717E4C366000CE124 /* UIToolbar+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIToolbar+Extensions.m"; sourceTree = "<group>"; };
 		ABE5784817DFB84F00BF5DD9 /* PhotoDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABE5784B17DFB84F00BF5DD9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ABE5784D17DFB84F00BF5DD9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -146,6 +161,8 @@
 		ABCFA8FF17E0E0E4000CE124 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				ABCFA94617E4C366000CE124 /* UIToolbar+Extensions.h */,
+				ABCFA94717E4C366000CE124 /* UIToolbar+Extensions.m */,
 				ABCFA92D17E45A34000CE124 /* UITextView+Outlets.h */,
 				ABE5788B17DFBD2100BF5DD9 /* UIImage+ImageTools.h */,
 				ABE5788C17DFBD2100BF5DD9 /* UIImage+ImageTools.m */,
@@ -160,6 +177,12 @@
 		ABCFA90017E0E106000CE124 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				ABCFA93417E4B930000CE124 /* AudioPlayerController.h */,
+				ABCFA93517E4B930000CE124 /* AudioPlayerController.m */,
+				ABCFA93617E4B930000CE124 /* AudioRecorderController.h */,
+				ABCFA93717E4B930000CE124 /* AudioRecorderController.m */,
+				ABCFA93817E4B930000CE124 /* SubviewController.h */,
+				ABCFA93917E4B930000CE124 /* SubviewController.m */,
 				ABE5786517DFB84F00BF5DD9 /* PhotoDiaryViewController.h */,
 				ABE5786617DFB84F00BF5DD9 /* PhotoDiaryViewController.m */,
 				ABE5786817DFB84F00BF5DD9 /* DiaryEntryViewController.h */,
@@ -283,6 +306,8 @@
 		ABE5789917DFC44B00BF5DD9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				ABCFA94017E4B97C000CE124 /* MeterView.h */,
+				ABCFA94117E4B97C000CE124 /* MeterView.m */,
 				ABE5788917DFBD2100BF5DD9 /* RotationView.h */,
 				ABE5788A17DFBD2100BF5DD9 /* RotationView.m */,
 			);
@@ -402,7 +427,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABCFA93D17E4B930000CE124 /* AudioRecorderController.m in Sources */,
+				ABCFA93E17E4B930000CE124 /* SubviewController.m in Sources */,
 				ABE5786A17DFB84F00BF5DD9 /* DiaryEntryViewController.m in Sources */,
+				ABCFA93C17E4B930000CE124 /* AudioPlayerController.m in Sources */,
 				ABCFA90917E37A9A000CE124 /* NSFileManager+StandardDirectories.m in Sources */,
 				ABCFA93017E462ED000CE124 /* UINavigationController+BarManagement.m in Sources */,
 				ABE5785A17DFB84F00BF5DD9 /* main.m in Sources */,
@@ -412,6 +440,8 @@
 				ABE5789117DFBFA700BF5DD9 /* PhotoDiary.xcdatamodeld in Sources */,
 				ABE5788E17DFBD2100BF5DD9 /* UIImage+ImageTools.m in Sources */,
 				ABE5786717DFB84F00BF5DD9 /* PhotoDiaryViewController.m in Sources */,
+				ABCFA94817E4C366000CE124 /* UIToolbar+Extensions.m in Sources */,
+				ABCFA94217E4B97C000CE124 /* MeterView.m in Sources */,
 				ABE5788D17DFBD2100BF5DD9 /* RotationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

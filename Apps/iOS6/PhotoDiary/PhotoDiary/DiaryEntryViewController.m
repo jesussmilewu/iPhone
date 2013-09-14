@@ -109,7 +109,7 @@
 
     self.textView.text = self.diaryEntry.text;
     self.imageView.image = theImage;
-    self.playButton.enabled = [self.diaryEntry mediumForType:kMediumTypeAudio] != nil;
+    //self.playButton.enabled = [self.diaryEntry mediumForType:kMediumTypeAudio] != nil;
     if(self.diaryEntry.text) {
         [self.tweetButton setEnabled:YES];
     }
@@ -196,10 +196,10 @@
 didFinishPickingMediaWithInfo:(NSDictionary *)inInfo {
     UIImage *theImage = [inInfo valueForKey:UIImagePickerControllerEditedImage];
 
-    [inPicker dismissViewControllerAnimated:YES completion:NULL];
     self.diaryEntry.icon = nil;
     self.imageView.image = theImage;
     [self saveImage:theImage];
+    [inPicker dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)inPicker {
