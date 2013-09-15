@@ -9,10 +9,12 @@
 #import "DiaryEntryViewController.h"
 #import "UIImage+ImageTools.h"
 #import "UINavigationController+BarManagement.h"
+#import "AudioPlayerController.h"
+#import "AudioRecorderController.h"
 #import <AVFoundation/AVFoundation.h>
 #import <QuartzCore/QuartzCore.h>
 
-@interface DiaryEntryViewController()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate>
+@interface DiaryEntryViewController()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, AudioRecorderDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
@@ -21,13 +23,14 @@
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *photoLibraryButton;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *recordButton;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *playButton;
-@property (nonatomic, weak) IBOutlet UIBarButtonItem *tweetButton;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *shareButton;
 
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
 
 - (IBAction)takePhoto:(id)inSender;
 - (IBAction)takePhotoFromLibrary:(id)inSender;
 - (IBAction)toggleBars:(id)sender;
+- (IBAction)shareDiaryEntry:(id)sender;
 
 @end
 
@@ -48,6 +51,7 @@
     self.cameraButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
     self.photoLibraryButton.enabled = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
     self.recordButton.enabled = [[AVAudioSession sharedInstance] inputIsAvailable];
+    self.shareButton.enabled = NO;
 }
 
 - (void)viewWillAppear:(BOOL)inAnimated {
@@ -92,16 +96,6 @@
     return theBounds;
 }
 
-/*
-// Foto und Text zwischen den Systemleisten anzeigen
-- (void)viewWillLayoutSubviews {
-    [super viewWillLayoutSubviews];
-    UIView *theView = self.view.subviews[0];
-
-    theView.frame = self.visibleBounds;
-}
-*/
-
 - (void)applyDiaryEntry {
     CGFloat theScale = [[UIScreen mainScreen] scale];
     Medium *theMedium = [self.diaryEntry mediumForType:kMediumTypeImage];
@@ -109,10 +103,8 @@
 
     self.textView.text = self.diaryEntry.text;
     self.imageView.image = theImage;
-    //self.playButton.enabled = [self.diaryEntry mediumForType:kMediumTypeAudio] != nil;
-    if(self.diaryEntry.text) {
-        [self.tweetButton setEnabled:YES];
-    }
+    self.playButton.enabled = [self.diaryEntry mediumForType:kMediumTypeAudio] != nil;
+    self.shareButton.enabled = [self hasSharableContent];
 }
 
 - (void)showPickerWithSourceType:(UIImagePickerControllerSourceType)inSourceType {
@@ -141,6 +133,12 @@
     [self saveDiaryEntry];
 }
 
+- (BOOL)hasSharableContent {
+    DiaryEntry *theEntry = self.diaryEntry;
+
+    return theEntry.text.length > 0 || [theEntry mediumForType:kMediumTypeImage] != nil;
+}
+
 - (BOOL)saveDiaryEntry {
     BOOL theResult = NO;
     NSError *theError = nil;
@@ -149,6 +147,7 @@
     if(!theResult) {
         NSLog(@"saveItem: %@", theError);
     }
+    self.shareButton.enabled = [self hasSharableContent];
     return theResult;
 }
 
@@ -159,6 +158,30 @@
 
     self.diaryEntry.icon = UIImageJPEGRepresentation(theImage, 0.8);
     [self updateMediumData:theData withMediumType:kMediumTypeImage];
+}
+
+- (NSArray *)activityItems {
+    NSMutableArray *theItems = [NSMutableArray array];
+    Medium *theMedium = [self.diaryEntry mediumForType:kMediumTypeImage];
+    NSString *theText = self.diaryEntry.text;
+
+    if(theMedium != nil) {
+        CGFloat theScale = [[UIScreen mainScreen] scale];
+        UIImage *theImage = [UIImage imageWithData:theMedium.data scale:theScale];
+
+        [theItems addObject:theImage];
+    }
+    if([theText length] > 0) {
+        [theItems addObject:theText];
+    }
+    return [theItems copy];
+}
+
+- (IBAction)shareDiaryEntry:(id)inSender {
+    NSArray *theItems = self.activityItems;
+    UIActivityViewController *theController = [[UIActivityViewController alloc] initWithActivityItems:theItems applicationActivities:nil];
+
+    [self presentViewController:theController animated:YES completion:NULL];
 }
 
 - (IBAction)takePhoto:(id)inSender {
@@ -179,6 +202,7 @@
     }
 }
 
+
 - (IBAction)saveText:(id)inSender {
     [self.view endEditing:YES];
     self.diaryEntry.text = self.textView.text;
@@ -188,6 +212,19 @@
 - (IBAction)revertText:(id)inSender {
     [self.view endEditing:YES];
     [self applyDiaryEntry];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)inSegue sender:(id)inSender {
+    if([inSegue.identifier isEqualToString:@"player"]) {
+        AudioPlayerController *thePlayer = inSegue.destinationViewController;
+
+        thePlayer.audioMedium = [self.diaryEntry mediumForType:kMediumTypeAudio];
+    }
+    else if([inSegue.identifier isEqualToString:@"recorder"]) {
+        AudioRecorderController *theRecorder = inSegue.destinationViewController;
+
+        theRecorder.delegate = self;
+    }
 }
 
 #pragma mark UIImagePickerControllerDelegate
@@ -203,6 +240,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)inInfo {
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)inPicker {
+    self.shareButton.enabled = [self hasSharableContent];
     [inPicker dismissViewControllerAnimated:YES completion:NULL];
 }
 
@@ -239,6 +277,16 @@ didFinishPickingMediaWithInfo:(NSDictionary *)inInfo {
     CGPoint thePoint = [inRecognizer locationInView:theView];
 
     return !CGRectContainsPoint(theView.bounds, thePoint);
+}
+
+#pragma mark AudioRecorderDelegate
+
+-(void)audioRecorder:(AudioRecorderController *)inRecorder didRecordToData:(NSData *)inData {
+    [self updateMediumData:inData withMediumType:kMediumTypeAudio];
+    self.playButton.enabled = inData.length > 0;
+}
+
+-(void)audioRecorderDidCancel:(AudioRecorderController *)inRecorder {
 }
 
 @end

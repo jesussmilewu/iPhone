@@ -26,17 +26,6 @@ static const float kMinimalAmplitude = -160.0;
 
 @implementation AudioPlayerController
 
-@synthesize playButton;
-@synthesize slider;
-@synthesize meterView;
-@synthesize timeLabel;
-@synthesize activityIndicator;
-
-@synthesize audioMedium;
-@synthesize audioPlayer;
-@synthesize paused;
-@synthesize updateTimer;
-
 - (void)dealloc {
     [self cancelTimer];
 }
@@ -44,7 +33,6 @@ static const float kMinimalAmplitude = -160.0;
 - (void)viewWillAppear:(BOOL)inAnimated {
     [super viewWillAppear:inAnimated];
     [self clear];
-    self.loading = YES;
 }
 
 - (NSTimeInterval)time {
@@ -86,7 +74,7 @@ static const float kMinimalAmplitude = -160.0;
     else {
         thePlayer.delegate = self;
         thePlayer.meteringEnabled = YES;
-        self.time = slider.value;
+        self.time = self.slider.value;
         self.slider.maximumValue = thePlayer.duration;
         self.loading = NO;
         [self updateTime:nil];
@@ -96,7 +84,7 @@ static const float kMinimalAmplitude = -160.0;
 }
 
 - (IBAction)stop {
-    [self dismissSubviewAnimated:YES];
+    [self dismissAnimated:YES];
 }
 
 - (IBAction)flipPlayback {
@@ -125,13 +113,14 @@ static const float kMinimalAmplitude = -160.0;
 }
 
 - (IBAction)updatePosition {
-    self.audioPlayer.currentTime = slider.value;
+    self.audioPlayer.currentTime = self.slider.value;
     if(!self.paused) {
         [self.audioPlayer play];
     }
 }
 
 - (IBAction)clear {
+    self.paused = YES;
     [self.audioPlayer stop];
     self.audioPlayer = nil;
     [self.meterView clear];
@@ -141,7 +130,7 @@ static const float kMinimalAmplitude = -160.0;
 }
 
 - (IBAction)updateTimeLabel {
-    timeLabel.text = [NSString stringWithFormat:@"%.0fs", slider.value];    
+    self.timeLabel.text = [NSString stringWithFormat:@"%.0fs", self.slider.value];
 }
 
 - (void)startTimer {

@@ -42,9 +42,7 @@ static const float kMinimalAmplitude = -160.0;
 }
 
 - (NSDictionary *)audioRecorderSettings {
-    return @{ AVFormatIDKey: @(kAudioFormatAppleIMA4),
-              AVSampleRateKey: @16000.0,
-              AVNumberOfChannelsKey: @1 };
+    return @{ AVFormatIDKey:@(kAudioFormatAppleIMA4),  AVSampleRateKey:@16000.0, AVNumberOfChannelsKey:@1 };
 }
 
 - (NSData *)data {
@@ -96,11 +94,11 @@ static const float kMinimalAmplitude = -160.0;
     if([self.delegate respondsToSelector:@selector(audioRecorder:didRecordToData:)]) {
         [self.delegate audioRecorder:self didRecordToData:self.data];
     }
-    [self dismissSubviewAnimated:YES];
+    [self dismissAnimated:YES];
 }
 
 - (IBAction)cancel:(id)inSender {
-    [self dismissSubviewAnimated:YES];
+    [self dismissAnimated:YES];
     [self clear];
     if([self.delegate respondsToSelector:@selector(audioRecorderDidCancel:)]) {
         [self.delegate audioRecorderDidCancel:self];
@@ -149,12 +147,6 @@ static const float kMinimalAmplitude = -160.0;
     self.progressView.progress = 0.0;
     [self setTime:0.0];
     [self.meterView clear];
-
-    self.progressView.progress = 0.666;
-    [self setTime:20.0];
-    self.meterView.value = 0.33;
-    self.recordButton.image = [UIImage imageNamed:@"pause.png"];
-
 }
 
 - (void)startTimer {

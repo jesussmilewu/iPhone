@@ -6,7 +6,7 @@
 
 @property(nonatomic, weak) IBOutlet id<SubviewControllerDelegate> delegate;
 
-- (void)dismissSubviewAnimated:(BOOL)inAnimated;
+- (void)dismissAnimated:(BOOL)inAnimated;
 - (void)presentFromViewController:(UIViewController *)inViewController animated:(BOOL)inAnimated;
 
 @end

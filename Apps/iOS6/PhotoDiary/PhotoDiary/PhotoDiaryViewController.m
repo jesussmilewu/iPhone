@@ -8,36 +8,56 @@
 
 #import "PhotoDiaryViewController.h"
 #import "DiaryEntryViewController.h"
+#import "DiaryEntryCell.h"
+#import "AudioPlayerController.h"
 
-@interface PhotoDiaryViewController()
+@interface PhotoDiaryViewController()<NSFetchedResultsControllerDelegate>
 
-- (void)configureCell:(UITableViewCell *)inCell atIndexPath:(NSIndexPath *)inIndexPath;
-- (IBAction)insertNewObject;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, copy) NSArray *searchResult;
+@property (nonatomic, strong) NSIndexPath *selectedIndex;
 
 @end
 
 @implementation PhotoDiaryViewController
 
-- (IBAction)insertNewObject {
-    /*
-    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
-    
-    // If appropriate, configure the new managed object.
-    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
-    
-    // Save the context.
-    NSError *error = nil;
-    if (![context save:&error]) {
-         // Replace this implementation with code to handle the error appropriately.
-         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
-     */
+- (NSFetchRequest *)fetchRequest {
+    NSFetchRequest *theFetch = [[NSFetchRequest alloc] init];
+    NSEntityDescription *theType = [NSEntityDescription entityForName:@"DiaryEntry"
+                                               inManagedObjectContext:self.managedObjectContext];
+    NSSortDescriptor *theDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"creationTime" ascending:NO];
 
+    theFetch.entity = theType;
+    theFetch.sortDescriptors = @[theDescriptor];
+    return theFetch;
+}
+
+- (UITableView *)searchResultsTableView {
+    return self.searchDisplayController.searchResultsTableView;
+}
+
+- (UITableView *)currentTableView {
+    return self.searchDisplayController.isActive ? self.searchResultsTableView : self.tableView;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    NSNotificationCenter *theCenter = [NSNotificationCenter defaultCenter];
+    NSFetchRequest *theRequest = self.fetchRequest;
+    NSFetchedResultsController *theController = [[NSFetchedResultsController alloc] initWithFetchRequest:theRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
+    NSError *theError = nil;
+
+    theController.delegate = self;
+    if([theController performFetch:&theError]) {
+        self.fetchedResultsController = theController;
+    }
+    else {
+        NSLog(@"viewDidLoad: %@", theError);
+    }
+    [theCenter addObserver:self
+                  selector:@selector(managedObjectContextDidSave:)
+                      name:NSManagedObjectContextDidSaveNotification
+                    object:nil];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)inSegue sender:(id)inSender {
@@ -48,132 +68,183 @@
 
         [theController setDiaryEntry:theEntry];
     }
-    /*else {
-        NSIndexPath *theIndexPath = [self.tableView indexPathForSelectedRow];
-        NSManagedObject *theItem = [[self fetchedResultsController] objectAtIndexPath:theIndexPath];
+    else if([inSegue.identifier isEqualToString:@"update"]) {
+        UITableView *theView = self.tableView;
+        NSIndexPath *theIndexPath = [theView indexPathForSelectedRow];
+        id theEntry = [self entryAtIndexPath:theIndexPath];
 
-    }*/
+        [theController setDiaryEntry:theEntry];
+    }
 }
 
-#pragma mark - Table View
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return [[self.fetchedResultsController sections] count];
+- (void)viewWillAppear:(BOOL)inAnimated {
+    [super viewWillAppear:inAnimated];
+    [self.navigationController setToolbarHidden:YES animated:YES];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-    return [sectionInfo numberOfObjects];
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskAll;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    [self configureCell:cell atIndexPath:indexPath];
-    return cell;
+- (void)applyDiaryEntry:(DiaryEntry *)inEntry toCell:(DiaryEntryCell *)inCell {
+    UIImage *theImage = [UIImage imageWithData:inEntry.icon];
+
+    [inCell setIcon:theImage];
+    [inCell setText:inEntry.text];
+    [inCell setDate:inEntry.creationTime];
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (DiaryEntry *)entryAtIndexPath:(NSIndexPath *)inIndexPath {
+    if(self.searchDisplayController.isActive) {
+        return self.searchResult[inIndexPath.row];
+    }
+    else {
+        return [self.fetchedResultsController objectAtIndexPath:inIndexPath];
+    }
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-        
-        NSError *error = nil;
-        if (![context save:&error]) {
-             // Replace this implementation with code to handle the error appropriately.
-             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
+- (IBAction)playSound:(id)inSender {
+    NSIndexPath *theIndexPath = [NSIndexPath indexPathForRow:[inSender tag] inSection:0];
+    DiaryEntry *theItem = [self entryAtIndexPath:theIndexPath];
+    Medium *theMedium = [theItem mediumForType:kMediumTypeAudio];
+
+    if(theMedium != nil) {
+        AudioPlayerController *thePlayer = [self.storyboard instantiateViewControllerWithIdentifier:@"audioPlayer"];
+
+        thePlayer.audioMedium = theMedium;
+        [thePlayer presentFromViewController:self animated:YES];
+    }
+}
+
+- (void)managedObjectContextDidSave:(NSNotification *)inNotification {
+    if(inNotification.object != self.managedObjectContext) {
+        [self.managedObjectContext mergeChangesFromContextDidSaveNotification:inNotification];
+    }
+}
+
+#pragma mark NSFetchedResultsControllerDelegate
+
+- (void)controller:(NSFetchedResultsController *)inController
+   didChangeObject:(id)inObject
+       atIndexPath:(NSIndexPath *)inIndexPath
+     forChangeType:(NSFetchedResultsChangeType)inType
+      newIndexPath:(NSIndexPath *)inNewIndexPath {
+    id theCell;
+
+    switch(inType) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertRowsAtIndexPaths:@[inNewIndexPath]
+                                  withRowAnimation:UITableViewRowAnimationRight];
+            break;
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteRowsAtIndexPaths:@[inIndexPath]
+                                  withRowAnimation:UITableViewRowAnimationRight];
+            break;
+        case NSFetchedResultsChangeMove:
+            [self.tableView deleteRowsAtIndexPaths:@[inIndexPath]
+                                  withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView insertRowsAtIndexPaths:@[inNewIndexPath]
+                                  withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        case NSFetchedResultsChangeUpdate:
+            theCell = [self.tableView cellForRowAtIndexPath:inIndexPath];
+            [self applyDiaryEntry:inObject toCell:theCell];
+            break;
+    }
+}
+
+
+- (void)controller:(NSFetchedResultsController *)inController
+  didChangeSection:(id<NSFetchedResultsSectionInfo>)inSectionInfo
+           atIndex:(NSUInteger)inSectionIndex
+     forChangeType:(NSFetchedResultsChangeType)inType {
+
+    switch(inType) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:inSectionIndex]
+                          withRowAnimation:UITableViewRowAnimationFade];
+            break;
+
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:inSectionIndex]
+                          withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)inController {
+    [self.tableView endUpdates];
+}
+
+#pragma mark UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)inTableView {
+    if(inTableView == self.tableView) {
+        return [[self.fetchedResultsController sections] count];
+    }
+    else {
+        return 1;
+    }
+}
+
+- (NSInteger)tableView:(UITableView *)inTableView numberOfRowsInSection:(NSInteger)inSection {
+    if(inTableView == self.tableView) {
+        id<NSFetchedResultsSectionInfo> theInfo = [self.fetchedResultsController sections][inSection];
+
+        return [theInfo numberOfObjects];
+    }
+    else {
+        return self.searchResult.count;
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)inTableView cellForRowAtIndexPath:(NSIndexPath *)inIndexPath {
+    DiaryEntryCell *theCell = (DiaryEntryCell *)[self.tableView dequeueReusableCellWithIdentifier:@"dairyEntryCell" forIndexPath:inIndexPath];
+    DiaryEntry *theEntry = [self entryAtIndexPath:inIndexPath];
+
+    theCell.imageControl.tag = inIndexPath.row;
+    [self applyDiaryEntry:theEntry toCell:theCell];
+    return theCell;
+}
+
+#pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)inTableView commitEditingStyle:(UITableViewCellEditingStyle)inStyle forRowAtIndexPath:(NSIndexPath *)inIndexPath {
+    if(inStyle == UITableViewCellEditingStyleDelete) {
+        DiaryEntry *theItem = [self entryAtIndexPath:inIndexPath];
+        NSError *theError = nil;
+
+        [self.managedObjectContext deleteObject:theItem];
+        if([self.managedObjectContext save:&theError]) {
+            if(inTableView == self.searchResultsTableView) {
+                NSMutableArray *theResult = [self.searchResult mutableCopy];
+
+                [theResult removeObjectAtIndex:inIndexPath.row];
+                self.searchResult = theResult;
+                [inTableView deleteRowsAtIndexPaths:@[inIndexPath]
+                                   withRowAnimation:UITableViewRowAnimationFade];
+            }
+        }
+        else {
+            NSLog(@"Unresolved error %@", theError);
         }
     }   
 }
 
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // The table view should not be re-orderable.
-    return NO;
+#pragma mark UISearchDisplayDelegate
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)inController shouldReloadTableForSearchString:(NSString *)inValue {
+    NSFetchRequest *theRequest = self.fetchRequest;
+    NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"text contains[cd] %@", inValue];
+
+    theRequest.predicate = thePredicate;
+    theRequest.fetchLimit = 30;
+    self.searchResult = [self.managedObjectContext executeFetchRequest:theRequest error:NULL];
+    return YES;
 }
 
-#pragma mark - Fetched results controller
-
-- (NSFetchedResultsController *)fetchedResultsController
-{
-    return nil;
-}
-
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
-{
-    [self.tableView beginUpdates];
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
-           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
-{
-    switch(type) {
-        case NSFetchedResultsChangeInsert:
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
-       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
-      newIndexPath:(NSIndexPath *)newIndexPath
-{
-    UITableView *tableView = self.tableView;
-    
-    switch(type) {
-        case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeUpdate:
-            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
-            break;
-            
-        case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-    [self.tableView endUpdates];
-}
-
-/*
-// Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed. 
- 
- - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-    // In the simplest, most efficient, case, reload the table view.
-    [self.tableView reloadData];
-}
- */
-
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
-{
-    NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
+- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)inController {
+    self.searchResult = nil;
 }
 
 @end

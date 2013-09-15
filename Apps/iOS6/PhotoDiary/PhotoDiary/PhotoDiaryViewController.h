@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@interface PhotoDiaryViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface PhotoDiaryViewController : UITableViewController
 
-@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
