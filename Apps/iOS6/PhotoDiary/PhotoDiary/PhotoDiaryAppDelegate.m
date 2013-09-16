@@ -34,7 +34,7 @@
 #pragma mark - Core Data stack
 
 - (NSURL *)persistentStoreURL {
-    NSString *theDirectory = [[NSFileManager defaultManager] applicationDocumentsDirectory];
+    NSString *theDirectory = [[NSFileManager defaultManager] applicationSupportDirectory];
     NSString *theFile = [theDirectory stringByAppendingPathComponent:@"Diary.sql"];
 
     return [NSURL fileURLWithPath:theFile];

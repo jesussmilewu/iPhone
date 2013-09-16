@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ExportActvity : UIActivity
+@interface DiaryEntryExportActvity : UIActivity
 
 @end

@@ -13,6 +13,7 @@
 #import "AudioRecorderController.h"
 #import <AVFoundation/AVFoundation.h>
 #import <QuartzCore/QuartzCore.h>
+#import "DiaryEntryExportActvity.h"
 
 @interface DiaryEntryViewController()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, AudioRecorderDelegate>
 
@@ -174,12 +175,14 @@
     if([theText length] > 0) {
         [theItems addObject:theText];
     }
+    [theItems addObject:self.diaryEntry];
     return [theItems copy];
 }
 
 - (IBAction)shareDiaryEntry:(id)inSender {
+    UIActivity *theActivity = [[DiaryEntryExportActvity alloc] init];
     NSArray *theItems = self.activityItems;
-    UIActivityViewController *theController = [[UIActivityViewController alloc] initWithActivityItems:theItems applicationActivities:nil];
+    UIActivityViewController *theController = [[UIActivityViewController alloc] initWithActivityItems:theItems applicationActivities:@[theActivity]];
 
     [self presentViewController:theController animated:YES completion:NULL];
 }

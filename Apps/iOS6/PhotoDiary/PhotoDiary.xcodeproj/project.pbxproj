@@ -30,7 +30,9 @@
 		ABCFA93E17E4B930000CE124 /* SubviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCFA93917E4B930000CE124 /* SubviewController.m */; };
 		ABCFA94217E4B97C000CE124 /* MeterView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCFA94117E4B97C000CE124 /* MeterView.m */; };
 		ABCFA94817E4C366000CE124 /* UIToolbar+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCFA94717E4C366000CE124 /* UIToolbar+Extensions.m */; };
-		ABD6BAC717E6556700745CFF /* ExportActvity.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD6BAC617E6556700745CFF /* ExportActvity.m */; };
+		ABD6BAC717E6556700745CFF /* DiaryEntryExportActvity.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD6BAC617E6556700745CFF /* DiaryEntryExportActvity.m */; };
+		ABD6BACB17E78D3500745CFF /* ExportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD6BAC917E78D3500745CFF /* ExportViewController.m */; };
+		ABD6BACC17E78D3500745CFF /* ExportActivity.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABD6BACA17E78D3500745CFF /* ExportActivity.xib */; };
 		ABE5784C17DFB84F00BF5DD9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE5784B17DFB84F00BF5DD9 /* Foundation.framework */; };
 		ABE5784E17DFB84F00BF5DD9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE5784D17DFB84F00BF5DD9 /* CoreGraphics.framework */; };
 		ABE5785017DFB84F00BF5DD9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE5784F17DFB84F00BF5DD9 /* UIKit.framework */; };
@@ -102,8 +104,11 @@
 		ABCFA94117E4B97C000CE124 /* MeterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeterView.m; sourceTree = "<group>"; };
 		ABCFA94617E4C366000CE124 /* UIToolbar+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIToolbar+Extensions.h"; sourceTree = "<group>"; };
 		ABCFA94717E4C366000CE124 /* UIToolbar+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIToolbar+Extensions.m"; sourceTree = "<group>"; };
-		ABD6BAC517E6556700745CFF /* ExportActvity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportActvity.h; sourceTree = "<group>"; };
-		ABD6BAC617E6556700745CFF /* ExportActvity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportActvity.m; sourceTree = "<group>"; };
+		ABD6BAC517E6556700745CFF /* DiaryEntryExportActvity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiaryEntryExportActvity.h; sourceTree = "<group>"; };
+		ABD6BAC617E6556700745CFF /* DiaryEntryExportActvity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiaryEntryExportActvity.m; sourceTree = "<group>"; };
+		ABD6BAC817E78D3500745CFF /* ExportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportViewController.h; sourceTree = "<group>"; };
+		ABD6BAC917E78D3500745CFF /* ExportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportViewController.m; sourceTree = "<group>"; };
+		ABD6BACA17E78D3500745CFF /* ExportActivity.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExportActivity.xib; sourceTree = "<group>"; };
 		ABE5784817DFB84F00BF5DD9 /* PhotoDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABE5784B17DFB84F00BF5DD9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ABE5784D17DFB84F00BF5DD9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -193,8 +198,11 @@
 				ABE5786617DFB84F00BF5DD9 /* PhotoDiaryViewController.m */,
 				ABE5786817DFB84F00BF5DD9 /* DiaryEntryViewController.h */,
 				ABE5786917DFB84F00BF5DD9 /* DiaryEntryViewController.m */,
-				ABD6BAC517E6556700745CFF /* ExportActvity.h */,
-				ABD6BAC617E6556700745CFF /* ExportActvity.m */,
+				ABD6BAC517E6556700745CFF /* DiaryEntryExportActvity.h */,
+				ABD6BAC617E6556700745CFF /* DiaryEntryExportActvity.m */,
+				ABD6BAC817E78D3500745CFF /* ExportViewController.h */,
+				ABD6BAC917E78D3500745CFF /* ExportViewController.m */,
+				ABD6BACA17E78D3500745CFF /* ExportActivity.xib */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -414,6 +422,7 @@
 				ABCFA92117E39F86000CE124 /* pause@2x.png in Resources */,
 				ABCFA91D17E39F86000CE124 /* meter@2x.png in Resources */,
 				ABE5785817DFB84F00BF5DD9 /* InfoPlist.strings in Resources */,
+				ABD6BACC17E78D3500745CFF /* ExportActivity.xib in Resources */,
 				ABCFA92517E39F86000CE124 /* record@2x.png in Resources */,
 				ABCFA92317E39F86000CE124 /* play@2x.png in Resources */,
 				ABCFA91F17E39F86000CE124 /* micro@2x.png in Resources */,
@@ -440,8 +449,9 @@
 				ABCFA93D17E4B930000CE124 /* AudioRecorderController.m in Sources */,
 				ABCFA93E17E4B930000CE124 /* SubviewController.m in Sources */,
 				ABE5786A17DFB84F00BF5DD9 /* DiaryEntryViewController.m in Sources */,
+				ABD6BACB17E78D3500745CFF /* ExportViewController.m in Sources */,
 				ABCFA93C17E4B930000CE124 /* AudioPlayerController.m in Sources */,
-				ABD6BAC717E6556700745CFF /* ExportActvity.m in Sources */,
+				ABD6BAC717E6556700745CFF /* DiaryEntryExportActvity.m in Sources */,
 				ABCFA90917E37A9A000CE124 /* NSFileManager+StandardDirectories.m in Sources */,
 				ABCFA93017E462ED000CE124 /* UINavigationController+BarManagement.m in Sources */,
 				ABE5785A17DFB84F00BF5DD9 /* main.m in Sources */,
