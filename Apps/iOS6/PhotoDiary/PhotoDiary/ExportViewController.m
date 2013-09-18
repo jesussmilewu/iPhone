@@ -8,6 +8,7 @@
 
 #import "ExportViewController.h"
 #import "NSFileManager+StandardDirectories.h"
+#import "AudioPlayerController.h"
 
 @interface ExportViewController()<UITextFieldDelegate>
 
@@ -19,7 +20,10 @@
 @property (nonatomic, weak) IBOutlet UISwitch *imageSwitch;
 @property (nonatomic, weak) IBOutlet UISwitch *textSwitch;
 @property (nonatomic, weak) IBOutlet UISwitch *soundSwitch;
+@property (weak, nonatomic) IBOutlet UIButton *playSoundButton;
 
+- (IBAction)updateSaveButton;
+- (IBAction)endEditing;
 - (IBAction)cancel:(id)inSender;
 - (IBAction)save:(id)inSender;
 
@@ -32,6 +36,7 @@
     DiaryEntry *theEntry = self.diaryEntry;
     NSString *theText = theEntry.text;
     NSData *theImage = [[theEntry mediumForType:kMediumTypeImage] data];
+    BOOL theSoundFlag = [theEntry mediumForType:kMediumTypeAudio] != nil;
 
     if(theImage.length > 0) {
         CGFloat theScale = [[UIScreen mainScreen] scale];
@@ -46,8 +51,15 @@
     self.textView.text = theText;
     self.textSwitch.on = theText.length > 0;
     self.textSwitch.enabled = theText.length > 0;
-    self.soundSwitch.enabled = [theEntry mediumForType:kMediumTypeAudio] != nil;
+    self.soundSwitch.enabled = theSoundFlag;
+    self.soundSwitch.on = theSoundFlag;
+    self.playSoundButton.enabled = theSoundFlag;
     self.navigationItem.leftBarButtonItem.enabled = NO;
+}
+
+- (IBAction)updateSaveButton {
+    self.navigationItem.leftBarButtonItem.enabled = self.nameField.text.length > 0 &&
+    (self.imageSwitch.on || self.textSwitch.on || self.soundSwitch.on);
 }
 
 - (IBAction)cancel:(id)inSender {
@@ -87,12 +99,20 @@
     [self.activity activityDidFinish:YES];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)inSegue sender:(id)inSender {
+    if([inSegue.identifier isEqualToString:@"player"]) {
+        AudioPlayerController *theController = inSegue.destinationViewController;
+
+        theController.audioMedium = [self.diaryEntry mediumForType:kMediumTypeAudio];
+    }
+}
+
 #pragma mark UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)inTextField {
-    self.navigationItem.leftBarButtonItem.enabled = inTextField.text.length > 0;
+    [self updateSaveButton];
     [self.view endEditing:YES];
-    return YES;
+    return NO;
 }
 
 @end

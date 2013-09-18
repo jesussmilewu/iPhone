@@ -32,7 +32,8 @@
 		ABCFA94817E4C366000CE124 /* UIToolbar+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCFA94717E4C366000CE124 /* UIToolbar+Extensions.m */; };
 		ABD6BAC717E6556700745CFF /* DiaryEntryExportActvity.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD6BAC617E6556700745CFF /* DiaryEntryExportActvity.m */; };
 		ABD6BACB17E78D3500745CFF /* ExportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD6BAC917E78D3500745CFF /* ExportViewController.m */; };
-		ABD6BACC17E78D3500745CFF /* ExportActivity.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABD6BACA17E78D3500745CFF /* ExportActivity.xib */; };
+		ABD6BACF17EA0AFC00745CFF /* speaker-large.png in Resources */ = {isa = PBXBuildFile; fileRef = ABD6BACD17EA0AFC00745CFF /* speaker-large.png */; };
+		ABD6BAD017EA0AFC00745CFF /* speaker-large@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABD6BACE17EA0AFC00745CFF /* speaker-large@2x.png */; };
 		ABE5784C17DFB84F00BF5DD9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE5784B17DFB84F00BF5DD9 /* Foundation.framework */; };
 		ABE5784E17DFB84F00BF5DD9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE5784D17DFB84F00BF5DD9 /* CoreGraphics.framework */; };
 		ABE5785017DFB84F00BF5DD9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE5784F17DFB84F00BF5DD9 /* UIKit.framework */; };
@@ -108,7 +109,8 @@
 		ABD6BAC617E6556700745CFF /* DiaryEntryExportActvity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiaryEntryExportActvity.m; sourceTree = "<group>"; };
 		ABD6BAC817E78D3500745CFF /* ExportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportViewController.h; sourceTree = "<group>"; };
 		ABD6BAC917E78D3500745CFF /* ExportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportViewController.m; sourceTree = "<group>"; };
-		ABD6BACA17E78D3500745CFF /* ExportActivity.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExportActivity.xib; sourceTree = "<group>"; };
+		ABD6BACD17EA0AFC00745CFF /* speaker-large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "speaker-large.png"; sourceTree = "<group>"; };
+		ABD6BACE17EA0AFC00745CFF /* speaker-large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "speaker-large@2x.png"; sourceTree = "<group>"; };
 		ABE5784817DFB84F00BF5DD9 /* PhotoDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABE5784B17DFB84F00BF5DD9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ABE5784D17DFB84F00BF5DD9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -202,7 +204,6 @@
 				ABD6BAC617E6556700745CFF /* DiaryEntryExportActvity.m */,
 				ABD6BAC817E78D3500745CFF /* ExportViewController.h */,
 				ABD6BAC917E78D3500745CFF /* ExportViewController.m */,
-				ABD6BACA17E78D3500745CFF /* ExportActivity.xib */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -210,6 +211,8 @@
 		ABCFA92A17E39F8B000CE124 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				ABD6BACD17EA0AFC00745CFF /* speaker-large.png */,
+				ABD6BACE17EA0AFC00745CFF /* speaker-large@2x.png */,
 				ABCFA90E17E39F86000CE124 /* meter.png */,
 				ABCFA90F17E39F86000CE124 /* meter@2x.png */,
 				ABCFA91017E39F86000CE124 /* micro.png */,
@@ -414,6 +417,7 @@
 				ABCFA92817E39F86000CE124 /* twitter.png in Resources */,
 				ABCFA92217E39F86000CE124 /* play.png in Resources */,
 				ABCFA92917E39F86000CE124 /* twitter@2x.png in Resources */,
+				ABD6BAD017EA0AFC00745CFF /* speaker-large@2x.png in Resources */,
 				ABCFA91C17E39F86000CE124 /* meter.png in Resources */,
 				ABCFA92617E39F86000CE124 /* speaker.png in Resources */,
 				ABCFA92017E39F86000CE124 /* pause.png in Resources */,
@@ -422,7 +426,7 @@
 				ABCFA92117E39F86000CE124 /* pause@2x.png in Resources */,
 				ABCFA91D17E39F86000CE124 /* meter@2x.png in Resources */,
 				ABE5785817DFB84F00BF5DD9 /* InfoPlist.strings in Resources */,
-				ABD6BACC17E78D3500745CFF /* ExportActivity.xib in Resources */,
+				ABD6BACF17EA0AFC00745CFF /* speaker-large.png in Resources */,
 				ABCFA92517E39F86000CE124 /* record@2x.png in Resources */,
 				ABCFA92317E39F86000CE124 /* play@2x.png in Resources */,
 				ABCFA91F17E39F86000CE124 /* micro@2x.png in Resources */,

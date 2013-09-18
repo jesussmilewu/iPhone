@@ -180,10 +180,11 @@
 }
 
 - (IBAction)shareDiaryEntry:(id)inSender {
-    UIActivity *theActivity = [[DiaryEntryExportActvity alloc] init];
+    DiaryEntryExportActvity *theActivity = [[DiaryEntryExportActvity alloc] init];
     NSArray *theItems = self.activityItems;
     UIActivityViewController *theController = [[UIActivityViewController alloc] initWithActivityItems:theItems applicationActivities:@[theActivity]];
 
+    theActivity.storyboard = self.storyboard;
     [self presentViewController:theController animated:YES completion:NULL];
 }
 
@@ -250,25 +251,30 @@ didFinishPickingMediaWithInfo:(NSDictionary *)inInfo {
 #pragma mark Keyboard notifications
 
 - (void)keyboardWillAppear:(NSNotification *)inNotification {
-    NSValue *theValue = [inNotification.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
-    UIView *theView = self.view;
-    CGRect theFrame = [theView.window convertRect:[theValue CGRectValue] toView:theView];
-    CGFloat theY;
+    if([self.textView isFirstResponder]) {
+        NSValue *theValue = inNotification.userInfo[UIKeyboardFrameEndUserInfoKey];
+        NSNumber *theDuration = inNotification.userInfo[UIKeyboardAnimationDurationUserInfoKey];
+        UIView *theView = self.view;
+        CGRect theFrame = [theView.window convertRect:[theValue CGRectValue] toView:theView];
+        CGFloat theY;
 
-    [self.navigationController setBarsHidden:YES animated:YES];
-    theY = CGRectGetMinY(self.visibleBounds);
-    theFrame = CGRectMake(0.0, theY,
-                          CGRectGetWidth(self.view.frame),
-                          CGRectGetMinY(theFrame) - theY);
-    theFrame = [theView convertRect:theFrame toView:self.textView.superview];
-    [UIView animateWithDuration:0.5 animations:^{
-        self.textView.frame = theFrame;
-    }];
+        [self.navigationController setBarsHidden:YES animated:YES];
+        theY = CGRectGetMinY(self.visibleBounds);
+        theFrame = CGRectMake(0.0, theY,
+                              CGRectGetWidth(self.view.frame),
+                              CGRectGetMinY(theFrame) - theY);
+        theFrame = [theView convertRect:theFrame toView:self.textView.superview];
+        [UIView animateWithDuration:[theDuration doubleValue] animations:^{
+            self.textView.frame = theFrame;
+        }];
+    }
 }
 
 - (void)keyboardWillDisappear:(NSNotification *)inNotification {
+    NSNumber *theDuration = inNotification.userInfo[UIKeyboardAnimationDurationUserInfoKey];
+
     [self.navigationController setBarsHidden:YES animated:YES];
-    [UIView animateWithDuration:0.5 animations:^{
+    [UIView animateWithDuration:[theDuration doubleValue] animations:^{
         self.textView.frame = CGRectInset(self.textView.superview.bounds, 10.0, 10.0);
     }];
 }

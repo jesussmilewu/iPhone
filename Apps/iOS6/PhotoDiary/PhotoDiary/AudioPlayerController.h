@@ -5,14 +5,7 @@
 
 @interface AudioPlayerController : SubviewController 
 
-@property(nonatomic) Medium *audioMedium;
+@property(nonatomic, strong) Medium *audioMedium;
 @property(nonatomic) NSTimeInterval time;
-
-- (IBAction)stop;
-- (IBAction)flipPlayback;
-- (IBAction)startSearching;
-- (IBAction)updatePosition;
-
-- (IBAction)updateTimeLabel;
 
 @end

@@ -10,12 +10,11 @@
 #import "ExportViewController.h"
 #import "Model.h"
 
-NSString * const kActivityTypeExport = @"kActivityTypeExport";
+NSString * const kActivityTypeExport = @"de.cocoaneheads.DiaryEntryExportActvity";
 
 @interface DiaryEntryExportActvity()
 
 @property (nonatomic, strong) IBOutlet UIViewController *activityViewController;
-@property (nonatomic, weak) IBOutlet ExportViewController *exportViewController;
 
 @end
 
@@ -35,18 +34,20 @@ NSString * const kActivityTypeExport = @"kActivityTypeExport";
 }
 
 - (BOOL)canPerformWithActivityItems:(NSArray *)inItems {
-    NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"ANY items isKindOfClass:%@", [DiaryEntry class]];
+    NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"ANY self isKindOfClass:%@", [DiaryEntry class]];
 
-    return [thePredicate evaluateWithObject:@{ @"items":inItems }];
+    return [thePredicate evaluateWithObject:inItems];
 }
 
 - (void)prepareWithActivityItems:(NSArray *)inItems {
     NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"self isKindOfClass:%@", [DiaryEntry class]];
     NSArray *theEntries = [inItems filteredArrayUsingPredicate:thePredicate];
+    UINavigationController *theController = [self.storyboard instantiateViewControllerWithIdentifier:@"export"];
+    ExportViewController *theExportController = theController.viewControllers[0];
 
-    [[NSBundle mainBundle] loadNibNamed:@"ExportActivity" owner:self options:nil];
-    self.exportViewController.activity = self;
-    self.exportViewController.diaryEntry = theEntries[0];
+    theExportController.activity = self;
+    theExportController.diaryEntry = theEntries[0];
+    self.activityViewController = theController;
 }
 
 - (void)performActivity {

@@ -10,4 +10,6 @@
 
 @interface DiaryEntryExportActvity : UIActivity
 
+@property (nonatomic, strong) UIStoryboard *storyboard;
+
 @end

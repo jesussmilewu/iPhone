@@ -18,6 +18,13 @@ static const float kMinimalAmplitude = -160.0;
 @property (nonatomic) BOOL loading;
 @property (nonatomic) BOOL paused;
 
+- (IBAction)stop;
+- (IBAction)flipPlayback;
+- (IBAction)startSearching;
+- (IBAction)updatePosition;
+
+- (IBAction)updateTimeLabel;
+
 - (void)startTimer;
 - (void)cancelTimer;
 - (void)updateTime:(NSTimer *)inTimer;
