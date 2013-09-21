@@ -23,7 +23,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *playSoundButton;
 
 - (IBAction)updateSaveButton;
-- (IBAction)endEditing;
 - (IBAction)cancel:(id)inSender;
 - (IBAction)save:(id)inSender;
 
@@ -57,13 +56,17 @@
     self.navigationItem.leftBarButtonItem.enabled = NO;
 }
 
+- (BOOL)shouldAutorotate {
+    return YES;
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 - (IBAction)updateSaveButton {
     self.navigationItem.leftBarButtonItem.enabled = self.nameField.text.length > 0 &&
     (self.imageSwitch.on || self.textSwitch.on || self.soundSwitch.on);
-}
-
-- (IBAction)cancel:(id)inSender {
-    [self.activity activityDidFinish:NO];
 }
 
 - (IBAction)save:(id)inSender {
@@ -92,11 +95,16 @@
 
             [theAudio writeToFile:theFile atomically:YES];
         }
+        [self.activity activityDidFinish:YES];
     }
     else {
         NSLog(@"save: error=%@", theError);
+        [self.activity activityDidFinish:NO];
     }
-    [self.activity activityDidFinish:YES];
+}
+
+- (IBAction)cancel:(id)inSender {
+    [self.activity activityDidFinish:NO];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)inSegue sender:(id)inSender {
