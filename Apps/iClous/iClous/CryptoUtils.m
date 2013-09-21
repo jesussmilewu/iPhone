@@ -42,7 +42,7 @@ NSUInteger const PBKDFRounds = 10000;
     NSMutableData *cipherData = [NSMutableData dataWithLength:clearText.length + kCCBlockSizeAES128];
 
     // Länge des Ciphertextes
-    size_t ciperLength;
+    size_t cipherLength;
     
     // Durchführen der Verschlüsselung
     CCCryptorStatus cryptStatus = CCCrypt(kCCEncrypt,
@@ -55,7 +55,7 @@ NSUInteger const PBKDFRounds = 10000;
                                           clearText.length,
                                           cipherData.mutableBytes,
                                           cipherData.length,
-                                          &ciperLength);
+                                          &cipherLength);
         
     if(cryptStatus){
         NSLog(@"Something terrible during encryption happened!");
