@@ -12,6 +12,7 @@
 
 #define YOUTUBE_URL @"http://gdata.youtube.com/feeds/api/videos"
 #define USE_POST_REQUEST 1
+#define USE_JSON_KIT 0
 
 @interface YouTubeViewController()
 
@@ -24,9 +25,6 @@
 @end
 
 @implementation YouTubeViewController
-
-@synthesize searchBar;
-@synthesize items;
 
 - (void)viewDidLoad {
     [super viewDidLoad];

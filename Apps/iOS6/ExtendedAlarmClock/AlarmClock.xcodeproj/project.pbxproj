@@ -62,7 +62,7 @@
 
 /* Begin PBXFileReference section */
 		AB04BA0D17BFB1EC009739BB /* SplitViewAlarmClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SplitViewAlarmClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB04BA0E17BFB1EC009739BB /* SplitViewAlarmClock-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SplitViewAlarmClock-Info.plist"; path = "../SplitViewAlarmClock-Info.plist"; sourceTree = "<group>"; };
+		AB04BA0E17BFB1EC009739BB /* SplitViewAlarmClock-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SplitViewAlarmClock-Info.plist"; sourceTree = "<group>"; };
 		AB05753017AEB9640058B0D0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AB05753317AEBDF90058B0D0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AB05753517AEBE010058B0D0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
