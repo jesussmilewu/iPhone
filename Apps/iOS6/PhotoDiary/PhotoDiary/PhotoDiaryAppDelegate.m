@@ -16,6 +16,7 @@
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (strong, nonatomic) UIStoryboard *storyboard;
 
 - (NSURL *)persistentStoreURL;
 
@@ -28,7 +29,14 @@
     PhotoDiaryViewController *theController = (PhotoDiaryViewController *)theNavigationController.topViewController;
 
     theController.managedObjectContext = self.managedObjectContext;
+    self.storyboard = theNavigationController.storyboard;
     return YES;
+}
+
+- (UIViewController *)topViewController {
+    UINavigationController *theController = (UINavigationController *)self.window.rootViewController;
+
+    return theController.topViewController;
 }
 
 #pragma mark - Core Data stack
