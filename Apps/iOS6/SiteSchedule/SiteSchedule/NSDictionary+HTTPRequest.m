@@ -30,17 +30,17 @@
 }
 
 - (NSDate *)lastModified {
-    NSString *theDate = [self objectForKey:@"Last-Modified"];
+    NSString *theDate = self[@"Last-Modified"];
     
     return [NSDateFormatter dateForRFC1123String:theDate];
 }
 
 - (NSString *)contentType {
-    return [self objectForKey:@"Content-Type"];
+    return self[@"Content-Type"];
 }
 
 - (long long)contentLength {
-    NSString *theLength = [self objectForKey:@"Content-Length"];
+    NSString *theLength = self[@"Content-Length"];
     
     return [theLength longLongValue];
 }

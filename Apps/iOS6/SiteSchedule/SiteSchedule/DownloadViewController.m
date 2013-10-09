@@ -178,7 +178,7 @@ static NSString * const kDownloadURL = kProtectedDownloadURL;
 - (NSString *)downloadFile {
     NSArray *thePaths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     
-    return [[thePaths objectAtIndex:0] stringByAppendingPathComponent:@"SiteSchedule.dat"];
+    return [thePaths[0] stringByAppendingPathComponent:@"SiteSchedule.dat"];
 }
 
 - (IBAction)refreshServerCell {

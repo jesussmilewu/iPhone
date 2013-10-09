@@ -25,10 +25,8 @@
 
 - (NSFetchedResultsController *)createFetchedResultsController {
     NSFetchRequest *theRequest = [NSFetchRequest fetchRequestWithEntityName:@"Site"];
-    NSArray *theDescriptors = [NSArray arrayWithObjects:
-                               [NSSortDescriptor sortDescriptorWithKey:@"city" ascending:YES],
-                               [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES],
-                               nil];
+    NSArray *theDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"city" ascending:YES],
+                               [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
     NSFetchedResultsController *theController;
 
     theRequest.sortDescriptors = theDescriptors;
@@ -107,13 +105,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)inTableView numberOfRowsInSection:(NSInteger)inSection {
-    id<NSFetchedResultsSectionInfo> theInfo = [[self.resultsController sections] objectAtIndex:inSection];
+    id<NSFetchedResultsSectionInfo> theInfo = [self.resultsController sections][inSection];
     
     return [theInfo numberOfObjects];
 }
 
 - (NSString *)tableView:(UITableView *)inTableView titleForHeaderInSection:(NSInteger)inSection {
-    id<NSFetchedResultsSectionInfo> theInfo = [[self.resultsController sections] objectAtIndex:inSection];
+    id<NSFetchedResultsSectionInfo> theInfo = [self.resultsController sections][inSection];
     
     return [theInfo name];
 }

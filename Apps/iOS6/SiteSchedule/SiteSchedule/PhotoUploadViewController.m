@@ -144,7 +144,7 @@
 #pragma mark UIImagePickerControllerDelegate
 
 - (void)imagePickerController:(UIImagePickerController *)inPicker didFinishPickingMediaWithInfo:(NSDictionary *)inInfo {
-    self.photo = [inInfo objectForKey:UIImagePickerControllerOriginalImage];
+    self.photo = inInfo[UIImagePickerControllerOriginalImage];
     [inPicker dismissViewControllerAnimated:YES completion:NULL];
 }
 

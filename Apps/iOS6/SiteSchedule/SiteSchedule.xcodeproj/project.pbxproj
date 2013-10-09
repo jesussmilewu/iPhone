@@ -28,6 +28,7 @@
 		ABD65F2815B1AA0900DF8887 /* Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD65F2715B1AA0900DF8887 /* Annotation.m */; };
 		ABD65F2A15B1AE7300DF8887 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD65F2915B1AE7300DF8887 /* AddressBook.framework */; };
 		ABD7E8A0154F286A000A7D58 /* NSManagedObjectContext+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD7E89F154F286A000A7D58 /* NSManagedObjectContext+Tools.m */; };
+		ABF242C61804785E00B4E95D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF242C51804785E00B4E95D /* Default-568h@2x.png */; };
 		ABFD326E154D71920023B8AB /* DownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABFD3265154D71920023B8AB /* DownloadViewController.m */; };
 		ABFD3270154D71920023B8AB /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABFD3269154D71920023B8AB /* MainStoryboard.storyboard */; };
 		ABFD3271154D71920023B8AB /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABFD326B154D71920023B8AB /* MapViewController.m */; };
@@ -84,6 +85,7 @@
 		ABD65F2915B1AE7300DF8887 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		ABD7E89E154F286A000A7D58 /* NSManagedObjectContext+Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+Tools.h"; sourceTree = "<group>"; };
 		ABD7E89F154F286A000A7D58 /* NSManagedObjectContext+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+Tools.m"; sourceTree = "<group>"; };
+		ABF242C51804785E00B4E95D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		ABFD3264154D71920023B8AB /* DownloadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadViewController.h; sourceTree = "<group>"; };
 		ABFD3265154D71920023B8AB /* DownloadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadViewController.m; sourceTree = "<group>"; };
 		ABFD3269154D71920023B8AB /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 		ABD35291154D70E6006DBF2F = {
 			isa = PBXGroup;
 			children = (
+				ABF242C51804785E00B4E95D /* Default-568h@2x.png */,
 				ABD352A6154D70E7006DBF2F /* SiteSchedule */,
 				ABD3529F154D70E7006DBF2F /* Frameworks */,
 				ABD3529D154D70E7006DBF2F /* Products */,
@@ -319,6 +322,7 @@
 				ABFD3270154D71920023B8AB /* MainStoryboard.storyboard in Resources */,
 				ABFD3275154D71B10023B8AB /* InfoPlist.strings in Resources */,
 				ABFD3297154D972C0023B8AB /* schedule.xml in Resources */,
+				ABF242C61804785E00B4E95D /* Default-568h@2x.png in Resources */,
 				AB723A9F15B2138200DDDFED /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

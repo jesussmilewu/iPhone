@@ -22,12 +22,12 @@
 - (void)setUnorderedActivities:(NSSet *)inSet {
     NSSortDescriptor *theDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"start" ascending:YES];
     
-    self.activities = [inSet sortedArrayUsingDescriptors:[NSArray arrayWithObject:theDescriptor]];
+    self.activities = [inSet sortedArrayUsingDescriptors:@[theDescriptor]];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)inSegue sender:(id)inSender {
     NSIndexPath *theIndexPath = [self.tableView indexPathForSelectedRow];
-    Activity *theActivity = [self.activities objectAtIndex:theIndexPath.row];
+    Activity *theActivity = (self.activities)[theIndexPath.row];
 
     if([inSegue.identifier isEqualToString:@"Details"]) {
         DetailsViewController *theController = inSegue.destinationViewController;
@@ -57,7 +57,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)inTableView cellForRowAtIndexPath:(NSIndexPath *)inIndexPath {
     UITableViewCell *theCell = [inTableView dequeueReusableCellWithIdentifier:@"Activity"];
-    Activity *theActivity = [self.activities objectAtIndex:inIndexPath.row];
+    Activity *theActivity = (self.activities)[inIndexPath.row];
     
     theCell.textLabel.text = theActivity.team.name;
     theCell.detailTextLabel.text = theActivity.details;

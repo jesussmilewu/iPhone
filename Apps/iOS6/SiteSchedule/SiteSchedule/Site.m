@@ -27,17 +27,15 @@
 }
 
 - (void)setCoordinate:(CLLocationCoordinate2D)inCoordinate {
-    self.latitude = [NSNumber numberWithDouble:inCoordinate.latitude];
-    self.longitude = [NSNumber numberWithDouble:inCoordinate.longitude];
+    self.latitude = @(inCoordinate.latitude);
+    self.longitude = @(inCoordinate.longitude);
 }
 
 - (NSDictionary *)address {
-    return [NSDictionary dictionaryWithObjectsAndKeys:
-            self.zip, kABPersonAddressZIPKey,
-            self.city, kABPersonAddressCityKey,
-            self.countryCode, kABPersonAddressCountryCodeKey,
-            self.street, kABPersonAddressStreetKey,
-            nil];
+    return @{(id)kABPersonAddressZIPKey: self.zip,
+            (id)kABPersonAddressCityKey: self.city,
+            (id)kABPersonAddressCountryCodeKey: self.countryCode,
+            (id)kABPersonAddressStreetKey: self.street};
 }
 
 - (BOOL)hasCoordinates {
