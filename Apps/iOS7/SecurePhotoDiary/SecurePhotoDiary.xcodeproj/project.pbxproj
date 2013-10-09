@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		403CC15D180564CF0084DC91 /* SecUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 403CC15C180564CF0084DC91 /* SecUtils.m */; };
+		406B3C9918047EAB001C0B9F /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 406B3C9818047EAB001C0B9F /* LoginViewController.m */; };
+		406B3C9C18047EC8001C0B9F /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 406B3C9B18047EC8001C0B9F /* RegistrationViewController.m */; };
 		AB892EB417E50F9D00A1D62F /* DiaryEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB892EB317E50F9D00A1D62F /* DiaryEntryCell.m */; };
 		ABCFA90917E37A9A000CE124 /* NSFileManager+StandardDirectories.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCFA90817E37A9A000CE124 /* NSFileManager+StandardDirectories.m */; };
 		ABCFA91C17E39F86000CE124 /* meter.png in Resources */ = {isa = PBXBuildFile; fileRef = ABCFA90E17E39F86000CE124 /* meter.png */; };
@@ -69,6 +72,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		403CC15B180564CF0084DC91 /* SecUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecUtils.h; sourceTree = "<group>"; };
+		403CC15C180564CF0084DC91 /* SecUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecUtils.m; sourceTree = "<group>"; };
+		406B3C9718047EAB001C0B9F /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		406B3C9818047EAB001C0B9F /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		406B3C9A18047EC8001C0B9F /* RegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistrationViewController.h; sourceTree = "<group>"; };
+		406B3C9B18047EC8001C0B9F /* RegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistrationViewController.m; sourceTree = "<group>"; };
 		AB892EB217E50F9D00A1D62F /* DiaryEntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiaryEntryCell.h; sourceTree = "<group>"; };
 		AB892EB317E50F9D00A1D62F /* DiaryEntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiaryEntryCell.m; sourceTree = "<group>"; };
 		ABCFA90717E37A9A000CE124 /* NSFileManager+StandardDirectories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+StandardDirectories.h"; sourceTree = "<group>"; };
@@ -174,6 +183,8 @@
 		ABCFA8FF17E0E0E4000CE124 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				403CC15B180564CF0084DC91 /* SecUtils.h */,
+				403CC15C180564CF0084DC91 /* SecUtils.m */,
 				ABCFA94617E4C366000CE124 /* UIToolbar+Extensions.h */,
 				ABCFA94717E4C366000CE124 /* UIToolbar+Extensions.m */,
 				ABCFA92D17E45A34000CE124 /* UITextView+Outlets.h */,
@@ -190,6 +201,10 @@
 		ABCFA90017E0E106000CE124 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				406B3C9718047EAB001C0B9F /* LoginViewController.h */,
+				406B3C9818047EAB001C0B9F /* LoginViewController.m */,
+				406B3C9A18047EC8001C0B9F /* RegistrationViewController.h */,
+				406B3C9B18047EC8001C0B9F /* RegistrationViewController.m */,
 				ABCFA93417E4B930000CE124 /* AudioPlayerController.h */,
 				ABCFA93517E4B930000CE124 /* AudioPlayerController.m */,
 				ABCFA93617E4B930000CE124 /* AudioRecorderController.h */,
@@ -455,6 +470,7 @@
 				ABCFA93E17E4B930000CE124 /* SubviewController.m in Sources */,
 				ABE5786A17DFB84F00BF5DD9 /* DiaryEntryViewController.m in Sources */,
 				ABD6BACB17E78D3500745CFF /* ExportViewController.m in Sources */,
+				406B3C9918047EAB001C0B9F /* LoginViewController.m in Sources */,
 				ABCFA93C17E4B930000CE124 /* AudioPlayerController.m in Sources */,
 				ABD6BAC717E6556700745CFF /* DiaryEntryExportActvity.m in Sources */,
 				ABCFA90917E37A9A000CE124 /* NSFileManager+StandardDirectories.m in Sources */,
@@ -463,6 +479,8 @@
 				ABE5789717DFC40D00BF5DD9 /* DiaryEntry.m in Sources */,
 				ABE5785E17DFB84F00BF5DD9 /* SecurePhotoDiaryAppDelegate.m in Sources */,
 				ABE5789817DFC40D00BF5DD9 /* Medium.m in Sources */,
+				403CC15D180564CF0084DC91 /* SecUtils.m in Sources */,
+				406B3C9C18047EC8001C0B9F /* RegistrationViewController.m in Sources */,
 				ABE5789117DFBFA700BF5DD9 /* PhotoDiary.xcdatamodeld in Sources */,
 				ABE5788E17DFBD2100BF5DD9 /* UIImage+ImageTools.m in Sources */,
 				ABE5786717DFB84F00BF5DD9 /* PhotoDiaryViewController.m in Sources */,

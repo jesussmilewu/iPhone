@@ -16,6 +16,8 @@
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, strong) IBOutlet UIViewController *viewController;
+
 
 - (NSURL *)persistentStoreURL;
 
@@ -25,9 +27,16 @@
 
 - (BOOL)application:(UIApplication *)inApplication didFinishLaunchingWithOptions:(NSDictionary *)inOptions {
     UINavigationController *theNavigationController = (UINavigationController *)self.window.rootViewController;
-    PhotoDiaryViewController *theController = (PhotoDiaryViewController *)theNavigationController.topViewController;
+//    PhotoDiaryViewController *theController = (PhotoDiaryViewController *)theNavigationController.topViewController;
+    self.viewController = self.window.rootViewController;
+    if([self.viewController isKindOfClass:[UISplitViewController class]]) {
+        UISplitViewController *theController = (UISplitViewController *)self.viewController;
+        UINavigationController *theDetailController = theController.viewControllers.lastObject;
+        
+        theController.delegate = [theDetailController.viewControllers objectAtIndex:0];
+    }
 
-    theController.managedObjectContext = self.managedObjectContext;
+//    theController.managedObjectContext = self.managedObjectContext;
     return YES;
 }
 
