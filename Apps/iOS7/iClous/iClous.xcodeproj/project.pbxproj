@@ -138,6 +138,19 @@
 				CLASSPREFIX = KMR;
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Foobar Ltd.";
+				TargetAttributes = {
+					4018E4A91609071400B86C24 = {
+						DevelopmentTeam = R42P59E5WA;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
+					};
+				};
 			};
 			buildConfigurationList = 4018E4A41609071400B86C24 /* Build configuration list for PBXProject "iClous" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -253,10 +266,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = iclous/iclous.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iclous/iclous-Prefix.pch";
 				INFOPLIST_FILE = "iclous/iclous-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -265,10 +281,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = iclous/iclous.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iclous/iclous-Prefix.pch";
 				INFOPLIST_FILE = "iclous/iclous-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
