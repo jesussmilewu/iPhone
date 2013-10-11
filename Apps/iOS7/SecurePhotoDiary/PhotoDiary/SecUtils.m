@@ -117,16 +117,6 @@
         }
     }
     
-    // write in /
-    if([localFileManager createDirectoryAtPath:@"/tmp/..." withIntermediateDirectories:NO attributes:nil error:&error]){
-        forecast += 16;
-        NSLog(@"[+] could write to /tmp");
-        [localFileManager removeItemAtPath:@"/tmp/..." error:&error];
-    } else {
-        NSLog(@"[+] error creating dir: %@", error);
-    }
-    
-    
     // find sshd
     if([localFileManager fileExistsAtPath:@"/usr/sbin/sshd"]){
         forecast += 16;

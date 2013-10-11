@@ -1,28 +1,21 @@
 //
-//  KMRAppDelegate.m
-//  iclous
+//  AppDelegate.m
+//  iClous
 //
-//  Created by Klaus Rodewig on 18.09.12.
-//  Copyright (c) 2012 Foobar Ltd. All rights reserved.
+//  Created by Klaus Rodewig on 11.10.13.
+//  Copyright (c) 2013 KMR. All rights reserved.
 //
 
-#import "KMRAppDelegate.h"
-#import "KMRViewController.h"
+#import "AppDelegate.h"
 #import "CryptoUtils.h"
 
-NSString * const CLOUDKEY = @"iClous";
+NSString *const CLOUDKEY = @"iClous";
 
-@implementation KMRAppDelegate
+@implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.viewController = [[KMRViewController alloc] initWithNibName:@"KMRViewController" bundle:nil];
-    self.window.rootViewController = self.viewController;
-    [self.window makeKeyAndVisible];
-    
-    // check for iCloud
     self.theCloud = NO;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         self.iCloudPath = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
@@ -32,7 +25,7 @@ NSString * const CLOUDKEY = @"iClous";
                 self.theCloud = YES;
                 
                 NSString *theLocalText = @"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.";
-
+                
                 // Key Value Store
                 NSUbiquitousKeyValueStore *cloudStore = [NSUbiquitousKeyValueStore defaultStore];
                 if([[cloudStore stringForKey:CLOUDKEY] length] == 0){
@@ -54,15 +47,15 @@ NSString * const CLOUDKEY = @"iClous";
                 
                 // Dateiablage
                 NSError *theError;
-               
+                
                 NSString *cloudFile = [NSString stringWithFormat:@"%@/%@", [self.iCloudPath path], @"foobar.txt"];
                 NSString *theCloudString = [NSString stringWithFormat:@"%@: %@", [NSDate date], theLocalText];
                 
                 NSLog(@"cloudFile: %@", cloudFile);
                 [theCloudString writeToFile:cloudFile
-                               atomically:YES
-                                 encoding:NSUTF8StringEncoding
-                                    error:&theError];
+                                 atomically:YES
+                                   encoding:NSUTF8StringEncoding
+                                      error:&theError];
                 if(theError){
                     NSLog(@"Fehler beim Speichern: %@", [theError localizedDescription]);
                 }
@@ -75,10 +68,9 @@ NSString * const CLOUDKEY = @"iClous";
             });
         }
     });
-
     return YES;
 }
-
+							
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

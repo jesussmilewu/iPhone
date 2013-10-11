@@ -1,9 +1,9 @@
 //
 //  CryptoUtils.m
-//  iclous
+//  iClous
 //
-//  Created by Klaus Rodewig on 10.10.12.
-//  Copyright (c) 2012 Foobar Ltd. All rights reserved.
+//  Created by Klaus Rodewig on 11.10.13.
+//  Copyright (c) 2013 KMR. All rights reserved.
 //
 
 #import "CryptoUtils.h"
@@ -27,20 +27,37 @@ NSUInteger const PBKDFRounds = 10000;
         SecRandomCopyBytes(kSecRandomDefault, kCCBlockSizeAES128, theData.mutableBytes);
         self.salt = theData;
         theData = nil;
-        
         self.password = thePassword;
     }
     return self;
 }
 
--(NSData *)encryptData:(NSData *)clearText {
-    NSLog(@"[+] %@", NSStringFromSelector(_cmd));
-    
+-(BOOL)createKey:(NSData *)key
+{
+    NSMutableData *localKey = [NSMutableData dataWithLength:kCCKeySizeAES128];
+    int result = CCKeyDerivationPBKDF(kCCPBKDF2,
+                                      self.password.UTF8String,
+                                      self.password.length,
+                                      self.salt.bytes,
+                                      self.salt.length,
+                                      kCCPRFHmacAlgSHA1,
+                                      PBKDFRounds,
+                                      localKey.mutableBytes,
+                                      localKey.length);
+    if(kCCSuccess){
+        NSLog(@"Fehler beim Erstellen des Schlüssels: %d", result);
+              }
+              self.cryptKey = localKey;
+              return YES;
+}
+
+-(NSData *)encryptData:(NSData *)clearText
+{
     [self createKey:[self.password dataUsingEncoding:NSUTF8StringEncoding]];
     
     // Puffer für Ciphertext
     NSMutableData *cipherData = [NSMutableData dataWithLength:clearText.length + kCCBlockSizeAES128];
-
+    
     // Länge des Ciphertextes
     size_t cipherLength;
     
@@ -56,37 +73,12 @@ NSUInteger const PBKDFRounds = 10000;
                                           cipherData.mutableBytes,
                                           cipherData.length,
                                           &cipherLength);
-        
     if(cryptStatus){
         NSLog(@"Something terrible during encryption happened!");
     } else {
         NSLog(@"Ciphertext length: %i", [cipherData length]);
     }
-       
     return cipherData;
-}
-
--(BOOL)createKey:(NSData *)key{
-    NSLog(@"[+] %@", NSStringFromSelector(_cmd));
-    
-    NSMutableData *localKey = [NSMutableData dataWithLength:kCCKeySizeAES128];
-    
-    int result = CCKeyDerivationPBKDF(kCCPBKDF2,
-                                      self.password.UTF8String,
-                                      self.password.length,
-                                      self.salt.bytes,
-                                      self.salt.length,
-                                      kCCPRFHmacAlgSHA1,
-                                      PBKDFRounds,
-                                      localKey.mutableBytes,
-                                      localKey.length);
-    if(kCCSuccess){
-        NSLog(@"Fehler beim Erstellen des Schlüssels: %d", result);
-    }
-    
-    self.cryptKey = localKey;
-    
-    return YES;
 }
 
 @end

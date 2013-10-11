@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.developer.ubiquity-container-identifiers</key>
 	<array>
-		<string>$(TeamIdentifierPrefix)de.cocoaneheads.iclous</string>
+		<string>$(TeamIdentifierPrefix)de.cocoaneheads.iClous</string>
 	</array>
 	<key>com.apple.developer.ubiquity-kvstore-identifier</key>
 	<string>$(TeamIdentifierPrefix)$(CFBundleIdentifier)</string>
