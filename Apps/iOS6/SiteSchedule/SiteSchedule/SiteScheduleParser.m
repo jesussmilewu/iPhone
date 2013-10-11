@@ -77,7 +77,7 @@
     theRequest.predicate = [NSPredicate predicateWithFormat:@"code = %@", inCode];
     theResult = [self.managedObjectContext executeFetchRequest:theRequest error:&theError];
     if(theError == nil && theResult.count > 0) {
-        return [theResult objectAtIndex:0];
+        return theResult[0];
     }
     else {
         self.error = theError;
@@ -214,8 +214,8 @@
            withPredecessor:(id)inPredecessor
                 attributes:(NSDictionary *)inAttributes {
     self.team = inPredecessor;
-    self.phone = [inAttributes objectForKey:@"phone"];
-    self.isHead = [[inAttributes objectForKey:@"isHead"] isEqualToString:@"YES"];
+    self.phone = inAttributes[@"phone"];
+    self.isHead = [inAttributes[@"isHead"] isEqualToString:@"YES"];
 }
 
 - (void)siteScheduleParser:(SiteScheduleParser *)inParser 

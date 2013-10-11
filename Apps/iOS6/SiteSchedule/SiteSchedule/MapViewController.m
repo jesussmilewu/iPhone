@@ -68,7 +68,7 @@
     Site *theSite = nil;
     
     while(theIndex < self.sites.count) {
-        theSite = [self.sites objectAtIndex:theIndex];
+        theSite = (self.sites)[theIndex];
         if(theSite.hasCoordinates) {
             [self updateMapRectWithCoordinate:theSite.coordinate isFirst:theIndex == 0];
             [self addAnntationForSite:theSite];
@@ -83,7 +83,7 @@
         [self.geocoder geocodeAddressDictionary:theSite.address
                               completionHandler:^(NSArray *inPlacemarks, NSError *inError) {
                                   if(inError == nil && inPlacemarks.count > 0) {
-                                      CLPlacemark *thePlacemark = [inPlacemarks objectAtIndex:0];
+                                      CLPlacemark *thePlacemark = inPlacemarks[0];
                                       CLLocationCoordinate2D theCoordinate = thePlacemark.location.coordinate;
                                       
                                       theSite.coordinate = theCoordinate;
@@ -126,7 +126,7 @@
         theView = (MKPinAnnotationView *)[inMapView dequeueReusableAnnotationViewWithIdentifier:@"Site"];
         if(theView == nil) {
             UIButton *theLeftButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
-            UIButton *theRightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            UIButton *theRightButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
 
             theLeftButton.tag = 10;
             theRightButton.tag = 20;

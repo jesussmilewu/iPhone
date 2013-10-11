@@ -75,7 +75,7 @@
     else {
         theCell = [inTableView dequeueReusableCellWithIdentifier:@"Cell30"];
         NSArray *theContacts = [self.activity.team.contacts allObjects];
-        Contact *theContact = [theContacts objectAtIndex:inIndexPath.row];
+        Contact *theContact = theContacts[inIndexPath.row];
         
         theCell.textLabel.textColor = theContact.isHead ? [UIColor blackColor] : [UIColor darkGrayColor];
         theCell.textLabel.text = theContact.name;
