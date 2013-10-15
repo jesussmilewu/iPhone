@@ -43,6 +43,7 @@
 		AB85E0B615277D8B00C28975 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB85E0B515277D8B00C28975 /* MainStoryboard.storyboard */; };
 		AB85E0BF152783DD00C28975 /* UIViewController+PhotoDiary.m in Sources */ = {isa = PBXBuildFile; fileRef = AB85E0BE152783DD00C28975 /* UIViewController+PhotoDiary.m */; };
 		AB85E0C7152791E300C28975 /* SubviewSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = AB85E0C6152791E300C28975 /* SubviewSegue.m */; };
+		AB91AF07180DBE4A00D848D8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB91AF06180DBE4A00D848D8 /* Default-568h@2x.png */; };
 		ABC6224D15287D040043186B /* record@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC6224C15287D040043186B /* record@2x.png */; };
 		ABC6224F152880C00043186B /* micro@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC6224E152880C00043186B /* micro@2x.png */; };
 		ABC622531528821B0043186B /* pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABC622501528821B0043186B /* pause@2x.png */; };
@@ -109,6 +110,7 @@
 		AB85E0BE152783DD00C28975 /* UIViewController+PhotoDiary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+PhotoDiary.m"; sourceTree = "<group>"; };
 		AB85E0C5152791E200C28975 /* SubviewSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubviewSegue.h; sourceTree = "<group>"; };
 		AB85E0C6152791E300C28975 /* SubviewSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubviewSegue.m; sourceTree = "<group>"; };
+		AB91AF06180DBE4A00D848D8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		ABC6224C15287D040043186B /* record@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record@2x.png"; sourceTree = "<group>"; };
 		ABC6224E152880C00043186B /* micro@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "micro@2x.png"; sourceTree = "<group>"; };
 		ABC622501528821B0043186B /* pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause@2x.png"; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 		AB11CA5E12E1B47600F99C7B = {
 			isa = PBXGroup;
 			children = (
+				AB91AF06180DBE4A00D848D8 /* Default-568h@2x.png */,
 				AB11CA7312E1B47600F99C7B /* PhotoDiary */,
 				AB11CA6C12E1B47600F99C7B /* Frameworks */,
 				AB11CA6A12E1B47600F99C7B /* Products */,
@@ -328,6 +331,7 @@
 				AB6FEE32152856A500F7B45E /* twitter@2x.png in Resources */,
 				AB6FEE34152856E700F7B45E /* twitter.png in Resources */,
 				AB6FEE36152862D000F7B45E /* meter@2x.png in Resources */,
+				AB91AF07180DBE4A00D848D8 /* Default-568h@2x.png in Resources */,
 				ABC6224D15287D040043186B /* record@2x.png in Resources */,
 				ABC6224F152880C00043186B /* micro@2x.png in Resources */,
 				ABC622531528821B0043186B /* pause@2x.png in Resources */,
