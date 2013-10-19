@@ -24,6 +24,13 @@
 @synthesize searchResult;
 @synthesize selectedIndex;
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Unter iOS 7 zeigt der Tableview in der Regel die Einträge nicht an.
+    // Das lässt sich durch folgende Zeile beheben:
+    [NSFetchedResultsController deleteCacheWithName:@"Root"];
+}
+
 - (NSFetchRequest *)fetchRequest {
     NSFetchRequest *theFetch = [[NSFetchRequest alloc] init];
     NSEntityDescription *theType = [NSEntityDescription entityForName:@"DiaryEntry" 
