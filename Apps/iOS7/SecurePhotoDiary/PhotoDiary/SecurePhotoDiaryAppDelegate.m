@@ -26,8 +26,9 @@
 @implementation SecurePhotoDiaryAppDelegate
 
 - (BOOL)application:(UIApplication *)inApplication didFinishLaunchingWithOptions:(NSDictionary *)inOptions {
-    UINavigationController *theNavigationController = (UINavigationController *)self.window.rootViewController;
+//    UINavigationController *theNavigationController = (UINavigationController *)self.window.rootViewController;
 //    PhotoDiaryViewController *theController = (PhotoDiaryViewController *)theNavigationController.topViewController;
+/*
     self.viewController = self.window.rootViewController;
     if([self.viewController isKindOfClass:[UISplitViewController class]]) {
         UISplitViewController *theController = (UISplitViewController *)self.viewController;
@@ -35,7 +36,7 @@
         
         theController.delegate = [theDetailController.viewControllers objectAtIndex:0];
     }
-
+*/
 //    theController.managedObjectContext = self.managedObjectContext;
     return YES;
 }
