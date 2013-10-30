@@ -1,34 +1,28 @@
-//
-//  PhotoDiaryAppDelegate.m
-//  PhotoDiary
-//
-//  Created by Clemens Wagner on 10.09.13.
-//  Copyright (c) 2013 Cocoaneheads. All rights reserved.
-//
-
 #import "SecurePhotoDiaryAppDelegate.h"
-
 #import "PhotoDiaryViewController.h"
-#import "NSFileManager+StandardDirectories.h"
+#import "SecUtils.h"
 
 @interface SecurePhotoDiaryAppDelegate()
 
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-@property (nonatomic, strong) IBOutlet UIViewController *viewController;
-
-
-- (NSURL *)persistentStoreURL;
+@property (nonatomic, readwrite) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, readwrite) NSPersistentStoreCoordinator *storeCoordinator;
 
 @end
 
 @implementation SecurePhotoDiaryAppDelegate
 
-- (BOOL)application:(UIApplication *)inApplication didFinishLaunchingWithOptions:(NSDictionary *)inOptions {
-//    UINavigationController *theNavigationController = (UINavigationController *)self.window.rootViewController;
-//    PhotoDiaryViewController *theController = (PhotoDiaryViewController *)theNavigationController.topViewController;
-/*
+@synthesize window;
+@synthesize overviewButton;
+@synthesize viewController;
+@synthesize managedObjectContext;
+
+@synthesize managedObjectModel;
+@synthesize storeCoordinator;
+
+- (BOOL)application:(UIApplication *)inApplication didFinishLaunchingWithOptions:(NSDictionary *)inLaunchOptions {
+    [SecUtils checkJailbreak];
+    self.managedObjectContext = [[NSManagedObjectContext alloc] init];
+    self.managedObjectContext.persistentStoreCoordinator = self.storeCoordinator;
     self.viewController = self.window.rootViewController;
     if([self.viewController isKindOfClass:[UISplitViewController class]]) {
         UISplitViewController *theController = (UISplitViewController *)self.viewController;
@@ -36,54 +30,64 @@
         
         theController.delegate = [theDetailController.viewControllers objectAtIndex:0];
     }
-*/
-//    theController.managedObjectContext = self.managedObjectContext;
     return YES;
 }
 
-#pragma mark - Core Data stack
-
-- (NSURL *)persistentStoreURL {
-    NSString *theDirectory = [[NSFileManager defaultManager] applicationSupportDirectory];
-    NSString *theFile = [theDirectory stringByAppendingPathComponent:@"Diary.sql"];
-
-    return [NSURL fileURLWithPath:theFile];
+- (void)applicationDidBecomeActive:(UIApplication *)inApplication {
+    srand((unsigned) [NSDate timeIntervalSinceReferenceDate]);
 }
+
+
+- (void)applicationDidEnterBackground:(UIApplication *)inApplication{
+    NSLog(@"[+] %@", NSStringFromSelector(_cmd));
+    UIViewController *vc = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"Login"];
+    [vc setModalPresentationStyle:UIModalPresentationFullScreen];
+    [self.viewController presentModalViewController:vc animated:YES];
+}
+
+- (NSURL *)applicationDocumentsURL {
+    NSFileManager *theManager = [NSFileManager defaultManager];
+    
+    return [[theManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
 
 - (NSManagedObjectModel *)managedObjectModel {
-    if (_managedObjectModel == nil) {
-        NSURL *theURL = [[NSBundle mainBundle] URLForResource:@"PhotoDiary" withExtension:@"momd"];
-
-        _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:theURL];
+    if(managedObjectModel == nil) {
+        NSURL *theURL = [[NSBundle mainBundle] URLForResource:@"Model" withExtension:@"momd"];
+        
+        self.managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:theURL];    
     }
-    return _managedObjectModel;
+    return managedObjectModel;
 }
 
-- (NSManagedObjectContext *)managedObjectContext {
-    if (_managedObjectContext == nil) {
-        NSPersistentStoreCoordinator *theCoordinator = self.persistentStoreCoordinator;
-
-        if(theCoordinator != nil) {
-            _managedObjectContext = [[NSManagedObjectContext alloc] init];
-            _managedObjectContext.persistentStoreCoordinator = theCoordinator;
-        }
-    }
-    return _managedObjectContext;
-}
-
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
-    if(_persistentStoreCoordinator == nil) {
-        NSURL *theURL = self.persistentStoreURL;
+- (NSPersistentStoreCoordinator *)storeCoordinator {
+    if(storeCoordinator == nil) {
+        NSURL *theURL = [[self applicationDocumentsURL] URLByAppendingPathComponent:@"Diary.sqlite"];
         NSError *theError = nil;
         NSPersistentStoreCoordinator *theCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
-
-        if([theCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:theURL options:nil error:&theError]) {
-            self.persistentStoreCoordinator = theCoordinator;
+        NSDictionary *fileAttributes = [NSDictionary dictionaryWithObject:NSFileProtectionComplete forKey:NSFileProtectionKey];
+        [[NSFileManager defaultManager] setAttributes:fileAttributes ofItemAtPath:[theURL absoluteString] error:&theError];
+        
+        if ([theCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil 
+                                                   URL:theURL options:nil error:&theError]) {
+            self.storeCoordinator = theCoordinator;
+            [[NSFileManager defaultManager] fileExistsAtPath:[theURL path]];
+            BOOL result = [theURL setResourceValue:[NSNumber numberWithBool: YES]
+                                            forKey:NSURLIsExcludedFromBackupKey error: &theError];
+            if(!result){
+                NSLog(@"Fehler beim Schützen der Datenbank: %@ / %@", [theURL lastPathComponent], theError);
+            }
         }
         else {
-            NSLog(@"Error: %@", theError);
+            NSLog(@"storeCoordinator: %@", theError);
         }
     }
-    return _persistentStoreCoordinator;
+    return storeCoordinator;
 }
+
+- (void)showPhotoDiaryViewController:(id)inSender {
+    
+}
+
 @end

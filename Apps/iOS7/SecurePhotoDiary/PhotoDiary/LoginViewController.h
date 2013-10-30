@@ -1,13 +1,16 @@
 //
 //  LoginViewController.h
-//  SecurePhotoDiary
+//  PhotoDiary
 //
-//  Created by Klaus Rodewig on 08.10.13.
-//  Copyright (c) 2013 Cocoaneheads. All rights reserved.
+//  Created by Klaus Rodewig on 13.08.12.
+//
 //
 
 #import <UIKit/UIKit.h>
+#import "SecUtils.h"
 
 @interface LoginViewController : UIViewController
-
+- (IBAction)loginUser:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *password;
+@property BOOL passwordSet;
 @end

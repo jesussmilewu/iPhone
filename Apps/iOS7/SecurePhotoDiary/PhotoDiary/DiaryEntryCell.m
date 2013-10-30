@@ -1,35 +1,37 @@
 #import "DiaryEntryCell.h"
 
-@interface DiaryEntryCell()
-
-@property (nonatomic, weak) IBOutlet UIImageView *iconView;
-@property (nonatomic, weak) IBOutlet UILabel *entryTextLabel;
-@property (nonatomic, weak) IBOutlet UILabel *dateLabel;
-
-@end
+#define ICON -100
+#define TEXT -101
+#define DATE -102
 
 @implementation DiaryEntryCell
 
+- (UIImageView *)imageView {
+    return (UIImageView *)[self viewWithTag:ICON];
+}
+
 - (UIControl *)imageControl {
-    return (UIControl *) self.iconView.superview;
+    return (UIControl *) self.imageView.superview;
 }
 
 - (void)setIcon:(UIImage *)inImage {
-    UIImageView *theView = self.iconView;
+    UIImageView *theView = self.imageView;
     
     theView.image = inImage;
 }
 
 - (void)setText:(NSString *)inText {
-    self.entryTextLabel.text = inText;
+    UILabel *theLabel = (UILabel *)[self viewWithTag:TEXT];
+    
+    theLabel.text = inText;
 }
 
 - (void)setDate:(NSDate *)inDate {
+    UILabel *theLabel = (UILabel *)[self viewWithTag:DATE];
     NSDateFormatter *theFormatter = [[NSDateFormatter alloc] init];
     
     theFormatter.dateStyle = NSDateFormatterMediumStyle;
-    theFormatter.locale = [NSLocale currentLocale];
-    self.dateLabel.text = [theFormatter stringFromDate:inDate];
+    theLabel.text = [theFormatter stringFromDate:inDate];
 }
 
 @end

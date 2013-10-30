@@ -3,7 +3,6 @@
 
 
 @implementation Medium
-
 @dynamic type;
 @dynamic data;
 @dynamic diaryEntry;

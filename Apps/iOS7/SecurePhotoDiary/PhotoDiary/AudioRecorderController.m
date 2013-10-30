@@ -1,10 +1,10 @@
 #import "AudioRecorderController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "MeterView.h"
+#import "UIViewController+PhotoDiary.h"
 #import "UIToolbar+Extensions.h"
 
 static const NSTimeInterval kMaximalRecordingTime = 30.0;
-static const float kMinimalAmplitude = -160.0;
 
 @interface AudioRecorderController()<AVAudioRecorderDelegate>
 
@@ -19,6 +19,16 @@ static const float kMinimalAmplitude = -160.0;
 @end
 
 @implementation AudioRecorderController
+
+@synthesize recordButton;
+@synthesize progressView;
+@synthesize meterView;
+@synthesize timeLabel;
+@synthesize toolbar;
+@synthesize activityIndicator;
+
+@synthesize audioRecorder;
+@synthesize updateTimer;
 
 @dynamic delegate;
 
@@ -42,7 +52,10 @@ static const float kMinimalAmplitude = -160.0;
 }
 
 - (NSDictionary *)audioRecorderSettings {
-    return @{ AVFormatIDKey:@(kAudioFormatAppleIMA4),  AVSampleRateKey:@16000.0, AVNumberOfChannelsKey:@1 };
+    return [NSDictionary dictionaryWithObjectsAndKeys:
+            [NSNumber numberWithInt:kAudioFormatAppleIMA4], AVFormatIDKey, 
+            [NSNumber numberWithFloat:16000.0], AVSampleRateKey, 
+            [NSNumber numberWithInt:1], AVNumberOfChannelsKey, nil];
 }
 
 - (NSData *)data {
@@ -94,11 +107,11 @@ static const float kMinimalAmplitude = -160.0;
     if([self.delegate respondsToSelector:@selector(audioRecorder:didRecordToData:)]) {
         [self.delegate audioRecorder:self didRecordToData:self.data];
     }
-    [self dismissAnimated:YES];
+    [self dismissSubviewAnimated:YES];
 }
 
 - (IBAction)cancel:(id)inSender {
-    [self dismissAnimated:YES];
+    [self dismissSubviewAnimated:YES];
     [self clear];
     if([self.delegate respondsToSelector:@selector(audioRecorderDidCancel:)]) {
         [self.delegate audioRecorderDidCancel:self];
@@ -169,12 +182,10 @@ static const float kMinimalAmplitude = -160.0;
 
 - (void)updateTime:(NSTimer *)inTimer {
     NSTimeInterval theTime = self.audioRecorder.currentTime;
-    float theValue;
     
     [self.audioRecorder updateMeters];
     self.progressView.progress = theTime / kMaximalRecordingTime;
-    theValue = [self.audioRecorder averagePowerForChannel:0] - kMinimalAmplitude;
-    //self.meterView.value = theValue / -kMinimalAmplitude;
+    self.meterView.value = [self.audioRecorder averagePowerForChannel:0];
     [self setTime:theTime];
 }
 

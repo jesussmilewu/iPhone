@@ -1,7 +1,11 @@
 #import "MeterView.h"
 #import <QuartzCore/QuartzCore.h>
 
+#define WIDTH 160.0
+
 @implementation MeterView
+
+@synthesize value;
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -10,21 +14,22 @@
 }
 
 - (void)setValue:(float)inValue {
-    if(self.value != inValue) {
-        _value = fmin(fmax(inValue, 0.0), 1.0);
+    if(value != inValue) {
+        value = inValue;
         [self setNeedsDisplay];
     }
 }
 
 - (void)clear {
-    self.value = 0.0;
+    self.value = -WIDTH;
 }
 
 - (void)drawRect:(CGRect)inRect {
     CGRect theBounds = self.bounds;
+    CGFloat theValue = theBounds.size.width * self.value / WIDTH;
     UIImage *theImage = [UIImage imageNamed:@"meter.png"];
     
-    theBounds.size.width *= self.value;
+    theBounds.size.width += theValue;
     [theImage drawAsPatternInRect:theBounds];
 }
 

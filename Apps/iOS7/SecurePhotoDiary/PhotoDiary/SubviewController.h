@@ -6,8 +6,7 @@
 
 @property(nonatomic, weak) IBOutlet id<SubviewControllerDelegate> delegate;
 
-- (void)dismissAnimated:(BOOL)inAnimated;
-- (void)presentFromViewController:(UIViewController *)inViewController animated:(BOOL)inAnimated;
+- (void)dismissSubviewAnimated:(BOOL)inAnimated;
 
 @end
 
@@ -16,9 +15,5 @@
 @optional
 - (void)subviewControllerWillAppear:(SubviewController *)inController;
 - (void)subviewControllerWillDisappear:(SubviewController *)inController;
-
-@end
-
-@interface SubviewSegue : UIStoryboardSegue
 
 @end

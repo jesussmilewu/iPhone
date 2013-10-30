@@ -1,22 +1,21 @@
 //
 //  RegistrationViewController.m
-//  SecurePhotoDiary
+//  PhotoDiary
 //
-//  Created by Klaus Rodewig on 08.10.13.
-//  Copyright (c) 2013 Cocoaneheads. All rights reserved.
+//  Created by Klaus Rodewig on 14.08.12.
+//
 //
 
 #import "RegistrationViewController.h"
-#import "SecUtils.h"
+#import <CommonCrypto/CommonDigest.h>
 
 @interface RegistrationViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *firstPassword;
-@property (weak, nonatomic) IBOutlet UITextField *secondPassword;
-- (IBAction)registerUser:(id)sender;
 
 @end
 
 @implementation RegistrationViewController
+@synthesize firstPassword;
+@synthesize secondPassword;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,32 +32,38 @@
 	// Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewDidUnload
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self setFirstPassword:nil];
+    [self setSecondPassword:nil];
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (IBAction)registerUser:(id)sender {
     NSLog(@"[+] %@", NSStringFromSelector(_cmd));
-    NSString *password = [self.firstPassword text];
-    if([password isEqualToString:[self.secondPassword text]]){
+    NSString *password = [firstPassword text];
+    if([password isEqualToString:[secondPassword text]]){
         NSLog(@"[+] Password accepted. Creating hash for secure storage");
-        
+      
         NSString *passwordHash = [SecUtils generateSHA256:password];
         
         NSLog(@"[+] Password hash: %@", passwordHash);
         
         NSLog(@"[+] Password accepted. Writing to Keychain");
-        
+                
         if([SecUtils addKeychainEntry:passwordHash]){
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"passwordSet"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             
-            UIStoryboard *storyboard = self.storyboard;
-            UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"Login"];
+            UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"Login"];
             [vc setModalPresentationStyle:UIModalPresentationFullScreen];
-            [self presentViewController:vc animated:YES completion:nil];
+            [self presentModalViewController:vc animated:YES];
         }
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Passwörter stimmen nicht überein!"
@@ -67,11 +72,13 @@
                                               cancelButtonTitle:@"Ok"
                                               otherButtonTitles:nil];
         [alert show];
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-        UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"Registration"];
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+        UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"Registration"];
         [vc setModalPresentationStyle:UIModalPresentationFullScreen];
-        [self presentViewController:vc animated:YES completion:nil];
+        [self presentModalViewController:vc animated:YES];
+
     }
 }
+
 
 @end

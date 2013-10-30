@@ -1,16 +1,20 @@
-//
-//  PhotoDiaryViewController.h
-//  PhotoDiary
-//
-//  Created by Clemens Wagner on 10.09.13.
-//  Copyright (c) 2013 Cocoaneheads. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "SubviewController.h"
 
-@interface PhotoDiaryViewController : UITableViewController
+@class DiaryEntry;
+@class ItemViewController;
+@class DiaryEntryCell;
+@class SlideShowController;
+@class AudioPlayerController;
 
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@interface PhotoDiaryViewController : UITableViewController<SubviewControllerDelegate, UISearchDisplayDelegate> 
 
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) IBOutlet UISearchDisplayController *searchDisplayController;
+
+- (IBAction)addItem;
+- (IBAction)playSound:(id)inSender;
+- (UITableView *)currentTableView;
+- (DiaryEntry *)entryForTableView:(UITableView *)inTableView atIndexPath:(NSIndexPath *)inIndexPath;
 @end

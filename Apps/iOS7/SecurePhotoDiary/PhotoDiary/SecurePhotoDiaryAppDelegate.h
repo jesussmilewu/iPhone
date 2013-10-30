@@ -1,15 +1,16 @@
-//
-//  PhotoDiaryAppDelegate.h
-//  PhotoDiary
-//
-//  Created by Clemens Wagner on 10.09.13.
-//  Copyright (c) 2013 Cocoaneheads. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 
-@interface SecurePhotoDiaryAppDelegate : UIResponder <UIApplicationDelegate>
+@class PhotoDiaryViewController;
 
-@property (strong, nonatomic) UIWindow *window;
+@interface SecurePhotoDiaryAppDelegate : NSObject <UIApplicationDelegate, UISplitViewControllerDelegate> 
+
+@property (nonatomic, strong) IBOutlet UIWindow *window;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *overviewButton;
+@property (nonatomic, strong) IBOutlet UIViewController *viewController;
+@property (nonatomic, strong) IBOutlet NSManagedObjectContext *managedObjectContext;
+
+@property (nonatomic, readonly) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, readonly) NSPersistentStoreCoordinator *storeCoordinator;
 
 @end

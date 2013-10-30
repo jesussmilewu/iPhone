@@ -1,21 +1,20 @@
 //
 //  LoginViewController.m
-//  SecurePhotoDiary
+//  PhotoDiary
 //
-//  Created by Klaus Rodewig on 08.10.13.
-//  Copyright (c) 2013 Cocoaneheads. All rights reserved.
+//  Created by Klaus Rodewig on 13.08.12.
+//
 //
 
 #import "LoginViewController.h"
-#import "SecUtils.h"
 
 @interface LoginViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *password;
-- (IBAction)loginUser:(id)sender;
-@property BOOL passwordSet;
+
 @end
 
 @implementation LoginViewController
+@synthesize password = _password;
+@synthesize passwordSet;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,57 +29,48 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    /*
-    self.passwordSet = [[NSUserDefaults standardUserDefaults] boolForKey:@"passwordSet"];
-    if(!self.passwordSet){
-        NSLog(@"Passwort nicht gesetzt");
-        NSLog(@"Starte Registrierung");
-        UIStoryboard *storyboard = self.storyboard;
-        UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"Registration"];
-        [vc setModalPresentationStyle:UIModalPresentationFullScreen];
-//        [self presentModalViewController:vc animated:YES ];
-        [self presentViewController:vc animated:YES completion:NULL];
-    }
-     */
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
-    self.passwordSet = [[NSUserDefaults standardUserDefaults] boolForKey:@"passwordSet"];
-    if(!self.passwordSet){
+-(void)viewDidAppear:(BOOL)animated{
+    passwordSet = [[NSUserDefaults standardUserDefaults] boolForKey:@"passwordSet"];
+    if(!passwordSet){
         NSLog(@"Passwort nicht gesetzt");
         NSLog(@"Starte Registrierung");
-        UIStoryboard *storyboard = self.storyboard;
-        UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"Registration"];
+        UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"Registration"];
         [vc setModalPresentationStyle:UIModalPresentationFullScreen];
-        //        [self presentModalViewController:vc animated:YES ];
-        [self presentViewController:vc animated:YES completion:NULL];
+        [self presentModalViewController:vc animated:YES];
     }
-
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewDidUnload
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self setPassword:nil];
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (IBAction)loginUser:(id)sender {
     NSLog(@"[+] %@", NSStringFromSelector(_cmd));
-    
+
     NSString *storedPassword = [SecUtils getUserPwFromKeychain];
     
-    NSString *userPassword = [self.password text];
+//    NSLog(@"[+] PW: %@", storedPassword);
+    
+    NSString *userPassword = [_password text];
     
     NSString *passwordHash = [SecUtils generateSHA256:userPassword];
     NSLog(@"[+] Password hash: %@", passwordHash);
     NSLog(@"[+] Password: %@", userPassword);
-    
+
     if([passwordHash isEqualToString:storedPassword]){
-        UIStoryboard *storyboard = self.storyboard;
-        UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MainNavigationController"];
+        UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MainNavigationController"];
         [vc setModalPresentationStyle:UIModalPresentationFullScreen];
-        [self presentViewController:vc animated:YES completion:nil];
+        [self presentModalViewController:vc animated:YES];
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Anmeldung fehlgeschlagen"
                                                         message:@"Bitte erneut versuchen!"
@@ -89,6 +79,7 @@
                                               otherButtonTitles:nil];
         [alert show];
     }
-
 }
+
+
 @end
