@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Apps programmieren für iPhone und iPad by Cocoaneheads</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Apps programmieren für iPhone und iPad</h1>
+        <p>Der Code zum Buch</p>
+
+        <p class="view"><a href="https://github.com/Cocoaneheads/iPhone">View the Project on GitHub <small>Cocoaneheads/iPhone</small></a></p>
+        <ul>
+          <li><a href="https://github.com/Cocoaneheads/iPhone/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/Cocoaneheads/iPhone/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/Cocoaneheads/iPhone">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p><img src="http://cover.galileo-press.de/9783836219150.jpg" alt="Cover"></p>
+
+<hr><h3>Fehler im Buch</h3>
+<p>Trotz sorgf&auml;ltiger Pr&uuml;fung haben sich einige Fehler eingeschlichen, die wir auf dieser Seite zusammengetragen haben. Bei Problemen mit den Listings empfiehlt sich auch immer ein Blick in den Sourcecode im Git.</p>
+<h4>Seite 81</h4>
+<p>Der erste Klammeraffe in Listing 2.8 muss durch <tt>nil</tt> ersetzt werden:
+<pre>
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self.textView setText:<b>nil</b>];
+    [self writeLog:@"viewDidLoad"];
+}
+</pre>
+<em>Danke, Matthias</em>
+</p>
+<h4>Seite 82</h4>
+<p>Der Parameter der Methode <tt>writeLog:</tt> muss <tt>inLogString</tt> hei&szlig;en:
+<pre>
+- (void)writeLog:(NSString *)<b>inLogString</b> {
+</pre>
+<em>Danke, Timmy</em>
+</p>
+<h4>Seite 87</h4>
+<p>In der Klassendeklaration von <tt>Model</tt> fehlt der Bezeichner f&uuml;r das erste Attribut:
+<pre>
+@interface Model : NSObject {
+    @private
+    NSString *<b>status</b>;
+    NSDate *creation;
+    NSString *name;
+    NSMutableArray *objects;
+}
+@end
+</pre>
+<em>Danke, Werner</em></p>
+<h4>Seiten 89, 91 und 116</h4>
+<p>Bei den <tt>@synthesize</tt>-Anweisungen fehlt der Bezeichner:
+<pre>
+@synthesize <b>status</b>;
+@synthesize name;
+@synthesize creation;
+</pre>
+<em>Danke, Claus, Timmy und Fabian</em></p>
+<h4>Seite 90</h4>
+<p>In der ersten Anweisung im grauen Kasten fehlt eine schlie&szlig;ende Klammer:
+<pre>[[self user] setName:[textField text]<b>]</b>;</pre>
+<em>Danke, Matz</em>
+</p>
+<h4>Seite 103</h4>
+<p>Die Methode in der Klasse <tt>Model</tt> hei&szlig;t <tt>updateDroids:</tt> nicht <tt>updateModel:</tt>.<br />
+<em>Danke, Hr. Maier</em>
+</p>
+<h4>Seite 105</h4>
+<p>Im ersten Satz des letzt Absatzes steht die falsche Klasse (<tt>Model</tt>). Richtig ist stattdessen <tt>Droid</tt>.<br />
+<em>Danke, Timmy</em>
+</p>
+<h4>Seite 121</h4>
+<p>In Listing 2.56 hat sich ein &uuml;berfl&uuml;ssiges <tt>#zonk</tt> eingeschlichen.<br/>
+<em>Danke, Claus</em></p>
+<p>In den Listing 2.55 bis 2.57 und 2.59 fehlen die Namen der Schlüssel; es muss dort jeweils <tt>@"status"</tt> anstatt <tt>@""</tt> hei&szlig;en.</p>
+<h4>Seite 123f</h4>
+<p>Der Schlüssel in Listing 2.63 muss <tt>countOfObjects</tt> und nicht <tt>objects</tt> lauten.
+<em>Danke, Fabian</em></p>
+<h4>Seite 183</h4>
+<p>Listing 2.116 verwendet das falsche Format f&uuml;r <tt>float</tt>:
+<pre>
+NSNumber *theValue = [NSNumber numberWithInt:42];
+NSLog(@"int = %d", [theValue intValue]);
+NSLog(@"float = <b>%f</b>", [theValue floatValue]);
+NSLog(@"BOOL = %@«, [theValue boolValue] ? @"YES" : @"NO"]
+</pre>
+<em>Danke, Sven</em>
+</p>
+<h4>Seite 187</h4>
+<p>Der Schl&uuml;ssel muss <em>city</em> hei&szlig;en:
+<pre>
+[theDictionary valueForKey:@"city"] // Fehler
+[theDictionary objectForKey:@"<b>city</b>"] // OK -> nil
+</pre>
+<em>Danke, Sven</em>
+</p>
+<h4>Seite 219</h4>
+<p>Die Oder-Operatoren "|" sind in Listing 3.10 beim Satz verlorengegangen. Der Anfang der Methode muss lauten:
+<pre>
+CGContextRef theContext = UIGraphicsGetCurrentContext();
+CGPoint theCenter = [self midPoint];
+CGFloat theRadius = CGRectGetWidth(self.bounds) / 2.0;
+NSDateComponents *theComponents =
+    [self.calendar components:<b>NSHourCalendarUnit |
+                          NSMinuteCalendarUnit |
+                          NSSecondCalendarUnit</b>
+                     fromDate:self.time];
+</pre>
+<em>Danke, Thomas</em>
+</p>
+<h4>Seite 238</h4>
+<p>In Listing 3.23 fehlt ein <tt>self</tt>:
+<pre>
+- (void)viewDidAppear:(BOOL)inAnimated {
+    [super viewDidAppear:inAnimated];
+    [<b>self</b>.clockView startAnimation];
+}
+</pre>
+<em>Danke, Thomas</em>
+</p>
+<h4>Seite 249</h4>
+<p>Die Erzeugung der Dateien <em>UIView+AlarmClock.h</em> und <em>UIView+AlarmClock.m</em> erfolgt &uuml;ber die Vorlage <em>Objective-C category</em> anstelle von <em>Objective-C class extension</em>.<br />
+<em>Danke, Thomas</em>
+</p>
+<h4>Seite 259</h4>
+<p>Hier fehlt für neuere Xcode-Versionen ein Hinweis, welcher &Uuml;bergangstyp im schwarzen Popup-Fenster (am besten <em>modal</em>) auszuw&auml;hlen ist.<br />
+<em>Danke, Sven</em>
+</p>
+<h4>Seite 271</h4>
+<p><pre>NSTimeInterval theTime = self.startTimeOfCurrentDay + <b>self.</b>clockControl.time;</pre>
+<em>Danke, Sven</em>
+</p>
+<h4>Seite 387</h4>
+<p>Die seltsamen Zeichen am Ende einiger Zeilen von Listing 4.50 stehen f&uuml;r Zeilenumbr&uuml;che und k&ouml;nnen ignoriert werden.</p>
+<h4>Seite 781</h4>
+<p>Listing 8.8 verwendet nicht die Variable <tt>theEncoding</tt> f&uuml;r die Konverterung:
+<pre>
+- (NSString *)encodedStringForURLWithEncoding:
+    (NSStringEncoding)inEncoding {
+    CFStringEncoding theEncoding = 
+        CFStringConvertNSStringEncodingToEncoding(
+            inEncoding);
+    CFStringRef theResult =
+        CFURLCreateStringByAddingPercentEscapes(
+            kCFAllocatorDefault,
+            (__bridge CFStringRef)self,
+            NULL,
+            (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+            <b>theEncoding</b>);
+
+    return (__bridge_transfer NSString *)theResult;
+}
+</pre>
+<em>Danke, Claus</em>
+</p>
+<h4>Seite 832</h4>
+<p>In Listing 8.48 fehlt ein <em>e</em> im Variablennamen:
+<pre>
+if(theError == nil && 
+   [theR<b>e</b>sponse isKindOfClass:[NSHTTPURLResponse class]] 
+   && [theResponse statusCode] == 200) {
+</pre>
+<em>Danke, Matz</em>
+</p>
+<h4>Seite 852</h4>
+<p>In Listing 8.63 hat sich ein &uuml;berfl&uuml;ssiges <tt>#zonk#</tt> eingeschlichen.</p>
+<h3>Kontakt &amp; Impressum</h3>
+
+<p>Autoren: Clemens Wagner, Klaus Rodewig: <a href="mailto:dingdong@cocoaneheads.de">dingdong@cocoaneheads.de</a></p>
+
+<p><a href="http://www.galileocomputing.de/hilfe/Impressum?GalileoSession=13813102A5s4U69QHQc">Impressum Verlag</a></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/Cocoaneheads">Cocoaneheads</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
