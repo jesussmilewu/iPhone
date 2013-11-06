@@ -36,38 +36,32 @@
 	return ([[protectionSpace authenticationMethod] isEqual:NSURLAuthenticationMethodServerTrust]);
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
-{
-	NSURLProtectionSpace * protectionSpace = [challenge protectionSpace];
-	if ([[protectionSpace authenticationMethod] isEqual:NSURLAuthenticationMethodServerTrust]) {
-		
-		SecTrustRef theTrust = [protectionSpace serverTrust];
-		BOOL trustedCert = NO;
-		
-		if (theTrust != NULL) {
-			CFIndex             theCertCount;
-			CFIndex             theCertIndex;
-			SecCertificateRef   theCert;
-			
-            theCertCount = SecTrustGetCertificateCount(theTrust);
-            for (theCertIndex = 0; theCertIndex < theCertCount; theCertIndex++) {
-                CFDataRef theCertData;
-                theCert = SecTrustGetCertificateAtIndex(theTrust, theCertIndex);
-                theCertData = SecCertificateCopyData(theCert);
-				trustedCert |= [SERVER_CERT_HASH isEqual:[self sha1HexDigest:(__bridge NSData*)theCertData]];
-                CFRelease(theCertData);
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    NSURLProtectionSpace *protectionSpace = [challenge protectionSpace];
+    if ([[protectionSpace authenticationMethod] isEqual:NSURLAuthenticationMethodServerTrust]) {
+        SecTrustRef theTrust = [protectionSpace serverTrust];
+        BOOL trustedCert = NO;
+        
+        if(theTrust != NULL) {
+            CFIndex theCertCount = SecTrustGetCertificateCount(theTrust);
+            
+            for(CFIndex theCertIndex = 0; theCertIndex < theCertCount; theCertIndex++) {
+                SecCertificateRef theCert = SecTrustGetCertificateAtIndex(theTrust, theCertIndex);
+                NSData *theData = (__bridge NSData *)SecCertificateCopyData(theCert);
+                trustedCert |= [SERVER_CERT_HASH isEqual:[self sha1HexDigest:theData]];
             }
         }
-		if (trustedCert) {
-			NSURLCredential * credential = [NSURLCredential credentialForTrust:theTrust];
-			[[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
-            NSLog(@"Zertifikat gültig");
-		} else {
-			NSLog(@"Ungültiges Zertifikat");
-		}
-	}
+        if(trustedCert) {
+            NSURLCredential * credential = [NSURLCredential credentialForTrust:theTrust];
+            
+            [[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
+            NSLog(@"Certificate trusted");
+        }
+        else {
+            NSLog(@"Invalid certificate!");
+        }
+    }
 }
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
