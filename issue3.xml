@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="book.xsl" ?>
+<b:book xmlns:b="book.xsd" xmlns="httb://www.w3.org/1999/xhtml"
+              issue="3" year="2013">
+  <b:title>App programmieren für iPhone und iPad</b:title>
+  <b:branch>Auflage_2</b:branch>
+  <b:openbook>http://openbook.galileocomputing.de/apps_programmieren_fuer_iphone_und_ipad/</b:openbook>
+  <b:errors>
+    <b:error pages="691">
+      <b:text>
+        Im ersten Satz fehlt ein Wort:
+        <em>Nach dem Start erscheint neben Allocations ein blaues »Gebirge«,
+          das den verbrauchten Speicher der <b>App</b> symbolisiert.</em>
+      </b:text>
+    </b:error>
+  </b:errors>
+</b:book>

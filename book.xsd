@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:book="http://cocoaneheads.github.io/iPhone/book.xsd"
+            targetNamespace="http://cocoaneheads.github.io/iPhone/book.xsd"
+            elementFormDefault="qualified">
+  <xsd:import namespace="http://www.w3.org/1999/xhtml"
+              schemaLocation="http://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd"/>
+  <xsd:element name="book">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="title" type="xsd:string" minOccurs="1" maxOccurs="1" />
+        <xsd:element name="branch" type="xsd:string" minOccurs="1" maxOccurs="1" />
+        <xsd:element name="openbook" type="xsd:string" minOccurs="0" maxOccurs="1" />
+        <xsd:element name="errors" minOccurs="0" maxOccurs="1">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="error" type="book:error" minOccurs="1" maxOccurs="unbounded" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+      <xsd:attribute name="issue" type="xsd:unsignedInt" use="required" />
+      <xsd:attribute name="year" type="xsd:unsignedInt" use="required" />
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="error">
+    <xsd:sequence>
+      <xsd:element name="text" type="xsd:anyType" minOccurs="1" maxOccurs="1" />
+      <xsd:element name="credits" type="xsd:anyType" minOccurs="0" maxOccurs="1" />
+    </xsd:sequence>
+    <xsd:attribute name="pages" type="xsd:string" use="required" />
+  </xsd:complexType>
+</xsd:schema>
