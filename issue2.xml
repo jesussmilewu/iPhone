@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="book.xsl" ?>
-<b:book xmlns:b="book.xsd" xmlns="http://www.w3.org/1999/xhtml"
+<b:book xmlns:b="http://cocoaneheads.github.io/iPhone/book.xsd" xmlns="http://www.w3.org/1999/xhtml"
               issue="2" year="2012">
   <b:title>App programmieren für iPhone und iPad</b:title>
   <b:branch>Auflage_2</b:branch>

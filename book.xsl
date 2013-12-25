@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:book="book.xsd">
+                xmlns:book="http://cocoaneheads.github.io/iPhone/book.xsd">
   <xsl:output method="html" doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN" media-type="application/html+xml" encoding="UTF-8" indent="yes"/>
   <xsl:template match="/book:book">
     <html>
@@ -57,7 +57,12 @@
               die wir auf dieser Seite zusammengetragen haben. Bei Problemen mit den Listings empfiehlt
               sich auch immer ein Blick in den Sourcecode im Git.</p>
 
-            <xsl:apply-templates select="book:errors/book:error" />
+            <xsl:choose>
+              <xsl:when test="book:errors">
+                <xsl:apply-templates select="book:errors/book:error" />
+              </xsl:when>
+              <xsl:otherwise><p><em>In Arbeit</em></p></xsl:otherwise>
+            </xsl:choose>
 
             <h3>Kontakt &amp; Impressum</h3>
             <p>Autoren: Clemens Wagner, Klaus Rodewig: <a href="mailto:dingdong@cocoaneheads.de">dingdong@cocoaneheads.de</a></p>

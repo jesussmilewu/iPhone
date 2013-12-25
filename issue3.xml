@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="book.xsl" ?>
-<b:book xmlns:b="book.xsd" xmlns="httb://www.w3.org/1999/xhtml"
+<b:book xmlns:b="http://cocoaneheads.github.io/iPhone/book.xsd" xmlns="http://www.w3.org/1999/xhtml"
               issue="3" year="2013">
   <b:title>App programmieren für iPhone und iPad</b:title>
   <b:branch>Auflage_2</b:branch>
@@ -10,8 +10,11 @@
       <b:text>
         Im ersten Satz fehlt ein Wort:
         <em>Nach dem Start erscheint neben Allocations ein blaues »Gebirge«,
-          das den verbrauchten Speicher der <b>App</b> symbolisiert.</em>
-      </b:text>
+          das den verbrauchten Speicher der <b>App</b> symbolisiert.</em></b:text>
+    </b:error>
+    <b:error pages="1068f und 1138">
+      <b:text>Apple hat inzwischen die Installation der Command-Line-Tools geändert
+        und eine explizite Installation zumindest unter Mavericks ist nicht mehr notwendig.</b:text>
     </b:error>
   </b:errors>
 </b:book>
