@@ -12,6 +12,9 @@
         <em>Nach dem Start erscheint neben Allocations ein blaues »Gebirge«,
           das den verbrauchten Speicher der <b>App</b> symbolisiert.</em></b:text>
     </b:error>
+    <b:error pages="1002">
+      <b:text>In Abbildung 9.15 ist das fünfte Kästchen mit dem Text „￼Ladeprozess für Bild 2 starten“ zuviel.</b:text>
+    </b:error>
     <b:error pages="1068f und 1138">
       <b:text>Apple hat inzwischen die Installation der Command-Line-Tools geändert
         und eine explizite Installation zumindest unter Mavericks ist nicht mehr notwendig.</b:text>
