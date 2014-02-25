@@ -1,15 +1,20 @@
 //
-//  BreakOutMyScene.m
-//  BreakOut
+//  BreakoutMyScene.m
+//  Breakout
 //
 //  Created by Clemens Wagner on 11.01.14.
 //  Copyright (c) 2014 Clemens Wagner. All rights reserved.
 //
 
-#import "BreakOutScene.h"
+#import "BreakoutScene.h"
 
-const NSUInteger kRows = 4;
+const NSUInteger kRows = 8;
 const NSUInteger kBricksPerRow = 8;
+
+static NSString * const kBall = @"ball";
+static NSString * const kBrick = @"brick";
+static NSString * const kImpulse = @"impulse";
+static NSString * const kPoints = @"points";
 
 const uint32_t kWallMask = 1 << 0;
 const uint32_t kBallMask = 1 << 1;
@@ -18,65 +23,92 @@ const uint32_t kRacketMask = 1 << 3;
 
 static NSString * const kGameOverLabel = @"Game Over";
 
-@interface BreakOutScene ()<SKPhysicsContactDelegate>
+static inline CGFloat CGVektorLength(CGVector inVector) {
+    return sqrtf(inVector.dx * inVector.dx + inVector.dy * inVector.dy);
+}
+
+#define PHYSICS 3
+
+@interface BreakoutScene ()<SKPhysicsContactDelegate>
+
+@property (nonatomic, readwrite) BOOL isRunning;
+@property (nonatomic, readwrite) NSUInteger score;
 
 @property (nonatomic) CGFloat velocity;
 @property (nonatomic, strong) SKNode *ball;
 @property (nonatomic, strong) SKNode *racket;
 
+
 @end
 
-@implementation BreakOutScene
+@implementation BreakoutScene
 
 - (id)initWithSize:(CGSize)inSize {
-    CGSize theCellSize = CGSizeMake(inSize.width / kBricksPerRow,
-                                    inSize.width / (3 * kBricksPerRow));
-    CGSize theRacketSize = CGSizeMake(theCellSize.width, theCellSize.height / 2.0);
-    CGFloat theMinimalY = 0.0;
-    
     self = [super initWithSize:inSize];
     if(self) {
+        CGSize theBricklSize = self.brickSize;
+        CGSize theRacketSize = CGSizeMake(theBricklSize.width, theBricklSize.height / 2.0);
         CGRect theFrame = self.frame;
         SKPhysicsBody *theBody;
         
-        theFrame.origin.y = -2.0 * theCellSize.height;
-        theFrame.size.height += 2.0 * theCellSize.height;
-        theBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:theFrame];
         self.backgroundColor = [SKColor blueColor];
         self.velocity = inSize.height / 2.0;
-        for(NSUInteger i = 0; i < kRows; ++i) {
-            CGPoint thePoint = CGPointMake(theCellSize.width / 2.0,
-                                           inSize.height - (i + 0.5) * theCellSize.height);
-            
-            theMinimalY = thePoint.y;
-            for(NSUInteger j = 0; j < kBricksPerRow; ++j) {
-                SKColor *theColor = [SKColor redColor];
-                
-                [self addChild:[self brickWithColor:theColor size:theCellSize position:thePoint]];
-                thePoint.x += theCellSize.width;
-            }
-        }
+        [self buildBricks];
         self.racket = [self racketWithSize:theRacketSize
-                                  position:CGPointMake(inSize.width / 2.0, theCellSize.height)];
+                                  position:CGPointMake(inSize.width / 2.0, theBricklSize.height)];
         [self addChild:self.racket];
-        theBody.density = 0.0;
-        theBody.friction = 0.0;
-        theBody.linearDamping = 0.0;
-        theBody.angularDamping = 0.0;
+        theFrame.origin.y = -2.0 * theBricklSize.height;
+        theFrame.size.height += 2.0 * theBricklSize.height;
+        theBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:theFrame];
         theBody.categoryBitMask = kWallMask;
         theBody.collisionBitMask = kBallMask;
+#if PHYSICS > 0
         self.physicsBody = theBody;
+#endif
+#if PHYSICS > 1
         self.physicsWorld.contactDelegate = self;
+#endif
         [self start];
     }
     return self;
 }
 
-- (CGFloat)speed {
-    SKPhysicsBody *theBody = self.ball.physicsBody;
-    CGVector theVelocity = theBody.velocity;
+- (CGSize)brickSize {
+    CGSize theSize = self.size;
     
-    return sqrtf(theVelocity.dx * theVelocity.dx + theVelocity.dy * theVelocity.dy);
+    return CGSizeMake(theSize.width / kBricksPerRow, theSize.width / (3 * kBricksPerRow));
+}
+
+- (void)buildBricks {
+    CGSize theSize = self.size;
+    CGSize theBrickSize = self.brickSize;
+    NSArray *theColors = @[ [UIColor redColor], [UIColor orangeColor], [UIColor yellowColor], [UIColor greenColor] ];
+    NSUInteger theCount = [theColors count];
+    CGFloat theMinimalY = 0.0;
+
+    [self removeAllBricks];
+    for(NSUInteger i = 0; i < kRows; ++i) {
+        CGPoint thePoint = CGPointMake(theBrickSize.width / 2.0,
+                                       theSize.height - (i + 0.5) * theBrickSize.height);
+        
+        theMinimalY = thePoint.y;
+        for(NSUInteger j = 0; j < kBricksPerRow; ++j) {
+            NSUInteger theIndex = random() % theCount;
+            SKColor *theColor = theColors[theIndex];
+            SKNode *theBrick = [self brickWithColor:theColor size:theBrickSize position:thePoint];
+            
+            theBrick.userData[kPoints] = @((theIndex + 1) * 10);
+            theBrick.userData[kImpulse] = @(10 + theIndex * 3);
+            [self addChild:theBrick];
+            thePoint.x += theBrickSize.width;
+        }
+    }
+}
+
+- (void)removeAllBricks {
+    [self enumerateChildNodesWithName:kBrick usingBlock:^(SKNode *inBrick, BOOL *outStop) {
+        [inBrick removeFromParent];
+    }];
 }
 
 - (CGFloat)direction {
@@ -87,9 +119,7 @@ static NSString * const kGameOverLabel = @"Game Over";
 }
 
 - (CGFloat)gravity {
-    CGVector theGravity = self.physicsWorld.gravity;
-    
-    return sqrtf(theGravity.dx * theGravity.dx + theGravity.dy * theGravity.dy);
+    return CGVektorLength(self.physicsWorld.gravity);
 }
 
 - (void)addImpulseWithFactor:(CGFloat)inFactor {
@@ -103,16 +133,11 @@ static NSString * const kGameOverLabel = @"Game Over";
 
 - (void)updateRacketWithTouches:(NSSet *)inTouches {
     SKNode *theRacket = self.racket;
+    UITouch *theTouch = [inTouches anyObject];
+    CGPoint thePoint = [theTouch locationInNode:self];
+    SKAction *theAction = [SKAction moveToX:thePoint.x duration:0.0];
     
-    if(![theRacket hasActions]) {
-        UITouch *theTouch = [inTouches anyObject];
-        CGPoint thePoint = [theTouch locationInNode:self];
-        /*NSTimeInterval theTime = 0.5 * fabs(thePoint.x - theRacket.position.x) / self.size.width;
-        
-        [theRacket runAction:[SKAction moveToX:thePoint.x duration:theTime]];*/
-        thePoint.y = theRacket.position.y;
-        theRacket.position = thePoint;
-    }
+    [theRacket runAction:theAction];
 }
 
 - (void)touchesBegan:(NSSet *)inTouches withEvent:(UIEvent *)inEvent {
@@ -120,16 +145,13 @@ static NSString * const kGameOverLabel = @"Game Over";
         [self updateRacketWithTouches:inTouches];
     }
     else {
+        [self buildBricks];
         [self start];
     }
 }
 
 - (void)touchesMoved:(NSSet *)inTouches withEvent:(UIEvent *)inEvent {
     [self updateRacketWithTouches:inTouches];
-}
-
-- (BOOL)isRunning {
-    return self.ball != nil;
 }
 
 - (void)start {
@@ -142,6 +164,8 @@ static NSString * const kGameOverLabel = @"Game Over";
         self.ball = [self ballWithRadius:theRadius position:thePosition];
         [self addChild:self.ball];
         [theLabel removeFromParent];
+        self.score = 0;
+        self.isRunning = YES;
     }
 }
 
@@ -150,7 +174,7 @@ static NSString * const kGameOverLabel = @"Game Over";
 
     self.ball = nil;
     if(theBall != nil) {
-        SKLabelNode *theNode = [SKLabelNode labelNodeWithFontNamed:@"Helvetica Bold "];
+        SKLabelNode *theNode = [SKLabelNode labelNodeWithFontNamed:@"Helvetica Bold"];
         CGRect theFrame = self.frame;
         
         [theBall runAction:[SKAction removeFromParent]];
@@ -160,11 +184,12 @@ static NSString * const kGameOverLabel = @"Game Over";
         theNode.alpha = 0.0;
         [self addChild:theNode];
         [theNode runAction:[SKAction fadeInWithDuration:0.25]];
+        self.isRunning = NO;
     }
 }
 
 - (CGVector)velocityWithDirection:(CGVector)inDirection {
-    CGFloat theAbsoluteVelocity = sqrtf(inDirection.dx * inDirection.dx + inDirection.dy * inDirection.dy);
+    CGFloat theAbsoluteVelocity = CGVektorLength(inDirection);
     
     if(theAbsoluteVelocity == 0) {
         CGFloat theAngle = 2 * M_PI * drand48();
@@ -178,24 +203,52 @@ static NSString * const kGameOverLabel = @"Game Over";
     }
 }
 
-- (SKNode *)brickWithColor:(SKColor *)inColor size:(CGSize)inSize position:(CGPoint)inCenter {
-    SKShapeNode *theBrick = [SKShapeNode new];
+- (SKNode *)rectangleWithColor:(SKColor *)inColor size:(CGSize)inSize position:(CGPoint)inCenter {
+    SKShapeNode *theRectangle = [SKShapeNode new];
     CGRect theBounds = CGRectMake(-inSize.width / 2.0, -inSize.height / 2.0, inSize.width, inSize.height);
     CGPathRef thePath = CGPathCreateWithRect(theBounds, NULL);
     SKPhysicsBody *theBody = [SKPhysicsBody bodyWithRectangleOfSize:inSize];
     
-    theBrick.path = thePath;
-    theBrick.fillColor = inColor;
-    theBrick.strokeColor = [SKColor whiteColor];
-    theBrick.glowWidth = 1.0;
-    theBrick.position = inCenter;
+    theRectangle.path = thePath;
+    theRectangle.fillColor = inColor;
+    theRectangle.strokeColor = [SKColor whiteColor];
+    theRectangle.glowWidth = 0.0;
+    theRectangle.lineWidth = 0.5;
+    theRectangle.position = inCenter;
+    theRectangle.userData = [NSMutableDictionary new];
     theBody.dynamic = NO;
+#if PHYSICS > 0
+    theRectangle.physicsBody = theBody;
+#endif
+    CGPathRelease(thePath);
+    return theRectangle;
+}
+
+- (SKNode *)brickWithColor:(SKColor *)inColor size:(CGSize)inSize position:(CGPoint)inCenter {
+    SKNode *theBrick = [self rectangleWithColor:inColor size:inSize position:inCenter];
+    
+    theBrick.name = kBrick;
+#if PHYSICS > 2
+    SKPhysicsBody *theBody = theBrick.physicsBody;
+
     theBody.categoryBitMask = kBrickMask;
     theBody.collisionBitMask = kBallMask;
-    theBody.mass = inSize.width * inSize.height;
-    theBrick.physicsBody = theBody;
-    CGPathRelease(thePath);
+#endif
     return theBrick;
+}
+
+- (SKNode *)racketWithSize:(CGSize)inSize position:(CGPoint)inCenter {
+    SKNode *theRacket = [self rectangleWithColor:[SKColor whiteColor] size:inSize position:inCenter];
+    
+    theRacket.name = @"racket";
+#if PHYSICS > 2
+    SKPhysicsBody *theBody = theRacket.physicsBody;
+    
+    theBody.categoryBitMask = kRacketMask;
+    theBody.collisionBitMask = kBallMask;
+    theBody.contactTestBitMask = kBallMask;
+#endif
+    return theRacket;
 }
 
 - (SKNode *)ballWithRadius:(CGFloat)inRadius position:(CGPoint)inCenter {
@@ -203,50 +256,27 @@ static NSString * const kGameOverLabel = @"Game Over";
     CGRect theBounds = CGRectMake(-inRadius, -inRadius, 2 * inRadius, 2 * inRadius);
     CGPathRef thePath = CGPathCreateWithEllipseInRect(theBounds, NULL);
     SKPhysicsBody *theBody = [SKPhysicsBody bodyWithCircleOfRadius:inRadius];
-    CGFloat theAngle = -M_PI / 4.0 + M_PI * drand48() / 2.0;
+    CGFloat theAngle = M_PI / 4.0 + M_PI * drand48() / 2.0;
     
-    theBall.name = @"ball";
+    theBall.name = kBall;
     theBall.path = thePath;
     theBall.fillColor = [SKColor yellowColor];
-    theBall.strokeColor = [SKColor clearColor];
+    theBall.strokeColor = theBall.fillColor;
     theBall.glowWidth = 1.0;
     theBall.position = inCenter;
     theBody.affectedByGravity = NO;
+    theBody.mass = 10;
+    theBody.velocity = CGVectorMake(self.velocity * cosf(theAngle), self.velocity * sinf(theAngle));
+#if PHYSICS > 2
     theBody.categoryBitMask = kBallMask;
     theBody.collisionBitMask = kBrickMask | kRacketMask | kWallMask;
     theBody.contactTestBitMask = kBrickMask | kRacketMask | kWallMask;
-    theBody.restitution = 0.0;
-    theBody.mass = 10; // inRadius * inRadius * M_PI;
-    theBody.velocity = CGVectorMake(self.velocity * sinf(theAngle), self.velocity * cosf(theAngle));
-    theBody.friction = 0.0;
-    theBody.linearDamping = 0.0;
-    theBody.angularDamping = 0.0;
+#endif
+#if PHYSICS > 0
     theBall.physicsBody = theBody;
+#endif
     CGPathRelease(thePath);
     return theBall;
-}
-
-- (SKNode *)racketWithSize:(CGSize)inSize position:(CGPoint)inCenter {
-    SKShapeNode *theRacket = [SKShapeNode new];
-    CGRect theBounds = CGRectMake(-inSize.width / 2.0, -inSize.height / 2.0, inSize.width, inSize.height);
-    CGPathRef thePath = CGPathCreateWithRect(theBounds, NULL);
-    SKPhysicsBody *theBody = [SKPhysicsBody bodyWithPolygonFromPath:thePath];
-
-    theRacket.name = @"racket";
-    theRacket.path = thePath;
-    theRacket.fillColor = [SKColor whiteColor];
-    theRacket.strokeColor = [SKColor clearColor];
-    theRacket.glowWidth = 0.0;
-    theRacket.position = inCenter;
-    theBody.dynamic = NO;
-    theBody.categoryBitMask = kRacketMask;
-    theBody.collisionBitMask = kBallMask;
-    theBody.contactTestBitMask = kBallMask;
-    theBody.mass = inSize.width * inSize.height;
-    theBody.allowsRotation = NO;
-    theRacket.physicsBody = theBody;
-    CGPathRelease(thePath);
-    return theRacket;
 }
 
 - (SKNode *)emitterNodeNamed:(NSString *)inName {
@@ -277,6 +307,7 @@ static NSString * const kGameOverLabel = @"Game Over";
                                                    ]];
         
         [theBrick runAction:theAction];
+        self.score += [theBrick.userData[kPoints] unsignedIntegerValue];
         [self explosionAtPoint:thePoint];
     }
     else if (theBody.categoryBitMask == kWallMask && thePoint.y < 0.0) {
@@ -288,7 +319,10 @@ static NSString * const kGameOverLabel = @"Game Over";
     SKPhysicsBody *theBody = inContact.bodyA;
 
     if(theBody.categoryBitMask == kBrickMask) {
-        [self addImpulseWithFactor:25.0];
+        SKNode *theBrick = theBody.node;
+        CGFloat theImpulse = [theBrick.userData[kImpulse] floatValue];
+        
+        [self addImpulseWithFactor:theImpulse];
     }
     else {
         [self addImpulseWithFactor:15.0];

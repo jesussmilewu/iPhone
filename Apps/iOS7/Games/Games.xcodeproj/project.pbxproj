@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		AB01EE9017C551A00001E01A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB01EE8F17C551A00001E01A /* CoreData.framework */; };
+		AB10CE0018B4046D0095CEA7 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB353D3E18B3EA9A00B42484 /* SpriteKit.framework */; };
+		AB353D3818B3E9C400B42484 /* BreakoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB353D3518B3E9C400B42484 /* BreakoutViewController.m */; };
+		AB353D3918B3E9C400B42484 /* BreakoutScene.m in Sources */ = {isa = PBXBuildFile; fileRef = AB353D3718B3E9C400B42484 /* BreakoutScene.m */; };
+		AB353D3C18B3EA2400B42484 /* contact.sks in Resources */ = {isa = PBXBuildFile; fileRef = AB353D3A18B3EA2400B42484 /* contact.sks */; };
+		AB353D3D18B3EA2400B42484 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = AB353D3B18B3EA2400B42484 /* spark.png */; };
 		AB79529917DC72B200B1F200 /* HighscoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC5FFEE17C2A0DE004BAB78 /* HighscoreViewController.m */; };
 		ABC5000A17C2A13D004BAB78 /* flower.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ABC5000017C2A13D004BAB78 /* flower.jpg */; };
 		ABC5000B17C2A13D004BAB78 /* flower@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ABC5000117C2A13D004BAB78 /* flower@2x.jpg */; };
@@ -61,6 +66,13 @@
 
 /* Begin PBXFileReference section */
 		AB01EE8F17C551A00001E01A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		AB353D3418B3E9C400B42484 /* BreakoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BreakoutViewController.h; sourceTree = "<group>"; };
+		AB353D3518B3E9C400B42484 /* BreakoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BreakoutViewController.m; sourceTree = "<group>"; };
+		AB353D3618B3E9C400B42484 /* BreakoutScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BreakoutScene.h; sourceTree = "<group>"; };
+		AB353D3718B3E9C400B42484 /* BreakoutScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BreakoutScene.m; sourceTree = "<group>"; };
+		AB353D3A18B3EA2400B42484 /* contact.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = contact.sks; sourceTree = "<group>"; };
+		AB353D3B18B3EA2400B42484 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		AB353D3E18B3EA9A00B42484 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		ABC5000017C2A13D004BAB78 /* flower.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower.jpg; sourceTree = "<group>"; };
 		ABC5000117C2A13D004BAB78 /* flower@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "flower@2x.jpg"; sourceTree = "<group>"; };
 		ABC5000417C2A13D004BAB78 /* Puzzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Puzzle.h; sourceTree = "<group>"; };
@@ -127,6 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB10CE0018B4046D0095CEA7 /* SpriteKit.framework in Frameworks */,
 				ABE3131317C55E0600B143CC /* CoreMotion.framework in Frameworks */,
 				ABE3131417C55E0600B143CC /* QuartzCore.framework in Frameworks */,
 				AB01EE9017C551A00001E01A /* CoreData.framework in Frameworks */,
@@ -149,6 +162,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB353D3318B3E98B00B42484 /* Breakout */ = {
+			isa = PBXGroup;
+			children = (
+				AB353D3418B3E9C400B42484 /* BreakoutViewController.h */,
+				AB353D3518B3E9C400B42484 /* BreakoutViewController.m */,
+				AB353D3618B3E9C400B42484 /* BreakoutScene.h */,
+				AB353D3718B3E9C400B42484 /* BreakoutScene.m */,
+				AB353D3A18B3EA2400B42484 /* contact.sks */,
+				AB353D3B18B3EA2400B42484 /* spark.png */,
+			);
+			name = Breakout;
+			sourceTree = "<group>";
+		};
 		ABC5001117C2A14E004BAB78 /* Memory */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +215,7 @@
 		ABC5FF9D17C29E3D004BAB78 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AB353D3E18B3EA9A00B42484 /* SpriteKit.framework */,
 				ABE3131117C55E0600B143CC /* CoreMotion.framework */,
 				ABE3131217C55E0600B143CC /* QuartzCore.framework */,
 				AB01EE8F17C551A00001E01A /* CoreData.framework */,
@@ -208,6 +235,7 @@
 				ABC5FFDD17C2A094004BAB78 /* Highscore */,
 				ABC5001117C2A14E004BAB78 /* Memory */,
 				ABC5FFDC17C2A06D004BAB78 /* Puzzle */,
+				AB353D3318B3E98B00B42484 /* Breakout */,
 				ABC5FFAD17C29E3D004BAB78 /* GamesAppDelegate.h */,
 				ABC5FFAE17C29E3D004BAB78 /* GamesAppDelegate.m */,
 				ABC5FFB017C29E3D004BAB78 /* Main.storyboard */,
@@ -385,7 +413,9 @@
 				ABC5FFE717C2A0B1004BAB78 /* index.html in Resources */,
 				ABC5FFA917C29E3D004BAB78 /* InfoPlist.strings in Resources */,
 				ABC5FFB217C29E3D004BAB78 /* Main.storyboard in Resources */,
+				AB353D3D18B3EA2400B42484 /* spark.png in Resources */,
 				ABC5002117C2A174004BAB78 /* back.png in Resources */,
+				AB353D3C18B3EA2400B42484 /* contact.sks in Resources */,
 				ABC5000A17C2A13D004BAB78 /* flower.jpg in Resources */,
 				ABC5FFE817C2A0B1004BAB78 /* games.css in Resources */,
 			);
@@ -411,6 +441,7 @@
 				ABC5FFFD17C2A114004BAB78 /* NumberView.m in Sources */,
 				ABC5FFFF17C2A114004BAB78 /* GradientButton.m in Sources */,
 				ABC5FFFC17C2A114004BAB78 /* DigitView.m in Sources */,
+				AB353D3818B3E9C400B42484 /* BreakoutViewController.m in Sources */,
 				ABC5002217C2A174004BAB78 /* MemoryViewController.m in Sources */,
 				ABC5FFE617C2A0B1004BAB78 /* HelpViewController.m in Sources */,
 				ABC5002917C2A692004BAB78 /* UIViewController+Games.m in Sources */,
@@ -422,6 +453,7 @@
 				ABC5FFD917C29FF2004BAB78 /* Games.xcdatamodel in Sources */,
 				ABC5000E17C2A13D004BAB78 /* Puzzle.m in Sources */,
 				ABC5FFAF17C29E3D004BAB78 /* GamesAppDelegate.m in Sources */,
+				AB353D3918B3E9C400B42484 /* BreakoutScene.m in Sources */,
 				ABC5002617C2A174004BAB78 /* Card.m in Sources */,
 				ABC5001017C2A13D004BAB78 /* UIImage+Subimage.m in Sources */,
 				ABC5002517C2A174004BAB78 /* Memory.m in Sources */,

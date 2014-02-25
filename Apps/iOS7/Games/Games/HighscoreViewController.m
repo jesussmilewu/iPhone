@@ -3,7 +3,7 @@
 #import "GamesAppDelegate.h"
 
 static NSString * const kScoreFilters[] = {
-    nil, @"puzzle", @"memory"
+    nil, @"puzzle", @"memory", @"breakout"
 };
 
 @interface HighscoreViewController()<NSFetchedResultsControllerDelegate>
@@ -20,6 +20,16 @@ static NSString * const kScoreFilters[] = {
 @synthesize fetchedResultsController;
 @synthesize dateFormatter;
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    NSNotificationCenter *theCenter = [NSNotificationCenter defaultCenter];
+
+    [theCenter addObserver:self
+                  selector:@selector(managedObjectContextDidSave:)
+                      name:NSManagedObjectContextDidSaveNotification
+                    object:nil];
+}
+
 - (NSManagedObjectContext *)managedObjectContext {
     if(managedObjectContext == nil) {
         NSManagedObjectContext *theContext = [[NSManagedObjectContext alloc] init];
@@ -33,17 +43,12 @@ static NSString * const kScoreFilters[] = {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSNotificationCenter *theCenter = [NSNotificationCenter defaultCenter];
     NSDateFormatter *theFormatter = [[NSDateFormatter alloc] init];
 
     theFormatter.locale = [NSLocale currentLocale];
     theFormatter.dateFormat = @"d. MMM yyyy HH:mm:ss";
     self.dateFormatter = theFormatter;
     self.tableView.allowsSelection = NO;
-    [theCenter addObserver:self 
-                  selector:@selector(managedObjectContextDidSave:)
-                      name:NSManagedObjectContextDidSaveNotification 
-                    object:nil];
     [self filterChanged];
 }
 
@@ -86,7 +91,7 @@ static NSString * const kScoreFilters[] = {
 }
 
 - (void)applyScore:(Score *)inScore toCell:(UITableViewCell *)inCell {
-    UIImage *theImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", inScore.game]];
+    UIImage *theImage = [UIImage imageNamed:inScore.game];
     
     inCell.imageView.image = theImage;
     inCell.textLabel.text = [NSString stringWithFormat:@"%@", inScore.score];
@@ -98,7 +103,7 @@ static NSString * const kScoreFilters[] = {
     NSString *theFilter = kScoreFilters[inIndex];
     NSEntityDescription *theEntity = [NSEntityDescription entityForName:@"Score" 
                                                  inManagedObjectContext:self.managedObjectContext];
-    NSSortDescriptor *theDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"score" ascending:YES];
+    NSSortDescriptor *theDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"score" ascending:NO];
     
     theFetch.entity = theEntity;
     theFetch.sortDescriptors = @[theDescriptor];
