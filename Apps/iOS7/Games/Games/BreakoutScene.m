@@ -295,36 +295,44 @@ static inline CGFloat CGVektorLength(CGVector inVector) {
     [theNode runAction:theAction];
 }
 
+#pragma mark SKPhysicsContactDelegate
+
 - (void)didBeginContact:(SKPhysicsContact *)inContact {
-    SKPhysicsBody *theBody = inContact.bodyA;
     CGPoint thePoint = inContact.contactPoint;
 
-    NSLog(@"contact: %u", theBody.categoryBitMask);
-    if(theBody.categoryBitMask == kBrickMask) {
-        SKNode *theBrick = theBody.node;
+    [self didBeginContactWithBody:inContact.bodyA atPoint:thePoint];
+    [self didBeginContactWithBody:inContact.bodyB atPoint:thePoint];
+}
+
+- (void)didBeginContactWithBody:(SKPhysicsBody *)inBody atPoint:(CGPoint)inPoint {
+    if(inBody.categoryBitMask == kBrickMask) {
+        SKNode *theBrick = inBody.node;
         SKAction *theAction = [SKAction sequence:@[[SKAction fadeOutWithDuration:0.5],
                                                    [SKAction removeFromParent]
                                                    ]];
         
         [theBrick runAction:theAction];
         self.score += [theBrick.userData[kPoints] unsignedIntegerValue];
-        [self explosionAtPoint:thePoint];
+        [self explosionAtPoint:inPoint];
     }
-    else if (theBody.categoryBitMask == kWallMask && thePoint.y < 0.0) {
+    else if (inBody.categoryBitMask == kWallMask && inPoint.y < 0.0) {
         [self stop];
     }
 }
 
 - (void)didEndContact:(SKPhysicsContact *)inContact {
-    SKPhysicsBody *theBody = inContact.bodyA;
+    [self didEndContactWithBody:inContact.bodyA];
+    [self didEndContactWithBody:inContact.bodyB];
+}
 
-    if(theBody.categoryBitMask == kBrickMask) {
-        SKNode *theBrick = theBody.node;
+- (void)didEndContactWithBody:(SKPhysicsBody *)inBody {
+    if(inBody.categoryBitMask == kBrickMask) {
+        SKNode *theBrick = inBody.node;
         CGFloat theImpulse = [theBrick.userData[kImpulse] floatValue];
         
         [self addImpulseWithFactor:theImpulse];
     }
-    else {
+    else if(inBody.categoryBitMask & (kWallMask | kRacketMask)) {
         [self addImpulseWithFactor:15.0];
     }
 }
