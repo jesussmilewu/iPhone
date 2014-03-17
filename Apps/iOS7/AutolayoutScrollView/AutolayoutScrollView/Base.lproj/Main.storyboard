@@ -66,10 +66,10 @@
             </objects>
             <point key="canvasLocation" x="-192" y="145"/>
         </scene>
-        <!--Auto Layout Scroll View Controller - Auto Layout Constraints-->
+        <!--Autolayout Scroll View Controller - Auto Layout Constraints-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="AutoLayoutScrollViewController" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="AutolayoutScrollViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="08s-o2-rzq"/>
                         <viewControllerLayoutGuide type="bottom" id="Xsi-sw-UVg"/>

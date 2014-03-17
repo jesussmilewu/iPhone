@@ -1,13 +1,13 @@
 //
-//  AutoLayoutScrollViewController.h
+//  AutoLayoutScrollViewController.m
 //  AutolayoutScrollView
 //
 //  Created by Clemens Wagner on 17.03.14.
 //  Copyright (c) 2014 Cocoaneheads. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "AutolayoutScrollViewController.h"
 
-@interface AutoLayoutScrollViewController : UIViewController
+@implementation AutolayoutScrollViewController
 
 @end

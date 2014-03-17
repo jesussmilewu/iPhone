@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AB36AFF918D7999D000FDFA9 /* AutoLayoutScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB36AFF818D7999D000FDFA9 /* AutoLayoutScrollViewController.m */; };
+		AB36AFF918D7999D000FDFA9 /* AutolayoutScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB36AFF818D7999D000FDFA9 /* AutolayoutScrollViewController.m */; };
 		ABB781F617C8EE3B009B8A6D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABB781F517C8EE3B009B8A6D /* Foundation.framework */; };
 		ABB781F817C8EE3B009B8A6D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABB781F717C8EE3B009B8A6D /* CoreGraphics.framework */; };
 		ABB781FA17C8EE3B009B8A6D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABB781F917C8EE3B009B8A6D /* UIKit.framework */; };
@@ -36,8 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AB36AFF718D7999D000FDFA9 /* AutoLayoutScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoLayoutScrollViewController.h; sourceTree = "<group>"; };
-		AB36AFF818D7999D000FDFA9 /* AutoLayoutScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoLayoutScrollViewController.m; sourceTree = "<group>"; };
+		AB36AFF718D7999D000FDFA9 /* AutolayoutScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutolayoutScrollViewController.h; sourceTree = "<group>"; };
+		AB36AFF818D7999D000FDFA9 /* AutolayoutScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutolayoutScrollViewController.m; sourceTree = "<group>"; };
 		ABB781F217C8EE3B009B8A6D /* AutolayoutScrollView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutolayoutScrollView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABB781F517C8EE3B009B8A6D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ABB781F717C8EE3B009B8A6D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -120,8 +120,8 @@
 				ABB7820417C8EE3B009B8A6D /* ScrollViewAppDelegate.h */,
 				ABB7820517C8EE3B009B8A6D /* ScrollViewAppDelegate.m */,
 				ABB7820717C8EE3B009B8A6D /* Main.storyboard */,
-				AB36AFF718D7999D000FDFA9 /* AutoLayoutScrollViewController.h */,
-				AB36AFF818D7999D000FDFA9 /* AutoLayoutScrollViewController.m */,
+				AB36AFF718D7999D000FDFA9 /* AutolayoutScrollViewController.h */,
+				AB36AFF818D7999D000FDFA9 /* AutolayoutScrollViewController.m */,
 				ABB7820A17C8EE3B009B8A6D /* ContentSizeScrollViewController.h */,
 				ABB7820B17C8EE3B009B8A6D /* ContentSizeScrollViewController.m */,
 				ABB7820D17C8EE3B009B8A6D /* Images.xcassets */,
@@ -259,7 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB36AFF918D7999D000FDFA9 /* AutoLayoutScrollViewController.m in Sources */,
+				AB36AFF918D7999D000FDFA9 /* AutolayoutScrollViewController.m in Sources */,
 				ABB7820617C8EE3B009B8A6D /* ScrollViewAppDelegate.m in Sources */,
 				ABB7820217C8EE3B009B8A6D /* main.m in Sources */,
 				ABB7820C17C8EE3B009B8A6D /* ContentSizeScrollViewController.m in Sources */,
