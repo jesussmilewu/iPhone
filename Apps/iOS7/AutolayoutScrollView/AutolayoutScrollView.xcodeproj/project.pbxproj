@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB36AFF918D7999D000FDFA9 /* AutoLayoutScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB36AFF818D7999D000FDFA9 /* AutoLayoutScrollViewController.m */; };
 		ABB781F617C8EE3B009B8A6D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABB781F517C8EE3B009B8A6D /* Foundation.framework */; };
 		ABB781F817C8EE3B009B8A6D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABB781F717C8EE3B009B8A6D /* CoreGraphics.framework */; };
 		ABB781FA17C8EE3B009B8A6D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABB781F917C8EE3B009B8A6D /* UIKit.framework */; };
@@ -14,7 +15,7 @@
 		ABB7820217C8EE3B009B8A6D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB7820117C8EE3B009B8A6D /* main.m */; };
 		ABB7820617C8EE3B009B8A6D /* ScrollViewAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB7820517C8EE3B009B8A6D /* ScrollViewAppDelegate.m */; };
 		ABB7820917C8EE3B009B8A6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABB7820717C8EE3B009B8A6D /* Main.storyboard */; };
-		ABB7820C17C8EE3B009B8A6D /* ScrollViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB7820B17C8EE3B009B8A6D /* ScrollViewViewController.m */; };
+		ABB7820C17C8EE3B009B8A6D /* ContentSizeScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB7820B17C8EE3B009B8A6D /* ContentSizeScrollViewController.m */; };
 		ABB7820E17C8EE3B009B8A6D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABB7820D17C8EE3B009B8A6D /* Images.xcassets */; };
 		ABB7821517C8EE3B009B8A6D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABB7821417C8EE3B009B8A6D /* XCTest.framework */; };
 		ABB7821617C8EE3B009B8A6D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABB781F517C8EE3B009B8A6D /* Foundation.framework */; };
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB36AFF718D7999D000FDFA9 /* AutoLayoutScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoLayoutScrollViewController.h; sourceTree = "<group>"; };
+		AB36AFF818D7999D000FDFA9 /* AutoLayoutScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoLayoutScrollViewController.m; sourceTree = "<group>"; };
 		ABB781F217C8EE3B009B8A6D /* AutolayoutScrollView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutolayoutScrollView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABB781F517C8EE3B009B8A6D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ABB781F717C8EE3B009B8A6D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -46,8 +49,8 @@
 		ABB7820417C8EE3B009B8A6D /* ScrollViewAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrollViewAppDelegate.h; sourceTree = "<group>"; };
 		ABB7820517C8EE3B009B8A6D /* ScrollViewAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrollViewAppDelegate.m; sourceTree = "<group>"; };
 		ABB7820817C8EE3B009B8A6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		ABB7820A17C8EE3B009B8A6D /* ScrollViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrollViewViewController.h; sourceTree = "<group>"; };
-		ABB7820B17C8EE3B009B8A6D /* ScrollViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrollViewViewController.m; sourceTree = "<group>"; };
+		ABB7820A17C8EE3B009B8A6D /* ContentSizeScrollViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContentSizeScrollViewController.h; sourceTree = "<group>"; };
+		ABB7820B17C8EE3B009B8A6D /* ContentSizeScrollViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContentSizeScrollViewController.m; sourceTree = "<group>"; };
 		ABB7820D17C8EE3B009B8A6D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		ABB7821317C8EE3B009B8A6D /* AutolayoutScrollViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutolayoutScrollViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABB7821417C8EE3B009B8A6D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -117,8 +120,10 @@
 				ABB7820417C8EE3B009B8A6D /* ScrollViewAppDelegate.h */,
 				ABB7820517C8EE3B009B8A6D /* ScrollViewAppDelegate.m */,
 				ABB7820717C8EE3B009B8A6D /* Main.storyboard */,
-				ABB7820A17C8EE3B009B8A6D /* ScrollViewViewController.h */,
-				ABB7820B17C8EE3B009B8A6D /* ScrollViewViewController.m */,
+				AB36AFF718D7999D000FDFA9 /* AutoLayoutScrollViewController.h */,
+				AB36AFF818D7999D000FDFA9 /* AutoLayoutScrollViewController.m */,
+				ABB7820A17C8EE3B009B8A6D /* ContentSizeScrollViewController.h */,
+				ABB7820B17C8EE3B009B8A6D /* ContentSizeScrollViewController.m */,
 				ABB7820D17C8EE3B009B8A6D /* Images.xcassets */,
 				ABB781FC17C8EE3B009B8A6D /* Supporting Files */,
 			);
@@ -254,9 +259,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB36AFF918D7999D000FDFA9 /* AutoLayoutScrollViewController.m in Sources */,
 				ABB7820617C8EE3B009B8A6D /* ScrollViewAppDelegate.m in Sources */,
 				ABB7820217C8EE3B009B8A6D /* main.m in Sources */,
-				ABB7820C17C8EE3B009B8A6D /* ScrollViewViewController.m in Sources */,
+				ABB7820C17C8EE3B009B8A6D /* ContentSizeScrollViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,6 +465,7 @@
 				ABB7822617C8EE3B009B8A6D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ABB7822717C8EE3B009B8A6D /* Build configuration list for PBXNativeTarget "AutolayoutScrollViewTests" */ = {
 			isa = XCConfigurationList;
@@ -467,6 +474,7 @@
 				ABB7822917C8EE3B009B8A6D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
