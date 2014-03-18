@@ -81,7 +81,7 @@ static NSString * const kScoreFilters[] = {
     NSInteger theCount = [theItem.badgeValue intValue] + inCount;
 
     if(theCount > 0) {
-        NSString *theValue = [NSString stringWithFormat:@"%d", theCount];
+        NSString *theValue = [NSString stringWithFormat:@"%ld", theCount];
 
         theItem.badgeValue = theValue;
     }
