@@ -6,6 +6,12 @@
   <b:branch>Auflage_2</b:branch>
   <b:openbook>http://openbook.galileocomputing.de/apps_programmieren_fuer_iphone_und_ipad/</b:openbook>
   <b:errors>
+    <b:error pages="54">
+      <b:text>
+        Der Wert muss <em>iOS Developer</em> und nicht <em>iPhone Developer</em> lauten.<br/>
+	  </b:text>
+	  <b:credits>Sandro</b:credits>
+    </b:error>
     <b:error pages="691">
       <b:text>
         Im ersten Satz fehlt ein Wort:
