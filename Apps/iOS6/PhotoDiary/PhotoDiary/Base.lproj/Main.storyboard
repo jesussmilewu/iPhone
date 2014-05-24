@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="rS3-R9-Ivy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="rS3-R9-Ivy">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -286,6 +286,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="280" height="120"/>
                     <connections>
                         <outlet property="activityIndicator" destination="O7s-Ho-Ppe" id="YUV-lH-MPC"/>
                         <outlet property="meterView" destination="MVH-cw-dZF" id="7HH-gP-BjK"/>
@@ -360,6 +361,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="280" height="120"/>
                     <connections>
                         <outlet property="activityIndicator" destination="O2Y-n3-dSM" id="VTc-Vc-1dE"/>
                         <outlet property="meterView" destination="Kku-q2-hhN" id="dsD-o3-Ju5"/>
@@ -413,8 +415,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
+                                    <action selector="didEndOnExit" destination="gyc-B3-rYg" eventType="editingDidEndOnExit" id="gma-GF-nkJ"/>
                                     <action selector="updateSaveButton" destination="gyc-B3-rYg" eventType="editingChanged" id="dBE-Xz-LpE"/>
-                                    <outlet property="delegate" destination="gyc-B3-rYg" id="2aP-Ts-Kgq"/>
                                 </connections>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="oQN-gL-lCe">

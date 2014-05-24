@@ -117,10 +117,9 @@
 
 #pragma mark UITextFieldDelegate
 
-- (BOOL)textFieldShouldReturn:(UITextField *)inTextField {
+- (IBAction)didEndOnExit {
     [self updateSaveButton];
     [self.view endEditing:YES];
-    return NO;
 }
 
 @end
