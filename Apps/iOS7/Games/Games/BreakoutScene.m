@@ -279,7 +279,7 @@ static inline CGFloat CGVektorLength(CGVector inVector) {
     return theBall;
 }
 
-- (SKNode *)emitterNodeNamed:(NSString *)inName {
+- (SKEmitterNode *)emitterNodeNamed:(NSString *)inName {
     NSString *thePath = [[NSBundle mainBundle] pathForResource:inName ofType:@"sks"];
     
     return [NSKeyedUnarchiver unarchiveObjectWithFile:thePath];
@@ -287,7 +287,7 @@ static inline CGFloat CGVektorLength(CGVector inVector) {
 
 - (void)explosionAtPoint:(CGPoint)inPoint {
     SKNode *theNode = [self emitterNodeNamed:@"contact"];
-    SKAction *theAction = [SKAction sequence:@[[SKAction waitForDuration:0.05],
+    SKAction *theAction = [SKAction sequence:@[[SKAction waitForDuration:0.5],
                                                [SKAction removeFromParent]]];
     
     theNode.position = inPoint;
