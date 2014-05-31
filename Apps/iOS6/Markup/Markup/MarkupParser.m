@@ -80,8 +80,8 @@
     if(theAttributes != nil) {
         NSUInteger thePosition = [self.text length];
         Markup *theMarkup = [Markup markupWithPosition:thePosition attributes:theAttributes];
-        UIColor *theTextColor = [UIColor colorWithString:[inAttributes valueForKey:@"color"]];
-        UIColor *theBackgroundColor = [UIColor colorWithString:[inAttributes valueForKey:@"background-color"]];
+        UIColor *theTextColor = [UIColor colorWithString:inAttributes[@"color"]];
+        UIColor *theBackgroundColor = [UIColor colorWithString:inAttributes[@"background-color"]];
 
         [theMarkup addAttribute:theTextColor forName:NSForegroundColorAttributeName];
         [theMarkup addAttribute:theBackgroundColor forName:NSBackgroundColorAttributeName];

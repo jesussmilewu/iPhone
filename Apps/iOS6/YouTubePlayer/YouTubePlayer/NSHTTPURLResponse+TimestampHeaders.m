@@ -18,6 +18,7 @@
 		NSLocale *theLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
 
 		[theFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss zzz"];
+        [theFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
 		[theFormatter setLocale:theLocale];
         sFormatter = theFormatter;
     }

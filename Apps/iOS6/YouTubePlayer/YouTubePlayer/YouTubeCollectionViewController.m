@@ -8,11 +8,13 @@
 
 #import "YouTubeCollectionViewController.h"
 #import "NSString+Extensions.h"
+#import "NSURL+Extensions.h"
+#import "NSHTTPURLResponse+TimestampHeaders.h"
 #import "YouTubeCell.h"
 #import "YouTubeWebViewController.h"
-#import "NSURL+Extensions.h"
 
-#define USE_CACHING 0
+#define USE_EXPLICIT_CACHING 0
+#define USE_MODIFICATION_DATE 1
 
 @interface YouTubeCollectionViewController ()<UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UIPopoverControllerDelegate>
 
@@ -36,44 +38,63 @@
 }
 
 - (void)updateItemsWithData:(NSData *)inData {
-    NSError *theError = nil;
-    NSDictionary *theResult = [NSJSONSerialization JSONObjectWithData:inData options:0 error:&theError];
+    if(inData != nil) {
+        NSError *theError = nil;
+        NSDictionary *theResult = [NSJSONSerialization JSONObjectWithData:inData options:0 error:&theError];
 
-    self.items = [theResult valueForKeyPath:@"feed.entry"];
-    [self.collectionView reloadData];
+        self.items = [theResult valueForKeyPath:@"feed.entry"];
+        [self.collectionView reloadData];
+    }
+}
+
+- (NSURLRequest *)cachingRequestWithURL:(NSURL *)inURL {
+    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:inURL];
+    
+    theRequest.timeoutInterval = 5.0;
+    if(self.items != nil) {
+        NSURLCache *theCache = [NSURLCache sharedURLCache];
+        NSCachedURLResponse *theResponse = [theCache cachedResponseForRequest:theRequest];
+        NSDictionary *theHeaders = [(id)theResponse.response allHeaderFields];
+        NSString *theDate = theHeaders[@"Last-Modified"];
+
+        if(theDate != nil) {
+            theRequest.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+            [theRequest setValue:theDate forHTTPHeaderField:@"If-Modified-Since"];
+        }
+    }
+    return [theRequest copy];
 }
 
 - (void)updateItems {
     UIApplication *theApplication = [UIApplication sharedApplication];
-    NSURLRequest *theRequest = [NSURLRequest requestWithURL:self.createURL];
     NSOperationQueue *theQueue = [NSOperationQueue mainQueue];
+    NSURL *theURL = [self createURL];
+#if USE_MODIFICATION_DATE
+    NSURLRequest *theRequest = [self cachingRequestWithURL:theURL];
+#else
+    NSURLRequest *theRequest = [NSURLRequest requestWithURL:theURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:5.0];
+#endif
     
     theApplication.networkActivityIndicatorVisible = YES;
     [NSURLConnection sendAsynchronousRequest:theRequest queue:theQueue completionHandler:^(NSURLResponse *inResponse, NSData *inData, NSError *inError) {
-#if USE_CACHING
-        NSURLCache *theCache = [NSURLCache sharedURLCache];
-        NSCachedURLResponse *theResponse;
-        
-        if(inData == nil) {
-            NSLog(@"error = %@", inError);
-            theResponse = [theCache cachedResponseForRequest:theRequest];
-        }
-        else {
-            theResponse = [[NSCachedURLResponse alloc] initWithResponse:inResponse data:inData];
-
-            [theCache storeCachedResponse:theResponse forRequest:theRequest];
-        }
-        if(theResponse != nil) {
-            [self updateItemsWithData:theResponse.data];
-        }
-#else
-        if(inData == nil) {
-            NSLog(@"error = %@", inError);
-        }
-        else {
-            [self updateItemsWithData:inData];
-        }
+        if([(id)inResponse statusCode] != 304) {
+            NSData *theData = inData;
+            
+#if USE_EXPLICIT_CACHING || USE_MODIFICATION_DATE
+            if(theData == nil) {
+                NSURLCache *theCache = [NSURLCache sharedURLCache];
+                NSCachedURLResponse *theResponse = [theCache cachedResponseForRequest:theRequest];
+                
+                theData = theResponse.data;
+            }
 #endif
+            if(theData == nil) {
+                NSLog(@"error = %@", inError);
+            }
+            else {
+                [self updateItemsWithData:theData];
+            }
+        }
         theApplication.networkActivityIndicatorVisible = NO;
     }];
 }

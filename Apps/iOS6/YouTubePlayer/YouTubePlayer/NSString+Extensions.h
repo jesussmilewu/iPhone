@@ -12,5 +12,6 @@
 
 - (NSString *)encodedStringForURLWithEncoding:(NSStringEncoding)inEncoding;
 - (NSString *)trim;
+- (NSString *)sha256;
 
 @end

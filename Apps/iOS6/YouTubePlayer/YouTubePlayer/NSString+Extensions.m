@@ -7,6 +7,7 @@
 //
 
 #import "NSString+Extensions.h"
+#import <CommonCrypto/CommonDigest.h>
 
 @implementation NSString(Extensions)
 
@@ -23,6 +24,17 @@
 
 - (NSString *)trim {
     return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+}
+
+- (NSString *)sha256 {
+    unsigned char theBuffer[CC_SHA256_DIGEST_LENGTH];
+    NSMutableString *theResult = [NSMutableString stringWithCapacity:2 * CC_SHA256_DIGEST_LENGTH];
+    
+    CC_SHA256([self UTF8String], (CC_LONG)[self lengthOfBytesUsingEncoding:NSUTF8StringEncoding], theBuffer);
+    for(int i = 0; i < CC_SHA256_DIGEST_LENGTH; ++i) {
+        [theResult appendFormat:@"%02d", theBuffer[i]];
+    }
+    return [theResult copy];
 }
 
 @end
