@@ -19,6 +19,9 @@
 /// Der View berechnet die Zeigerstellung bezüglich dieses Kalenders.
 @property (nonatomic, strong) NSCalendar *calendar;
 
+/// Enthält die Farbe des Sekundenzeigers.
+@property (nonatomic, strong) IBInspectable UIColor *secondHandColor;
+
 /*!
  startet die kontinuierliche Aktualisierung der Zeit.
  

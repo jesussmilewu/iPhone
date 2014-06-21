@@ -34,6 +34,9 @@
     [super awakeFromNib];
     self.calendar = [NSCalendar currentCalendar];
     self.time = [NSDate date];
+    if(self.secondHandColor == nil) {
+        self.secondHandColor = [UIColor redColor];
+    }
 }
 
 - (void)drawClockHands {
@@ -64,7 +67,7 @@
     // Sekundenzeiger zeichnen
     thePoint = [self pointWithRadius:theRadius * 0.95 angle:theSecond];
     CGContextSetLineWidth(theContext, theRadius / 80.0);
-    CGContextSetRGBStrokeColor(theContext, 1.0, 0.0, 0.0, 1.0);
+    CGContextSetStrokeColorWithColor(theContext, self.secondHandColor.CGColor);
     CGContextMoveToPoint(theContext, theCenter.x, theCenter.y);
     CGContextAddLineToPoint(theContext, thePoint.x, thePoint.y);
     CGContextStrokePath(theContext);
