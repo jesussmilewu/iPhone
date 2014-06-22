@@ -22,6 +22,7 @@
     if(self) {
         self.calendar = [NSCalendar currentCalendar];
         self.time = [NSDate date];
+        self.secondHandColor = [UIColor redColor];
     }
     return self;
 }
