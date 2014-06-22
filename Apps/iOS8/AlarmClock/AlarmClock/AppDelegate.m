@@ -6,16 +6,16 @@
 //  Copyright (c) 2013 Cocoaneheads. All rights reserved.
 //
 
-#import "AlarmClockAppDelegate.h"
+#import "AppDelegate.h"
 #import <AudioToolbox/AudioToolbox.h>
 
-@interface AlarmClockAppDelegate()
+@interface AppDelegate()
 
 @property (nonatomic, strong) NSNumber *soundId;
 
 @end
 
-@implementation AlarmClockAppDelegate
+@implementation AppDelegate
 
 @synthesize soundId = _soundId;
 

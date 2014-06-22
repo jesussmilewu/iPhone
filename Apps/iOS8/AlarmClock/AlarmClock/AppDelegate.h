@@ -1,5 +1,5 @@
 //
-//  AlarmClockViewController.h
+//  AlarmClockAppDelegate.h
 //  AlarmClock
 //
 //  Created by Clemens Wagner on 17.07.13.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AlarmClockViewController : UIViewController
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
+
+@property (strong, nonatomic) UIWindow *window;
 
 @end

@@ -1,19 +1,19 @@
 //
-//  AlarmClockViewController.m
+//  ViewController.m
 //  AlarmClock
 //
 //  Created by Clemens Wagner on 17.07.13.
 //  Copyright (c) 2013 Cocoaneheads. All rights reserved.
 //
 
-#import "AlarmClockViewController.h"
+#import "ViewController.h"
 #import "ClockView.h"
 #import "ClockControl.h"
 #import "UIView+AlarmClock.h"
 
 const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
 
-@interface AlarmClockViewController ()
+@interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet ClockView *clockView;
 @property (weak, nonatomic) IBOutlet ClockControl *clockControl;
@@ -27,7 +27,7 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
 
 @end
 
-@implementation AlarmClockViewController
+@implementation ViewController
 
 -(BOOL) prefersStatusBarHidden
 {

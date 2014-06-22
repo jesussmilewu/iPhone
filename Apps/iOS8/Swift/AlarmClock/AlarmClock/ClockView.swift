@@ -37,7 +37,7 @@ class ClockView: UIView {
     }
     }
     var calendar : NSCalendar = NSCalendar.currentCalendar()
-    @IBInspectable var secondHandColor : UIColor = UIColor.redColor()
+    @IBInspectable var secondHandColor : UIColor?
     var timer : NSTimer?
     
     override func tintColorDidChange() {
@@ -123,9 +123,11 @@ class ClockView: UIView {
         CGContextAddLineToPoint(theContext, thePoint.x, thePoint.y)
         CGContextStrokePath(theContext)
         // Sekundenzeiger zeichnen
+        let theColor = self.secondHandColor? ? self.secondHandColor! : UIColor.redColor()
+        
         thePoint = pointWithRadius(theRadius * 0.95, angle:theSecond)
         CGContextSetLineWidth(theContext, theRadius / 80.0)
-        CGContextSetStrokeColorWithColor(theContext, self.secondHandColor.CGColor)
+        CGContextSetStrokeColorWithColor(theContext, theColor.CGColor)
         CGContextMoveToPoint(theContext, theCenter.x, theCenter.y)
         CGContextAddLineToPoint(theContext, thePoint.x, thePoint.y)
         CGContextStrokePath(theContext)
