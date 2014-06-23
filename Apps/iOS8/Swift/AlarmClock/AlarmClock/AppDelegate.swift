@@ -42,10 +42,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
 
     func application(inApplication: UIApplication!, didReceiveLocalNotification inNotification: UILocalNotification!) {
         if(inApplication.applicationState == UIApplicationState.Active) {
-            let theAlert = UIAlertView(title:NSLocalizedString("Alarm", comment:"Alarm"),
-                message:inNotification.alertBody, delegate:self,
-                cancelButtonTitle:NSLocalizedString("OK", comment:"OK"))
-            //theAlert.show()
+            let theController = UIAlertController(title:"Alarm", message:inNotification.alertBody, preferredStyle:UIAlertControllerStyle.Alert)
+            let theHandler = { (inAlert:UIAlertAction!) -> Void in NSLog("Alert cancelled") }
+            let theAction = UIAlertAction(title:"OK", style:UIAlertActionStyle.Cancel, handler:theHandler)
+
+            theController.addAction(theAction)
+            self.window?.rootViewController?.presentViewController(theController, animated: true, completion: nil)
             playSound()
         }
     }
