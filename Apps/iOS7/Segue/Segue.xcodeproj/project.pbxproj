@@ -22,6 +22,7 @@
 		ABD167A417A0427000710AD4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD1678617A0426F00710AD4 /* UIKit.framework */; };
 		ABD167AC17A0427000710AD4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ABD167AA17A0427000710AD4 /* InfoPlist.strings */; };
 		ABD167AE17A0427000710AD4 /* SegueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD167AD17A0427000710AD4 /* SegueTests.m */; };
+		ABDB3FA719589FE400F2112B /* Cube.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDB3FA619589FE400F2112B /* Cube.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		ABD167A917A0427000710AD4 /* SegueTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SegueTests-Info.plist"; sourceTree = "<group>"; };
 		ABD167AB17A0427000710AD4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		ABD167AD17A0427000710AD4 /* SegueTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SegueTests.m; sourceTree = "<group>"; };
+		ABDB3FA519589FE400F2112B /* Cube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cube.h; sourceTree = "<group>"; };
+		ABDB3FA619589FE400F2112B /* Cube.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cube.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +127,8 @@
 				ABD1678917A0426F00710AD4 /* Supporting Files */,
 				AB753B9B17A05A3500A8C940 /* ResultViewController.h */,
 				AB753B9C17A05A3500A8C940 /* ResultViewController.m */,
+				ABDB3FA519589FE400F2112B /* Cube.h */,
+				ABDB3FA619589FE400F2112B /* Cube.m */,
 			);
 			path = Segue;
 			sourceTree = "<group>";
@@ -255,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABDB3FA719589FE400F2112B /* Cube.m in Sources */,
 				ABD1679317A0426F00710AD4 /* SegueAppDelegate.m in Sources */,
 				ABD1678F17A0426F00710AD4 /* main.m in Sources */,
 				ABD1679917A0426F00710AD4 /* SegueViewController.m in Sources */,
