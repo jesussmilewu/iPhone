@@ -10,7 +10,8 @@ import UIKit
 
 extension UIView {
     var midPoint: CGPoint {
-    let theBounds = self.bounds;
+        let theBounds = self.bounds;
+
         return CGPointMake(theBounds.midX, theBounds.midY)
     }
     
