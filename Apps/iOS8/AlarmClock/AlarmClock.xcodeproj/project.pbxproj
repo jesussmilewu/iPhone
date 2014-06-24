@@ -12,8 +12,8 @@
 		ABD16772179C65FC00710AD4 /* ClockControl.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD16771179C65FC00710AD4 /* ClockControl.m */; };
 		ABD16775179C668800710AD4 /* UIView+AlarmClock.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD16774179C668800710AD4 /* UIView+AlarmClock.m */; };
 		ABD1B3CB17A54B7D0080FB4E /* ringtone.caf in Resources */ = {isa = PBXBuildFile; fileRef = ABD1B3CA17A54B7D0080FB4E /* ringtone.caf */; };
-		ABD1B3D017A54E340080FB4E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD1B3CE17A54DF40080FB4E /* AudioToolbox.framework */; };
 		ABD1B3D217A716A60080FB4E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABD1B3D117A716A60080FB4E /* Images.xcassets */; };
+		ABDB3FA91958BC6200F2112B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD1B3CE17A54DF40080FB4E /* AudioToolbox.framework */; };
 		ABF24052179723ED002B4138 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF24051179723ED002B4138 /* Foundation.framework */; };
 		ABF24054179723ED002B4138 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF24053179723ED002B4138 /* CoreGraphics.framework */; };
 		ABF24056179723ED002B4138 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF24055179723ED002B4138 /* UIKit.framework */; };
@@ -81,7 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABD1B3D017A54E340080FB4E /* AudioToolbox.framework in Frameworks */,
+				ABDB3FA91958BC6200F2112B /* AudioToolbox.framework in Frameworks */,
 				ABF24054179723ED002B4138 /* CoreGraphics.framework in Frameworks */,
 				ABF24056179723ED002B4138 /* UIKit.framework in Frameworks */,
 				ABF24052179723ED002B4138 /* Foundation.framework in Frameworks */,
