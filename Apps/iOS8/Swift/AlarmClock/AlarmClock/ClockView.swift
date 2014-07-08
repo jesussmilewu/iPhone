@@ -8,7 +8,7 @@
 
 import UIKit
 
-var kPI: CGFloat { return  }
+var kPI: CGFloat { return CGFloat(M_PI) }
 
 extension UIView {
     var midPoint: CGPoint {
@@ -45,7 +45,7 @@ class ClockView: UIView {
     
     func startAnimation() {
         if timer == nil {
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector:"updateTime", userInfo: nil, repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector:"updateTime:", userInfo: nil, repeats: true)
         }
     }
 
@@ -54,7 +54,7 @@ class ClockView: UIView {
         timer = nil
     }
     
-    func updateTime() {
+    func updateTime(inTimer:NSTimer) {
         time = NSDate()
     }
 
