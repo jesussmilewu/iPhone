@@ -9,6 +9,8 @@
 #import "ClockControl.h"
 #import "UIView+AlarmClock.h"
 
+#define USE_KEY_VALUE_OBSERVING 0
+
 @interface ClockControl()
 
 @property (nonatomic) CGFloat savedAngle;
@@ -30,6 +32,7 @@
     [self setup];
 }
 
+#if USE_KEY_VALUE_OBSERVING
 - (void)dealloc {
     [self removeObserver:self forKeyPath:@"time"];
 }
@@ -41,6 +44,15 @@
 - (void)observeValueForKeyPath:(NSString *)inKeyPath ofObject:(id)inObject change:(NSDictionary *)inChange context:(void *)inContext {
     [self setNeedsDisplay];
 }
+#else
+- (void)setup {
+}
+
+- (void)setTime:(NSTimeInterval)inTime {
+    _time = inTime;
+    [self setNeedsDisplay];
+}
+#endif
 
 - (CGFloat)angle {
     return self.time * M_PI / 21600.0;
@@ -48,11 +60,6 @@
 
 - (void)setAngle:(CGFloat)inAngle {
     self.time = 21600.0 * inAngle / M_PI;
-}
-
-- (void)setTime:(NSTimeInterval)inTime {
-    _time = inTime;
-    [self setNeedsDisplay];
 }
 
 - (BOOL)pointInside:(CGPoint)inPoint withEvent:(UIEvent *)inEvent {
