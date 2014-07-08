@@ -47,13 +47,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             let theAction = UIAlertAction(title:"OK", style:UIAlertActionStyle.Cancel, handler:theHandler)
 
             theController.addAction(theAction)
-            self.window?.rootViewController?.presentViewController(theController, animated: true, completion: nil)
+            window?.rootViewController?.presentViewController(theController, animated: true, completion: nil)
             playSound()
         }
     }
     
     func playSound() {
-        AudioServicesPlaySystemSound(self.soundId)
+        AudioServicesPlaySystemSound(soundId)
     }
 }
 

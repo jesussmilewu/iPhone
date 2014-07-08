@@ -17,11 +17,11 @@ class AlarmClockViewController: UIViewController {
     
     var alarmHidden: Bool {
     get {
-        return self.clockControl.hidden
+        return clockControl.hidden
     }
     set {
-        self.clockControl.hidden = newValue
-        self.timeLabel.hidden = newValue
+        clockControl.hidden = newValue
+        timeLabel.hidden = newValue
     }
     }
     
@@ -46,11 +46,11 @@ class AlarmClockViewController: UIViewController {
     
     override func viewDidAppear(inAnimated: Bool) {
         super.viewDidAppear(inAnimated)
-        self.clockView.startAnimation()
+        clockView.startAnimation()
     }
     
     override func viewWillDisappear(inAnimated: Bool) {
-        self.clockView.stopAnimation()
+        clockView.stopAnimation()
         super.viewWillDisappear(inAnimated)
     }
     
@@ -60,46 +60,46 @@ class AlarmClockViewController: UIViewController {
         let theNotification:UILocalNotification? = theNotifications?.lastObject as? UILocalNotification
         
         if(theNotification == nil) {
-            self.alarmHidden = true;
+            alarmHidden = true;
         }
         else {
-            var theTime = theNotification!.fireDate.timeIntervalSinceReferenceDate - self.startTimeOfCurrentDay()
+            var theTime = theNotification!.fireDate.timeIntervalSinceReferenceDate - startTimeOfCurrentDay()
             
             theTime = theTime % (kSecondsOfDay / 2.0)
-            self.clockControl.time = theTime < 0 ? theTime + kSecondsOfDay / 2.0 : theTime;
-            self.alarmHidden = false
+            clockControl.time = theTime < 0 ? theTime + kSecondsOfDay / 2.0 : theTime;
+            alarmHidden = false
         }
         updateTimeLabel()
     }
     
     @IBAction func updateTimeLabel() {
-        let theTime:UInt = UInt(round(self.clockControl.time / 60.0))
+        let theTime:UInt = UInt(round(clockControl.time / 60.0))
         let theMinutes = theTime % 60;
         let theHours = theTime / 60;
         
-        self.timeLabel.text = NSString(format:"%d:%02d", theHours, theMinutes)
+        timeLabel.text = NSString(format:"%d:%02d", theHours, theMinutes)
     }
     
     @IBAction func switchAlarm(inRecognizer:UILongPressGestureRecognizer!) {
         if(inRecognizer.state == UIGestureRecognizerState.Ended) {
-            if(self.alarmHidden) {
-                let thePoint = inRecognizer.locationInView(self.clockView)
-                let theAngle = Double(self.clockView.angleWithPoint(thePoint))
+            if(alarmHidden) {
+                let thePoint = inRecognizer.locationInView(clockView)
+                let theAngle = Double(clockView.angleWithPoint(thePoint))
                 let theTime = 21600.0 * theAngle / M_PI
                 
-                self.alarmHidden = false
-                self.clockControl.time = theTime
+                alarmHidden = false
+                clockControl.time = theTime
                 updateTimeLabel()
             }
             else {
-                self.alarmHidden = true
+                alarmHidden = true
             }
             updateAlarm()
         }
     }
     
     @IBAction func updateAlarm() {
-        if(self.alarmHidden) {
+        if(alarmHidden) {
             let theApplication = UIApplication.sharedApplication()
             
             theApplication.cancelAllLocalNotifications()
@@ -110,7 +110,7 @@ class AlarmClockViewController: UIViewController {
     }
     
     func alarmDate() -> NSDate {
-        var theTime:NSTimeInterval = self.startTimeOfCurrentDay() + self.clockControl.time;
+        var theTime:NSTimeInterval = startTimeOfCurrentDay() + clockControl.time;
         
         while(theTime < NSDate.timeIntervalSinceReferenceDate()) {
             theTime += kSecondsOfDay / 2.0;
@@ -140,11 +140,11 @@ class AlarmClockViewController: UIViewController {
     }
     
     func description() -> NSString {
-        return NSString(format:"alarm: %@ (%@)", self.timeLabel.text, self.alarmHidden ? "off" : "on")
+        return NSString(format:"alarm: %@ (%@)", timeLabel.text, alarmHidden ? "off" : "on")
     }
     
     func debugDescription() -> NSString {
-        return NSString(format:"debug alarm: %@ (%.3fs, %@)", self.timeLabel.text, self.clockControl.time, self.alarmHidden ? "off" : "on")
+        return NSString(format:"debug alarm: %@ (%.3fs, %@)", timeLabel.text, clockControl.time, alarmHidden ? "off" : "on")
     }
 }
 

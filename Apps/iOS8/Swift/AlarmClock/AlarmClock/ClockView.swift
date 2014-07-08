@@ -8,26 +8,28 @@
 
 import UIKit
 
+var kPI: CGFloat { return  }
+
 extension UIView {
     var midPoint: CGPoint {
-    let theBounds = self.bounds;
+    let theBounds = bounds
         
         return CGPoint(x:theBounds.midX, y:theBounds.midY)
     }
     
-    func pointWithRadius(inRadius:CGFloat, angle inAngle:Double)->CGPoint {
-        let theCenter = self.midPoint
+    func pointWithRadius(inRadius:CGFloat, angle inAngle:CGFloat)->CGPoint {
+        let theCenter = midPoint
         
         return CGPoint(x:theCenter.x + inRadius * CGFloat(sin(inAngle)), y:theCenter.y - inRadius * CGFloat(cos(inAngle)))
     }
     
     func angleWithPoint(inPoint: CGPoint) -> CGFloat {
-        let theCenter = self.midPoint
+        let theCenter = midPoint
         let theX = inPoint.x - theCenter.x
         let theY = inPoint.y - theCenter.y
-        let theAngle = atan2f(theX, -theY);
+        let theAngle = atan2f(theX, -theY)
         
-        return theAngle < 0.0 ? theAngle + 2.0 * CGFloat(M_PI) : theAngle;
+        return theAngle < 0.0 ? theAngle + 2.0 * kPI : theAngle
     }
 }
 
@@ -39,31 +41,31 @@ class ClockView: UIView {
     }
     var calendar : NSCalendar = NSCalendar.currentCalendar()
     @IBInspectable var secondHandColor : UIColor?
-    var timer : NSTimer?
+    var timer : NSTimer!
     
+    func startAnimation() {
+        if timer == nil {
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector:"updateTime", userInfo: nil, repeats: true)
+        }
+    }
+
+    func stopAnimation() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    func updateTime() {
+        time = NSDate()
+    }
+
     override func tintColorDidChange() {
         super.tintColorDidChange()
         setNeedsDisplay()
     }
     
-    func startAnimation() {
-        if self.timer == nil {
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector:"updateTime", userInfo: nil, repeats: true)
-        }
-    }
-
-    func stopAnimation() {
-        self.timer?.invalidate()
-        self.timer = nil
-    }
-    
-    func updateTime() {
-        self.time = NSDate()
-    }
-
     override func drawRect(inRect: CGRect) {
         let theContext = UIGraphicsGetCurrentContext()
-        let theBounds = self.bounds
+        let theBounds = bounds
         let theRadius = theBounds.width / 2
         
         CGContextSaveGState(theContext)
@@ -72,12 +74,12 @@ class ClockView: UIView {
         CGContextFillPath(theContext)
         CGContextAddEllipseInRect(theContext, theBounds)
         CGContextClip(theContext)
-        CGContextSetStrokeColorWithColor(theContext, self.tintColor.CGColor)
-        CGContextSetFillColorWithColor(theContext, self.tintColor.CGColor)
+        CGContextSetStrokeColorWithColor(theContext, tintColor.CGColor)
+        CGContextSetFillColorWithColor(theContext, tintColor.CGColor)
         CGContextSetLineWidth(theContext, theRadius / 20.0)
         CGContextSetLineCap(theContext, kCGLineCapRound)
         for i in 0..<60 {
-            let theAngle = Double(i) * M_PI / 30.0
+            let theAngle = CGFloat(i) * kPI / 30.0
             
             if(i % 5 == 0) {
                 let theInnerRadius = theRadius * (i % 15 == 0 ? 0.7 : 0.8)
@@ -95,19 +97,19 @@ class ClockView: UIView {
                 CGContextFillPath(theContext)
             }
         }
-        self.drawClockHands()
+        drawClockHands()
         CGContextRestoreGState(theContext)
     }
     
     func drawClockHands() {
         let theContext = UIGraphicsGetCurrentContext()
-        let theCenter = self.midPoint
-        let theRadius = self.bounds.width / 2.0
-        let theComponents = self.calendar.components(NSCalendarUnit.HourCalendarUnit |
-            NSCalendarUnit.MinuteCalendarUnit | NSCalendarUnit.SecondCalendarUnit, fromDate:self.time)
-        let theSecond = Double(theComponents.second) * M_PI / 30.0
-        let theMinute = Double(theComponents.minute) * M_PI / 30.0
-        let theHour = (Double(theComponents.hour) + Double(theComponents.minute) / 60.0) * M_PI / 6.0
+        let theCenter = midPoint
+        let theRadius = bounds.width / 2.0
+        let theComponents = calendar.components(NSCalendarUnit.HourCalendarUnit |
+            NSCalendarUnit.MinuteCalendarUnit | NSCalendarUnit.SecondCalendarUnit, fromDate:time)
+        let theSecond = CGFloat(theComponents.second) * kPI / 30.0
+        let theMinute = CGFloat(theComponents.minute) * kPI / 30.0
+        let theHour = (CGFloat(theComponents.hour) + CGFloat(theComponents.minute) / 60.0) * kPI / 6.0
         // Stundenzeiger zeichnen
         var thePoint = pointWithRadius(theRadius * 0.7, angle:theHour)
         
@@ -124,7 +126,7 @@ class ClockView: UIView {
         CGContextAddLineToPoint(theContext, thePoint.x, thePoint.y)
         CGContextStrokePath(theContext)
         // Sekundenzeiger zeichnen
-        let theColor = self.secondHandColor? ? self.secondHandColor! : UIColor.redColor()
+        let theColor = secondHandColor? ? secondHandColor! : UIColor.redColor()
         
         thePoint = pointWithRadius(theRadius * 0.95, angle:theSecond)
         CGContextSetLineWidth(theContext, theRadius / 80.0)
@@ -152,21 +154,21 @@ class ClockControl: UIControl {
     }
     
     override func pointInside(inPoint: CGPoint, withEvent inEvent: UIEvent!) -> Bool {
-        let theAngle = self.angleWithPoint(inPoint)
-        let theDelta = fabsf(theAngle - self.angle)
+        let theAngle = angleWithPoint(inPoint)
+        let theDelta = fabsf(theAngle - angle)
         
-        return theDelta < 4.0 * CGFloat(M_PI) / 180.0;
+        return theDelta < 4.0 * kPI / 180.0
     }
     
     func updateAngleWithTouch(inTouch:UITouch!) {
         let thePoint = inTouch.locationInView(self)
         
-        self.angle = angleWithPoint(thePoint)
+        angle = angleWithPoint(thePoint)
         sendActionsForControlEvents(UIControlEvents.ValueChanged)
     }
     
     override func beginTrackingWithTouch(inTouch: UITouch!, withEvent inEvent: UIEvent!) -> Bool {
-        self.savedAngle = self.angle
+        savedAngle = angle
         updateAngleWithTouch(inTouch)
         return true
     }
@@ -181,27 +183,27 @@ class ClockControl: UIControl {
     }
     
     override func cancelTrackingWithEvent(inEvent: UIEvent!) {
-        self.angle = self.savedAngle;
+        angle = savedAngle
     }
     
     override func drawRect(inRect: CGRect) {
         let theContext = UIGraphicsGetCurrentContext()
-        let theBounds = self.bounds;
-        let theCenter = self.midPoint
+        let theBounds = bounds
+        let theCenter = midPoint
         let theRadius = theBounds.width / 2.0
-        let thePoint = pointWithRadius(theRadius * 0.7, angle: self.time * M_PI / 21600.0)
-        var theColor = self.tintColor
+        let thePoint = pointWithRadius(theRadius * 0.7, angle:CGFloat(time) * kPI / 21600.0)
+        var theColor = tintColor
         
-        if(self.tracking) {
+        if(tracking) {
             theColor = theColor.colorWithAlphaComponent(0.5)
         }
-        CGContextSaveGState(theContext);
-        CGContextSetStrokeColorWithColor(theContext, theColor.CGColor);
-        CGContextSetLineWidth(theContext, 8.0);
-        CGContextSetLineCap(theContext, kCGLineCapRound);
-        CGContextMoveToPoint(theContext, theCenter.x, theCenter.y);
-        CGContextAddLineToPoint(theContext, thePoint.x, thePoint.y);
-        CGContextStrokePath(theContext);
-        CGContextRestoreGState(theContext);
+        CGContextSaveGState(theContext)
+        CGContextSetStrokeColorWithColor(theContext, theColor.CGColor)
+        CGContextSetLineWidth(theContext, 8.0)
+        CGContextSetLineCap(theContext, kCGLineCapRound)
+        CGContextMoveToPoint(theContext, theCenter.x, theCenter.y)
+        CGContextAddLineToPoint(theContext, thePoint.x, thePoint.y)
+        CGContextStrokePath(theContext)
+        CGContextRestoreGState(theContext)
     }
 }
