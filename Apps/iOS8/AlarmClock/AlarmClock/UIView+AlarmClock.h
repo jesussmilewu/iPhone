@@ -15,7 +15,7 @@
  
  @returns der Mittelpunkt relativ zum View
 */
-- (CGPoint)midPoint;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGPoint midPoint;
 /*!
  berechnet einen Punkt, der in einem vorgegebenen Abstand und einem Winkel im Uhrzeigersinn vom Mittelpunkt liegt. Die (positive) y-Achse entspricht dabei dem Winkel 0.
 

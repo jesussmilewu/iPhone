@@ -17,7 +17,7 @@
 
 @implementation ClockControl
 
-- (id)initWithFrame:(CGRect)inFrame {
+- (instancetype)initWithFrame:(CGRect)inFrame {
     self = [super initWithFrame:inFrame];
     if (self) {
         [self setup];
