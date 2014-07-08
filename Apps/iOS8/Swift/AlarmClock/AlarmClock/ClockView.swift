@@ -41,7 +41,7 @@ class ClockView: UIView {
     }
     var calendar : NSCalendar = NSCalendar.currentCalendar()
     @IBInspectable var secondHandColor : UIColor?
-    var timer : NSTimer!
+    var timer : NSTimer?
     
     func startAnimation() {
         if timer == nil {
