@@ -10,24 +10,24 @@ import UIKit
 
 extension UIView {
     var midPoint: CGPoint {
-        let theBounds = self.bounds;
-
-        return CGPointMake(theBounds.midX, theBounds.midY)
+    let theBounds = self.bounds;
+        
+        return CGPoint(x:theBounds.midX, y:theBounds.midY)
     }
     
     func pointWithRadius(inRadius:CGFloat, angle inAngle:Double)->CGPoint {
-        let theCenter = self.midPoint;
+        let theCenter = self.midPoint
         
-        return CGPointMake(theCenter.x + inRadius * CGFloat(sin(inAngle)), theCenter.y - inRadius * CGFloat(cos(inAngle)));
+        return CGPoint(x:theCenter.x + inRadius * CGFloat(sin(inAngle)), y:theCenter.y - inRadius * CGFloat(cos(inAngle)))
     }
     
-    func angleWithPoint(inPoint: CGPoint) -> Double {
-        let theCenter = self.midPoint;
-        let theX: Double = Double(inPoint.x - theCenter.x);
-        let theY: Double = Double(inPoint.y - theCenter.y);
-        let theAngle: Double = atan2(theX, -theY);
+    func angleWithPoint(inPoint: CGPoint) -> CGFloat {
+        let theCenter = self.midPoint
+        let theX = inPoint.x - theCenter.x
+        let theY = inPoint.y - theCenter.y
+        let theAngle = atan2f(theX, -theY);
         
-        return theAngle < 0.0 ? theAngle + 2.0 * M_PI : theAngle;
+        return theAngle < 0.0 ? theAngle + 2.0 * CGFloat(M_PI) : theAngle;
     }
 }
 
@@ -76,7 +76,7 @@ class ClockView: UIView {
         CGContextSetFillColorWithColor(theContext, self.tintColor.CGColor)
         CGContextSetLineWidth(theContext, theRadius / 20.0)
         CGContextSetLineCap(theContext, kCGLineCapRound)
-        for i in 0..60 {
+        for i in 0..<60 {
             let theAngle = Double(i) * M_PI / 30.0
             
             if(i % 5 == 0) {
@@ -136,26 +136,26 @@ class ClockView: UIView {
 }
 
 class ClockControl: UIControl {
-    var savedAngle:Double = 0.0
+    var savedAngle:CGFloat = 0.0
     var time : NSTimeInterval = 0.0 {
     didSet {
         setNeedsDisplay()
     }
     }
-    var angle : Double {
+    var angle : CGFloat {
     get {
-        return time * M_PI / 21600.0
+        return CGFloat(time * M_PI) / 21600.0
     }
     set {
-        time = 21600.0 * newValue / M_PI;
+        time = 21600.0 * NSTimeInterval(newValue) / NSTimeInterval(M_PI)
     }
     }
     
     override func pointInside(inPoint: CGPoint, withEvent inEvent: UIEvent!) -> Bool {
         let theAngle = self.angleWithPoint(inPoint)
-        let theDelta = fabs(theAngle - self.angle);
+        let theDelta = fabsf(theAngle - self.angle)
         
-        return theDelta < 4.0 * M_PI / 180.0;
+        return theDelta < 4.0 * CGFloat(M_PI) / 180.0;
     }
     
     func updateAngleWithTouch(inTouch:UITouch!) {

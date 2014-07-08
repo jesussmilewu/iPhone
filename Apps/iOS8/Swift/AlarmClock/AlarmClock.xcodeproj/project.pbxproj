@@ -28,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB9744C2196BCD5000BE585C /* UIView+AlarmClock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AlarmClock.swift"; sourceTree = "<group>"; };
 		ABDA2C5A19558E7E00B99517 /* AlarmClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABDA2C5E19558E7E00B99517 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABDA2C5F19558E7E00B99517 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +90,7 @@
 				ABDA2C6619558E7E00B99517 /* Images.xcassets */,
 				ABDA2C5D19558E7E00B99517 /* Supporting Files */,
 				ABDA2C7C19558FA200B99517 /* ClockView.swift */,
+				AB9744C2196BCD5000BE585C /* UIView+AlarmClock.swift */,
 			);
 			path = AlarmClock;
 			sourceTree = "<group>";

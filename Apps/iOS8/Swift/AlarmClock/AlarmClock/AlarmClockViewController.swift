@@ -84,8 +84,8 @@ class AlarmClockViewController: UIViewController {
         if(inRecognizer.state == UIGestureRecognizerState.Ended) {
             if(self.alarmHidden) {
                 let thePoint = inRecognizer.locationInView(self.clockView)
-                let theAngle = self.clockView.angleWithPoint(thePoint)
-                let theTime = 21600.0 * theAngle / M_PI;
+                let theAngle = Double(self.clockView.angleWithPoint(thePoint))
+                let theTime = 21600.0 * theAngle / M_PI
                 
                 self.alarmHidden = false
                 self.clockControl.time = theTime
