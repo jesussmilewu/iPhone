@@ -81,7 +81,7 @@ class ClockView: UIView {
         for i in 0..<60 {
             let theAngle = CGFloat(i) * kPI / 30.0
             
-            if(i % 5 == 0) {
+            if i % 5 == 0 {
                 let theInnerRadius = theRadius * (i % 15 == 0 ? 0.7 : 0.8)
                 let theInnerPoint = pointWithRadius(theInnerRadius, angle: theAngle)
                 let theOuterPoint = pointWithRadius(theRadius, angle:theAngle)
@@ -93,7 +93,7 @@ class ClockView: UIView {
             else {
                 let thePoint = pointWithRadius(theRadius * 0.95, angle:theAngle)
                 
-                CGContextAddArc(theContext, thePoint.x, thePoint.y, theRadius / 40.0, 0, CGFloat(2 * M_PI), 1)
+                CGContextAddArc(theContext, thePoint.x, thePoint.y, theRadius / 40.0, 0, 2 * kPI, 1)
                 CGContextFillPath(theContext)
             }
         }
@@ -146,10 +146,10 @@ class ClockControl: UIControl {
     }
     var angle : CGFloat {
     get {
-        return CGFloat(time * M_PI) / 21600.0
+        return CGFloat(time) * kPI / 21600.0
     }
     set {
-        time = 21600.0 * NSTimeInterval(newValue) / NSTimeInterval(M_PI)
+        time = 21600.0 * NSTimeInterval(newValue) / M_PI
     }
     }
     
