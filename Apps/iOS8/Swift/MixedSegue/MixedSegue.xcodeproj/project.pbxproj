@@ -39,7 +39,7 @@
 		AB6229601959F1F60049ABA4 /* Cube.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cube.m; sourceTree = "<group>"; };
 		AB6229611959F1F60049ABA4 /* ResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultViewController.h; sourceTree = "<group>"; };
 		AB6229621959F1F60049ABA4 /* ResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultViewController.m; sourceTree = "<group>"; };
-		AB6229651959F2500049ABA4 /* MixedSegue-Swift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MixedSegue-Swift.h"; sourceTree = "<group>"; };
+		AB6229651959F2500049ABA4 /* MixedSegue-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MixedSegue-Bridging-Header.h"; sourceTree = "<group>"; };
 		AB62296E1959F4640049ABA4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,7 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				AB6229441959F1850049ABA4 /* Info.plist */,
-				AB6229651959F2500049ABA4 /* MixedSegue-Swift.h */,
+				AB6229651959F2500049ABA4 /* MixedSegue-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -341,7 +341,7 @@
 				INFOPLIST_FILE = MixedSegue/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "MixedSegue/MixedSegue-Swift.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "MixedSegue/MixedSegue-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -353,7 +353,7 @@
 				INFOPLIST_FILE = MixedSegue/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "MixedSegue/MixedSegue-Swift.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "MixedSegue/MixedSegue-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -412,6 +412,7 @@
 				AB6229591959F1850049ABA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AB62295A1959F1850049ABA4 /* Build configuration list for PBXNativeTarget "MixedSegueTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +421,7 @@
 				AB62295C1959F1850049ABA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
