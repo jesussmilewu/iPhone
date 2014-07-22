@@ -8,12 +8,12 @@
 
 import UIKit
 
-class AlarmClockViewController: UIViewController {
+class ViewController: UIViewController {
     let kSecondsOfDay:NSTimeInterval = 60.0 * 60.0 * 24.0
     
-    @IBOutlet var clockView: ClockView
-    @IBOutlet var clockControl: ClockControl
-    @IBOutlet var timeLabel: UILabel
+    @IBOutlet weak var clockView: ClockView
+    @IBOutlet weak var clockControl: ClockControl
+    @IBOutlet weak var timeLabel: UILabel
     
     var alarmHidden: Bool {
     get {
@@ -121,12 +121,11 @@ class AlarmClockViewController: UIViewController {
     func createAlarm() {
         let theApplication = UIApplication.sharedApplication()
         let theNotification = UILocalNotification()
-        let theBody = NSLocalizedString("Wake up", comment:"Alarm message")
         
         theApplication.cancelAllLocalNotifications()
         theNotification.fireDate = alarmDate()
         theNotification.timeZone = NSTimeZone.defaultTimeZone()
-        theNotification.alertBody = theBody
+        theNotification.alertBody = NSLocalizedString("Wake up", comment:"Alarm message")
         theNotification.soundName = "ringtone.caf"
         theApplication.scheduleLocalNotification(theNotification)
     }

@@ -43,8 +43,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     func application(inApplication: UIApplication!, didReceiveLocalNotification inNotification: UILocalNotification!) {
         if(inApplication.applicationState == UIApplicationState.Active) {
             let theController = UIAlertController(title:"Alarm", message:inNotification.alertBody, preferredStyle:UIAlertControllerStyle.Alert)
-            let theHandler = { (inAlert:UIAlertAction!) -> Void in NSLog("Alert cancelled") }
-            let theAction = UIAlertAction(title:"OK", style:UIAlertActionStyle.Cancel, handler:theHandler)
+            let theHandler = { (inAlert:UIAlertAction!) -> Void in
+                NSLog("Alert cancelled")
+                }
+            let theAction = UIAlertAction(title:"OK", style:UIAlertActionStyle.Cancel, handler:dismissAlert)
 
             theController.addAction(theAction)
             window?.rootViewController?.presentViewController(theController, animated: true, completion: nil)
@@ -52,6 +54,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         }
     }
     
+    func dismissAlert(inAlert:UIAlertAction!) -> Void {
+        NSLog("Alert cancelled")
+    }
+
     func playSound() {
         AudioServicesPlaySystemSound(soundId)
     }
