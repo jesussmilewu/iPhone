@@ -39,6 +39,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         inApplication.registerUserNotificationSettings(theSettings)
         return true
     }
+    
+    func application(inApplication: UIApplication!, didRegisterUserNotificationSettings inSettings: UIUserNotificationSettings!) {
+        if(inSettings.types & UIUserNotificationType.Alert) {
+            NSLog("Alerts alloed")
+        }
+        if(inSettings.types & UIUserNotificationType.Sound) {
+            NSLog("Sounds alloed")
+        }
+    }
 
     func application(inApplication: UIApplication!, didReceiveLocalNotification inNotification: UILocalNotification!) {
         if(inApplication.applicationState == UIApplicationState.Active) {
