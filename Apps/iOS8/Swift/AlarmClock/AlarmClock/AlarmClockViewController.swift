@@ -11,9 +11,9 @@ import UIKit
 class AlarmClockViewController: UIViewController {
     let kSecondsOfDay:NSTimeInterval = 60.0 * 60.0 * 24.0
     
-    @IBOutlet var clockView: ClockView
-    @IBOutlet var clockControl: ClockControl
-    @IBOutlet var timeLabel: UILabel
+    @IBOutlet var clockView: ClockView!
+    @IBOutlet var clockControl: ClockControl!
+    @IBOutlet var timeLabel: UILabel!
     
     var alarmHidden: Bool {
     get {
