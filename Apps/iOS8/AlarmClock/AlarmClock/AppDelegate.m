@@ -29,6 +29,15 @@
     [inApplication registerUserNotificationSettings:theSettings];
     return YES;
 }
+
+- (void)application:(UIApplication *)inApplication didRegisterUserNotificationSettings:(UIUserNotificationSettings *)inSettings {
+    if(inSettings.types & UIUserNotificationTypeAlert) {
+        NSLog(@"Alerts allowed");
+    }
+    if(inSettings.types & UIUserNotificationTypeSound) {
+        NSLog(@"Sounds allowed");
+    }
+}
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {
