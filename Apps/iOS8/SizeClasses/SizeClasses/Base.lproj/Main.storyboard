@@ -33,7 +33,9 @@
                         <constraints>
                             <constraint firstItem="zhe-DG-uch" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="EsP-wZ-GON"/>
                             <constraint firstItem="Jar-NH-t3n" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="J0J-kX-QT5"/>
-                            <constraint firstItem="Jar-NH-t3n" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="ZlN-cH-Qtf"/>
+                            <constraint firstItem="Jar-NH-t3n" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="ZlN-cH-Qtf">
+                                <variation key="heightClass=regular-widthClass=regular" constant="60"/>
+                            </constraint>
                             <constraint firstItem="zhe-DG-uch" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="fHp-Oa-jGP"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Jar-NH-t3n" secondAttribute="bottom" constant="20" id="oHK-Ma-wfB"/>
                         </constraints>
