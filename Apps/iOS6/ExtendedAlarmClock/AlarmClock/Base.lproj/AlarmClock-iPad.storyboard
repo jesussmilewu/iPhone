@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="oaY-yE-hAL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="oaY-yE-hAL">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
     </dependencies>
     <scenes>
-        <!--Alarm Clock View Controller - Alarm Clock-->
+        <!--Alarm Clock-->
         <scene sceneID="qJL-8n-Hva">
             <objects>
                 <viewController storyboardIdentifier="alarm-clock" id="w3d-rf-zcs" customClass="AlarmClockViewController" sceneMemberID="viewController">
@@ -19,11 +19,9 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yRn-v5-bC8" customClass="ClockView">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="768"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eKI-ym-YKR" customClass="ClockControl">
                                         <rect key="frame" x="0.0" y="0.0" width="768" height="768"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <action selector="updateAlarm" destination="w3d-rf-zcs" eventType="touchUpInside" id="BwA-cN-LwN"/>
@@ -45,7 +43,6 @@
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="in2-Xl-qZ1">
                                 <rect key="frame" x="690" y="910" width="58" height="30"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="PZg-xG-3HQ"/>
                                 </constraints>
@@ -63,8 +60,6 @@
                             <constraint firstAttribute="trailing" secondItem="yRn-v5-bC8" secondAttribute="trailing" id="T5j-Mt-oWh"/>
                             <constraint firstAttribute="trailing" secondItem="in2-Xl-qZ1" secondAttribute="trailing" constant="20" id="Y5P-UB-IhZ"/>
                         </constraints>
-                        <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
-                        <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Alarm Clock" id="jd0-hB-JVi">
@@ -91,7 +86,7 @@
             </objects>
             <point key="canvasLocation" x="360" y="32"/>
         </scene>
-        <!--Preferences View Controller - Preferences-->
+        <!--Preferences-->
         <scene sceneID="dG9-FB-fpG">
             <objects>
                 <tableViewController id="tpx-0X-bw8" customClass="PreferencesViewController" sceneMemberID="viewController">
@@ -109,16 +104,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Digits" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkK-os-25R">
-                                                    <rect key="frame" x="5" y="16" width="44" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Digits" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkK-os-25R">
+                                                    <rect key="frame" x="20" y="11.5" width="44" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iwh-kF-bMd">
-                                                    <rect key="frame" x="251" y="-82" width="51" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <rect key="frame" x="251" y="6" width="51" height="31"/>
                                                     <connections>
                                                         <action selector="savePreferences" destination="tpx-0X-bw8" eventType="valueChanged" id="8nn-eG-af0"/>
                                                     </connections>
@@ -126,7 +119,9 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="iwh-kF-bMd" secondAttribute="trailing" constant="20" id="Eat-Lg-Aw9"/>
-                                                <constraint firstItem="iwh-kF-bMd" firstAttribute="top" secondItem="mvm-3c-aoe" secondAttribute="top" constant="-82" id="WvK-2c-KWV"/>
+                                                <constraint firstAttribute="centerY" secondItem="hkK-os-25R" secondAttribute="centerY" id="HTp-PE-6Xr"/>
+                                                <constraint firstAttribute="centerY" secondItem="iwh-kF-bMd" secondAttribute="centerY" id="W8A-I9-g5N"/>
+                                                <constraint firstItem="hkK-os-25R" firstAttribute="leading" secondItem="mvm-3c-aoe" secondAttribute="leading" constant="20" id="o3Z-PP-lcn"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -139,7 +134,6 @@
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Partition of Dial" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lUD-Wc-0iR">
                                                     <rect key="frame" x="20" y="11" width="150" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="150" id="77C-Dw-GjS"/>
                                                         <constraint firstAttribute="height" constant="21" id="SkW-JX-qIb"/>
@@ -150,7 +144,6 @@
                                                 </label>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="35l-XO-VxO">
                                                     <rect key="frame" x="20" y="43" width="280" height="29"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <segments>
                                                         <segment title="None"/>
                                                         <segment title="Hours"/>
@@ -183,14 +176,12 @@
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sound" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59r-IB-SYf">
                                                     <rect key="frame" x="20" y="11" width="51" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="34h-DL-tcn">
                                                     <rect key="frame" x="251" y="6" width="51" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <connections>
                                                         <action selector="savePreferences" destination="tpx-0X-bw8" eventType="valueChanged" id="LiH-2m-JY6"/>
                                                     </connections>
@@ -215,6 +206,7 @@
                     <navigationItem key="navigationItem" title="Preferences" id="xTg-iR-5Xr"/>
                     <value key="contentSizeForViewInPopover" type="size" width="320" height="320"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="320"/>
                     <connections>
                         <outlet property="digitsSwitch" destination="iwh-kF-bMd" id="CdX-N2-U5O"/>
                         <outlet property="partitionControl" destination="35l-XO-VxO" id="4Ic-Yq-MA0"/>
@@ -223,7 +215,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vcL-Ku-RXy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1381" y="384"/>
+            <point key="canvasLocation" x="1381" y="267"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oNq-6L-4oA">
@@ -245,6 +237,9 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination"/>
+        <simulatedScreenMetrics key="destination">
+            <size key="portraitSize" width="768" height="1024"/>
+            <size key="landscapeSize" width="1024" height="768"/>
+        </simulatedScreenMetrics>
     </simulatedMetricsContainer>
 </document>
