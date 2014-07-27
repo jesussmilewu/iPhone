@@ -11,6 +11,7 @@
 /*!
  Ein ClockView zeichnet ein Zifferblatt mit Uhrzeigern.
 */
+IB_DESIGNABLE
 @interface ClockView : UIView
 
 /// Die angezeigte Zeit des Views

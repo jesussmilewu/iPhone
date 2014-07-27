@@ -29,19 +29,16 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
 
 @implementation ViewController
 
--(BOOL) prefersStatusBarHidden
-{
+-(BOOL) prefersStatusBarHidden {
     return YES;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -154,6 +151,7 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
     return [theDate timeIntervalSinceReferenceDate];
 }
 
+/*
 - (NSString *)description {
     return [NSString stringWithFormat:@"alarm: %@ (%@)", self.timeLabel.text, self.alarmHidden ? @"off" : @"on"];
 }
@@ -162,6 +160,6 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
     return [NSString stringWithFormat:@"debug alarm: %@ (%.3fs, %@)",
             self.timeLabel.text, self.clockControl.time,
             self.alarmHidden ? @"off" : @"on"];
-}
+}*/
 
 @end

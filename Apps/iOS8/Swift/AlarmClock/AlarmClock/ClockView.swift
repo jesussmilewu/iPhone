@@ -8,8 +8,7 @@
 
 import UIKit
 
-var cPI: CGFloat { return CGFloat(M_PI) }
-var fPI: Float { return Float(M_PI) }
+var C_PI: CGFloat { return CGFloat(M_PI) }
 
 extension UIView {
     var midPoint: CGPoint {
@@ -18,19 +17,19 @@ extension UIView {
         return CGPoint(x:theBounds.midX, y:theBounds.midY)
     }
     
-    func pointWithRadius(inRadius:CGFloat, angle inAngle:Float)->CGPoint {
+    func pointWithRadius(inRadius:CGFloat, angle inAngle:CGFloat)->CGPoint {
         let theCenter = self.midPoint
         
         return CGPoint(x:theCenter.x + inRadius * CGFloat(sin(inAngle)), y:theCenter.y - inRadius * CGFloat(cos(inAngle)))
     }
     
-    func angleWithPoint(inPoint: CGPoint) -> Float {
+    func angleWithPoint(inPoint: CGPoint) -> CGFloat {
         let theCenter = self.midPoint
         let theX = Float(inPoint.x - theCenter.x)
         let theY = Float(inPoint.y - theCenter.y)
-        let theAngle = atan2f(theX, -theY)
+        let theAngle = CGFloat(atan2f(theX, -theY))
         
-        return theAngle < 0.0 ? theAngle + 2.0 * Float(M_PI) : theAngle
+        return theAngle < 0.0 ? theAngle + 2.0 * C_PI : theAngle
     }
 }
 
@@ -80,7 +79,7 @@ class ClockView: UIView {
         CGContextSetLineWidth(theContext, theRadius / 20)
         CGContextSetLineCap(theContext, kCGLineCapRound)
         for i in 0..<60 {
-            let theAngle = Float(i) * fPI / 30.0
+            let theAngle = CGFloat(i) * C_PI / 30.0
             
             if i % 5 == 0 {
                 let theInnerRadius = theRadius * (i % 15 == 0 ? 0.7 : 0.8)
@@ -94,7 +93,7 @@ class ClockView: UIView {
             else {
                 let thePoint = pointWithRadius(theRadius * 0.95, angle:theAngle)
                 
-                CGContextAddArc(theContext, thePoint.x, thePoint.y, theRadius / 40.0, 0, 2 * cPI, 1)
+                CGContextAddArc(theContext, thePoint.x, thePoint.y, theRadius / 40.0, 0, 2 * C_PI, 1)
                 CGContextFillPath(theContext)
             }
         }
@@ -108,9 +107,9 @@ class ClockView: UIView {
         let theRadius = bounds.width / 2.0
         let theComponents = calendar.components(NSCalendarUnit.HourCalendarUnit |
             NSCalendarUnit.MinuteCalendarUnit | NSCalendarUnit.SecondCalendarUnit, fromDate:time)
-        let theSecond = Float(theComponents.second) * fPI / 30.0
-        let theMinute = Float(theComponents.minute) * fPI / 30.0
-        let theHour = (Float(theComponents.hour) + Float(theComponents.minute) / 60.0) * fPI / 6.0
+        let theSecond = CGFloat(theComponents.second) * C_PI / 30.0
+        let theMinute = CGFloat(theComponents.minute) * C_PI / 30.0
+        let theHour = (CGFloat(theComponents.hour) + CGFloat(theComponents.minute) / 60.0) * C_PI / 6.0
         // Stundenzeiger zeichnen
         var thePoint = pointWithRadius(theRadius * 0.7, angle:theHour)
         
@@ -139,15 +138,15 @@ class ClockView: UIView {
 }
 
 class ClockControl: UIControl {
-    var savedAngle:Float = 0.0
     var time : NSTimeInterval = 0.0 {
     didSet {
         setNeedsDisplay()
     }
     }
-    var angle : Float {
+    private var savedAngle:CGFloat = 0.0
+    private var angle : CGFloat {
     get {
-        return Float(time) * fPI / 21600.0
+        return CGFloat(time * M_PI / 21600.0)
     }
     set {
         time = 21600.0 * NSTimeInterval(newValue) / M_PI
@@ -156,9 +155,9 @@ class ClockControl: UIControl {
     
     override func pointInside(inPoint: CGPoint, withEvent inEvent: UIEvent!) -> Bool {
         let theAngle = angleWithPoint(inPoint)
-        let theDelta = fabsf(theAngle - angle)
+        let theDelta = CGFloat(fabsf(Float(theAngle - angle)))
         
-        return theDelta < 4.0 * fPI / 180.0
+        return theDelta < 4.0 * C_PI / 180.0
     }
     
     func updateAngleWithTouch(inTouch:UITouch!) {
@@ -191,8 +190,8 @@ class ClockControl: UIControl {
         let theContext = UIGraphicsGetCurrentContext()
         let theBounds = bounds
         let theCenter = midPoint
-        let theRadius = theBounds.width * 0.35
-        let thePoint = pointWithRadius(theRadius, angle:Float(time) * fPI / 21600)
+        let theRadius = theBounds.width / 2.0
+        let thePoint = pointWithRadius(0.7 * theRadius, angle:CGFloat(time) * C_PI / 21600)
         var theColor = tintColor
         
         if(tracking) {

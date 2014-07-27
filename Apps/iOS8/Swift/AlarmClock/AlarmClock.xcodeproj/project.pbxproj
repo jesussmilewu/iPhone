@@ -33,7 +33,7 @@
 		AB06638C1972ED24004E2245 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AB06638E1972ED2B004E2245 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AB4E79A11972D84B00021FA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		AB9744C2196BCD5000BE585C /* UIView+AlarmClock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AlarmClock.swift"; sourceTree = "<group>"; };
+		AB9744C2196BCD5000BE585C /* UIView+AlarmClock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "UIView+AlarmClock.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		ABDA2C5A19558E7E00B99517 /* AlarmClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABDA2C5E19558E7E00B99517 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABDA2C5F19558E7E00B99517 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -42,7 +42,7 @@
 		ABDA2C6C19558E7E00B99517 /* AlarmClockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlarmClockTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABDA2C7119558E7E00B99517 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABDA2C7219558E7E00B99517 /* AlarmClockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmClockTests.swift; sourceTree = "<group>"; };
-		ABDA2C7C19558FA200B99517 /* ClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
+		ABDA2C7C19558FA200B99517 /* ClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ClockView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		ABDA2C821955BE2A00B99517 /* ringtone.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ringtone.caf; sourceTree = "<group>"; };
 		ABDA2C841955C0FE00B99517 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -91,10 +91,10 @@
 				AB4E79A21972D84B00021FA9 /* Main.storyboard */,
 				ABDA2C5F19558E7E00B99517 /* AppDelegate.swift */,
 				ABDA2C6119558E7E00B99517 /* ViewController.swift */,
-				ABDA2C6619558E7E00B99517 /* Images.xcassets */,
-				ABDA2C5D19558E7E00B99517 /* Supporting Files */,
 				ABDA2C7C19558FA200B99517 /* ClockView.swift */,
 				AB9744C2196BCD5000BE585C /* UIView+AlarmClock.swift */,
+				ABDA2C6619558E7E00B99517 /* Images.xcassets */,
+				ABDA2C5D19558E7E00B99517 /* Supporting Files */,
 			);
 			path = AlarmClock;
 			sourceTree = "<group>";

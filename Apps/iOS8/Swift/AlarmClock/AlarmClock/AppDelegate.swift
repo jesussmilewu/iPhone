@@ -12,7 +12,7 @@ import AudioToolbox
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     var window: UIWindow?
-    var _soundId: SystemSoundID?
+    private var _soundId: SystemSoundID?
     var soundId: SystemSoundID {
     get {
         if !_soundId {
@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
 
     func application(inApplication: UIApplication!, didReceiveLocalNotification inNotification: UILocalNotification!) {
         if(inApplication.applicationState == UIApplicationState.Active) {
-            let theController = UIAlertController(title:"Alarm", message:inNotification.alertBody, preferredStyle:UIAlertControllerStyle.Alert)
+            let theController = UIAlertController(title:"Alarm", message:inNotification.alertBody, preferredStyle:UIAlertControllerStyle.ActionSheet)
             let theHandler = { (inAlert:UIAlertAction!) -> Void in
                 NSLog("Alert cancelled")
                 }

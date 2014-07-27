@@ -8,28 +8,27 @@
 
 import UIKit
 
-var cPI: CGFloat { return CGFloat(M_PI) }
-var fPI: Float { return Float(M_PI) }
+var C_PI: CGFloat { return CGFloat(M_PI) }
 
-extension UIView {
+public extension UIView {
     var midPoint: CGPoint {
-    let theBounds = self.bounds;
+        let theBounds = self.bounds;
         
         return CGPoint(x:theBounds.midX, y:theBounds.midY)
     }
     
-    func pointWithRadius(inRadius:CGFloat, angle inAngle:Float)->CGPoint {
+    func pointWithRadius(inRadius:CGFloat, angle inAngle:CGFloat)->CGPoint {
         let theCenter = self.midPoint
         
         return CGPoint(x:theCenter.x + inRadius * CGFloat(sin(inAngle)), y:theCenter.y - inRadius * CGFloat(cos(inAngle)))
     }
     
-    func angleWithPoint(inPoint: CGPoint) -> Float {
+    func angleWithPoint(inPoint: CGPoint) -> CGFloat {
         let theCenter = self.midPoint
         let theX = Float(inPoint.x - theCenter.x)
         let theY = Float(inPoint.y - theCenter.y)
-        let theAngle = atan2f(theX, -theY)
+        let theAngle = CGFloat(atan2f(theX, -theY))
         
-        return theAngle < 0.0 ? theAngle + 2.0 * Float(M_PI) : theAngle
+        return theAngle < 0.0 ? theAngle + 2.0 * C_PI : theAngle
     }
 }
