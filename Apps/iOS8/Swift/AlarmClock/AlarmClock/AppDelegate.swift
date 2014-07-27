@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
 
     func application(inApplication: UIApplication!, didReceiveLocalNotification inNotification: UILocalNotification!) {
         if(inApplication.applicationState == UIApplicationState.Active) {
-            let theController = UIAlertController(title:"Alarm", message:inNotification.alertBody, preferredStyle:UIAlertControllerStyle.ActionSheet)
+            let theController = UIAlertController(title:"Alarm", message:inNotification.alertBody, preferredStyle:UIAlertControllerStyle.Alert)
             let theHandler = { (inAlert:UIAlertAction!) -> Void in
                 NSLog("Alert cancelled")
                 }
