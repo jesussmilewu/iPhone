@@ -113,7 +113,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="wka-Ye-CFd">
-                                                    <rect key="frame" x="20" y="44" width="280" height="29"/>
+                                                    <rect key="frame" x="20" y="44.5" width="280" height="29"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                     <segments>
                                                         <segment title="None"/>

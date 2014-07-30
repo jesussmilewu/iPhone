@@ -106,10 +106,10 @@ PuzzleDirection PuzzleDirectionRevert(PuzzleDirection inDirection) {
 
 - (NSUInteger)nextIndex {
     NSUInteger theSize = self.size;
-    NSUInteger theIndex = rand() % theSize;
+    NSUInteger theIndex = drand48() * theSize;
 
     while(theIndex == self.freeIndex) {
-        theIndex = rand() % theSize;
+        theIndex = drand48() * theSize;
     }
     return theIndex;
 }

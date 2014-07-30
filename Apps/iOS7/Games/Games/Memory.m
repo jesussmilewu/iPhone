@@ -67,7 +67,7 @@ NSString * const kMemoryUserInfoCardsKey = @"kMemoryUserInfoCardsKey";
     NSMutableArray *theCards = [NSMutableArray arrayWithCapacity:theCount];
     
     while(theCount > 0) {
-        NSUInteger theIndex = rand() % theCount;
+        NSUInteger theIndex = drand48() * theCount;
         Card *theCard = theOrderedCards[theIndex];
         
         theCard.index = theCards.count;

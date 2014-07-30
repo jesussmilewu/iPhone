@@ -31,7 +31,7 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)inApplication {
-    srand((unsigned) [NSDate timeIntervalSinceReferenceDate]);
+    srand48(time(NULL));
 }
 
 - (NSURL *)applicationDocumentsURL {

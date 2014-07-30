@@ -62,8 +62,8 @@ NSString * const kCardDidSolvedNotification = @"kCardDidSolvedNotification";
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"[type=%lu, showsFrontSide=%d, solved=%d, index=%lu",
-            self.type, self.showsFrontSide, self.solved, self.index];
+    return [NSString stringWithFormat:@"[type=%u, showsFrontSide=%d, solved=%d, index=%u",
+            (unsigned)self.type, self.showsFrontSide, self.solved, (unsigned)self.index];
 }
 
 @end

@@ -23,7 +23,7 @@ const uint32_t kRacketMask = 1 << 3;
 
 static NSString * const kGameOverLabel = @"Game Over";
 
-static inline CGFloat CGVektorLength(CGVector inVector) {
+static inline CGFloat CGVectorLength(CGVector inVector) {
     return sqrtf(inVector.dx * inVector.dx + inVector.dy * inVector.dy);
 }
 
@@ -38,6 +38,9 @@ static inline CGFloat CGVektorLength(CGVector inVector) {
 @property (nonatomic, strong) SKNode *ball;
 @property (nonatomic, strong) SKNode *racket;
 
+@property (nonatomic, strong) SKAction *contactWall;
+@property (nonatomic, strong) SKAction *contactRacket;
+@property (nonatomic, strong) SKAction *explosion;
 
 @end
 
@@ -62,6 +65,9 @@ static inline CGFloat CGVektorLength(CGVector inVector) {
         theBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:theFrame];
         theBody.categoryBitMask = kWallMask;
         theBody.collisionBitMask = kBallMask;
+        self.contactRacket = [SKAction playSoundFileNamed:@"racket.caf" waitForCompletion:NO];
+        self.contactWall = [SKAction playSoundFileNamed:@"wall.caf" waitForCompletion:NO];
+        self.explosion = [SKAction playSoundFileNamed:@"explosion.caf" waitForCompletion:NO];
 #if PHYSICS > 0
         self.physicsBody = theBody;
 #endif
@@ -93,7 +99,7 @@ static inline CGFloat CGVektorLength(CGVector inVector) {
         
         theMinimalY = thePoint.y;
         for(NSUInteger j = 0; j < kBricksPerRow; ++j) {
-            NSUInteger theIndex = random() % theCount;
+            NSUInteger theIndex = drand48() * theCount;
             SKColor *theColor = theColors[theIndex];
             SKNode *theBrick = [self brickWithColor:theColor size:theBrickSize position:thePoint];
             
@@ -106,27 +112,22 @@ static inline CGFloat CGVektorLength(CGVector inVector) {
 }
 
 - (void)removeAllBricks {
-    [self enumerateChildNodesWithName:kBrick usingBlock:^(SKNode *inBrick, BOOL *outStop) {
-        [inBrick removeFromParent];
-    }];
-}
-
-- (CGFloat)direction {
-    SKPhysicsBody *theBody = self.ball.physicsBody;
-    CGVector theVelocity = theBody.velocity;
-
-    return atan2f(theVelocity.dy, theVelocity.dx);
+    NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"name = %@", kBrick];
+    NSArray *theNodes = [self.children filteredArrayUsingPredicate:thePredicate];
+    
+    [theNodes makeObjectsPerformSelector:@selector(removeFromParent)];
 }
 
 - (CGFloat)gravity {
-    return CGVektorLength(self.physicsWorld.gravity);
+    return CGVectorLength(self.physicsWorld.gravity);
 }
 
 - (void)addImpulseWithFactor:(CGFloat)inFactor {
     SKPhysicsBody *theBody = self.ball.physicsBody;
-    CGFloat theAngle = self.direction;
+    CGVector theVelocity = theBody.velocity;
+    CGFloat theLength = CGVectorLength(theVelocity);
     CGFloat theImpulse = theBody.mass * self.gravity * inFactor;
-    CGVector theImpulseVector = CGVectorMake(theImpulse * cosf(theAngle), theImpulse * sinf(theAngle));
+    CGVector theImpulseVector = CGVectorMake(theImpulse * theVelocity.dx / theLength, theImpulse * theVelocity.dy / theLength);
     
     [theBody applyImpulse:theImpulseVector];
 }
@@ -189,7 +190,7 @@ static inline CGFloat CGVektorLength(CGVector inVector) {
 }
 
 - (CGVector)velocityWithDirection:(CGVector)inDirection {
-    CGFloat theAbsoluteVelocity = CGVektorLength(inDirection);
+    CGFloat theAbsoluteVelocity = CGVectorLength(inDirection);
     
     if(theAbsoluteVelocity == 0) {
         CGFloat theAngle = 2 * M_PI * drand48();
@@ -286,13 +287,14 @@ static inline CGFloat CGVektorLength(CGVector inVector) {
 }
 
 - (void)explosionAtPoint:(CGPoint)inPoint {
-    SKNode *theNode = [self emitterNodeNamed:@"contact"];
+    SKNode *theNode = [self emitterNodeNamed:@"explosion"];
     SKAction *theAction = [SKAction sequence:@[[SKAction waitForDuration:0.5],
                                                [SKAction removeFromParent]]];
     
     theNode.position = inPoint;
     [self addChild:theNode];
     [theNode runAction:theAction];
+    [theNode runAction:self.explosion];
 }
 
 #pragma mark SKPhysicsContactDelegate
@@ -315,8 +317,16 @@ static inline CGFloat CGVektorLength(CGVector inVector) {
         self.score += [theBrick.userData[kPoints] unsignedIntegerValue];
         [self explosionAtPoint:inPoint];
     }
-    else if (inBody.categoryBitMask == kWallMask && inPoint.y < 0.0) {
-        [self stop];
+    else if(inBody.categoryBitMask == kWallMask) {
+        if (inPoint.y < 0.0) {
+            [self stop];
+        }
+        else {
+            [self runAction:self.contactWall];
+        }
+    }
+    else if(inBody.categoryBitMask == kRacketMask) {
+        [self runAction:self.contactRacket];
     }
 }
 
