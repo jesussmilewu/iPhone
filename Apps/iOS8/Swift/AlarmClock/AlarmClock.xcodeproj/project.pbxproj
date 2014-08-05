@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB0177D219915BE000AEC571 /* UIView+AlarmClock.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9744C2196BCD5000BE585C /* UIView+AlarmClock.swift */; };
+		AB0177D419915CC000AEC571 /* ClockControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0177D319915CC000AEC571 /* ClockControl.swift */; };
 		AB06638B1972ED24004E2245 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB06638D1972ED24004E2245 /* Localizable.strings */; };
 		AB4E79A01972D84B00021FA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB4E79A21972D84B00021FA9 /* Main.storyboard */; };
 		ABDA2C6019558E7E00B99517 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDA2C5F19558E7E00B99517 /* AppDelegate.swift */; };
@@ -29,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB0177D319915CC000AEC571 /* ClockControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockControl.swift; sourceTree = "<group>"; };
 		AB0663881972ECE8004E2245 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		AB06638C1972ED24004E2245 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AB06638E1972ED2B004E2245 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -92,6 +95,7 @@
 				ABDA2C5F19558E7E00B99517 /* AppDelegate.swift */,
 				ABDA2C6119558E7E00B99517 /* ViewController.swift */,
 				ABDA2C7C19558FA200B99517 /* ClockView.swift */,
+				AB0177D319915CC000AEC571 /* ClockControl.swift */,
 				AB9744C2196BCD5000BE585C /* UIView+AlarmClock.swift */,
 				ABDA2C6619558E7E00B99517 /* Images.xcassets */,
 				ABDA2C5D19558E7E00B99517 /* Supporting Files */,
@@ -235,7 +239,9 @@
 			files = (
 				ABDA2C6219558E7E00B99517 /* ViewController.swift in Sources */,
 				ABDA2C7D19558FA200B99517 /* ClockView.swift in Sources */,
+				AB0177D419915CC000AEC571 /* ClockControl.swift in Sources */,
 				ABDA2C6019558E7E00B99517 /* AppDelegate.swift in Sources */,
+				AB0177D219915BE000AEC571 /* UIView+AlarmClock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

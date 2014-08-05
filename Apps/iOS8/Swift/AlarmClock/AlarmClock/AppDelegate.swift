@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     private var _soundId: SystemSoundID?
     var soundId: SystemSoundID {
     get {
-        if !_soundId {
+        if _soundId != nil {
             let theURL = NSBundle.mainBundle().URLForResource("ringtone", withExtension:"caf")
             var theId: SystemSoundID = 0
             
@@ -25,10 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         return _soundId!
     }
     set {
-        if _soundId != newValue {
-            if _soundId? {
-                AudioServicesDisposeSystemSoundID(_soundId!)
-            }
+        if _soundId != newValue && _soundId != nil {
+            AudioServicesDisposeSystemSoundID(_soundId!)
         }
     }
     }
