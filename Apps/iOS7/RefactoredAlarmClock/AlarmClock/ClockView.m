@@ -29,8 +29,8 @@
 - (void)drawClockHands {
     CGContextRef theContext = UIGraphicsGetCurrentContext();
     CGFloat theRadius = CGRectGetWidth(self.bounds) / 2.0;
-    NSDateComponents *theComponents = [self.calendar components:NSHourCalendarUnit |
-                                       NSMinuteCalendarUnit | NSSecondCalendarUnit
+    NSDateComponents *theComponents = [self.calendar components:NSCalendarUnitHour |
+                                       NSCalendarUnitMinute | NSCalendarUnitSecond
                                                        fromDate:self.time];
     CGFloat theSecond = theComponents.second * M_PI / 30.0;
     CGFloat theMinute = theComponents.minute * M_PI / 30.0;

@@ -143,7 +143,7 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
 
 - (NSTimeInterval)startTimeOfCurrentDay {
     NSCalendar *theCalendar = [NSCalendar currentCalendar];
-    NSDateComponents *theComponents = [theCalendar components:NSYearCalendarUnit | NSMonthCalendarUnit |NSDayCalendarUnit fromDate:[NSDate date]];
+    NSDateComponents *theComponents = [theCalendar components:NSCalendarUnitYear | NSCalendarUnitMonth |NSCalendarUnitDay fromDate:[NSDate date]];
     NSDate *theDate = [theCalendar dateFromComponents:theComponents];
 
     return [theDate timeIntervalSinceReferenceDate];
