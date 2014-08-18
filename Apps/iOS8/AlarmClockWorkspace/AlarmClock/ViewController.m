@@ -7,9 +7,8 @@
 //
 
 #import "ViewController.h"
-#import "ClockView.h"
 #import "ClockControl.h"
-#import "UIView+AlarmClock.h"
+#import <AlarmClockFramework/AlarmClockFramework.h>
 
 const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
 
@@ -89,7 +88,7 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
     NSInteger theMinutes = theTime % 60;
     NSInteger theHours = theTime / 60;
 
-    self.timeLabel.text = [NSString stringWithFormat:@"%d:%02d", theHours, theMinutes];
+    self.timeLabel.text = [NSString stringWithFormat:@"%d:%02d", (int)theHours, (int)theMinutes];
 }
 
 - (IBAction)switchAlarm:(UILongPressGestureRecognizer *)inRecognizer {
