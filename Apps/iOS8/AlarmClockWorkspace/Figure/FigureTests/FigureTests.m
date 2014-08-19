@@ -1,6 +1,6 @@
 //
-//  SecondClockTests.m
-//  SecondClockTests
+//  FigureTests.m
+//  FigureTests
 //
 //  Created by Clemens Wagner on 19.08.14.
 //  Copyright (c) 2014 Clemens Wagner. All rights reserved.
@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-@interface SecondClockTests : XCTestCase
+@interface FigureTests : XCTestCase
 
 @end
 
-@implementation SecondClockTests
+@implementation FigureTests
 
 - (void)setUp {
     [super setUp];
