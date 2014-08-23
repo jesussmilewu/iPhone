@@ -6,8 +6,7 @@
 //  Copyright (c) 2013 Cocoaneheads. All rights reserved.
 //
 
-#import "ClockView.h"
-#import "UIView+AlarmClock.h"
+#import "AlarmClockFramework.h"
 
 @interface ClockView()
 
@@ -116,6 +115,7 @@
     }
     [self drawClockHands];
     CGContextRestoreGState(theContext);
+    DEBUG_LOG(@"time = %@", self.time);
 }
 
 - (void)tintColorDidChange {
