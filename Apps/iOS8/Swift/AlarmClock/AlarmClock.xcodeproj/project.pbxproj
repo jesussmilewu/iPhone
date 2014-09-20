@@ -11,6 +11,7 @@
 		AB0177D419915CC000AEC571 /* ClockControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0177D319915CC000AEC571 /* ClockControl.swift */; };
 		AB06638B1972ED24004E2245 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB06638D1972ED24004E2245 /* Localizable.strings */; };
 		AB4E79A01972D84B00021FA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB4E79A21972D84B00021FA9 /* Main.storyboard */; };
+		AB5EC2D119C47F6100DAE456 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB5EC2D019C47F6100DAE456 /* LaunchScreen.xib */; };
 		ABDA2C6019558E7E00B99517 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDA2C5F19558E7E00B99517 /* AppDelegate.swift */; };
 		ABDA2C6219558E7E00B99517 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDA2C6119558E7E00B99517 /* ViewController.swift */; };
 		ABDA2C6719558E7E00B99517 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABDA2C6619558E7E00B99517 /* Images.xcassets */; };
@@ -36,6 +37,7 @@
 		AB06638C1972ED24004E2245 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AB06638E1972ED2B004E2245 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AB4E79A11972D84B00021FA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AB5EC2D019C47F6100DAE456 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		AB9744C2196BCD5000BE585C /* UIView+AlarmClock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "UIView+AlarmClock.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		ABDA2C5A19558E7E00B99517 /* AlarmClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABDA2C5E19558E7E00B99517 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				AB0177D319915CC000AEC571 /* ClockControl.swift */,
 				AB9744C2196BCD5000BE585C /* UIView+AlarmClock.swift */,
 				ABDA2C6619558E7E00B99517 /* Images.xcassets */,
+				AB5EC2D019C47F6100DAE456 /* LaunchScreen.xib */,
 				ABDA2C5D19558E7E00B99517 /* Supporting Files */,
 			);
 			path = AlarmClock;
@@ -220,6 +223,7 @@
 				AB06638B1972ED24004E2245 /* Localizable.strings in Resources */,
 				ABDA2C6719558E7E00B99517 /* Images.xcassets in Resources */,
 				ABDA2C831955BE2A00B99517 /* ringtone.caf in Resources */,
+				AB5EC2D119C47F6100DAE456 /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,9 +371,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = AlarmClock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -378,6 +384,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = AlarmClock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -89,7 +89,8 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
     NSInteger theMinutes = theTime % 60;
     NSInteger theHours = theTime / 60;
 
-    self.timeLabel.text = [NSString stringWithFormat:@"%d:%02d", theHours, theMinutes];
+    self.timeLabel.text = [NSString stringWithFormat:@"%d:%02d",
+                           (int)theHours, (int)theMinutes];
 }
 
 - (IBAction)switchAlarm:(UILongPressGestureRecognizer *)inRecognizer {
@@ -151,7 +152,6 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
     return [theDate timeIntervalSinceReferenceDate];
 }
 
-/*
 - (NSString *)description {
     return [NSString stringWithFormat:@"alarm: %@ (%@)", self.timeLabel.text, self.alarmHidden ? @"off" : @"on"];
 }
@@ -160,6 +160,6 @@ const NSTimeInterval kSecondsOfDay = 60.0 * 60.0 * 24.0;
     return [NSString stringWithFormat:@"debug alarm: %@ (%.3fs, %@)",
             self.timeLabel.text, self.clockControl.time,
             self.alarmHidden ? @"off" : @"on"];
-}*/
+}
 
 @end

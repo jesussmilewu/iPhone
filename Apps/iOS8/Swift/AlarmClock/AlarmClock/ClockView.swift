@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 class ClockView: UIView {
     var time : NSDate = NSDate() {
     didSet {

@@ -56,14 +56,14 @@ class ViewController: UIViewController {
     
     func updateViews() {
         let theApplication = UIApplication.sharedApplication()
-        let theNotifications:NSArray? = theApplication.scheduledLocalNotifications
-        let theNotification:UILocalNotification? = theNotifications?.lastObject as? UILocalNotification
+        let theNotifications = theApplication.scheduledLocalNotifications
+        let theNotification : UILocalNotification? = theNotifications.last as? UILocalNotification
         
         if(theNotification == nil) {
             alarmHidden = true;
         }
         else {
-            var theTime = theNotification!.fireDate.timeIntervalSinceReferenceDate - startTimeOfCurrentDay()
+            var theTime = theNotification!.fireDate!.timeIntervalSinceReferenceDate - startTimeOfCurrentDay()
             
             theTime = theTime % (kSecondsOfDay / 2.0)
             clockControl.time = theTime < 0 ? theTime + kSecondsOfDay / 2.0 : theTime;
@@ -73,9 +73,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func updateTimeLabel() {
-        let theTime:UInt = UInt(round(clockControl.time / 60.0))
-        let theMinutes = theTime % 60;
-        let theHours = theTime / 60;
+        let theTime = UInt(round(clockControl.time / 60.0))
+        let theMinutes = theTime % 60
+        let theHours = theTime / 60
         
         timeLabel.text = NSString(format:"%d:%02d", theHours, theMinutes)
     }
@@ -135,15 +135,15 @@ class ViewController: UIViewController {
         let theComponents = theCalendar.components(NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit, fromDate: NSDate())
         let theDate = theCalendar.dateFromComponents(theComponents)
         
-        return theDate.timeIntervalSinceReferenceDate
+        return theDate!.timeIntervalSinceReferenceDate
     }
     
     func description() -> NSString {
-        return NSString(format:"alarm: %@ (%@)", timeLabel.text, alarmHidden ? "off" : "on")
+        return NSString(format:"alarm: %@ (%@)", timeLabel.text!, alarmHidden ? "off" : "on")
     }
     
     func debugDescription() -> NSString {
-        return NSString(format:"debug alarm: %@ (%.3fs, %@)", timeLabel.text, clockControl.time, alarmHidden ? "off" : "on")
+        return NSString(format:"debug alarm: %@ (%.3fs, %@)", timeLabel.text!, clockControl.time, alarmHidden ? "off" : "on")
     }
 }
 

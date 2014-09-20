@@ -39,11 +39,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     }
     
     func application(inApplication: UIApplication!, didRegisterUserNotificationSettings inSettings: UIUserNotificationSettings!) {
-        if(inSettings.types & UIUserNotificationType.Alert) {
-            NSLog("Alerts alloed")
+        if inSettings.types & UIUserNotificationType.Alert != UIUserNotificationType.allZeros {
+            NSLog("Alerts allowed")
         }
-        if(inSettings.types & UIUserNotificationType.Sound) {
-            NSLog("Sounds alloed")
+        if inSettings.types & UIUserNotificationType.Sound != UIUserNotificationType.allZeros {
+            NSLog("Sounds allowed")
         }
     }
 

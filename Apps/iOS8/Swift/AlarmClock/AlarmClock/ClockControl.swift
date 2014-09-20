@@ -38,18 +38,18 @@ class ClockControl: UIControl {
         sendActionsForControlEvents(UIControlEvents.ValueChanged)
     }
     
-    override func beginTrackingWithTouch(inTouch: UITouch!, withEvent inEvent: UIEvent!) -> Bool {
+    override func beginTrackingWithTouch(inTouch: UITouch, withEvent inEvent: UIEvent) -> Bool {
         savedAngle = angle
         updateAngleWithTouch(inTouch)
         return true
     }
     
-    override func continueTrackingWithTouch(inTouch: UITouch!, withEvent inEvent: UIEvent!) -> Bool {
+    override func continueTrackingWithTouch(inTouch: UITouch, withEvent inEvent: UIEvent) -> Bool {
         updateAngleWithTouch(inTouch)
         return true
     }
     
-    override func endTrackingWithTouch(inTouch: UITouch!, withEvent inEvent: UIEvent!) {
+    override func endTrackingWithTouch(inTouch: UITouch, withEvent inEvent: UIEvent) {
         updateAngleWithTouch(inTouch)
     }
     
