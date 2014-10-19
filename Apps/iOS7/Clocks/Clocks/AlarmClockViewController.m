@@ -9,6 +9,9 @@
 #import "AlarmClockViewController.h"
 #import "ClockView.h"
 
+#define USE_OUTLET_COLLECTION 0
+#define USE_CONTAINER_VIEW 1
+
 @interface AlarmClockViewController ()
 
 @property (strong, nonatomic) IBOutletCollection(ClockView) NSArray *clockViews;
@@ -36,11 +39,19 @@
 }
 
 - (void)startAnimations {
-    // for(ClockView *theView in self.view.subviews) { // Variante mit Containerview ohne Outlet-Collections
-    // for(ClockView *theView in self.clockViews) {
-    //     [theView startAnimation];
-    // }
+#if USE_OUTLET_COLLECTION
+    for(ClockView *theView in self.clockViews) {
+        [theView startAnimation];
+    }
+#elif USE_CONTAINER_VIEW
+    for(ClockView *theView in self.view.subviews) { // Variante mit Containerview ohne Outlet-Collections
+        if([theView respondsToSelector:@selector(startAnimation)]) {
+            [theView startAnimation];
+        }
+    }
+#else
     [self.clockViews makeObjectsPerformSelector:@selector(startAnimation)];
+#endif
 }
 
 - (void)viewDidAppear:(BOOL)inAnimated {
@@ -49,11 +60,19 @@
 }
 
 - (void)stopAnimations {
-    // for(ClockView *theView in self.view.subviews) { // Variante mit Containerview ohne Outlet-Collections
-    // for(ClockView *theView in self.clockViews) {
-    //     [theView stopAnimation];
-    // }
+#if USE_OUTLET_COLLECTION
+    for(ClockView *theView in self.clockViews) {
+        [theView stopAnimation];
+    }
+#elif USE_CONTAINER_VIEW
+    for(ClockView *theView in self.view.subviews) { // Variante mit Containerview ohne Outlet-Collections
+        if([theView respondsToSelector:@selector(stopAnimation)]) {
+            [theView stopAnimation];
+        }
+    }
+#else
     [self.clockViews makeObjectsPerformSelector:@selector(stopAnimation)];
+#endif
 }
 
 - (void)viewWillDisappear:(BOOL)inAnimated {

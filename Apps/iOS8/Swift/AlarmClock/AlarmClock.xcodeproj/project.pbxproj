@@ -11,6 +11,7 @@
 		AB0177D419915CC000AEC571 /* ClockControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0177D319915CC000AEC571 /* ClockControl.swift */; };
 		AB06638B1972ED24004E2245 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB06638D1972ED24004E2245 /* Localizable.strings */; };
 		AB4E79A01972D84B00021FA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB4E79A21972D84B00021FA9 /* Main.storyboard */; };
+		AB51D9D419CEEC0D00E518B2 /* MainAutolayout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB51D9D319CEEC0D00E518B2 /* MainAutolayout.storyboard */; };
 		AB5EC2D119C47F6100DAE456 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB5EC2D019C47F6100DAE456 /* LaunchScreen.xib */; };
 		ABDA2C6019558E7E00B99517 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDA2C5F19558E7E00B99517 /* AppDelegate.swift */; };
 		ABDA2C6219558E7E00B99517 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDA2C6119558E7E00B99517 /* ViewController.swift */; };
@@ -37,6 +38,7 @@
 		AB06638C1972ED24004E2245 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AB06638E1972ED2B004E2245 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AB4E79A11972D84B00021FA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AB51D9D319CEEC0D00E518B2 /* MainAutolayout.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainAutolayout.storyboard; sourceTree = "<group>"; };
 		AB5EC2D019C47F6100DAE456 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		AB9744C2196BCD5000BE585C /* UIView+AlarmClock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "UIView+AlarmClock.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		ABDA2C5A19558E7E00B99517 /* AlarmClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +95,7 @@
 		ABDA2C5C19558E7E00B99517 /* AlarmClock */ = {
 			isa = PBXGroup;
 			children = (
+				AB51D9D319CEEC0D00E518B2 /* MainAutolayout.storyboard */,
 				AB4E79A21972D84B00021FA9 /* Main.storyboard */,
 				ABDA2C5F19558E7E00B99517 /* AppDelegate.swift */,
 				ABDA2C6119558E7E00B99517 /* ViewController.swift */,
@@ -219,6 +222,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB51D9D419CEEC0D00E518B2 /* MainAutolayout.storyboard in Resources */,
 				AB4E79A01972D84B00021FA9 /* Main.storyboard in Resources */,
 				AB06638B1972ED24004E2245 /* Localizable.strings in Resources */,
 				ABDA2C6719558E7E00B99517 /* Images.xcassets in Resources */,
