@@ -48,7 +48,7 @@
 /* Begin PBXFileReference section */
 		40260EAC1A0D6734002EF882 /* RootForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootForm.h; sourceTree = "<group>"; };
 		40260EAD1A0D6734002EF882 /* RootForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootForm.m; sourceTree = "<group>"; };
-		407440031A0D59AC00B94ACE /* FormFoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FormFoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		407440031A0D59AC00B94ACE /* Formulare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Formulare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		407440071A0D59AC00B94ACE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		407440081A0D59AC00B94ACE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4074400A1A0D59AC00B94ACE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -58,7 +58,7 @@
 		407440111A0D59AD00B94ACE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		407440131A0D59AD00B94ACE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		407440161A0D59AD00B94ACE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		4074401C1A0D59AD00B94ACE /* FormFooTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FormFooTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4074401C1A0D59AD00B94ACE /* FormulareTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FormulareTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		407440211A0D59AD00B94ACE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		407440221A0D59AD00B94ACE /* FormFooTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FormFooTests.m; sourceTree = "<group>"; };
 		407B20181A0D7B5C00C379DD /* CHANGELOG */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG; sourceTree = "<group>"; };
@@ -137,8 +137,8 @@
 		407440041A0D59AC00B94ACE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				407440031A0D59AC00B94ACE /* FormFoo.app */,
-				4074401C1A0D59AD00B94ACE /* FormFooTests.xctest */,
+				407440031A0D59AC00B94ACE /* Formulare.app */,
+				4074401C1A0D59AD00B94ACE /* FormulareTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -247,9 +247,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		407440021A0D59AC00B94ACE /* FormFoo */ = {
+		407440021A0D59AC00B94ACE /* Formulare */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 407440261A0D59AD00B94ACE /* Build configuration list for PBXNativeTarget "FormFoo" */;
+			buildConfigurationList = 407440261A0D59AD00B94ACE /* Build configuration list for PBXNativeTarget "Formulare" */;
 			buildPhases = (
 				C594598C6829351D62C30104 /* Check Pods Manifest.lock */,
 				40743FFF1A0D59AC00B94ACE /* Sources */,
@@ -261,14 +261,14 @@
 			);
 			dependencies = (
 			);
-			name = FormFoo;
+			name = Formulare;
 			productName = FormFoo;
-			productReference = 407440031A0D59AC00B94ACE /* FormFoo.app */;
+			productReference = 407440031A0D59AC00B94ACE /* Formulare.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4074401B1A0D59AD00B94ACE /* FormFooTests */ = {
+		4074401B1A0D59AD00B94ACE /* FormulareTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 407440291A0D59AD00B94ACE /* Build configuration list for PBXNativeTarget "FormFooTests" */;
+			buildConfigurationList = 407440291A0D59AD00B94ACE /* Build configuration list for PBXNativeTarget "FormulareTests" */;
 			buildPhases = (
 				407440181A0D59AD00B94ACE /* Sources */,
 				407440191A0D59AD00B94ACE /* Frameworks */,
@@ -279,9 +279,9 @@
 			dependencies = (
 				4074401E1A0D59AD00B94ACE /* PBXTargetDependency */,
 			);
-			name = FormFooTests;
+			name = FormulareTests;
 			productName = FormFooTests;
-			productReference = 4074401C1A0D59AD00B94ACE /* FormFooTests.xctest */;
+			productReference = 4074401C1A0D59AD00B94ACE /* FormulareTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -302,7 +302,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 40743FFE1A0D59AC00B94ACE /* Build configuration list for PBXProject "FormFoo" */;
+			buildConfigurationList = 40743FFE1A0D59AC00B94ACE /* Build configuration list for PBXProject "Formulare" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -315,8 +315,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				407440021A0D59AC00B94ACE /* FormFoo */,
-				4074401B1A0D59AD00B94ACE /* FormFooTests */,
+				407440021A0D59AC00B94ACE /* Formulare */,
+				4074401B1A0D59AD00B94ACE /* FormulareTests */,
 			);
 		};
 /* End PBXProject section */
@@ -405,7 +405,7 @@
 /* Begin PBXTargetDependency section */
 		4074401E1A0D59AD00B94ACE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 407440021A0D59AC00B94ACE /* FormFoo */;
+			target = 407440021A0D59AC00B94ACE /* Formulare */;
 			targetProxy = 4074401D1A0D59AD00B94ACE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -518,7 +518,7 @@
 				);
 				INFOPLIST_FILE = FormFoo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Formulare;
 			};
 			name = Debug;
 		};
@@ -534,7 +534,7 @@
 				);
 				INFOPLIST_FILE = FormFoo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Formulare;
 			};
 			name = Release;
 		};
@@ -552,7 +552,7 @@
 				);
 				INFOPLIST_FILE = FormFooTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FormulareTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FormFoo.app/FormFoo";
 			};
 			name = Debug;
@@ -567,7 +567,7 @@
 				);
 				INFOPLIST_FILE = FormFooTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FormulareTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FormFoo.app/FormFoo";
 			};
 			name = Release;
@@ -575,7 +575,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		40743FFE1A0D59AC00B94ACE /* Build configuration list for PBXProject "FormFoo" */ = {
+		40743FFE1A0D59AC00B94ACE /* Build configuration list for PBXProject "Formulare" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				407440241A0D59AD00B94ACE /* Debug */,
@@ -584,7 +584,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		407440261A0D59AD00B94ACE /* Build configuration list for PBXNativeTarget "FormFoo" */ = {
+		407440261A0D59AD00B94ACE /* Build configuration list for PBXNativeTarget "Formulare" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				407440271A0D59AD00B94ACE /* Debug */,
@@ -593,7 +593,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		407440291A0D59AD00B94ACE /* Build configuration list for PBXNativeTarget "FormFooTests" */ = {
+		407440291A0D59AD00B94ACE /* Build configuration list for PBXNativeTarget "FormulareTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4074402A1A0D59AD00B94ACE /* Debug */,
