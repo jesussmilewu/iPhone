@@ -13,7 +13,7 @@
 @interface ModalViewController : UIViewController
 
 @property (nonatomic) NSUInteger counter;
-@property (nonatomic, assign) id<ModalViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<ModalViewControllerDelegate> delegate;
 
 @end
 
