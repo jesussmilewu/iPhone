@@ -422,7 +422,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AlarmClock/AlarmClock-Prefix.pch";
-				INFOPLIST_FILE = "$(PRODUCT_NAME)-Info.plist";
+				INFOPLIST_FILE = "AlarmClock/$(PRODUCT_NAME)-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
@@ -434,7 +434,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AlarmClock/AlarmClock-Prefix.pch";
-				INFOPLIST_FILE = "$(PRODUCT_NAME)-Info.plist";
+				INFOPLIST_FILE = "AlarmClock/$(PRODUCT_NAME)-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;

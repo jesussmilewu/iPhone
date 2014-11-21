@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="4488.2" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" variant="6xAndEarlier" propertyAccessControl="none" initialViewController="wgj-yu-Nq4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch.iPad" variant="6xAndEarlier" propertyAccessControl="none" initialViewController="wgj-yu-Nq4">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
+        <deployment identifier="iOS"/>
         <development version="4600" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3715.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--Modal View Controller-->
@@ -30,6 +30,7 @@
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="400" height="200"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="400" height="660"/>
                     <connections>
                         <outlet property="label" destination="y2v-Lj-lVf" id="VBm-V1-GGL"/>
                         <outlet property="slider" destination="mq3-6V-RTm" id="qh0-Xb-Y0j"/>
@@ -37,7 +38,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B5I-j2-613" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="968" y="592"/>
+            <point key="canvasLocation" x="1146" y="-45"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="ZKl-AS-JqX">
@@ -103,22 +104,25 @@
                     <navigationItem key="navigationItem" id="enN-Js-9Hh"/>
                     <connections>
                         <outlet property="label" destination="a0X-oa-MdE" id="X8S-hu-DIt"/>
-                        <segue destination="1MG-RL-x7b" kind="popover" identifier="dialog" popoverAnchorView="Paq-pp-v5h" id="goG-Qz-gab">
+                        <segue destination="1MG-RL-x7b" kind="popover" identifier="" popoverAnchorView="Paq-pp-v5h" id="goG-Qz-gab">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
+                        <segue destination="1MG-RL-x7b" kind="popover" popoverAnchorView="Paq-pp-v5h" id="aBH-PX-bdi">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XEd-ys-T8k" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="48" y="-180"/>
+            <point key="canvasLocation" x="400" y="-45"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>
+        <simulatedStatusBarMetrics key="statusBar" statusBarStyle="black"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="NUI-uU-p5e"/>
+        <segue reference="aBH-PX-bdi"/>
     </inferredMetricsTieBreakers>
 </document>
