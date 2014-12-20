@@ -17,7 +17,8 @@
 <pre>
 @IBAction func go(sender: AnyObject) {
 	let theURL = NSURL(string: "http://www.rodewig.de/ip.php")
-	var theIP = NSString(contentsOfURL: theURL!, encoding: NSUTF8StringEncoding, error: nil)
+	var theIP = NSString(contentsOfURL: theURL!, 
+		encoding: NSUTF8StringEncoding, error: nil)
 	label.text = theIP
 }
 </pre>
