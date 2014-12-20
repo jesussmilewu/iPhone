@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="book.xsl" ?>
+<b:book xmlns:b="http://cocoaneheads.github.io/iPhone/book.xsd" xmlns="http://www.w3.org/1999/xhtml"
+              issue="4" year="2014">
+  <b:title>App programmieren für iPhone und iPad</b:title>
+  <b:branch>Ausgabe_iOS8</b:branch>
+  <!-- <b:openbook>http://openbook.galileocomputing.de/apps_programmieren_fuer_iphone_und_ipad/</b:openbook> -->
+  <b:errors>
+    <b:error pages="26">
+      <b:text>
+        Es muss natürlich „Verlassen Sie sich also nicht darauf, dass Apple <strong>Mavericks</strong> auch in Zukunft mit neuen SDKs versorgt.“ heißen.
+	  </b:text>
+	  <b:credits>Patrick</b:credits>
+    </b:error>
+    <b:error pages="60">
+      <b:text>In Listing 1.7 muss eine Variable für den Fehler verwendet werden:
+<pre>
+var error: NSError?
+let url: NSURL = NSURL(string: "http://rodewig.de/ip.php")
+let string = NSString(contentsOfURL: url, 
+	encoding: NSUTF8StringEncoding, error: &amp;error)
+</pre>
+        </b:text>
+	  <b:credits>Philipp</b:credits>
+    </b:error>
+  </b:errors>
+</b:book>
