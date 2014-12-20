@@ -3,7 +3,7 @@
 <b:book xmlns:b="http://cocoaneheads.github.io/iPhone/book.xsd" xmlns="http://www.w3.org/1999/xhtml"
               issue="3" year="2013">
   <b:title>App programmieren für iPhone und iPad</b:title>
-  <b:branch>Auflage_2</b:branch>
+  <b:branch>Auflage_3</b:branch>
   <b:openbook>http://openbook.galileocomputing.de/apps_programmieren_fuer_iphone_und_ipad/</b:openbook>
   <b:errors>
     <b:error pages="54">
