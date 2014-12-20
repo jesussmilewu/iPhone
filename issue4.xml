@@ -13,12 +13,13 @@
 	  <b:credits>Patrick</b:credits>
     </b:error>
     <b:error pages="60">
-      <b:text>In Listing 1.7 muss eine Variable für den Fehler verwendet werden:
+      <b:text>Listing 1.7 muss Konstruktoraufrufe anstelle von Klassenmethoden verwenden:
 <pre>
-var error: NSError?
-let url: NSURL = NSURL(string: "http://rodewig.de/ip.php")
-let string = NSString(contentsOfURL: url, 
-	encoding: NSUTF8StringEncoding, error: &amp;error)
+@IBAction func go(sender: AnyObject) {
+	let theURL = NSURL(string: "http://www.rodewig.de/ip.php")
+	var theIP = NSString(contentsOfURL: theURL!, encoding: NSUTF8StringEncoding, error: nil)
+	label.text = theIP
+}
 </pre>
         </b:text>
 	  <b:credits>Philipp</b:credits>
