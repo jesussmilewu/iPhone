@@ -9,21 +9,28 @@
     <b:error pages="26">
       <b:text>
         Es muss natürlich „Verlassen Sie sich also nicht darauf, dass Apple <strong>Mavericks</strong> auch in Zukunft mit neuen SDKs versorgt.“ heißen.
-	  </b:text>
-	  <b:credits>Patrick</b:credits>
+      </b:text>
+      <b:credits>Patrick</b:credits>
+    </b:error>
+    <b:error pages="44 - 45">
+      <b:text>
+        Die Beschreibung für das Anlegen des Outlets ist etwas missverständlich, da der Text angibt, die Headerdatei zu öffnen. Andererseits stellen die Abbildungen jedoch die Implementierungsdatei dar.
+        Es ist beides möglich: Wie in dem Satz „Sie können jetzt Verbindungen von Elementen aus dem Storyboard direkt in die Header- oder Implementierungsdatei ziehen und so die View-Elemente und Programmcode verbinden.“ beschrieben, lassen  sich Outlets in der Klassendeklaration im Header und in der anonymen Kategorie in der Implementierungsdatei anlegen (wie das Abbildung 1.28 zeigt).
+      </b:text>
+      <b:credits>Jens</b:credits>
     </b:error>
     <b:error pages="60">
       <b:text>Listing 1.7 muss Konstruktoraufrufe anstelle von Klassenmethoden verwenden:
 <pre>
 @IBAction func go(sender: AnyObject) {
-	let theURL = NSURL(string: "http://www.rodewig.de/ip.php")
-	var theIP = NSString(contentsOfURL: theURL!, 
-		encoding: NSUTF8StringEncoding, error: nil)
-	label.text = theIP
+    let theURL = NSURL(string: "http://www.rodewig.de/ip.php")
+    var theIP = NSString(contentsOfURL: theURL!, 
+        encoding: NSUTF8StringEncoding, error: nil)
+    label.text = theIP
 }
 </pre>
         </b:text>
-	  <b:credits>Philipp</b:credits>
+      <b:credits>Philipp</b:credits>
     </b:error>
   </b:errors>
 </b:book>

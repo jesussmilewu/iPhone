@@ -80,7 +80,7 @@
   </xsl:template>
   <xsl:template match="book:error">
     <h4>Seite <xsl:value-of select="@pages"/></h4>
-    <p><xsl:apply-templates select="book:text" />
+    <p><xsl:apply-templates select="book:text" /><br />
       <xsl:if test="book:credits"><em>Danke, <xsl:value-of select="book:credits"/></em></xsl:if>
     </p>
   </xsl:template>
