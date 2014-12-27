@@ -52,7 +52,7 @@
             </xsl:element></p>
 
             <hr />
-            <h3>Fehler im Buch</h3>
+            <h3>Anmerkungen zum Buch</h3>
             <p>Trotz sorgfältiger Prüfung haben sich einige Fehler eingeschlichen,
               die wir auf dieser Seite zusammengetragen haben. Bei Problemen mit den Listings empfiehlt
               sich auch immer ein Blick in den Sourcecode im Git.</p>
