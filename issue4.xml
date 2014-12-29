@@ -34,7 +34,7 @@
     </b:error>
     <b:error pages="329">
       <b:text>
-      	Listing 3.95 sollte das Closure <tt>theHandler</tt> und nicht die für die Alert-Action verwenden:
+      	Listing 3.95 sollte das Closure <tt>theHandler</tt> und nicht die Methode <tt>dismissAlert</tt> für die Alert-Action verwenden:
 <pre>let theAction = UIAlertAction(title:"OK", 
     style:UIAlertActionStyle.Cancel, 
     handler:theHandler)</pre>
