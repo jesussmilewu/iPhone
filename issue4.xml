@@ -32,5 +32,14 @@
         </b:text>
       <b:credits>Philipp</b:credits>
     </b:error>
+    <b:error pages="329">
+      <b:text>
+      	Listing 3.95 sollte das Closure <tt>theHandler</tt> und nicht die für die Alert-Action verwenden:
+<pre>let theAction = UIAlertAction(title:"OK", 
+    style:UIAlertActionStyle.Cancel, 
+    handler:theHandler)</pre>
+      </b:text>
+      <b:credits>Walter</b:credits>
+    </b:error>
   </b:errors>
 </b:book>
