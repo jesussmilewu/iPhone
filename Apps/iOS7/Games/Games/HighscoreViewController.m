@@ -208,6 +208,8 @@ static NSString * const kScoreFilters[] = {
             [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:inSectionIndex] 
                           withRowAnimation:UITableViewRowAnimationFade];
             break;
+        default:
+            break;
     }
 }
 

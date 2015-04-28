@@ -25,7 +25,7 @@ NSString * const kCardDidSolvedNotification = @"kCardDidSolvedNotification";
 @synthesize index;
 
 + (id)cardWithType:(NSUInteger)inType {
-    return [[self alloc] initWithType:inType];
+    return [(Card *)[self alloc] initWithType:inType];
 }
 
 - (id)initWithType:(NSUInteger)inType {

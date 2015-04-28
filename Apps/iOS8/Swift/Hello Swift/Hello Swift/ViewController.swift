@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var label: UILabel!
     @IBAction func go(sender: AnyObject) {
         let theURL = NSURL(string: "http://www.rodewig.de/ip.php")
-        var theIP = NSString(contentsOfURL: theURL!, encoding: NSUTF8StringEncoding, error: nil)
+        var theIP = String(contentsOfURL: theURL!, encoding: NSUTF8StringEncoding, error: nil)
         label.text = theIP
     }
     override func viewDidLoad() {
